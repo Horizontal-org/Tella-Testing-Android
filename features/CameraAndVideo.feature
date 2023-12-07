@@ -2,7 +2,7 @@ Feature: CameraAndVideo
   
 @Smoke  
   Background:
-  Given the user is in home page
+  Given the user is in Tella´s home page
 
 Scenario: take a picture from tella
 When the user press the "camera" button
