@@ -88,5 +88,22 @@ Scenario: File information
   And the user press the three points button located at the top right screen
   And the user press the button "File information"
   Then the file information isin the screen
+  
+Scenario: Delete file
+  When the user press "camera"
+  And the user press the image located at the bottom right to the screen
+  And the user press the three points button located at the top right screen
+  And the user press "Delete"
+  And the user press "Delete"
+  Then the file is deleted
+  
+Scenario: Save to device
+  When the user press "camera"
+  And the user press the image located at the bottom right to the screen
+  And the user press the three points button located at the top right screen
+  And the user press "Save to device"
+  And the user press "Save"
+  And the user press "Continue"
+  Then the file is saved 
 
 Scenario: Rename a file with a existing name
