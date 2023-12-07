@@ -32,7 +32,7 @@ When the user press the "rec" button
 And the user press the microphone button
 And the user press the stop button
 Then is a new audio file in "Audio" folder
-And the audio teked is not in device album
+And the audio taked is not in device album
 
 Scenario: share photo from tella
 When the user press the button "Images" folder
