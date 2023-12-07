@@ -61,22 +61,32 @@ Scenario: record a video from Tella with the frontal camera
   And the video taked is not in device album
 
 Scenario: share photo from tella
-  When the user press the button "Images" folder
-  And the user press the three points button located a side to the file named "Tella.1"
+  When the user press "camera"
+  And The user press the photo located at the bottom right to the screen
+  And the user press the three points button located at the top right screen 
   And the user press the button "share"
   And the user press the button "continue"
   And the user press the button "gmail"
-  And the user write an email account "c...@gmail.com" and push the send it button
+  And the user write an email account "c...@gmail.com" 
+  And the user push the send it button
   Then the file is shared
 
 Scenario: share video from tella
-  When the user press the button "Videos" folder
-  And the user press the three points button located a side to the file named "tella video"
+  When the user press "camera"
+  And the user press "video"
+  And the user press the image located at the bottom right to the screen
+  And the user press the three points button located at the top right screen
   And the user press the button "share"
   And the user press the button "continue"
   And the user press the button "gmail"
   And the user write an email account "c...@gmail.com" and push the send it button
   Then the file is shared
-
+  
+Scenario: File information
+  When the user press "camera"
+  And the user press the image located at the bottom right to the screen
+  And the user press the three points button located at the top right screen
+  And the user press the button "File information"
+  Then the file information isin the screen
 
 Scenario: Rename a file with a existing name
