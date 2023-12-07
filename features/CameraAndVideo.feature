@@ -1,4 +1,6 @@
 Feature: CameraAndVideo
+  
+@Smoke  
   Background:
   Given the user is in home page
 
