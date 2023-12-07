@@ -13,7 +13,7 @@ And the picture taked is not in device album
 Scenario: add a picture from Tella´s "images" folder
 When the user press the "Images" folder
 And the user press "+" 
-And the press "import from device"
+And the user press "import from device"
 And the user select a picture from device album
 And the user press "photo library"
 And the user press "keep the original"
