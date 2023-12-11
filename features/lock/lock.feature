@@ -5,69 +5,93 @@ Feature: Lock Options
 
 @Smoke
 
-Scenario: register with password
+Scenario Outline: register with password
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
   And tap the "Contraseña" button
-  And types a password with no less than six characters
+  And types the <password>
   And tap the "Siguiente" button  
   And types the same password to confirm
   And tap the "Siguiente" button  
   Then a successfully registered message is displayed to the user and a link to landing page
   
-@Regression
-
-Scenario: Failed password confirmation
-  When the user tap the "EMPEZAR" button
-  And tap the "Siguiente" button until reaching the lock options
-  And tap the "Contraseña" button
-  And types a password with no less than six characters
-  And tap the "Siguiente" button 
-  And types a different password to confirm
-  And tap the "Siguiente" button  
-  Then a message is displayed to the user, warning the passwords are not the same
+  Examples:
+  | password  |
+  | abcdef    |
   
 @Regression
 
-Scenario: Failed password lenght
+Scenario Outline: Failed password confirmation and lenght
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
   And tap the "Contraseña" button
-  And types a password shorter than six characters
+  And types a <password_a>
+  And tap the "Siguiente" button 
+  And types a <password_b>
+  And tap the "Siguiente" button  
+  Then a message is displayed to the user, warning the passwords are not the same
+  
+  Examples:
+  | password_a  | password_b |
+  | abcdef      | abcabc     |
+
+@Regression
+
+Scenario Outline: Failed password lenght
+  When the user tap the "EMPEZAR" button
+  And tap the "Siguiente" button until reaching the lock options
+  And tap the "Contraseña" button
+  And types a <password>
   Then the "Siguiente" button remains disabled 
+  
+  Examples:
+  | password  |
+  | abcde     |
 
 @Smoke
 
-Scenario: register with PIN
+Scenario Outline: register with PIN
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
   And tap the "PIN" button
-  And types a PIN with no less than six digits
+  And types a <PIN>
   And tap the "Siguiente" button  
   And types the same PIN to confirm
   And tap the "Siguiente" button  
   Then A successfully registered message is displayed to the user and a link to landing page
   
+  Examples:
+  | PIN    |
+  | 123456 |
+  
 @Regression
 
-Scenario: Failed PIN confirmation
+Scenario Outline: Failed PIN confirmation
 When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
   And tap the "PIN" button
-  And types a PIN with no less than six digits
+  And types a <PIN_a>
   And tap the "Siguiente" button  
-  And types a different PIN number
+  And types a <PIN_b>
   And tap the "Siguiente" button
   Then a message is displayed to the user, warning the PIN numbers are not the same
+  
+  Examples:
+  | PIN_a  | PIN_b  |
+  | 123456 | 654321 |
 
 @Regression
 
-Scenario: Failed PIN lenght
+Scenario Outline: Failed PIN lenght
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
   And tap the "PIN" button
-  And types a PIN with a number of digits shorter than six
+  And types a <PIN>
   Then the "Siguiente" button remains disabled
+  
+  Examples:
+  | PIN   |
+  | 12345 |
 
 @Smoke
 
