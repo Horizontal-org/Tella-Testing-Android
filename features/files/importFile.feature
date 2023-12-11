@@ -55,29 +55,51 @@ Examples:
 | .DOCX |
 | .EXEL |
 
-Scenario Outline: Import a file to Tella by deleting the original
+Scenario Outline: Import Files to Tella
 When I select the option to import a file
-And I choose to delete the original
-And I import the file
-Then the <type> file appears in the list of files in the <folder> folder
-And the original file is deleted from the device
+And choose to keep the original
+And select a file of type <type> from the device
+Then the file is saved in the <folder> folder
+And the <type> file appears in the list of files in the <folder> folder
 
 Examples:
-| type | folder |
-| image | Images |
-| video | Videos |
-| audio | Audios |
-| document | Documents |
+| type  | folder    |
+| .jpg  | Images    |
+| .png  | Images    |
+| .MP4  | Videos    |
+| .MOV  | Videos    |
+| .MP3  | Audios    |
+| .AAC  | Audios    |
+| .PDF  | Documents |
+| .DOCX | Documents |
+
+Scenario Outline: Import a file to Tella by deleting the original
+When I select the option to import a file
+And choose to delete the original
+And select a file of type <type> from the device
+Then the file is saved in the <folder> folder
+And the <type> file appears in the list of files in the <folder> folder
+
+Examples:
+| type  | folder    |
+| .jpg  | Images    |
+| .png  | Images    |
+| .MP4  | Videos    |
+| .MOV  | Videos    |
+| .MP3  | Audios    |
+| .AAC  | Audios    |
+| .PDF  | Documents |
+| .DOCX | Documents |
 
 Scenario Outline: Import a duplicate file in Tella
 When I select the option to import a file
-And I import a <type> file that already exists in Tella
+And import a <type> file that already exists in Tella
 Then the duplicate file is imported correctly with a different name
-And the file is visible in the <folder> folder
+And the <type> file appears in the list of files in the <folder> folder
 
 Examples:
-| type | folder |
-| image | Images |
-| video | Videos |
-| audio | Audios |
-| document | Documents |
+| type | folder    |
+| .jpg | Images    |
+| .MP4 | Videos    |
+| .MP3 | Audios    |
+| .PDF | Documents |
