@@ -12,6 +12,16 @@ Scenario: register with password
   And types the same password to confirm
   And tap the "Siguiente" button  
   Then A successfully registered message is displayed to the user and a link to landing page
+  
+@Regression
+
+Scenario: Failed password confirmation
+  When the user tap the "EMPEZAR" button
+  And tap the "Siguiente" button until reaching the lock options
+  And tap the "Contraseña" button
+  And types a different password to confirm
+  And tap the "Siguiente" button  
+  Then a message is displayed to the user warning the passwords are not the same
 
 @Smoke
 
@@ -37,7 +47,9 @@ Scenario: register with pattern
   And tap the "Siguiente" button  
   Then A successfully registered message is displayed to the user and a link to landing page
 
+@Regression
 
+Scenario: 
 
 
 
