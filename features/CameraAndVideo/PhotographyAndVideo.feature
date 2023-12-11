@@ -35,7 +35,7 @@ Scenario: Turn on camera flash
 Scenario: Enable grid lines
   When the user press "camera"
   And the user press grid lines button, located a the top center of the screen
-  Then the grid lines is activate
+  Then the grid lines is activated
 
 @Somke @Photography
 Scenario: add a picture from Tella´s "images" folder
