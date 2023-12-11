@@ -48,6 +48,15 @@ Scenario: register with PIN
   And tap the "Siguiente" button  
   Then A successfully registered message is displayed to the user and a link to landing page
 
+@Regression
+
+Scenario: Failed PIN lenght
+  When the user tap the "EMPEZAR" button
+  And tap the "Siguiente" button until reaching the lock options
+  And tap the "PIN" button
+  And types a PIN with shorter than six digits
+  Then the "Siguiente" button remains disabled
+
 @Smoke
 
 Scenario: register with pattern
