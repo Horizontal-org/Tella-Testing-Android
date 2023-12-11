@@ -25,6 +25,18 @@ Scenario: register with PIN
   And the user tap the "Siguiente" button  
   Then A successfully registered message is displayed to the user and a link to landing page
 
+@Smoke
+
+Scenario: register with pattern
+  When the user tap the "EMPEZAR" button
+  And the user tap the "Siguiente" button until reaching the lock options
+  And the user tap the "Patrón" button
+  And the user draws a pattern with no less than six points
+  And the user tap the "Siguiente" button  
+  And the user draws the same pattern to confirm
+  And the user tap the "Siguiente" button  
+  Then A successfully registered message is displayed to the user and a link to landing page
+
 
 
 
