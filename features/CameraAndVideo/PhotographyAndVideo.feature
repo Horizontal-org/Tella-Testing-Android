@@ -1,4 +1,4 @@
-Feature: CameraAndVideo
+Feature: PhotographyAndVideo
   
   Background:
   Given the user is in Tella´s home page
