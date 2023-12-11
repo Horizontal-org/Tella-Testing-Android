@@ -11,7 +11,7 @@ Scenario Outline: register with password
   And tap the "Contraseña" button
   And types the <password>
   And tap the "Siguiente" button  
-  And types the same password to confirm
+  And types the <password> to confirm
   And tap the "Siguiente" button  
   Then a successfully registered message is displayed to the user and a link to landing page
   
@@ -56,7 +56,7 @@ Scenario Outline: register with PIN
   And tap the "PIN" button
   And types a <PIN>
   And tap the "Siguiente" button  
-  And types the same PIN to confirm
+  And types the <PIN> to confirm
   And tap the "Siguiente" button  
   Then A successfully registered message is displayed to the user and a link to landing page
   
