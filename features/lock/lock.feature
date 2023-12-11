@@ -13,7 +13,7 @@ Scenario: register with password
   And tap the "Siguiente" button  
   And types the same password to confirm
   And tap the "Siguiente" button  
-  Then A successfully registered message is displayed to the user and a link to landing page
+  Then a successfully registered message is displayed to the user and a link to landing page
   
 @Regression
 
@@ -66,7 +66,7 @@ Scenario: Failed PIN lenght
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
   And tap the "PIN" button
-  And types a PIN with shorter than six digits
+  And types a PIN with a number of digits shorter than six
   Then the "Siguiente" button remains disabled
 
 @Smoke
@@ -89,7 +89,7 @@ Scenario: Failed pattern confirmation
   And tap the "Patrón" button
   And draws a pattern with no less than six points
   And tap the "Siguiente" button  
-  And draws a different pattern
+  And draws a different pattern with no less than six points
   And tap the "Siguiente" button  
   Then a message is displayed to the user, warning the patterns are not the same
 
