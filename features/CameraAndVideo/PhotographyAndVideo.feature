@@ -67,7 +67,7 @@ Scenario: record a video from Tella with the frontal camera
   Then is a new picture in the "Picture" folder
   And the video taked is not in device album
 
-@Smoke @Photography
+@Smoke @Photography 
 Scenario: share photo from tella
   When the user press "camera"
   And The user press the photo located at the bottom right to the screen
@@ -91,7 +91,7 @@ Scenario: share video from tella
   And the user write an email account "cfiguera83@gmail.com" and push the send it button
   Then the file is shared
 
-@Smoke  @Photography
+@Smoke @Video @Photography
 Scenario: File information
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
@@ -99,7 +99,7 @@ Scenario: File information
   And the user press the button "File information"
   Then the file information isin the screen
 
-@Smoke  @Video
+@Smoke  @Video @Photography
 Scenario: Delete file
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
@@ -108,7 +108,7 @@ Scenario: Delete file
   And the user press "Delete"
   Then the file is deleted
 
-@Smoke  @Video
+@Smoke  @Video @Photography
 Scenario: Save to device
   When the user press "camera"
   And the user press the image located at the bottom right of the screen
@@ -118,7 +118,7 @@ Scenario: Save to device
   And the user press "Continue"
   Then the file is saved 
 
-@Smoke  @Video
+@Smoke  @Video @Photography
 Scenario: Rename file
   When the user press "camera"
   And the user press the image located at the bottom right of the screen
@@ -128,7 +128,7 @@ Scenario: Rename file
   And the user press "ok"
   Then the file is saved with the new name 
 
-@Smoke @Video
+@Smoke @Video @Photography
 Scenario: Rename a file with a existing name
   When the user press "camera"
   And the user press the image located at the bottom right of the screen
