@@ -5,7 +5,7 @@ Feature: PhotographyAndVideo
 
 @Smoke @Photography
 Scenario: take a picture from tella
-  When the user press the "camera" button
+  When the user press "camera"
   And the user press the take a photo button
   Then is a new picture in the "Images" folder
   And the picture taked is not in device album
@@ -50,7 +50,7 @@ Scenario: add a picture from Tella´s "images" folder
 
 @Smoke @Video
 Scenario: record a video from Tella
-  When the user press the button "camera"
+  When the user press "camera"
   And the user press "video" button
   And the user press the take a video button
   And the user press the stop video button
