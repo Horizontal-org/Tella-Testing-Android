@@ -9,6 +9,8 @@ Scenario: register with password
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
   And tap the "Contraseña" button
+  And types a password with no less than six characters
+  And tap the "Siguiente" button  
   And types the same password to confirm
   And tap the "Siguiente" button  
   Then A successfully registered message is displayed to the user and a link to landing page
@@ -19,9 +21,20 @@ Scenario: Failed password confirmation
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
   And tap the "Contraseña" button
+  And types a password with no less than six characters
+  And tap the "Siguiente" button 
   And types a different password to confirm
   And tap the "Siguiente" button  
-  Then a message is displayed to the user warning the passwords are not the same
+  Then a message is displayed to the user, warning the passwords are not the same
+  
+@Regression
+
+Scenario: Failed password lenght
+  When the user tap the "EMPEZAR" button
+  And tap the "Siguiente" button until reaching the lock options
+  And tap the "Contraseña" button
+  And types a password shorter than six characters
+  Then the "Siguiente" button remains disabled 
 
 @Smoke
 
