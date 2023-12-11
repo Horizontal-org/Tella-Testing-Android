@@ -75,7 +75,7 @@ Scenario: share photo from tella
   And the user press the button "share"
   And the user press the button "continue"
   And the user press the button "gmail"
-  And the user write an email account "c...@gmail.com" 
+  And the user write an email account "cfiguera83@gmail.com" 
   And the user push the send it button
   Then the file is shared
 
@@ -88,7 +88,7 @@ Scenario: share video from tella
   And the user press the button "share"
   And the user press the button "continue"
   And the user press the button "gmail"
-  And the user write an email account "c...@gmail.com" and push the send it button
+  And the user write an email account "cfiguera83@gmail.com" and push the send it button
   Then the file is shared
 
 @Smoke  @Photography
