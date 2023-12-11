@@ -111,8 +111,8 @@ Scenario: Delete file
 @Smoke  @Video
 Scenario: Save to device
   When the user press "camera"
-  And the user press the image located at the bottom right to the screen
-  And the user press the three points button located at the top right screen
+  And the user press the image located at the bottom right of the screen
+  And the user press the three points button located at the top right of the screen
   And the user press "Save to device"
   And the user press "Save"
   And the user press "Continue"
@@ -120,6 +120,24 @@ Scenario: Save to device
 
 @Smoke  @Video
 Scenario: Rename file
+  When the user press "camera"
+  And the user press the image located at the bottom right of the screen
+  And the user press the three points button located at the top right of the screen
+  And the user press "Raname"
+  And the user write the new name "Tella1"
+  And the user press "ok"
+  Then the file is saved with the new name 
 
 @Smoke @Video
 Scenario: Rename a file with a existing name
+  When the user press "camera"
+  And the user press the image located at the bottom right of the screen
+  And the user press the three points button located at the top right of the screen
+  And the user press "Raname"
+  And the user write the new name "Tella1"
+  And the user press "ok"
+  Then the sistem notified there is a existing file with the same name  
+  
+  
+  
+  
