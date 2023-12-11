@@ -124,7 +124,7 @@ Scenario: Rename file
   And the user press the image located at the bottom right of the screen
   And the user press the three points button located at the top right of the screen
   And the user press "Raname"
-  And the user write the new name "Tella1"
+  And the user write a new name "Tella1"
   And the user press "ok"
   Then the file is saved with the new name 
 
