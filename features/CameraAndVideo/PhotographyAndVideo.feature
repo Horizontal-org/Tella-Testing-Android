@@ -79,15 +79,14 @@ Scenario: share photo from tella
   And the user push the send it button
   Then the file is shared
 
-@Smoke @Video
+@Smoke @Video @Photography
 Scenario Outline: share video from tella
   When the user press "camera"
-  And the user press "video"
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
   And the user press the button "share"
   And the user press the button "continue"
-  And the user press the button "gmail"
+  And the user press the button "gmail
   And the user write an email account "cfiguera83@gmail.com" and push the send it button
   Then the file is shared
   
