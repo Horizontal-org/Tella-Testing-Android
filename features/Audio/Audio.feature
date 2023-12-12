@@ -11,7 +11,7 @@ Feature: Audio
       Then is a new audio file "Audio" folder
     
     @Smoke @Audio
-    Scenario: Record an audio in two parts
+    Scenario: Record an audio file in two parts
       When the user press "Rec"
       And the user press the microphone
       And the user press pause
