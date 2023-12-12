@@ -84,21 +84,20 @@ Scenario Outline: share video from tella
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
-  And the user press the button "share"
-  And the user press the button "continue"
-  And the user press the button "gmail
-  And the user write an email account "cfiguera83@gmail.com" and push the send it button
+  And the user press "share"
+  And the user press "continue"
+  And the user press <type>
   Then the file is shared
   
-  | type  | folder    |
-  | .jpg  | Images    |
-  | .png  | Images    |
-  | .MP4  | Videos    |
-  | .MOV  | Videos    |
-  | .MP3  | Audios    |
-  | .AAC  | Audios    |
-  | .PDF  | Documents |
-  | .DOCX | Documents |
+  | type               | folder    |
+  | Instagram Stories  | Images    |
+  | Instagram Reels    | Images    |
+  | Instagram Feed     | Videos    |
+  | Instagram Chat     | Videos    |
+  | TikTok Lite        | Audios    |
+  | WhtasApp           | Audios    |
+  | Gmail              | Documents |
+  | Drive              | Documents |
 
 @Smoke @Video @Photography
 Scenario: File information
