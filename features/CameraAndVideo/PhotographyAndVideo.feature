@@ -90,6 +90,8 @@ Scenario: share video from tella
   And the user press the button "gmail"
   And the user write an email account "cfiguera83@gmail.com" and push the send it button
   Then the file is shared
+  
+  
 
 @Smoke @Video @Photography
 Scenario: File information
