@@ -67,17 +67,21 @@ Scenario: record a video from Tella with the frontal camera
   Then is a new picture in the "Picture" folder
   And the video taked is not in device album
 
-@Smoke @Photography 
+@Smoke @Photography @Video
 Scenario: share photo from tella
   When the user press "camera"
   And The user press the photo located at the bottom right to the screen
   And the user press the three points button located at the top right screen 
   And the user press the button "share"
   And the user press the button "continue"
-  And the user press the button "gmail"
-  And the user write an email account "cfiguera83@gmail.com" 
+  And the user press the button <Mail>
+  And the user write an email account "cfiguera83@hotmail.com" 
   And the user push the send it button
   Then the file is shared
+
+ | Mail               |
+ | Gmail              |
+ | Correo             |
 
 @Smoke @Video @Photography
 Scenario Outline: share video from tella
@@ -89,15 +93,18 @@ Scenario Outline: share video from tella
   And the user press <type>
   Then the file is shared
   
-  | type               | folder    |
-  | Instagram Stories  | Images    |
-  | Instagram Reels    | Images    |
-  | Instagram Feed     | Videos    |
-  | Instagram Chat     | Videos    |
-  | TikTok Lite        | Audios    |
-  | WhtasApp           | Audios    |
-  | Gmail              | Documents |
-  | Drive              | Documents |
+  | type               |
+  | Instagram Stories  |
+  | Instagram Reels    |
+  | Instagram Feed     |
+  | Instagram Chat     |
+  | TikTok Lite        |
+  | WhtasApp           |
+  | Android Beam       |
+  | OneDrive           |
+  | Mensajes           |
+  | Subir a Fotos      |
+ 
 
 @Smoke @Video @Photography
 Scenario: File information
