@@ -103,7 +103,7 @@ Scenario Outline: share file from tella
   | Android Beam       |
   | OneDrive           |
   | Mensajes           |
-  | Subir a Fotos      |
+  | Photo Album        |
  
 
 @Smoke @Video @Photography
