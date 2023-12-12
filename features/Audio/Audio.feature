@@ -55,4 +55,10 @@ Feature: Audio
       Then the audio file is played
       
     @Smoke @Audio
-    Scenario: Listen various audio files
+    Scenario: Rewind audio file
+      When the user press "Rec"
+      And the user press headphones
+      And the user press a file named "Audio1"
+      And the user press play
+      And the user press rewind
+      Then the audio file is reproduced again
