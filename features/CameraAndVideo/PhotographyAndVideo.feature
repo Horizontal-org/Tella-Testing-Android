@@ -68,7 +68,7 @@ Scenario: record a video from Tella with the frontal camera
   And the video taked is not in device album
 
 @Smoke @Photography @Video
-Scenario: share photo from tella
+Scenario Outline: share file from tella by mail
   When the user press "camera"
   And The user press the photo located at the bottom right to the screen
   And the user press the three points button located at the top right screen 
@@ -84,7 +84,7 @@ Scenario: share photo from tella
  | Correo             |
 
 @Smoke @Video @Photography
-Scenario Outline: share video from tella
+Scenario Outline: share file from tella
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
