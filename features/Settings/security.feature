@@ -68,3 +68,22 @@ Feature: Security
     | 5 minutes   |
     | 30 minutes  |
     | 1 hour      | 
+
+  @Smoke @Security 
+  Scenario Outline: Security - Delete after failed unlock 
+    When the user tap settings icon 
+    And tap "security" option 
+    And tap "delete after failed unlock" option in security category 
+    And select <attempts> option 
+    And tap "OK" button
+    And leaves the Tella application and opens it again	
+    And set incorrect in <attempts>
+    And view the Tella application is closed
+    And sees that the configuration is set by default
+    Then sees that the files have been deleted	
+    
+  Example:
+    | attempts    |
+    | 5 attempts  |
+    | 10 attempts |
+    | 20 attempts |
