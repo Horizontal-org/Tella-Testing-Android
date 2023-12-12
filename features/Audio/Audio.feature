@@ -34,6 +34,25 @@ Feature: Audio
       And the user press a file named "Audio1"
       And the user press play
       Then the audio file is reproduced
+    
+    @Smoke @Audio
+    Scenario: Pause an audio file
+      When the user press "Rec"
+      And the user press headphones
+      And the user press a file named "Audio1"
+      And the user press play
+      And the user press pause
+      Then the audio file is paused
+    
+    @Smoke @Audio
+    Scenario: Pause an audio file and play again
+      When the user press "Rec"
+      And the user press headphones
+      And the user press a file named "Audio1"
+      And the user press play
+      And the user press pause
+      And the user press play
+      Then the audio file is played
       
     @Smoke @Audio
     Scenario: Listen various audio files
