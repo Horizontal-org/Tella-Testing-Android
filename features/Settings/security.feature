@@ -78,7 +78,7 @@ Feature: Security
     And tap "OK" button
     And leaves the Tella application and opens it again	
     And set incorrect in <attempts>
-    And view the Tella application is closed
+    And view the Tella application is closed and opens it again
     And sees that the configuration is set by default
     Then sees that the files have been deleted	
     
