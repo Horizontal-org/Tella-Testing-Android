@@ -13,12 +13,12 @@ Scenario: take a picture from tella
 @Smoke @Photography
 Scenario: take a picture from tella with the frontal camera
   When the user press "camera"
-  And the user press the change camera button, located at the topof the screen
+  And the user press the change camera button
   And the user press the take a photo button
   Then is a new picture in the "Images" folder
   And the picture taked is not in device album
 
-@Smoke @Photography
+@Smoke @Photography @Android
 Scenario: Turn on camera flash automatic mode
   When the user press "camera"
   And the user press flash button, located a the top right of the screen
@@ -31,22 +31,11 @@ Scenario: Turn on camera flash
   And the user press flash button
   Then the flash is activate
 
-@Smoke @Photography
+@Smoke @Photography @Android
 Scenario: Enable grid lines
   When the user press "camera"
   And the user press grid lines button, located a the top center of the screen
   Then the grid lines is activated
-
-@Somke @Photography
-Scenario: add a picture from Tella´s "images" folder
-  When the user press the "Images" folder
-  And the user press "+" 
-  And the user press "import from device"
-  And the user select a picture from device album
-  And the user press "photo library"
-  And the user press "keep the original"
-  Then is a new picture in the "Images" folder
-  And the picture taked keep in device album
 
 @Smoke @Video
 Scenario: record a video from Tella
@@ -61,13 +50,13 @@ Scenario: record a video from Tella
 Scenario: record a video from Tella with the frontal camera
   When the user press "camera"
   And the user press "video"
-  And the user press the change camera button located at the top of the screen
+  And the user press the change camera button
   And the user press the take a video button
   And the user press the stop video button
   Then is a new picture in the "Picture" folder
   And the video taked is not in device album
 
-@Smoke @Photography @Video
+@Smoke
 Scenario Outline: share file from tella by mail
   When the user press "camera"
   And The user press the photo located at the bottom right to the screen
@@ -83,7 +72,7 @@ Scenario Outline: share file from tella by mail
  | Gmail              |
  | Correo             |
 
-@Smoke @Video @Photography
+@Smoke
 Scenario Outline: share file from tella
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
@@ -103,7 +92,7 @@ Scenario Outline: share file from tella
   | Photo Album        | Subir     |
  
 
-@Smoke @Video @Photography
+@Smoke 
 Scenario: File information
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
@@ -111,7 +100,7 @@ Scenario: File information
   And the user press the button "File information"
   Then the file information isin the screen
 
-@Smoke  @Video @Photography
+@Smoke
 Scenario: Delete file
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
@@ -120,7 +109,7 @@ Scenario: Delete file
   And the user press "Delete"
   Then the file is deleted
 
-@Smoke  @Video @Photography
+@Smoke
 Scenario: Save to device
   When the user press "camera"
   And the user press the image located at the bottom right of the screen
@@ -130,7 +119,7 @@ Scenario: Save to device
   And the user press "Continue"
   Then the file is saved 
 
-@Smoke  @Video @Photography
+@Smoke
 Scenario: Rename file
   When the user press "camera"
   And the user press the image located at the bottom right of the screen
@@ -140,7 +129,7 @@ Scenario: Rename file
   And the user press "ok"
   Then the file is saved with the new name 
 
-@Smoke @Video @Photography
+@Smoke
 Scenario: Rename a file with a existing name
   When the user press "camera"
   And the user press the image located at the bottom right of the screen
@@ -150,6 +139,7 @@ Scenario: Rename a file with a existing name
   And the user press "ok"
   Then the sistem notified there is a existing file with the same name  
   
-  
+@Smoke @IOS
+Scenario: Move to another folder 
   
   
