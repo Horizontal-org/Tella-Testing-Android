@@ -16,7 +16,7 @@ Scenario: about and help - go to FAQ page
   When the user tap setting icon 
   And tap the "about and help" 
   And tap the FAQ option  
-  Then is redirected to the Tella documentation Website
+  Then is redirected to the Tella Documentation Website
   
 @Smoke @AboutAndHelp  
 Scenario: about and help - contact us 
@@ -30,4 +30,4 @@ Scenario: about and help - Privacy policy
   When the user tap setting icon 
   And tap the "about and help" 
   And tap the Privacy policy option  
-  Then is redirected to the Tella- Privacy policy Website 
+  Then is redirected to the Tella Privacy Policy Website 
