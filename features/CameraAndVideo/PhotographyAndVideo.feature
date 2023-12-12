@@ -91,19 +91,16 @@ Scenario Outline: share file from tella
   And the user press "share"
   And the user press "continue"
   And the user press <type>
+  And the user press <Button>
   Then the file is shared
   
-  | type               |
-  | Instagram Stories  |
-  | Instagram Reels    |
-  | Instagram Feed     |
-  | Instagram Chat     |
-  | TikTok Lite        |
-  | WhtasApp           |
-  | Android Beam       |
-  | OneDrive           |
-  | Mensajes           |
-  | Photo Album        |
+  | type               | Button    |
+  | Instagram Stories  | Siguiente |
+  | Instagram Reels    | Siguiente |
+  | Instagram Feed     | Siguiente |
+  | Instagram Chat     | Siguiente |
+  | WhtasApp           | Siguiente |
+  | Photo Album        | Subir     |
  
 
 @Smoke @Video @Photography
