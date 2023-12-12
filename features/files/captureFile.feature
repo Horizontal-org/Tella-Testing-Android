@@ -9,8 +9,9 @@ And I capture the <type> file
 Then the <type> file is successfully saved in the <folder> folder
 And the <type> file appears in the list of files in the <folder> folder
 
+
 Examples:
-| type | folder |
-| image | Images |
-| video | Videos |
-| audio | Audios |
+  | types | folder |
+  | .jpg  | Images |
+  | .MP4  | Videos |
+  | .MP3  | Audios |
