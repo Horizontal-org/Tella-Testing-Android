@@ -13,10 +13,10 @@ And confirm the deletion
 Then the <type> file is removed from the folder
 
 Examples:
-| type |
-| image |
-| video |
-| audio |
+| type     |
+| image    |
+| video    |
+| audio    |
 | document |
 
 Scenario: Delete multiple files in Tella
