@@ -34,3 +34,6 @@ Feature: Audio
       And the user press a file named "Audio1"
       And the user press play
       Then the audio file is reproduced
+      
+    @Smoke @Audio
+    Scenario: Listen various audio files
