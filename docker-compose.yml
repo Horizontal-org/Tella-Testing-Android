@@ -1,0 +1,41 @@
+# Note: It requires docker-compose 1.13.0
+#
+# Usage: docker-compose up -d
+version: "2.2"
+
+services:
+
+  lippia:
+    image: crowdar/lippia:3.2.1.1
+    depends_on:
+        - hub
+    volumes:  
+        - .:/opt/workspace/automation
+    working_dir: /opt/workspace/automation
+    command: mvn clean test -P StackLocal,Android -Dcucumber.tags=@Demo -Dcrowdar.driverHub=http://hub:4444/wd/hub
+
+     
+  # Selenium hub
+  hub:
+    image: selenium/hub:3.14.0-curium
+    ports:
+      - 4444:4444
+
+ # Docker-Android for Android application testing
+  samsung_s7_9.0:
+    image: budtmo/docker-android-x86-9.0
+    privileged: true
+    depends_on:
+      - hub
+    ports:
+      - 6080:6080
+    # Change path of apk that you want to test. I use sample_apk that I provide in folder "example"
+    volumes:
+      - ./sample_apk:/root/tmp/sample_apk
+      - ./video-samsung_s7_9:/tmp/video
+    environment:
+      - DEVICE=Samsung Galaxy S7
+      - CONNECT_TO_GRID=true
+      - APPIUM=true
+      - SELENIUM_HOST=hub
+      - AUTO_RECORD=true
