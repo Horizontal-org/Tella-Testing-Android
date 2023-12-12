@@ -80,7 +80,7 @@ Scenario: share photo from tella
   Then the file is shared
 
 @Smoke @Video
-Scenario: share video from tella
+Scenario Outline: share video from tella
   When the user press "camera"
   And the user press "video"
   And the user press the image located at the bottom right to the screen
@@ -91,7 +91,15 @@ Scenario: share video from tella
   And the user write an email account "cfiguera83@gmail.com" and push the send it button
   Then the file is shared
   
-  
+  | type  | folder    |
+  | .jpg  | Images    |
+  | .png  | Images    |
+  | .MP4  | Videos    |
+  | .MOV  | Videos    |
+  | .MP3  | Audios    |
+  | .AAC  | Audios    |
+  | .PDF  | Documents |
+  | .DOCX | Documents |
 
 @Smoke @Video @Photography
 Scenario: File information
