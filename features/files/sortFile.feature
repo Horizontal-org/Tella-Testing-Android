@@ -11,11 +11,11 @@ Then the files are displayed according to the specified order
 And the selected order persists upon re-entering the folder
 
 Examples:
-| order |
+| order                 |
 | From newest to oldest |
 | From oldest to newest |
-| Name A-Z |
-| Name Z-A |
+| Name A-Z              |
+| Name Z-A              |
 
 Scenario Outline: Sort files by view type in a folder
 When I select the option to sort files by <view>
