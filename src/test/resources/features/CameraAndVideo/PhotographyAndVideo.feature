@@ -68,9 +68,9 @@ Scenario Outline: share file from tella by mail
   And the user push the send it button
   Then the file is shared
 
- | Mail               |
- | Gmail              |
- | Correo             |
+ | Mail    |
+ | Gmail   |
+ | Correo  |
 
 @Smoke
 Scenario Outline: share file from tella
