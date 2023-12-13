@@ -17,7 +17,7 @@ Feature: Security
     And tab "next" button
     Then view the screen confirmation successful
 
-  Example:
+  Examples:
     | password | 
     | 1234560  |
 
@@ -34,7 +34,7 @@ Feature: Security
     And tab "next" button
     Then view the screen confirmation successful
     
-  Example:
+  Examples:
     | PIN     | 
     | 1234560 |
   
@@ -61,7 +61,7 @@ Feature: Security
     And wait <timeout> of time
     Then view screen lock 
     
-  Example: 
+  Examples:
     | timeout     |
     | immediately |
     | 1 minute    |
@@ -82,7 +82,7 @@ Feature: Security
     And sees that the configuration is set by default
     Then sees that the files have been deleted	
     
-  Example:
+  Examples:
     | attempts    |
     | 5 attempts  |
     | 10 attempts |
