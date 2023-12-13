@@ -1,3 +1,5 @@
+@Lock
+
 Feature: Lock Options
   
   Background:
