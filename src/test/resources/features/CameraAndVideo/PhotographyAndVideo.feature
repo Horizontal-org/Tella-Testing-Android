@@ -84,12 +84,12 @@ Scenario Outline: share file from tella
   Then the file is shared
   
   | type               | Button    |
-  | Instagram Stories  | Siguiente |
-  | Instagram Reels    | Siguiente |
-  | Instagram Feed     | Siguiente |
-  | Instagram Chat     | Siguiente |
-  | WhtasApp           | Siguiente |
-  | Photo Album        | Subir     |
+  | Instagram Stories  | Next      |
+  | Instagram Reels    | Next      |
+  | Instagram Feed     | Next      |
+  | Instagram Chat     | Next      |
+  | WhtasApp           | Next      |
+  | Photo Album        | Upload    |
  
 
 @Smoke 
