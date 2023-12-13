@@ -10,9 +10,16 @@ import cucumber.api.java.en.When;
 public class LoginSteps extends PageSteps {
 
 
-    @Given("The app is loaded correctly")
+    private final String password = PropertyManager.getProperty("password");
+    @Given("The app is loaded correctly and locked a password")
     public void isLoginPageVisible() {
-        LoginService.isViewLoaded();
+        LoginService.isViewLoaded(password);
+    }
+
+
+    @When("The user click the go to tella button")
+    public void goTellaProcess() {
+        LoginService.goTella();
     }
 
 
