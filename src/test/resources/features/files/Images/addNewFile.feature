@@ -46,6 +46,8 @@ Examples:
 | audio.AAC | Audios    |
 | doc.PDF   | Documents |
 | doc.DOCX  | Documents |
+| .zip      | All Files |
+| .rar      | All Files |
 
 Scenario Outline: Import a <type> file from the "Images" folder while deleting the original
 When the user taps the "+" button
