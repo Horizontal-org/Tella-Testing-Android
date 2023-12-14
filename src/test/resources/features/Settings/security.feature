@@ -1,10 +1,12 @@
+@Security
+
 Feature: Security
   
   Background:
     Given the user is authenticated in the Tella application with valid credentials 
     And is on the main page
     
-  @Smoke @Security   
+  @Smoke @Android @Security @Lock   
   Scenario Outline: Security - Lock - password option
     When the user tap settings icon 
     And  tap "security" option 
@@ -21,7 +23,7 @@ Feature: Security
     | password | 
     | 1234560  |
 
-  @Smoke @Security 
+  @Smoke @Android @Security @Lock
   Scenario Outline: Security - Lock - PIN option
     When the user tap settings icon 
     And  tap "security" option 
@@ -38,7 +40,7 @@ Feature: Security
     | PIN     | 
     | 1234560 |
   
-  @Smoke @Security 
+  @Smoke @Android @Security @Lock
   Scenario: Security - lock - pattern option
     When the user tap settings icon 
     And  tap "security" option 
@@ -51,7 +53,7 @@ Feature: Security
     And tab "next" button
     Then view the screen confirmation successful 
 
-  @Smoke @Security 
+  @Smoke @Android @Security @LockTimeout
   Scenario Outline: Security - Lock Timeout 
     When the user tap settings icon 
     And tap "security" option 
@@ -69,7 +71,7 @@ Feature: Security
     | 30 minutes  |
     | 1 hour      | 
 
-  @Smoke @Security 
+  @Smoke @Android @Security @DeleteAfterFailedUnlock
   Scenario Outline: Security - Delete after failed unlock 
     When the user tap settings icon 
     And tap "security" option 
@@ -88,7 +90,7 @@ Feature: Security
     | 10 attempts |
     | 20 attempts |
 
- @Smoke @Security
+ @Smoke @Android @Security @Camouflage
  Scenario Outline: Security - camouflage - change camuflaje method - change name and icon 
     When the user tap settings icon 
     And taps "Security" option 
@@ -133,7 +135,7 @@ Feature: Security
     | Plant Care     | please wait.you will return to your device´s home screen in a few seconds |
     | Astrology      | please wait.you will return to your device´s home screen in a few seconds |
 
- @Smoke @Security
+ @Smoke @Android @Security @Camouflage
  Scenario Outline: Security - camouflage -  change camuflaje method - hide behind a calculator
     When the user tap settings icon 
     And taps "Security" option 
@@ -154,7 +156,7 @@ Feature: Security
       | Calculator_3  | please wait.you will return to your device´s home screen in a few seconds | 
       | Calculator_4  | please wait.you will return to your device´s home screen in a few seconds |
 
- @Smoke @Security
+ @Smoke @Android @Security @Camouflage
  Scenario: Security - camouflage - remove camouflage
     When the user tap settings icon 
     And taps "security" option 
@@ -164,7 +166,7 @@ Feature: Security
     And view message "Removing camouflage"
     Then view change Tella icon default
 
- @Smoke @Security
+ @Smoke @Android @Security @QuickDelete
  Scenario: Security - Quick delete - delete file
     When the user tap settings icon 
     And taps "Security" option 
@@ -180,7 +182,7 @@ Feature: Security
     And set security code valid
     Then view that files were deleted
 
- @Smoke @Security
+ @Smoke @Android @Security @QuickDelete
  Scenario: Security - Quick delete - Delete draft and submitted forms
     When the user tap settings icon 
     And taps "security" option 
@@ -196,7 +198,7 @@ Feature: Security
     And set security code valid
     Then view that draft and submitted forms were deleted
 
- @Smoke @Security
+ @Smoke @Android @Security @QuickDelete
  Scenario: Security - Quick delete - Delete server settings
     When the user tap settings icon 
     And taps "security" option 
@@ -212,7 +214,7 @@ Feature: Security
     And set security code valid
     Then view that server settings were deleted 
  
- @Smoke @Security
+ @Smoke @Android @Security @QuickDelete
  Scenario: Security - Quick delete - Delete Tella
     When the user tap settings icon 
     And taps "security" option 
@@ -226,7 +228,7 @@ Feature: Security
     And view closed the Tella application
     Then view uninstall message 
 
- @Smoke @Security
+ @Smoke @Android @Security @QuickDelete
  Scenario Outline: Security - Quick delete - help info 
     When the user tap settings icon 
     And taps "security" option 
@@ -241,14 +243,14 @@ Feature: Security
     | Delete server settings           | Delete your connections to servers and all                                                                                                       |
     | Delete Tella                     | Delete the app and all the data it contains. You will be asked "Do you want to uninstall this app?" Unless you confirm,Tella will not be delete. |
 
- @Smoke @Security
+ @Smoke @Android @Security @PreserveMetadata
  Scenario: Security - Preserve metadata when importing 
    When the user tap settings icon 
    And tap "Security" option 
    And view "Preserve metadata when importing"
    And taps switch in ON to option "Preserve metadata when importing"
 
-  @Smoke @Security
+  @Smoke @Android @Security @CameraSilentMode
   Scenario: Security - Camera silent mode
    When the user tap settings icon 
    And tap "Security" option 
@@ -259,7 +261,7 @@ Feature: Security
    And take photo 
    Then the camera did not make the sound 
 
- @Smoke @Security
+ @Smoke @Android @Security @ScreenSecurity
  Scenario: Security - Screen security  
    When the user tap settings icon 
    And tap "security" option 
