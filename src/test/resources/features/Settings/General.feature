@@ -1,4 +1,4 @@
-@smoke 
+  @smoke 
 	Feature: General
 	
 	Background: 
@@ -10,6 +10,7 @@
 	And click on it
 	Then the user sees a list of categories with various configurations that can be performed
 	
+	@Reresion
 	Scenario Outline: Change Language
   When the user taps the settings icon
   And taps the "General" option
