@@ -83,22 +83,68 @@ Scenario Outline: share file from tella
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
-  And the user press "share"
+  And the user press "Share"
   And the user press "continue"
   And the user press <type>
   And the user press <Button>
-  And the user press "share"
+  And the user press "Share"
   And the user press "Done"
   Then the file is shared
   
   | type               | Button    |
   | Instagram Stories  | Next      |
-  | Instagram Reels    | Next      |
-  | Instagram Feed     | Next      |
-  | Instagram Chat     | Next      |
   | WhtasApp           | Next      |
   | Photo Album        | Upload    |
  
+@Smoke
+Scenario Outline: share file from tella to instagram Reels
+  When the user press "camera"
+  And the user press the image located at the bottom right to the screen
+  And the user press the three points button located at the top right screen
+  And the user press "share"
+  And the user press "continue"
+  And the user press Instagram "Reels"
+  And the user press "→" 
+  And the user press "Share"
+  Then The file is shared
+  
+@Smoke
+Scenario Outline: share file from tella to Instagram Feed
+  When the user press "camera"
+  And the user press the image located at the bottom right to the screen
+  And the user press the three points button located at the top right screen
+  And the user press "Share"
+  And the user press "continue"
+  And the user press Instagram "Feed"
+  And the user press "→"
+  And the user press "Next"
+  And the user press "Share"
+  Then the file is shared
+
+@Smoke
+Scenario Outline: share file from tella to Instagram Chats
+  When the user press "camera"
+  And the user press the image located at the bottom right to the screen
+  And the user press the three points button located at the top right screen
+  And the user press "Share"
+  And the user press "continue"
+  And the user press Instagram "Chats"
+  And the user press "Send" to a instagram account "cfiguera83"
+  And the user press "Done"
+  Then the file is shared
+  
+@Smoke
+Scenario Outline: share file from tella to WhatsApp
+  When the user press "camera"
+  And the user press the image located at the bottom right to the screen
+  And the user press the three points button located at the top right screen
+  And the user press "Share"
+  And the user press "continue"
+  And the user press "WhatsApp"
+  And the user press on a WhatsApp contact "Tella"
+  And the user press "→"
+  And the user press "→"
+  Then the file is shared
 
 @Smoke 
 Scenario: File information
