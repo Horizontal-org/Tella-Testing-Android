@@ -71,7 +71,7 @@ Scenario Outline: share file from tella by mail
   And the user press the button "continue"
   And the user press the button <Mail>
   And the user write an email account "cfiguera83@hotmail.com" 
-  And the user push the send it button
+  And the user push the send it button "→"
   Then the file is shared
 
  | Mail    |
