@@ -57,12 +57,14 @@ Then the file is saved in the <folder> folder
 And the <type> file appears in the list of files in the <folder> folder
 
 Examples:
-| type      | folder    |
-| image.jpg | Images    |
-| image.png | Images    |
-| video.MP4 | Videos    |
-| video.MOV | Videos    |
-| audio.MP3 | Audios    |
-| audio.AAC | Audios    |
-| doc.PDF   | Documents |
-| doc.DOCX  | Documents |
+| type      | folder     |
+| image.jpg | Images     |
+| image.png | Images     |
+| video.MP4 | Videos     |
+| video.MOV | Videos     |
+| audio.MP3 | Audios     |
+| audio.AAC | Audios     |
+| doc.PDF   | Documents  |
+| doc.DOCX  | Documents  |
+| .zip      | All files  |
+| .rar      | All files  |
