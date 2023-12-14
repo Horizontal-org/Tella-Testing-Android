@@ -36,6 +36,7 @@
   When they select the server <server>
   And press OK
   Then they should see the chosen server with the corresponding configurations for establishing the connection
+ 
   Examples:
 	|server             |
 	|Open_Data_Kit_(ODK)|
