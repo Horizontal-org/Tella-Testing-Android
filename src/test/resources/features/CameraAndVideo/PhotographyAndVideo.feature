@@ -7,7 +7,8 @@ Feature: PhotographyAndVideo
 Scenario: take a picture from tella
   When the user press "camera"
   And the user press the take a photo button
-  Then there is a new picture in the "Images" folder
+  Then "File Encypted" message is shown
+  And there is a new picture in the "Images" folder
   And the picture taked is not in device album
 
 @Smoke @Photography
@@ -15,7 +16,8 @@ Scenario: take a picture from tella with the frontal camera
   When the user press "camera"
   And the user press the change camera button
   And the user press the take a photo button
-  Then there is a new picture in the "Images" folder
+  Then "File Encypted" message is shown
+  And there is a new picture in the "Images" folder
   And the picture taked is not in device album
 
 @Smoke @Photography @Android
@@ -43,7 +45,9 @@ Scenario: record a video from Tella
   And the user press "video" button
   And the user press the take a video button
   And the user press the stop video button
-  Then there is a new picture in the "Videos" folder
+  Then "encrypting" message is shown
+  And "File Encypted" message is shown
+  And there is a new video in the "Videos" folder
   And the video taked is not in device album
 
 @Smoke @Video
@@ -55,7 +59,7 @@ Scenario: record a video from Tella with the frontal camera
   And the user press the stop video button
   Then "encrypting" message is shown
   And "File Encypted" message is shown
-  And there is a new picture in the "Videos" folder ## Video folder!!
+  And there is a new picture in the "Videos" folder
   And the video taked is not in device album
 
 @Smoke
