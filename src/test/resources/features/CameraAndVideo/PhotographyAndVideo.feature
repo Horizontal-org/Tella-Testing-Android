@@ -1,10 +1,8 @@
 Feature: PhotographyAndVideo
   
-  Background:
-  Given the user is in Tella´s home page
-
 @Smoke @Photography
 Scenario: take a picture from tella
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press the take a photo button
   Then "File Encypted" message is shown
@@ -13,6 +11,7 @@ Scenario: take a picture from tella
 
 @Smoke @Photography
 Scenario: take a picture from tella with the frontal camera
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press the change camera button
   And the user press the take a photo button
@@ -22,12 +21,14 @@ Scenario: take a picture from tella with the frontal camera
 
 @Smoke @Photography @Android
 Scenario: Turn on camera flash automatic mode
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press flash button, located a the top right of the screen
   Then the automatic mode flash is activate
 
 @Smoke @Photography
 Scenario: Turn on camera flash
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press flash button, located a the top right of the screen
   And the user press flash button
@@ -35,12 +36,14 @@ Scenario: Turn on camera flash
 
 @Smoke @Photography @Android
 Scenario: Enable grid lines
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press grid lines button, located a the top center of the screen
   Then the grid lines is activated
 
 @Smoke @Video
 Scenario: record a video from Tella
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press "video" button
   And the user press the take a video button
@@ -52,6 +55,7 @@ Scenario: record a video from Tella
 
 @Smoke @Video
 Scenario: record a video from Tella with the frontal camera
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press "video"
   And the user press the change camera button
@@ -64,6 +68,7 @@ Scenario: record a video from Tella with the frontal camera
 
 @Smoke
 Scenario Outline: share file from tella by mail
+  Given the user is in Tella´s home page
   When the user press "camera"
   And The user press the photo located at the bottom right to the screen
   And the user press the three points button located at the top right screen 
@@ -80,6 +85,7 @@ Scenario Outline: share file from tella by mail
 
 @Smoke
 Scenario Outline: share file from tella to Instagram Stories
+  Given the user is in Tella´s home page and have an instagram account
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
@@ -93,6 +99,7 @@ Scenario Outline: share file from tella to Instagram Stories
   
 @Smoke
 Scenario Outline: share file from tella to instagram Reels
+  Given the user is in Tella´s home page and have an instagram account
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
@@ -105,6 +112,7 @@ Scenario Outline: share file from tella to instagram Reels
   
 @Smoke
 Scenario Outline: share file from tella to Instagram Feed
+  Given the user is in Tella´s home page and have an instagram account
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
@@ -118,6 +126,7 @@ Scenario Outline: share file from tella to Instagram Feed
 
 @Smoke
 Scenario Outline: share file from tella to Instagram Chats
+  Given the user is in Tella´s home page and have an instagram account
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
@@ -143,6 +152,7 @@ Scenario Outline: share file from tella to WhatsApp
 
 @Smoke 
 Scenario: File information
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
@@ -151,6 +161,7 @@ Scenario: File information
 
 @Smoke
 Scenario: Delete file
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
@@ -160,6 +171,7 @@ Scenario: Delete file
 
 @Smoke
 Scenario: Save to device
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press the image located at the bottom right of the screen
   And the user press the three points button located at the top right of the screen
@@ -170,6 +182,7 @@ Scenario: Save to device
 
 @Smoke
 Scenario: Rename file
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press the image located at the bottom right of the screen
   And the user press the three points button located at the top right of the screen
@@ -180,6 +193,7 @@ Scenario: Rename file
 
 @Smoke
 Scenario: Rename a file with a existing name
+  Given the user is in Tella´s home page
   When the user press "camera"
   And the user press the image located at the bottom right of the screen
   And the user press the three points button located at the top right of the screen
@@ -189,6 +203,7 @@ Scenario: Rename a file with a existing name
   Then the sistem notified there is a existing file with the same name  
   
 @Smoke @IOS
-Scenario: Move to another folder 
+Scenario: Move to another folder
+  Given the user is in Tella´s home page
   
   
