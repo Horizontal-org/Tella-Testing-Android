@@ -37,3 +37,17 @@
   |Russian     |
   |Tamil       |
   |Default     |
+
+  @Smoke
+  Scenario: View General Category Configurations
+  And they view the settings icon
+  And click on it
+  When the user sees a list of categories with various configurations that can be performed
+  And presses the option "General"
+  Then the user should view a list with the general configurations of the app
+
+
+
+
+
+
