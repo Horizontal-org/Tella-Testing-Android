@@ -87,6 +87,8 @@ Scenario Outline: share file from tella
   And the user press "continue"
   And the user press <type>
   And the user press <Button>
+  And the user press "share"
+  And the user press "Done"
   Then the file is shared
   
   | type               | Button    |
