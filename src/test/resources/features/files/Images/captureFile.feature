@@ -1,4 +1,4 @@
-Feature: Capture a file from the "Images" folder
+Feature: Add files from the "Images" folder
 
 Background:
 Given the user has an account on Tella
@@ -26,3 +26,43 @@ And captures the audio
 Then the message "The audio recording was saved to your Tella files" appears
 And the audio file is saved correctly in the "Audios" folder
 And the audio file appears in the list of files in the "Audios" folder
+
+Scenario Outline: Import a <type> file from the "Images" folder while preserving the original
+When the user taps the "+" button
+And selects the "Import from device" option
+And taps the "Keep original" button
+And taps the "Continue" button
+And selects a <type> file from the device
+Then the file is saved in the <folder> folder
+And the <type> file appears in the list of files in the <folder> folder
+
+Examples:
+| type      | folder    |
+| image.jpg | Images    |
+| image.png | Images    |
+| video.MP4 | Videos    |
+| video.MOV | Videos    |
+| audio.MP3 | Audios    |
+| audio.AAC | Audios    |
+| doc.PDF   | Documents |
+| doc.DOCX  | Documents |
+
+Scenario Outline: Import a <type> file from the "Images" folder while deleting the original
+When the user taps the "+" button
+And selects the "Import from device" option
+And taps the "Delete original" button
+And taps the "Continue" button
+And selects a <type> file from the device
+Then the file is saved in the <folder> folder
+And the <type> file appears in the list of files in the <folder> folder
+
+Examples:
+| type      | folder    |
+| image.jpg | Images    |
+| image.png | Images    |
+| video.MP4 | Videos    |
+| video.MOV | Videos    |
+| audio.MP3 | Audios    |
+| audio.AAC | Audios    |
+| doc.PDF   | Documents |
+| doc.DOCX  | Documents |
