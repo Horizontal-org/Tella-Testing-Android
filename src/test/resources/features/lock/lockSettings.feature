@@ -6,7 +6,7 @@ Feature: Lock options from settings
     ##Given the user is logged and located in the lock options screen after authentication on Settings options
     Given the user is logged in Tella
     And tap the wheel icon to the settings
-    And tap de "Security" option
+    And tap the "Security" option
     And tap the "Lock" option
     And type a valid password, PIN or pattern
     
