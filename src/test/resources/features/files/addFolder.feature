@@ -6,9 +6,10 @@ Feature: Add a folder in Tella
     Given is in the "All Files" folder
 
   Scenario: Successfully add a folder
-    When the user taps the "Add Folder" button
+    When the user taps the "+" button
+    And the user taps the "Create" option
     And enters a valid folder name "folder1"
-    And taps the "Create" button
+    And taps the "OK" button
     Then a folder with the specified name "folder1" is created
 
   Scenario: Successfully add a folder within another
