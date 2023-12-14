@@ -68,3 +68,25 @@ Examples:
 | doc.DOCX  | Documents  |
 | .zip      | All files  |
 | .rar      | All files  |
+
+Scenario Outline: Import a duplicated <type> file from the "Images" folder
+When the user taps the "+" button
+And selects the "Import from device" option
+And taps the "Keep original" button
+And taps the "Continue" button
+And selects a <type> file from the device
+And taps the "+" button again
+And selects the "Import from device" option
+And taps the "Keep original" button
+And taps the "Continue" button
+And selects another <type> file from the device
+Then the duplicated file is imported correctly with a different name
+And the <type> file appears in the list of files in the <folder> folder
+
+Examples:
+| type      | folder    |
+| image.jpg | Images    |
+| video.MP4 | Videos    |
+| audio.MP3 | Audios    |
+| doc.PDF   | Documents |
+| .zip      | All files |
