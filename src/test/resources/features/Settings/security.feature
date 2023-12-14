@@ -9,8 +9,8 @@ Feature: Security
   @Regresion @Android @Security @Lock   
   Scenario Outline: Security - Lock - password option
     When the user tap settings icon 
-    And  tap "security" option 
-    And tap "lock" option in security category
+    And  tap "Security" option 
+    And tap "Lock" option in security category
     And set security code valid 
     And tap "password" option
     And set <password> 
@@ -26,8 +26,8 @@ Feature: Security
   @Regresion @Android @Security @Lock
   Scenario Outline: Security - Lock - PIN option
     When the user tap settings icon 
-    And  tap "security" option 
-    And tap "lock" option in security category
+    And  tap "Security" option 
+    And tap "Lock" option in security category
     And set security code valid 
     And tap "PIN" option
     And set <PIN> 
@@ -43,8 +43,8 @@ Feature: Security
   @Regresion @Android @Security @Lock
   Scenario: Security - lock - pattern option
     When the user tap settings icon 
-    And  tap "security" option 
-    And tap "lock" option in security category
+    And  tap "Security" option 
+    And tap "Lock" option in security category
     And set security code valid 
     And tap "pattern" option
     And set pattern 
@@ -56,8 +56,8 @@ Feature: Security
   @Smoke @Android @Security @LockTimeout
   Scenario Outline: Security - Lock Timeout 
     When the user tap settings icon 
-    And tap "security" option 
-    And tap "lock timeout" option in security category 
+    And tap "Security" option 
+    And tap "Lock timeout" option in security category 
     And select <timeout> option 
     And tap "OK" button
     And wait <timeout> of time
@@ -74,8 +74,8 @@ Feature: Security
   @Smoke @Android @Security @DeleteAfterFailedUnlock
   Scenario Outline: Security - Delete after failed unlock 
     When the user tap settings icon 
-    And tap "security" option 
-    And tap "delete after failed unlock" option in security category 
+    And tap "Security" option 
+    And tap "Delete after failed unlock" option in security category 
     And select <attempts> option 
     And tap "OK" button
     And leaves the Tella application and opens it again	
@@ -159,10 +159,10 @@ Feature: Security
  @Smoke @Android @Security @Camouflage
  Scenario: Security - camouflage - remove camouflage
     When the user tap settings icon 
-    And taps "security" option 
-    And taps "camouflage" option in security category 
+    And taps "Security" option 
+    And taps "Camouflage" option in security category 
     And set security code valid 
-    And taps "remove camouflage" option
+    And taps "Remove camouflage" option
     And view message "Removing camouflage"
     Then view change Tella icon default
 
@@ -185,7 +185,7 @@ Feature: Security
  @Smoke @Android @Security @QuickDelete
  Scenario: Security - Quick delete - Delete draft and submitted forms
     When the user tap settings icon 
-    And taps "security" option 
+    And taps "Security" option 
     And taps switch in "Quick delete" option in security category 
     And select check box “Delete draft and submitted forms” 
     And go to Tella home page
@@ -201,7 +201,7 @@ Feature: Security
  @Smoke @Android @Security @QuickDelete
  Scenario: Security - Quick delete - Delete server settings
     When the user tap settings icon 
-    And taps "security" option 
+    And taps "Security" option 
     And taps switch in "Quick delete" option in security category 
     And select check box “Delete server settings” 
     And go to Tella home page
@@ -217,7 +217,7 @@ Feature: Security
  @Smoke @Android @Security @QuickDelete
  Scenario: Security - Quick delete - Delete Tella
     When the user tap settings icon 
-    And taps "security" option 
+    And taps "Security" option 
     And taps switch in "Quick delete" option in security category
     And select check box “Delete Tella” 
     And go to Tella home page
@@ -231,7 +231,7 @@ Feature: Security
  @Smoke @Android @Security @QuickDelete
  Scenario Outline: Security - Quick delete - help info 
     When the user tap settings icon 
-    And taps "security" option 
+    And taps "Security" option 
     And taps "Quick delete" option in security category
     And taps icon help in <deleteOption> 
     Then view the help info with <message>
