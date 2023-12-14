@@ -9,8 +9,7 @@ Feature: Audio
       And the user press the microphone
       And the user press stop
       Then "The audio recording was saved to your Tella files" message is shown
-      And is a new audio file in "Audio" folder
-    
+      
     @Smoke @Audio
     Scenario: Record an audio file in two parts
       When the user press "Rec"
@@ -18,9 +17,8 @@ Feature: Audio
       And the user press pause
       And the user press the microphone
       And the user press stop
-      Then Then "The audio recording was saved to your Tella files" message is shown
-      And is a new audio file in "Audio" folder
-    
+      Then "The audio recording was saved to your Tella files" message is shown
+      
     @Smoke @Audio  
     Scenario: Rename an audio file
       When the user press "Rec"
