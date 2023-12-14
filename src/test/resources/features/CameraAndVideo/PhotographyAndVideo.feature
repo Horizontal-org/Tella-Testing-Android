@@ -79,23 +79,18 @@ Scenario Outline: share file from tella by mail
  | Correo  |
 
 @Smoke
-Scenario Outline: share file from tella
+Scenario Outline: share file from tella to Instagram Stories
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
   And the user press "Share"
   And the user press "continue"
-  And the user press <type>
-  And the user press <Button>
+  And the user press instagram "Stories"
+  And the user press "→"
   And the user press "Share"
   And the user press "Done"
   Then the file is shared
   
-  | type               | Button    |
-  | Instagram Stories  | Next      |
-  | WhtasApp           | Next      |
-  | Photo Album        | Upload    |
- 
 @Smoke
 Scenario Outline: share file from tella to instagram Reels
   When the user press "camera"
