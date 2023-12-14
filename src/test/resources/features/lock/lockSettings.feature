@@ -3,7 +3,9 @@
 Feature: Lock options from settings
   
   Background:
-    Given the user is logged and located in the lock options screen after authentication
+    ##Given the user is logged and located in the lock options screen after authentication on Settings options
+    Given the user is logged in Tella
+    And is into the Settings - Security - Lock authenticated with the password "12345"
     
 @Smoke
 
@@ -17,7 +19,7 @@ Scenario Outline: set password
   
   Examples:
   | password  |
-  | abcdef    |
+  | 12345     |
   
 @Regression
 
