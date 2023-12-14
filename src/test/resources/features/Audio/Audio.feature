@@ -8,7 +8,8 @@ Feature: Audio
       When the user press "Rec"
       And the user press the microphone
       And the user press stop
-      Then is a new audio file "Audio" folder
+      Then "The audio recording was saved to your Tella files" message is shown
+      And is a new audio file in "Audio" folder
     
     @Smoke @Audio
     Scenario: Record an audio file in two parts
@@ -17,12 +18,14 @@ Feature: Audio
       And the user press pause
       And the user press the microphone
       And the user press stop
-      Then is a new audio file in "Audio" folder
+      Then Then "The audio recording was saved to your Tella files" message is shown
+      And is a new audio file in "Audio" folder
     
     @Smoke @Audio  
     Scenario: Rename an audio file
       When the user press "Rec"
       And the user press the pencil
+      And the user delete the existing name pressing the delete button
       And the user write a new name "Audio1"
       And the user press ok
       Then the file change the original name for a new one
@@ -45,7 +48,7 @@ Feature: Audio
       Then the audio file is paused
     
     @Smoke @Audio
-    Scenario: Pause an audio file and play again
+    Scenario: Pause an audio file and play it again
       When the user press "Rec"
       And the user press headphones
       And the user press a file named "Audio1"
