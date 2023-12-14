@@ -1,31 +1,33 @@
+@AboutAndHelp
+
 Feature: About and Help 
   
 Background:
   Given the user is authenticated in the Tella application with valid credentials 
   And is on the main page 
 
-@Smoke @AboutAndHelp
+@Smoke @Android @AboutAndHelp @ViewOptions
 Scenario: about and help - view options 
   When the user tap settings icon 
   And tap the "about and help" 
   Then view  the icon Tella and the version
   And view a list options
   
-@Smoke @AboutAndHelp
+@Smoke @Android @AboutAndHelp @FAQ
 Scenario: about and help - go to FAQ page 
   When the user tap setting icon 
   And tap the "about and help" 
   And tap the FAQ option  
   Then is redirected to the Tella Documentation Website
   
-@Smoke @AboutAndHelp  
+@Smoke @Android @AboutAndHelp @ContactUs 
 Scenario: about and help - contact us 
   When the user tap setting icon  
   And tap the "about and help" 
   And tap the contact us option 
   Then is redirected to the email
   
-@Smoke @AboutAndHelp
+@Smoke @Android @AboutAndHelp @PrivacyPolicy
 Scenario: about and help - Privacy policy 
   When the user tap setting icon 
   And tap the "about and help" 
