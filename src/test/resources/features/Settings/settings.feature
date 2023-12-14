@@ -1,5 +1,5 @@
 @smoke 
-	Feature: Settings
+	Feature: General
 	  
 	Scenario: View Settings Categories
 	Given the user is authenticated in the Tella application with valid credentials
