@@ -3,10 +3,10 @@
 Feature: Security
   
   Background:
-    Given the user is authenticated in the Tella application with valid credentials 
+    Given the user is authenticated in the Tella application with valid credentials 123456 
     And is on the main page
     
-  @Smoke @Android @Security @Lock   
+  @Regresion @Android @Security @Lock   
   Scenario Outline: Security - Lock - password option
     When the user tap settings icon 
     And  tap "security" option 
@@ -23,7 +23,7 @@ Feature: Security
     | password | 
     | 1234560  |
 
-  @Smoke @Android @Security @Lock
+  @Regresion @Android @Security @Lock
   Scenario Outline: Security - Lock - PIN option
     When the user tap settings icon 
     And  tap "security" option 
@@ -40,7 +40,7 @@ Feature: Security
     | PIN     | 
     | 1234560 |
   
-  @Smoke @Android @Security @Lock
+  @Regresion @Android @Security @Lock
   Scenario: Security - lock - pattern option
     When the user tap settings icon 
     And  tap "security" option 
@@ -79,16 +79,16 @@ Feature: Security
     And select <attempts> option 
     And tap "OK" button
     And leaves the Tella application and opens it again	
-    And set incorrect in <attempts>
+    And set incorrect <PIN> in <attempts>
     And view the Tella application is closed and opens it again
     And sees that the configuration is set by default
     Then sees that the files have been deleted	
     
   Example:
-    | attempts    |
-    | 5 attempts  |
-    | 10 attempts |
-    | 20 attempts |
+    | attempts    | PIN |
+    | 5 attempts  | 1   |
+    | 10 attempts | 1   |
+    | 20 attempts | 1   |
 
  @Smoke @Android @Security @Camouflage
  Scenario Outline: Security - camouflage - change camuflaje method - change name and icon 
