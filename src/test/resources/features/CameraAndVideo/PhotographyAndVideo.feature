@@ -104,7 +104,7 @@ Scenario: File information
   And the user press the image located at the bottom right to the screen
   And the user press the three points button located at the top right screen
   And the user press the button "File information"
-  Then the file information isin the screen
+  Then the file information is in the screen
 
 @Smoke
 Scenario: Delete file
