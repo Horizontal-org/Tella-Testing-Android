@@ -43,7 +43,7 @@ Scenario: record a video from Tella
   And the user press "video" button
   And the user press the take a video button
   And the user press the stop video button
-  Then there is a new picture in the "Picture" folder
+  Then there is a new picture in the "Videos" folder
   And the video taked is not in device album
 
 @Smoke @Video
@@ -55,7 +55,7 @@ Scenario: record a video from Tella with the frontal camera
   And the user press the stop video button
   Then "encrypting" message is shown
   And "File Encypted" message is shown
-  And there is a new picture in the "Picture" folder ## Video folder!!
+  And there is a new picture in the "Videos" folder ## Video folder!!
   And the video taked is not in device album
 
 @Smoke
