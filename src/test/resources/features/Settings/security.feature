@@ -87,3 +87,184 @@ Feature: Security
     | 5 attempts  |
     | 10 attempts |
     | 20 attempts |
+
+ @Smoke @Security
+ Scenario Outline: Security - camouflage - change camuflaje method - change name and icon 
+    When the user tap settings icon 
+    And taps "Security" option 
+    And taps "Camouflage" option in security category 
+    And set security code valid 
+    And taps "Change camuflaje method" option
+    And taps "Change name and icon" option 
+    And select <icon> option 
+    And taps "next" option 
+    And taps exit Tella option 
+    And view the <message>
+    And view change Tella <icon> 
+ 	
+  Example:
+    | icon           | message                                                                   |                                                                                                      | 
+    | iCamara        | please wait.you will return to your device´s home screen in a few seconds |
+    | Selfie Cam     | please wait.you will return to your device´s home screen in a few seconds |
+    | Snap Camera    | please wait.you will return to your device´s home screen in a few seconds |
+    | Mi camera      | please wait.you will return to your device´s home screen in a few seconds |
+    | Calculate      | please wait.you will return to your device´s home screen in a few seconds |
+    | Calculate Plus | please wait.you will return to your device´s home screen in a few seconds |
+    | iCalculator    | please wait.you will return to your device´s home screen in a few seconds |
+    | Calculator     | please wait.you will return to your device´s home screen in a few seconds |
+    | Weather        | please wait.you will return to your device´s home screen in a few seconds |
+    | EasyWaether    | please wait.you will return to your device´s home screen in a few seconds |
+    | SunnyDay       | please wait.you will return to your device´s home screen in a few seconds |
+    | Forecast       | please wait.you will return to your device´s home screen in a few seconds |
+    | GameStation    | please wait.you will return to your device´s home screen in a few seconds |
+    | PlayNow        | please wait.you will return to your device´s home screen in a few seconds |
+    | Game Launcher  | please wait.you will return to your device´s home screen in a few seconds |
+    | Clock          | please wait.you will return to your device´s home screen in a few seconds |
+    | Jewel Dash     | please wait.you will return to your device´s home screen in a few seconds |
+    | Time           | please wait.you will return to your device´s home screen in a few seconds |
+    | StopWatch      | please wait.you will return to your device´s home screen in a few seconds |
+    | Watch          | please wait.you will return to your device´s home screen in a few seconds |
+    | Workout        | please wait.you will return to your device´s home screen in a few seconds |
+    | Fitness Life   | please wait.you will return to your device´s home screen in a few seconds |
+    | Health         | please wait.you will return to your device´s home screen in a few seconds |
+    | Period Tracker | please wait.you will return to your device´s home screen in a few seconds |
+    | Music          | please wait.you will return to your device´s home screen in a few seconds |
+    | Dictionary     | please wait.you will return to your device´s home screen in a few seconds |
+    | Plant Care     | please wait.you will return to your device´s home screen in a few seconds |
+    | Astrology      | please wait.you will return to your device´s home screen in a few seconds |
+
+ @Smoke @Security
+ Scenario Outline: Security - camouflage -  change camuflaje method - hide behind a calculator
+    When the user tap settings icon 
+    And taps "Security" option 
+    And verify "PIN" is selecter in lock option 
+    And taps "Camouflage" option in security category 
+    And set security code valid 
+    And taps "change camuflaje method" option
+    And taps "hide behind a calculator" option 
+    And select <calculator> option 
+    And taps exit Tella option 
+    And view the <message>
+    And view change Tella <icon>  
+    
+    Example:
+      | Calculator    | message                                                                   | 
+      | Calculator_1  | please wait.you will return to your device´s home screen in a few seconds |
+      | Calculator_2  | please wait.you will return to your device´s home screen in a few seconds | 
+      | Calculator_3  | please wait.you will return to your device´s home screen in a few seconds | 
+      | Calculator_4  | please wait.you will return to your device´s home screen in a few seconds |
+
+ @Smoke @Security
+ Scenario: Security - camouflage - remove camouflage
+    When the user tap settings icon 
+    And taps "security" option 
+    And taps "camouflage" option in security category 
+    And set security code valid 
+    And taps "remove camouflage" option
+    And view message "Removing camouflage"
+    Then view change Tella icon default
+
+ @Smoke @Security
+ Scenario: Security - Quick delete - delete file
+    When the user tap settings icon 
+    And taps "Security" option 
+    And taps switch in "Quick delete" option in security category 
+    And select check box "Delete files" 
+    And go to Tella home page
+    And verify slide "DELETE" button is present
+    And taps slide "DELETE" button
+    And view counter message "Quick Delete mode activation"
+    And waits finish counter
+    And view closed the Tella application
+    And open Tella application again
+    And set security code valid
+    Then view that files were deleted
+
+ @Smoke @Security
+ Scenario: Security - Quick delete - Delete draft and submitted forms
+    When the user tap settings icon 
+    And taps "security" option 
+    And taps switch in "Quick delete" option in security category 
+    And select check box “Delete draft and submitted forms” 
+    And go to Tella home page
+    And verify slide “DELETE” button is present
+    And taps slide “DELETE” button
+    And view counter message “Quick Delete mode activation”
+    And waits finish counter
+    And view closed the Tella application
+    And open Tella application again
+    And set security code valid
+    Then view that draft and submitted forms were deleted
+
+ @Smoke @Security
+ Scenario: Security - Quick delete - Delete server settings
+    When the user tap settings icon 
+    And taps "security" option 
+    And taps switch in "Quick delete" option in security category 
+    And select check box “Delete server settings” 
+    And go to Tella home page
+    And verify slide “DELETE” button is present
+    And taps slide “DELETE” button
+    And view counter message “Quick Delete mode activation”
+    And waits finish counter
+    And view closed the Tella application
+    And open Tella application again
+    And set security code valid
+    Then view that server settings were deleted 
+ 
+ @Smoke @Security
+ Scenario: Security - Quick delete - Delete Tella
+    When the user tap settings icon 
+    And taps "security" option 
+    And taps switch in "Quick delete" option in security category
+    And select check box “Delete Tella” 
+    And go to Tella home page
+    And verify slide “DELETE” button is present
+    And taps slide “DELETE” button
+    And view counter message “Quick Delete mode activation”
+    And waits finish counter
+    And view closed the Tella application
+    Then view uninstall message 
+
+ @Smoke @Security
+ Scenario Outline: Security - Quick delete - help info 
+    When the user tap settings icon 
+    And taps "security" option 
+    And taps "Quick delete" option in security category
+    And taps icon help in <deleteOption> 
+    Then view the help info with <message>
+
+  Example:
+    | deleteOption                     | message                                                                                                                                          |
+    | Delete files                     | Delete all the files stored in Tella                                                                                                             |
+    | Delete draft and submitted forms | Delete all draft and submitted forms                                                                                                             |
+    | Delete server settings           | Delete your connections to servers and all                                                                                                       |
+    | Delete Tella                     | Delete the app and all the data it contains. You will be asked "Do you want to uninstall this app?" Unless you confirm,Tella will not be delete. |
+
+ @Smoke @Security
+ Scenario: Security - Preserve metadata when importing 
+   When the user tap settings icon 
+   And tap "Security" option 
+   And view "Preserve metadata when importing"
+   And taps switch in ON to option "Preserve metadata when importing"
+
+  @Smoke @Security
+  Scenario: Security - Camera silent mode
+   When the user tap settings icon 
+   And tap "Security" option 
+   And view "Camera silent mode"
+   And taps switch in ON to option "Camera silent mode" 
+   And go to Tella home page 
+   And taps camera button 
+   And take photo 
+   Then the camera did not make the sound 
+
+ @Smoke @Security
+ Scenario: Security - Screen security  
+   When the user tap settings icon 
+   And tap "security" option 
+   And view "Screen security"
+   And taps switch in ON to option "Screen security"
+   And go to Tella home page 
+   And take screenshot 
+   Then view warning permissions 
