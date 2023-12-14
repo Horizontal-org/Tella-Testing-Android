@@ -1,101 +1,101 @@
-@Security
+  @Security
 
-Feature: Security
+  Feature: Security
   
   Background:
-    Given the user is authenticated in the Tella application with valid credentials 123456 
-    And is on the main page
+  Given the user is authenticated in the Tella application with valid credentials 123456 
+  And is on the main page
     
   @Regresion @Android @Security @Lock   
   Scenario Outline: Security - Lock - password option
-    When the user tap settings icon 
-    And  tap "Security" option 
-    And tap "Lock" option in security category
-    And set security code valid 
-    And tap "password" option
-    And set <password> 
-    And tab "next" button
-    And set confirm <password>
-    And tab "next" button
-    Then view the screen confirmation successful
+  When the user tap settings icon 
+  And  tap "Security" option 
+  And tap "Lock" option in security category
+  And set security code valid 
+  And tap "password" option
+  And set <password> 
+  And tab "next" button
+  And set confirm <password>
+  And tab "next" button
+  Then view the screen confirmation successful
 
   Example:
-    | password | 
-    | 1234560  |
+  | password | 
+  | 1234560  |
 
   @Regresion @Android @Security @Lock
   Scenario Outline: Security - Lock - PIN option
-    When the user tap settings icon 
-    And  tap "Security" option 
-    And tap "Lock" option in security category
-    And set security code valid 
-    And tap "PIN" option
-    And set <PIN> 
-    And tab "next" button
-    And set confirm <PIN>
-    And tab "next" button
-    Then view the screen confirmation successful
+  When the user tap settings icon 
+  And  tap "Security" option 
+  And tap "Lock" option in security category
+  And set security code valid 
+  And tap "PIN" option
+  And set <PIN> 
+  And tab "next" button
+  And set confirm <PIN>
+  And tab "next" button
+  Then view the screen confirmation successful
     
   Example:
-    | PIN     | 
-    | 1234560 |
+  | PIN     | 
+  | 1234560 |
   
   @Regresion @Android @Security @Lock
   Scenario: Security - lock - pattern option
-    When the user tap settings icon 
-    And  tap "Security" option 
-    And tap "Lock" option in security category
-    And set security code valid 
-    And tap "pattern" option
-    And set pattern 
-    And tab "next" button
-    And set confirm pattern
-    And tab "next" button
-    Then view the screen confirmation successful 
+  When the user tap settings icon 
+  And  tap "Security" option 
+  And tap "Lock" option in security category
+  And set security code valid 
+  And tap "pattern" option
+  And set pattern 
+  And tab "next" button
+  And set confirm pattern
+  And tab "next" button
+  Then view the screen confirmation successful 
 
   @Smoke @Android @Security @LockTimeout
   Scenario Outline: Security - Lock Timeout 
-    When the user tap settings icon 
-    And tap "Security" option 
-    And tap "Lock timeout" option in security category 
-    And select <timeout> option 
-    And tap "OK" button
-    And wait <timeout> of time
-    Then view screen lock 
+  When the user tap settings icon 
+  And tap "Security" option 
+  And tap "Lock timeout" option in security category 
+  And select <timeout> option 
+  And tap "OK" button
+  And wait <timeout> of time
+  Then view screen lock 
     
   Example: 
-    | timeout     |
-    | immediately |
-    | 1 minute    |
-    | 5 minutes   |
-    | 30 minutes  |
-    | 1 hour      | 
+  | timeout     |
+  | immediately |
+  | 1 minute    |
+  | 5 minutes   |
+  | 30 minutes  |
+  | 1 hour      | 
 
   @Smoke @Android @Security @DeleteAfterFailedUnlock
   Scenario Outline: Security - Delete after failed unlock 
-    When the user tap settings icon 
-    And tap "Security" option 
-    And tap "Delete after failed unlock" option in security category 
-    And select <attempts> option 
-    And tap "OK" button
-    And leaves the Tella application and opens it again	
-    And set incorrect <PIN> in <attempts>
-    And view the Tella application is closed and opens it again
-    And sees that the configuration is set by default
-    Then sees that the files have been deleted	
+  When the user tap settings icon 
+  And tap "Security" option 
+  And tap "Delete after failed unlock" option in security category 
+  And select <attempts> option 
+  And tap "OK" button
+  And leaves the Tella application and opens it again	
+  And set incorrect <PIN> in <attempts>
+  And view the Tella application is closed and opens it again
+  And sees that the configuration is set by default
+  Then sees that the files have been deleted	
     
   Example:
-    | attempts    | PIN |
-    | 5 attempts  | 1   |
-    | 10 attempts | 1   |
-    | 20 attempts | 1   |
+  | attempts    | PIN |
+  | 5 attempts  | 1   |
+  | 10 attempts | 1   |
+  | 20 attempts | 1   |
 
- @Smoke @Android @Security @Camouflage
- Scenario Outline: Security - camouflage - change camuflaje method - change name and icon 
-    When the user tap settings icon 
-    And taps "Security" option 
-    And taps "Camouflage" option in security category 
-    And set security code valid 
+  @Smoke @Android @Security @Camouflage
+  Scenario Outline: Security - camouflage - change camuflaje method - change name and icon 
+  When the user tap settings icon 
+  And taps "Security" option 
+  And taps "Camouflage" option in security category 
+  And set security code valid 
     And taps "Change camuflaje method" option
     And taps "Change name and icon" option 
     And select <icon> option 
