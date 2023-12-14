@@ -2,7 +2,7 @@
 	Feature: General
 	
 	Background: 
-  Given the user is authenticated in the Tella application with valid credentials
+  Given the user is authenticated in the Tella application with valid credentials 654321
 	And is on the main page
 	
 	Scenario: View Settings Categories
