@@ -46,7 +46,14 @@
   And presses the option "General"
   Then the user should view a list with the general configurations of the app
 
-
+  @smoke
+  Scenario: Share Crash Reports
+  When the user taps the settings icon
+  And views the "Share crash reports" option
+  And taps on it to enable
+  Then the user sees that the color has changed to green, indicating it is activated
+  And from that moment, crash reports should be automatically sent
+  
 
 
 
