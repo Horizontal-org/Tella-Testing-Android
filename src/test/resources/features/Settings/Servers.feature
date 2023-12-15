@@ -45,7 +45,7 @@
 	
 	@smoke
   Scenario: Configure Open Data Kit Server
-  Given the user is logged in Tella 654321
+  Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
   And taps the "Servers" option
   And presses the "add" icon
@@ -56,7 +56,7 @@
 
   @smoke
   Scenario: Configure Advanced Open Data Kit Server
-  Given the user is logged in Tella 654321
+  Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
   And taps the "Servers" option
   And presses the "add" icon
@@ -69,7 +69,7 @@
 
   @smoke
   Scenario: Configure whit URL Server
-  Given the user is logged in Tella 654321
+  Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
   And taps the "Servers" option
   And presses the "add" icon
@@ -84,7 +84,7 @@
 
   @smoke
   Scenario: Access Login for Project Access
-  Given the user is logged in Tella 654321
+  Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
   And taps the "Servers" option
   And presses the "add" icon
