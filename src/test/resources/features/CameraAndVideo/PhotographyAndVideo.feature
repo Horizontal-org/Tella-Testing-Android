@@ -222,9 +222,7 @@ Scenario: Rename a file with a existing name
   And the user write the new name "Tella1"
   And the user press "ok"
   Then the sistem notified there is a existing file with the same name  
+
   
-@Smoke @IOS
-Scenario: Move to another folder
-  Given the user is in Tella´s home page
   
   
