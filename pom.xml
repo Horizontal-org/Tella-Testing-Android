@@ -22,6 +22,8 @@
         <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
         <crowdar.remoteDriverType></crowdar.remoteDriverType>
         <crowdar.reporter.avent>true</crowdar.reporter.avent>
+        <test-manager.plugin>--plugin com.crowdar.examples.report.TestManagerReporter:</test-manager.plugin>
+        <cucumber.options>${test-manager.plugin}</cucumber.options>
     </properties>
 
     <profiles>
@@ -100,6 +102,11 @@
             <artifactId>extentreports-cucumber4-adapter</artifactId>
             <version>1.1.0.10</version>
         </dependency>
+        <dependency>
+            <groupId>io.lippia.report</groupId>
+            <artifactId>ltm-cucumber4-adapter</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
         <testResources>
@@ -121,6 +128,15 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${cucumber.runner}</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <TEST_MANAGER_USERNAME>marianacervantes</TEST_MANAGER_USERNAME>
+                        <TEST_MANAGER_PASSWORD>mita6017LTM</TEST_MANAGER_PASSWORD>
+                        <TEST_MANAGER_API_HOST>https://testmanager.crowdaracademy.lippia.io/</TEST_MANAGER_API_HOST>
+                        <TEST_MANAGER_API_PORT></TEST_MANAGER_API_PORT>
+                        <TEST_MANAGER_RUN_NAME>PruebasUnlockTella</TEST_MANAGER_RUN_NAME>
+                        <TEST_MANAGER_PROJECT_CODE>Tella</TEST_MANAGER_PROJECT_CODE>
+
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
