@@ -30,7 +30,7 @@ Scenario: Record audio from the "Videos" folder
 Scenario Outline: Import a file of type <type> from the "Videos" folder preserving the original
     When the user taps the "+" button
     And selects the option "Import from device"
-    And taps the "keep the original" button
+    And taps the "KEEP ORIGINAL" button
     And taps the "Continue" button
     And selects a file of type <type> from the device
     Then the file is saved in the folder <folder>
@@ -50,11 +50,12 @@ Scenario Outline: Import a file of type <type> from the "Videos" folder preservi
 Scenario Outline: Import a file of type <type> from the "Videos" folder, deleting the original
     When the user taps the "+" button
     And selects the option "Import from device"
-    And taps the "delete the original" button
+    And taps the "DELETE ORIGINAL" button
     And taps the "Continue" button
     And selects a file of type <type> from the device
     Then the file is saved in the folder <folder>
     And the file of type <type> appears in the list of files in the folder <folder>
+    And the original file is deleted from the device
 
     Examples:
       | type           | folder     |
@@ -72,12 +73,12 @@ Scenario Outline: Import a file of type <type> from the "Videos" folder, deletin
 Scenario Outline: Import a duplicate file of type <type> from the "Videos" folder
     When the user taps the "+" button
     And selects the option "Import from device"
-    And taps the "keep the original" button
+    And taps the "KEEP ORIGINAL" button
     And taps the "Continue" button
     And selects a file of type <type> from the device
     And taps the "+" button again
     And selects the option "Import from device"
-    And taps the "keep the original" button
+    And taps the "KEEP ORIGINAL" button
     And taps the "Continue" button
     And selects a file of type <type> from the device
     Then the duplicate file is imported correctly with a different name
