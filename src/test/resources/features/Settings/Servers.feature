@@ -43,3 +43,46 @@
 	|Tella_Web          |
 	|Uwazi              |
 	
+	
+  Scenario: Configure Open Data Kit Server
+  Given the user is logged in Tella
+  And taps the wheel icon to access settings
+  And taps the "Servers" option
+  And presses the "add" icon
+  When the user selects the "Open Data Kit" option
+  And taps the "OK" button
+  Then the user views the server settings with fields "server name"; "server URL" to fill
+  And presses "save" to save the configuration
+
+  Scenario: Configure Advanced Open Data Kit Server
+  Given the user is logged in Tella
+  And taps the wheel icon to access settings
+  And taps the "Servers" option
+  And presses the "add" icon
+  When the user selects the "Open Data Kit" option
+  And taps the "OK" button
+  And the user views the server settings with fields "server name"; "server URL" to fill
+  And expands the "advanced" section
+  Then the user views the fields "user name"; "password" to fill
+  And presses "save" to save the configuration
+
+  Scenario: Configure Tella Web Server
+  Given the user is logged in Tella
+  And taps the wheel icon to access settings
+  And taps the "Servers" option
+  And presses the "add" icon
+  When the user selects the "Tella Web" option
+  And taps the "OK" button
+  Then the user views the server settings with the field "enter project URL" to fill
+
+  Scenario: Access Login for Project Access
+  Given the user is logged in Tella
+  And taps the wheel icon to access settings
+  And taps the "Servers" option
+  And presses the "add" icon
+  And the user selects the "Tella Web" option
+  And taps the "OK" button
+  And the user views the server settings with the field "enter project URL" to fill
+  When the user enters the project URL
+  And presses Next
+  Then the user views the login to access the project with fields "username"; "password"
