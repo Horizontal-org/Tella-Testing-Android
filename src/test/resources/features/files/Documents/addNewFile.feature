@@ -30,7 +30,7 @@ Scenario: Record a document from the "Documents" folder
 Scenario Outline: Import a file of type <type> from the "Documents" folder preserving the original
     When they tap the "+" button
     And select the option "Import from device"
-    And tap the button "keep the original"
+    And tap the button "KEEP ORIGINAL"
     And tap the button "Continue"
     And select a file of type <type> from the device
     Then the file is saved in the folder <folder>
@@ -50,11 +50,12 @@ Scenario Outline: Import a file of type <type> from the "Documents" folder prese
 Scenario Outline: Import a file of type <type> from the "Documents" folder deleting the original
     When they tap the "+" button
     And select the option "Import from device"
-    And tap the button "delete the original"
+    And tap the button "DELETE ORIGINAL"
     And tap the button "Continue"
     And select a file of type <type> from the device
     Then the file is saved in the folder <folder>
     And the file of type <type> appears in the list of files in the folder <folder>
+    And the original file is deleted from the device
 
     Examples:
       | type           | folder      |
@@ -72,12 +73,12 @@ Scenario Outline: Import a file of type <type> from the "Documents" folder delet
 Scenario Outline: Import a duplicated file of type <type> from the "Documents" folder
     When they tap the "+" button
     And select the option "Import from device"
-    And tap the button "keep the original"
+    And tap the button "KEEP ORIGINAL"
     And tap the button "Continue"
     And select a file of type <type> from the device
     And tap the "+" button again
     And select the option "Import from device"
-    And tap the button "keep the original"
+    And tap the button "KEEP ORIGINAL"
     And tap the button "Continue"
     And select a file of type <type> from the device
     Then the duplicated file is imported correctly with a different name
