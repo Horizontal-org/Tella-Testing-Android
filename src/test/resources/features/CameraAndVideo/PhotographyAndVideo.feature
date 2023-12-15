@@ -42,6 +42,27 @@ Scenario: Enable grid lines
   Then the grid lines is activated
 
 @Smoke @Video
+Scenario: Turn on camera flash using the video mode
+  Given the user is in camera
+  When the user press flash button, located a the top right of the screen
+  Then the flash is activate
+
+@Smoke @Video
+Scenario: Turn off camera flash using the video mode
+  Given the user is in camera
+  When the user press flash button, located a the top right of the screen
+  And the user press flash button
+  Then the flash is off
+  
+@Somke @Video
+Scenario: Select video resolution
+  Given the user is camera
+  When the user press the video resolution button, located at the top center of the screen 
+  And the user press "Highest possible"
+  And the user press "NEXT"
+  Then the video resolution is selected
+  
+@Smoke @Video
 Scenario: record a video from Tella
   Given the user is in Tella´s home page
   When the user press "camera"
