@@ -31,7 +31,7 @@ Scenario: Record an audio from the "Audio" folder
 Scenario Outline: Import a file of type <type> from the "Audio" folder preserving the original
     When they tap the "+" button
     And select the option "Import from device"
-    And tap the button "keep the original"
+    And tap the button "KEEP ORIGINAL"
     And tap the button "Continue"
     And select a file of type <type> from the device
     Then the file is saved in the folder <folder>
@@ -51,7 +51,7 @@ Scenario Outline: Import a file of type <type> from the "Audio" folder preservin
 Scenario Outline: Import a file of type <type> from the "Audio" folder deleting the original
     When they tap the "+" button
     And select the option "Import from device"
-    And tap the button "delete the original"
+    And tap the button "DELETE ORIGINAL"
     And tap the button "Continue"
     And select a file of type <type> from the device
     Then the file is saved in the folder <folder>
@@ -73,12 +73,12 @@ Scenario Outline: Import a file of type <type> from the "Audio" folder deleting 
 Scenario Outline: Import a duplicated file of type <type> from the "Audio" folder
     When they tap the "+" button
     And select the option "Import from device"
-    And tap the button "keep the original"
+    And tap the button "KEEP ORIGINAL"
     And tap the button "Continue"
     And select a file of type <type> from the device
     And tap the "+" button again
     And select the option "Import from device"
-    And tap the button "keep the original"
+    And tap the button "KEEP ORIGINAL"
     And tap the button "Continue"
     And select a file of type <type> from the device
     Then the duplicated file is imported correctly with a different name
