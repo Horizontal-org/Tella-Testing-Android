@@ -15,9 +15,9 @@ And the <type> file is saved correctly in the <folder> folder
 And the <type> file appears in the list of files in the <folder> folder
 
 Examples:
-| type  | folder |
-| image | Images |
-| video | Videos |
+    | type   | folder   | option |
+    | image  | Images   | Photo  |
+    | video  | Videos   | Video  |
 
 Scenario: Record an audio from the "Images" folder
 When the user taps the "+" button
