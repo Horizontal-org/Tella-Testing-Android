@@ -43,7 +43,7 @@
 	|Tella_Web          |
 	|Uwazi              |
 	
-	
+	@smoke
   Scenario: Configure Open Data Kit Server
   Given the user is logged in Tella
   And taps the wheel icon to access settings
@@ -54,6 +54,7 @@
   Then the user views the server settings with fields "server name"; "server URL" to fill
   And presses "save" to save the configuration
 
+  @smoke
   Scenario: Configure Advanced Open Data Kit Server
   Given the user is logged in Tella
   And taps the wheel icon to access settings
@@ -66,6 +67,7 @@
   Then the user views the fields "user name"; "password" to fill
   And presses "save" to save the configuration
 
+  @smoke
   Scenario: Configure whit URL Server
   Given the user is logged in Tella
   And taps the wheel icon to access settings
@@ -80,6 +82,7 @@
   |Tella Web|
   |Uwazi    |
 
+  @smoke
   Scenario: Access Login for Project Access
   Given the user is logged in Tella
   And taps the wheel icon to access settings
