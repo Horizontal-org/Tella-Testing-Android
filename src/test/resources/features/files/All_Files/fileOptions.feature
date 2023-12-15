@@ -179,3 +179,48 @@ Feature: File Options in the "All files" folder
       | video.mp4     |
       | audio.mp3     |
       | document.pdf  |
+      
+  Scenario Outline: Move a file of type <type> to another existing folder
+  When the user taps the options button "⋮" of the file <type>
+  And selects the option "Move to another folder"
+  And selects a destination folder "Folder1"
+  And taps the option "MOVE HERE"
+  Then the <type> file is moved to the "Folder1" folder
+  And the message appears: "File successfully moved"
+
+  Examples:
+    | type          |
+    | image.jpg     |
+    | video.mp4     |
+    | audio.mp3     |
+    | document.pdf  |
+
+Scenario Outline: Cancel the option to move a file of type <type> to another folder
+  When the user taps the options button "⋮" of the file <type>
+  And selects the option "Move to another folder"
+  And taps the option "CANCEL"
+  Then the option to move the file is canceled
+
+  Examples:
+    | type          |
+    | image.jpg     |
+    | video.mp4     |
+    | audio.mp3     |
+    | document.pdf  |
+
+Scenario Outline: Move a file of type <type> by creating a folder
+  When the user taps the options button "⋮" of the file <type>
+  And selects the option "Move to another folder"
+  And taps the option "+"
+  And enters a name for the folder <fileName>
+  And taps the option "MOVE HERE"
+  Then the <type> file is moved to the <fileName> folder
+  And the message appears: "File successfully moved"
+
+  Examples:
+    | type          |
+    | image.jpg     |
+    | video.mp4     |
+    | audio.mp3     |
+    | document.pdf  |
+
