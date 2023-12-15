@@ -221,7 +221,21 @@ Scenario: Rename a file with a existing name
   And the user press "Raname"
   And the user write the new name "Tella1"
   And the user press "ok"
-  Then the sistem notified there is a existing file with the same name  
+  Then the sistem notified there is a existing file with the same name 
+  
+@Smoke @IOS
+Scenario: Move a file to another folder
+  Given the user is in camera
+  When the user press the image located at the bottom right of the screen
+  And the user press the image
+  And the user press the three points button located at the top right of the screen
+  And the user press "Move to another folder"
+  And the user press "+"
+  And the user write a folder name "Tella"
+  And the user press "Create"
+  And the user press "tella" folder
+  And the user press "Move here"
+  Then the image is moved to a new folder
 
   
   
