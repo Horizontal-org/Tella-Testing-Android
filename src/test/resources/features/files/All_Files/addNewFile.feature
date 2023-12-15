@@ -30,7 +30,7 @@ Scenario: Record an audio file from the "All files" folder
 Scenario Outline: Import a file of type <type> from the "All files" folder, preserving the original
     When they tap the "+" button
     And select the option "Import from device"
-    And tap the "preserve original" button
+    And tap the "KEEP ORIGINAL" button
     And tap the "Continue" button
     And select a file of type <type> from the device
     Then the file is saved in the folder <folder>
@@ -50,11 +50,12 @@ Scenario Outline: Import a file of type <type> from the "All files" folder, pres
 Scenario Outline: Import a file of type <type> from the "All files" folder, deleting the original
     When they tap the "+" button
     And select the option "Import from device"
-    And tap the "delete original" button
+    And tap the "DELETE ORIGINAL" button
     And tap the "Continue" button
     And select a file of type <type> from the device
     Then the file is saved in the folder <folder>
     And the file of type <type> appears in the list of files in the folder <folder>
+    And The original file is deleted from the device
 
     Examples:
       | type           | folder      |
@@ -72,12 +73,12 @@ Scenario Outline: Import a file of type <type> from the "All files" folder, dele
 Scenario Outline: Import a duplicate file of type <type> from the "All files" folder
     When they tap the "+" button
     And select the option "Import from device"
-    And tap the "preserve original" button
+    And tap the "KEEP ORIGINAL" button
     And tap the "Continue" button
     And select a file of type <type> from the device
     And tap the "+" button again
     And select the option "Import from device"
-    And tap the "preserve original" button
+    And tap the "KEEP ORIGINAL" button
     And tap the "Continue" button
     And select a file of type <type> from the device
     Then the duplicate file is imported correctly with a different name
