@@ -30,7 +30,7 @@ And the audio file appears in the list of files in the "Audios" folder
 Scenario Outline: Import a <type> file from the "Images" folder while preserving the original
 When the user taps the "+" button
 And selects the "Import from device" option
-And taps the "Keep original" button
+And taps the "KEEP ORIGINAL" button
 And taps the "Continue" button
 And selects a <type> file from the device
 Then the file is saved in the <folder> folder
@@ -57,6 +57,7 @@ And taps the "Continue" button
 And selects a <type> file from the device
 Then the file is saved in the <folder> folder
 And the <type> file appears in the list of files in the <folder> folder
+And the original file is deleted from the device
 
 Examples:
 | type      | folder     |
@@ -74,12 +75,12 @@ Examples:
 Scenario Outline: Import a duplicated <type> file from the "Images" folder
 When the user taps the "+" button
 And selects the "Import from device" option
-And taps the "Keep original" button
+And taps the "KEEP ORIGINAL" button
 And taps the "Continue" button
 And selects a <type> file from the device
 And taps the "+" button again
 And selects the "Import from device" option
-And taps the "Keep original" button
+And taps the "KEEP ORIGINAL" button
 And taps the "Continue" button
 And selects another <type> file from the device
 Then the duplicated file is imported correctly with a different name
