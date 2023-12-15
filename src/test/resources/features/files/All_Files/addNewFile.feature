@@ -15,9 +15,9 @@ Scenario Outline: Capture a file of type <type> from the "All files" folder
     And the file of type <type> appears in the list of files in the folder <folder>
 
     Examples:
-      | type   | folder   |
-      | image  | Images   |
-      | video  | Videos   |
+      | type   | folder   | option |
+      | image  | Images   | Photo  |
+      | video  | Videos   | Video  |
 
 Scenario: Record an audio file from the "All files" folder
     When they tap the "+" button
