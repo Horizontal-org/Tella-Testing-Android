@@ -66,23 +66,33 @@
   Then the user views the fields "user name"; "password" to fill
   And presses "save" to save the configuration
 
-  Scenario: Configure Tella Web Server
+  Scenario: Configure whit URL Server
   Given the user is logged in Tella
   And taps the wheel icon to access settings
   And taps the "Servers" option
   And presses the "add" icon
-  When the user selects the "Tella Web" option
+  When the user selects the <sever> option
   And taps the "OK" button
   Then the user views the server settings with the field "enter project URL" to fill
+  
+  Examples:
+  |server    |
+  |Tella Web|
+  |Uwazi    |
 
   Scenario: Access Login for Project Access
   Given the user is logged in Tella
   And taps the wheel icon to access settings
   And taps the "Servers" option
   And presses the "add" icon
-  And the user selects the "Tella Web" option
+  And the user selects the <server>  option
   And taps the "OK" button
   And the user views the server settings with the field "enter project URL" to fill
   When the user enters the project URL
   And presses Next
   Then the user views the login to access the project with fields "username"; "password"
+
+  Examples:
+  |server    |
+  |Tella Web|
+  |Uwazi    |
