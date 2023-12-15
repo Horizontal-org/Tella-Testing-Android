@@ -56,6 +56,7 @@ Scenario Outline: Import a file of type <type> from the "Audio" folder deleting 
     And select a file of type <type> from the device
     Then the file is saved in the folder <folder>
     And the file of type <type> appears in the list of files in the folder <folder>
+    And the original file is deleted from the device
 
     Examples:
       | type           | folder      |
