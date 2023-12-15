@@ -14,10 +14,11 @@ Scenario Outline: Capture a file of type <type> from the "Audio" folder
     And the file of type <type> is saved correctly in the folder <folder>
     And the file of type <type> appears in the list of files in the folder <folder>
 
-    Examples:
-      | type   | folder   |
-      | image  | Images   |
-      | video  | Videos   |
+      Examples:
+      | type   | folder   | option |
+      | image  | Images   | Photo  |
+      | video  | Videos   | Video  |
+
 
 Scenario: Record an audio from the "Audio" folder
     When they tap the "+" button
