@@ -1,4 +1,4 @@
-Feature: Audio
+Feature: Rec
   
   Background: 
     Given the user is in Tella home page
