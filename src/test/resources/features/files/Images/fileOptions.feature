@@ -2,8 +2,7 @@
 Feature: File Options in the "Images" Folder
 
 Background:
-Given the user has an account on Tella
-And has logged in to Tella
+Given that the user is unlocked in the Tella app
 And is in the "Images" folder
 And the files "image1.jpg" and "image2.jpg" exist
 
