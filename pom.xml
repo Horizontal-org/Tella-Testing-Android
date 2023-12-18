@@ -18,12 +18,12 @@
         <crowdar.cucumber.filter>@Smoke</crowdar.cucumber.filter>
         <cucumber.runner>testngParallel.xml</cucumber.runner>
         <crowdar.driverHub></crowdar.driverHub>
-        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.examples.report.Reporter: --plugin pretty</crowdar.cucumber.option>
+        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' ${test-manager-plugin} --plugin pretty</crowdar.cucumber.option>
         <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
         <crowdar.remoteDriverType></crowdar.remoteDriverType>
         <crowdar.reporter.avent>true</crowdar.reporter.avent>
-        <test-manager.plugin>--plugin com.crowdar.examples.report.TestManagerReporter:</test-manager.plugin>
-        <cucumber.options>${test-manager.plugin}</cucumber.options>
+        <test-manager-plugin>--plugin com.crowdar.examples.report.TestManagerReporter:</test-manager-plugin>
+
     </properties>
 
     <profiles>
@@ -134,7 +134,7 @@
                         <TEST_MANAGER_API_HOST>https://testmanager.crowdaracademy.lippia.io/</TEST_MANAGER_API_HOST>
                         <TEST_MANAGER_API_PORT></TEST_MANAGER_API_PORT>
                         <TEST_MANAGER_RUN_NAME>PruebasUnlockTella</TEST_MANAGER_RUN_NAME>
-                        <TEST_MANAGER_PROJECT_CODE>Tella</TEST_MANAGER_PROJECT_CODE>
+                        <TEST_MANAGER_PROJECT_CODE>TELL</TEST_MANAGER_PROJECT_CODE>
 
                     </systemPropertyVariables>
                 </configuration>
