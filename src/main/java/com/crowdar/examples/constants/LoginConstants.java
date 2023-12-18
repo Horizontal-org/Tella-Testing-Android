@@ -6,6 +6,13 @@ public class LoginConstants {
     public static final String LOCK_PASSWORD_BUTTON = "id:lockPasswordBtn";
     public static final String PASSWORD_RIGHT_BUTTON = "id:password_right_button";
     public static final String PASSWORD_INPUT = "id:password_editText";
+    public static final String LOCK_PIN_BUTTON = "id:lockPINdBtn";
+    public static final String PIN_OK_BUTTON = "id:okBtn";
+    public static final String PIN_RIGHT_BUTTON = "id:pin_right_button";
+    public static final String PIN_INPUT = "id:pin_editText";
+    public static final String LOCK_PATTERN_BUTTON = "id:lockPatternBtn";
+    public static final String LOCK_PATTERN_ID = "id:pl_pattern";
+
     public static final String HOME_BUTTON = "id:home";
     public static final String CAMERA_BUTTON = "id:camera";
     public static final String MIC_BUTTON = "id:mic";
