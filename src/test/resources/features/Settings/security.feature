@@ -34,7 +34,7 @@
   And tab "next" button
   And set confirm <PIN>
   And tab "next" button
-  Then view the screen confirmation successful
+  Then "Your lock has been changed" message is shown
     
   Example:
   | PIN     | 
@@ -51,7 +51,7 @@
   And tab "next" button
   And set confirm pattern
   And tab "next" button
-  Then view the screen confirmation successful 
+  Then  "Your lock has been changed" message is shown
 
   @Smoke @Android @Security @LockTimeout
   Scenario Outline: Security - Lock Timeout 
