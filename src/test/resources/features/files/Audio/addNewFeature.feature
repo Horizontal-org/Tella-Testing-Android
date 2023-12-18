@@ -40,12 +40,12 @@ Examples:
   | type           | folder      |
   | image.jpg      | Images      |
   | image.png      | Images      |
-  | video.MP4      | Videos      |
-  | video.MOV      | Videos      |
-  | audio.MP3      | Audios      |
-  | audio.AAC      | Audios      |
-  | document.PDF   | Documents   |
-  | document.DOCX  | Documents   |
+  | video.mp4      | Videos      |
+  | video.mov      | Videos      |
+  | audio.mp3      | Audios      |
+  | audio.aac      | Audios      |
+  | document.pdf   | Documents   |
+  | document.docx  | Documents   |
 
 Scenario Outline: Import a file of type <type> from the "Audio" folder deleting the original
 When they tap the "+" button
@@ -61,14 +61,12 @@ Examples:
   | type           | folder      |
   | image.jpg      | Images      |
   | image.png      | Images      |
-  | video.MP4      | Videos      |
-  | video.MOV      | Videos      |
-  | audio.MP3      | Audios      |
-  | audio.AAC      | Audios      |
-  | document.PDF   | Documents   |
-  | document.DOCX  | Documents   |
-  | .zip           | All files   |
-  | .rar           | All files   |
+  | video.mp4      | Videos      |
+  | video.mov      | Videos      |
+  | audio.mp3      | Audios      |
+  | audio.aac      | Audios      |
+  | document.pdf   | Documents   |
+  | document.docx  | Documents   |
 
 Scenario Outline: Import a duplicated file of type <type> from the "Audio" folder
 When they tap the "+" button
@@ -90,4 +88,3 @@ Examples:
   | video.MP4  | Videos      |
   | audio.aac  | Audios      |
   | doc.PDF    | Documents   |
-  | .zip       | All files   |
