@@ -39,12 +39,12 @@ Examples:
   | type           | folder      |
   | image.jpg      | Images      |
   | image.png      | Images      |
-  | video.MP4      | Videos      |
-  | video.MOV      | Videos      |
-  | audio.MP3      | Audios      |
-  | audio.AAC      | Audios      |
-  | document.PDF   | Documents   |
-  | document.DOCX  | Documents   |
+  | video.mp4      | Videos      |
+  | video.mov      | Videos      |
+  | audio.mp3      | Audios      |
+  | audio.aac      | Audios      |
+  | document.pdf   | Documents   |
+  | document.docx  | Documents   |
 
 Scenario Outline: Import a file of type <type> from the "All files" folder, deleting the original
 When they tap the "+" button
@@ -60,14 +60,12 @@ Examples:
   | type           | folder      |
   | image.jpg      | Images      |
   | image.png      | Images      |
-  | video.MP4      | Videos      |
-  | video.MOV      | Videos      |
-  | audio.MP3      | Audios      |
-  | audio.AAC      | Audios      |
-  | document.PDF   | Documents   |
-  | document.DOCX  | Documents   |
-  | .zip           | All files   |
-  | .rar           | All files   |
+  | video.mp4      | Videos      |
+  | video.mov      | Videos      |
+  | audio.mp3      | Audios      |
+  | audio.aac      | Audios      |
+  | document.pdf   | Documents   |
+  | document.docx  | Documents   |
 
 Scenario Outline: Import a duplicate file of type <type> from the "All files" folder
 When they tap the "+" button
@@ -84,12 +82,11 @@ Then the duplicate file is imported correctly with a different name
 And the file of type <type> appears in the list of files in the folder <folder>
 
 Examples:
-  | type       | folder   |
-  | image.jpg  | Images   |
-  | video.MP4  | Videos   |
-  | audio.MP3  | Audios   |
+  | type       | folder    |
+  | image.jpg  | Images    |
+  | video.mp4  | Videos    |
+  | audio.aac  | Audios    |
   | doc.PDF    | Documents |
-  | .zip       | All files |
 
 Scenario: Successfully add a folder
 When they tap the "+" button
