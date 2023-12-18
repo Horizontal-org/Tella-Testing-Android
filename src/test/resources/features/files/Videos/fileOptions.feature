@@ -1,8 +1,7 @@
 Feature: File Options in the "Videos" Folder
 
 Background:
-Given the user has an account on Tella
-And has logged in to Tella
+Given that the user is unlocked in the Tella app
 And is in the "Videos" folder
 And the files "video1.mp4" and "video2.mp4" exist
 
