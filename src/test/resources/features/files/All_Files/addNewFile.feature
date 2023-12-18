@@ -4,6 +4,7 @@ Background:
 Given that the user is unlocked in the Tella app
 And is within the "All files" folder
 
+@Smoke 
 Scenario Outline: Capture a file of type <type> from the "All files" folder
 When they tap the "+" button
 And select the option "Take photo/video"
@@ -18,6 +19,7 @@ Examples:
   | image  | Images   | Photo  |
   | video  | Videos   | Video  |
 
+@Smoke 
 Scenario: Record an audio file from the "All files" folder
 When they tap the "+" button
 And select the option "Record audio"
@@ -26,6 +28,7 @@ Then the message "The audio recording was saved to your Tella files" appears
 And the audio file is saved correctly in the "Audio" folder
 And the audio file appears in the list of files in the "Audio" folder
 
+@Smoke @Regression
 Scenario Outline: Import a file of type <type> from the "All files" folder, preserving the original
 When they tap the "+" button
 And select the option "Import from device"
@@ -46,6 +49,7 @@ Examples:
   | document.pdf   | Documents   |
   | document.docx  | Documents   |
 
+@Smoke @Regression
 Scenario Outline: Import a file of type <type> from the "All files" folder, deleting the original
 When they tap the "+" button
 And select the option "Import from device"
@@ -67,6 +71,7 @@ Examples:
   | document.pdf   | Documents   |
   | document.docx  | Documents   |
 
+@Smoke @Regression
 Scenario Outline: Import a duplicate file of type <type> from the "All files" folder
 When they tap the "+" button
 And select the option "Import from device"
@@ -88,6 +93,7 @@ Examples:
   | audio.aac  | Audios    |
   | doc.PDF    | Documents |
 
+@Smoke
 Scenario: Successfully add a folder
 When they tap the "+" button
 And select the option "Create"
@@ -95,6 +101,7 @@ And enter a folder name "folder1"
 And tap the "OK" button
 Then a folder with the specified name "folder1" is created
 
+@Smoke
 Scenario: Successfully add a folder inside another
 When they tap the "+" button
 And select the option "Create"
@@ -108,6 +115,7 @@ And tap the "OK" button
 And tap the "Create" button
 Then "folder2" is successfully created inside "folder1"
 
+@Smoke @Regression
 Scenario: Attempt to add a new folder with a duplicate name
 When they tap the "+" button
 And select the option "Create"
