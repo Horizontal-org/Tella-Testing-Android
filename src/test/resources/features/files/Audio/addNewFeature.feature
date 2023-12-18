@@ -4,6 +4,7 @@ Background:
 Given that the user is unlocked in the Tella app
 And is within the "Audio" folder
 
+@Smoke @Regression
 Scenario Outline: Capture a file of type <type> from the "Audio" folder
 When they tap the "+" button
 And select the option "Take photo/video"
@@ -18,7 +19,7 @@ And the file of type <type> appears in the list of files in the folder <folder>
   | image  | Images   | Photo  |
   | video  | Videos   | Video  |
 
-
+@Smoke
 Scenario: Record an audio from the "Audio" folder
 When they tap the "+" button
 And select the option "Record audio"
@@ -27,6 +28,7 @@ Then the message "The audio recording was saved to your Tella files" appears
 And the audio file is saved correctly in the "Audios" folder
 And the audio file appears in the list of files in the "Audios" folder
 
+@Smoke @Regression
 Scenario Outline: Import a file of type <type> from the "Audio" folder preserving the original
 When they tap the "+" button
 And select the option "Import from device"
@@ -47,6 +49,7 @@ Examples:
   | document.pdf   | Documents   |
   | document.docx  | Documents   |
 
+@Smoke @Regression
 Scenario Outline: Import a file of type <type> from the "Audio" folder deleting the original
 When they tap the "+" button
 And select the option "Import from device"
@@ -68,6 +71,7 @@ Examples:
   | document.pdf   | Documents   |
   | document.docx  | Documents   |
 
+@Smoke @Regression
 Scenario Outline: Import a duplicated file of type <type> from the "Audio" folder
 When they tap the "+" button
 And select the option "Import from device"
