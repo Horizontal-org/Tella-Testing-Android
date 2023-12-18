@@ -85,6 +85,6 @@ And the file of type <type> appears in the list of files in the folder <folder>
 Examples:
   | type       | folder      |
   | image.jpg  | Images      |
-  | video.MP4  | Videos      |
+  | video.mp4  | Videos      |
   | audio.aac  | Audios      |
-  | doc.PDF    | Documents   |
+  | doc.pdf    | Documents   |
