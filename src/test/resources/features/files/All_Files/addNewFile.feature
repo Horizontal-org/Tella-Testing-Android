@@ -1,8 +1,7 @@
 Feature: Add Files from the "All files" Folder
 
 Background:
-Given the user has an account on Tella
-And logs in to Tella
+Given that the user is unlocked in the Tella app
 And is within the "All files" folder
 
 Scenario Outline: Capture a file of type <type> from the "All files" folder
