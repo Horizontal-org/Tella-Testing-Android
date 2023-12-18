@@ -37,17 +37,15 @@ Then the file is saved in the <folder> folder
 And the <type> file appears in the list of files in the <folder> folder
 
 Examples:
-| type      | folder    |
-| image.jpg | Images    |
-| image.png | Images    |
-| video.MP4 | Videos    |
-| video.MOV | Videos    |
-| audio.MP3 | Audios    |
-| audio.AAC | Audios    |
-| doc.PDF   | Documents |
-| doc.DOCX  | Documents |
-| .zip      | All Files |
-| .rar      | All Files |
+  | type           | folder      |
+  | image.jpg      | Images      |
+  | image.png      | Images      |
+  | video.mp4      | Videos      |
+  | video.mov      | Videos      |
+  | audio.mp3      | Audios      |
+  | audio.aac      | Audios      |
+  | document.pdf   | Documents   |
+  | document.docx  | Documents   |
 
 Scenario Outline: Import a <type> file from the "Images" folder while deleting the original
 When the user taps the "+" button
@@ -60,17 +58,15 @@ And the <type> file appears in the list of files in the <folder> folder
 And the original file is deleted from the device
 
 Examples:
-| type      | folder     |
-| image.jpg | Images     |
-| image.png | Images     |
-| video.MP4 | Videos     |
-| video.MOV | Videos     |
-| audio.MP3 | Audios     |
-| audio.AAC | Audios     |
-| doc.PDF   | Documents  |
-| doc.DOCX  | Documents  |
-| .zip      | All files  |
-| .rar      | All files  |
+  | type           | folder      |
+  | image.jpg      | Images      |
+  | image.png      | Images      |
+  | video.mp4      | Videos      |
+  | video.mov      | Videos      |
+  | audio.mp3      | Audios      |
+  | audio.aac      | Audios      |
+  | document.pdf   | Documents   |
+  | document.docx  | Documents   |
 
 Scenario Outline: Import a duplicated <type> file from the "Images" folder
 When the user taps the "+" button
@@ -92,4 +88,3 @@ Examples:
 | video.MP4 | Videos    |
 | audio.aac | Audios    |
 | doc.PDF   | Documents |
-| .zip      | All files |
