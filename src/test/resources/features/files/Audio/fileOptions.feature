@@ -5,6 +5,7 @@ Given that the user is unlocked in the Tella app
 And is in the "Audio" folder
 And the files "audio1.aac" and "audio2.aac" exist
 
+@Smoke
 Scenario: Open an audio from the "Audios" folder
 When they click on an "audio1.aac" in the "Audios" folder
 Then it directs to the audio player
