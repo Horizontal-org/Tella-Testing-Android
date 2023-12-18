@@ -7,6 +7,10 @@ And has logged in to Tella
 And is in the "Images" folder
 And the files "image1.jpg" and "image2.jpg" exist
 
+Scenario: Open an image from the "Images" folder
+When they click on an "image1.jgp" in the folder
+Then the image opens
+  
 Scenario: Rename an image file from the "Images" folder
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Rename"
