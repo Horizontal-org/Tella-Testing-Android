@@ -3,35 +3,35 @@ Feature: File Options in the "Audio" Folder
 Background:
 Given that the user is unlocked in the Tella app
 And is in the "Audio" folder
-And the files "audio1.mp3" and "audio2.mp3" exist
+And the files "audio1.aac" and "audio2.aac" exist
 
 Scenario: Open an audio from the "Audios" folder
-When they click on an "audio1.mp3" in the "Audios" folder
+When they click on an "audio1.aac" in the "Audios" folder
 Then it directs to the audio player
 
 Scenario: Rename an audio file in the "Audio" folder
-When the user taps the options button "⋮" for the file "audio1.mp3"
+When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Rename"
 And enters the name: "audio"
 And presses "OK"
 Then the file name is updated
 
 Scenario: Cancel renaming an audio file in the "Audio" folder
-When the user taps the options button "⋮" for the file "audio1.mp3"
+When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Rename"
 And enters the name: "audio"
 And presses "CANCEL"
 Then the file name is not updated
 
 Scenario: Rename a file with an identical name to an existing file in the "Audio" folder
-When the user taps the options button "⋮" for the file "audio1.mp3"
+When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Rename"
-And enters the name: "audio2.mp3"
+And enters the name: "audio2.aac"
 And presses "OK"
 Then the file name is not updated
 
 Scenario Outline: Share an audio file via <SocialMedia> from the "Audio" folder
-When the user taps the options button "⋮" for the file "audio1.mp3"
+When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Share"
 And taps "Continue"
 And selects <shareInformation>
@@ -50,7 +50,7 @@ Examples:
 
 Scenario Outline: Share multiple audio files via <SocialMedia> from the "Audio" folder
 When the user clicks on the "v" button to select files
-And selects "audio1.mp3" and "audio2.mp3"
+And selects "audio1.aac" and "audio2.aac"
 And taps the "Share" button
 And taps "Continue"
 And selects <shareInformation>
@@ -68,7 +68,7 @@ Examples:
   | Gmail       | share files only                       |
 
 Scenario Outline: Cancel sharing an audio file from the "Audio" folder
-When the user taps the options button "⋮" for the file "audio1.mp3"
+When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Share"
 And taps "Continue"
 And selects <shareInformation>
@@ -77,7 +77,7 @@ Then the dialog box is closed
 And the file is not shared
 
 Scenario: Save an audio file to the device
-When the user taps the options button "⋮" for the file "audio1.mp3"
+When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Save to device"
 And presses "Save"
 And selects <shareInformation>
@@ -94,7 +94,7 @@ Examples:
 
 Scenario: Save multiple audio files to the device
 When the user clicks on the "v" button to select files
-And selects "audio1.mp3" and "audio2.mp3"
+And selects "audio1.aac" and "audio2.aac"
 And selects the option "Save to device"
 And presses "Save"
 And selects <shareInformation>
@@ -110,7 +110,7 @@ Examples:
   | share files only                       |
 
 Scenario: Delete an audio file from the "Audio" folder
-When the user taps the options button "⋮" for the file "audio1.mp3"
+When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Delete"
 And taps "Delete"
 Then the file is deleted
@@ -118,20 +118,20 @@ And the message "The file was deleted" appears
 
 Scenario: Delete multiple audio files from the "Audio" folder
 When the user clicks on the "v" button to select files
-And selects "audio1.mp3" and "audio2.mp3"
+And selects "audio1.aac" and "audio2.aac"
 When  taps the options button "⋮"
 And selects the option "Delete"
 Then the files are deleted
 And the message "The file was deleted" appears
 
 Scenario: Cancel deleting an audio file from the "Audio" folder
-When the user taps the options button "⋮" for the file "audio1.mp3"
+When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Delete"
 And taps "Cancel"
 Then the file is not deleted
 And the dialog box is closed
 
 Scenario: View the information of a file from the "Audio" folder
-When the user taps the options button "⋮" for the file "audio1.mp3"
+When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "File information"
 Then the file information appears
