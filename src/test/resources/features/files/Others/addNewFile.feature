@@ -1,8 +1,7 @@
 Feature: Add files from the "Others" folder
 
   Background:
-    Given the user has an account on Tella
-    And logs in to Tella
+    Given that the user is unlocked in the Tella app
     And is within the "Others" folder
 
   Scenario Outline: Capture a file of type <type> from the "Others" folder
