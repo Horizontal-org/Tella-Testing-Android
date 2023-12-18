@@ -1,8 +1,7 @@
 Feature: Organize files in the "Videos" folder
 
 Background:
-Given the user has an account on Tella
-And has logged in to Tella
+Given that the user is unlocked in the Tella app
 And is within the "Videos" folder
 
 Scenario Outline: Sort files by <sortBy> in the "Videos" folder
