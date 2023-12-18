@@ -88,6 +88,6 @@ Examples:
   | type       | folder      |
   | image.jpg  | Images      |
   | video.MP4  | Videos      |
-  | audio.MP3  | Audios      |
+  | audio.aac  | Audios      |
   | doc.PDF    | Documents   |
   | .zip       | All files   |
