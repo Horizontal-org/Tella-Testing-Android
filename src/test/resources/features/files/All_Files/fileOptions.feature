@@ -5,6 +5,17 @@ Feature: File Options in the "All files" folder
     And has logged in to Tella
     And is in the "All files" folder
     And in the "All files" folder, there are files: audio, image, video, and documents
+    
+  Scenario Outline: Open files from "All Files" folder
+    When they click on a <File> in the "All Files" folder 
+    Then <Result>
+  
+    Examples:
+      | File      | Result                                           |
+      | image     | the image opens                                  |
+      | video     | the video plays                                  |
+      | audio     | it directs to the audio player                   |
+      | document  | the option to import the file appears to open it |
 
   Scenario Outline: Rename a file of type <type> from the "All files" folder
     When the user taps the options button "⋮" of the file <type>
@@ -224,3 +235,11 @@ Scenario Outline: Move a file of type <type> by creating a folder
     | audio.mp3     |
     | document.pdf  |
 
+
+
+  
+  
+  
+  
+  
+  
