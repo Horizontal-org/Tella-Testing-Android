@@ -1,8 +1,7 @@
 Feature: File Options in the "Audio" Folder
 
 Background:
-Given the user has an account on Tella
-And has logged in to Tella
+Given that the user is unlocked in the Tella app
 And is in the "Audio" folder
 And the files "audio1.mp3" and "audio2.mp3" exist
 
