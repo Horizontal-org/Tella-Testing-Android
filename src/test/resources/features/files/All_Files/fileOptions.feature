@@ -26,7 +26,7 @@ Examples:
   | type          | name |
   | image.jpg     | img  |
   | video.mp4     | vid  |
-  | audio.mp3     | aud  |
+  | audio.aac     | aud  |
   | document.pdf  | docu |
 
 Scenario Outline: Cancel renaming a file of type <type> from the "All files" folder
@@ -38,7 +38,7 @@ Examples:
   | type          |
   | image.jpg     |
   | video.mp4     |
-  | audio.mp3     |
+  | audio.aac     |
   | document.pdf  |
 
 Scenario Outline: Rename a file of type <existing_file> with an identical name to an existing file from the "All files" folder
@@ -48,11 +48,11 @@ And enters the name: "<new_name>"
 And presses "OK"
 Then the file name is not updated
 Examples:
-  | existing_file  | new_name    |
-  | image1.jpg     | video1.MP4  |
-  | video1.MP4     | image1.jpg  |
-  | audio1.MP3     | document1.PDF |
-  | document1.PDF  | audio1.MP3  |
+  | existing_file  | new_name      |
+  | image1.jpg     | video1.mp4    |
+  | video1.mp4     | image1.jpg    |
+  | audio1.aac     | document1.pdf |
+  | document1.pdf  | audio1.aac    |
 
 Scenario Outline: Share a file of type <type> through <SocialMedia> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
@@ -64,8 +64,8 @@ And selects <SocialMedia>
 Then the file is shared successfully
 Examples:
   | SocialMedia | type          | shareInformation                       |
-  | WhatsApp    | audio.mp3     | share files + verification information |
-  | WhatsApp    | audio.mp3     | share files only                       |
+  | WhatsApp    | audio.aac     | share files + verification information |
+  | WhatsApp    | audio.aac     | share files only                       |
   | Instagram   | image.jpg     | share files + verification information |
   | Instagram   | image.jpg     | share files only                       |
   | Gmail       | document.pdf  | share files + verification information |
@@ -82,12 +82,12 @@ And selects <SocialMedia>
 Then the files are shared successfully
 Examples:
   | SocialMedia | shareInformation                       | type                                 |
-  | WhatsApp    | share files + verification information | audio.mp3, image.jpg, document.pdf   |
-  | WhatsApp    | share files only                       | audio.mp3, image.jpg, document.pdf   |
+  | WhatsApp    | share files + verification information | audio.aac, image.jpg, document.pdf   |
+  | WhatsApp    | share files only                       | audio.aac, image.jpg, document.pdf   |
   | Instagram   | share files + verification information | video.mp4, image.jpg, document.pdf   |
   | Instagram   | share files only                       | video.mp4, image.jpg, document.pdf   |
-  | Gmail       | share files + verification information | document.pdf, audio.mp3, image.jpg   |
-  | Gmail       | share files only                       | document.pdf, audio.mp3, image.jpg   |
+  | Gmail       | share files + verification information | document.pdf, audio.aac, image.jpg   |
+  | Gmail       | share files only                       | document.pdf, audio.aac, image.jpg   |
 
 Scenario Outline: Cancel sharing a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
@@ -101,7 +101,7 @@ Examples:
   | type          |
   | image.jpg     |
   | video.mp4     |
-  | audio.mp3     |
+  | audio.aac     |
   | document.pdf  |
 
 Scenario Outline: Save a file of type <type> to the device
@@ -120,8 +120,8 @@ Examples:
   | image.jpg     | share files only                       |
   | video.mp4     | share files + verification information |
   | video.mp4     | share files only                       |
-  | audio.mp3     | share files + verification information |
-  | audio.mp3     | share files only                       |
+  | audio.aac     | share files + verification information |
+  | audio.aac     | share files only                       |
   | document.pdf  | share files + verification information |
   | document.pdf  | share files only                       |
 
@@ -138,8 +138,8 @@ Then the files are saved successfully to the device
 And the message appears: "1 file saved to the device"
 Examples:
   | shareInformation                       | type                                 |
-  | share files + verification information | audio.mp3, image.jpg, document.pdf   |
-  | share files only                       | audio.mp3, image.jpg, document.pdf   |
+  | share files + verification information | audio.aac, image.jpg, document.pdf   |
+  | share files only                       | audio.aac, image.jpg, document.pdf   |
 
 Scenario Outline: Delete a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
@@ -151,7 +151,7 @@ Examples:
   | type          |
   | image.jpg     |
   | video.mp4     |
-  | audio.mp3     |
+  | audio.aac     |
   | document.pdf  |
 
 Scenario: Delete multiple files of type <type> from the "All files" folder
@@ -163,8 +163,8 @@ Then the files are deleted
 And the message appears: "the file was deleted"
 Examples:
   | type                                 |
-  | audio.mp3, image.jpg, document.pdf   |
-  | audio.mp3, image.jpg, document.pdf   |
+  | audio.aac, image.jpg, document.pdf   |
+  | audio.aac, image.jpg, document.pdf   |
 
 Scenario Outline: Cancel deleting a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
@@ -176,7 +176,7 @@ Examples:
   | type          |
   | image.jpg     |
   | video.mp4     |
-  | audio.mp3     |
+  | audio.aac     |
   | document.pdf  |
 
 Scenario Outline: View the information of a file from the "All files" folder
@@ -187,7 +187,7 @@ Examples:
   | type          |
   | image.jpg     |
   | video.mp4     |
-  | audio.mp3     |
+  | audio.aac     |
   | document.pdf  |
   
 Scenario Outline: Move a file of type <type> to another existing folder
@@ -202,7 +202,7 @@ Examples:
 | type          |
 | image.jpg     |
 | video.mp4     |
-| audio.mp3     |
+| audio.aac     |
 | document.pdf  |
 
 Scenario Outline: Cancel the option to move a file of type <type> to another folder
@@ -215,7 +215,7 @@ Examples:
 | type          |
 | image.jpg     |
 | video.mp4     |
-| audio.mp3     |
+| audio.aac     |
 | document.pdf  |
 
 Scenario Outline: Move a file of type <type> by creating a folder
@@ -231,7 +231,7 @@ Examples:
 | type          |
 | image.jpg     |
 | video.mp4     |
-| audio.mp3     |
+| audio.aac     |
 | document.pdf  |
 
 
