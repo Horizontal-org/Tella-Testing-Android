@@ -1,8 +1,7 @@
 Feature: File Options in the "All files" folder
 
 Background:
-Given the user has an account on Tella
-And has logged in to Tella
+Given that the user is unlocked in the Tella app
 And is in the "All files" folder
 And in the "All files" folder, there are files: audio, image, video, and documents
 
