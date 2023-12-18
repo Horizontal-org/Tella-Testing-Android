@@ -17,7 +17,7 @@
   And tab "next" button
   And set confirm <password>
   And tab "next" button
-  Then the message "Your lock has been change" is shown
+  Then "Your lock has been change" message is shown
 
   Example:
   | password | 
