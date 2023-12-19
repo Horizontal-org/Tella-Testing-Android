@@ -71,14 +71,33 @@
   | 30 minutes  |
   | 1 hour      | 
 
- @Smoke @Android @Security @DeleteAfterFailedUnlock
-  Scenario Outline: Security - Delete after failed unlock 
+  @Smoke @Android @Security @LockTimeout
+  Scenario: Security - Delete after failed unlock 
   When the user taps settings icon 
   And taps "Security" option 
-  And taps "Delete after failed unlock" option in security category 
+  And taps "Lock timeout" option in security category 
   And select "immediately" option 
   And taps "OK" button
-  Then view switch in ON to option "Delete after failed unlock" 
+  Then view switch in ON to option "Lock timeout" 
+  
+  @Smoke @Android @Security @LockTimeout
+  Scenario Outline: Change the Security - Lock Timeout successfully
+  When the user tap settings icon 
+  And tap "Security" option 
+  And tap "Lock timeout" option in security category 
+  And select <timeout> option 
+  And tap "OK" button
+  And Go back
+  And tap "Lock timeout" option in security category 
+  Then the option <timeout> is selected
+    
+  Example: 
+  | timeout     |
+  | immediately |
+  | 1 minute    |
+  | 5 minutes   |
+  | 30 minutes  |
+  | 1 hour      | 
 
   @Smoke @Android @Security @DeleteAfterFailedUnlock
   Scenario Outline: Security - Delete after failed unlock 
@@ -105,13 +124,13 @@
   And taps "Security" option 
   And taps "Camouflage" option in security category 
   And set security code valid 
-    And taps "Change camuflaje method" option
-    And taps "Change name and icon" option 
-    And select <icon> option 
-    And taps "next" option 
-    And taps exit Tella option 
-    And view the <message>
-    And view change Tella <icon> 
+  And taps "Change camuflaje method" option
+  And taps "Change name and icon" option 
+  And select <icon> option 
+  And taps "next" option 
+  And taps exit Tella option 
+  And view the <message>
+  And view change Tella <icon> 
  	
   Example:
     | icon           | message                                                                   |                                                                                                      | 
