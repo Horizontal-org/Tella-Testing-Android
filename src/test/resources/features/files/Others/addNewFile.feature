@@ -4,6 +4,7 @@ Background:
 Given that the user is unlocked in the Tella app
 And is within the "Others" folder
 
+@Smoke 
 Scenario Outline: Capture a file of type <type> from the "Others" folder
 When they tap the "+" button
 And select the option "Take photo/video"
@@ -18,6 +19,7 @@ Examples:
   | image  | Images   | photo  |
   | video  | Videos   | video  |
 
+@Smoke
 Scenario: Record a document from the "Others" folder
 When they tap the "+" button
 And select the option "Record audio"
