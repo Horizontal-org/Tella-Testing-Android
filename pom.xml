@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Lippia-mobile-example-project</artifactId>
+    <artifactId>Tella-mobile-project</artifactId>
     <url>http://maven.apache.org</url>
     <packaging>jar</packaging>
-    <name>Lippia-mobile-example-project</name>
+    <name>Tella-mobile-project</name>
     <version>1.0.0</version>
 
     <parent>
@@ -18,12 +18,10 @@
         <crowdar.cucumber.filter>@Smoke</crowdar.cucumber.filter>
         <cucumber.runner>testngParallel.xml</cucumber.runner>
         <crowdar.driverHub></crowdar.driverHub>
-        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' ${test-manager-plugin} --plugin pretty</crowdar.cucumber.option>
+        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.examples.report.Reporter: --plugin pretty</crowdar.cucumber.option>
         <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
         <crowdar.remoteDriverType></crowdar.remoteDriverType>
         <crowdar.reporter.avent>true</crowdar.reporter.avent>
-        <test-manager-plugin>--plugin com.crowdar.examples.report.TestManagerReporter:</test-manager-plugin>
-
     </properties>
 
     <profiles>
@@ -70,6 +68,14 @@
             </activation>
             <properties>
                 <crowdar.projectType>MOBILE_ANDROID</crowdar.projectType>
+                <platform>android</platform>
+                <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
+                <crowdar.driverHub>http://127.0.0.1:4723/wd/hub</crowdar.driverHub>
+                <cucumber.runner>testng.xml</cucumber.runner>
+                <crowdar.avd></crowdar.avd>
+                <crowdar.appLocation>D:\\\\apk\\\\mobile-release_168.apk</crowdar.appLocation>
+                <crowdar.deviceName>S21 ULTRA</crowdar.deviceName>
+                <crowdar.cucumber.filter>@Unlock</crowdar.cucumber.filter>
             </properties>
         </profile>
         <profile>
@@ -128,15 +134,6 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${cucumber.runner}</suiteXmlFile>
                     </suiteXmlFiles>
-                    <systemPropertyVariables>
-                        <TEST_MANAGER_USERNAME>marianacervantes</TEST_MANAGER_USERNAME>
-                        <TEST_MANAGER_PASSWORD>mita6017LTM</TEST_MANAGER_PASSWORD>
-                        <TEST_MANAGER_API_HOST>https://testmanager.crowdaracademy.lippia.io/</TEST_MANAGER_API_HOST>
-                        <TEST_MANAGER_API_PORT></TEST_MANAGER_API_PORT>
-                        <TEST_MANAGER_RUN_NAME>PruebasUnlockTella</TEST_MANAGER_RUN_NAME>
-                        <TEST_MANAGER_PROJECT_CODE>TELL</TEST_MANAGER_PROJECT_CODE>
-
-                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
