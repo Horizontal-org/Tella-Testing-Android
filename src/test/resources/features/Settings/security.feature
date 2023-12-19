@@ -71,6 +71,15 @@
   | 30 minutes  |
   | 1 hour      | 
 
+ @Smoke @Android @Security @DeleteAfterFailedUnlock
+  Scenario Outline: Security - Delete after failed unlock 
+  When the user tap settings icon 
+  And tap "Security" option 
+  And tap "Delete after failed unlock" option in security category 
+  And select "immediately" option 
+  And tap "OK" button
+  Then view switch in ON to option "Delete after failed unlock" 
+
   @Smoke @Android @Security @DeleteAfterFailedUnlock
   Scenario Outline: Security - Delete after failed unlock 
   When the user tap settings icon 
