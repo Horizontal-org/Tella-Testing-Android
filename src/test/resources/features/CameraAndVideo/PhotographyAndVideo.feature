@@ -1,7 +1,7 @@
 Feature: PhotographyAndVideo
   
-@Smoke @Photography
-Scenario: take a picture from tella
+@Smoke @Photography @Automation
+Scenario: take a photo from tella
   Given the user is in Tella´s home page
   When the user press "camera"
   And the user press the take a photo button
@@ -10,7 +10,7 @@ Scenario: take a picture from tella
   And the picture taked is not in device album
 
 @Smoke @Photography
-Scenario: take a picture from tella with the frontal camera
+Scenario: take a photo from tella with the frontal camera
   Given the user is in Tella´s home page
   When the user press "camera"
   And the user press the change camera button
@@ -62,7 +62,7 @@ Scenario: Select video resolution
   And the user press "NEXT"
   Then the video resolution is selected
   
-@Smoke @Video
+@Smoke @Video @Automation
 Scenario: record a video from Tella
   Given the user is in Tella´s home page
   When the user press "camera"
