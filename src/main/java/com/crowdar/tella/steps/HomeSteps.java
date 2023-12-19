@@ -1,10 +1,8 @@
-package com.crowdar.examples.steps;
+package com.crowdar.tella.steps;
 
 import com.crowdar.core.PageSteps;
-import com.crowdar.core.PropertyManager;
-import com.crowdar.examples.services.HomeService;
+import com.crowdar.tella.services.HomeService;
 import cucumber.api.java.en.Then;
-
 
 
 public class HomeSteps extends PageSteps {
