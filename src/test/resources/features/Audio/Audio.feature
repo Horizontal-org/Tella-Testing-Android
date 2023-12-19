@@ -3,14 +3,14 @@ Feature: Rec
   Background: 
     Given the user is in Tella home page
     
-    @Smoke @Audio @Automation
+    @Smoke @Audio 
     Scenario: Record an audio file
       When the user press "Rec"
       And the user press the microphone
       And the user press stop
       Then "The audio recording was saved to your Tella files" message is shown
       
-    @Smoke @Audio @Automation
+    @Smoke @Audio
     Scenario: Record an audio file in two parts
       When the user press "Rec"
       And the user press the microphone
@@ -19,7 +19,7 @@ Feature: Rec
       And the user press stop
       Then "The audio recording was saved to your Tella files" message is shown
       
-    @Smoke @Audio @Automation
+    @Smoke @Audio
     Scenario: Rename an audio file
       When the user press "Rec"
       And the user press the pencil
@@ -28,7 +28,7 @@ Feature: Rec
       And the user press ok
       Then the file change the original name for a new one
       
-    @Smoke @Audio @Automation
+    @Smoke @Audio
     Scenario: Rename an audio file during the recording
       When the user press "Rec"
       And the user press the microphone
