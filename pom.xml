@@ -134,6 +134,15 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${cucumber.runner}</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <TEST_MANAGER_USERNAME>marianacervantes</TEST_MANAGER_USERNAME>
+                        <TEST_MANAGER_PASSWORD>mita6017LTM</TEST_MANAGER_PASSWORD>
+                        <TEST_MANAGER_API_HOST>https://testmanager.crowdaracademy.lippia.io/</TEST_MANAGER_API_HOST>
+                        <TEST_MANAGER_API_PORT></TEST_MANAGER_API_PORT>
+                        <TEST_MANAGER_RUN_NAME>PruebasUnlockTella</TEST_MANAGER_RUN_NAME>
+                        <TEST_MANAGER_PROJECT_CODE>TELL</TEST_MANAGER_PROJECT_CODE>
+
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
