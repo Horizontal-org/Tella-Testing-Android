@@ -8,15 +8,15 @@
     
   @Regresion @Android @Security @Lock   
   Scenario Outline: Security - Lock - password option
-  When the user tap settings icon 
-  And  tap "Security" option 
-  And tap "Lock" option in security category
+  When the user taps settings icon 
+  And  taps "Security" option 
+  And taps "Lock" option in security category
   And set security code valid 
   And tap "password" option
   And set <password> 
-  And tab "next" button
+  And taps "next" button
   And set confirm <password>
-  And tab "next" button
+  And taps "next" button
   Then "Your lock has been changed" message is shown
 
   Example:
@@ -25,15 +25,15 @@
 
   @Regresion @Android @Security @Lock
   Scenario Outline: Security - Lock - PIN option
-  When the user tap settings icon 
-  And  tap "Security" option 
-  And tap "Lock" option in security category
+  When the user taps settings icon 
+  And  taps "Security" option 
+  And taps "Lock" option in security category
   And set security code valid 
-  And tap "PIN" option
+  And taps "PIN" option
   And set <PIN> 
-  And tab "next" button
+  And taps "next" button
   And set confirm <PIN>
-  And tab "next" button
+  And taps "next" button
   Then "Your lock has been changed" message is shown
     
   Example:
@@ -42,24 +42,24 @@
   
   @Regresion @Android @Security @Lock
   Scenario: Security - lock - pattern option
-  When the user tap settings icon 
-  And  tap "Security" option 
-  And tap "Lock" option in security category
+  When the user taps settings icon 
+  And  taps "Security" option 
+  And taps "Lock" option in security category
   And set security code valid 
-  And tap "pattern" option
+  And taps "pattern" option
   And set pattern 
-  And tab "next" button
+  And taps "next" button
   And set confirm pattern
-  And tab "next" button
+  And taps "next" button
   Then  "Your lock has been changed" message is shown
 
   @Smoke @Android @Security @LockTimeout
   Scenario Outline: Security - Lock Timeout 
-  When the user tap settings icon 
-  And tap "Security" option 
-  And tap "Lock timeout" option in security category 
+  When the user taps settings icon 
+  And taps "Security" option 
+  And taps "Lock timeout" option in security category 
   And select <timeout> option 
-  And tap "OK" button
+  And taps "OK" button
   And wait <timeout> of time
   Then view screen lock 
     
@@ -73,20 +73,20 @@
 
  @Smoke @Android @Security @DeleteAfterFailedUnlock
   Scenario Outline: Security - Delete after failed unlock 
-  When the user tap settings icon 
-  And tap "Security" option 
-  And tap "Delete after failed unlock" option in security category 
+  When the user taps settings icon 
+  And taps "Security" option 
+  And taps "Delete after failed unlock" option in security category 
   And select "immediately" option 
-  And tap "OK" button
+  And taps "OK" button
   Then view switch in ON to option "Delete after failed unlock" 
 
   @Smoke @Android @Security @DeleteAfterFailedUnlock
   Scenario Outline: Security - Delete after failed unlock 
-  When the user tap settings icon 
-  And tap "Security" option 
-  And tap "Delete after failed unlock" option in security category 
+  When the user taps settings icon 
+  And taps "Security" option 
+  And taps "Delete after failed unlock" option in security category 
   And select <attempts> option 
-  And tap "OK" button
+  And taps "OK" button
   And leaves the Tella application and opens it again	
   And set incorrect <PIN> in <attempts>
   And view the Tella application is closed and opens it again
