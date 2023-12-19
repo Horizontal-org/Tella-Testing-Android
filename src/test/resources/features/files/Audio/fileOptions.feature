@@ -10,6 +10,7 @@ Scenario: Open an audio from the "Audios" folder
 When they click on an "audio1.aac" in the "Audios" folder
 Then it directs to the audio player
 
+@Smoke 
 Scenario: Rename an audio file in the "Audio" folder
 When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Rename"
@@ -17,6 +18,7 @@ And enters the name: "audio"
 And presses "OK"
 Then the file name is updated
 
+@Smoke
 Scenario: Cancel renaming an audio file in the "Audio" folder
 When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Rename"
@@ -24,6 +26,7 @@ And enters the name: "audio"
 And presses "CANCEL"
 Then the file name is not updated
 
+@Regression
 Scenario: Rename a file with an identical name to an existing file in the "Audio" folder
 When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Rename"
