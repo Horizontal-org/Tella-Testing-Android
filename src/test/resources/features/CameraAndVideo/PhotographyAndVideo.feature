@@ -1,6 +1,6 @@
 Feature: PhotographyAndVideo
   
-@Smoke @Photography @Automation
+@Smoke @Photography
 Scenario: take a photo from tella
   Given the user is in Tella´s home page
   When the user press "camera"
@@ -62,7 +62,7 @@ Scenario: Select video resolution
   And the user press "NEXT"
   Then the video resolution is selected
   
-@Smoke @Video @Automation
+@Smoke @Video
 Scenario: record a video from Tella
   Given the user is in Tella´s home page
   When the user press "camera"
