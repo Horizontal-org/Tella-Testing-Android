@@ -1,4 +1,4 @@
-package com.crowdar.examples.constants;
+package com.crowdar.tella.constants;
 
 public class HomeConstants {
 

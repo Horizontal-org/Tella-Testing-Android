@@ -1,4 +1,4 @@
-package com.crowdar.examples.report;
+package com.crowdar.tella.report;
 
 import com.crowdar.driver.DriverManager;
 
