@@ -13,12 +13,12 @@ public class UnlockService {
 
     private static final int NEXT_BUTTON_CLICK_COUNT = 3;
 
-    public static void isViewLoaded(){
+    public static void isViewLoaded() {
         MobileActionManager.waitVisibility(UnlockConstants.START_BUTTON);
         MobileActionManager.click(UnlockConstants.START_BUTTON);
     }
 
-    public static void setPassword(String password){
+    public static void setPassword(String password) {
         clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
         MobileActionManager.click(UnlockConstants.LOCK_PASSWORD_BUTTON);
         MobileActionManager.setInput(UnlockConstants.PASSWORD_INPUT, password);
@@ -29,12 +29,12 @@ public class UnlockService {
         Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.START_BUTTON), UnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
     }
 
-    public static void goTella(){
+    public static void goTella() {
         MobileActionManager.waitVisibility(UnlockConstants.START_BUTTON);
         MobileActionManager.click(UnlockConstants.START_BUTTON);
     }
 
-    public static void setNumbers(String pin)  {
+    public static void setNumbers(String pin) {
         clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
         MobileActionManager.click(UnlockConstants.LOCK_PIN_BUTTON);
         setPin(pin);
@@ -44,6 +44,7 @@ public class UnlockService {
         MobileActionManager.click(UnlockConstants.NEXT_BUTTON);
         Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.START_BUTTON), UnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
     }
+
     public static String convertNumberToText(String number) {
         String[] textNumbers = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
         int num;
@@ -58,6 +59,7 @@ public class UnlockService {
             return number;
         }
     }
+
     public static void setPin(String pin) {
         String[] strArrayNums = pin.split("");
         for (String number : strArrayNums) {

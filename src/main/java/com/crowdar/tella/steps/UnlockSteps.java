@@ -11,6 +11,7 @@ public class UnlockSteps extends PageSteps {
     public void isLoginPageVisible() {
         UnlockService.isViewLoaded();
     }
+
     @When("The user set a password (.*)")
     public void theUserLockedAPassword(String password) {
         UnlockService.setPassword(password);
