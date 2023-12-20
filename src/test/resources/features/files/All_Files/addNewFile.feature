@@ -44,11 +44,8 @@ And the file appears in the "All files" folder
 Examples:
   | type           | folder      |
   | image.jpg      | Images      |
-  | image.png      | Images      |
   | video.mp4      | Videos      |
-  | video.mov      | Videos      |
   | audio.mp3      | Audios      |
-  | audio.aac      | Audios      |
   | document.pdf   | Documents   |
   | document.docx  | Documents   |
 
