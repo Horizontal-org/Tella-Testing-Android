@@ -277,7 +277,7 @@
    And tap "Security" option 
    And view "Preserve metadata when importing"
    And taps switch in ON to option "Preserve metadata when importing"
-   Then the sistem activated the "Preserve metadata when importing" option
+   Then the "Preserve metadata when importing" option is activated
 
   @Smoke @Android @Security @CameraSilentMode
   Scenario: Security - Camera silent mode
