@@ -3,6 +3,7 @@ Feature: Add Files from the "Documents" Folder
 Background:
 Given that the user is unlocked in the Tella app
 And is within the "Documents" folder
+And there are document files in the "Documents" folder
 
 @Smoke @DocumentsFolder @CaptureFile
 Scenario Outline: Capture a file of type <type> from the "Documents" folder
