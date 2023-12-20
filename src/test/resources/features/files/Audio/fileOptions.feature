@@ -50,8 +50,6 @@ Examples:
   | WhatsApp    | share files only                       |
   | Instagram   | share files + verification information |
   | Instagram   | share files only                       |
-  | Gmail       | share files + verification information |
-  | Gmail       | share files only                       |
 
 @Smoke @ShareFile @AudioFolder 
 Scenario Outline: Share multiple audio files via <SocialMedia> from the "Audio" folder
@@ -70,9 +68,7 @@ Examples:
   | WhatsApp    | share files only                       |
   | Instagram   | share files + verification information |
   | Instagram   | share files only                       |
-  | Gmail       | share files + verification information |
-  | Gmail       | share files only                       |
-
+  
 @Regression @AudioFolder @ShareFile
 Scenario Outline: Cancel sharing an audio file from the "Audio" folder
 When the user taps the options button "⋮" for the file "audio1.aac"
