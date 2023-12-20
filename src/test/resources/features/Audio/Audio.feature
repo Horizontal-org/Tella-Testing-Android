@@ -44,7 +44,7 @@ Feature: Rec
     @Smoke @Audio
     Scenario: Listen an audio file
       When the user press "Rec"
-      And the user press headphones
+      And the user press headphones icon
       And the user press a file named "Audio1"
       And the user press play
       Then the audio file is reproduced
