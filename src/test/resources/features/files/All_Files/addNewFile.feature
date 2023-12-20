@@ -13,6 +13,7 @@ And capture the file of type <type>
 Then the message "file encrypted" appears
 And the file of type <type> is saved correctly in the folder <folder>
 And the file of type <type> appears in the list of files in the folder <folder>
+And the file appears in the "All files" folder
 
 Examples:
   | type   | folder   | option |
@@ -37,6 +38,7 @@ And tap the "Continue" button
 And select a file of type <type> from the device
 Then the file is saved in the folder <folder>
 And the file of type <type> appears in the list of files in the folder <folder>
+And the file appears in the "All files" folder
 
 Examples:
   | type           | folder      |
