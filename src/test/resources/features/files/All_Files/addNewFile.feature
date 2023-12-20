@@ -31,7 +31,7 @@ And the audio file is saved correctly in the "Audio" folder
 And the audio file appears in the list of files in the "Audio" folder
 
 @Smoke @ImportFile @AllFilesFolder
-Scenario Outline: Import a file of type <type> from the "All files" folder, preserving the original
+Scenario Outline: Import a file of type <type> from the "All files" folder - preserving the original
 When they tap the "+" button
 And select the option "Import from device"
 And tap the "KEEP ORIGINAL" button
@@ -43,14 +43,13 @@ And the file appears in the "All files" folder
 
 Examples:
   | type           | folder      |
-  | image.jpg      | Images      |
-  | video.mp4      | Videos      |
-  | audio.mp3      | Audios      |
-  | document.pdf   | Documents   |
-  | document.docx  | Documents   |
+  | image          | Images      |
+  | video          | Videos      |
+  | audio          | Audios      |
+  | document       | Documents   |
 
 @Regression @ImportFile @AllFilesFolder
-Scenario Outline: Import a file of type <type> from the "All files" folder, deleting the original
+Scenario Outline: Import a file of type <type> from the "All files" folder - deleting the original
 When they tap the "+" button
 And select the option "Import from device"
 And tap the "DELETE ORIGINAL" button
