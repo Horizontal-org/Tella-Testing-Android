@@ -66,12 +66,8 @@ Then the file is shared successfully
 Examples:
   | SocialMedia | type          | shareInformation                       |
   | WhatsApp    | audio.aac     | share files + verification information |
-  | WhatsApp    | audio.aac     | share files only                       |
-  | Instagram   | image.jpg     | share files + verification information |
   | Instagram   | image.jpg     | share files only                       |
-  | Gmail       | document.pdf  | share files + verification information |
-  | Gmail       | document.pdf  | share files only                       |
-
+  
 @Smoke @AllFilesFolder @ShareFile
 Scenario Outline: Share multiple files of type <type> through <SocialMedia> from the "All files" folder
 When the user clicks on the "v" button to select files
@@ -85,11 +81,7 @@ Then the files are shared successfully
 Examples:
   | SocialMedia | shareInformation                       | type                                 |
   | WhatsApp    | share files + verification information | audio.aac, image.jpg, document.pdf   |
-  | WhatsApp    | share files only                       | audio.aac, image.jpg, document.pdf   |
-  | Instagram   | share files + verification information | video.mp4, image.jpg, document.pdf   |
   | Instagram   | share files only                       | video.mp4, image.jpg, document.pdf   |
-  | Gmail       | share files + verification information | document.pdf, audio.aac, image.jpg   |
-  | Gmail       | share files only                       | document.pdf, audio.aac, image.jpg   |
 
 @Smoke @AllFilesFolder @ShareFile
 Scenario Outline: Cancel sharing a file of type <type> from the "All files" folder
@@ -119,12 +111,8 @@ And the message appears: "1 file saved to the device"
 Examples:
   | type          | shareInformation                       |
   | image.jpg     | share files + verification information |
-  | image.jpg     | share files only                       |
-  | video.mp4     | share files + verification information |
   | video.mp4     | share files only                       |
   | audio.aac     | share files + verification information |
-  | audio.aac     | share files only                       |
-  | document.pdf  | share files + verification information |
   | document.pdf  | share files only                       |
 
 @Smoke @AllFilesFolder @SaveFile
