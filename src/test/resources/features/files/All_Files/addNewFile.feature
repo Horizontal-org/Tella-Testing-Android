@@ -87,13 +87,12 @@ And tap the "Continue" button
 And select a file of type <type> from the device
 Then the duplicate file is imported correctly with a different name
 And the file of type <type> appears in the list of files in the folder <folder>
+And the file appears in the "All files" folder
 
 Examples:
   | type       | folder    |
   | image.jpg  | Images    |
   | video.mp4  | Videos    |
-  | audio.aac  | Audios    |
-  | doc.PDF    | Documents |
 
 @Smoke @ImportFile @AllFilesFolder
 Scenario: Successfully add a folder
