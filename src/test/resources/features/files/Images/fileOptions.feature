@@ -6,12 +6,12 @@ Given that the user is unlocked in the Tella app
 And is in the "Images" folder
 And the files "image1.jpg" and "image2.jpg" exist
 
-@Smoke 
+@Smoke @ImagesFolder
 Scenario: Open an image from the "Images" folder
 When they click on an "image1.jgp" in the folder
 Then the image opens
   
-@Smoke
+@Regression @ImagesFolder
 Scenario: Rename an image file from the "Images" folder
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Rename"
@@ -19,7 +19,7 @@ And enters the name: "img"
 And presses "OK"
 Then the file name is updated
 
-@Smoke 
+@Regression @ImagesFolder 
 Scenario: Cancel renaming an image file from the "Images" folder
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Rename"
@@ -27,7 +27,7 @@ And enters the name: "img"
 And presses "CANCEL"
 Then the file name is not updated
 
-@Smoke @Regression
+@Regression @ImagesFolder
 Scenario: Rename a file with an identical name to an existing file
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Rename"
@@ -35,7 +35,7 @@ And enters the name: "image2.jpg"
 And presses "OK"
 Then the file name is not updated
 
-@Smoke 
+@Smoke @ImagesFolder
 Scenario Outline: Edit Image
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Edit"
@@ -49,7 +49,7 @@ Examples:
 | Crop         |
 | Rotate       |
 
-@Smoke 
+@Smoke @ImagesFolder
 Scenario Outline: Cancel image editing
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Edit"
@@ -62,7 +62,7 @@ Examples:
 | Crop         |
 | Rotate       |
 
-@Smoke 
+@Regression @ImagesFolder @ShareFile
 Scenario Outline: Share an image file via <SocialMedia> from the "Images" folder
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Share"
@@ -81,7 +81,7 @@ Examples:
 | Gmail       | share files + verification information |
 | Gmail       | share files only                       |
 
-@Smoke 
+@Smoke @ShareFile @ImagesFolder
 Scenario Outline: Share multiple image files via <SocialMedia> from the "Images" folder
 When the user clicks the "v" button to select files
 And selects "image1.jpg" and "image2.jpg"
@@ -101,7 +101,7 @@ Examples:
 | Gmail       | share files + verification information |
 | Gmail       | share files only                       |
 
-@Smoke 
+@Smoke @ShareFile @ImagesFolder
 Scenario Outline: Cancel sharing an image file from the "Images" folder
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Share"
@@ -111,7 +111,7 @@ And taps "CANCEL"
 Then the dialog box closes
 And the file is not shared
 
-@Smoke 
+@Smoke @SaveFile @ImagesFolder
 Scenario: Save a file to the device
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Save to device"
@@ -128,7 +128,7 @@ Examples:
 | share files + verification information |
 | share files only                       |
 
-@Smoke 
+@Smoke @SaveFile @ImagesFolder
 Scenario: Save multiple files to the device
 When the user clicks the "v" button to select files
 And selects "image1.jpg" and "image2.jpg"
@@ -146,7 +146,7 @@ Examples:
 | share files + verification information |
 | share files only                       |
  
-@Smoke 
+@Smoke @DeleteFile @ImagesFolder
 Scenario: Delete an image file from the "Images" folder
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Delete"
@@ -154,7 +154,7 @@ And taps "Delete"
 Then the file is deleted
 And the message "the file was deleted" appears
 
-@Smoke 
+@Smoke @DeleteFile @ImagesFolder
 Scenario: Delete multiple image files from the "Images" folder
 When the user clicks the "v" button to select files
 And selects "image1.jpg" and "image2.jpg"
@@ -163,7 +163,7 @@ And selects the option "Delete"
 Then the files are deleted
 And the message "the file was deleted" appears
 
-@Smoke
+@Regression @DeleteFile @ImagesFolder
 Scenario: Cancel deleting an image file from the "Images" folder
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Delete"
@@ -171,7 +171,7 @@ And taps "Cancel"
 Then the file is not deleted
 And the dialog box closes
 
-@Smoke 
+@Regression @ImagesFolder @ViewInformation
 Scenario: View information of a file from the "Images" folder
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "File information"
