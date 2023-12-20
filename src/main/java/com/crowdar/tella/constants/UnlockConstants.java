@@ -17,6 +17,7 @@ public class UnlockConstants {
     public static final String HOME_BUTTON = "id:home";
     public static final String CAMERA_BUTTON = "id:camera";
     public static final String MIC_BUTTON = "id:mic";
+    public static final String LOCK_DONT_MATCH_MSG = "id:txv_msg";
     public static final String VIEW_NOT_DISPLAYED_MESSAGE = "Login page is not displayed.";
 
 }
