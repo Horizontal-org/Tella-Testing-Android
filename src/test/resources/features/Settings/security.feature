@@ -112,7 +112,7 @@
   And sees that the configuration is set by default
   Then sees that the files have been deleted	
     
-  Example:
+  Examples:
   | attempts    | PIN |
   | 5 attempts  | 1   |
   | 10 attempts | 1   |
