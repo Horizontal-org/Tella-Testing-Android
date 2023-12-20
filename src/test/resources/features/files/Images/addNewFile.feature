@@ -60,7 +60,7 @@ Examples:
   | image.png      | Images      |
   
 @Regression @ImagesFolder @ImportFile
-Scenario Outline: Import a duplicated "image.jpg" file from the "Images" folder
+Scenario Outline: Import a duplicated image file from the "Images" folder
 When the user taps the "+" button
 And selects the "Import from device" option
 And taps the "KEEP ORIGINAL" button
