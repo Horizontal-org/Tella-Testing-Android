@@ -3,7 +3,7 @@ Feature: Add files from the "Videos" folder
 Background:
 Given that the user is unlocked in the Tella app
 And is within the "Videos" folder
-And There are video files in the "Videos" folder
+And there are video files in the "Videos" folder
 
 @Smoke @VideosFolder @CaptureFile 
 Scenario Outline: Capture a file of type <type> from the "Videos" folder
