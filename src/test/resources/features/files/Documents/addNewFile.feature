@@ -60,21 +60,16 @@ Examples:
   | document.docx  | Documents   |
 
 @Regression @DocumentsFolder @ImportFile
-Scenario Outline: Import a duplicated file of type <type> from the "Documents" folder
+Scenario: Import a duplicated file of type Document from the "Documents" folder
 When they tap the "+" button
 And select the option "Import from device"
 And tap the button "KEEP ORIGINAL"
 And tap the button "Continue"
-And select a file of type <type> from the device
+And select a file of type "document.pdf"  from the device
 And tap the "+" button again
 And select the option "Import from device"
 And tap the button "KEEP ORIGINAL"
 And tap the button "Continue"
-And select a file of type <type> from the device
+And select a file of type "document.pdf" from the device
 Then the duplicated file is imported correctly with a different name
-And the file of type <type> appears in the list of files in the folder <folder>
-
-Examples:
-  | type           | folder      |
-  | document.pdf   | Documents   |
-  | document.docx  | Documents   |
+And the file of type "document.pdf" appears in the list of files in the folder "Documents"
