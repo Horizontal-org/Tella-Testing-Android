@@ -40,14 +40,9 @@ And the file of type <type> appears in the list of files in the folder <folder>
 
 Examples:
   | type           | folder      |
-  | image.jpg      | Images      |
-  | image.png      | Images      |
   | video.mp4      | Videos      |
   | video.mov      | Videos      |
-  | audio.mp3      | Audios      |
-  | audio.aac      | Audios      |
-  | document.pdf   | Documents   |
-  | document.docx  | Documents   |
+ 
 
 @Smoke @VideosFolder @ImportFile
 Scenario Outline: Import a file of type <type> from the "Videos" folder, deleting the original
@@ -62,15 +57,9 @@ And the original file is deleted from the device
 
 Examples:
   | type           | folder      |
-  | image.jpg      | Images      |
-  | image.png      | Images      |
   | video.mp4      | Videos      |
   | video.mov      | Videos      |
-  | audio.mp3      | Audios      |
-  | audio.aac      | Audios      |
-  | document.pdf   | Documents   |
-  | document.docx  | Documents   |
-
+  
 @Regression @VideosFolder @ImportFile
 Scenario Outline: Import a duplicate file of type <type> from the "Videos" folder
 When the user taps the "+" button
@@ -87,8 +76,6 @@ Then the duplicate file is imported correctly with a different name
 And the file of type <type> appears in the list of files in the folder <folder>
 
 Examples:
-  | type       | folder     |
-  | image.jpg  | Images     |
-  | video.MP4  | Videos     |
-  | audio.aac  | Audios     |
-  | doc.PDF    | Documents  |
+  | type           | folder      |
+  | video.mp4      | Videos      |
+  | video.mov      | Videos      |
