@@ -36,7 +36,7 @@
   And taps "next" button
   Then "Your lock has been changed" message is shown
     
-  Example:
+  Examples:
   | PIN     | 
   | 1234560 |
   
