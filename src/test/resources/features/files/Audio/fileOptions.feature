@@ -47,8 +47,6 @@ Then the file is shared correctly
 Examples:
   | SocialMedia | shareInformation                       |
   | WhatsApp    | share files + verification information |
-  | WhatsApp    | share files only                       |
-  | Instagram   | share files + verification information |
   | Instagram   | share files only                       |
 
 @Smoke @ShareFile @AudioFolder 
@@ -65,8 +63,6 @@ Then the file is shared correctly
 Examples:
   | SocialMedia | shareInformation                       |
   | WhatsApp    | share files + verification information |
-  | WhatsApp    | share files only                       |
-  | Instagram   | share files + verification information |
   | Instagram   | share files only                       |
   
 @Regression @AudioFolder @ShareFile
