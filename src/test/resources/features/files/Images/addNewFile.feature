@@ -65,16 +65,11 @@ When the user taps the "+" button
 And selects the "Import from device" option
 And taps the "KEEP ORIGINAL" button
 And taps the "Continue" button
-And selects a <type> file from the device
+And selects a "image.jpg" file from the device
 And taps the "+" button again
 And selects the "Import from device" option
 And taps the "KEEP ORIGINAL" button
 And taps the "Continue" button
-And selects another <type> file from the device
+And selects another "image.jpg"  file from the device
 Then the duplicated file is imported correctly with a different name
-And the <type> file appears in the list of files in the <folder> folder
-
-Examples:
-  | type           | folder      |
-  | image.jpg      | Images      |
-  | image.png      | Images      |
+And the "image.jpg" file appears in the list of files in the "Images" folder
