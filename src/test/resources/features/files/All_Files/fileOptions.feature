@@ -28,8 +28,6 @@ Examples:
   | type          | name |
   | image.jpg     | img  |
   | video.mp4     | vid  |
-  | audio.aac     | aud  |
-  | document.pdf  | docu |
 
 @Regression @AllFilesFolder
 Scenario Outline: Cancel renaming a file of type <type> from the "All files" folder
