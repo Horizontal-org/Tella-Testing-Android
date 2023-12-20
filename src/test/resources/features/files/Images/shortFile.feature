@@ -4,7 +4,7 @@ Background:
 Given that the user is unlocked in the Tella app
 And is within the "Images" folder
 
-@Regression
+@Regression  @ImagesFolder @SortFile
 Scenario Outline: Sort files by <sortBy> in the "Images" folder
 When the user taps the "Name ↑" icon
 And chooses to sort files in <sortBy> order
@@ -18,7 +18,7 @@ Examples:
 | Name A-Z              |
 | Name Z-A              |
 
-@Regression
+@Regression  @ImagesFolder @SortFile
 Scenario Outline: Sort files by <view> in the "Images" folder
 When the user taps the <view> button
 Then the files are displayed according to the selected view
