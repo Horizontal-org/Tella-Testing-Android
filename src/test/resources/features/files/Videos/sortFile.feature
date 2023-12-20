@@ -3,6 +3,7 @@ Feature: Organize files in the "Videos" folder
 Background:
 Given that the user is unlocked in the Tella app
 And is within the "Videos" folder
+And there are video files in the "Videos" folder
 
 @Regression @VideosFolder @SortFile
 Scenario Outline: Sort files by <sortBy> in the "Videos" folder
