@@ -49,7 +49,7 @@ Examples:
   | document.pdf   | Documents   |
   | document.docx  | Documents   |
 
-@Smoke @Regression @AudioFolder @ImportFile
+@Smoke @AudioFolder @ImportFile
 Scenario Outline: Import a file of type <type> from the "Audio" folder deleting the original
 When they tap the "+" button
 And select the option "Import from device"
@@ -71,7 +71,7 @@ Examples:
   | document.pdf   | Documents   |
   | document.docx  | Documents   |
 
-@Smoke @Regression @Smoke @AudioFolder @ImportFile
+@Regression @AudioFolder @ImportFile
 Scenario Outline: Import a duplicated file of type <type> from the "Audio" folder
 When they tap the "+" button
 And select the option "Import from device"
