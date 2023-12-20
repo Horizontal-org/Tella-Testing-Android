@@ -5,7 +5,7 @@ Given that the user is unlocked in the Tella app
 And is in the "All files" folder
 And in the "All files" folder, there are files: audio, image, video, and documents
 
-@Smoke
+@Smoke @AllFilesFolder
 Scenario Outline: Open files from "All Files" folder
 When they click on a <File> in the "All Files" folder 
 Then <Result>
@@ -17,7 +17,7 @@ Examples:
   | audio     | it directs to the audio player                   |
   | document  | the option to import the file appears to open it |
 
-@Smoke
+@Regression @AllFilesFolder
 Scenario Outline: Rename a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Rename"
@@ -31,7 +31,7 @@ Examples:
   | audio.aac     | aud  |
   | document.pdf  | docu |
 
-@Smoke
+@Regression @AllFilesFolder
 Scenario Outline: Cancel renaming a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Rename"
@@ -44,7 +44,7 @@ Examples:
   | audio.aac     |
   | document.pdf  |
 
-@Regression
+@Regression @AllFilesFolder
 Scenario Outline: Rename a file of type <existing_file> with an identical name to an existing file from the "All files" folder
 When the user taps the options button "⋮" of the file "<existing_file>"
 And selects the option "Rename"
@@ -58,7 +58,7 @@ Examples:
   | audio1.aac     | document1.pdf |
   | document1.pdf  | audio1.aac    |
 
-@Smoke
+@Smoke @AllFilesFolder @Share
 Scenario Outline: Share a file of type <type> through <SocialMedia> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Share"
@@ -76,7 +76,7 @@ Examples:
   | Gmail       | document.pdf  | share files + verification information |
   | Gmail       | document.pdf  | share files only                       |
 
-@Smoke
+@Smoke @AllFilesFolder @Share
 Scenario Outline: Share multiple files of type <type> through <SocialMedia> from the "All files" folder
 When the user clicks on the "v" button to select files
 And selects <type>
@@ -95,7 +95,7 @@ Examples:
   | Gmail       | share files + verification information | document.pdf, audio.aac, image.jpg   |
   | Gmail       | share files only                       | document.pdf, audio.aac, image.jpg   |
 
-@Smoke
+@Smoke @AllFilesFolder
 Scenario Outline: Cancel sharing a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Share"
@@ -111,7 +111,7 @@ Examples:
   | audio.aac     |
   | document.pdf  |
 
-@Smoke
+@Smoke @AllFilesFolder @Save
 Scenario Outline: Save a file of type <type> to the device
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Save to device"
@@ -133,7 +133,7 @@ Examples:
   | document.pdf  | share files + verification information |
   | document.pdf  | share files only                       |
 
-@Smoke
+@Smoke @AllFilesFolder @Save
 Scenario Outline: Save multiple files of type <type> to the device
 When the user clicks on the "v" button to select files
 And selects <type>
@@ -150,7 +150,7 @@ Examples:
   | share files + verification information | audio.aac, image.jpg, document.pdf   |
   | share files only                       | audio.aac, image.jpg, document.pdf   |
 
-@Smoke
+@Smoke @AllFilesFolder @Delete
 Scenario Outline: Delete a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Delete"
@@ -164,7 +164,7 @@ Examples:
   | audio.aac     |
   | document.pdf  |
 
-@Smoke
+@Smoke @AllFilesFolder @Delete
 Scenario: Delete multiple files of type <type> from the "All files" folder
 When the user clicks on the "v" button to select files
 And selects <type>
@@ -177,7 +177,7 @@ Examples:
   | audio.aac, image.jpg, document.pdf   |
   | audio.aac, image.jpg, document.pdf   |
 
-@Smoke
+@Smoke @AllFilesFolder @Delete
 Scenario Outline: Cancel deleting a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Delete"
@@ -191,7 +191,7 @@ Examples:
   | audio.aac     |
   | document.pdf  |
 
-@Smoke
+@Smoke @AllFilesFolder @ViewInformation
 Scenario Outline: View the information of a file from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "File information"
@@ -203,7 +203,7 @@ Examples:
   | audio.aac     |
   | document.pdf  |
   
-@Smoke
+@Smoke @AllFilesFolder
 Scenario Outline: Move a file of type <type> to another existing folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Move to another folder"
@@ -219,7 +219,7 @@ Examples:
 | audio.aac     |
 | document.pdf  |
 
-@Smoke
+@Smoke @AllFilesFolder
 Scenario Outline: Cancel the option to move a file of type <type> to another folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Move to another folder"
@@ -233,7 +233,7 @@ Examples:
 | audio.aac     |
 | document.pdf  |
 
-@Smoke
+@Smoke @AllFilesFolder
 Scenario Outline: Move a file of type <type> by creating a folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Move to another folder"
