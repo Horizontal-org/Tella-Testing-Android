@@ -43,10 +43,10 @@ And the file appears in the "All files" folder
 
 Examples:
   | type           | folder      |
-  | image          | Images      |
-  | video          | Videos      |
-  | audio          | Audios      |
-  | document       | Documents   |
+  | image.jpg      | Images      |
+  | video.mp4      | Videos      |
+  | audio.mp3      | Audios      |
+  | document.pdf   | Documents   |
 
 @Regression @ImportFile @AllFilesFolder
 Scenario Outline: Import a file of type <type> from the "All files" folder - deleting the original
