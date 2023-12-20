@@ -177,7 +177,7 @@ Examples:
   | audio.aac, image.jpg, document.pdf   |
   | audio.aac, image.jpg, document.pdf   |
 
-@Smoke @AllFilesFolder @DeleteFile
+@Regression @AllFilesFolder @DeleteFile
 Scenario Outline: Cancel deleting a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Delete"
@@ -191,7 +191,7 @@ Examples:
   | audio.aac     |
   | document.pdf  |
 
-@Smoke @AllFilesFolder @ViewInformation
+@Regression @AllFilesFolder @ViewInformation
 Scenario Outline: View the information of a file from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "File information"
@@ -203,7 +203,7 @@ Examples:
   | audio.aac     |
   | document.pdf  |
   
-@Smoke @AllFilesFolder
+@Regression @AllFilesFolder
 Scenario Outline: Move a file of type <type> to another existing folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Move to another folder"
@@ -219,7 +219,7 @@ Examples:
 | audio.aac     |
 | document.pdf  |
 
-@Smoke @AllFilesFolder
+@Regression @AllFilesFolder
 Scenario Outline: Cancel the option to move a file of type <type> to another folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Move to another folder"
@@ -233,7 +233,7 @@ Examples:
 | audio.aac     |
 | document.pdf  |
 
-@Smoke @AllFilesFolder
+@Regression @AllFilesFolder
 Scenario Outline: Move a file of type <type> by creating a folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Move to another folder"
