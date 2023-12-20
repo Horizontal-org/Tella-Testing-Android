@@ -208,9 +208,8 @@ Examples:
 | type          |
 | image.jpg     |
 | video.mp4     |
-| audio.aac     |
 | document.pdf  |
-
+  
 @Regression @AllFilesFolder
 Scenario Outline: Cancel the option to move a file of type <type> to another folder
 When the user taps the options button "⋮" of the file <type>
