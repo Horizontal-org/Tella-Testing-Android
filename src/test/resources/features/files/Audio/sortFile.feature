@@ -3,6 +3,7 @@ Feature: Organize files in the "Audio" folder
 Background:
 Given that the user is unlocked in the Tella app
 And is within the "Audio" folder
+And There are audio files in the "Audio" folder
 
 @Regression  @AudioFolder @SortFile
 Scenario Outline: Sort files by <sortBy> in the "Audio" folder
