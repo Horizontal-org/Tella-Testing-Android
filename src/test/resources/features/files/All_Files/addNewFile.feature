@@ -28,7 +28,7 @@ Then the message "The audio recording was saved to your Tella files" appears
 And the audio file is saved correctly in the "Audio" folder
 And the audio file appears in the list of files in the "Audio" folder
 
-@Smoke @Regression
+@Smoke
 Scenario Outline: Import a file of type <type> from the "All files" folder, preserving the original
 When they tap the "+" button
 And select the option "Import from device"
@@ -71,7 +71,7 @@ Examples:
   | document.pdf   | Documents   |
   | document.docx  | Documents   |
 
-@Smoke @Regression
+@Regression
 Scenario Outline: Import a duplicate file of type <type> from the "All files" folder
 When they tap the "+" button
 And select the option "Import from device"
@@ -115,7 +115,7 @@ And tap the "OK" button
 And tap the "Create" button
 Then "folder2" is successfully created inside "folder1"
 
-@Smoke @Regression
+@Regression
 Scenario: Attempt to add a new folder with a duplicate name
 When they tap the "+" button
 And select the option "Create"
