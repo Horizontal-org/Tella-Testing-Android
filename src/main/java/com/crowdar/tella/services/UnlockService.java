@@ -80,7 +80,7 @@ public class UnlockService {
         Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.START_BUTTON), UnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
     }
 
-    private static void clickNextButtons(int count) {
+    public static void clickNextButtons(int count) {
         for (int i = 0; i < count; i++) {
             MobileActionManager.click(UnlockConstants.NEXT_BUTTON);
         }

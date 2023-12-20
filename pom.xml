@@ -34,7 +34,7 @@
                 <crowdar.driverHub>http://127.0.0.1:4723/wd/hub</crowdar.driverHub>
                 <cucumber.runner>testng.xml</cucumber.runner>
                 <crowdar.avd>Pixel3</crowdar.avd>
-                <crowdar.appLocation>D:\\\\Mita\\\\TellaAndroid.apk</crowdar.appLocation>
+                <crowdar.appLocation>D:\\\\Mita\\\\Tella.apk</crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
                 <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emuladoCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
             </properties>
@@ -73,7 +73,7 @@
                 <crowdar.driverHub>http://127.0.0.1:4723/wd/hub</crowdar.driverHub>
                 <cucumber.runner>testng.xml</cucumber.runner>
                 <crowdar.avd></crowdar.avd>
-                <crowdar.appLocation>D:\\\\apk\\\\mobile-release_168.apk</crowdar.appLocation>
+                <crowdar.appLocation>D:\\\\Mita\\\\Tella.apk</crowdar.appLocation>
                 <crowdar.deviceName>S21 ULTRA</crowdar.deviceName>
                 <crowdar.cucumber.filter>@Unlock</crowdar.cucumber.filter>
             </properties>
