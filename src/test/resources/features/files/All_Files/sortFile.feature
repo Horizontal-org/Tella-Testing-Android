@@ -3,7 +3,7 @@ Feature: Organize files in the "All files" folder
 Background:
 Given that the user is unlocked in the Tella app
 And is within the "All files" folder
-And there are image, video, audio and documents files in the "All files" folder
+And there are files in the "All files" folder
 
 @Regression @AllFilesFolder @Sort
 Scenario Outline: Sort files by <sortBy> in the "All files" folder
