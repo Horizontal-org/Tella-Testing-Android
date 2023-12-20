@@ -49,7 +49,7 @@ Examples:
   | document.pdf   | Documents   |
   | document.docx  | Documents   |
 
-@Smoke @Regression @ImportFile @AllFilesFolder
+@Regression @ImportFile @AllFilesFolder
 Scenario Outline: Import a file of type <type> from the "All files" folder, deleting the original
 When they tap the "+" button
 And select the option "Import from device"
