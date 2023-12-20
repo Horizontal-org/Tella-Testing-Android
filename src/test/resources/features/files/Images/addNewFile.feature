@@ -3,7 +3,7 @@ Feature: Add files from the "Images" folder
 Background:
 Given that the user is unlocked in the Tella app
 And is within the "Images" folder
-And There are image files in the "Images" folder
+And there are image files in the "Images" folder
 
 @Smoke @ImagesFolder @CaptureFile
 Scenario Outline: Capture a <type> file from the "Images" folder
