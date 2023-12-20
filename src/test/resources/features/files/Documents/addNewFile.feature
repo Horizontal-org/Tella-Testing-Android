@@ -49,7 +49,7 @@ Examples:
   | document.pdf   | Documents   |
   | document.docx  | Documents   |
 
-@Smoke @Regression
+@Smoke @DocumentsFolder @ImportFile
 Scenario Outline: Import a file of type <type> from the "Documents" folder deleting the original
 When they tap the "+" button
 And select the option "Import from device"
@@ -71,7 +71,7 @@ Examples:
   | document.pdf   | Documents   |
   | document.docx  | Documents   |
 
-@Smoke @Regression
+@Regression @DocumentsFolder @ImportFile
 Scenario Outline: Import a duplicated file of type <type> from the "Documents" folder
 When they tap the "+" button
 And select the option "Import from device"
