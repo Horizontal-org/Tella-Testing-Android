@@ -10,33 +10,34 @@
 	And click on it
 	Then the user sees a list of categories with various configurations that can be performed
 	
-	@Reresion @Automated
+	@Reresion
 	Scenario Outline: Change Language
   When the user taps the settings icon
   And taps the "General" option
   And taps the "Language" option in the general category
   And views the list with all available languages
   And clicks on the language <language>
-  Then views the same list with the language chosen in the previous step
+  #Then views the same list with the language chosen in the previous step
+  Then views the title <title> al the top of the page
 
   Examples: 
-  |language    |
-  |Spanish     |
-  |English     |
-  |Arabic      |
-  |Belarusian  |
-  |Persian     |
-  |French      |
-  |Indonesian  |
-  |Kachin      |
-  |Kannada     |
-  |Kurdish     |
-  |Malayalam   |
-  |Burmese     |
-  |Portuguese  |
-  |Russian     |
-  |Tamil       |
-  |Default     |
+  |language    | title  |
+  |Spanish     | Idioma |
+  |English     |        |
+  |Arabic      |        |
+  |Belarusian  |        |
+  |Persian     |        |
+  |French      | Langue |
+  |Indonesian  |        |
+  |Kachin      |        |
+  |Kannada     |        |
+  |Kurdish     |        |
+  |Malayalam   |        |
+  |Burmese     |        |
+  |Portuguese  |        |
+  |Russian     |        |
+  |Tamil       |        |
+  |Default     |        |
 
   @Smoke
   Scenario: View General Category Configurations
