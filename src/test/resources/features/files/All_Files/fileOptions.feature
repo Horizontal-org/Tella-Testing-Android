@@ -58,7 +58,7 @@ Examples:
   | audio1.aac     | document1.pdf |
   | document1.pdf  | audio1.aac    |
 
-@Smoke @AllFilesFolder @Share
+@Smoke @AllFilesFolder @ShareFile
 Scenario Outline: Share a file of type <type> through <SocialMedia> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Share"
@@ -76,7 +76,7 @@ Examples:
   | Gmail       | document.pdf  | share files + verification information |
   | Gmail       | document.pdf  | share files only                       |
 
-@Smoke @AllFilesFolder @Share
+@Smoke @AllFilesFolder @ShareFile
 Scenario Outline: Share multiple files of type <type> through <SocialMedia> from the "All files" folder
 When the user clicks on the "v" button to select files
 And selects <type>
@@ -95,7 +95,7 @@ Examples:
   | Gmail       | share files + verification information | document.pdf, audio.aac, image.jpg   |
   | Gmail       | share files only                       | document.pdf, audio.aac, image.jpg   |
 
-@Smoke @AllFilesFolder
+@Smoke @AllFilesFolder @ShareFile
 Scenario Outline: Cancel sharing a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Share"
@@ -111,7 +111,7 @@ Examples:
   | audio.aac     |
   | document.pdf  |
 
-@Smoke @AllFilesFolder @Save
+@Smoke @AllFilesFolder @SaveFile
 Scenario Outline: Save a file of type <type> to the device
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Save to device"
@@ -133,7 +133,7 @@ Examples:
   | document.pdf  | share files + verification information |
   | document.pdf  | share files only                       |
 
-@Smoke @AllFilesFolder @Save
+@Smoke @AllFilesFolder @SaveFile
 Scenario Outline: Save multiple files of type <type> to the device
 When the user clicks on the "v" button to select files
 And selects <type>
@@ -150,7 +150,7 @@ Examples:
   | share files + verification information | audio.aac, image.jpg, document.pdf   |
   | share files only                       | audio.aac, image.jpg, document.pdf   |
 
-@Smoke @AllFilesFolder @Delete
+@Smoke @AllFilesFolder @DeleteFile
 Scenario Outline: Delete a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Delete"
@@ -164,7 +164,7 @@ Examples:
   | audio.aac     |
   | document.pdf  |
 
-@Smoke @AllFilesFolder @Delete
+@Smoke @AllFilesFolder @DeleteFile
 Scenario: Delete multiple files of type <type> from the "All files" folder
 When the user clicks on the "v" button to select files
 And selects <type>
@@ -177,7 +177,7 @@ Examples:
   | audio.aac, image.jpg, document.pdf   |
   | audio.aac, image.jpg, document.pdf   |
 
-@Smoke @AllFilesFolder @Delete
+@Smoke @AllFilesFolder @DeleteFile
 Scenario Outline: Cancel deleting a file of type <type> from the "All files" folder
 When the user taps the options button "⋮" of the file <type>
 And selects the option "Delete"
