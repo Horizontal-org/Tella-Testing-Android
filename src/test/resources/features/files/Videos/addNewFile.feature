@@ -43,7 +43,6 @@ Examples:
   | video.mp4      | Videos      |
   | video.mov      | Videos      |
  
-
 @Smoke @VideosFolder @ImportFile
 Scenario Outline: Import a file of type <type> from the "Videos" folder, deleting the original
 When the user taps the "+" button
