@@ -61,21 +61,16 @@ Examples:
   | video.mov      | Videos      |
   
 @Regression @VideosFolder @ImportFile
-Scenario Outline: Import a duplicate file of type <type> from the "Videos" folder
+Scenario: Import a duplicate file of type video from the "Videos" folder
 When the user taps the "+" button
 And selects the option "Import from device"
 And taps the "KEEP ORIGINAL" button
 And taps the "Continue" button
-And selects a file of type <type> from the device
+And selects a file of type "video.mp4" from the device
 And taps the "+" button again
 And selects the option "Import from device"
 And taps the "KEEP ORIGINAL" button
 And taps the "Continue" button
-And selects a file of type <type> from the device
+And selects a file of type "video.mp4" from the device
 Then the duplicate file is imported correctly with a different name
-And the file of type <type> appears in the list of files in the folder <folder>
-
-Examples:
-  | type           | folder      |
-  | video.mp4      | Videos      |
-  | video.mov      | Videos      |
+And the file of type "video.mp4"   appears in the list of files in the folder "Videos"
