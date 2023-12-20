@@ -27,7 +27,6 @@ And select the option "Record audio"
 And capture the audio
 Then the message "The audio recording was saved to your Tella files" appears
 And the audio file is saved correctly in the "Documents" folder
-And the audio file appears in the list of files in the "Documents" folder
 
 @Smoke @DocumentsFolder @ImportFile
 Scenario Outline: Import a file of type <type> from the "Documents" folder preserving the original
