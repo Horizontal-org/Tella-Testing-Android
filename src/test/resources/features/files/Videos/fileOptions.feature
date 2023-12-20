@@ -65,8 +65,6 @@ Then the files are shared successfully
 Examples:
 | SocialMedia | shareInformation                       |
 | WhatsApp    | share files + verification information |
-| WhatsApp    | share files only                       |
-| Instagram   | share files + verification information |
 | Instagram   | share files only                       |
 
 @Regression @VideosFolder @ShareFile
