@@ -78,8 +78,6 @@ Examples:
 | WhatsApp    | share files only                       |
 | Instagram   | share files + verification information |
 | Instagram   | share files only                       |
-| Gmail       | share files + verification information |
-| Gmail       | share files only                       |
 
 @Smoke @ShareFile @ImagesFolder
 Scenario Outline: Share multiple image files via <SocialMedia> from the "Images" folder
@@ -98,8 +96,6 @@ Examples:
 | WhatsApp    | share files only                       |
 | Instagram   | share files + verification information |
 | Instagram   | share files only                       |
-| Gmail       | share files + verification information |
-| Gmail       | share files only                       |
 
 @Smoke @ShareFile @ImagesFolder
 Scenario Outline: Cancel sharing an image file from the "Images" folder
