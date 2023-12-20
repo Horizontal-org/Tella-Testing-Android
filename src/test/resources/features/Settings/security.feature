@@ -63,7 +63,7 @@
   And wait <timeout> of time
   Then view screen lock 
     
-  Example: 
+  Examples: 
   | timeout     |
   | immediately |
   | 1 minute    |
