@@ -143,7 +143,7 @@ And taps "Cancel"
 Then the file is not deleted
 And the dialog box is closed
 
-@Smoke @AudioFolder @ViewInformation
+@Regression @AudioFolder @ViewInformation
 Scenario: View the information of a file from the "Audio" folder
 When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "File information"
