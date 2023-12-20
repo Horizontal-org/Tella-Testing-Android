@@ -91,7 +91,7 @@
   And tap "Lock timeout" option in security category 
   Then the option <timeout> is selected
     
-  Example: 
+  Examples: 
   | timeout     |
   | immediately |
   | 1 minute    |
