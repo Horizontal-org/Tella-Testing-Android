@@ -20,7 +20,7 @@ Examples:
   | video  | Videos   | video  |
 
 @Smoke @OthersFolder @CaptureFile
-Scenario: Record a document from the "Others" folder
+Scenario: Record a audio from the "Others" folder
 When they tap the "+" button
 And select the option "Record audio"
 And capture the audio
