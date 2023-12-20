@@ -42,12 +42,6 @@ Examples:
   | type           | folder      |
   | image.jpg      | Images      |
   | image.png      | Images      |
-  | video.mp4      | Videos      |
-  | video.mov      | Videos      |
-  | audio.mp3      | Audios      |
-  | audio.aac      | Audios      |
-  | document.pdf   | Documents   |
-  | document.docx  | Documents   |
 
 @Smoke @ImagesFolder @ImportFile
 Scenario Outline: Import a <type> file from the "Images" folder while deleting the original
@@ -64,13 +58,7 @@ Examples:
   | type           | folder      |
   | image.jpg      | Images      |
   | image.png      | Images      |
-  | video.mp4      | Videos      |
-  | video.mov      | Videos      |
-  | audio.mp3      | Audios      |
-  | audio.aac      | Audios      |
-  | document.pdf   | Documents   |
-  | document.docx  | Documents   |
-
+  
 @Regression @ImagesFolder @ImportFile
 Scenario Outline: Import a duplicated <type> file from the "Images" folder
 When the user taps the "+" button
@@ -87,8 +75,6 @@ Then the duplicated file is imported correctly with a different name
 And the <type> file appears in the list of files in the <folder> folder
 
 Examples:
-| type      | folder    |
-| image.jpg | Images    |
-| video.MP4 | Videos    |
-| audio.aac | Audios    |
-| doc.PDF   | Documents |
+  | type           | folder      |
+  | image.jpg      | Images      |
+  | image.png      | Images      |
