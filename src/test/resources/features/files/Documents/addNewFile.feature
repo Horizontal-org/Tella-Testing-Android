@@ -4,7 +4,7 @@ Background:
 Given that the user is unlocked in the Tella app
 And is within the "Documents" folder
 
-@Smoke
+@Smoke @DocumentsFolder @CaptureFile
 Scenario Outline: Capture a file of type <type> from the "Documents" folder
 When they tap the "+" button
 And select the option "Take photo/video"
@@ -19,7 +19,7 @@ And the file of type <type> appears in the list of files in the folder <folder>
   | image  | Images   | Photo  |
   | video  | Videos   | Video  |
 
-@Smoke
+@Smoke @DocumentsFolder @CaptureFile
 Scenario: Record a document from the "Documents" folder
 When they tap the "+" button
 And select the option "Record audio"
@@ -28,7 +28,7 @@ Then the message "The audio recording was saved to your Tella files" appears
 And the audio file is saved correctly in the "Documents" folder
 And the audio file appears in the list of files in the "Documents" folder
 
-@Smoke @Regression
+@Smoke @DocumentsFolder @ImportFile
 Scenario Outline: Import a file of type <type> from the "Documents" folder preserving the original
 When they tap the "+" button
 And select the option "Import from device"
