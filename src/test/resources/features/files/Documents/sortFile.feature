@@ -3,6 +3,7 @@ Feature: Organize files in the "Documents" folder
 Background:
 Given that the user is unlocked in the Tella app
 And is within the "Documents" folder
+And there are document files in the "Documents" folder
 
 @Regression  @DocumentsFolder @SortFile
 Scenario Outline: Sort files by <sortBy> in the "Documents" folder
