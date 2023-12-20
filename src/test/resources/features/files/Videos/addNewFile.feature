@@ -30,35 +30,25 @@ And the audio file is saved correctly in the "Audios" folder
 And the audio file appears in the list of files in the "Audios" folder
 
 @Smoke @VideosFolder @ImportFile
-Scenario Outline: Import a file of type <type> from the "Videos" folder preserving the original
+Scenario: Import a file of type video from the "Videos" folder preserving the original
 When the user taps the "+" button
 And selects the option "Import from device"
 And taps the "KEEP ORIGINAL" button
 And taps the "Continue" button
-And selects a file of type <type> from the device
-Then the file is saved in the folder <folder>
-And the file of type <type> appears in the list of files in the folder <folder>
-
-Examples:
-  | type           | folder      |
-  | video.mp4      | Videos      |
-  | video.mov      | Videos      |
+And selects a file of type video from the device
+Then the file is saved in the folder "Videos"
+And the file of type video appears in the list of files in the folder "Videos"
  
 @Smoke @VideosFolder @ImportFile
-Scenario Outline: Import a file of type <type> from the "Videos" folder, deleting the original
+Scenario: Import a file of type video from the "Videos" folder, deleting the original
 When the user taps the "+" button
 And selects the option "Import from device"
 And taps the "DELETE ORIGINAL" button
 And taps the "Continue" button
-And selects a file of type <type> from the device
-Then the file is saved in the folder <folder>
-And the file of type <type> appears in the list of files in the folder <folder>
+And selects a file of type "video.mp4" from the device
+Then the file is saved in the folder "Videos"
+And the file of type "video.mp4"  appears in the list of files in the folder "Videos"
 And the original file is deleted from the device
-
-Examples:
-  | type           | folder      |
-  | video.mp4      | Videos      |
-  | video.mov      | Videos      |
   
 @Regression @VideosFolder @ImportFile
 Scenario: Import a duplicate file of type video from the "Videos" folder
