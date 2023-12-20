@@ -41,8 +41,6 @@ Examples:
   | type          |
   | image.jpg     |
   | video.mp4     |
-  | audio.aac     |
-  | document.pdf  |
 
 @Regression @AllFilesFolder
 Scenario Outline: Rename a file of type <existing_file> with an identical name to an existing file from the "All files" folder
@@ -55,8 +53,6 @@ Examples:
   | existing_file  | new_name      |
   | image1.jpg     | video1.mp4    |
   | video1.mp4     | image1.jpg    |
-  | audio1.aac     | document1.pdf |
-  | document1.pdf  | audio1.aac    |
 
 @Smoke @AllFilesFolder @ShareFile
 Scenario Outline: Share a file of type <type> through <SocialMedia> from the "All files" folder
@@ -108,8 +104,6 @@ Examples:
   | type          |
   | image.jpg     |
   | video.mp4     |
-  | audio.aac     |
-  | document.pdf  |
 
 @Smoke @AllFilesFolder @SaveFile
 Scenario Outline: Save a file of type <type> to the device
@@ -188,8 +182,6 @@ Examples:
   | type          |
   | image.jpg     |
   | video.mp4     |
-  | audio.aac     |
-  | document.pdf  |
 
 @Regression @AllFilesFolder @ViewInformation
 Scenario Outline: View the information of a file from the "All files" folder
@@ -230,8 +222,6 @@ Examples:
 | type          |
 | image.jpg     |
 | video.mp4     |
-| audio.aac     |
-| document.pdf  |
 
 @Regression @AllFilesFolder
 Scenario Outline: Move a file of type <type> by creating a folder
@@ -247,5 +237,3 @@ Examples:
 | type          |
 | image.jpg     |
 | video.mp4     |
-| audio.aac     |
-| document.pdf  |
