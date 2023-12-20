@@ -3,6 +3,7 @@ Feature: Add Files from the "Audio" Folder
 Background:
 Given that the user is unlocked in the Tella app
 And is within the "Audio" folder
+And There are audio files in the "Audio" folder
 
 @Smoke @AudioFolder @CaptureFile
 Scenario Outline: Capture a file of type <type> from the "Audio" folder
