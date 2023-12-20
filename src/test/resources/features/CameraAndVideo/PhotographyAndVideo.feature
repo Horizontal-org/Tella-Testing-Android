@@ -100,6 +100,7 @@ Scenario Outline: share file from tella by mail
   And the user push the send it button "→"
   Then the file is shared
 
+Examples:
  | Mail    |
  | Gmail   |
  | Correo  |
