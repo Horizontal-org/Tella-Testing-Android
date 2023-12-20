@@ -50,8 +50,6 @@ Examples:
 | WhatsApp    | share files only                       |
 | Instagram   | share files + verification information |
 | Instagram   | share files only                       |
-| Gmail       | share files + verification information |
-| Gmail       | share files only                       |
 
 @Smoke @ShareFile @VideosFolder
 Scenario Outline: Share multiple video files via <SocialMedia> from the "Videos" folder
@@ -70,8 +68,6 @@ Examples:
 | WhatsApp    | share files only                       |
 | Instagram   | share files + verification information |
 | Instagram   | share files only                       |
-| Gmail       | share files + verification information |
-| Gmail       | share files only                       |
 
 @Regression @VideosFolder @ShareFile
 Scenario Outline: Cancel sharing a video file from the "Videos" folder
