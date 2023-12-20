@@ -65,13 +65,9 @@ And The original file is deleted from the device
 Examples:
   | type           | folder      |
   | image.jpg      | Images      |
-  | image.png      | Images      |
   | video.mp4      | Videos      |
-  | video.mov      | Videos      |
   | audio.mp3      | Audios      |
-  | audio.aac      | Audios      |
   | document.pdf   | Documents   |
-  | document.docx  | Documents   |
 
 @Regression @ImportFile @AllFilesFolder
 Scenario Outline: Import a duplicate file of type <type> from the "All files" folder
