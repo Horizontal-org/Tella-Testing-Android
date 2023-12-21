@@ -1,4 +1,4 @@
-
+@FileOptions
 Feature: File Options in the "Images" Folder
 
 Background:
