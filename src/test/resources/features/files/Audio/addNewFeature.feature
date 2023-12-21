@@ -72,6 +72,6 @@ And tap the "+" button again
 And select the option "Import from device"
 And tap the button "KEEP ORIGINAL"
 And tap the button "Continue"
-And select the same file of type "audio.aac" from the device
+And select the same file of type "audio" from the device
 Then the duplicated file is imported correctly with a different name
-And the file of type "audio.aac" appears in the list of files in the folder "Audio"
+And the file of type "audio" appears in the list of files in the folder "Audio"
