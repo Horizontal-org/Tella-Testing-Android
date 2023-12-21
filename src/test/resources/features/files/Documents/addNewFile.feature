@@ -66,11 +66,11 @@ When they tap the "+" button
 And select the option "Import from device"
 And tap the button "KEEP ORIGINAL"
 And tap the button "Continue"
-And select a file of type "document.pdf"  from the device
+And select a file of type "document.pdf" from the device
 And tap the "+" button again
 And select the option "Import from device"
 And tap the button "KEEP ORIGINAL"
 And tap the button "Continue"
-And select a file of type "document.pdf" from the device
+And select the same file of type "document.pdf" from the device
 Then the duplicated file is imported correctly with a different name
 And the file of type "document.pdf" appears in the list of files in the folder "Documents"
