@@ -1,3 +1,4 @@
+@LockFirst
 Feature: Lock Options
   
 Background:
