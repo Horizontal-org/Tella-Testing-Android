@@ -1,3 +1,4 @@
+@FileOptions
 Feature: File Options in the "Audio" Folder
 
 Background:
