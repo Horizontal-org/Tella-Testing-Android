@@ -1,13 +1,11 @@
 @Smoke @Unlock
 Feature: As a potential client i want to interact with the mobile application
 
-  Background:
-    Given The app is loaded correctly
 
-  @Password
+  @Password @Automated
   Scenario Outline: The user start the application, unlock the app with a password.
-    When The user set a password <password>
-    When The user click the go to tella button
+    Given The app is loaded correctly with a password <password> set
+    When The user enter the password <password>
     Then Home page is displayed
 
     Examples:
@@ -15,10 +13,10 @@ Feature: As a potential client i want to interact with the mobile application
       | 123456   |
 
 
-  @Pin
+  @Pin @Automated
   Scenario Outline: The user start the application, unlock the app with a pin.
-    When The user set a pin <pin>
-    When The user click the go to tella button
+    Given The app is loaded correctly with a pin <pin> set
+    When The user enter the pin <pin>
     Then Home page is displayed
 
     Examples:
@@ -26,8 +24,9 @@ Feature: As a potential client i want to interact with the mobile application
       | 654321 |
 
 
-  @Pattern
+  @Pattern @Automated
   Scenario: The user start the application, unlock the app with a pattern.
+    Given The app is loaded correctly with a pin <pin> set
     When The user set a pattern
     When The user click the go to tella button
     Then Home page is displayed
