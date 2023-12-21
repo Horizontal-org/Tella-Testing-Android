@@ -13,11 +13,11 @@ Scenario Outline: register with password
   And tap the "Siguiente" button
   And types the <password> to confirm
   And tap the "Siguiente" button
-  Then a successfully registered message is displayed to the user and a link to landing page
+  Then a message <message> is displayed to the user and a link to landing page
   
   Examples:
-  | password  |
-  | abcdef    |
+  | password  | message                     |
+  | abcdef    | Your Lock has been changed! |
 
 
 @Regression
