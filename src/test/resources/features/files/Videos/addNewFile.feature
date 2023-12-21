@@ -1,3 +1,4 @@
+@PlusButton
 Feature: Add files from the "Videos" folder
 
 Background:
