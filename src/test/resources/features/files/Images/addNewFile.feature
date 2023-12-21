@@ -1,3 +1,4 @@
+@PlusButton
 Feature: Add files from the "Images" folder
 
 Background:
