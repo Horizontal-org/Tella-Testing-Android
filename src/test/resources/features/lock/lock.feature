@@ -21,7 +21,7 @@ Scenario Outline: register with password
 
 
 @Regression
-Scenario Outline: Failed password confirmation and lenght
+Scenario Outline: Failed password confirmation
   When tap the next button until reaching the lock options
   And tap the password button
   And types a password <password_a>
