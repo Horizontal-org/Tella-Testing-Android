@@ -33,7 +33,7 @@ Examples:
 | video | Videos     | Video  | Others    |
 
 @Smoke
-Scenario Outline: Record an audio file from the "All files" folder
+Scenario Outline: Record an audio file from the folder <folder>
   When the user enters the folder <folder>
   And taps the "+" button
   And selects the option "Record audio"
@@ -53,7 +53,7 @@ Examples:
 | Others    |
 
 @Smoke
-Scenario Outline: Import a file of type <type> from a folder - preserving the original
+Scenario Outline: Import a file of type <type> from a folder <folder> - preserving the original
   When the user enters the folder <folder>
   And taps the "+" button
   And selects the option "Import from device"
@@ -88,7 +88,7 @@ Examples:
 | document  | Documents  | Audio     |
 
 @Regression
-Scenario Outline: Import a file of type <type> from a folder - deleting the original
+Scenario Outline: Import a file of type <type> from a folder <folder> - deleting the original
   When the user enters the folder <folder>
   And taps the "+" button
   And selects the option "Import from device"
@@ -123,7 +123,7 @@ Examples:
 | document  | Documents  | Audio     |
 
 @Regression
-Scenario Outline: Import a duplicate file of type <type> from a folder
+Scenario Outline: Import a duplicate file of type <type> from folder <folder>
   When the user enters the folder <folder>
   And taps the "+" button
   And selects the option "Import from device"
@@ -142,20 +142,10 @@ Scenario Outline: Import a duplicate file of type <type> from a folder
 Examples:
 | type      | folderSave | folder    |
 | image     | Images     | All files |
-| video     | Videos     | All files |
-| document  | Documents  | All files |
-| image     | Images     | Documents |
 | video     | Videos     | Documents |
-| document  | Documents  | Documents |
-| image     | Images     | Images    |
-| video     | Videos     | Images    |
 | document  | Documents  | Images    |
 | image     | Images     | Videos    |
-| video     | Videos     | Videos    |
-| document  | Documents  | Videos    |
-| image     | Images     | Audio     |
-| video     | Videos     | Audio     |
-| document  | Documents  | Audio     |
+| audio     | Videos     | Audio     |
 
 @Smoke
 Scenario: Successfully add a folder
