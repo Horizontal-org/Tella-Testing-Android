@@ -70,22 +70,9 @@ Examples:
 | video     | Videos     | All files |
 | audio     | Audios     | All files |
 | document  | Documents  | All files |
-| image     | Images     | Documents |
-| video     | Videos     | Documents |
-| audio     | Audios     | Documents |
 | document  | Documents  | Documents |
 | image     | Images     | Images    |
-| video     | Videos     | Images    |
-| audio     | Audios     | Images    |
-| document  | Documents  | Images    |
-| image     | Images     | Videos    |
-| video     | Videos     | Videos    |
-| audio     | Audios     | Videos    |
-| document  | Documents  | Videos    |
-| image     | Images     | Audio     |
-| video     | Videos     | Audio     |
 | audio     | Audios     | Audio     |
-| document  | Documents  | Audio     |
 
 @Regression
 Scenario Outline: Import a file of type <type> from a folder <folder> - deleting the original
@@ -105,22 +92,9 @@ Examples:
 | video     | Videos     | All files |
 | audio     | Audios     | All files |
 | document  | Documents  | All files |
-| image     | Images     | Documents |
-| video     | Videos     | Documents |
-| audio     | Audios     | Documents |
 | document  | Documents  | Documents |
 | image     | Images     | Images    |
-| video     | Videos     | Images    |
-| audio     | Audios     | Images    |
-| document  | Documents  | Images    |
-| image     | Images     | Videos    |
-| video     | Videos     | Videos    |
-| audio     | Audios     | Videos    |
-| document  | Documents  | Videos    |
-| image     | Images     | Audio     |
-| video     | Videos     | Audio     |
 | audio     | Audios     | Audio     |
-| document  | Documents  | Audio     |
 
 @Regression
 Scenario Outline: Import a duplicate file of type <type> from folder <folder>
@@ -142,10 +116,12 @@ Scenario Outline: Import a duplicate file of type <type> from folder <folder>
 Examples:
 | type      | folderSave | folder    |
 | image     | Images     | All files |
-| video     | Videos     | Documents |
-| document  | Documents  | Images    |
-| image     | Images     | Videos    |
-| audio     | Videos     | Audio     |
+| video     | Videos     | All files |
+| audio     | Audios     | All files |
+| document  | Documents  | All files |
+| document  | Documents  | Documents |
+| image     | Images     | Images    |
+| audio     | Audios     | Audio     |
 
 @Smoke
 Scenario: Successfully add a folder
