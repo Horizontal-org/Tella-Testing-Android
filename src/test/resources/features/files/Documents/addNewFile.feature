@@ -1,3 +1,4 @@
+@PlusButton
 Feature: Add Files from the "Documents" Folder
 
 Background:
