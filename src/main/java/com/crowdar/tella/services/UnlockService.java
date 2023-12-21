@@ -6,11 +6,16 @@ import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.UnlockConstants;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.Assert;
 
-public class UnlockService {
+import java.time.Duration;
 
+
+public class UnlockService {
     private static final int NEXT_BUTTON_CLICK_COUNT = 3;
 
     public static void isViewLoaded() {
@@ -27,6 +32,12 @@ public class UnlockService {
         MobileActionManager.click(UnlockConstants.PASSWORD_RIGHT_BUTTON);
         MobileActionManager.click(UnlockConstants.NEXT_BUTTON);
         Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.START_BUTTON), UnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
+    }
+
+    public static void enterPassword(String password){
+        MobileActionManager.setInput(UnlockConstants.PASSWORD_INPUT, password);
+        EventFiringWebDriver driver = DriverManager.getDriverInstance();
+        driver.getKeyboard().sendKeys(Keys.ENTER);
     }
 
     public static void goTella() {
@@ -69,6 +80,11 @@ public class UnlockService {
         }
     }
 
+    public static void enterPin(String pin){
+        setPin(pin);
+        MobileActionManager.click(UnlockConstants.PIN_OK_BUTTON);
+    }
+
     public static void setPattern() {
         clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
         MobileActionManager.click(UnlockConstants.LOCK_PATTERN_BUTTON);
@@ -106,4 +122,19 @@ public class UnlockService {
                 .release()
                 .perform();
     }
+
+    public static void clickExit(){
+        MobileActionManager.click(UnlockConstants.EXIT_BUTTON);
+    }
+
+    public static void tapTellaApp(){
+        TouchAction touchAction = new TouchAction((PerformsTouchActions) DriverManager.getDriverInstance().getWrappedDriver());
+        touchAction.press(PointOption.point(550, 1700))
+                   .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
+                   .moveTo(PointOption.point(550, 400))
+                   .release()
+                   .perform();
+        MobileActionManager.click(UnlockConstants.TELLA_APP);
+    }
+
 }

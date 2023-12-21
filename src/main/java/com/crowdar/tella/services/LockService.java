@@ -21,7 +21,7 @@ public class LockService {
         MobileActionManager.click(UnlockConstants.PASSWORD_RIGHT_BUTTON);
     }
 
-    public static void messageDisplayed(String message){
+    public static void errorMessageDisplayed(String message){
         MobileActionManager.waitVisibility(UnlockConstants.LOCK_DONT_MATCH_MSG);
         Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.LOCK_DONT_MATCH_MSG));
         String errorMessagePage = MobileActionManager.getText(UnlockConstants.LOCK_DONT_MATCH_MSG);
@@ -42,6 +42,14 @@ public class LockService {
     public static void verifyNextPinButtonEnabled(String locator){
         verifyPinAttributeEnabled = MobileActionManager.getAttribute(locator, "clickable");
         Assert.assertEquals(verifyPinAttributeEnabled , "true");
+    }
+
+    public static void messageDisplayed(String message){
+        MobileActionManager.waitVisibility(UnlockConstants.LOCK_SET_UP);
+        Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.LOCK_SET_UP));
+        String messagePage = MobileActionManager.getText(UnlockConstants.LOCK_SET_UP);
+        Assert.assertEquals(message, messagePage);
+        Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.NEXT_BUTTON));
     }
 
 }

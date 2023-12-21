@@ -3,23 +3,22 @@ Feature: Lock Options
 Background:
   Given The user opens the app for the first time
 
-@Ignore @Smoke
+@Smoke @Automated
 Scenario Outline: register with password
-  When the user tap the "EMPEZAR" button
-  And tap the "Siguiente" button until reaching the lock options
-  And tap the "Contraseña" button
-  And types the <password>
-  And tap the "Siguiente" button
-  And types the <password> to confirm
-  And tap the "Siguiente" button
-  Then a successfully registered message is displayed to the user and a link to landing page
+  When tap the next button until reaching the lock options
+  And tap the password button
+  And types a password <password>
+  And tap the next button
+  And types a password <password>
+  And tap the next button
+  Then a successfully registered message <message> is displayed to the user and a link to landing page
   
   Examples:
-  | password  |
-  | abcdef    |
+    | password | message                                                     |
+    | abcdef   | Your lock is set up! You can change it anytime in Settings. |
 
 
-@Regression
+@Regression @Automated
 Scenario Outline: Failed password confirmation and lenght
   When tap the next button until reaching the lock options
   And tap the password button
@@ -34,7 +33,7 @@ Scenario Outline: Failed password confirmation and lenght
     | abcdef     | abcabc     | Please try again. Your passwords do not match. |
 
 
-  @Regression
+@Regression @Automated
 Scenario Outline: Failed password lenght
   When tap the next button until reaching the lock options
   And tap the password button
@@ -46,23 +45,22 @@ Scenario Outline: Failed password lenght
   | abcde     |
 
 
-@Ignore @Smoke
+@Smoke @Automated
 Scenario Outline: register with PIN
-  When the user tap the "EMPEZAR" button
-  And tap the "Siguiente" button until reaching the lock options
-  And tap the "PIN" button
-  And types a <PIN>
-  And tap the "Siguiente" button
-  And types the <PIN> to confirm
-  And tap the "Siguiente" button
-  Then A successfully registered message is displayed to the user and a link to landing page
+  When tap the next button until reaching the lock options
+  And tap the pin button
+  And types a pin <PIN>
+  And tap the next pin button
+  And types a pin <PIN>
+  And tap the next pin button
+  Then a successfully registered message <message> is displayed to the user and a link to landing page
   
   Examples:
-  | PIN    |
-  | 123456 |
+    | PIN    | message                                                     |
+    | 123456 | Your lock is set up! You can change it anytime in Settings. |
 
 
-@Regression
+@Regression @Automated
 Scenario Outline: Failed PIN confirmation
 When tap the next button until reaching the lock options
 And tap the pin button
@@ -77,7 +75,7 @@ Then a message <message> is displayed to the user
     | 123456 | 654321 | Please try again. Your PINs do not match. |
 
 
-@Regression
+@Regression @Automated
 Scenario Outline: Failed PIN lenght
   When tap the next button until reaching the lock options
   And tap the pin button
@@ -89,7 +87,7 @@ Scenario Outline: Failed PIN lenght
   | 12345 |
 
 
-@Ignore @Smoke
+@Smoke
 Scenario: register with pattern
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options

@@ -25,7 +25,7 @@ public class LockSteps {
         LockService.clickNextPasswordButton();    }
     @Then("a message (.*) is displayed to the user")
     public void aMessageIsDisplayedToTheUser(String message) {
-        LockService.messageDisplayed(message);
+        LockService.errorMessageDisplayed(message);
     }
     @Then("the next button remains disabled")
     public void theNextButtonRemainsDisabled() {
@@ -46,5 +46,9 @@ public class LockSteps {
     @Then("the next pin button remains disabled")
     public void theNextPinButtonRemainsDisabled() {
         LockService.verifyNextPinButtonEnabled(UnlockConstants.PIN_RIGHT_BUTTON);
+    }
+    @Then("a successfully registered message (.*) is displayed to the user and a link to landing page")
+    public void aSuccessfullyRegisteredMessageIsDisplayed(String message) {
+        LockService.messageDisplayed(message);
     }
 }
