@@ -62,6 +62,6 @@ And taps the "+" button again
 And selects the option "Import from device"
 And taps the "KEEP ORIGINAL" button
 And taps the "Continue" button
-And selects the same file of type "video.mp4" from the device
+And selects the same file of type "video" from the device
 Then the duplicate file is imported correctly with a different name
-And the file of type "video.mp4" appears in the list of files in the "Videos" folder
+And the file of type "video" appears in the list of files in the "Videos" folder
