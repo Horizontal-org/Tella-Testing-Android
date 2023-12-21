@@ -72,6 +72,6 @@ And taps the "+" button again
 And selects the "Import from device" option
 And taps the "KEEP ORIGINAL" button
 And taps the "Continue" button
-And selects the same "image.jpg" file from the device
+And selects the same "image" file from the device
 Then the duplicated file is imported correctly with a different name
-And the "image.jpg" file appears in the list of files in the "Images" folder
+And the "image" file appears in the list of files in the "Images" folder
