@@ -4,7 +4,6 @@ Feature: Add Files from the "All files" Folder
 Background:
 Given that the user is unlocked in the Tella app
 And is within the "All files" folder
-And there are image, video, audio and documents files in the "All files" folder
 
 @Smoke @CaptureFile @AllFilesFolder
 Scenario Outline: Capture a file of type <type> from the "All files" folder
@@ -78,7 +77,7 @@ And tap the "+" button again
 And select the option "Import from device"
 And tap the "KEEP ORIGINAL" button
 And tap the "Continue" button
-And select a file of type <type> from the device
+And select the same file type <type> from the device
 Then the duplicate file is imported correctly with a different name
 And the file of type <type> appears in the list of files in the folder <folder>
 And the file appears in the "All files" folder
