@@ -1,3 +1,4 @@
+@PlusButton
 Feature: File Options in the "All files" folder
 
 Background:
