@@ -90,14 +90,14 @@ And selects <SocialMedia>
 Then the file is successfully shared
 
 Examples:
-  | SocialMedia | shareInfo                                       | folder     | type   |
-  | WhatsApp    | share files + verification information         | Images     | image  |
-  | WhatsApp    | share only files                                | Images     | image  |
-  | WhatsApp    | share files + verification information         | Videos     | video  |
-  | WhatsApp    | share only files                                | Videos     | video  |
-  | WhatsApp    | share files + verification information         | Audios     | audio  |
-  | WhatsApp    | share only files                                | Audios     | audio  |
-  | WhatsApp    | share files + verification information         | Documents  | document |
+  | SocialMedia | shareInfo                                       | folder     | type     |
+  | WhatsApp    | share files + verification information          | Images     | image    |
+  | WhatsApp    | share only files                                | Images     | image    |
+  | WhatsApp    | share files + verification information          | Videos     | video    |
+  | WhatsApp    | share only files                                | Videos     | video    |
+  | WhatsApp    | share files + verification information          | Audios     | audio    |
+  | WhatsApp    | share only files                                | Audios     | audio    |
+  | WhatsApp    | share files + verification information          | Documents  | document |
   | WhatsApp    | share only files                                | Documents  | document |
 
 @Regression
@@ -114,12 +114,12 @@ And selects <SocialMedia>
 Then the files are successfully shared
 
 Examples:
-  | SocialMedia | shareInfo                                       | type      | folder     |
-  | WhatsApp    | share files + verification information         | image     | Images     |
-  | WhatsApp    | share files + verification information         | video     | Videos     |
-  | WhatsApp    | share files + verification information         | audio     | Audios     |
-  | WhatsApp    | share files + verification information         | document  | Documents  |
-  | WhatsApp    | share files + verification information         | image, video, audio, document | All Files |
+  | SocialMedia | shareInfo                              | type                          | folder     |
+  | WhatsApp    | share files + verification information | image                         | Images     |
+  | WhatsApp    | share files + verification information | video                         | Videos     |
+  | WhatsApp    | share files + verification information | audio                         | Audios     |
+  | WhatsApp    | share files + verification information | document                      | Documents  |
+  | WhatsApp    | share files + verification information | image, video, audio, document | All Files |
 
 @Smoke
 Scenario Outline: Save a file of <type> to the device from the folder <folder>
@@ -135,15 +135,15 @@ Then the <type> file is successfully saved to the device
 And the message "1 file saved to the device" appears
 
 Examples:
-  | shareInfo                                       | type      | folder     |
-  | share files + verification information         | image     | Images     |
-  | share only files                                | image     | Images     |
-  | share files + verification information         | video     | Videos     |
-  | share only files                                | video     | Videos     |
-  | share files + verification information         | audio     | Audios     |
-  | share only files                                | audio     | Audios     |
-  | share files + verification information         | document  | Documents  |
-  | share only files                                | document  | Documents |
+  | shareInfo                               | type      | folder     |
+  | share files + verification information  | image     | Images     |
+  | share only files                        | image     | Images     |
+  | share files + verification information  | video     | Videos     |
+  | share only files                        | video     | Videos     |
+  | share files + verification information  | audio     | Audios     |
+  | share only files                        | audio     | Audios     |
+  | share files + verification information  | document  | Documents  |
+  | share only files                        | document  | Documents  |
 
 @Regression
 Scenario Outline: Save multiple files to the device from the folder <folder>
@@ -161,12 +161,12 @@ Then the <type> files are successfully saved to the device
 And the message "1 file saved to the device" appears
 
 Examples:
-  | shareInfo                                       | type      | folder     |
-  | share files + verification information         | image     | Images     |
-  | share files + verification information         | video     | Videos     |
-  | share files + verification information         | audio     | Audios     |
-  | share files + verification information         | document  | Documents  |
-  | share files + verification information         | image, video, audio, document | All Files |
+  | shareInfo                              | type                          | folder     |
+  | share files + verification information | image                         | Images     |
+  | share files + verification information | video                         | Videos     |
+  | share files + verification information | audio                         | Audios     |
+  | share files + verification information | document                      | Documents  |
+  | share files + verification information | image, video, audio, document | All Files  |
 
 @Smoke
 Scenario Outline: Delete a file of <type> from the folder <folder>
@@ -199,11 +199,11 @@ And the message "Files deleted successfully" appears
 
 Examples:
   | type                            | folder     |
-  | image                          | Images     |
+  | image                           | Images     |
   | video                           | Videos     |
   | audio                           | Audios     |
-  | document                       | Documents  |
-  | image, video, audio, document | All Files  |
+  | document                        | Documents  |
+  | image, video, audio, document   | All Files  |
 
 @Regression
 Scenario Outline: View the information of a <type> file from the folder <folder>
