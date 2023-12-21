@@ -60,11 +60,11 @@ And the file of type <type> appears in the list of files in the folder <folder>
 And The original file is deleted from the device
 
 Examples:
-  | type           | folder      |
-  | image.jpg      | Images      |
-  | video.mp4      | Videos      |
-  | audio.mp3      | Audios      |
-  | document.pdf   | Documents   |
+  | type     | folder    |
+  | image    | Images    |
+  | video    | Videos    |
+  | audio    | Audios    |
+  | document | Documents |
 
 @Regression @ImportFile @AllFilesFolder
 Scenario Outline: Import a duplicate file of type <type> from the "All files" folder
@@ -84,8 +84,9 @@ And the file appears in the "All files" folder
 
 Examples:
   | type       | folder    |
-  | image.jpg  | Images    |
-  | video.mp4  | Videos    |
+  | image      | Images    |
+  | video      | Videos    |
+  | document   | Documents |
 
 @Smoke @ImportFile @AllFilesFolder
 Scenario: Successfully add a folder
