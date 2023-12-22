@@ -6,7 +6,7 @@
   Given the user is authenticated in the Tella application with valid credentials 123456 
   And is on the main page
     
-  @Regresion @Android @Security @Lock   
+  @Regression @Android @Security @Lock   
   Scenario Outline: Security - Lock - password option
   When the user taps settings icon 
   And  taps "Security" option 
@@ -23,7 +23,7 @@
   | password | 
   | 1234560  |
 
-  @Regresion @Android @Security @Lock
+  @Regression @Android @Security @Lock
   Scenario Outline: Security - Lock - PIN option
   When the user taps settings icon 
   And  taps "Security" option 
@@ -40,7 +40,7 @@
   | PIN     | 
   | 1234560 |
   
-  @Regresion @Android @Security @Lock
+  @Regression @Android @Security @Lock
   Scenario: Security - lock - pattern option
   When the user taps settings icon 
   And  taps "Security" option 
