@@ -1,4 +1,4 @@
-  @smoke @General
+  @General
 	Feature: General
 	
 	Background: 
@@ -43,32 +43,32 @@
   And presses the option "General"
   Then the user views a list with the general configurations of the app
 
-  @smoke
+  @Smoke
   Scenario: Share Crash Reports
   When the user taps the settings icon
   And taps on it to enable
   Then the user sees that the color has changed to green, indicating it is activated
 
   
-  @smoke
+  @Smoke
   Scenario: Activate Verification Mode
   When the user taps the settings icon
   And taps on it to enable
   Then the user sees that the color has changed to green, indicating it is activated
 
-  @smoke
+  @Smoke
   Scenario: Access Recent Files
   When the user taps the settings icon
   And taps on it to enable
   Then the user sees that the color has changed to green, indicating it is activated
   
-  @smoke
+  @Smoke
   Scenario: Access Favorite Forms
   When the user taps the settings icon
   And taps on it to enable
   Then the user sees that the color has changed to green, indicating it is activated
 
-  @smoke
+  @Smoke
   Scenario: Access Favorite Templates
   When the user taps the settings icon
   And taps on it to enable
