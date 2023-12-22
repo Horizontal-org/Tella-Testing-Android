@@ -30,7 +30,7 @@ Feature: Rec
     Then "the audio reccording was saved to your Tella Files" message is shown
     And the file change the original name for a new one
 
-  @Smoke @Audio @Automation
+  @Smoke @Audio @Automated
   Scenario Outline: Rename an audio file during the recording
     When the user press the Rec option
     And the user press the microphone
