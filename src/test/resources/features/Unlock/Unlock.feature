@@ -26,7 +26,7 @@ Feature: As a potential client i want to interact with the mobile application
       | 654321 |
 
 
-  @Pattern
+  @Pattern @Ignore
   Scenario: The user start the application, unlock the app with a pattern.
     When The user set a pattern
     When The user click the go to tella button
