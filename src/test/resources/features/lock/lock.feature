@@ -4,7 +4,7 @@ Feature: Lock Options
 Background:
   Given The user opens the app for the first time
 
-@Ignore @Smoke
+@Ignore @Smoke @Password
 Scenario Outline: register with password
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
@@ -20,7 +20,7 @@ Scenario Outline: register with password
   | abcdef    | Your Lock has been changed! |
 
 
-@Regression
+@Regression @Password
 Scenario Outline: Failed password confirmation
   When tap the next button until reaching the lock options
   And tap the password button
@@ -35,7 +35,7 @@ Scenario Outline: Failed password confirmation
     | abcdef     | abcabc     | Please try again. Your passwords do not match. |
 
 
-  @Regression
+  @Regression @Password
 Scenario Outline: Failed password lenght
   When tap the next button until reaching the lock options
   And tap the password button
@@ -47,7 +47,7 @@ Scenario Outline: Failed password lenght
   | abcde     |
 
 
-@Ignore @Smoke
+@Ignore @Smoke @Pin
 Scenario Outline: register with PIN
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
@@ -63,7 +63,7 @@ Scenario Outline: register with PIN
   | 123456 |
 
 
-@Regression
+@Regression @Pin
 Scenario Outline: Failed PIN confirmation
 When tap the next button until reaching the lock options
 And tap the pin button
@@ -78,7 +78,7 @@ Then a message <message> is displayed to the user
     | 123456 | 654321 | Please try again. Your PINs do not match. |
 
 
-@Regression
+@Regression @Pin
 Scenario Outline: Failed PIN lenght
   When tap the next button until reaching the lock options
   And tap the pin button
@@ -90,7 +90,7 @@ Scenario Outline: Failed PIN lenght
   | 12345 |
 
 
-@Ignore @Smoke
+@Ignore @Smoke @Pattern
 Scenario: register with pattern
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
@@ -102,7 +102,7 @@ Scenario: register with pattern
   Then A successfully registered message is displayed to the user and a link to landing page
 
 
-@Regression
+@Regression @Pattern
 Scenario: Failed pattern confirmation
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
@@ -114,7 +114,7 @@ Scenario: Failed pattern confirmation
   Then a message is displayed to the user, warning the patterns are not the same
 
 
-@Regression
+@Regression @Pattern
 Scenario: Failed minimum number of points in pattern
   When the user tap the "EMPEZAR" button
   And tap the "Siguiente" button until reaching the lock options
