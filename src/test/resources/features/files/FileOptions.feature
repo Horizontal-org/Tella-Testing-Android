@@ -32,10 +32,7 @@ Then the file name is updated
 
 Examples:
   | folder     | type      |
-  | All files  | image     |
   | All files  | document  |
-  | All files  | audio     |
-  | All files  | video     |
   | Images     | image     |
   | Documents  | document  |
   | Audios     | audio     |
@@ -119,7 +116,6 @@ Examples:
   | WhatsApp    | share files + verification information | video                         | Videos     |
   | WhatsApp    | share files + verification information | audio                         | Audios     |
   | WhatsApp    | share files + verification information | document                      | Documents  |
-  | WhatsApp    | share files + verification information | image, video, audio, document | All Files |
 
 @Smoke
 Scenario Outline: Save a file of <type> to the device from the folder <folder>
@@ -166,8 +162,7 @@ Examples:
   | share files + verification information | video                         | Videos     |
   | share files + verification information | audio                         | Audios     |
   | share files + verification information | document                      | Documents  |
-  | share files + verification information | image, video, audio, document | All Files  |
-
+  
 @Smoke
 Scenario Outline: Delete a file of <type> from the folder <folder>
 When the user enters the folder <folder>
@@ -203,8 +198,7 @@ Examples:
   | video                           | Videos     |
   | audio                           | Audios     |
   | document                        | Documents  |
-  | image, video, audio, document   | All Files  |
-
+ 
 @Regression
 Scenario Outline: View the information of a <type> file from the folder <folder>
 When the user enters the folder <folder>
@@ -218,7 +212,6 @@ Examples:
   | video     | Videos     |
   | audio     | Audios     |
   | document  | Documents  |
-  | image     | All Files  |
 
 @Regression
 Scenario: Move a file to another existing folder
