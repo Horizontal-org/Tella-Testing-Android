@@ -76,7 +76,7 @@ Examples:
   | Rotate       | All Files  |
 
 @Smoke
-Scenario Outline: Share a file of <type> via <SocialMedia> from the folder <folder>
+Scenario Outline: Share a file created in Tella of <type> via <SocialMedia> from folder <folder>
 When the user enters the folder <folder>
 And taps the options button "⋮" for the <type> file
 And selects the option "Share"
@@ -94,11 +94,26 @@ Examples:
   | WhatsApp    | share only files                                | Videos     | video    |
   | WhatsApp    | share files + verification information          | Audios     | audio    |
   | WhatsApp    | share only files                                | Audios     | audio    |
-  | WhatsApp    | share files + verification information          | Documents  | document |
-  | WhatsApp    | share only files                                | Documents  | document |
 
+Scenario Outline: Share a file of <type> via <SocialMedia> from folder <folder>
+When the user enters the folder <folder>
+And taps the options button "⋮" for the <type> file
+And selects the option "Share"
+And taps "Continue"
+And taps "OK"
+And selects <SocialMedia>
+Then the file is successfully shared
+
+Examples:
+  | SocialMedia | folder    | type       |
+  | WhatsApp    | Documents | document   |
+  | WhatsApp    | Images    | image      |
+  | WhatsApp    | Videos    | video      |
+  | WhatsApp    | Audios    | audio      |
+  
+  
 @Regression
-Scenario Outline: Share multiple files of <type> via <SocialMedia> from the folder <folder>
+Scenario Outline: Share multiple files created in Tella of <type> via <SocialMedia> from the folder <folder>
 When the user enters the folder <folder>
 And taps the "Checkbox" button
 And selects multiple <type> files
@@ -115,7 +130,6 @@ Examples:
   | WhatsApp    | share files + verification information | image                         | Images     |
   | WhatsApp    | share files + verification information | video                         | Videos     |
   | WhatsApp    | share files + verification information | audio                         | Audios     |
-  | WhatsApp    | share files + verification information | document                      | Documents  |
 
 @Smoke
 Scenario Outline: Save a file of <type> to the device from the folder <folder>
@@ -138,8 +152,6 @@ Examples:
   | share only files                        | video     | Videos     |
   | share files + verification information  | audio     | Audios     |
   | share only files                        | audio     | Audios     |
-  | share files + verification information  | document  | Documents  |
-  | share only files                        | document  | Documents  |
 
 @Regression
 Scenario Outline: Save multiple files to the device from the folder <folder>
@@ -161,7 +173,6 @@ Examples:
   | share files + verification information | image                         | Images     |
   | share files + verification information | video                         | Videos     |
   | share files + verification information | audio                         | Audios     |
-  | share files + verification information | document                      | Documents  |
   
 @Smoke
 Scenario Outline: Delete a file of <type> from the folder <folder>
@@ -193,11 +204,11 @@ Then the <type> files are deleted from Tella
 And the message "Files deleted successfully" appears
 
 Examples:
-  | type                            | folder     |
-  | image                           | Images     |
-  | video                           | Videos     |
-  | audio                           | Audios     |
-  | document                        | Documents  |
+  | type     | folder     |
+  | image    | Images     |
+  | video    | Videos     |
+  | audio    | Audios     |
+  | document | Documents  |
  
 @Regression
 Scenario Outline: View the information of a <type> file from the folder <folder>
