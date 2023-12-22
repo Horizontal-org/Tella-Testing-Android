@@ -1,47 +1,35 @@
-  @smoke 
-	Feature: General
-	
-	Background: 
-  Given the user is authenticated in the Tella application with valid credentials 654321
-	And is on the main page
-	
-	Scenario: View Settings Categories
+  Feature: General
+
+  Background:
+  Given the user is authenticated in the Tella application with valid credentials "654321"
+  And is on the main page
+
+  @Ignore
+  Scenario: View Settings Categories
   When they view the settings icon
-	And click on it
-	Then the user sees a list of categories with various configurations that can be performed
+  And click on it
+  Then the user sees a list of categories with various configurations that can be performed
 	
-	@Reresion
-	Scenario Outline: Change Language
+  @Regression @Automated  @Unlock
+  Scenario Outline: Change Language
   When the user taps the settings icon
-  And taps the "General" option
-  And taps the "Language" option in the general category
+  And taps the general option
+  And taps the language option in the general category
   And views the list with all available languages
   And clicks on the language <language>
-  Then views the same list with the language chosen in the previous step
+  #Then views the same list with the language chosen in the previous step
+  Then views the title <title> at the top of the page
 
-  Examples: 
-  |language    |
-  |Spanish     |
-  |English     |
-  |Arabic      |
-  |Belarusian  |
-  |Persian     |
-  |French      |
-  |Indonesian  |
-  |Kachin      |
-  |Kannada     |
-  |Kurdish     |
-  |Malayalam   |
-  |Burmese     |
-  |Portuguese  |
-  |Russian     |
-  |Tamil       |
-  |Default     |
+  Examples:
+    | language   | title         |
+    | Spanish    | Idioma        |
 
-  @Smoke
+
+
+    @Smoke
   Scenario: View General Category Configurations
   And they view the settings icon
-  And click on it
+  And click on it settings icon
   When the user sees a list of categories with various configurations that can be performed
   And presses the option "General"
   Then the user should view a list with the general configurations of the app

@@ -3,7 +3,7 @@ package com.crowdar.tella.services;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
-import com.crowdar.tella.constants.UnlockConstants;
+import com.crowdar.tella.constants.LockUnlockConstants;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -19,41 +19,41 @@ public class UnlockService {
     private static final int NEXT_BUTTON_CLICK_COUNT = 3;
 
     public static void isViewLoaded() {
-        MobileActionManager.waitVisibility(UnlockConstants.START_BUTTON);
-        MobileActionManager.click(UnlockConstants.START_BUTTON);
+        MobileActionManager.waitVisibility(LockUnlockConstants.START_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.START_BUTTON);
     }
 
     public static void setPassword(String password) {
         clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
-        MobileActionManager.click(UnlockConstants.LOCK_PASSWORD_BUTTON);
-        MobileActionManager.setInput(UnlockConstants.PASSWORD_INPUT, password);
-        MobileActionManager.click(UnlockConstants.PASSWORD_RIGHT_BUTTON);
-        MobileActionManager.setInput(UnlockConstants.PASSWORD_INPUT, password);
-        MobileActionManager.click(UnlockConstants.PASSWORD_RIGHT_BUTTON);
-        MobileActionManager.click(UnlockConstants.NEXT_BUTTON);
-        Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.START_BUTTON), UnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
+        MobileActionManager.click(LockUnlockConstants.LOCK_PASSWORD_BUTTON);
+        MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
+        MobileActionManager.click(LockUnlockConstants.PASSWORD_RIGHT_BUTTON);
+        MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
+        MobileActionManager.click(LockUnlockConstants.PASSWORD_RIGHT_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON);
+        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.START_BUTTON), LockUnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
     }
 
     public static void enterPassword(String password){
-        MobileActionManager.setInput(UnlockConstants.PASSWORD_INPUT, password);
+        MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
         EventFiringWebDriver driver = DriverManager.getDriverInstance();
         driver.getKeyboard().sendKeys(Keys.ENTER);
     }
 
     public static void goTella() {
-        MobileActionManager.waitVisibility(UnlockConstants.START_BUTTON);
-        MobileActionManager.click(UnlockConstants.START_BUTTON);
+        MobileActionManager.waitVisibility(LockUnlockConstants.START_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.START_BUTTON);
     }
 
     public static void setNumbers(String pin) {
         clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
-        MobileActionManager.click(UnlockConstants.LOCK_PIN_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.LOCK_PIN_BUTTON);
         setPin(pin);
-        MobileActionManager.click(UnlockConstants.PIN_OK_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.PIN_OK_BUTTON);
         setPin(pin);
-        MobileActionManager.click(UnlockConstants.PIN_OK_BUTTON);
-        MobileActionManager.click(UnlockConstants.NEXT_BUTTON);
-        Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.START_BUTTON), UnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
+        MobileActionManager.click(LockUnlockConstants.PIN_OK_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON);
+        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.START_BUTTON), LockUnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
     }
 
     public static String convertNumberToText(String number) {
@@ -82,23 +82,23 @@ public class UnlockService {
 
     public static void enterPin(String pin){
         setPin(pin);
-        MobileActionManager.click(UnlockConstants.PIN_OK_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.PIN_OK_BUTTON);
     }
 
     public static void setPattern() {
         clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
-        MobileActionManager.click(UnlockConstants.LOCK_PATTERN_BUTTON);
-        MobileActionManager.click(UnlockConstants.LOCK_PATTERN_ID);
+        MobileActionManager.click(LockUnlockConstants.LOCK_PATTERN_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.LOCK_PATTERN_ID);
 
-        MobileActionManager.waitVisibility(UnlockConstants.SCREEN_PATTERN_ID);
+        MobileActionManager.waitVisibility(LockUnlockConstants.SCREEN_PATTERN_ID);
         definePattern();
-        MobileActionManager.click(UnlockConstants.NEXT_BUTTON);
-        Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.START_BUTTON), UnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
+        MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON);
+        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.START_BUTTON), LockUnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
     }
 
     public static void clickNextButtons(int count) {
         for (int i = 0; i < count; i++) {
-            MobileActionManager.click(UnlockConstants.NEXT_BUTTON);
+            MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON);
         }
     }
 
@@ -112,7 +112,7 @@ public class UnlockService {
                 .release()
                 .perform();
 
-        MobileActionManager.click(UnlockConstants.NETX_BUTTON_PATTERN_ID);
+        MobileActionManager.click(LockUnlockConstants.NETX_BUTTON_PATTERN_ID);
 
         /*Se vuelve a repetir el patrón*/
         touchAction.press(PointOption.point(270, 2250))
@@ -124,7 +124,7 @@ public class UnlockService {
     }
 
     public static void clickExit(){
-        MobileActionManager.click(UnlockConstants.EXIT_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.EXIT_BUTTON);
     }
 
     public static void tapTellaApp(){
@@ -134,7 +134,7 @@ public class UnlockService {
                    .moveTo(PointOption.point(550, 400))
                    .release()
                    .perform();
-        MobileActionManager.click(UnlockConstants.TELLA_APP);
+        MobileActionManager.click(LockUnlockConstants.TELLA_APP);
     }
 
 }
