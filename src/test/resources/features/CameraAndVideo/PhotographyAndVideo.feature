@@ -87,7 +87,7 @@ Scenario: record a video from Tella with the frontal camera
   And there is a new picture in the "Videos" folder
   And the video taked is not in device album
 
-@Smoke
+@Smoke @ShareFile
 Scenario Outline: share file from tella by mail
   Given the user is in Tella´s home page
   When the user press "camera"
@@ -105,7 +105,7 @@ Examples:
  | Gmail   |
  | Correo  |
 
-@Smoke
+@Smoke @ShareFile
 Scenario Outline: share file from tella to Instagram Stories
   Given the user is in Tella´s home page and have an instagram account
   When the user press "camera"
@@ -119,7 +119,7 @@ Scenario Outline: share file from tella to Instagram Stories
   And the user press "Done"
   Then the file is shared
   
-@Smoke
+@Smoke @ShareFile
 Scenario Outline: share file from tella to instagram Reels
   Given the user is in Tella´s home page and have an instagram account
   When the user press "camera"
@@ -132,7 +132,7 @@ Scenario Outline: share file from tella to instagram Reels
   And the user press "Share"
   Then The file is shared
   
-@Smoke
+@Smoke @ShareFile
 Scenario Outline: share file from tella to Instagram Feed
   Given the user is in Tella´s home page and have an instagram account
   When the user press "camera"
@@ -146,7 +146,7 @@ Scenario Outline: share file from tella to Instagram Feed
   And the user press "Share"
   Then the file is shared
 
-@Smoke
+@Smoke @ShareFile
 Scenario Outline: share file from tella to Instagram Chats
   Given the user is in Tella´s home page and have an instagram account
   When the user press "camera"
@@ -159,7 +159,7 @@ Scenario Outline: share file from tella to Instagram Chats
   And the user press "Done"
   Then the file is shared
   
-@Smoke
+@Smoke @ShareFile
 Scenario Outline: share file from tella to WhatsApp
   When the user press "camera"
   And the user press the image located at the bottom right to the screen
@@ -172,7 +172,7 @@ Scenario Outline: share file from tella to WhatsApp
   And the user press "→"
   Then the file is shared
 
-@Smoke 
+@Smoke @File
 Scenario: File information
   Given the user is in Tella´s home page
   When the user press "camera"
