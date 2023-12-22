@@ -1,6 +1,6 @@
 Feature: Opening Files from Recent Files
   
-@Regression
+@Regression @FileOptions
 Scenario Outline: Open a file <file> from the "Recent Files" section
 Given that the user is unlocked in the Tella app
 And the user has the "Recent Files" feature activated
