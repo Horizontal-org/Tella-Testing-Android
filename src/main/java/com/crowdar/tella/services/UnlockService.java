@@ -130,7 +130,7 @@ public class UnlockService {
     public static void tapTellaApp(){
         TouchAction touchAction = new TouchAction((PerformsTouchActions) DriverManager.getDriverInstance().getWrappedDriver());
         touchAction.press(PointOption.point(550, 1700))
-                   .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
+                   .waitAction(WaitOptions.waitOptions(Duration.ofMillis(3000)))
                    .moveTo(PointOption.point(550, 400))
                    .release()
                    .perform();

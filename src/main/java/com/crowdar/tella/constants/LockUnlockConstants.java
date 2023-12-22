@@ -14,10 +14,6 @@ public class LockUnlockConstants {
     public static final String LOCK_PATTERN_ID = "id:pl_pattern";
     public static final String SCREEN_PATTERN_ID = "id:pl_message_text";
     public static final String NETX_BUTTON_PATTERN_ID = "id:pl_right_button";
-    public static final String HOME_BUTTON = "id:home";
-    public static final String CAMERA_BUTTON = "id:camera";
-    public static final String MIC_BUTTON = "id:mic";
-    public static final String LOCK_DONT_MATCH_MSG = "id:txv_msg";
     public static final String LOCK_SET_UP = "id:sheet_subtitle";
     public static final String EXIT_BUTTON = "id:right_img";
     public static final String TELLA_APP = "ACCESSIBILITY_ID:Tella";

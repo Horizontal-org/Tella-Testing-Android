@@ -102,7 +102,7 @@ Examples:
 | Gmail       | share files only                       |
 
 @Smoke 
-Scenario Outline: Cancel sharing an image file from the "Images" folder
+Scenario: Cancel sharing an image file from the "Images" folder
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Share"
 And taps "Continue"
@@ -112,7 +112,7 @@ Then the dialog box closes
 And the file is not shared
 
 @Smoke 
-Scenario: Save a file to the device
+Scenario Outline: Save a file to the device
 When the user taps the options button "⋮" for the file "image1.jpg"
 And selects the option "Save to device"
 And presses "Save"
@@ -129,7 +129,7 @@ Examples:
 | share files only                       |
 
 @Smoke 
-Scenario: Save multiple files to the device
+Scenario Outline: Save multiple files to the device
 When the user clicks the "v" button to select files
 And selects "image1.jpg" and "image2.jpg"
 And selects the option "Save to device"

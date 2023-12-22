@@ -74,7 +74,7 @@ Examples:
   | Gmail       | share files only                       |
 
 @Smoke
-Scenario Outline: Cancel sharing an audio file from the "Audio" folder
+Scenario: Cancel sharing an audio file from the "Audio" folder
 When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Share"
 And taps "Continue"
@@ -84,7 +84,7 @@ Then the dialog box is closed
 And the file is not shared
 
 @Smoke
-Scenario: Save an audio file to the device
+Scenario Outline: Save an audio file to the device
 When the user taps the options button "⋮" for the file "audio1.aac"
 And selects the option "Save to device"
 And presses "Save"
@@ -101,7 +101,7 @@ Examples:
   | share files only                       |
 
 @Smoke
-Scenario: Save multiple audio files to the device
+Scenario Outline: Save multiple audio files to the device
 When the user clicks on the "v" button to select files
 And selects "audio1.aac" and "audio2.aac"
 And selects the option "Save to device"

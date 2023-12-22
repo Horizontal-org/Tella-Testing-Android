@@ -19,7 +19,7 @@
   And taps "next" button
   Then "Your lock has been changed" message is shown
 
-  Example:
+  Examples:
   | password | 
   | 1234560  |
 
@@ -36,7 +36,7 @@
   And taps "next" button
   Then "Your lock has been changed" message is shown
     
-  Example:
+  Examples:
   | PIN     | 
   | 1234560 |
   
@@ -54,7 +54,7 @@
   Then  "Your lock has been changed" message is shown
 
   @Smoke @Android @Security @LockTimeout
-  Scenario Outline: Security - Lock Timeout 
+  Scenario Outline: Security - Lock Timeout
   When the user taps settings icon 
   And taps "Security" option 
   And taps "Lock timeout" option in security category 
@@ -91,7 +91,7 @@
   And tap "Lock timeout" option in security category 
   Then the option <timeout> is selected
     
-  Example: 
+  Examples:
   | timeout     |
   | immediately |
   | 1 minute    |
@@ -112,7 +112,7 @@
   And sees that the configuration is set by default
   Then sees that the files have been deleted	
     
-  Example:
+  Examples:
   | attempts    | PIN |
   | 5 attempts  | 1   |
   | 10 attempts | 1   |
@@ -132,7 +132,7 @@
   And view the <message>
   And view change Tella <icon> 
  	
-  Example:
+  Examples:
     | icon           | message                                                                   |                                                                                                      | 
     | iCamara        | please wait.you will return to your device´s home screen in a few seconds |
     | Selfie Cam     | please wait.you will return to your device´s home screen in a few seconds |
@@ -177,7 +177,7 @@
     And view the <message>
     And view change Tella <icon>  
     
-    Example:
+    Examples:
       | Calculator    | message                                                                   | 
       | Calculator_1  | please wait.you will return to your device´s home screen in a few seconds |
       | Calculator_2  | please wait.you will return to your device´s home screen in a few seconds | 
@@ -264,7 +264,7 @@
     And taps icon help in <deleteOption> 
     Then view the help info with <message>
 
-  Example:
+  Examples:
     | deleteOption                     | message                                                                                                                                          |
     | Delete files                     | Delete all the files stored in Tella                                                                                                             |
     | Delete draft and submitted forms | Delete all draft and submitted forms                                                                                                             |

@@ -74,7 +74,7 @@ Examples:
 | Gmail       | share files only                       |
 
 @Smoke
-Scenario Outline: Cancel sharing a video file from the "Videos" folder
+Scenario: Cancel sharing a video file from the "Videos" folder
 When the user taps the options button "⋮" for the file "video1.mp4"
 And selects the option "Share"
 And taps "Continue"
@@ -84,7 +84,7 @@ Then the dialog box is closed
 And the file is not shared
 
 @Smoke
-Scenario: Save a video file to the device
+Scenario Outline: Save a video file to the device
 When the user taps the options button "⋮" for the file "video1.mp4"
 And selects the option "Save to device"
 And presses "Save"
@@ -101,7 +101,7 @@ Examples:
 | share files only                       |
 
 @Smoke
-Scenario: Save multiple video files to the device
+Scenario Outline: Save multiple video files to the device
 When the user clicks on the "v" button to select files
 And selects "video1.mp4" and "video2.mp4"
 And selects the option "Save to device"
