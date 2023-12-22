@@ -172,7 +172,7 @@ Scenario Outline: share file from tella to WhatsApp
   And the user press "→"
   Then the file is shared
 
-@Smoke @File
+@Smoke @FileOptions
 Scenario: File information
   Given the user is in Tella´s home page
   When the user press "camera"
@@ -181,7 +181,7 @@ Scenario: File information
   And the user press the button "File information"
   Then the file information is in the screen
 
-@Smoke
+@Smoke @FileOptions
 Scenario: Delete file
   Given the user is in Tella´s home page
   When the user press "camera"
@@ -191,7 +191,7 @@ Scenario: Delete file
   And the user press "Delete"
   Then the file is deleted
 
-@Smoke
+@Smoke @FileOptions
 Scenario: Save to device
   Given the user is in Tella´s home page
   When the user press "camera"
@@ -202,7 +202,7 @@ Scenario: Save to device
   And the user press "Continue"
   Then the file is saved 
 
-@Smoke
+@Smoke @FileOptions
 Scenario: Rename file
   Given the user is in Tella´s home page
   When the user press "camera"
@@ -213,7 +213,7 @@ Scenario: Rename file
   And the user press "ok"
   Then the file is saved with the new name 
 
-@Smoke
+@Smoke @FileOptions
 Scenario: Rename a file with a existing name
   Given the user is in Tella´s home page
   When the user press "camera"
@@ -224,7 +224,7 @@ Scenario: Rename a file with a existing name
   And the user press "ok"
   Then the sistem notified there is a existing file with the same name 
   
-@Smoke @IOS
+@Smoke @IOS @FileOptions
 Scenario: Move a file to another folder
   Given the user is in camera
   When the user press the image located at the bottom right of the screen
