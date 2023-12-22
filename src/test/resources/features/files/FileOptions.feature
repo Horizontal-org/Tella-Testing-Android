@@ -95,7 +95,7 @@ Examples:
   | WhatsApp    | share files + verification information          | Audios     | audio    |
   | WhatsApp    | share only files                                | Audios     | audio    |
 
-Scenario Outline: Share a file of <type> via <SocialMedia> from folder <folder>
+Scenario Outline: Share a file not created in Tella of <type> via <SocialMedia> from folder <folder>
 When the user enters the folder <folder>
 And taps the options button "⋮" for the <type> file
 And selects the option "Share"
