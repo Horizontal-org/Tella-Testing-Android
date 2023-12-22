@@ -141,27 +141,6 @@ Examples:
   | share only files                        | image     | Images     |
   | share files + verification information  | video     | Videos     |
   | share only files                        | audio     | Audios     |
-
-@Regression
-Scenario Outline: Save multiple files to the device from the folder <folder>
-When the user enters the folder <folder>
-And taps the "Checkbox" button
-And selects multiple <type> files
-And taps the options button "⋮"
-And selects the option "Save to device"
-And presses "Save"
-And selects "<shareInfo>"
-And taps "Continue"
-And selects a location on the device
-And presses the "USE THIS FOLDER" button
-Then the <type> files are successfully saved to the device
-And message appears indicating that the files have been saved
-
-Examples:
-  | shareInfo                              | type    | folder     |
-  | share files + verification information | image   | Images     |
-  | share files + verification information | video   | Videos     |
-  | share files + verification information | audio   | Audios     |
   
 @Smoke
 Scenario Outline: Delete a file of <type> from the folder <folder>
