@@ -36,7 +36,7 @@ public class SettingsSteps {
         SettingsService.verifyListOfLanguages();
     }
     @And("clicks on the language (.*)")
-    public void clicksOnTheLanguage(String language) throws InterruptedException {
+    public void clicksOnTheLanguage(String language) {
         SettingsService.clickChoosenLanguage(language);
     }
     @Then("views the title (.*) at the top of the page")

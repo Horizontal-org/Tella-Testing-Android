@@ -1,18 +1,12 @@
 package com.crowdar.tella.services;
 
-import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.SettingsConstants;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileElement;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class SettingsService {
@@ -37,22 +31,14 @@ public class SettingsService {
     }
 
 
-    public static void clickChoosenLanguage(String language) throws InterruptedException {
-        EventFiringWebDriver driver = DriverManager.getDriverInstance();
-        MobileActionManager.waitVisibility(SettingsConstants.LANGUAGE_IDS);
-        Thread.sleep(2000);
-        WebElement ChildElement = driver.findElement(By.id(SettingsConstants.LANGUAGE_IDS));
-        MobileActionManager.click(String.valueOf(ChildElement));
-        List<WebElement> languageElements = driver.findElements(By.id(String.valueOf(ChildElement)));
-        for (WebElement element : languageElements) {
-            if (element.getText().equals(language)) {
-                Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.LANGUAGE_IDS));
-                String id = String.format("//*[@id='lang',@text='%s']", language);
-                MobileActionManager.click(id);
-            }
-        }
-        System.out.println("languageElements = " + languageElements);
+    public static void clickChoosenLanguage(String language) {
+        WebElement pedidoEle = DriverManager.getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                        ".scrollIntoView(new UiSelector()" +
+                        ".textMatches(\"" + language + "\").instance(0))"));
+        pedidoEle.click();
     }
+
 
     public static void verifyLanguageTitle(String title){
         MobileActionManager.waitVisibility(SettingsConstants.LANGUAGE_TITLE);
@@ -63,6 +49,5 @@ public class SettingsService {
         MobileActionManager.click(SettingsConstants.BUTTON_BACK_LANG);
         MobileActionManager.waitVisibility(SettingsConstants.TITLE_LANGUAGE_SETTING);
         Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.TITLE_LANGUAGE_SETTING));
-
     }
 }

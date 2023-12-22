@@ -20,10 +20,24 @@
   #Then views the same list with the language chosen in the previous step
   Then views the title <title> at the top of the page
 
-  Examples:
-    | language   | title         |
-    | Spanish    | Idioma        |
-
+    Examples:
+      | language   | title         |
+      | Default    | Language      |
+      | Arabic     | اللغة         |
+      | Belarusian | Мова          |
+      | English    | Language      |
+      | Spanish    | Idioma        |
+      | Persian    | زبان          |
+      | French     | Langue        |
+      | Indonesian | Bahasa        |
+      | Kachin     | Tsun Shaga Ga |
+      | Kannada    | ಭಾಷೆ          |
+      | Kurdish    | زمان          |
+      | Malayalam  | ഭാഷ           |
+      | Burmese    | ဘာသာစကား      |
+      | Portuguese | Idioma        |
+      | Russian    | Язык          |
+      | Tamil      | மொழி         |
 
 
     @Smoke
