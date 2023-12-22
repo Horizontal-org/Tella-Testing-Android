@@ -74,7 +74,7 @@ Examples:
 | Gmail       | share files only                       |
 
 @Smoke
-Scenario Outline: Cancel sharing a document file from the "Documents" folder
+Scenario: Cancel sharing a document file from the "Documents" folder
 When the user taps the options button "⋮" for the file "docu1.pdf"
 And selects the option "Share"
 And taps "Continue"
@@ -84,7 +84,7 @@ Then the dialog box closes
 And the file is not shared
 
 @Smoke 
-Scenario: Save a document file to the device
+Scenario Outline: Save a document file to the device
 When the user taps the options button "⋮" for the file "docu1.pdf"
 And selects the option "Save to device"
 And presses "Save"
@@ -101,7 +101,7 @@ Examples:
 | share files only                       |
 
 @Smoke 
-Scenario: Save multiple document files to the device
+Scenario Outline: Save multiple document files to the device
 When the user clicks the "v" button to select files
 And selects "docu1.pdf" and "docu2.pdf"
 And selects the option "Save to device"

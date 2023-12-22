@@ -9,9 +9,9 @@ import org.testng.Assert;
 public class HomeService {
 
     public static void isHomeLoaded() {
-        MobileActionManager.waitVisibility(LockUnlockConstants.HOME_BUTTON);
-        MobileActionManager.waitVisibility(LockUnlockConstants.CAMERA_BUTTON);
-        MobileActionManager.waitVisibility(LockUnlockConstants.MIC_BUTTON);
-        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.HOME_BUTTON), HomeConstants.VIEW_NOT_DISPLAYED_MESSAGE);
+        MobileActionManager.waitVisibility(HomeConstants.HOME_BUTTON);
+        MobileActionManager.waitVisibility(HomeConstants.CAMERA_BUTTON);
+        MobileActionManager.waitVisibility(HomeConstants.MIC_BUTTON);
+        Assert.assertTrue(MobileActionManager.isVisible(HomeConstants.HOME_BUTTON), HomeConstants.VIEW_NOT_DISPLAYED_MESSAGE);
     }
 }

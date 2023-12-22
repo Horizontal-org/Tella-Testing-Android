@@ -165,7 +165,7 @@ Examples:
   | document.pdf  |
 
 @Smoke
-Scenario: Delete multiple files of type <type> from the "All files" folder
+Scenario Outline: Delete multiple files of type <type> from the "All files" folder
 When the user clicks on the "v" button to select files
 And selects <type>
 When  taps the options button "⋮"
