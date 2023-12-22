@@ -169,10 +169,10 @@ Then the <type> files are successfully saved to the device
 And the message "1 file saved to the device" appears
 
 Examples:
-  | shareInfo                              | type                          | folder     |
-  | share files + verification information | image                         | Images     |
-  | share files + verification information | video                         | Videos     |
-  | share files + verification information | audio                         | Audios     |
+  | shareInfo                              | type    | folder     |
+  | share files + verification information | image   | Images     |
+  | share files + verification information | video   | Videos     |
+  | share files + verification information | audio   | Audios     |
   
 @Smoke
 Scenario Outline: Delete a file of <type> from the folder <folder>
