@@ -40,7 +40,7 @@ Feature: Rec
     And the user press ok
     And the user press stop option
     Then the approval message <message_title> is displayed
-    And the file change the original name for a new one <recording_name>
+    And the file change the original name for a new one: <recording_name>
 
     Examples:
       | recording_name | message_title                                     |

@@ -1,11 +1,7 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.tella.services.AudioService;
-import com.crowdar.tella.services.HomeService;
-import com.crowdar.tella.services.SettingsService;
-import com.crowdar.tella.services.UnlockService;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -28,12 +24,12 @@ public class AudioSteps {
         AudioService.deleteLastName();
     }
     @And("the user write a new recording name (.*)")
-    public void writeNewRecordingName(String recordName) throws InterruptedException {
+    public void writeNewRecordingName(String recordName){
         AudioService.addNewRecordingName(recordName);
     }
     @And("the user press ok")
     public void pressOKoption() {
-        AudioService.clickOkbutton();
+        AudioService.clickOkButton();
     }
     @And("the user press stop option")
     public void pressStopOption() {
@@ -43,7 +39,7 @@ public class AudioSteps {
     public void validateAprovalMessage(String message){
         AudioService.validateAprovalMessage(message);
     }
-    @And("the file change the original name for a new one (.*)")
+    @And("the file change the original name for a new one: (.*)")
     public void validateNewName(String recordName){
         AudioService.validateNewName(recordName);
     }
