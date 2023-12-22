@@ -16,7 +16,7 @@ public class AudioSteps {
         AudioService.clickRecOption();
     }
     @And("the user press the microphone")
-    public void tapsTheGeneralOption() {
+    public void tapsTheGeneralOption(){
         AudioService.clickMicrophoneIcon();
     }
     @And("the user press the pencil icon")
@@ -28,12 +28,18 @@ public class AudioSteps {
         AudioService.deleteLastName();
     }
     @And("the user write a new recording name (.*)")
-    public void writeNewRecordingName(String recordName) {
+    public void writeNewRecordingName(String recordName) throws InterruptedException {
         AudioService.addNewRecordingName(recordName);
     }
-
-    @Then("views the title (.*) at the top of the page")
-    public void viewsTheTitleAlTheTopOfThePage(String title) {
-        SettingsService.verifyLanguageTitle(title);
+    @And("the user press ok")
+    public void pressOKoption() {
+        AudioService.clickOkbutton();
     }
+    @And("the user press stop option")
+    public void pressStopOption() {
+        AudioService.clickStopOption();
+    }
+
+
+
 }

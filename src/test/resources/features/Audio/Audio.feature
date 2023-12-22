@@ -38,7 +38,7 @@ Feature: Rec
     And the user delete the existing name pressing the delete button
     And the user write a new recording name <recording_name>
     And the user press ok
-    And the user press stop
+    And the user press stop option
     Then "the audio reccording was saved to your Tella Files" message is shown
     And the file change the original name for a new one
 

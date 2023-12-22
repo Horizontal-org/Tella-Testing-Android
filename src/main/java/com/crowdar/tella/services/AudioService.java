@@ -5,12 +5,21 @@ import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.AudioConstants;
 import com.crowdar.tella.constants.SettingsConstants;
 import io.appium.java_client.MobileBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.util.List;
 
 
 public class AudioService {
+
+    static WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+    static WebDriverWait wait = new WebDriverWait(driver, 10);
 
     public static void clickRecOption(){
         MobileActionManager.waitVisibility(AudioConstants.REC_OPTION);
@@ -20,8 +29,8 @@ public class AudioService {
     public static void clickMicrophoneIcon(){
         MobileActionManager.waitVisibility(AudioConstants.MICROPHONE_ICON);
         MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
-        MobileActionManager.waitVisibility(AudioConstants.PERMISSIONS_POPUP);
-        MobileActionManager.click(AudioConstants.PERMISSIONS_POPUP);
+        acceptPermissions();
+        MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
     }
 
     public static void clickPencilIcon(){
@@ -30,32 +39,30 @@ public class AudioService {
     }
 
     public static void deleteLastName(){
-        MobileActionManager.setInput(AudioConstants.TITLE_AUDIO_RECORDING_INPUT,String.valueOf(Keys.DELETE));
+        WebElement inputField = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(AudioConstants.TITLE_AUDIO_RECORDING_INPUT)));
+        inputField.clear();
     }
 
     public static void addNewRecordingName(String recordingName){
-        MobileActionManager.waitVisibility(AudioConstants.TITLE_AUDIO_RECORDING_INPUT);
-        MobileActionManager.setInput(AudioConstants.TITLE_AUDIO_RECORDING_INPUT,recordingName);
+        MobileActionManager.setInput(AudioConstants.RECORD_NAME_INPUT,recordingName);
+    }
+
+    public static void clickOkbutton(){
+        MobileActionManager.waitClickable(AudioConstants.OK_BUTTON);
+        MobileActionManager.click(AudioConstants.OK_BUTTON);
+    }
+
+    public static void clickStopOption(){
+        MobileActionManager.waitClickable(AudioConstants.STOP_BUTTON);
+        MobileActionManager.click(AudioConstants.STOP_BUTTON);
     }
 
 
-    public static void clickChoosenLanguage(String language) {
-        WebElement LanguagueEle = DriverManager.getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
-                "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
-                        ".scrollIntoView(new UiSelector()" +
-                        ".textMatches(\"" + language + "\").instance(0))"));
-        LanguagueEle.click();
-    }
-
-
-    public static void verifyLanguageTitle(String title){
-        MobileActionManager.waitVisibility(SettingsConstants.LANGUAGE_TITLE);
-        Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.LANGUAGE_TITLE));
-        String LanguageTitle = MobileActionManager.getText(SettingsConstants.LANGUAGE_TITLE);
-        Assert.assertEquals(LanguageTitle, title);
-
-        MobileActionManager.click(SettingsConstants.BUTTON_BACK_LANG);
-        MobileActionManager.waitVisibility(SettingsConstants.TITLE_LANGUAGE_SETTING);
-        Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.TITLE_LANGUAGE_SETTING));
+    public static void acceptPermissions() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id(AudioConstants.PERMISSIONS_MESSAGE)));
+        List<WebElement> elems = DriverManager.getDriverInstance().getWrappedDriver().findElements(By.id(AudioConstants.PERMISSIONS_MESSAGE));
+        if (elems.size() > 0) {
+            DriverManager.getDriverInstance().getWrappedDriver().findElement(By.id(AudioConstants.PERMISSIONS_ACCEPT_BUTTON)).click();
+        }
     }
 }
