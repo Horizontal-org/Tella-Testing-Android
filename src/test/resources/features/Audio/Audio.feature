@@ -19,7 +19,7 @@ Feature: Rec
       And the user press stop
       Then "The audio recording was saved to your Tella files" message is shown
       
-    @Smoke @Audio @Automation
+    @Smoke @Audio @Automatable
     Scenario: Rename an audio file
       When the user press "Rec"
       And the user press the pencil
@@ -29,7 +29,7 @@ Feature: Rec
       Then "the audio reccording was saved to your Tella Files" message is shown
       And the file change the original name for a new one
       
-    @Smoke @Audio @Automation
+    @Smoke @Audio @Automatable
     Scenario: Rename an audio file during the recording
       When the user press "Rec"
       And the user press the microphone
