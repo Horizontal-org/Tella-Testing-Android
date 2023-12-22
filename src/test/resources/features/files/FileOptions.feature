@@ -166,7 +166,7 @@ And taps "Continue"
 And selects a location on the device
 And presses the "USE THIS FOLDER" button
 Then the <type> files are successfully saved to the device
-And the message "1 file saved to the device" appears
+And message appears indicating that the files have been saved
 
 Examples:
   | shareInfo                              | type    | folder     |
