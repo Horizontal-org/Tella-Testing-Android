@@ -43,7 +43,7 @@ public class AudioService {
         MobileActionManager.setInput(AudioConstants.RECORD_NAME_INPUT,recordingName);
     }
 
-    public static void clickOkbutton(){
+    public static void clickOkButton(){
         MobileActionManager.waitClickable(AudioConstants.OK_BUTTON);
         MobileActionManager.click(AudioConstants.OK_BUTTON);
     }
