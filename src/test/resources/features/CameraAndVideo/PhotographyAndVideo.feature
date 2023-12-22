@@ -54,7 +54,7 @@ Scenario: Turn off camera flash using the video mode
   And the user press flash button
   Then the flash is off
   
-@Somke @Video
+@Smoke @Video
 Scenario: Select video resolution
   Given the user is camera
   When the user press the video resolution button, located at the top center of the screen 
