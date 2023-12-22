@@ -1,6 +1,6 @@
 package com.crowdar.tella.steps;
 
-import com.crowdar.tella.constants.UnlockConstants;
+import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.services.UnlockService;
 import com.crowdar.tella.services.LockService;
 import cucumber.api.java.en.When;
@@ -29,7 +29,7 @@ public class LockSteps {
     }
     @Then("the next button remains disabled")
     public void theNextButtonRemainsDisabled() {
-        LockService.verifyNextButtonEnabled(UnlockConstants.PASSWORD_RIGHT_BUTTON);
+        LockService.verifyNextButtonEnabled(LockUnlockConstants.PASSWORD_RIGHT_BUTTON);
     }
     @And("tap the pin button")
     public void tapThePinButton() {
@@ -45,7 +45,7 @@ public class LockSteps {
     }
     @Then("the next pin button remains disabled")
     public void theNextPinButtonRemainsDisabled() {
-        LockService.verifyNextPinButtonEnabled(UnlockConstants.PIN_RIGHT_BUTTON);
+        LockService.verifyNextPinButtonEnabled(LockUnlockConstants.PIN_RIGHT_BUTTON);
     }
     @Then("a successfully registered message (.*) is displayed to the user and a link to landing page")
     public void aSuccessfullyRegisteredMessageIsDisplayed(String message) {

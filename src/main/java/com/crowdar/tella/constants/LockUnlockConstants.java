@@ -1,6 +1,6 @@
 package com.crowdar.tella.constants;
 
-public class UnlockConstants {
+public class LockUnlockConstants {
     public static final String START_BUTTON = "id:startBtn";
     public static final String NEXT_BUTTON = "id:next_btn";
     public static final String LOCK_PASSWORD_BUTTON = "id:lockPasswordBtn";

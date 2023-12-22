@@ -1,7 +1,7 @@
 package com.crowdar.tella.services;
 
 import com.crowdar.core.actions.MobileActionManager;
-import com.crowdar.tella.constants.UnlockConstants;
+import com.crowdar.tella.constants.LockUnlockConstants;
 import org.testng.Assert;
 
 public class LockService {
@@ -10,21 +10,21 @@ public class LockService {
     public static String verifyPinAttributeEnabled;
 
     public static void clickPasswordButton(){
-        MobileActionManager.click(UnlockConstants.LOCK_PASSWORD_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.LOCK_PASSWORD_BUTTON);
     }
 
     public static void setOnePassword(String password){
-        MobileActionManager.setInput(UnlockConstants.PASSWORD_INPUT,password);
+        MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT,password);
     }
 
     public static void clickNextPasswordButton(){
-        MobileActionManager.click(UnlockConstants.PASSWORD_RIGHT_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.PASSWORD_RIGHT_BUTTON);
     }
 
     public static void errorMessageDisplayed(String message){
-        MobileActionManager.waitVisibility(UnlockConstants.LOCK_DONT_MATCH_MSG);
-        Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.LOCK_DONT_MATCH_MSG));
-        String errorMessagePage = MobileActionManager.getText(UnlockConstants.LOCK_DONT_MATCH_MSG);
+        MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_DONT_MATCH_MSG);
+        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.LOCK_DONT_MATCH_MSG));
+        String errorMessagePage = MobileActionManager.getText(LockUnlockConstants.LOCK_DONT_MATCH_MSG);
         Assert.assertEquals(message, errorMessagePage);
     }
 
@@ -33,10 +33,10 @@ public class LockService {
         Assert.assertEquals(verifyPasswordAttributeEnabled , "true");
     }
     public static void clickPinButton(){
-        MobileActionManager.click(UnlockConstants.LOCK_PIN_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.LOCK_PIN_BUTTON);
     }
     public static void TapNextPinButton(){
-        MobileActionManager.click(UnlockConstants.PIN_RIGHT_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.PIN_RIGHT_BUTTON);
     }
 
     public static void verifyNextPinButtonEnabled(String locator){
@@ -45,11 +45,11 @@ public class LockService {
     }
 
     public static void messageDisplayed(String message){
-        MobileActionManager.waitVisibility(UnlockConstants.LOCK_SET_UP);
-        Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.LOCK_SET_UP));
-        String messagePage = MobileActionManager.getText(UnlockConstants.LOCK_SET_UP);
+        MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_SET_UP);
+        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.LOCK_SET_UP));
+        String messagePage = MobileActionManager.getText(LockUnlockConstants.LOCK_SET_UP);
         Assert.assertEquals(message, messagePage);
-        Assert.assertTrue(MobileActionManager.isVisible(UnlockConstants.NEXT_BUTTON));
+        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.NEXT_BUTTON));
     }
 
 }

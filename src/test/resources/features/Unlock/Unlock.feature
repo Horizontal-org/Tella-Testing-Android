@@ -1,4 +1,4 @@
-@Smoke @Unlock
+@Smoke
 Feature: As a potential client i want to interact with the mobile application
 
 
