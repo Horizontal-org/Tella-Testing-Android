@@ -3,21 +3,17 @@ package com.crowdar.tella.services;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.AudioConstants;
-import com.crowdar.tella.constants.SettingsConstants;
-import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import java.util.List;
-
 
 public class AudioService {
 
+    static String nameChanged =null;
     static WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
     static WebDriverWait wait = new WebDriverWait(driver, 10);
 
@@ -34,8 +30,8 @@ public class AudioService {
     }
 
     public static void clickPencilIcon(){
-        MobileActionManager.waitVisibility(AudioConstants.PENCIL_ICON);
-        MobileActionManager.click(AudioConstants.PENCIL_ICON);
+        MobileActionManager.waitVisibility(AudioConstants.RECORD_NAME_PENCIL_ICON);
+        MobileActionManager.click(AudioConstants.RECORD_NAME_PENCIL_ICON);
     }
 
     public static void deleteLastName(){
@@ -54,9 +50,18 @@ public class AudioService {
 
     public static void clickStopOption(){
         MobileActionManager.waitClickable(AudioConstants.STOP_BUTTON);
+        nameChanged = MobileActionManager.getText(AudioConstants.RECORD_NAME_PENCIL_ICON);
         MobileActionManager.click(AudioConstants.STOP_BUTTON);
     }
 
+    public static void validateAprovalMessage(String message){
+        String aprovalMessagePage = MobileActionManager.getText(AudioConstants.MESSAGE_TITLE);
+        Assert.assertEquals(message, aprovalMessagePage);
+    }
+
+    public static void validateNewName(String newName){
+        Assert.assertEquals(newName, nameChanged);
+    }
 
     public static void acceptPermissions() {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id(AudioConstants.PERMISSIONS_MESSAGE)));
