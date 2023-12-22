@@ -1,5 +1,10 @@
+  @Servers
   Feature: Servers
-    
+  
+  Background
+  Given the user is authenticated in the Tella application with valid credentials 654321
+  And is on the main page
+  
   @smoke
   Scenario: View Settings in the Server Category
   Given the user is authenticated in the Tella application with valid credentials 654321
