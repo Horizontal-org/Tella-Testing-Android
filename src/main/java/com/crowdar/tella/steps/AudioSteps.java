@@ -11,7 +11,7 @@ import io.cucumber.java.en.When;
 
 public class AudioSteps {
 
-    @When("the user taps the Rec option")
+    @When("the user press the Rec option")
     public void theUserTapsTheRecOption() {
         AudioService.clickRecOption();
     }
@@ -39,7 +39,12 @@ public class AudioSteps {
     public void pressStopOption() {
         AudioService.clickStopOption();
     }
-
-
-
+    @Then("the approval message (.*) is displayed")
+    public void validateAprovalMessage(String message){
+        AudioService.validateAprovalMessage(message);
+    }
+    @And("the file change the original name for a new one (.*)")
+    public void validateNewName(String recordName){
+        AudioService.validateNewName(recordName);
+    }
 }

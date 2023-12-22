@@ -30,21 +30,21 @@ Feature: Rec
     Then "the audio reccording was saved to your Tella Files" message is shown
     And the file change the original name for a new one
 
-  @Smoke @Audio @Automation234
+  @Smoke @Audio @Automation
   Scenario Outline: Rename an audio file during the recording
-    When the user taps the Rec option
+    When the user press the Rec option
     And the user press the microphone
     And the user press the pencil icon
     And the user delete the existing name pressing the delete button
     And the user write a new recording name <recording_name>
     And the user press ok
     And the user press stop option
-    Then "the audio reccording was saved to your Tella Files" message is shown
-    And the file change the original name for a new one
+    Then the approval message <message_title> is displayed
+    And the file change the original name for a new one <recording_name>
 
     Examples:
-      | recording_name |
-      | Audio2       |
+      | recording_name | message_title                                     |
+      | Audio2         | The audio recording was saved to your Tella files |
 
   @Smoke @Audio
   Scenario: Listen an audio file
