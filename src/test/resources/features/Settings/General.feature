@@ -1,16 +1,18 @@
-  @smoke 
+  @smoke @General
 	Feature: General
 	
 	Background: 
   Given the user is authenticated in the Tella application with valid credentials 654321
-	And is on the main page
+	#And is on the main page
+	And the user is in Tella home page
 	
 	Scenario: View Settings Categories
-  When they view the settings icon
-	And click on it
+  #When they view the settings icon
+	#And click on it
+	When the user taps the settings icon
 	Then the user sees a list of categories with various configurations that can be performed
 	
-	@Reresion
+	@Regression
 	Scenario Outline: Change Language
   When the user taps the settings icon
   And taps the "General" option
@@ -41,51 +43,52 @@
 
   @Smoke
   Scenario: View General Category Configurations
-  And they view the settings icon
-  And click on it
-  When the user sees a list of categories with various configurations that can be performed
+  #And they view the settings icon
+  #And click on it
+  When the user taps the settings icon
+  #When the user sees a list of categories with various configurations that can be performed  Esto no va, es una verificación
   And presses the option "General"
-  Then the user should view a list with the general configurations of the app
+  Then the user views a list with the general configurations of the app  ## sacamos el should
 
   @smoke
   Scenario: Share Crash Reports
   When the user taps the settings icon
-  And views the "Share crash reports" option
+  #And views the "Share crash reports" option  --> es una verificación, no es una acción!!
   And taps on it to enable
   Then the user sees that the color has changed to green, indicating it is activated
-  And from that moment, crash reports should be automatically sent
+  ##And from that moment, crash reports should be automatically sent --> esto no se puede verificar, salvo que agreguemos steps para verficiarlo. 
   
   @smoke
   Scenario: Activate Verification Mode
   When the user taps the settings icon
-  And views the "Verification mode" option
+  #And views the "Verification mode" option --> es una verificación , no es una acción.
   And taps on it to enable
   Then the user sees that the color has changed to green, indicating it is activated
-  And from that moment, files should be verifiable
+  ##And from that moment, files should be verifiable
 
   @smoke
   Scenario: Access Recent Files
   When the user taps the settings icon
-  And views the "Recent files" option
+  #And views the "Recent files" option  --> es una verificación , no es una acción.
   And taps on it to enable
   Then the user sees that the color has changed to green, indicating it is activated
-  And should be able to access their recent files
+  #And should be able to access their recent files
   
   @smoke
   Scenario: Access Favorite Forms
   When the user taps the settings icon
-  And views the "Favorite forms" option
+  #And views the "Favorite forms" optionc--> es una verificación , no es una acción.
   And taps on it to enable
   Then the user sees that the color has changed to green, indicating it is activated
-  And should have quick access to favorite forms
+  #And should have quick access to favorite forms
 
   @smoke
   Scenario: Access Favorite Templates
   When the user taps the settings icon
-  And views the "Favorite templates" option
+  #And views the "Favorite templates" option --> es una verificación , no es una acción.
   And taps on it to enable
   Then the user sees that the color has changed to green, indicating it is activated
-  And should have direct access to favorite templates
+  #And should have direct access to favorite templates
   
   
   
