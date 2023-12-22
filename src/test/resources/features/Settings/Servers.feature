@@ -7,40 +7,23 @@
   
   @smoke
   Scenario: View Settings in the Server Category
-  #Given the user is authenticated in the Tella application with valid credentials 654321 --> pasan a background
-  #And is on the main page --> pasan a background
-  #And they view the settings icon --> es una verificación, se quita
-  #And click on it --> se reemplaza por el step que esta debajo de este, para reutilizar steps:
   When the user taps the settings icon
-  #When the user sees a list of categories with various configurations that can be performed --> es una verificación, se quita
   And selects the option "Servers"
   Then the user views the server configurations
   
   @smoke
   Scenario: View Server Options
-  #Given the user is authenticated in the Tella application with valid credentials 654321
-  #And is on the main page
-  #And they view the settings icon
-  #And click on it
+ 
   When the user taps the settings icon
-  #And the user sees a list of categories with various configurations that can be performed
   And selects the option "Servers"
-  #When the user views the server configurations --> se quita, es una verificacion
   And presses the "Add" icon
   Then the user sees all possible server options available for connection
   
   @smoke
   Scenario Outline: Select Server
-  #Given the user is authenticated in the Tella application with valid credentials 654321
-  #And is on the main page
-  #And they view the settings icon
-  #And click on it
   When the user taps the settings icon
-  #And the user sees a list of categories with various configurations that can be performed
   And selects the option "Servers"
-  #And the user views the server configurations
   And presses the "Add" icon
-  #And sees all possible server options available for connection
   And selects the server <server>
   And press OK
   Then the user sees the chosen server with the corresponding configurations for establishing the connection
