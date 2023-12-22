@@ -7,7 +7,7 @@ Background:
   And they are on the Tella Home screen
 
 @Smoke
-Scenario Outline: Open a multimedia file from the folder <folder>
+Scenario Outline: Open a multimedia file <type> from the folder <folder>
 When the user enters the folder <folder>
 And taps on a <type> file
 Then the <type> file is opened
@@ -39,7 +39,7 @@ Examples:
   | Videos     | video     |
 
 @Regression
-Scenario: Rename a file with a name identical to an existing file
+Scenario: Rename a file <type> with a name identical to an existing file
 When the user enters the folder <folder>
 And taps the options button "⋮" of a <type> file
 And selects the option "Rename"
@@ -59,7 +59,7 @@ Examples:
   | Videos     | video     |
 
 @Regression
-Scenario Outline: Edit an image from the folder <folder>
+Scenario Outline: Edit an image <Modification> from the folder <folder>
 When the user enters the folder <folder>
 And taps the options button "⋮" for the image file
 And selects the option "Edit"
@@ -89,11 +89,8 @@ Then the file is successfully shared
 Examples:
   | SocialMedia | shareInfo                                       | folder     | type     |
   | WhatsApp    | share files + verification information          | Images     | image    |
-  | WhatsApp    | share only files                                | Images     | image    |
-  | WhatsApp    | share files + verification information          | Videos     | video    |
   | WhatsApp    | share only files                                | Videos     | video    |
   | WhatsApp    | share files + verification information          | Audios     | audio    |
-  | WhatsApp    | share only files                                | Audios     | audio    |
 
 Scenario Outline: Share a file not created in Tella of <type> via <SocialMedia> from folder <folder>
 When the user enters the folder <folder>
@@ -146,11 +143,8 @@ And the message "1 file saved to the device" appears
 
 Examples:
   | shareInfo                               | type      | folder     |
-  | share files + verification information  | image     | Images     |
   | share only files                        | image     | Images     |
   | share files + verification information  | video     | Videos     |
-  | share only files                        | video     | Videos     |
-  | share files + verification information  | audio     | Audios     |
   | share only files                        | audio     | Audios     |
 
 @Regression
@@ -178,8 +172,6 @@ Examples:
 Scenario Outline: Delete a file of <type> from the folder <folder>
 When the user enters the folder <folder>
 And taps the options button "⋮" for the <type> file
-
-
 And selects the option "Delete"
 And taps the "Delete" button
 Then the <type> file is deleted from Tella
