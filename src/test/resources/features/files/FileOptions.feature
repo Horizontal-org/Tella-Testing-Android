@@ -16,9 +16,7 @@ Examples:
   | folder     | type   |
   | All files  | image  |
   | Images     | image  |
-  | All files  | video  |
   | Videos     | video  |
-  | All files  | audio  |
   | Audio      | audio  |
 
 @Regression
