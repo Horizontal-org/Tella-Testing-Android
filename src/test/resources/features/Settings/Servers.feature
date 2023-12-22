@@ -5,13 +5,13 @@
   Given the user is authenticated in the Tella application with valid credentials 654321
 	And the user is in Tella home page
   
-  @smoke
+  @Smoke
   Scenario: View Settings in the Server Category
   When the user taps the settings icon
   And selects the option "Servers"
   Then the user views the server configurations
   
-  @smoke
+  @Smoke
   Scenario: View Server Options
  
   When the user taps the settings icon
@@ -19,7 +19,7 @@
   And presses the "Add" icon
   Then the user sees all possible server options available for connection
   
-  @smoke
+  @Smoke
   Scenario Outline: Select Server
   When the user taps the settings icon
   And selects the option "Servers"
@@ -34,7 +34,7 @@
 	|Tella_Web          |
 	|Uwazi              |
 	
-	@smoke
+	@Smoke
   Scenario: Configure Open Data Kit Server
   Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
@@ -45,7 +45,7 @@
   Then the user views the server settings with fields "server name"; "server URL" to fill
   And presses "save" to save the configuration
 
-  @smoke
+  @Smoke
   Scenario: Configure Advanced Open Data Kit Server
   Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
@@ -58,7 +58,7 @@
   Then the user views the fields "user name"; "password" to fill
   And presses "save" to save the configuration
 
-  @smoke
+  @Smoke
   Scenario: Configure whit URL Server
   Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
@@ -73,7 +73,7 @@
   |Tella Web|
   |Uwazi    |
 
-  @smoke
+  @Smoke
   Scenario: Access Login for Project Access
   Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
