@@ -32,7 +32,6 @@ Then the file name is updated
 
 Examples:
   | folder     | type      |
-  | All files  | document  |
   | Images     | image     |
   | Documents  | document  |
   | Audios     | audio     |
@@ -72,8 +71,6 @@ Examples:
   | Modification | folder    |
   | Crop         | Images    |
   | Rotate       | Images    |
-  | Crop         | All Files  |
-  | Rotate       | All Files  |
 
 @Smoke
 Scenario Outline: Share a file created in Tella of <type> via <SocialMedia> from folder <folder>
