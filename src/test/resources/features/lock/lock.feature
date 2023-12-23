@@ -3,7 +3,7 @@ Feature: Lock Options
 Background:
   Given The user opens the app for the first time
 
-@Smoke @Automated
+@Smoke @Password @Automated
 Scenario Outline: register with password
   When tap the next button until reaching the lock options
   And tap the password button
@@ -18,7 +18,7 @@ Scenario Outline: register with password
     | abcdef   | Your lock is set up! You can change it anytime in Settings. |
 
 
-@Regression @Automated
+@Regression @Password @Automated
 Scenario Outline: Failed password confirmation and lenght
   When tap the next button until reaching the lock options
   And tap the password button
@@ -33,7 +33,7 @@ Scenario Outline: Failed password confirmation and lenght
     | abcdef     | abcabc     | Please try again. Your passwords do not match. |
 
 
-@Regression @Automated
+@Regression @Password @Automated
 Scenario Outline: Failed password lenght
   When tap the next button until reaching the lock options
   And tap the password button
@@ -45,7 +45,7 @@ Scenario Outline: Failed password lenght
   | abcde     |
 
 
-@Smoke @Automated
+@Smoke @Pin @Automated
 Scenario Outline: register with PIN
   When tap the next button until reaching the lock options
   And tap the pin button
@@ -60,7 +60,7 @@ Scenario Outline: register with PIN
     | 123456 | Your lock is set up! You can change it anytime in Settings. |
 
 
-@Regression @Automated
+@Regression @Pin @Automated
 Scenario Outline: Failed PIN confirmation
 When tap the next button until reaching the lock options
 And tap the pin button
@@ -75,7 +75,7 @@ Then a message <message> is displayed to the user
     | 123456 | 654321 | Please try again. Your PINs do not match. |
 
 
-@Regression @Automated
+@Regression @Pin @Automated
 Scenario Outline: Failed PIN lenght
   When tap the next button until reaching the lock options
   And tap the pin button
