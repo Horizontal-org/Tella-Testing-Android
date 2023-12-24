@@ -1,7 +1,4 @@
 Feature: Lock Options
-  
-Background:
-  Given The user opens the app for the first time
 
 @Smoke @Password @Automated
 Scenario Outline: register with password
@@ -87,37 +84,37 @@ Scenario Outline: Failed PIN lenght
   | 12345 |
 
 
-@Smoke
-Scenario: register with pattern
-  When the user tap the "EMPEZAR" button
-  And tap the "Siguiente" button until reaching the lock options
-  And tap the "Patrón" button
-  And draws a pattern with no less than six points
-  And tap the "Siguiente" button  
-  And draws the same pattern to confirm
-  And tap the "Siguiente" button  
-  Then A successfully registered message is displayed to the user and a link to landing page
+  @Smoke
+  Scenario: register with pattern
+    When the user tap the "EMPEZAR" button
+    And tap the "Siguiente" button until reaching the lock options
+    And tap the "Patrón" button
+    And draws a pattern with no less than six points
+    And tap the "Siguiente" button
+    And draws the same pattern to confirm
+    And tap the "Siguiente" button
+    Then A successfully registered message is displayed to the user and a link to landing page
 
 
-@Regression
-Scenario: Failed pattern confirmation
-  When the user tap the "EMPEZAR" button
-  And tap the "Siguiente" button until reaching the lock options
-  And tap the "Patrón" button
-  And draws a pattern with no less than six points
-  And tap the "Siguiente" button  
-  And draws a different pattern with no less than six points
-  And tap the "Siguiente" button  
-  Then a message is displayed to the user, warning the patterns are not the same
+  @Regression
+  Scenario: Failed pattern confirmation
+    When the user tap the "EMPEZAR" button
+    And tap the "Siguiente" button until reaching the lock options
+    And tap the "Patrón" button
+    And draws a pattern with no less than six points
+    And tap the "Siguiente" button
+    And draws a different pattern with no less than six points
+    And tap the "Siguiente" button
+    Then a message is displayed to the user, warning the patterns are not the same
 
 
-@Regression
-Scenario: Failed minimum number of points in pattern
-  When the user tap the "EMPEZAR" button
-  And tap the "Siguiente" button until reaching the lock options
-  And tap the "Patrón" button
-  And draws a pattern with a number of points less than six
-  Then the "Siguiente" button remains disabled
+  @Regression
+  Scenario: Failed minimum number of points in pattern
+    When the user tap the "EMPEZAR" button
+    And tap the "Siguiente" button until reaching the lock options
+    And tap the "Patrón" button
+    And draws a pattern with a number of points less than six
+    Then the "Siguiente" button remains disabled
   
 
 
