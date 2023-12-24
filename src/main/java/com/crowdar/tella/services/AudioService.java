@@ -3,44 +3,71 @@ package com.crowdar.tella.services;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.AudioConstants;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.PerformsTouchActions;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.touch.TapOptions;
-import io.appium.java_client.touch.offset.ElementOption;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
-import java.time.Duration;
-import static io.appium.java_client.touch.WaitOptions.waitOptions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import java.util.List;
 
 public class AudioService {
 
-    public static void clickRecIcon(){
-        MobileActionManager.click(AudioConstants.REC_ICON);
+    static String nameChanged =null;
+    static WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+    static WebDriverWait wait = new WebDriverWait(driver, 10);
+
+    public static void clickRecOption(){
+        MobileActionManager.waitVisibility(AudioConstants.REC_OPTION);
+        MobileActionManager.click(AudioConstants.REC_OPTION);
     }
 
-    public static void clickEditFileIcon(){
-        MobileActionManager.click(AudioConstants.REC_FILE_NAME);
+    public static void clickMicrophoneIcon(){
+        MobileActionManager.waitVisibility(AudioConstants.MICROPHONE_ICON);
+        MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
+        acceptPermissions();
+        MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
     }
 
-    public static void deleteAudioFileName(){
-        MobileActionManager.waitVisibility(AudioConstants.RENAME_RECORDING_INPUT);
-        String fileName = MobileActionManager.getText(AudioConstants.RENAME_RECORDING_INPUT);
-        EventFiringWebDriver driver = DriverManager.getDriverInstance();
-        MobileActionManager.click(AudioConstants.RENAME_RECORDING_INPUT);
-        for (int i = 0; i < fileName.length(); i++) {
-            driver.getKeyboard().sendKeys(Keys.ARROW_LEFT);
+    public static void clickPencilIcon(){
+        MobileActionManager.waitVisibility(AudioConstants.RECORD_NAME_PENCIL_ICON);
+        MobileActionManager.click(AudioConstants.RECORD_NAME_PENCIL_ICON);
+    }
+
+    public static void deleteLastName(){
+        WebElement inputField = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(AudioConstants.TITLE_AUDIO_RECORDING_INPUT)));
+        inputField.clear();
+    }
+
+    public static void addNewRecordingName(String recordingName){
+        MobileActionManager.setInput(AudioConstants.RECORD_NAME_INPUT,recordingName);
+    }
+
+    public static void clickOkButton(){
+        MobileActionManager.waitClickable(AudioConstants.OK_BUTTON);
+        MobileActionManager.click(AudioConstants.OK_BUTTON);
+    }
+
+    public static void clickStopOption(){
+        MobileActionManager.waitClickable(AudioConstants.STOP_BUTTON);
+        nameChanged = MobileActionManager.getText(AudioConstants.RECORD_NAME_PENCIL_ICON);
+        MobileActionManager.click(AudioConstants.STOP_BUTTON);
+    }
+
+    public static void validateAprovalMessage(String message){
+        String aprovalMessagePage = MobileActionManager.getText(AudioConstants.MESSAGE_TITLE);
+        Assert.assertEquals(message, aprovalMessagePage);
+    }
+
+    public static void validateNewName(String newName){
+        Assert.assertEquals(newName, nameChanged);
+    }
+
+    public static void acceptPermissions() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id(AudioConstants.PERMISSIONS_MESSAGE)));
+        List<WebElement> elems = DriverManager.getDriverInstance().getWrappedDriver().findElements(By.id(AudioConstants.PERMISSIONS_MESSAGE));
+        if (elems.size() > 0) {
+            DriverManager.getDriverInstance().getWrappedDriver().findElement(By.id(AudioConstants.PERMISSIONS_ACCEPT_BUTTON)).click();
         }
-        for (int i = 0; i < fileName.length(); i++) {
-            driver.getKeyboard().sendKeys(Keys.DELETE);
-        }
-
-    }
-
-
-
-    public static void enterNewName(String name){
-        MobileActionManager.setInput(AudioConstants.RENAME_RECORDING_INPUT, name);
-
     }
 }
