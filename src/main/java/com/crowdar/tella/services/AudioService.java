@@ -70,4 +70,10 @@ public class AudioService {
             DriverManager.getDriverInstance().getWrappedDriver().findElement(By.id(AudioConstants.PERMISSIONS_ACCEPT_BUTTON)).click();
         }
     }
+
+    public static void clickStartOption(){
+        MobileActionManager.waitClickable(AudioConstants.RECORD_AUDIO);
+        MobileActionManager.click(AudioConstants.RECORD_AUDIO);
+    }
+
 }

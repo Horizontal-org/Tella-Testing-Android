@@ -164,20 +164,7 @@ Feature: File Options in the "All files" folder
       | audio.aac    |
       | document.pdf |
 
-<<<<<<< HEAD
-@Smoke
-Scenario Outline: Delete multiple files of type <type> from the "All files" folder
-When the user clicks on the "v" button to select files
-And selects <type>
-When  taps the options button "⋮"
-And taps the option "Delete"
-Then the files are deleted
-And the message appears: "the file was deleted"
-Examples:
-  | type                                 |
-  | audio.aac, image.jpg, document.pdf   |
-  | audio.aac, image.jpg, document.pdf   |
-=======
+
   @Smoke
   Scenario Outline: Delete multiple files of type <type> from the "All files" folder
     When the user clicks on the "v" button to select files
@@ -190,7 +177,7 @@ Examples:
       | type                               |
       | audio.aac, image.jpg, document.pdf |
       | audio.aac, image.jpg, document.pdf |
->>>>>>> 2bc2ebea2508e64f3e8b4f1a81ad0a885f9799f6
+
 
   @Smoke
   Scenario Outline: Cancel deleting a file of type <type> from the "All files" folder

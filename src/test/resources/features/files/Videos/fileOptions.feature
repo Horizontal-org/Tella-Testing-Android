@@ -73,7 +73,6 @@ Feature: File Options in the "Videos" Folder
       | Gmail       | share files + verification information |
       | Gmail       | share files only                       |
 
-<<<<<<< HEAD
 @Smoke
 Scenario: Cancel sharing a video file from the "Videos" folder
 When the user taps the options button "⋮" for the file "video1.mp4"
@@ -95,36 +94,12 @@ And selects a location on the device
 And presses the "USE THIS FOLDER" button
 Then the file is saved successfully to the device
 And the message "1 file saved to the device" appears
-=======
-  @Smoke
-  Scenario: Cancel sharing a video file from the "Videos" folder
-    When the user taps the options button "⋮" for the file "video1.mp4"
-    And selects the option "Share"
-    And taps "Continue"
-    And selects <shareInformation>
-    And taps "CANCEL"
-    Then the dialog box is closed
-    And the file is not shared
-
-  @Smoke
-  Scenario Outline: Save a video file to the device
-    When the user taps the options button "⋮" for the file "video1.mp4"
-    And selects the option "Save to device"
-    And presses "Save"
-    And selects <shareInformation>
-    And taps "Continue"
-    And selects a location on the device
-    And presses the "USE THIS FOLDER" button
-    Then the file is saved successfully to the device
-    And the message "1 file saved to the device" appears
->>>>>>> 2bc2ebea2508e64f3e8b4f1a81ad0a885f9799f6
 
     Examples:
       | shareInformation                       |
       | share files + verification information |
       | share files only                       |
 
-<<<<<<< HEAD
 @Smoke
 Scenario Outline: Save multiple video files to the device
 When the user clicks on the "v" button to select files
@@ -137,20 +112,6 @@ And selects a location on the device
 And presses the "USE THIS FOLDER" button
 Then the files are saved successfully to the device
 And the message "1 file saved to the device" appears
-=======
-  @Smoke
-  Scenario Outline: Save multiple video files to the device
-    When the user clicks on the "v" button to select files
-    And selects "video1.mp4" and "video2.mp4"
-    And selects the option "Save to device"
-    And presses "Save"
-    And selects <shareInformation>
-    And taps "Continue"
-    And selects a location on the device
-    And presses the "USE THIS FOLDER" button
-    Then the files are saved successfully to the device
-    And the message "1 file saved to the device" appears
->>>>>>> 2bc2ebea2508e64f3e8b4f1a81ad0a885f9799f6
 
     Examples:
       | shareInformation                       |

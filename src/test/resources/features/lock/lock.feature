@@ -1,5 +1,8 @@
 Feature: Lock Options
 
+Background:
+  Given The user opens the app for the first time
+
 @Smoke @Password @Automated
 Scenario Outline: register with password
   When tap the next button until reaching the lock options
