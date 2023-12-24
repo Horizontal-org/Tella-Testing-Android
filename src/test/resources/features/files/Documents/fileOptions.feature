@@ -73,7 +73,7 @@ Feature: File Options in the "Documents" Folder
       | Gmail       | share files + verification information |
       | Gmail       | share files only                       |
 
-<<<<<<< HEAD
+
 @Smoke
 Scenario: Cancel sharing a document file from the "Documents" folder
 When the user taps the options button "⋮" for the file "docu1.pdf"
@@ -84,29 +84,7 @@ And taps "CANCEL"
 Then the dialog box closes
 And the file is not shared
 
-@Smoke 
-Scenario Outline: Save a document file to the device
-When the user taps the options button "⋮" for the file "docu1.pdf"
-And selects the option "Save to device"
-And presses "Save"
-And selects <shareInformation>
-And taps "Continue"
-And selects a location on the device
-And presses the "USE THIS FOLDER" button
-Then the file is saved correctly to the device
-And the message "1 file saved to the device" appears
-=======
-  @Smoke
-  Scenario: Cancel sharing a document file from the "Documents" folder
-    When the user taps the options button "⋮" for the file "docu1.pdf"
-    And selects the option "Share"
-    And taps "Continue"
-    And selects <shareInformation>
-    And taps "CANCEL"
-    Then the dialog box closes
-    And the file is not shared
-
-  @Smoke
+@Smoke
   Scenario Outline: Save a document file to the device
     When the user taps the options button "⋮" for the file "docu1.pdf"
     And selects the option "Save to device"
@@ -117,14 +95,14 @@ And the message "1 file saved to the device" appears
     And presses the "USE THIS FOLDER" button
     Then the file is saved correctly to the device
     And the message "1 file saved to the device" appears
->>>>>>> 2bc2ebea2508e64f3e8b4f1a81ad0a885f9799f6
+
 
     Examples:
       | shareInformation                       |
       | share files + verification information |
       | share files only                       |
 
-<<<<<<< HEAD
+
 @Smoke 
 Scenario Outline: Save multiple document files to the device
 When the user clicks the "v" button to select files
@@ -137,20 +115,7 @@ And selects a location on the device
 And presses the "USE THIS FOLDER" button
 Then the files are saved correctly to the device
 And the message "1 file saved to the device" appears
-=======
-  @Smoke
-  Scenario Outline: Save multiple document files to the device
-    When the user clicks the "v" button to select files
-    And selects "docu1.pdf" and "docu2.pdf"
-    And selects the option "Save to device"
-    And presses "Save"
-    And selects <shareInformation>
-    And taps "Continue"
-    And selects a location on the device
-    And presses the "USE THIS FOLDER" button
-    Then the files are saved correctly to the device
-    And the message "1 file saved to the device" appears
->>>>>>> 2bc2ebea2508e64f3e8b4f1a81ad0a885f9799f6
+
 
     Examples:
       | shareInformation                       |

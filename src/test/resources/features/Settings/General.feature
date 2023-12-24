@@ -17,7 +17,6 @@ Feature: General
     And taps the language option in the general category
     And views the list with all available languages
     And clicks on the language <language>
-  #Then views the same list with the language chosen in the previous step
     Then views the title <title> at the top of the page
 
     Examples:

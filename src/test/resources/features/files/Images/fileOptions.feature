@@ -91,7 +91,6 @@ Feature: File Options in the "Images" Folder
     And selects <SocialMedia>
     Then the files are shared successfully
 
-<<<<<<< HEAD
 @Smoke 
 Scenario: Cancel sharing an image file from the "Images" folder
 When the user taps the options button "⋮" for the file "image1.jpg"
@@ -113,26 +112,6 @@ And selects a location on the device
 And presses the "USE THIS FOLDER" button
 Then the image is saved successfully on the device
 And the message "1 file saved to device" appears
-=======
-    Examples:
-      | SocialMedia | shareInformation                       |
-      | WhatsApp    | share files + verification information |
-      | WhatsApp    | share files only                       |
-      | Instagram   | share files + verification information |
-      | Instagram   | share files only                       |
-      | Gmail       | share files + verification information |
-      | Gmail       | share files only                       |
-
-  @Smoke
-  Scenario: Cancel sharing an image file from the "Images" folder
-    When the user taps the options button "⋮" for the file "image1.jpg"
-    And selects the option "Share"
-    And taps "Continue"
-    And selects <shareInformation>
-    And taps "CANCEL"
-    Then the dialog box closes
-    And the file is not shared
->>>>>>> 2bc2ebea2508e64f3e8b4f1a81ad0a885f9799f6
 
   @Smoke
   Scenario Outline: Save a file to the device
@@ -146,7 +125,6 @@ And the message "1 file saved to device" appears
     Then the image is saved successfully on the device
     And the message "1 file saved to device" appears
 
-<<<<<<< HEAD
 @Smoke 
 Scenario Outline: Save multiple files to the device
 When the user clicks the "v" button to select files
@@ -159,12 +137,6 @@ And selects a location on the device
 And presses the "USE THIS FOLDER" button
 Then the image is saved successfully on the device
 And the message "1 file saved to device" appears
-=======
-    Examples:
-      | shareInformation                       |
-      | share files + verification information |
-      | share files only                       |
->>>>>>> 2bc2ebea2508e64f3e8b4f1a81ad0a885f9799f6
 
   @Smoke
   Scenario Outline: Save multiple files to the device
