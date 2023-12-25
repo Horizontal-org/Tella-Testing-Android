@@ -133,7 +133,7 @@ Feature: Security
   And view change Tella <icon> 
  	
   Examples:
-    | icon           | message                                                                   |                                                                                                      | 
+    | icon           | message                                                                   |
     | iCamara        | please wait.you will return to your device´s home screen in a few seconds |
     | Selfie Cam     | please wait.you will return to your device´s home screen in a few seconds |
     | Snap Camera    | please wait.you will return to your device´s home screen in a few seconds |
@@ -178,13 +178,13 @@ Feature: Security
     And view change Tella <icon>  
     
     Examples:
-      | Calculator    | message                                                                   | 
-      | Calculator_1  | please wait.you will return to your device´s home screen in a few seconds |
-      | Calculator_2  | please wait.you will return to your device´s home screen in a few seconds | 
-      | Calculator_3  | please wait.you will return to your device´s home screen in a few seconds | 
-      | Calculator_4  | please wait.you will return to your device´s home screen in a few seconds |
+      | calculator   | message                                                                   |
+      | Calculator_1 | please wait.you will return to your device´s home screen in a few seconds |
+      | Calculator_2 | please wait.you will return to your device´s home screen in a few seconds |
+      | Calculator_3 | please wait.you will return to your device´s home screen in a few seconds |
+      | Calculator_4 | please wait.you will return to your device´s home screen in a few seconds |
 
-    Examples:
+   Examples:
       | icon           | message                                                                   |
       | iCamara        | please wait.you will return to your device´s home screen in a few seconds |
       | Selfie Cam     | please wait.you will return to your device´s home screen in a few seconds |

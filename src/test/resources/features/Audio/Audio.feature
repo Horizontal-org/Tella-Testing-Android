@@ -1,8 +1,7 @@
 Feature: Rec
 
 Background:
-  Given the user is authenticated in the Tella application with valid credentials "654321"
-  And is on the main page
+  Given the user is in Tella home page
 
   @Smoke @Audio
   Scenario: Record an audio file
@@ -36,7 +35,7 @@ Background:
       | recording_name | message_title                                     |
       | Audio1         | The audio recording was saved to your Tella files |
 
-  @Smoke @Audio @Automated
+  @Smoke @Audio
   Scenario Outline: Rename an audio file during the recording
     When the user press the Rec option
     And the user press the microphone
