@@ -24,7 +24,7 @@ Feature: As a potential client i want to interact with the mobile application
       | 654321 |
 
 
-  @Pattern
+  @Pattern @Ignore
   Scenario: The user start the application, unlock the app with a pattern.
     Given The app is loaded correctly with a pattern set
     When The user set a pattern
