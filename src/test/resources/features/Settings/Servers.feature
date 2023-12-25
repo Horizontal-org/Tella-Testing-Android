@@ -68,7 +68,7 @@
   And presses "save" to save the configuration
 
   @smoke
-  Scenario: Configure whit URL Server
+  Scenario Outline: Configure whit URL Server
   Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
   And taps the "Servers" option
@@ -83,7 +83,7 @@
   |Uwazi    |
 
   @smoke
-  Scenario: Access Login for Project Access
+  Scenario Outline: Access Login for Project Access
   Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
   And taps the "Servers" option

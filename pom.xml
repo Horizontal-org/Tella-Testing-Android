@@ -75,7 +75,7 @@
                 <crowdar.avd></crowdar.avd>
                 <crowdar.appLocation>D:\\\\Mita\\\\Tella.apk</crowdar.appLocation>
                 <crowdar.deviceName>S21 ULTRA</crowdar.deviceName>
-                <crowdar.cucumber.filter>@Unlock</crowdar.cucumber.filter>
+                <crowdar.cucumber.filter>@</crowdar.cucumber.filter>
             </properties>
         </profile>
         <profile>
