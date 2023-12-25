@@ -16,10 +16,6 @@ public class SettingsSteps {
         UnlockService.goTella();
         HomeService.isHomeLoaded();
     }
-    @And("is on the main page")
-    public void isOnTheMainPage() {
-        HomeService.isHomeLoaded();
-    }
     @When("the user taps the settings icon")
     public void theUserTapsTheSettingsIcon() {
         SettingsService.clickSettingsIcon();
