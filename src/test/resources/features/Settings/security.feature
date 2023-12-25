@@ -3,6 +3,7 @@
 Feature: Security
 
   Background:
+<<<<<<< HEAD
     Given the user is authenticated in the Tella application with valid credentials 123456
     And is on the main page
 
@@ -22,9 +23,31 @@ Feature: Security
     Examples:
       | password |
       | 1234560  |
+=======
+  Given the user is authenticated in the Tella application with valid credentials 123456 
+  And is on the main page
+    
+  @Regression @Android @Security @Lock   
+  Scenario Outline: Security - Lock - password option
+  When the user taps settings icon 
+  And  taps "Security" option 
+  And taps "Lock" option in security category
+  And set security code valid 
+  And tap "password" option
+  And set <password> 
+  And taps "next" button
+  And set confirm <password>
+  And taps "next" button
+  Then "Your lock has been changed" message is shown
 
-  @Regresion @Android @Security @Lock
+  Examples:
+  | password | 
+  | 1234560  |
+>>>>>>> 1167d2498f71358bef1743465585b549e01258ac
+
+  @Regression @Android @Security @Lock
   Scenario Outline: Security - Lock - PIN option
+<<<<<<< HEAD
     When the user taps settings icon
     And  taps "Security" option
     And taps "Lock" option in security category
@@ -41,6 +64,24 @@ Feature: Security
       | 1234560 |
 
   @Regresion @Android @Security @Lock
+=======
+  When the user taps settings icon 
+  And  taps "Security" option 
+  And taps "Lock" option in security category
+  And set security code valid 
+  And taps "PIN" option
+  And set <PIN> 
+  And taps "next" button
+  And set confirm <PIN>
+  And taps "next" button
+  Then "Your lock has been changed" message is shown
+    
+  Examples:
+  | PIN     | 
+  | 1234560 |
+  
+  @Regression @Android @Security @Lock
+>>>>>>> 1167d2498f71358bef1743465585b549e01258ac
   Scenario: Security - lock - pattern option
     When the user taps settings icon
     And  taps "Security" option
@@ -54,6 +95,7 @@ Feature: Security
     Then  "Your lock has been changed" message is shown
 
   @Smoke @Android @Security @LockTimeout
+<<<<<<< HEAD
   Scenario Outline: Security - Lock Timeout
     When the user taps settings icon
     And taps "Security" option
@@ -70,6 +112,24 @@ Feature: Security
       | 5 minutes   |
       | 30 minutes  |
       | 1 hour      |
+=======
+  Scenario Outline: Security - Lock Timeout 
+  When the user taps settings icon 
+  And taps "Security" option 
+  And taps "Lock timeout" option in security category 
+  And select <timeout> option 
+  And taps "OK" button
+  And wait <timeout> of time
+  Then view screen lock 
+    
+  Examples: 
+  | timeout     |
+  | immediately |
+  | 1 minute    |
+  | 5 minutes   |
+  | 30 minutes  |
+  | 1 hour      | 
+>>>>>>> 1167d2498f71358bef1743465585b549e01258ac
 
   @Smoke @Android @Security @LockTimeout
   Scenario: Security - Delete after failed unlock
@@ -91,7 +151,11 @@ Feature: Security
   And tap "Lock timeout" option in security category 
   Then the option <timeout> is selected
     
+<<<<<<< HEAD
   Examples:
+=======
+  Examples: 
+>>>>>>> 1167d2498f71358bef1743465585b549e01258ac
   | timeout     |
   | immediately |
   | 1 minute    |
@@ -132,36 +196,18 @@ Feature: Security
   And view the <message>
   And view change Tella <icon> 
  	
+<<<<<<< HEAD
   Examples:
     | icon           | message                                                                   |
     | iCamara        | please wait.you will return to your device´s home screen in a few seconds |
     | Selfie Cam     | please wait.you will return to your device´s home screen in a few seconds |
     | Snap Camera    | please wait.you will return to your device´s home screen in a few seconds |
+=======
+  Example:
+    | icon           | message                                                                   |                                                                                                      | 
+>>>>>>> 1167d2498f71358bef1743465585b549e01258ac
     | Mi camera      | please wait.you will return to your device´s home screen in a few seconds |
-    | Calculate      | please wait.you will return to your device´s home screen in a few seconds |
-    | Calculate Plus | please wait.you will return to your device´s home screen in a few seconds |
-    | iCalculator    | please wait.you will return to your device´s home screen in a few seconds |
     | Calculator     | please wait.you will return to your device´s home screen in a few seconds |
-    | Weather        | please wait.you will return to your device´s home screen in a few seconds |
-    | EasyWaether    | please wait.you will return to your device´s home screen in a few seconds |
-    | SunnyDay       | please wait.you will return to your device´s home screen in a few seconds |
-    | Forecast       | please wait.you will return to your device´s home screen in a few seconds |
-    | GameStation    | please wait.you will return to your device´s home screen in a few seconds |
-    | PlayNow        | please wait.you will return to your device´s home screen in a few seconds |
-    | Game Launcher  | please wait.you will return to your device´s home screen in a few seconds |
-    | Clock          | please wait.you will return to your device´s home screen in a few seconds |
-    | Jewel Dash     | please wait.you will return to your device´s home screen in a few seconds |
-    | Time           | please wait.you will return to your device´s home screen in a few seconds |
-    | StopWatch      | please wait.you will return to your device´s home screen in a few seconds |
-    | Watch          | please wait.you will return to your device´s home screen in a few seconds |
-    | Workout        | please wait.you will return to your device´s home screen in a few seconds |
-    | Fitness Life   | please wait.you will return to your device´s home screen in a few seconds |
-    | Health         | please wait.you will return to your device´s home screen in a few seconds |
-    | Period Tracker | please wait.you will return to your device´s home screen in a few seconds |
-    | Music          | please wait.you will return to your device´s home screen in a few seconds |
-    | Dictionary     | please wait.you will return to your device´s home screen in a few seconds |
-    | Plant Care     | please wait.you will return to your device´s home screen in a few seconds |
-    | Astrology      | please wait.you will return to your device´s home screen in a few seconds |
 
  @Smoke @Android @Security @Camouflage
  Scenario Outline: Security - camouflage -  change camuflaje method - hide behind a calculator
@@ -323,12 +369,22 @@ Feature: Security
     | Delete server settings           | Delete your connections to servers and all                                                                                                       |
     | Delete Tella                     | Delete the app and all the data it contains. You will be asked "Do you want to uninstall this app?" Unless you confirm,Tella will not be delete. |
 
+<<<<<<< HEAD
   @Smoke @Android @Security @PreserveMetadata
   Scenario: Security - Preserve metadata when importing
     When the user tap settings icon
     And tap "Security" option
     And view "Preserve metadata when importing"
     And taps switch in ON to option "Preserve metadata when importing"
+=======
+ @Smoke @Android @Security @PreserveMetadata
+ Scenario: Security - Preserve metadata when importing 
+   When the user tap settings icon 
+   And tap "Security" option 
+   And view "Preserve metadata when importing"
+   And taps switch in ON to option "Preserve metadata when importing"
+   Then the "Preserve metadata when importing" option is activated
+>>>>>>> 1167d2498f71358bef1743465585b549e01258ac
 
   @Smoke @Android @Security @CameraSilentMode
   Scenario: Security - Camera silent mode

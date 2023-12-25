@@ -1,3 +1,4 @@
+@LockFirst
 Feature: Lock Options
 
 Background:
@@ -33,7 +34,11 @@ Scenario Outline: Failed password confirmation and lenght
     | abcdef     | abcabc     | Please try again. Your passwords do not match. |
 
 
+<<<<<<< HEAD
 @Regression @Password @Automated
+=======
+  @Regression @Password
+>>>>>>> 1167d2498f71358bef1743465585b549e01258ac
 Scenario Outline: Failed password lenght
   When tap the next button until reaching the lock options
   And tap the password button
@@ -45,7 +50,11 @@ Scenario Outline: Failed password lenght
   | abcde     |
 
 
+<<<<<<< HEAD
 @Smoke @Pin @Automated
+=======
+@Ignore @Smoke @Pin
+>>>>>>> 1167d2498f71358bef1743465585b549e01258ac
 Scenario Outline: register with PIN
   When tap the next button until reaching the lock options
   And tap the pin button
@@ -60,7 +69,11 @@ Scenario Outline: register with PIN
     | 123456 | Your lock is set up! You can change it anytime in Settings. |
 
 
+<<<<<<< HEAD
 @Regression @Pin @Automated
+=======
+@Regression @Pin
+>>>>>>> 1167d2498f71358bef1743465585b549e01258ac
 Scenario Outline: Failed PIN confirmation
 When tap the next button until reaching the lock options
 And tap the pin button
@@ -75,7 +88,11 @@ Then a message <message> is displayed to the user
     | 123456 | 654321 | Please try again. Your PINs do not match. |
 
 
+<<<<<<< HEAD
 @Regression @Pin @Automated
+=======
+@Regression @Pin
+>>>>>>> 1167d2498f71358bef1743465585b549e01258ac
 Scenario Outline: Failed PIN lenght
   When tap the next button until reaching the lock options
   And tap the pin button
@@ -87,6 +104,7 @@ Scenario Outline: Failed PIN lenght
   | 12345 |
 
 
+<<<<<<< HEAD
   @Smoke
   Scenario: register with pattern
     When the user tap the "EMPEZAR" button
@@ -118,6 +136,39 @@ Scenario Outline: Failed PIN lenght
     And tap the "Patrón" button
     And draws a pattern with a number of points less than six
     Then the "Siguiente" button remains disabled
+=======
+@Ignore @Smoke @Pattern
+Scenario: register with pattern
+  When the user tap the "EMPEZAR" button
+  And tap the "Siguiente" button until reaching the lock options
+  And tap the "Patrón" button
+  And draws a pattern with no less than six points
+  And tap the "Siguiente" button  
+  And draws the same pattern to confirm
+  And tap the "Siguiente" button  
+  Then A successfully registered message is displayed to the user and a link to landing page
+
+
+@Regression @Pattern
+Scenario: Failed pattern confirmation
+  When the user tap the "EMPEZAR" button
+  And tap the "Siguiente" button until reaching the lock options
+  And tap the "Patrón" button
+  And draws a pattern with no less than six points
+  And tap the "Siguiente" button  
+  And draws a different pattern with no less than six points
+  And tap the "Siguiente" button  
+  Then a message is displayed to the user, warning the patterns are not the same
+
+
+@Regression @Pattern
+Scenario: Failed minimum number of points in pattern
+  When the user tap the "EMPEZAR" button
+  And tap the "Siguiente" button until reaching the lock options
+  And tap the "Patrón" button
+  And draws a pattern with a number of points less than six
+  Then the "Siguiente" button remains disabled
+>>>>>>> 1167d2498f71358bef1743465585b549e01258ac
   
 
 
