@@ -36,7 +36,7 @@ Examples:
   | Videos     | video     |
 
 @Regression
-Scenario: Rename a file <type> with a name identical to an existing file
+Scenario Outline: Rename a file <type> with a name identical to an existing file
 When the user enters the folder <folder>
 And taps the options button "⋮" of a <type> file
 And selects the option "Rename"
