@@ -9,11 +9,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SettingsSteps {
-    @Given("the user is authenticated in the Tella application with valid credentials (.*)")
-    public void theUserIsAuthenticatedInTheTellaApp(String credentials) {
+    @Given("the user is in Tella home page")
+    public void theUserIsInTellaHomePage() {
         UnlockService.isViewLoaded();
-        UnlockService.setPassword(credentials);
+        UnlockService.setPassword("654321");
         UnlockService.goTella();
+        HomeService.isHomeLoaded();
     }
     @And("is on the main page")
     public void isOnTheMainPage() {
