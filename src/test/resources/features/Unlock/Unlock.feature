@@ -1,4 +1,4 @@
-@Smoke
+@Smoke @Unlock
 Feature: As a potential client i want to interact with the mobile application
 
 
@@ -24,9 +24,9 @@ Feature: As a potential client i want to interact with the mobile application
       | 654321 |
 
 
-  @Pattern @Automated
+  @Pattern
   Scenario: The user start the application, unlock the app with a pattern.
-    Given The app is loaded correctly with a pin <pin> set
+    Given The app is loaded correctly with a pattern set
     When The user set a pattern
     When The user click the go to tella button
     Then Home page is displayed

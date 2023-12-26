@@ -24,6 +24,15 @@ public class UnlockSteps extends PageSteps {
         UnlockService.clickExit();
         UnlockService.tapTellaApp();
     }
+
+    @Given("The app is loaded correctly with a pattern set")
+    public void theAppIsLoadedCorrectlyWithAPinSet() {
+        UnlockService.isViewLoaded();
+        UnlockService.setPattern();
+        UnlockService.goTella();
+        UnlockService.clickExit();
+        UnlockService.tapTellaApp();
+    }
     @When("The user enter the password (.*)")
     public void theUserEnterAPassword(String password) {
         UnlockService.enterPassword(password);

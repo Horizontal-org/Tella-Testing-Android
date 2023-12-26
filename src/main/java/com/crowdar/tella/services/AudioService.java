@@ -77,4 +77,10 @@ public class AudioService {
         } catch (TimeoutException e) {
         }
     }
+
+    public static void clickStartOption(){
+        MobileActionManager.waitClickable(AudioConstants.RECORD_AUDIO);
+        MobileActionManager.click(AudioConstants.RECORD_AUDIO);
+    }
+
 }

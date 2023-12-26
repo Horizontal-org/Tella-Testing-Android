@@ -12,4 +12,5 @@ public class AudioConstants {
     public static final String OK_BUTTON = "id:standard_sheet_confirm_btn";
     public static final String STOP_BUTTON = "ACCESSIBILITY_ID:Stop";
     public static final String MESSAGE_TITLE = "id:txv_msg";
+    public static final String RECORD_AUDIO = "id:record_audio";
 }
