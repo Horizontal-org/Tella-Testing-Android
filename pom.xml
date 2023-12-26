@@ -19,9 +19,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <crowdar.cucumber.filter>@Smoke</crowdar.cucumber.filter>
         <cucumber.runner>testngParallel.xml</cucumber.runner>
-        <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
-        <cucumber.reporters>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:</cucumber.reporters>
-        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.tella.report.Reporter: --plugin pretty</crowdar.cucumber.option>
+        <crowdar.driverHub></crowdar.driverHub>
+        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.tella.report.CucumberReporter: --plugin pretty</crowdar.cucumber.option>
     </properties>
 
     <profiles>
@@ -77,7 +76,7 @@
                 <crowdar.avd></crowdar.avd>
                 <crowdar.appLocation>D:\\\\apk\\\\mobile-release_168.apk</crowdar.appLocation>
                 <crowdar.deviceName>S21 ULTRA</crowdar.deviceName>
-                <crowdar.cucumber.filter>@Automated123</crowdar.cucumber.filter>
+                <crowdar.cucumber.filter>@Automated</crowdar.cucumber.filter>
             </properties>
         </profile>
         <profile>
@@ -116,6 +115,11 @@
             <groupId>io.lippia.report</groupId>
             <artifactId>ltm-cucumber4-adapter</artifactId>
             <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>4.1.7</version>
         </dependency>
     </dependencies>
     <build>

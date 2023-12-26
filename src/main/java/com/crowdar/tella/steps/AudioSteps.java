@@ -43,4 +43,8 @@ public class AudioSteps {
     public void validateNewName(String recordName){
         AudioService.validateNewName(recordName);
     }
+    @And("the user press start option")
+    public void theUserPressStartOption() {
+        AudioService.clickStartOption();
+    }
 }

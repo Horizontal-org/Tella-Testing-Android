@@ -54,7 +54,7 @@ Feature: PhotographyAndVideo
     And the user press flash button
     Then the flash is off
 
-  @Somke @Video
+  @Smoke @Video
   Scenario: Select video resolution
     Given the user is camera
     When the user press the video resolution button, located at the top center of the screen
@@ -100,12 +100,14 @@ Feature: PhotographyAndVideo
     And the user push the send it button "→"
     Then the file is shared
 
+    Examples:
       | Mail   |
       | Gmail  |
       | Correo |
 
+
   @Smoke
-  Scenario Outline: share file from tella to Instagram Stories
+  Scenario: share file from tella to Instagram Stories
     Given the user is in Tella´s home page and have an instagram account
     When the user press "camera"
     And the user press the image located at the bottom right to the screen
@@ -119,7 +121,7 @@ Feature: PhotographyAndVideo
     Then the file is shared
 
   @Smoke
-  Scenario Outline: share file from tella to instagram Reels
+  Scenario: share file from tella to instagram Reels
     Given the user is in Tella´s home page and have an instagram account
     When the user press "camera"
     And the user press the image located at the bottom right to the screen
@@ -132,7 +134,7 @@ Feature: PhotographyAndVideo
     Then The file is shared
 
   @Smoke
-  Scenario Outline: share file from tella to Instagram Feed
+  Scenario: share file from tella to Instagram Feed
     Given the user is in Tella´s home page and have an instagram account
     When the user press "camera"
     And the user press the image located at the bottom right to the screen
@@ -146,7 +148,7 @@ Feature: PhotographyAndVideo
     Then the file is shared
 
   @Smoke
-  Scenario Outline: share file from tella to Instagram Chats
+  Scenario: share file from tella to Instagram Chats
     Given the user is in Tella´s home page and have an instagram account
     When the user press "camera"
     And the user press the image located at the bottom right to the screen
@@ -159,7 +161,7 @@ Feature: PhotographyAndVideo
     Then the file is shared
 
   @Smoke
-  Scenario Outline: share file from tella to WhatsApp
+  Scenario: share file from tella to WhatsApp
     When the user press "camera"
     And the user press the image located at the bottom right to the screen
     And the user press the three points button located at the top right screen
