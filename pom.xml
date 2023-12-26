@@ -20,7 +20,7 @@
         <crowdar.cucumber.filter>@Smoke</crowdar.cucumber.filter>
         <cucumber.runner>testngParallel.xml</cucumber.runner>
         <crowdar.driverHub></crowdar.driverHub>
-        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.tella.report.CucumberReporter: --plugin pretty</crowdar.cucumber.option>
+        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.tella.report.TestManagerReporter: --plugin pretty</crowdar.cucumber.option>
     </properties>
 
     <profiles>
@@ -74,7 +74,7 @@
                 <crowdar.driverHub>http://127.0.0.1:4723/wd/hub</crowdar.driverHub>
                 <cucumber.runner>testng.xml</cucumber.runner>
                 <crowdar.avd></crowdar.avd>
-                <crowdar.appLocation>D:\\\\apk\\\\mobile-release_168.apk</crowdar.appLocation>
+                <crowdar.appLocation>D:\\\\Mita\\\\Tella.apk</crowdar.appLocation>
                 <crowdar.deviceName>S21 ULTRA</crowdar.deviceName>
                 <crowdar.cucumber.filter>@Automated</crowdar.cucumber.filter>
             </properties>
@@ -143,9 +143,9 @@
                         <suiteXmlFile>${cucumber.runner}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
-                        <TEST_MANAGER_USERNAME>amatos3@gmail.com</TEST_MANAGER_USERNAME>
-                        <TEST_MANAGER_PASSWORD>vale3009.M</TEST_MANAGER_PASSWORD>
-                        <TEST_MANAGER_API_HOST>https://testmanager.crowdaracademy.lippia.io/</TEST_MANAGER_API_HOST>
+                        <TEST_MANAGER_USERNAME>cervantes.mariana.6017@gmail.com</TEST_MANAGER_USERNAME>
+                        <TEST_MANAGER_PASSWORD>mita6017LTM</TEST_MANAGER_PASSWORD>
+                        <TEST_MANAGER_API_HOST>https://runs.crowdaracademy.lippia.io</TEST_MANAGER_API_HOST>
                         <TEST_MANAGER_RUN_NAME>test_automation</TEST_MANAGER_RUN_NAME>
                         <TEST_MANAGER_PROJECT_CODE>TELL</TEST_MANAGER_PROJECT_CODE>
 
