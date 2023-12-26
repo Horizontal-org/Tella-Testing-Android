@@ -43,9 +43,9 @@ public class FilesSteps {
         FilesService.validateFileCreation(type,nameFolder);
     }
 
-    @And("the file of type (.*) appears in the list of files in the folder (.*)")
-    public void validateFileCreationFolderSave(String type, String folderSave) {
-        FilesService.validateFileCreationFolderSave(type,folderSave);
+    @And("the file appears in the list of files in the folder (.*)")
+    public void validateAppearsFolderSave(String folderSave) {
+        FilesService.validateAppearsFolderSave(folderSave);
     }
 
     @Then("the file appears in the \"All files\" folder")
