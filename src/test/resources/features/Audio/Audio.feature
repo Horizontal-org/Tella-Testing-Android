@@ -1,8 +1,7 @@
 Feature: Rec
 
   Background:
-    Given the user is authenticated in the Tella application with valid credentials "654321"
-    And is on the main page
+    Given the user is in Tella home page
 
   @Smoke @Audio
   Scenario: Record an audio file
