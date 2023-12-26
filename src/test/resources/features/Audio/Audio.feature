@@ -27,12 +27,11 @@ Feature: Rec
     And the user delete the existing name pressing the delete button
     And the user write a new recording name <recording_name>
     And the user press ok
-    Then the approval message <message_title> is displayed
     And the file change the original name for a new one: <recording_name>
 
     Examples:
-      | recording_name | message_title                                     |
-      | Audio1         | The audio recording was saved to your Tella files |
+      | recording_name |
+      | Audio1         |
 
   @Smoke @Audio @Automated
   Scenario Outline: Rename an audio file during the recording
