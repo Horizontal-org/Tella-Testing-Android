@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>Tella-mobile-project</artifactId>
@@ -8,10 +9,11 @@
     <version>1.0.0</version>
 
     <parent>
-       <groupId>io.lippia</groupId>
-       <artifactId>root</artifactId>
-       <version>3.2.3.8</version>
+        <groupId>io.lippia</groupId>
+        <artifactId>root</artifactId>
+        <version>3.2.3.8</version>
     </parent>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,9 +21,6 @@
         <cucumber.runner>testngParallel.xml</cucumber.runner>
         <crowdar.driverHub></crowdar.driverHub>
         <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.tella.report.CucumberReporter: --plugin pretty</crowdar.cucumber.option>
-        <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
-        <crowdar.remoteDriverType></crowdar.remoteDriverType>
-        <crowdar.reporter.avent>true</crowdar.reporter.avent>
     </properties>
 
     <profiles>
@@ -36,7 +35,9 @@
                 <crowdar.avd>Pixel3</crowdar.avd>
                 <crowdar.appLocation>D:\\\\Mita\\\\Tella.apk</crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
-                <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emuladoCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
+                <crowdar.projectType.driverCapabilities.jsonFile>
+                    src/main/resources/capabilities/emuladoCapabilities.json
+                </crowdar.projectType.driverCapabilities.jsonFile>
             </properties>
         </profile>
         <profile>
@@ -48,7 +49,7 @@
                 <crowdar.driverHub>http://127.0.0.1:4723/wd/hub</crowdar.driverHub>
                 <cucumber.runner>testng.xml</cucumber.runner>
                 <crowdar.avd>Pixel3</crowdar.avd>
-                <crowdar.appLocation>C:\\\\Users\\\\golde\\\\Desktop\\\\lippia-mobile-sample-project\\\\sample_apk\\\\lippia.apk</crowdar.appLocation>
+                <crowdar.appLocation>D:\\\\apk\\\\mobile-release_168.apk</crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
             </properties>
         </profile>
@@ -73,7 +74,7 @@
                 <crowdar.driverHub>http://127.0.0.1:4723/wd/hub</crowdar.driverHub>
                 <cucumber.runner>testng.xml</cucumber.runner>
                 <crowdar.avd></crowdar.avd>
-                <crowdar.appLocation>D:\\\\Mita\\\\Tella.apk</crowdar.appLocation>
+                <crowdar.appLocation>D:\\\\apk\\\\mobile-release_168.apk</crowdar.appLocation>
                 <crowdar.deviceName>S21 ULTRA</crowdar.deviceName>
                 <crowdar.cucumber.filter>@Automated</crowdar.cucumber.filter>
             </properties>
@@ -84,14 +85,16 @@
                 <crowdar.projectType>MOBILE_IOS</crowdar.projectType>
             </properties>
         </profile>
-    	<profile>
+        <profile>
             <id>BrowserStack</id>
             <properties>
                 <cucumber.runner>testng.xml</cucumber.runner>
                 <crowdar.deviceName>Google Pixel 3</crowdar.deviceName>
                 <crowdar.os.version>9.0</crowdar.os.version>
                 <crowdar.appLocation>bs://7e498849c478c31cba239bb5edcd0a73cd3c3fed</crowdar.appLocation>
-                <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/browserStackCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
+                <crowdar.projectType.driverCapabilities.jsonFile>
+                    src/main/resources/capabilities/browserStackCapabilities.json
+                </crowdar.projectType.driverCapabilities.jsonFile>
                 <crowdar.driverHub>https://user:key@hub-cloud.browserstack.com/wd/hub</crowdar.driverHub>
             </properties>
         </profile>
@@ -99,9 +102,9 @@
 
     <dependencies>
         <dependency>
-                <groupId>io.lippia</groupId>
-                <artifactId>core</artifactId>
-                <version>${project.parent.version}</version>
+            <groupId>io.lippia</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>io.lippia.report</groupId>
@@ -132,19 +135,18 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M4</version>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M4</version>
                 <configuration>
-                    <useSystemClassLoader>false</useSystemClassLoader>
+                    <useSystemClassLoader>true</useSystemClassLoader>
                     <suiteXmlFiles>
                         <suiteXmlFile>${cucumber.runner}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
-                        <TEST_MANAGER_USERNAME>${env.LTM_USERNAME}</TEST_MANAGER_USERNAME>
-                        <TEST_MANAGER_PASSWORD>${env.LTM_PASSWORD}</TEST_MANAGER_PASSWORD>
+                        <TEST_MANAGER_USERNAME>amatos3@gmail.com</TEST_MANAGER_USERNAME>
+                        <TEST_MANAGER_PASSWORD>vale3009.M</TEST_MANAGER_PASSWORD>
                         <TEST_MANAGER_API_HOST>https://testmanager.crowdaracademy.lippia.io/</TEST_MANAGER_API_HOST>
-                        <TEST_MANAGER_API_PORT></TEST_MANAGER_API_PORT>
-                        <TEST_MANAGER_RUN_NAME>PruebasUnlockTella</TEST_MANAGER_RUN_NAME>
+                        <TEST_MANAGER_RUN_NAME>test_automation</TEST_MANAGER_RUN_NAME>
                         <TEST_MANAGER_PROJECT_CODE>TELL</TEST_MANAGER_PROJECT_CODE>
 
                     </systemPropertyVariables>
@@ -154,11 +156,11 @@
     </build>
 
     <repositories>
-		<repository>
-			<id>crowdarRepo</id>
-			<name>crowdar-repository</name>
-			<url>https://nexus-v3-repositories.automation.crowdaronline.com/repository/maven-public/</url>
-		</repository>
-	</repositories>
+        <repository>
+            <id>crowdarRepo</id>
+            <name>crowdar-repository</name>
+            <url>https://nexus-v3-repositories.automation.crowdaronline.com/repository/maven-public/</url>
+        </repository>
+    </repositories>
 
 </project>

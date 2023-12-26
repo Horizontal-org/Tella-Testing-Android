@@ -4,6 +4,7 @@ import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.AudioConstants;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,8 +15,6 @@ import java.util.List;
 public class AudioService {
 
     static String nameChanged =null;
-    static WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
-    static WebDriverWait wait = new WebDriverWait(driver, 10);
 
     public static void clickRecOption(){
         MobileActionManager.waitVisibility(AudioConstants.REC_OPTION);
@@ -35,6 +34,8 @@ public class AudioService {
     }
 
     public static void deleteLastName(){
+        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement inputField = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(AudioConstants.TITLE_AUDIO_RECORDING_INPUT)));
         inputField.clear();
     }
@@ -46,6 +47,7 @@ public class AudioService {
     public static void clickOkButton(){
         MobileActionManager.waitClickable(AudioConstants.OK_BUTTON);
         MobileActionManager.click(AudioConstants.OK_BUTTON);
+        nameChanged = MobileActionManager.getText(AudioConstants.RECORD_NAME_PENCIL_ICON);
     }
 
     public static void clickStopOption(){
@@ -64,10 +66,15 @@ public class AudioService {
     }
 
     public static void acceptPermissions() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id(AudioConstants.PERMISSIONS_MESSAGE)));
-        List<WebElement> elems = DriverManager.getDriverInstance().getWrappedDriver().findElements(By.id(AudioConstants.PERMISSIONS_MESSAGE));
-        if (elems.size() > 0) {
-            DriverManager.getDriverInstance().getWrappedDriver().findElement(By.id(AudioConstants.PERMISSIONS_ACCEPT_BUTTON)).click();
+        try {
+            WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.id(AudioConstants.PERMISSIONS_MESSAGE)));
+            List<WebElement> elems = DriverManager.getDriverInstance().getWrappedDriver().findElements(By.id(AudioConstants.PERMISSIONS_MESSAGE));
+            if (elems.size() > 0) {
+                DriverManager.getDriverInstance().getWrappedDriver().findElement(By.id(AudioConstants.PERMISSIONS_ACCEPT_BUTTON)).click();
+            }
+        } catch (TimeoutException e) {
         }
     }
 
