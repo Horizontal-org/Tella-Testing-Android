@@ -1,41 +1,32 @@
+  @Servers
   Feature: Servers
-    
-  @smoke
-  Scenario: View Settings in the Server Category
+  
+  Background
   Given the user is authenticated in the Tella application with valid credentials 654321
-  And is on the main page
-  And they view the settings icon
-  And click on it
-  When the user sees a list of categories with various configurations that can be performed
+	And the user is in Tella home page
+  
+  @Smoke
+  Scenario: View Settings in the Server Category
+  When the user taps the settings icon
   And selects the option "Servers"
   Then the user views the server configurations
   
-  @smoke
+  @Smoke
   Scenario: View Server Options
-  Given the user is authenticated in the Tella application with valid credentials 654321
-  And is on the main page
-  And they view the settings icon
-  And click on it
-  And the user sees a list of categories with various configurations that can be performed
+ 
+  When the user taps the settings icon
   And selects the option "Servers"
-  When the user views the server configurations
   And presses the "Add" icon
-  Then they should see all possible server options available for connection
+  Then the user sees all possible server options available for connection
   
-  @smoke
+  @Smoke
   Scenario Outline: Select Server
-  Given the user is authenticated in the Tella application with valid credentials 654321
-  And is on the main page
-  And they view the settings icon
-  And click on it
-  And the user sees a list of categories with various configurations that can be performed
+  When the user taps the settings icon
   And selects the option "Servers"
-  And the user views the server configurations
   And presses the "Add" icon
-  And sees all possible server options available for connection
-  When they select the server <server>
+  And selects the server <server>
   And press OK
-  Then they should see the chosen server with the corresponding configurations for establishing the connection
+  Then the user sees the chosen server with the corresponding configurations for establishing the connection
  
   Examples:
 	|server             |
@@ -43,7 +34,7 @@
 	|Tella_Web          |
 	|Uwazi              |
 	
-	@smoke
+	@Smoke
   Scenario: Configure Open Data Kit Server
   Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
@@ -54,7 +45,7 @@
   Then the user views the server settings with fields "server name"; "server URL" to fill
   And presses "save" to save the configuration
 
-  @smoke
+  @Smoke
   Scenario: Configure Advanced Open Data Kit Server
   Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
@@ -67,7 +58,7 @@
   Then the user views the fields "user name"; "password" to fill
   And presses "save" to save the configuration
 
-  @smoke
+  @Smoke
   Scenario Outline: Configure whit URL Server
   Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings
@@ -82,7 +73,7 @@
   |Tella Web|
   |Uwazi    |
 
-  @smoke
+  @Smoke
   Scenario Outline: Access Login for Project Access
   Given the user is logged in Tella with valid credentials 654321
   And taps the wheel icon to access settings

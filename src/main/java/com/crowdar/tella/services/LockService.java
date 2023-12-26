@@ -1,6 +1,7 @@
 package com.crowdar.tella.services;
 
 import com.crowdar.core.actions.MobileActionManager;
+import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.LockUnlockConstants;
 import org.testng.Assert;
 
@@ -22,9 +23,9 @@ public class LockService {
     }
 
     public static void errorMessageDisplayed(String message){
-        MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_DONT_MATCH_MSG);
-        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.LOCK_DONT_MATCH_MSG));
-        String errorMessagePage = MobileActionManager.getText(LockUnlockConstants.LOCK_DONT_MATCH_MSG);
+        MobileActionManager.waitVisibility(HomeConstants.APP_MSG);
+        Assert.assertTrue(MobileActionManager.isVisible(HomeConstants.APP_MSG));
+        String errorMessagePage = MobileActionManager.getText(HomeConstants.APP_MSG);
         Assert.assertEquals(message, errorMessagePage);
     }
 
