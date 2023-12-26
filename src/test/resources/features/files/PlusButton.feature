@@ -4,7 +4,7 @@ Feature: Plus button
   Background:
     Given the user is in Tella home page
 
-  @Smoke @Automated
+  @Smoke @folder
   Scenario Outline: Capture a file of type <type> from folder <folder>
     When the user enters the folder <folder>
     And taps the "+" button
@@ -12,8 +12,8 @@ Feature: Plus button
     And selects the option <option>
     And captures the file of type <type>
     Then the message <expectedMessage> appears
-    And the file of type <type> is saved correctly in the folder <folder>
-    And the file of type <type> appears in the list of files in the folder <folderSave>
+    And the file of type <type> is saved correctly in the folder <folderSave>
+    And the file appears in the list of files in the folder <folderSave>
     Then the file appears in the "All files" folder
 
     Examples:
@@ -26,8 +26,8 @@ Feature: Plus button
       | video | Videos     | Video  | Images    | File encrypted  |
       | image | Images     | Photo  | Audio     | File encrypted  |
       | video | Videos     | Video  | Audio     | File encrypted  |
-      | image | Images     | Photo  | Video     | File encrypted  |
-      | video | Videos     | Video  | Video     | File encrypted  |
+      | image | Images     | Photo  | Videos    | File encrypted  |
+      | video | Videos     | Video  | Videos    | File encrypted  |
       | image | Images     | Photo  | Others    | File encrypted  |
       | video | Videos     | Video  | Others    | File encrypted  |
 

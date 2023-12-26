@@ -67,30 +67,27 @@ public class FilesService {
     public static void validateMessage(String expectedMessage){
         Assert.assertEquals(expectedMessage, message);
         MobileActionManager.click(FilesConstants.CLOSE_BUTTON);
-    }
-
-    public static void validateFileCreation(String type, String nameFolder){
-        String currentFolder = MobileActionManager.getText(FilesConstants.CURRENT_FOLDER);
-        Assert.assertEquals(currentFolder, nameFolder);
-        validateExtension(type);
-
-        createdFile = MobileActionManager.getText(FilesConstants.CREATED_FILE_NAME);
 
         //regresamos al homepage de la aplicación
         MobileActionManager.click(FilesConstants.BACK_BUTTON);
     }
 
-    public static void validateFileCreationFolderSave(String type, String folderSave){
+    public static void validateFileCreation(String type, String nameFolder){
         WebElement folderSaveElement = DriverManager.getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
                 "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
                         ".scrollIntoView(new UiSelector()" +
-                        ".textMatches(\"" + folderSave + "\").instance(0))"));
+                        ".textMatches(\"" + nameFolder + "\").instance(0))"));
         folderSaveElement.click();
 
         String currentFolder = MobileActionManager.getText(FilesConstants.CURRENT_FOLDER);
-        Assert.assertEquals(currentFolder, folderSave);
+        Assert.assertEquals(currentFolder, nameFolder);
         validateExtension(type);
+    }
 
+    public static void validateAppearsFolderSave(String folderSave){
+        MobileActionManager.waitVisibility(FilesConstants.CREATED_FILE_NAME);
+        String currentFolder = MobileActionManager.getText(FilesConstants.CURRENT_FOLDER);
+        Assert.assertEquals(currentFolder, folderSave);
         //regresamos al homepage de la aplicación
         MobileActionManager.click(FilesConstants.BACK_BUTTON);
     }
