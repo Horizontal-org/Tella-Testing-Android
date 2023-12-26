@@ -82,6 +82,7 @@ public class FilesService {
         String currentFolder = MobileActionManager.getText(FilesConstants.CURRENT_FOLDER);
         Assert.assertEquals(currentFolder, nameFolder);
         validateExtension(type);
+        createdFile = MobileActionManager.getText(FilesConstants.CREATED_FILE_NAME);
     }
 
     public static void validateAppearsFolderSave(String folderSave){
