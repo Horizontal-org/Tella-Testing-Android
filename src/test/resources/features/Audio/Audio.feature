@@ -1,7 +1,7 @@
 Feature: Rec
 
-Background:
-  Given the user is in Tella home page
+  Background:
+    Given the user is in Tella home page
 
   @Smoke @Audio
   Scenario: Record an audio file
@@ -32,7 +32,7 @@ Background:
       | recording_name |
       | Audio1         |
 
-  @Smoke @Audio
+  @Smoke @Audio @Automated
   Scenario Outline: Rename an audio file during the recording
     When the user press the Rec option
     And the user press the microphone
@@ -83,4 +83,3 @@ Background:
     And the user press play
     And the user press rewind
     Then the audio file is reproduced again
-
