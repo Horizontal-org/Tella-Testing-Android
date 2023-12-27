@@ -1,5 +1,5 @@
 @Smoke @Unlock
-Feature: As a potential client i want to interact with the mobile application
+Feature: Unlock
 
 
   @Password @Automated

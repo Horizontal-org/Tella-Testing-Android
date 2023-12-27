@@ -6,7 +6,7 @@ Background:
   And there are files and folders within Tella
   And they are on the Tella Home screen
 
-@Smoke
+@Smoke @Automatable
 Scenario Outline: Open a multimedia file <type> from the folder <folder>
 When the user enters the folder <folder>
 And taps on a <type> file
@@ -19,7 +19,7 @@ Examples:
   | Videos     | video  |
   | Audio      | audio  |
 
-@Regression
+@Regression @Automatable
 Scenario Outline: Rename a file of <type> from the folder <folder>
 When the user enters the folder <folder>
 And taps the options button "⋮" of the <type> file
@@ -123,7 +123,7 @@ Examples:
   | WhatsApp    | share files + verification information | video                         | Videos     |
   | WhatsApp    | share files + verification information | audio                         | Audios     |
 
-@Smoke
+@Smoke @Automatable
 Scenario Outline: Save a file of <type> to the device from the folder <folder>
 When the user enters the folder <folder>
 And taps the options button "⋮" for the <type> file
@@ -142,7 +142,7 @@ Examples:
   | share files + verification information  | video     | Videos     |
   | share only files                        | audio     | Audios     |
   
-@Smoke
+@Smoke @Automatable
 Scenario Outline: Delete a file of <type> from the folder <folder>
 When the user enters the folder <folder>
 And taps the options button "⋮" for the <type> file
@@ -158,7 +158,7 @@ Examples:
   | audio     | Audios     |
   | document  | Documents  |
 
-@Regression
+@Regression @Automatable
 Scenario Outline: Delete multiple files of <type> from the folder <folder>
 When the user enters the folder <folder>
 And taps the "Checkbox" button
@@ -176,7 +176,7 @@ Examples:
   | audio    | Audios     |
   | document | Documents  |
  
-@Regression
+@Regression @Automatable
 Scenario Outline: View the information of a <type> file from the folder <folder>
 When the user enters the folder <folder>
 And taps the options button "⋮" of the <type> file
