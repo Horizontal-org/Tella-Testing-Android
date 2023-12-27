@@ -3,7 +3,7 @@ Feature: Rec
   Background:
     Given the user is in Tella home page
 
-  @Smoke @Audio 
+  @Smoke @Audio
   Scenario: Record an audio file
     When the user press "Rec"
     And the user press the microphone
