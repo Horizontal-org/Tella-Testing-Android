@@ -41,6 +41,18 @@
             </properties>
         </profile>
         <profile>
+            <id>Fisico</id>
+            <activation>
+            </activation>
+            <properties>
+                <crowdar.driverHub>http://127.0.0.1:4723/wd/hub</crowdar.driverHub>
+                <cucumber.runner>testng.xml</cucumber.runner>
+                <crowdar.appLocation>D:\\\\Mita\\\\clockify.apk</crowdar.appLocation>
+                <crowdar.deviceName>Galaxy A03s</crowdar.deviceName>
+                <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/fisicoCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
+            </properties>
+        </profile>
+        <profile>
             <id>Local</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
