@@ -20,7 +20,7 @@
         <crowdar.cucumber.filter>@Smoke</crowdar.cucumber.filter>
         <cucumber.runner>testngParallel.xml</cucumber.runner>
         <crowdar.driverHub></crowdar.driverHub>
-        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags '@Audio' --plugin com.crowdar.tella.report.TestManagerReporter: --plugin pretty</crowdar.cucumber.option>
+        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags not '@Ignore' --plugin com.crowdar.tella.report.TestManagerReporter: --plugin pretty</crowdar.cucumber.option>
     </properties>
 
     <profiles>
@@ -141,7 +141,7 @@
                         <TEST_MANAGER_USERNAME>cervantes.mariana.6017@gmail.com</TEST_MANAGER_USERNAME>
                         <TEST_MANAGER_PASSWORD>mita6017LTM</TEST_MANAGER_PASSWORD>
                         <TEST_MANAGER_API_HOST>https://runs.crowdaracademy.lippia.io</TEST_MANAGER_API_HOST>
-                        <TEST_MANAGER_RUN_NAME>test_automation</TEST_MANAGER_RUN_NAME>
+                        <TEST_MANAGER_RUN_NAME>Test Automated</TEST_MANAGER_RUN_NAME>
                         <TEST_MANAGER_PROJECT_CODE>TELL</TEST_MANAGER_PROJECT_CODE>
 
                     </systemPropertyVariables>

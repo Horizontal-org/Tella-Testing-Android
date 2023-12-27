@@ -1,3 +1,4 @@
+@Lock
 Feature: Lock Options
 
 Background:
@@ -118,7 +119,7 @@ Scenario Outline: Failed PIN lenght
     And tap the "Patrón" button
     And draws a pattern with a number of points less than six
     Then the "Siguiente" button remains disabled
-  
+
 
 
 
