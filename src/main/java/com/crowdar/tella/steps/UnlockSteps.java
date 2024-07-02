@@ -2,8 +2,7 @@ package com.crowdar.tella.steps;
 
 import com.crowdar.core.PageSteps;
 import com.crowdar.tella.services.UnlockService;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.*;
 
 public class UnlockSteps extends PageSteps {
 

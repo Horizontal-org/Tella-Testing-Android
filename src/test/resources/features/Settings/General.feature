@@ -4,7 +4,7 @@ Feature: General
   Background:
     Given the user is in Tella home page
 
-  @Ignore
+
   Scenario: View Settings Categories
   When they view the settings icon
   And click on it

@@ -3,24 +3,53 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>Tella-mobile-project</artifactId>
-    <url>http://maven.apache.org</url>
+    <url>https://maven.apache.org</url>
     <packaging>jar</packaging>
     <name>Tella-mobile-project</name>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
+
+    <developers>
+        <developer>
+            <id>Brabbit</id>
+            <name>Ariadna Garcia</name>
+            <email>garciaariadna139@gmail.com</email>
+            <timezone>Latam/Argentina</timezone>
+        </developer>
+        <developer>
+            <id>Lisa</id>
+            <name>Ariadna Garcia</name>
+            <email>garciaariadna139@gmail.com</email>
+            <timezone>Latam/Argentina</timezone>
+        </developer>
+    </developers>
 
     <parent>
         <groupId>io.lippia</groupId>
         <artifactId>root</artifactId>
-        <version>3.2.3.8</version>
+        <version>3.3.0.2</version>
     </parent>
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <crowdar.cucumber.filter>@Smoke</crowdar.cucumber.filter>
-        <cucumber.runner>testngParallel.xml</cucumber.runner>
+        <maven.build.timestamp.format>dd-MM-yyyy-HH-mm-ss</maven.build.timestamp.format>
+        <buildIdentifier>Ariadna_Garcia_Project_${maven.build.timestamp}</buildIdentifier>
+        <crowdar.cucumber.filter>@Automated</crowdar.cucumber.filter>
         <crowdar.driverHub></crowdar.driverHub>
-        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes  --tags ${crowdar.cucumber.filter} --tags not '@Ignore' --plugin com.crowdar.tella.report.Reporter: --plugin pretty</crowdar.cucumber.option>
+        <crowdar.cucumber.plugins>--plugin pretty --plugin
+            com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin
+            com.crowdar.tella.listeners.CucumberListener:
+        </crowdar.cucumber.plugins>
+        <test-manager-plugin>--plugin com.crowdar.tella.report.TestManager:</test-manager-plugin>
+        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes --tags
+            ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.tella.report.Reporter: --plugin pretty
+        </crowdar.cucumber.option>
+        <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json
+        </crowdar.projectType.driverCapabilities.jsonFile>
+        <crowdar.remoteDriverType></crowdar.remoteDriverType>
+        <crowdar.reporter.avent>true</crowdar.reporter.avent>
+        <crowdar.extent.host.name>LocalMachine</crowdar.extent.host.name>
+        <crowdar.extent.environment>Local</crowdar.extent.environment>
+        <crowdar.extent.user.name>User.name</crowdar.extent.user.name>
     </properties>
 
     <profiles>
@@ -30,10 +59,10 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <crowdar.driverHub>http://127.0.0.1:4723/wd/hub</crowdar.driverHub>
-                <cucumber.runner>testng.xml</cucumber.runner>
+                <crowdar.driverHub>http://127.0.0.1:4723/</crowdar.driverHub>
+                <cucumber.runner>testngSecuencial.xml</cucumber.runner>
                 <crowdar.avd>Pixel3</crowdar.avd>
-                <crowdar.appLocation>D:\\\\Mita\\\\Tella.apk</crowdar.appLocation>
+                <crowdar.appLocation>C:\\\\mobile-release.apk</crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
                 <crowdar.projectType.driverCapabilities.jsonFile>
                     src/main/resources/capabilities/emuladoCapabilities.json
@@ -45,11 +74,13 @@
             <activation>
             </activation>
             <properties>
-                <crowdar.driverHub>http://127.0.0.1:4723/wd/hub</crowdar.driverHub>
-                <cucumber.runner>testng.xml</cucumber.runner>
-                <crowdar.appLocation>D:\\\\Mita\\\\Tella.apk</crowdar.appLocation>
+                <crowdar.driverHub>http://127.0.0.1:4723/</crowdar.driverHub>
+                <cucumber.runner>testngSecuencial.xml</cucumber.runner>
+                <crowdar.appLocation>C:\\\\mobile-release.apk</crowdar.appLocation>
                 <crowdar.deviceName>Galaxy A03s</crowdar.deviceName>
-                <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/fisicoCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
+                <crowdar.projectType.driverCapabilities.jsonFile>
+                    src/main/resources/capabilities/fisicoCapabilities.json
+                </crowdar.projectType.driverCapabilities.jsonFile>
             </properties>
         </profile>
         <profile>
@@ -58,8 +89,8 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <crowdar.driverHub>http://127.0.0.1:4723/wd/hub</crowdar.driverHub>
-                <cucumber.runner>testng.xml</cucumber.runner>
+                <crowdar.driverHub>http://127.0.0.1:4723/</crowdar.driverHub>
+                <cucumber.runner>testngSecuencial.xml</cucumber.runner>
                 <crowdar.avd>Pixel3</crowdar.avd>
                 <crowdar.appLocation>D:\\\\apk\\\\mobile-release_168.apk</crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
@@ -68,7 +99,7 @@
         <profile>
             <id>StackLocal</id>
             <properties>
-                <crowdar.driverHub>http://localhost:4444/wd/hub</crowdar.driverHub>
+                <crowdar.driverHub>http://localhost:4444/</crowdar.driverHub>
                 <crowdar.avd>samsung_galaxy_s7_9.0</crowdar.avd>
                 <crowdar.appLocation>/root/tmp/sample_apk/lippia.apk</crowdar.appLocation>
                 <crowdar.deviceName>Android Emulator</crowdar.deviceName>
@@ -81,14 +112,6 @@
             </activation>
             <properties>
                 <crowdar.projectType>MOBILE_ANDROID</crowdar.projectType>
-                <platform>android</platform>
-                <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
-                <crowdar.driverHub>http://127.0.0.1:4723/wd/hub</crowdar.driverHub>
-                <cucumber.runner>testng.xml</cucumber.runner>
-                <crowdar.avd></crowdar.avd>
-                <crowdar.appLocation>D:\\\\Mita\\\\Tella.apk</crowdar.appLocation>
-                <crowdar.deviceName>S21 ULTRA</crowdar.deviceName>
-                <crowdar.cucumber.filter>@Automated</crowdar.cucumber.filter>
             </properties>
         </profile>
         <profile>
@@ -100,7 +123,7 @@
         <profile>
             <id>BrowserStack</id>
             <properties>
-                <cucumber.runner>testng.xml</cucumber.runner>
+                <cucumber.runner>testngSecuencial.xml</cucumber.runner>
                 <crowdar.deviceName>Google Pixel 3</crowdar.deviceName>
                 <crowdar.os.version>9.0</crowdar.os.version>
                 <crowdar.appLocation></crowdar.appLocation>
@@ -108,6 +131,26 @@
                     src/main/resources/capabilities/browserStackCapabilities.json
                 </crowdar.projectType.driverCapabilities.jsonFile>
                 <crowdar.driverHub>https://user:key@hub-cloud.browserstack.com/wd/hub</crowdar.driverHub>
+            </properties>
+        </profile>
+        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+        <!--   Profiles related to Runners ejecutions         -->
+        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+        <profile>
+            <id>secuencial</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <runner>testngSecuencial.xml</runner>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>parallel</id>
+            <properties>
+                <runner>testngParallel.xml</runner>
             </properties>
         </profile>
     </profiles>
@@ -129,16 +172,18 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
     <build>
         <testResources>
             <testResource>
+                <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+            </testResource>
+            <testResource>
                 <directory>src/test/resources</directory>
+                <filtering>true</filtering>
             </testResource>
         </testResources>
-        <filters>
-            <filter>src/main/resources/cucumber.properties</filter>
-        </filters>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -155,8 +200,19 @@
                         <TEST_MANAGER_API_HOST></TEST_MANAGER_API_HOST>
                         <TEST_MANAGER_RUN_NAME></TEST_MANAGER_RUN_NAME>
                         <TEST_MANAGER_PROJECT_CODE></TEST_MANAGER_PROJECT_CODE>
-
                     </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                    <compilerArgs>
+                        <arg>-Xlint:unchecked</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>
