@@ -1,10 +1,10 @@
 {
-  "deviceName": "{{deviceName}}",
-  "app": "{{app}}",
+  "appium:deviceName": "{{deviceName}}",
+  "appium:app": "{{app}}",
   "platformName": "Android",
-  "avd": "{{avd}}",
-  "resetKeyboard": "true",
-  "unicodeKeyboard": "true",
+  "appium:avd": "{{avd}}",
+  "appium:resetKeyboard": "true",
+  "appium:unicodeKeyboard": "true",
   "appPackage": "org.hzontal.tella",
   "appActivity": "rs.readahead.washington.mobile.views.activity.SplashActivity",
   "noReset": false

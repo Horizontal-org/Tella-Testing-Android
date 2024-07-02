@@ -256,7 +256,7 @@ The test cases are executed using **TestNG** class. This class is the main entry
 <suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="1" configfailurepolicy="continue">
     <test name="Login and Update Profile Test" annotations="JDK" preserve-order="true">
         <classes>
-            <class name="com.crowdar.bdd.cukes.TestNGSecuencialRunner" />
+            <class name="com.crowdar.bdd.cukes.com.crowdar.tella.TestNGSecuencialRunner" />
         </classes>
     </test>
 </suite>
@@ -271,7 +271,7 @@ The test cases are executed using **TestNG** class. This class is the main entry
 <suite name="BDD Test Suite" verbose="1" parallel="methods" data-provider-thread-count="4" thread-count="4" configfailurepolicy="continue">
     <test name="Test 1" annotations="JDK" preserve-order="true">
         <classes>
-            <class name="com.crowdar.bdd.cukes.TestNGParallelRunner"/>
+            <class name="com.crowdar.bdd.cukes.com.crowdar.tella.TestNGParallelRunner"/>
         </classes>
     </test>
 </suite>
