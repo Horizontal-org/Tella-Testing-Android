@@ -17,27 +17,54 @@ to test a Mobile App using Lippia Automation Framework and Docker Android stack 
 - Mobile physical & emulated solution only using Maven [`Getting started - Running only with Maven`](docs/README_Maven.md)
 - Mobile emulated solution using Docker [`Getting started - Running with Docker`](docs/README_Docker.md)
 
+### Appium instalation ###
+- If you have appium installed, proceed to uninstall it and then use this command in terminal **"npm i -location=global appium"**, after this step restart the pc.
+- Now we will execute the following command **"appium driver install uiautomator2"**.
+- Once appium is installed, it must be run with the **"appium"** command through a terminal.
+
+### Appium inspector instalation ###
+- Enter the following link: https://github.com/appium/appium-inspector/releases and download the version corresponding to your operating system and install it.
+- Once installed, we will configure the inspector by verifying that it has the local IP on the **“Remote Host”** on port **“4723”** and verify that the **“Remote Path”** only contains “/”.
+
+### Error prevention ###
+- When you have an appium server up, run the following commands at the same time as the emulator is up in a console:
+```
+adb uninstall io.appium.uiautomator2.server
+```
+```
+adb uninstall 	io.appium.uiautomator2.server.test
+```
+This is done in order to prevent problems between the uiautomato2 of previous versions of appium which causes problems when inspecting or executing tests in the new version.
+
+
+
+
 # Reports integrations   
 
-We believe that the reports should express the results of our tests in the most legible, detailed and pleasant way possible, so that in this way, our clients have at their disposal a report on the operation and behavior of their product, as well as the performance of the team. That is why Lippia, in addition to supporting the integration with **ExtentReport**, provides a **ReportServer** for each client.   
-Next, we will see the structure of the project and from where we can access them.
+We believe that the reports should express the results of our tests in the most legible, detailed and pleasant way possible, so that in this way, our clients have at their disposal a report on the operation and behavior of their product, as well as the performance of the team. 
+This example offers different reporting outoputs:
+- **Cucumber Reporting Pretty Console Output**: this reporter ius useful to see log execution in console output, in the IDE and in the CI/CD pipeline output. 
+- **Lippia Test Manager**  a solution that combines Manual and Automation tests results in a single platform. To know more see [Lippia.io](https://lippia.io)
+- **ExtentReport** a community solution for simple reports. To know more see [Extent Reports documentation](https://www.extentreports.com/docs/versions/4/java/cucumber4.html)
 
-### Reports are generated in the folder called **target**, which will be generated once the execution of the test suite is finished.   
-Note that the following structure is part of the report generated with **ExtentReport** library.
-```
-├── lippia-mobile-sample-project
-    ├── docs
-    |   └── ...
-    ├── src
-    |   └── ...
-    ├── target
-    |   └── reports
-    |       └── index.html
-    └── ...
-```
+### Cucumber Reporting Pretty Console Output ###
+By default this project uses Cucumber Reporting plugin with console output. This plugin shows results in plain console that is useful for development environments and CI-CD pipelines.
 
-### index.html
-![ExtentReport example](docs/img/extentReportExample.png)
+!<img src="docs/img/pretty-console-output.png" width="800px" alt="Pretty console Output"></img>
+
+
+### Lippia Test Manager ###
+This integration uses an adaptar that automatically ingests results of Scenarios into Lippia Test Manager. 
+You just simply need to implement [*LTM-adapter-cucumber4-JVM*](https://github.com/Crowdar/LTM-adapter-cucumber4-JVM) and you can see the results in Lippia Test Manager as an Automated Run Result.
+
+!<img src="docs/img/LTM-RunLists.png" width="800px" alt="Runs List"></img>
+!<img src="docs/img/LTM-RunAutomatedResult.png" width="800px" alt="Run Automated Result sample"></img>
+
+### Extent Reports Integration ###
+Reports are generated in the folder called **target**, which will be generated once the execution of the test suite is finished.   
+Note that the following structure is part of the report generated with **ExtentReport** library after running the test project using the Extent plugin. Results report can be found at *lippia-mobile-sample-project/target/reports/index.html*
+
+!<img src="docs/img/extentReportExample.png" width="800px" alt="index.hmtl sample"></img>
 
 ## Project structure
 
@@ -203,14 +230,16 @@ Feature: As a potential client i want to interact with the mobile application
 
 The capabilities are located in a json file. This file is mandatory. The values that are inside "{{}}" are replaced with the values located in config.properties and in that file, the key must be equal to the property to replace. For example, in config.properties: deviceName=Android ; Avd property must be empty in case of using a real device.
 
+### Android Studio Capabilities
 ```
 {
-  "deviceName": "{{deviceName}}",
-  "app": "{{app}}",
+  "appium:deviceName": "{{deviceName}}",
+  "appium:app": "{{app}}",
   "platformName": "Android",
-  "avd": "{{avd}}",
-  "resetKeyboard": "true",
-  "unicodeKeyboard": "true"
+  "appium:avd": "{{avd}}",
+  "appium:resetKeyboard": "true",
+  "appium:unicodeKeyboard": "true",
+  "appium:automationName": "UiAutomator2"
 }
 ```
 
@@ -256,7 +285,7 @@ The test cases are executed using **TestNG** class. This class is the main entry
 <suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="1" configfailurepolicy="continue">
     <test name="Login and Update Profile Test" annotations="JDK" preserve-order="true">
         <classes>
-            <class name="com.crowdar.bdd.cukes.com.crowdar.tella.TestNGSecuencialRunner" />
+            <class name="com.crowdar.bdd.cukes.TestNGSecuencialRunner" />
         </classes>
     </test>
 </suite>
@@ -271,7 +300,7 @@ The test cases are executed using **TestNG** class. This class is the main entry
 <suite name="BDD Test Suite" verbose="1" parallel="methods" data-provider-thread-count="4" thread-count="4" configfailurepolicy="continue">
     <test name="Test 1" annotations="JDK" preserve-order="true">
         <classes>
-            <class name="com.crowdar.bdd.cukes.com.crowdar.tella.TestNGParallelRunner"/>
+            <class name="com.crowdar.bdd.cukes.TestNGParallelRunner"/>
         </classes>
     </test>
 </suite>

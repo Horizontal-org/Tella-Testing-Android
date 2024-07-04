@@ -11,3 +11,4 @@ pipelines:
           script:
             - git remote add github https://$GITHUB_USER:$GITHUB_TOKEN@github.com/Crowdar/lippia-mobile-sample-project.git
             - git push -u github
+
