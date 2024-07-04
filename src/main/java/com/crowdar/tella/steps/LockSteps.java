@@ -1,9 +1,11 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.tella.constants.LockUnlockConstants;
-import com.crowdar.tella.services.UnlockService;
 import com.crowdar.tella.services.LockService;
-import io.cucumber.java.en.*;
+import com.crowdar.tella.services.UnlockService;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class LockSteps {
 

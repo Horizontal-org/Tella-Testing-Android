@@ -1,7 +1,9 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.tella.services.FilesService;
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class FilesSteps {
 

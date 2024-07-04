@@ -2,7 +2,6 @@ package com.crowdar.tella.services;
 
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.constants.HomeConstants;
-import com.crowdar.tella.constants.LockUnlockConstants;
 import org.testng.Assert;
 
 

@@ -1,14 +1,9 @@
 {
-  "deviceName": "S21 ULTRA",
-  "app": "{{app}}",
-  "appium:automationName": "UiAutomator2",
+  "appium:deviceName": "{{deviceName}}",
+  "appium:app": "{{app}}",
   "platformName": "Android",
-  "avd": "{{avd}}",
-  "resetKeyboard": "true",
-  "unicodeKeyboard": "false",
-  "appium:deviceId": "R58N73X1T7M",
-  "autoGrantPermissions": "true",
-  "appium:ignoreHiddenApiPolicyError": true,
-  "noReset": false,
-  "appium:appWaitForLaunch" : false
+  "appium:avd": "{{avd}}",
+  "appium:resetKeyboard": "true",
+  "appium:unicodeKeyboard": "true",
+  "appium:automationName": "UiAutomator2"
 }
