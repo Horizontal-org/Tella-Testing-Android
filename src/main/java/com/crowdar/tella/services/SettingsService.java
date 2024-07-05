@@ -30,7 +30,6 @@ public class SettingsService {
         Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.LANGUAGE_LIST));
     }
 
-
     public static void clickChoosenLanguage(String language) {
         WebElement pedidoEle = DriverManager.getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
                 "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
@@ -38,7 +37,6 @@ public class SettingsService {
                         ".textMatches(\"" + language + "\").instance(0))"));
         pedidoEle.click();
     }
-
 
     public static void verifyLanguageTitle(String title){
         MobileActionManager.waitVisibility(SettingsConstants.LANGUAGE_TITLE);
