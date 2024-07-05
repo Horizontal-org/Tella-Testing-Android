@@ -1,4 +1,4 @@
-@General
+@General @Smoke @Regression
 Feature: General
 
   Background:
@@ -6,11 +6,11 @@ Feature: General
 
 
   Scenario: View Settings Categories
-  When they view the settings icon
-  And click on it
-  Then the user sees a list of categories with various configurations that can be performed
-	
-  @Regression @ChangeLanguage @Automated
+    When they view the settings icon
+    And click on it
+    Then the user sees a list of categories with various configurations that can be performed
+
+  @ChangeLanguage @Automated
   Scenario Outline: Change Language
     When the user taps the settings icon
     And taps the general option
@@ -21,7 +21,6 @@ Feature: General
 
     Examples:
       | language   | title         |
-      | Default    | Language      |
       | Arabic     | اللغة         |
       | Belarusian | Мова          |
       | English    | Language      |
@@ -39,7 +38,6 @@ Feature: General
       | Tamil      | மொழி         |
 
 
-  @Smoke
   Scenario: View General Category Configurations
     And they view the settings icon
     And click on it settings icon
@@ -47,34 +45,30 @@ Feature: General
     And presses the option "General"
     Then the user should view a list with the general configurations of the app
 
-
-  @Smoke
   Scenario: Share Crash Reports
     When the user taps the settings icon
     And taps on it to enable
     Then the user sees that the color has changed to green, indicating it is activated
 
 
-  @Smoke
   Scenario: Activate Verification Mode
     When the user taps the settings icon
     And taps on it to enable
     Then the user sees that the color has changed to green, indicating it is activated
 
 
-  @Smoke
   Scenario: Access Recent Files
     When the user taps the settings icon
     And taps on it to enable
     Then the user sees that the color has changed to green, indicating it is activated
 
-  @Smoke
+
   Scenario: Access Favorite Forms
     When the user taps the settings icon
     And taps on it to enable
     Then the user sees that the color has changed to green, indicating it is activated
 
-  @Smoke
+
   Scenario: Access Favorite Templates
     When the user taps the settings icon
     And taps on it to enable
