@@ -243,7 +243,7 @@
     | deleteOption                     | message                                                                                                                                          |
     | Delete files                     | Delete all the files stored in Tella                                                                                                             |
     | Delete draft and submitted forms | Delete all draft and submitted forms                                                                                                             |
-    | Delete server settings           | Delete your connections to servers and all                                                                                                       |
+    | Delete server settings           | Delete your connections to servers and all forms associated with them                                                                            |
     | Delete Tella                     | Delete the app and all the data it contains. You will be asked "Do you want to uninstall this app?" Unless you confirm,Tella will not be delete. |
 
  @Smoke @Android @Security @PreserveMetadata
