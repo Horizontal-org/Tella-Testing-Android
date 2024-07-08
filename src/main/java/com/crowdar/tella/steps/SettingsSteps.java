@@ -1,5 +1,6 @@
 package com.crowdar.tella.steps;
 
+import com.crowdar.core.PropertyManager;
 import com.crowdar.tella.services.HomeService;
 import com.crowdar.tella.services.SettingsService;
 import com.crowdar.tella.services.UnlockService;
@@ -9,7 +10,7 @@ public class SettingsSteps {
     @Given("the user is in Tella home page")
     public void theUserIsInTellaHomePage() {
         UnlockService.isViewLoaded();
-        UnlockService.setPassword("654321");
+        UnlockService.setPassword(PropertyManager.getProperty("password"));
         UnlockService.goTella();
         HomeService.isHomeLoaded();
     }

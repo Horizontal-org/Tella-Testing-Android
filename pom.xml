@@ -15,6 +15,12 @@
             <email>garciaariadna139@gmail.com</email>
             <timezone>Latam/Argentina</timezone>
         </developer>
+        <developer>
+            <id>LA</id>
+            <name>Lisa Acosta</name>
+            <email>lisa.acosta@gmail.com</email>
+            <url>https://github.com/Lisa-Acosta</url>
+        </developer>
     </developers>
 
 
