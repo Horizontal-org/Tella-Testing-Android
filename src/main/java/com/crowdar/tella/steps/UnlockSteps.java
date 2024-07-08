@@ -53,5 +53,9 @@ public class UnlockSteps extends PageSteps {
     }
 
 
+    @When("The user enter the password")
+    public void theUserEnterThePassword() {
+
+    }
 }
 

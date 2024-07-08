@@ -2,10 +2,10 @@
 Feature: Unlock
 
 
-  @Password @Automated
+  @Password123 @Automated
   Scenario Outline: The user start the application, unlock the app with a password.
     Given The app is loaded correctly with a password <password> set
-    When The user enter the password <password>
+    When The user enter the password
     Then Home page is displayed
 
     Examples:
