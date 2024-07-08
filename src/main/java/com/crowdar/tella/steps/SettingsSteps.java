@@ -3,10 +3,7 @@ package com.crowdar.tella.steps;
 import com.crowdar.tella.services.HomeService;
 import com.crowdar.tella.services.SettingsService;
 import com.crowdar.tella.services.UnlockService;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 
 public class SettingsSteps {
     @Given("the user is in Tella home page")
