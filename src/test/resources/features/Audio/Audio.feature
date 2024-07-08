@@ -1,4 +1,5 @@
-Feature: Rec
+@Regression @Audio
+Feature: Audio
 
   Background:
     Given the user is in Tella home page
