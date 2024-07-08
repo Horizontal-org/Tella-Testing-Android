@@ -26,7 +26,6 @@ public class AudioService {
         MobileActionManager.waitVisibility(AudioConstants.MICROPHONE_ICON);
         MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
         acceptPermissions();
-        //MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
     }
 
     public static void clickPencilIcon(){
