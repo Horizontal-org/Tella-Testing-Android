@@ -1,16 +1,17 @@
-Feature: Rec
+@Regression @Audio @Smoke
+
+Feature: Audio
 
   Background:
     Given the user is in Tella home page
 
-  @Smoke @Audio
+  @Success
   Scenario: Record an audio file
     When the user press "Rec"
     And the user press the microphone
     And the user press stop
     Then "The audio recording was saved to your Tella files" message is shown
 
-  @Smoke @Audio
   Scenario: Record an audio file in two parts
     When the user press "Rec"
     And the user press the microphone

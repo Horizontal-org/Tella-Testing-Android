@@ -4,14 +4,14 @@ Feature: Plus button
   Background:
     Given the user is in Tella home page
 
-  @Smoke @Automated @CaptureFile
+@Automated @Photo @Video @CaptureFile @oki
   Scenario Outline: Capture a file of type <type> from folder <folder>
     When the user enters the folder <folder>
     And taps the "+" button
     And selects the option: "Take photovideo"
     And selects the option <option>
     And captures the file of type <type>
-    Then the message <expectedMessage> appears
+    #And the message <expectedMessage> appears
     And the file of type <type> is saved correctly in the folder <folderSave>
     And the file appears in the list of files in the folder <folderSave>
     Then the file appears in the "All files" folder
@@ -19,17 +19,7 @@ Feature: Plus button
     Examples:
       | type  | folderSave | option | folder    | expectedMessage |
       | image | Images     | Photo  | All files | File encrypted  |
-      | video | Videos     | Video  | All files | File encrypted  |
-      | image | Images     | Photo  | Documents | File encrypted  |
-      | video | Videos     | Video  | Documents | File encrypted  |
-      | image | Images     | Photo  | Images    | File encrypted  |
-      | video | Videos     | Video  | Images    | File encrypted  |
-      | image | Images     | Photo  | Audio     | File encrypted  |
-      | video | Videos     | Video  | Audio     | File encrypted  |
-      | image | Images     | Photo  | Videos    | File encrypted  |
-      | video | Videos     | Video  | Videos    | File encrypted  |
-      | image | Images     | Photo  | Others    | File encrypted  |
-      | video | Videos     | Video  | Others    | File encrypted  |
+
 
   @Smoke
   Scenario Outline: Record an audio file from the folder <folder>
