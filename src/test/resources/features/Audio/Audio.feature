@@ -52,7 +52,7 @@ Feature: Audio
       | recording_name | message_title                                     |
       | Audio2         | The audio recording was saved to your Tella files |
 
-  @Listen
+  @Listen 
   Scenario: Listen an audio file
     When the user press "Rec"
     And the user press headphones
