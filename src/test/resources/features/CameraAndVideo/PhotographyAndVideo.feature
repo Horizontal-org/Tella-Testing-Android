@@ -134,9 +134,10 @@ Feature: PhotographyAndVideo
     And the video taked is not in device album
     And the verification information is collected correctly
   
-  @Smoke
-  Scenario Outline: share file from tella by mail
+  @Smoke @ShareFile
+  Scenario Outline: share file from Tella by mail
     Given the user is in Tella´s home page
+    And the user has an email account
     When the user press "camera"
     And The user presses the photo located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
@@ -153,9 +154,10 @@ Feature: PhotographyAndVideo
       | Correo |
 
 
-  @Smoke
-  Scenario: share file from tella to Instagram Stories
-    Given the user is in Tella´s home page and have an instagram account
+  @Smoke @ShareFile
+  Scenario: share file from Tella to Instagram Stories
+    Given the user is in Tella´s home page 
+    And the user has an instagram account
     When the user presses "camera"
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
@@ -167,9 +169,10 @@ Feature: PhotographyAndVideo
     And the user presses "Done"
     Then the file is shared
 
-  @Smoke
-  Scenario: share file from tella to instagram Reels
-    Given the user is in Tella´s home page and have an instagram account
+  @Smoke @ShareFile
+  Scenario: share file from Tella to Instagram Reels
+    Given the user is in Tella´s home page 
+    And the user has an instagram account
     When the user presses "camera"
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
@@ -180,9 +183,10 @@ Feature: PhotographyAndVideo
     And the user presses "Share"
     Then The file is shared
 
-  @Smoke
-  Scenario: share file from tella to Instagram Feed
-    Given the user is in Tella´s home page and have an instagram account
+  @Smoke @ShareFile
+  Scenario: share file from Tella to Instagram Feed
+    Given the user is in Tella´s home page 
+    And the user has an instagram account
     When the user presses "camera"
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
@@ -194,9 +198,10 @@ Feature: PhotographyAndVideo
     And the user presses "Share"
     Then the file is shared
 
-  @Smoke
+  @Smoke @ShareFile
   Scenario: share file from tella to Instagram Chats
-    Given the user is in Tella´s home page and have an instagram account
+    Given the user is in Tella´s home page 
+    And the user has an instagram account
     When the user presses "camera"
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
@@ -207,8 +212,10 @@ Feature: PhotographyAndVideo
     And the user presses "Done"
     Then the file is shared
 
-  @Smoke
+  @Smoke @ShareFile
   Scenario: share file from tella to WhatsApp
+    Given the user is in Tella´s home page 
+    And the user has WhatsApp
     When the user presses "camera"
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
