@@ -1,74 +1,96 @@
+@Regression
 Feature: PhotographyAndVideo
 
   @Smoke @Photography
-  Scenario: take a photo from tella
+  Scenario:Take a photo with the back camera on Tella
     Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press the take a photo button
-    Then "File Encypted" message is shown
-    And there is a new picture in the "Images" folder
-    And the picture taked is not in device album
+    When the user presses "camera"
+    And the user presses the take a photo button
+    Then there is a new picture in the "Images" folder on Tella
+    And the picture taken is not in the device's album
 
   @Smoke @Photography
-  Scenario: take a photo from tella with the frontal camera
+  Scenario: take a photo with the frontal camera on Tella
     Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press the change camera button
-    And the user press the take a photo button
-    Then "File Encypted" message is shown
-    And there is a new picture in the "Images" folder
-    And the picture taked is not in device album
-
-  @Smoke @Photography @Android
-  Scenario: Turn on camera flash automatic mode
-    Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press flash button, located a the top right of the screen
-    Then the automatic mode flash is activate
+    When the user presses "camera"
+    And the user presses the change camera button
+    And the user presses the take a photo button
+    Then there is a new picture in the "Images" folder on Tella
+    And the picture taken is not in the device's album
 
   @Smoke @Photography
+  Scenario: take a photo on Tella with Verification Mode on
+    Given the user is in Tella´s home page
+    And the Verification Mode is on
+    When the user presses "camera"
+    And the user presses the take a photo button
+    Then there is a new picture in the "Images" folder on Tella
+    And the picture taken is not in the device's album
+    And the verification information is collected correctly
+    
+  @Smoke @Photography
+  Scenario: take a photo on Tella with Verification Mode on and GPS off
+    Given the user is in Tella´s home page
+    And the Verification Mode is on
+    And the GPS is off
+    When the user presses "camera"
+    And the user presses the take a photo button
+    Then there is a new picture in the "Images" folder on Tella
+    And the picture taken is not in the device's album
+    And the verification information is collected correctly
+
+  @Photography @Android
+  Scenario:Turn on camera flash automatic mode
+    Given the user is in Tella´s home page
+    When the user presses "camera"
+    And the user presses flash button
+    Then the automatic flash mode is activated
+
+  @Photography
   Scenario: Turn on camera flash
     Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press flash button, located a the top right of the screen
-    And the user press flash button
-    Then the flash is activate
+    When the user presses "camera"
+    And the user presses flash button
+    And the user presses flash button
+    Then the flash is activated
 
   @Smoke @Photography @Android
   Scenario: Enable grid lines
     Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press grid lines button, located a the top center of the screen
-    Then the grid lines is activated
+    When the user presses "camera"
+    And the user presses grid lines button
+    Then the grid lines are activated
 
-  @Smoke @Video
-  Scenario: Turn on camera flash using the video mode
+  @Video
+  Scenario: Turn on the camera flash in video mode
     Given the user is in camera
-    When the user press flash button, located a the top right of the screen
-    Then the flash is activate
+    When the user presses "video" 
+    And the user presses flash button
+    Then the flash is activated
 
-  @Smoke @Video
-  Scenario: Turn off camera flash using the video mode
+  @Video
+  Scenario: Turn off camera flash in video mode
     Given the user is in camera
-    When the user press flash button, located a the top right of the screen
-    And the user press flash button
+    When the user presses "video"
+    And the user presses flash button
+    And the user presses flash button
     Then the flash is off
 
   @Smoke @Video
   Scenario: Select video resolution
-    Given the user is camera
-    When the user press the video resolution button, located at the top center of the screen
-    And the user press "Highest possible"
-    And the user press "NEXT"
+    Given the user is in camera
+    When the user presses the video resolution button
+    And the user presses "highest possible"
+    And the user presses "next"
     Then the video resolution is selected
 
   @Smoke @Video
   Scenario: record a video from Tella
     Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press "video" button
-    And the user press the take a video button
-    And the user press the stop video button
+    When the user presses "camera"
+    And the user presses "video" button
+    And the user presses the take a video button
+    And the user presses the stop video button
     Then "encrypting" message is shown
     And "File Encypted" message is shown
     And there is a new video in the "Videos" folder
@@ -77,25 +99,51 @@ Feature: PhotographyAndVideo
   @Smoke @Video
   Scenario: record a video from Tella with the frontal camera
     Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press "video"
-    And the user press the change camera button
-    And the user press the take a video button
-    And the user press the stop video button
+    When the user presses "camera"
+    And the user presses "video"
+    And the user presses the change camera button
+    And the user presses the take a video button
+    And the user presses the stop video button
     Then "encrypting" message is shown
     And "File Encypted" message is shown
     And there is a new picture in the "Videos" folder
     And the video taked is not in device album
 
-  @Smoke
-  Scenario Outline: share file from tella by mail
+  @Smoke @Video
+  Scenario: record a video from Tella with Verification Mode on
     Given the user is in Tella´s home page
+    And the Verification Mode is on
+    When the user presses "camera"
+    And the user presses "video" button
+    And the user presses the take a video button
+    And the user presses the stop video button
+    Then there is a new video in the "Videos" folder
+    And the video taked is not in device album
+    And the verification information is collected correctly
+    
+  @Smoke @Video
+  Scenario: record a video from Tella with Verification Mode on and GPS off
+    Given the user is in Tella´s home page
+    And the Verification Mode is on
+    And the GPS is off
+    When the user presses "camera"
+    And the user presses "video" button
+    And the user presses the take a video button
+    And the user presses the stop video button
+    Then there is a new video in the "Videos" folder
+    And the video taked is not in device album
+    And the verification information is collected correctly
+  
+  @Smoke @ShareFile
+  Scenario Outline: share file from Tella by mail
+    Given the user is in Tella´s home page
+    And the user has an email account
     When the user press "camera"
-    And The user press the photo located at the bottom right to the screen
-    And the user press the three points button located at the top right screen
-    And the user press the button "share"
-    And the user press the button "continue"
-    And the user press the button <Mail>
+    And The user presses the photo located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses the button "share"
+    And the user presses the button "continue"
+    And the user presses the button <Mail>
     And the user write an email account "cfiguera83@hotmail.com"
     And the user push the send it button "→"
     Then the file is shared
@@ -106,139 +154,141 @@ Feature: PhotographyAndVideo
       | Correo |
 
 
-  @Smoke
-  Scenario: share file from tella to Instagram Stories
-    Given the user is in Tella´s home page and have an instagram account
-    When the user press "camera"
-    And the user press the image located at the bottom right to the screen
-    And the user press the three points button located at the top right screen
-    And the user press "Share"
-    And the user press "continue"
-    And the user press instagram "Stories"
-    And the user press "→"
-    And the user press "Share"
-    And the user press "Done"
+  @Smoke @ShareFile
+  Scenario: share file from Tella to Instagram Stories
+    Given the user is in Tella´s home page 
+    And the user has an instagram account
+    When the user presses "camera"
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses "Share"
+    And the user presses "continue"
+    And the user presses instagram "Stories"
+    And the user presses "→"
+    And the user presses "Share"
+    And the user presses "Done"
     Then the file is shared
 
-  @Smoke
-  Scenario: share file from tella to instagram Reels
-    Given the user is in Tella´s home page and have an instagram account
-    When the user press "camera"
-    And the user press the image located at the bottom right to the screen
-    And the user press the three points button located at the top right screen
-    And the user press "share"
-    And the user press "continue"
-    And the user press Instagram "Reels"
-    And the user press "→"
-    And the user press "Share"
+  @Smoke @ShareFile
+  Scenario: share file from Tella to Instagram Reels
+    Given the user is in Tella´s home page 
+    And the user has an instagram account
+    When the user presses "camera"
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses "share"
+    And the user presses "continue"
+    And the user presses Instagram "Reels"
+    And the user presses "→"
+    And the user presses "Share"
     Then The file is shared
 
-  @Smoke
-  Scenario: share file from tella to Instagram Feed
-    Given the user is in Tella´s home page and have an instagram account
-    When the user press "camera"
-    And the user press the image located at the bottom right to the screen
-    And the user press the three points button located at the top right screen
-    And the user press "Share"
-    And the user press "continue"
-    And the user press Instagram "Feed"
-    And the user press "→"
-    And the user press "Next"
-    And the user press "Share"
+  @Smoke @ShareFile
+  Scenario: share file from Tella to Instagram Feed
+    Given the user is in Tella´s home page 
+    And the user has an instagram account
+    When the user presses "camera"
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses "Share"
+    And the user presses "continue"
+    And the user presses Instagram "Feed"
+    And the user presses "→"
+    And the user presses "Next"
+    And the user presses "Share"
     Then the file is shared
 
-  @Smoke
+  @Smoke @ShareFile
   Scenario: share file from tella to Instagram Chats
-    Given the user is in Tella´s home page and have an instagram account
-    When the user press "camera"
-    And the user press the image located at the bottom right to the screen
-    And the user press the three points button located at the top right screen
-    And the user press "Share"
-    And the user press "continue"
-    And the user press Instagram "Chats"
-    And the user press "Send" to a instagram account "cfiguera83"
-    And the user press "Done"
+    Given the user is in Tella´s home page 
+    And the user has an instagram account
+    When the user presses "camera"
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses "Share"
+    And the user presses "continue"
+    And the user presses Instagram "Chats"
+    And the user presses "Send" to a instagram account "cfiguera83"
+    And the user presses "Done"
     Then the file is shared
 
-  @Smoke
+  @Smoke @ShareFile
   Scenario: share file from tella to WhatsApp
-    When the user press "camera"
-    And the user press the image located at the bottom right to the screen
-    And the user press the three points button located at the top right screen
-    And the user press "Share"
-    And the user press "continue"
-    And the user press "WhatsApp"
-    And the user press on a WhatsApp contact "Tella"
-    And the user press "→"
-    And the user press "→"
+    Given the user is in Tella´s home page 
+    And the user has WhatsApp
+    When the user presses "camera"
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses "Share"
+    And the user presses "continue"
+    And the user presses "WhatsApp"
+    And the user presses on a WhatsApp contact "Tella"
+    And the user presses "→"
+    And the user presses "→"
     Then the file is shared
 
   @Smoke
   Scenario: File information
     Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press the image located at the bottom right to the screen
-    And the user press the three points button located at the top right screen
-    And the user press the button "File information"
+    When the user presses "camera"
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses the button "File information"
     Then the file information is in the screen
 
   @Smoke
   Scenario: Delete file
     Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press the image located at the bottom right to the screen
-    And the user press the three points button located at the top right screen
-    And the user press "Delete"
-    And the user press "Delete"
+    When the user presses "camera"
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses "Delete"
+    And the user presses "Delete"
     Then the file is deleted
 
   @Smoke
   Scenario: Save to device
     Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press the image located at the bottom right of the screen
-    And the user press the three points button located at the top right of the screen
-    And the user press "Save to device"
-    And the user press "Save"
-    And the user press "Continue"
+    When the user presses "camera"
+    And the user presses the image located at the bottom right of the screen
+    And the user presses the three points button located at the top right of the screen
+    And the user presses "Save to device"
+    And the user presses "Save"
+    And the user presses "Continue"
     Then the file is saved
 
   @Smoke
   Scenario: Rename file
     Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press the image located at the bottom right of the screen
-    And the user press the three points button located at the top right of the screen
-    And the user press "Raname"
+    When the user presses "camera"
+    And the user presses the image located at the bottom right of the screen
+    And the user presses the three points button located at the top right of the screen
+    And the user presses "Raname"
     And the user write a new name "Tella1"
-    And the user press "ok"
+    And the user presses "ok"
     Then the file is saved with the new name
 
   @Smoke
-  Scenario: Rename a file with a existing name
+  Scenario: Rename a file with an existing name
     Given the user is in Tella´s home page
-    When the user press "camera"
-    And the user press the image located at the bottom right of the screen
-    And the user press the three points button located at the top right of the screen
-    And the user press "Raname"
+    When the user presses "camera"
+    And the user presses the image located at the bottom right of the screen
+    And the user presses the three points button located at the top right of the screen
+    And the user presses "Raname"
     And the user write the new name "Tella1"
-    And the user press "ok"
+    And the user presses "ok"
     Then the sistem notified there is a existing file with the same name
 
   @Smoke @IOS
   Scenario: Move a file to another folder
     Given the user is in camera
-    When the user press the image located at the bottom right of the screen
-    And the user press the image
-    And the user press the three points button located at the top right of the screen
-    And the user press "Move to another folder"
-    And the user press "+"
+    When the user presses the image located at the bottom right of the screen
+    And the user presses the image
+    And the user presses the three points button located at the top right of the screen
+    And the user presses "Move to another folder"
+    And the user presses "+"
     And the user write a folder name "Tella"
-    And the user press "Create"
-    And the user press "tella" folder
-    And the user press "Move here"
+    And the user presses "Create"
+    And the user presses "tella" folder
+    And the user presses "Move here"
     Then the image is moved to a new folder
-
-  
-  
-  
