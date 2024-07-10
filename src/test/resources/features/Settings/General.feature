@@ -10,7 +10,7 @@ Feature: General
   And click on it
   Then the user sees a list of categories with various configurations that can be performed
 	
-  @Regression @ChangeLanguage @Automated
+  @Regression @ChangeLanguage @ToBeAutomated
   Scenario Outline: Change Language
     When the user taps the settings icon
     And taps the general option
@@ -21,22 +21,21 @@ Feature: General
 
     Examples:
       | language   | title         |
-      | Default    | Language      |
-      | Arabic     | اللغة         |
+      | Arabic     | اللغة        |  
       | Belarusian | Мова          |
       | English    | Language      |
       | Spanish    | Idioma        |
-      | Persian    | زبان          |
+      | Persian    | زبان         |     
       | French     | Langue        |
       | Indonesian | Bahasa        |
       | Kachin     | Tsun Shaga Ga |
       | Kannada    | ಭಾಷೆ          |
       | Kurdish    | زمان          |
       | Malayalam  | ഭാഷ           |
-      | Burmese    | ဘာသာစကား      |
+      | Burmese    | ဘာသာစကား     |
       | Portuguese | Idioma        |
       | Russian    | Язык          |
-      | Tamil      | மொழி         |
+      | Tamil      | மொழி       |          
 
 
   @Smoke
