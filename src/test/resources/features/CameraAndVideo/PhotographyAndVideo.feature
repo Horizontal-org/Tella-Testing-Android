@@ -1,3 +1,4 @@
+@Regression
 Feature: PhotographyAndVideo
 
   @Smoke @Photography
@@ -31,20 +32,21 @@ Feature: PhotographyAndVideo
   Scenario: take a photo on Tella with Verification Mode on and GPS off
     Given the user is in Tella´s home page
     And the Verification Mode is on
+    And the GPS is off
     When the user presses "camera"
     And the user presses the take a photo button
     Then there is a new picture in the "Images" folder on Tella
     And the picture taken is not in the device's album
     And the verification information is collected correctly
 
-  @Smoke @Photography @Android
+  @Photography @Android
   Scenario:Turn on camera flash automatic mode
     Given the user is in Tella´s home page
     When the user presses "camera"
     And the user presses flash button
     Then the automatic flash mode is activated
 
-  @Smoke @Photography
+  @Photography
   Scenario: Turn on camera flash
     Given the user is in Tella´s home page
     When the user presses "camera"
@@ -59,14 +61,14 @@ Feature: PhotographyAndVideo
     And the user presses grid lines button
     Then the grid lines are activated
 
-  @Smoke @Video
+  @Video
   Scenario: Turn on the camera flash in video mode
     Given the user is in camera
     When the user presses "video" 
     And the user presses flash button
     Then the flash is activated
 
-  @Smoke @Video
+  @Video
   Scenario: Turn off camera flash in video mode
     Given the user is in camera
     When the user presses "video"
@@ -107,6 +109,31 @@ Feature: PhotographyAndVideo
     And there is a new picture in the "Videos" folder
     And the video taked is not in device album
 
+  @Smoke @Video
+  Scenario: record a video from Tella with Verification Mode on
+    Given the user is in Tella´s home page
+    And the Verification Mode is on
+    When the user presses "camera"
+    And the user presses "video" button
+    And the user presses the take a video button
+    And the user presses the stop video button
+    Then there is a new video in the "Videos" folder
+    And the video taked is not in device album
+    And the verification information is collected correctly
+    
+  @Smoke @Video
+  Scenario: record a video from Tella with Verification Mode on and GPS off
+    Given the user is in Tella´s home page
+    And the Verification Mode is on
+    And the GPS is off
+    When the user presses "camera"
+    And the user presses "video" button
+    And the user presses the take a video button
+    And the user presses the stop video button
+    Then there is a new video in the "Videos" folder
+    And the video taked is not in device album
+    And the verification information is collected correctly
+  
   @Smoke
   Scenario Outline: share file from tella by mail
     Given the user is in Tella´s home page
