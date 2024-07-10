@@ -1,16 +1,27 @@
+
 @Regression @Audio @Smoke
+
+
+@Regression @Audio
 
 Feature: Audio
 
   Background:
     Given the user is in Tella home page
 
+
   @Success
+
+  @Smoke @ToBeAutomated 
+
   Scenario: Record an audio file
     When the user press "Rec"
     And the user press the microphone
     And the user press stop
     Then "The audio recording was saved to your Tella files" message is shown
+
+
+  @Smoke @ToBeAutomated 
 
   Scenario: Record an audio file in two parts
     When the user press "Rec"
@@ -20,7 +31,11 @@ Feature: Audio
     And the user press stop
     Then "The audio recording was saved to your Tella files" message is shown
 
+
   @Smoke @Audio @Automated @prueba
+
+  @Smoke @ToBeAutomated 
+
   Scenario Outline: Rename an audio file
     When the user press the Rec option
     And the user press the pencil icon
@@ -28,12 +43,19 @@ Feature: Audio
     And the user write a new recording name <recording_name>
     And the user press ok
     And the file change the original name for a new one: <recording_name>
-
+    And the user press the microphone
+    And the user press stop
+    Then "The audio recording was saved to your Tella files" message is shown
+    
     Examples:
       | recording_name |
       | Audio1         |
 
+
   @Smoke @Audio @Automated @prueba
+
+  @Smoke @ToBeAutomated 
+
   Scenario Outline: Rename an audio file during the recording
     When the user press the Rec option
     And the user press the microphone
@@ -49,7 +71,7 @@ Feature: Audio
       | recording_name | message_title                                     |
       | Audio2         | The audio recording was saved to your Tella files |
 
-  @Smoke @Audio
+  @NoCandidate 
   Scenario: Listen an audio file
     When the user press "Rec"
     And the user press headphones
@@ -57,7 +79,7 @@ Feature: Audio
     And the user press play
     Then the audio file is reproduced
 
-  @Smoke @Audio
+  @NoCandidate
   Scenario: Pause an audio file
     When the user press "Rec"
     And the user press headphones
@@ -66,7 +88,7 @@ Feature: Audio
     And the user press pause
     Then the audio file is paused
 
-  @Smoke @Audio
+  @NoCandidate
   Scenario: Pause an audio file and play it again
     When the user press "Rec"
     And the user press headphones
@@ -76,7 +98,7 @@ Feature: Audio
     And the user press play
     Then the audio file is played
 
-  @Smoke @Audio
+  @NoCandidate
   Scenario: Rewind audio file
     When the user press "Rec"
     And the user press headphones
