@@ -17,6 +17,26 @@ Feature: PhotographyAndVideo
     Then there is a new picture in the "Images" folder on Tella
     And the picture taken is not in the device's album
 
+  @Smoke @Photography
+  Scenario: take a photo on Tella with Verification Mode on
+    Given the user is in Tella´s home page
+    And the Verification Mode is on
+    When the user presses "camera"
+    And the user presses the take a photo button
+    Then there is a new picture in the "Images" folder on Tella
+    And the picture taken is not in the device's album
+    And the verification information is collected correctly
+    
+  @Smoke @Photography
+  Scenario: take a photo on Tella with Verification Mode on and GPS off
+    Given the user is in Tella´s home page
+    And the Verification Mode is on
+    When the user presses "camera"
+    And the user presses the take a photo button
+    Then there is a new picture in the "Images" folder on Tella
+    And the picture taken is not in the device's album
+    And the verification information is collected correctly
+
   @Smoke @Photography @Android
   Scenario:Turn on camera flash automatic mode
     Given the user is in Tella´s home page
@@ -215,7 +235,7 @@ Feature: PhotographyAndVideo
     Then the file is saved with the new name
 
   @Smoke
-  Scenario: Rename a file with a existing name
+  Scenario: Rename a file with an existing name
     Given the user is in Tella´s home page
     When the user presses "camera"
     And the user presses the image located at the bottom right of the screen
