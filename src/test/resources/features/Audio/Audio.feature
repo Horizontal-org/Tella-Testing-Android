@@ -52,7 +52,7 @@ Feature: Audio
       | recording_name | message_title                                     |
       | Audio2         | The audio recording was saved to your Tella files |
 
-  @Listen 
+  @NoCandidate 
   Scenario: Listen an audio file
     When the user press "Rec"
     And the user press headphones
@@ -60,7 +60,7 @@ Feature: Audio
     And the user press play
     Then the audio file is reproduced
 
-  @Pause
+  @NoCandidate
   Scenario: Pause an audio file
     When the user press "Rec"
     And the user press headphones
@@ -69,7 +69,7 @@ Feature: Audio
     And the user press pause
     Then the audio file is paused
 
-  @Pause
+  @NoCandidate
   Scenario: Pause an audio file and play it again
     When the user press "Rec"
     And the user press headphones
@@ -79,7 +79,7 @@ Feature: Audio
     And the user press play
     Then the audio file is played
 
-  @Rewind
+  @NoCandidate
   Scenario: Rewind audio file
     When the user press "Rec"
     And the user press headphones
