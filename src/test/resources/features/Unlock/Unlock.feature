@@ -2,7 +2,7 @@
 Feature: Unlock
 
 
-  @Password123 @Automated
+  @Password @Automated
   Scenario Outline: The user start the application, unlock the app with a password.
     Given The app is loaded correctly with a password <password> set
     When The user enter the password

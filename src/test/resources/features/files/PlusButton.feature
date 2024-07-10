@@ -4,7 +4,7 @@ Feature: Plus button
   Background:
     Given the user is in Tella home page
 
-@Automated @Photo @Video @CaptureFile @oki
+@Automated @Photo @Video @CaptureFile
   Scenario Outline: Capture a file of type <type> from folder <folder>
     When the user enters the folder <folder>
     And taps the "+" button
@@ -19,6 +19,19 @@ Feature: Plus button
     Examples:
       | type  | folderSave | option | folder    | expectedMessage |
       | image | Images     | Photo  | All files | File encrypted  |
+      | video | Videos     | Video  | All files | File encrypted  |
+      | image | Images     | Photo  | Documents | File encrypted  |
+      | video | Videos     | Video  | Documents | File encrypted  |
+      | image | Images     | Photo  | Images    | File encrypted  |
+      | video | Videos     | Video  | Images    | File encrypted  |
+      | image | Images     | Photo  | Audio     | File encrypted  |
+      | video | Videos     | Video  | Audio     | File encrypted  |
+      | image | Images     | Photo  | Videos    | File encrypted  |
+      | video | Videos     | Video  | Videos    | File encrypted  |
+      | image | Images     | Photo  | Others    | File encrypted  |
+      | video | Videos     | Video  | Others    | File encrypted  |
+
+
 
 
   @Smoke
