@@ -2,37 +2,21 @@ package com.crowdar.tella.steps;
 
 import com.crowdar.core.PageSteps;
 import com.crowdar.tella.services.UnlockService;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 
 public class UnlockSteps extends PageSteps {
 
-    @Given("The app is loaded correctly with a password (.*) set")
-    public void isHomePageVisibleWithPassword(String password) {
-        UnlockService.isViewLoaded();
-        UnlockService.setPassword(password);
-        UnlockService.goTella();
-        UnlockService.clickExit();
-        UnlockService.tapTellaApp();
+    @Given("The app is loaded correctly with a password set")
+    public void isHomePageVisibleWithPassword() {
+        UnlockService.isViewLoadedReopenAppWithPassword();
     }
 
-    @Given("The app is loaded correctly with a pin (.*) set")
-    public void theAppIsLoadedCorrectlyWithAPinSet(String pin) {
-        UnlockService.isViewLoaded();
-        UnlockService.setNumbers(pin);
-        UnlockService.goTella();
-        UnlockService.clickExit();
-        UnlockService.tapTellaApp();
-    }
-
-    @Given("The app is loaded correctly with a pattern set")
+    @Given("The app is loaded correctly with a pin set")
     public void theAppIsLoadedCorrectlyWithAPinSet() {
-        UnlockService.isViewLoaded();
-        UnlockService.setPattern();
-        UnlockService.goTella();
-        UnlockService.clickExit();
-        UnlockService.tapTellaApp();
+        UnlockService.isViewLoadedReopenAppWithPin();
     }
+
+
     @When("The user enter the password (.*)")
     public void theUserEnterAPassword(String password) {
         UnlockService.enterPassword(password);
@@ -52,10 +36,5 @@ public class UnlockSteps extends PageSteps {
         UnlockService.setPattern();
     }
 
-
-    @When("The user enter the password")
-    public void theUserEnterThePassword() {
-
-    }
 }
 

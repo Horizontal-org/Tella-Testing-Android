@@ -3,8 +3,7 @@ package com.crowdar.tella.steps;
 import com.crowdar.core.PageSteps;
 import com.crowdar.tella.services.HomeService;
 import com.crowdar.tella.services.UnlockService;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
+import io.cucumber.java.en.*;
 
 
 public class HomeSteps extends PageSteps {

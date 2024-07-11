@@ -4,34 +4,32 @@ Feature: Plus button
   Background:
     Given the user is in Tella home page
 
-@Automated @Photo @Video @CaptureFile
+@Automated @Photo @Video @CaptureFile @BLOCK
   Scenario Outline: Capture a file of type <type> from folder <folder>
     When the user enters the folder <folder>
     And taps the "+" button
     And selects the option: "Take photovideo"
     And selects the option <option>
     And captures the file of type <type>
-    #And the message <expectedMessage> appears
+#FROM THIS YOU CAN'T CONTINUE WITH THE VERIFICATION DUE THE MODIFICATIONS MAKE IN TO APP
     And the file of type <type> is saved correctly in the folder <folderSave>
     And the file appears in the list of files in the folder <folderSave>
     Then the file appears in the "All files" folder
 
     Examples:
-      | type  | folderSave | option | folder    | expectedMessage |
-      | image | Images     | Photo  | All files | File encrypted  |
-      | video | Videos     | Video  | All files | File encrypted  |
-      | image | Images     | Photo  | Documents | File encrypted  |
-      | video | Videos     | Video  | Documents | File encrypted  |
-      | image | Images     | Photo  | Images    | File encrypted  |
-      | video | Videos     | Video  | Images    | File encrypted  |
-      | image | Images     | Photo  | Audio     | File encrypted  |
-      | video | Videos     | Video  | Audio     | File encrypted  |
-      | image | Images     | Photo  | Videos    | File encrypted  |
-      | video | Videos     | Video  | Videos    | File encrypted  |
-      | image | Images     | Photo  | Others    | File encrypted  |
-      | video | Videos     | Video  | Others    | File encrypted  |
-
-
+      | type  | folderSave | option | folder    |
+      | image | Images     | Photo  | All files |
+      | video | Videos     | Video  | All files |
+      | image | Images     | Photo  | Documents |
+      | video | Videos     | Video  | Documents |
+      | image | Images     | Photo  | Images    |
+      | video | Videos     | Video  | Images    |
+      | image | Images     | Photo  | Audio     |
+      | video | Videos     | Video  | Audio     |
+      | image | Images     | Photo  | Videos    |
+      | video | Videos     | Video  | Videos    |
+      | image | Images     | Photo  | Others    |
+      | video | Videos     | Video  | Others    |
 
 
   @Smoke

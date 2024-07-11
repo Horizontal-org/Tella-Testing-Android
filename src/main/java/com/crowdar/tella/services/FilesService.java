@@ -57,13 +57,9 @@ public class FilesService {
         MobileActionManager.click(FilesConstants.CAPTURE_BUTTON);
 
         if (type.contains("image")) {
-            // MobileActionManager.waitVisibility(FilesConstants.MESSAGE_FILE_ENCRYTED);
-            //message = MobileActionManager.getText(FilesConstants.MESSAGE_FILE_ENCRYTED);
         } else if (type.contains("video")) {
             MobileActionManager.waitVisibility(FilesConstants.STOP_RECORDING_BUTTON);
             MobileActionManager.click(FilesConstants.STOP_RECORDING_BUTTON);
-            // MobileActionManager.waitVisibility(FilesConstants.MESSAGE_FILE_ENCRYTED);
-            //message = MobileActionManager.getText(FilesConstants.MESSAGE_FILE_ENCRYTED);
         }
 
         MobileActionManager.click(FilesConstants.X_BUTTON);

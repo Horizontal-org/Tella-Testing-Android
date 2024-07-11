@@ -4,8 +4,7 @@ import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.LockUnlockConstants;
-import io.appium.java_client.PerformsTouchActions;
-import io.appium.java_client.TouchAction;
+import io.appium.java_client.*;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Keys;
@@ -16,11 +15,21 @@ import java.time.Duration;
 
 
 public class UnlockService {
-    private static final int NEXT_BUTTON_CLICK_COUNT = 3;
+    public static final int NEXT_BUTTON_CLICK_COUNT = 3;
 
     public static void isViewLoaded() {
         MobileActionManager.waitVisibility(LockUnlockConstants.START_BUTTON);
         MobileActionManager.click(LockUnlockConstants.START_BUTTON);
+    }
+
+    public static void isViewLoadedReopenAppWithPassword() {
+        MobileActionManager.waitVisibility(LockUnlockConstants.REOPEN_APP_PASSWORD_VERIFICATION);
+        MobileActionManager.click(LockUnlockConstants.REOPEN_APP_PASSWORD_VERIFICATION);
+    }
+
+    public static void  isViewLoadedReopenAppWithPin() {
+        MobileActionManager.waitVisibility(LockUnlockConstants.REOPEN_APP_PIN_VERIFICATION);
+        MobileActionManager.click(LockUnlockConstants.REOPEN_APP_PIN_VERIFICATION);
     }
 
     public static void setPassword(String password) {
@@ -137,4 +146,12 @@ public class UnlockService {
         MobileActionManager.click(LockUnlockConstants.TELLA_APP);
     }
 
-}
+    public static void reopenTheApp () throws InterruptedException {
+            AppiumDriver<MobileElement> driver;
+            driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
+            driver.runAppInBackground(Duration.ofSeconds(5)); // Envía la app al fondo por 5 segundos
+            driver.activateApp("org.hzontal.tella"); // Usa el package name de tu app para traerla de vuelta al frente
+        }
+
+    }
+
