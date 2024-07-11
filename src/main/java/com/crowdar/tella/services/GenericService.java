@@ -1,13 +1,11 @@
 package com.crowdar.tella.services;
 
 import com.crowdar.driver.DriverManager;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.offset.PointOption;
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.TesseractException;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
@@ -20,8 +18,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
+
 public class GenericService {
-    private static AndroidDriver driver = (AndroidDriver) DriverManager.getDriverInstance().getWrappedDriver();
+
+}
+   /* private static AndroidDriver driver = (AndroidDriver) DriverManager.getDriverInstance().getWrappedDriver();
 
     public void ScreenTextRetriever(AndroidDriver<MobileElement> driver) {
         this.driver = driver;
@@ -86,3 +88,5 @@ public class GenericService {
         }
     }
 }
+
+ */

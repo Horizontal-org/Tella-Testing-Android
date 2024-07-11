@@ -6,6 +6,7 @@ import com.crowdar.tella.services.SettingsService;
 import com.crowdar.tella.services.UnlockService;
 import io.cucumber.java.en.*;
 
+
 public class SettingsSteps {
     @Given("the user is in Tella home page")
     public void theUserIsInTellaHomePage() {
@@ -14,6 +15,23 @@ public class SettingsSteps {
         UnlockService.goTella();
         HomeService.isHomeLoaded();
     }
+
+    @Given("the user is in Tella home page and log in with pin (.*)")
+    public void theUserIsInTellaHomePageAndLogInWithPin(String pin) {
+        UnlockService.isViewLoaded();
+        //UnlockService.clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
+        UnlockService.setNumbers(pin);
+        UnlockService.goTella();
+        HomeService.isHomeLoaded();
+    }
+
+
+    @And("the user close the app")
+    public void theUserCloseTheApp() throws InterruptedException {
+        UnlockService.reopenTheApp();
+    }
+
+
     @When("the user taps the settings icon")
     public void theUserTapsTheSettingsIcon() {
         SettingsService.clickSettingsIcon();
@@ -38,4 +56,7 @@ public class SettingsSteps {
     public void viewsTheTitleAlTheTopOfThePage(String title) {
         SettingsService.verifyLanguageTitle(title);
     }
+
+
+
 }
