@@ -83,4 +83,9 @@ public class AudioService {
         MobileActionManager.click(AudioConstants.RECORD_AUDIO);
     }
 
+    public static void clickPause() throws InterruptedException {
+        MobileActionManager.waitVisibility(AudioConstants.PAUSE_BUTTON);
+        MobileActionManager.click(AudioConstants.PAUSE_BUTTON);
+        Thread.sleep(3000);
+    }
 }

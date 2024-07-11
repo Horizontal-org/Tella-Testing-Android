@@ -2,7 +2,7 @@
   "browserName": "BrowserStack",
   "device": "{{deviceName}}",
   "os_version": "{{os.version}}",
-  "project": "Lippia Mobile sample Project",
+  "project": "Lippia Mobile sample Project Tella",
   "app": "{{app}}",
   "build": "Mobile {{deviceName}} Build",
   "name": "Mobile Sample Test",
