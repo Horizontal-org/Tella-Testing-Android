@@ -1,61 +1,48 @@
-
-@Regression @Audio @Smoke
-
-
 @Regression @Audio
-
 Feature: Audio
 
   Background:
     Given the user is in Tella home page
 
-
-  @Success
-
-  @Smoke @ToBeAutomated 
-
-  Scenario: Record an audio file
-    When the user press "Rec"
+  @Smoke @Automated
+  Scenario Outline: Record an audio file
+    When the user press the Rec option
     And the user press the microphone
-    And the user press stop
-    Then "The audio recording was saved to your Tella files" message is shown
+    And the user press stop option
+    Then the approval message <message_title> is displayed
 
+    Examples:
+      | message_title                                     |
+      | The audio recording was saved to your Tella files |
 
-  @Smoke @ToBeAutomated 
-
-  Scenario: Record an audio file in two parts
-    When the user press "Rec"
+  @Smoke @Automated
+  Scenario Outline: Record an audio file in two parts
+    When the user press the Rec option
     And the user press the microphone
     And the user press pause
     And the user press the microphone
-    And the user press stop
-    Then "The audio recording was saved to your Tella files" message is shown
+    And the user press stop option
+    Then the approval message <message_title> is displayed
 
+  Examples:
+  | message_title                                     |
+  | The audio recording was saved to your Tella files |
 
-  @Smoke @Audio @Automated @prueba
-
-  @Smoke @ToBeAutomated 
-
+  @Smoke @Automated
   Scenario Outline: Rename an audio file
     When the user press the Rec option
     And the user press the pencil icon
     And the user delete the existing name pressing the delete button
     And the user write a new recording name <recording_name>
     And the user press ok
-    And the file change the original name for a new one: <recording_name>
-    And the user press the microphone
-    And the user press stop
-    Then "The audio recording was saved to your Tella files" message is shown
-    
+    Then the file change the original name for a new one: <recording_name>
+
     Examples:
       | recording_name |
       | Audio1         |
 
 
-  @Smoke @Audio @Automated @prueba
-
-  @Smoke @ToBeAutomated 
-
+  @Smoke @Automated
   Scenario Outline: Rename an audio file during the recording
     When the user press the Rec option
     And the user press the microphone
@@ -71,7 +58,7 @@ Feature: Audio
       | recording_name | message_title                                     |
       | Audio2         | The audio recording was saved to your Tella files |
 
-  @NoCandidate 
+  @NoCandidate
   Scenario: Listen an audio file
     When the user press "Rec"
     And the user press headphones

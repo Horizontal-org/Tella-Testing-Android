@@ -39,12 +39,17 @@ public class AudioSteps {
     public void validateAprovalMessage(String message){
         AudioService.validateAprovalMessage(message);
     }
-    @And("the file change the original name for a new one: (.*)")
+    @Then("the file change the original name for a new one: (.*)")
     public void validateNewName(String recordName){
         AudioService.validateNewName(recordName);
     }
     @And("the user press start option")
     public void theUserPressStartOption() {
         AudioService.clickStartOption();
+    }
+
+    @And("the user press pause")
+    public void theUserPressPause() throws InterruptedException {
+        AudioService.clickPause();
     }
 }

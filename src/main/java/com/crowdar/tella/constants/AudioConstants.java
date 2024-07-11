@@ -13,4 +13,5 @@ public class AudioConstants {
     public static final String STOP_BUTTON = "ACCESSIBILITY_ID:Stop";
     public static final String MESSAGE_TITLE = "id:txv_msg";
     public static final String RECORD_AUDIO = "id:record_audio";
+    public static final String PAUSE_BUTTON = "ACCESSIBILITY_ID:pause";
 }
