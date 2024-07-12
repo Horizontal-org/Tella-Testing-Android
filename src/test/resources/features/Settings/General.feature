@@ -10,7 +10,7 @@ Feature: General
   And click on it
   Then the user sees a list of categories with various configurations that can be performed
 	
-  @Regression @ChangeLanguage @ToBeAutomated
+  @Regression @ChangeLanguage @Automated
   Scenario Outline: Change Language
     When the user taps the settings icon
     And taps the general option
