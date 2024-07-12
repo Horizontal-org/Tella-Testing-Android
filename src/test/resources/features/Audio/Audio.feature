@@ -28,6 +28,8 @@ Feature: Audio
   | message_title                                     |
   | The audio recording was saved to your Tella files |
 
+
+
   @Smoke @Automated
   Scenario Outline: Rename an audio file
     When the user press the Rec option
@@ -36,7 +38,7 @@ Feature: Audio
     And the user write a new recording name <recording_name>
     And the user press ok
     Then the file change the original name for a new one: <recording_name>
-
+    
     Examples:
       | recording_name |
       | Audio1         |
