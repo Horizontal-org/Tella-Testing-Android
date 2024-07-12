@@ -1,15 +1,18 @@
 @Regression
 Feature: PhotographyAndVideo
 
-  @Smoke @Photography
+  Background:
+    Given the user is in Tella home page
+
+  @Smoke @Photography @Ignore
   Scenario:Take a photo with the back camera on Tella
-    Given the user is in Tella´s home page
+    Given the user is in Tella home page
     When the user presses "camera"
     And the user presses the take a photo button
     Then there is a new picture in the "Images" folder on Tella
     And the picture taken is not in the device's album
 
-  @Smoke @Photography
+  @Smoke @Photography @Ignore
   Scenario: take a photo with the frontal camera on Tella
     Given the user is in Tella´s home page
     When the user presses "camera"
@@ -18,7 +21,7 @@ Feature: PhotographyAndVideo
     Then there is a new picture in the "Images" folder on Tella
     And the picture taken is not in the device's album
 
-  @Smoke @Photography
+  @Smoke @Photography @Ignore
   Scenario: take a photo on Tella with Verification Mode on
     Given the user is in Tella´s home page
     And the Verification Mode is on
@@ -28,7 +31,7 @@ Feature: PhotographyAndVideo
     And the picture taken is not in the device's album
     And the verification information is collected correctly
     
-  @Smoke @Photography
+  @Smoke @Photography @Ignore
   Scenario: take a photo on Tella with Verification Mode on and GPS off
     Given the user is in Tella´s home page
     And the Verification Mode is on
@@ -54,12 +57,11 @@ Feature: PhotographyAndVideo
     And the user presses flash button
     Then the flash is activated
 
-  @Smoke @Photography @Android
+  @Smoke @Photography @Android @Automated
   Scenario: Enable grid lines
-    Given the user is in Tella´s home page
-    When the user presses "camera"
+    When the user presses the camera button
     And the user presses grid lines button
-    Then the grid lines are activated
+    Then the grid lines are now activated
 
   @Video
   Scenario: Turn on the camera flash in video mode
@@ -76,15 +78,16 @@ Feature: PhotographyAndVideo
     And the user presses flash button
     Then the flash is off
 
-  @Smoke @Video
+  @Smoke @Video @oki
   Scenario: Select video resolution
-    Given the user is in camera
-    When the user presses the video resolution button
-    And the user presses "highest possible"
-    And the user presses "next"
+    When the user presses the camera button
+    And the user presses the video button
+    When the user presses the configurations button
+    And the user presses the option highest possible
+    And the user presses the next button
     Then the video resolution is selected
 
-  @Smoke @Video
+  @Smoke @Video @Ignore
   Scenario: record a video from Tella
     Given the user is in Tella´s home page
     When the user presses "camera"
@@ -96,7 +99,7 @@ Feature: PhotographyAndVideo
     And there is a new video in the "Videos" folder
     And the video taked is not in device album
 
-  @Smoke @Video
+  @Smoke @Video @Ignore
   Scenario: record a video from Tella with the frontal camera
     Given the user is in Tella´s home page
     When the user presses "camera"
@@ -109,7 +112,7 @@ Feature: PhotographyAndVideo
     And there is a new picture in the "Videos" folder
     And the video taked is not in device album
 
-  @Smoke @Video
+  @Smoke @Video @BLOCK
   Scenario: record a video from Tella with Verification Mode on
     Given the user is in Tella´s home page
     And the Verification Mode is on
@@ -121,7 +124,7 @@ Feature: PhotographyAndVideo
     And the video taked is not in device album
     And the verification information is collected correctly
     
-  @Smoke @Video
+  @Smoke @Video @BLOCK
   Scenario: record a video from Tella with Verification Mode on and GPS off
     Given the user is in Tella´s home page
     And the Verification Mode is on
