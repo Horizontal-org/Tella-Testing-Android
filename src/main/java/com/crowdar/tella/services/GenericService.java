@@ -1,15 +1,13 @@
 package com.crowdar.tella.services;
 
+import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.*;
 import org.openqa.selenium.io.FileHandler;
 
 
@@ -22,8 +20,36 @@ import java.io.IOException;
 
 public class GenericService {
 
+    public static By stringToBy(String locatorString) {
+        if (locatorString.startsWith("id:")) {
+            return By.id(locatorString.substring("id:".length()));
+        } else if (locatorString.startsWith("xpath:")) {
+            return By.xpath(locatorString.substring("xpath:".length()));
+        }
+        return null; // Retorna null si el tipo de localizador no es soportado
+    }
+
+    public static void commonClick(String locator) {
+        By byLocator = stringToBy(locator);
+        if (byLocator != null) {
+            MobileActionManager.waitVisibility(locator);  // Pasa la cadena directamente
+            MobileActionManager.click(locator);  // Pasa la cadena directamente
+        } else {
+            // Maneja el caso donde byLocator es null si es necesario
+            System.err.println("Tipo de localizador no soportado: " + locator);
+        }
+    }
 }
-   /* private static AndroidDriver driver = (AndroidDriver) DriverManager.getDriverInstance().getWrappedDriver();
+
+   /*
+      public static void commonClick1(By locator) {
+        MobileActionManager.waitVisibility(locatorString);
+        MobileActionManager.click(locatorString);
+    }
+
+
+
+   private static AndroidDriver driver = (AndroidDriver) DriverManager.getDriverInstance().getWrappedDriver();
 
     public void ScreenTextRetriever(AndroidDriver<MobileElement> driver) {
         this.driver = driver;
