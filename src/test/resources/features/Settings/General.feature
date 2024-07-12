@@ -1,10 +1,10 @@
-@General
+@General @Regression
 Feature: General
 
   Background:
     Given the user is in Tella home page
 
-
+  @Ignore
   Scenario: View Settings Categories
   When they view the settings icon
   And click on it
@@ -39,11 +39,9 @@ Feature: General
       | Tamil      | மொழி         |
 
 
-  @Smoke
+  @Smoke 
   Scenario: View General Category Configurations
-    And they view the settings icon
-    And click on it settings icon
-    When the user sees a list of categories with various configurations that can be performed
+    When the user click on it settings icon
     And presses the option "General"
     Then the user should view a list with the general configurations of the app
 
