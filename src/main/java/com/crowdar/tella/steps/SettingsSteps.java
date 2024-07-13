@@ -6,6 +6,8 @@ import com.crowdar.tella.services.SettingsService;
 import com.crowdar.tella.services.UnlockService;
 import io.cucumber.java.en.*;
 
+import java.util.Locale;
+
 
 public class SettingsSteps {
     @Given("the user is in Tella home page")
@@ -57,6 +59,12 @@ public class SettingsSteps {
         SettingsService.verifyLanguageTitle(title);
     }
 
-
-
+    @When("clicks on the category (.*)")
+    public void clicksOnTheCategory(String category) {
+        SettingsService.clickCategory(category);
+    }
+    @Then("the user access the category (.*)")
+    public void theUserAccessTheCategory(String category) {
+        SettingsService.accessCategory(category);
+}
 }
