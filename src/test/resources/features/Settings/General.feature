@@ -5,7 +5,7 @@ Feature: General
     Given the user is in Tella home page
     And the user taps the settings icon
 
-  @Automated @test
+  @Automated
   Scenario Outline: View Settings Categories
     When clicks on the category <category>
     Then the user access the category <category>
@@ -18,7 +18,7 @@ Feature: General
       | About & Help |
       | Feedback     |
 
-  @ChangeLanguage @Automated
+  @Smoke @ChangeLanguage @Automated
   Scenario Outline: Change Language
     When taps the general option
     And taps the language option in the general category
@@ -50,59 +50,19 @@ Feature: General
     When taps the general option
     Then the user should view a list with the general configurations of the app
 
-
-  @Smoke
-  Scenario: Share Crash Reports
-    When the user taps the settings icon
-    And taps the general option
-    And taps on Share Crash Reports to enable
-    Then the user sees that the color has changed to green, indicating it is activated
-
-
-  @Smoke
-  Scenario: Activate Verification Mode
-    When the user taps the settings icon
-    And taps the general option
-    And taps on Verification Mode to enable
-    Then the user sees that the color has changed to green, indicating it is activated
-
-
-  @Smoke
-  Scenario: Access Recent Files
-    When the user taps the settings icon
-    And taps the general option
-    And taps on Recent Files to enable
-    Then the user sees that the color has changed to green, indicating it is activated
-
-  @Smoke
-  Scenario: Access Favorite Forms
-    When the user taps the settings icon
-    And taps the general option
-    And taps on Favorite Forms to enable
-    Then the user sees that the color has changed to green, indicating it is activated
-
-  @Smoke
-  Scenario: Access Favorite Templates
-    When the user taps the settings icon
-    And taps the general option
-    And taps on Favorite Templates to enable
-    Then the user sees that the color has changed to green, indicating it is activated
-
-
   @Smoke @Automated
   Scenario Outline: Activate configuration <configuration>
     When taps the general option
     And switch configuration <configuration> to enable
-    Then the user sees that the color has changed to green, indicating it is activated
+    Then the user sees that the color has changed to green, indicating it is activated <configuration>
 
     Examples:
       | configuration       |
-      | Share Crash Reports |
-      | Verification Mode   |
-      | Verification Mode   |
-      | Recent Files        |
-      | Favorite Forms      |
-      | Favorite Templates  |
+      | Share crash reports |
+      | Verification mode   |
+      | Recent files        |
+      | Favorite forms      |
+      | Favorite templates  |
 
 
 

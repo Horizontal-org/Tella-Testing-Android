@@ -6,9 +6,9 @@ import com.crowdar.tella.constants.SettingsConstants;
 import io.appium.java_client.MobileBy;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-
 import java.util.HashMap;
 import java.util.Map;
+
 
 
 public class SettingsService {
@@ -72,5 +72,43 @@ public class SettingsService {
         Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.CATEGORY_SETTINGS_TITLE));
         String LanguageTitle = MobileActionManager.getText(SettingsConstants.CATEGORY_SETTINGS_TITLE);
         Assert.assertEquals(LanguageTitle, category);
+    }
+
+    public static void viewListGeneralConfifuration() {
+        MobileActionManager.waitVisibility(SettingsConstants.LANGUAGE_SECTION);
+        Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.LANGUAGE_SECTION));
+        MobileActionManager.waitVisibility(SettingsConstants.VERIFICATION_MODE);
+        Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.VERIFICATION_MODE));
+        MobileActionManager.waitVisibility(SettingsConstants.FILES_SECTION);
+        Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.FILES_SECTION));
+        MobileActionManager.waitVisibility(SettingsConstants.SECTION_TEXT);
+        Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.SECTION_TEXT));
+    }
+
+    public static String viewButton(String configuration) {
+        Map<String, String> buttons = new HashMap<>();
+        buttons.put("Share crash reports", SettingsConstants.SWITCH_LIST_BUTTON + "[1]");
+        buttons.put("Verification mode", SettingsConstants.SWITCH_LIST_BUTTON + "[2]");
+        buttons.put("Recent files", SettingsConstants.SWITCH_LIST_BUTTON + "[3]");
+        buttons.put("Favorite forms", SettingsConstants.SWITCH_LIST_BUTTON + "[4]");
+        buttons.put("Favorite templates", SettingsConstants.SWITCH_LIST_BUTTON + "[5]");
+        buttons.put("Test justification", SettingsConstants.SWITCH_LIST_BUTTON + "[6]");
+        buttons.put("Increase text spacing", SettingsConstants.SWITCH_LIST_BUTTON + "[7]");
+        return buttons.get(configuration);
+    }
+
+    public static void switchButtonEnable(String configuration) {
+        String button = viewButton(configuration);
+        MobileActionManager.waitVisibility(button);
+        String check = MobileActionManager.getAttribute(button, "checked");
+        if (Boolean.parseBoolean(check) != true) {
+            MobileActionManager.click(button);
+        }
+    }
+
+    public static void viewButtonEnable(String configuration) {
+        String button = viewButton(configuration);
+        MobileActionManager.waitVisibility(button);
+        Assert.assertTrue(MobileActionManager.getAttribute(button, "checked").contains("true"));
     }
 }
