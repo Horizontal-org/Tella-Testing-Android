@@ -3,6 +3,7 @@ package com.crowdar.tella.services;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
@@ -25,8 +26,10 @@ public class GenericService {
             return By.id(locatorString.substring("id:".length()));
         } else if (locatorString.startsWith("xpath:")) {
             return By.xpath(locatorString.substring("xpath:".length()));
+        } else if (locatorString.startsWith("accessibilityId:")) {
+        return MobileBy.AccessibilityId(locatorString.substring("ACCESSIBILITYID:".length()));
         }
-        return null; // Retorna null si el tipo de localizador no es soportado
+        return null;
     }
 
     public static void commonClick(String locator) {
