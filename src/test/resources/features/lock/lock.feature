@@ -19,7 +19,7 @@ Scenario Outline: register with password
     | abcdef   | Your lock is set up! You can change it anytime in Settings. |
 
 
-@Regression @Password @Automated  @estoanduvoperoquechotaes
+@Regression @Password @Automated
 Scenario Outline: Failed password confirmation and lenght
   When tap the next button until reaching the lock options
   And tap the password button
@@ -76,7 +76,7 @@ Then a message <message> is displayed to the user
     | 123456 | 654321 | Please try again. Your PINs do not match. |
 
 
-@Regression @Pin @Automated @ponerbienelpinonocontinua
+@Regression @Pin @Automated
 Scenario Outline: Failed PIN lenght
   When tap the next button until reaching the lock options
   And tap the pin button

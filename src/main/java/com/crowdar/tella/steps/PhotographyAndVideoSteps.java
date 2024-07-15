@@ -61,7 +61,8 @@ public class PhotographyAndVideoSteps {
     }
 
     @And("the user presses the three points button located at the top right screen")
-    public void theUserPressesTheThreePointsButtonLocatedAtTheTopRightScreen() {
+    public void theUserPressesTheThreePointsButtonLocatedAtTheTopRightScreen() throws InterruptedException {
+        Thread.sleep(5000);
         GenericService.commonClick(PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON);
     }
 
@@ -90,4 +91,31 @@ public class PhotographyAndVideoSteps {
     public void theFileInformationIsInTheScreen() {
         PhotographyAndVideoService.fileInformationAssert();
     }
+
+
+    @And("the user presses Rename button")
+    public void theUserPressesRenameButton() {
+        GenericService.commonClick(PhotographyAndVideoConstants.RENAME_BUTTON);
+    }
+
+    @And("the user writes a new name (.*)")
+    public void theUserWritesANewName(String tella) {
+        PhotographyAndVideoService.deleteTextAndSendKeys();
+    }
+
+    @And("the user enters the images folder")
+    public void theUserEntersTheImagesFolder() {
+        GenericService.commonClick(PhotographyAndVideoConstants.OK_RENAME_FILE_BUTTON);
+        GenericService.commonClick(PhotographyAndVideoConstants.GO_BACK_BUTTON);
+        GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
+        GenericService.commonClick(FilesConstants.IMAGES_FILE);
+    }
+
+    @Then("the file is saved with the new name")
+    public void theFileIsSavedWithTheNewName() {
+        PhotographyAndVideoService.changeNameAssert();
+    }
 }
+
+
+

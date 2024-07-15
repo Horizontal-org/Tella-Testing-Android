@@ -1,4 +1,4 @@
-@Smoke @Unlock
+@Regression @Unlock
 Feature: Unlock
 
 

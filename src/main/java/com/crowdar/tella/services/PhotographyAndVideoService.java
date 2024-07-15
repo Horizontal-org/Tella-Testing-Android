@@ -2,7 +2,6 @@ package com.crowdar.tella.services;
 
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
-import com.crowdar.tella.constants.PhotographyAndVideoConstants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import junit.framework.Assert;
@@ -11,9 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.NoSuchElementException;
-
 import static com.crowdar.tella.constants.PhotographyAndVideoConstants.*;
 
 public class PhotographyAndVideoService {
@@ -25,12 +21,11 @@ public class PhotographyAndVideoService {
         Assert.assertEquals("El elemento no está activado", true, isElementEnabled);
     }
 
-
     public static void videoResolution() {
-        MobileActionManager.click(PhotographyAndVideoConstants.VIDEO_LOW_RESOLUTION_OPTION);
+        MobileActionManager.click(VIDEO_LOW_RESOLUTION_OPTION);
         MobileActionManager.click(VIDEO_HIGHEST_POSIBLE_OPTION);
         try {
-            Thread.sleep(1000); // Espera 1 segundo
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -55,16 +50,13 @@ public class PhotographyAndVideoService {
         By byLocator = GenericService.stringToBy(locator);
 
         if (byLocator != null) {
-            // Intentar encontrar el elemento y verificar que no está presente
             try {
                 WebDriverWait wait = new WebDriverWait(driver, 10);
-                wait.until(ExpectedConditions.presenceOfElementLocated(byLocator));
-                Assert.fail("El elemento está presente: " + locator);
-            } catch (NoSuchElementException e) {
-                // Si se lanza NoSuchElementException, significa que el elemento no está presente
-                Assert.assertTrue("El elemento no está presente, como se esperaba", true);
+                boolean isInvisible = wait.until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
+                if (!isInvisible) {
+                    Assert.fail("El elemento está visible: " + locator);
+                }
             } catch (Exception e) {
-                // Maneja otras excepciones
                 Assert.fail("Ocurrió un error inesperado: " + e.getMessage());
             }
         } else {
@@ -85,8 +77,35 @@ public class PhotographyAndVideoService {
         }
     }
 
+    public static void deleteTextAndSendKeys(){
+        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+        MobileElement textField = (MobileElement) driver.findElement(By.id("renameEditText"));
+        textField.clear();
+        textField.sendKeys("Tella");
+    }
 
+
+    public static void changeNameAssert(){
+        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 30); // Espera de hasta 30 segundos
+        try {
+            MobileElement textView = (MobileElement) wait.until(
+                    ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text='Tella']"))
+            );
+            System.out.println("TextView con texto 'Tella' localizado.");
+            String actualText = textView.getAttribute("text");
+            System.out.println("Texto actual del TextView: " + actualText);
+            String expectedText = "Tella";
+
+            Assert.assertEquals(actualText, expectedText, "El nombre del archivo no se ha cambiado correctamente.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail("Se produjo un error durante la verificación del cambio de nombre del archivo.");
+        }
+    }
 }
+
+
 
 
 

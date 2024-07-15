@@ -15,4 +15,5 @@ public class FilesConstants {
     public static final String BACK_BUTTON = "id:btn_back";
     public static final String ALL_FILES_FOLDER = "xpath:/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]/android.view.ViewGroup[1]/android.view.ViewGroup";
     public static final String CURRENT_FILE = "id:fileNameTextView";
+    public static final String IMAGES_FILE = "id:imagesBtn";
 }
