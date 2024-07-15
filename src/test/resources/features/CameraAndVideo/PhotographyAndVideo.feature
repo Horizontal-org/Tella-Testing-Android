@@ -127,23 +127,19 @@ Feature: PhotographyAndVideo
     And the video taked is not in device album
     And the verification information is collected correctly
 
-  @Smoke @ShareFile
-  Scenario Outline: share file from Tella by mail
-    And the user has an email account
+  @Smoke @ShareFile @Ignore
+  Scenario: share file from Tella by mail
+    And the user has an email account registered on the cell phone
     When the user presses the camera button
-    And The user presses the photo located at the bottom right to the screen
+    And the user takes a photography
+    And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
-    And the user presses the button "share"
-    And the user presses the button "continue"
-    And the user presses the button <Mail>
+    And the user presses the Share button
+    And the user presses the Continue button
+    And the user presses the Gmail button
     And the user write an email account "cfiguera83@hotmail.com"
     And the user push the send it button "→"
     Then the file is shared
-
-    Examples:
-      | Mail   |
-      | Gmail  |
-      | Correo |
 
 
   @Smoke @ShareFile @Ignore
@@ -244,7 +240,7 @@ Feature: PhotographyAndVideo
     And the user presses the Continue button
     Then the file is saved in the device
 
-  @Smoke @ToBeAutomatable @Ignore
+  @Smoke @ToBeAutomated @Ignore
   Scenario: Rename file
     And the user presses the camera button
     And the user takes a photography

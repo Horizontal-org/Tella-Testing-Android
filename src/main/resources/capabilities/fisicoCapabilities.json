@@ -5,5 +5,6 @@
   "resetKeyboard": "true",
   "unicodeKeyboard": "true",
   "appPackage": "org.hzontal.tella",
-  "appActivity": "rs.readahead.washington.mobile.views.activity.SplashActivity"
+  "appActivity": "rs.readahead.washington.mobile.views.activity.SplashActivity",
+
 }
