@@ -13,7 +13,6 @@
   
   @Smoke
   Scenario: View Server Options
- 
   When the user taps the settings icon
   And selects the option "Servers"
   And presses the "Add" icon

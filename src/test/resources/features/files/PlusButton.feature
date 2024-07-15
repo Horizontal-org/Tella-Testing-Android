@@ -4,7 +4,7 @@ Feature: Plus button
   Background:
     Given the user is in Tella home page
 
-@Automated @Photo @Video @CaptureFile @BLOCK
+@Photo @Video @CaptureFile @Automated @Ignore
   Scenario Outline: Capture a file of type <type> from folder <folder>
     When the user enters the folder <folder>
     And taps the "+" button

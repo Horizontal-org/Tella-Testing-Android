@@ -146,7 +146,7 @@ Feature: PhotographyAndVideo
       | Correo |
 
 
-  @Smoke @ShareFile
+  @Smoke @ShareFile @Ignore
   Scenario: share file from Tella to Instagram Stories
     And the user has an instagram account
     When the user presses the camera button
@@ -160,7 +160,7 @@ Feature: PhotographyAndVideo
     And the user presses "Done"
     Then the file is shared
 
-  @Smoke @ShareFile
+  @Smoke @ShareFile @Ignore
   Scenario: share file from Tella to Instagram Reels
     And the user has an instagram account
     When the user presses the camera button
@@ -173,7 +173,7 @@ Feature: PhotographyAndVideo
     And the user presses "Share"
     Then The file is shared
 
-  @Smoke @ShareFile
+  @Smoke @ShareFile @Ignore
   Scenario: share file from Tella to Instagram Feed
     And the user has an instagram account
     When the user presses the camera button
@@ -187,7 +187,7 @@ Feature: PhotographyAndVideo
     And the user presses "Share"
     Then the file is shared
 
-  @Smoke @ShareFile
+  @Smoke @ShareFile @Ignore
   Scenario: share file from tella to Instagram Chats
     And the user has an instagram account
     When the user presses the camera button
@@ -200,7 +200,7 @@ Feature: PhotographyAndVideo
     And the user presses "Done"
     Then the file is shared
 
-  @Smoke @ShareFile
+  @Smoke @ShareFile @Ignore
   Scenario: share file from tella to WhatsApp
     And the user has WhatsApp
     When the user presses the camera button
@@ -214,7 +214,6 @@ Feature: PhotographyAndVideo
     And the user presses "→"
     Then the file is shared
 
-
   @Smoke @Automated
   Scenario: File information
     When the user presses the camera button
@@ -224,7 +223,7 @@ Feature: PhotographyAndVideo
     And the user presses the button File information
     Then the file information is in the screen
 
-  @Smoke @oki
+  @Smoke @Automated
   Scenario: Delete file
     And the user presses the camera button
     And the user takes a photography
@@ -234,34 +233,36 @@ Feature: PhotographyAndVideo
     And the user presses confirm Delete button
     Then the file is deleted
 
-  @Smoke
+  @Smoke @NoCandidate
   Scenario: Save to device
-    When the user presses the camera button
-    And the user presses the image located at the bottom right of the screen
-    And the user presses the three points button located at the top right of the screen
-    And the user presses "Save to device"
-    And the user presses "Save"
-    And the user presses "Continue"
-    Then the file is saved
+    And the user presses the camera button
+    And the user takes a photography
+    When the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses Save to device button
+    And the user presses Save button
+    And the user presses the Continue button
+    Then the file is saved in the device
 
-  @Smoke
+  @Smoke @ToBeAutomatable @Ignore
   Scenario: Rename file
-    When the user presses the camera button
-    And the user presses the image located at the bottom right of the screen
-    And the user presses the three points button located at the top right of the screen
-    And the user presses "Raname"
-    And the user write a new name "Tella1"
-    And the user presses "ok"
+    And the user presses the camera button
+    And the user takes a photography
+    When the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses Rename button
+    And the user writes a new name "Tella"
+    #And the user enters the images folder
     Then the file is saved with the new name
 
-  @Smoke
+  @Smoke @ToBeAutomated @Ignore
   Scenario: Rename a file with an existing name
-    When the user presses the camera button
-    And the user presses the image located at the bottom right of the screen
-    And the user presses the three points button located at the top right of the screen
-    And the user presses "Raname"
-    And the user write the new name "Tella1"
-    And the user presses "ok"
+    And the user presses the camera button
+    And the user takes a photography
+    When the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses Rename button
+    And the user writes a new name "Tella"
     Then the sistem notified there is a existing file with the same name
 
   @Smoke @IOS @Ignore
