@@ -51,4 +51,6 @@ public class LockSteps {
     public void aSuccessfullyRegisteredMessageIsDisplayed(String message) {
         LockService.messageDisplayed(message);
     }
+
+
 }

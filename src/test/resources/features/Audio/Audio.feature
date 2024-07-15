@@ -44,7 +44,7 @@ Feature: Audio
       | Audio1         |
 
 
-  @Smoke @Automated @ok
+  @Smoke @Automated
   Scenario Outline: Rename an audio file during the recording
     When the user press the Rec option
     And the user press the microphone

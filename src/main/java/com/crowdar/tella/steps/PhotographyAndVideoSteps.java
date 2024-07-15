@@ -115,6 +115,25 @@ public class PhotographyAndVideoSteps {
     public void theFileIsSavedWithTheNewName() {
         PhotographyAndVideoService.changeNameAssert();
     }
+
+    @And("the user has an email account registered on the cell phone")
+    public void theUserHasAnEmailAccountRegisteredOnTheCellPhone() {
+    }
+
+    @And("the user presses the Share button")
+    public void theUserPressesTheShareButton() {
+        GenericService.commonClick(PhotographyAndVideoConstants.SHARE_BUTTON);
+    }
+
+    @And("the user presses the Continue button")
+    public void theUserPressesTheContinueButton() {
+        GenericService.commonClick(PhotographyAndVideoConstants.OK_RENAME_FILE_BUTTON);
+    }
+
+    @And("the user presses the Gmail button")
+    public void theUserPressesTheGmailButton() {
+        GenericService.commonClick(PhotographyAndVideoConstants.GMAIL_BUTTON);
+    }
 }
 
 

@@ -18,4 +18,8 @@ public class PhotographyAndVideoConstants {
     public static final String RENAME_BUTTON = "id:renameActionTV";
     public static final String OK_RENAME_FILE_BUTTON = "id:standard_sheet_confirm_btn";
     public static final String GO_BACK_BUTTON = "xpath://android.widget.ImageButton[@content-desc=\"go back\"]";
+    public static final String SHARE_BUTTON = "Id:shareActionTV";
+    public static final String GMAIL_BUTTON = "xpath:(//android.widget.ImageView[@resource-id=\"android:id/icon\"])[3]";
+
+
 }
