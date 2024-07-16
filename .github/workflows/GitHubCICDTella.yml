@@ -31,8 +31,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       env:
-        BSUSER: ${{ secrets.BSUSER }}
-        AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
+        BSUSER: ${{ env.BSUSER }}
+        AUTHTOKEN: ${{ env.AUTHTOKEN }}
       run: mvn clean test -PBrowserStack -PAndroid
       
     - name: Upload test results
