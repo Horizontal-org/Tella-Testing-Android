@@ -7,13 +7,13 @@ Background:
 
 Scenario Outline: Submit new report
 When the user taps the Report 
-And the user taps the New report
-And the user completes the Title and the Description
+And taps the New report
+And completes the Title and the Description
 And presses the "add" icon
 And selects the <Select files> option
-And the user select files and presses the "verification" icon
-And the user taps Submit 
-And the user sees the file being uploaded
+And select files and presses the "verification" icon
+And taps Submit 
+And sees the file being uploaded
 Then the approval message "your report is available Outbox" 
 
 Examples: 
@@ -24,27 +24,31 @@ Examples:
 
 Scenario: Submit new report with photo
 When the user taps the Report 
-And the user taps the New report
-And the user completes the Title and the Description
-And the user presses the "add" icon
-And the user selects Take photo with camera
-And the user presses the "rec" icon
+And taps the New report
+And completes the Title and the Description
+And presses the "add" icon
+And selects Take photo with camera
+And presses the "rec" icon
 And the user taps Submit 
 And the user sees the file being uploaded
 Then the approval message "your report is available Outbox" 
 
 
-Scenario: Submit new report with video
+Scenario Outline: Submit new report with <recording>
 When the user taps the Report 
 And the user taps the New report
 And the user completes the Title and the Description
 And the user presses the "add" icon
-And the user selects Take photo with camera
-And the user selects video
+And the user selects <select files>
 And the user presses the "rec" and "stop" icon
 And the user taps Submit 
 And the user sees the file being uploaded
 Then the approval message "your report is available Outbox" 
+
+Examples:
+|recording|  select files             |
+|video    |  Take photo with camera   |
+|audio    |  Record audio             |
 
 
 Scenario: Delete report in Outbox
@@ -66,10 +70,9 @@ Then the approval message "File has been deleted"
 
 Scenario Outline: Delete <Option Report>
 When the user presses <Option Report>
-And the select file
-And user presses "menu" icon
-And the user select Delete
-And confirms the Delete option
+And the user select file
+And the user presses "menu" icon
+And the user select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
 
 Examples: 
