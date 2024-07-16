@@ -1,10 +1,11 @@
-@TellaWeb
+@TellaWeb @Smoke
 Feature: Tella Web
   
 Background:
   Given the user is authenticated in the Tella application with valid credentials 654321
 	And the user is in Tella home page
 
+@ToBeAutomated
 Scenario Outline: Submit new report
 When the user taps the Report 
 And taps the New report
@@ -22,6 +23,7 @@ Examples:
 |Select from your device|
 
 
+@NoCandidate
 Scenario: Submit new report with photo
 When the user taps the Report 
 And taps the New report
@@ -34,6 +36,7 @@ And sees the file being uploaded
 Then the approval message "your report is available Outbox" 
 
 
+@NoCandidate
 Scenario Outline: Submit new report with <recording>
 When the user taps the Report 
 And taps the New report
@@ -51,6 +54,7 @@ Examples:
 |audio    |  Record audio             |
 
 
+@ToBeAutomated
 Scenario: Delete report in Outbox
 When the user taps the Report 
 And taps the New report
@@ -67,6 +71,7 @@ And select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
 
 
+@ToBeAutomated
 Scenario Outline: Delete <Option Report>
 When the user presses <Option Report>
 And select file
@@ -80,6 +85,7 @@ Examples:
 |Submitted    |
 
 
+@ToBeAutomated
 Scenario: Save report to Draft and send later
 When the user taps the Report 
 And taps the New report
@@ -94,7 +100,7 @@ And taps Send
 Then the approval message "your report is available Outbox" 
 
 
-
+@ToBeAutomated
 Scenario: Send report of a waiting file
 When the user taps the Report 
 And taps the New report
