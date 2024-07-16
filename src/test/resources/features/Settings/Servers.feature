@@ -36,9 +36,9 @@
 	@Smoke
   Scenario: Configure Open Data Kit Server
   When the user taps the settings icon
-  And taps the "Servers" option
-  And presses the "add" icon
-  And the user selects the "Open Data Kit" option
+  And selects the option "Servers"
+  And presses the "Add" icon
+  And selects the "Open Data Kit" option
   And taps the "OK" button
   Then the user views the server settings with fields "server name"; "server URL" to fill
   And presses "save" to save the configuration
@@ -46,9 +46,9 @@
   @Smoke
   Scenario: Configure Advanced Open Data Kit Server
   When the user taps the settings icon
-  And taps the "Servers" option
-  And presses the "add" icon
-  And the user selects the "Open Data Kit" option
+  And selects the option "Servers"
+  And presses the "Add" icon
+  And selects the "Open Data Kit" option
   And taps the "OK" button
   And the user views the server settings with fields "server name"; "server URL" to fill
   And expands the "advanced" section
@@ -58,8 +58,8 @@
   @Smoke
   Scenario Outline: Configure whit URL Server
   When the user taps the settings icon
-  And taps the "Servers" option
-  And presses the "add" icon
+  And selects the option "Servers"
+  And presses the "Add" icon
   And the user selects the <sever> option
   And taps the "OK" button
   Then the user views the server settings with the field "enter project URL" to fill
@@ -74,7 +74,7 @@
   When the user taps the settings icon
   And taps the "Servers" option
   And presses the "add" icon
-  And the user selects the <server>  option
+  And the user selects the <server> option
   And taps the "OK" button
   And the user views the server settings with the field "enter project URL" to fill
   And the user enters the project URL
