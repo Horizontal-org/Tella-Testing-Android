@@ -1,5 +1,7 @@
-Feature: Server
-Background
+@TellaWeb
+Feature: Tella Web
+  
+Background:
   Given the user is authenticated in the Tella application with valid credentials 654321
 	And the user is in Tella home page
 
