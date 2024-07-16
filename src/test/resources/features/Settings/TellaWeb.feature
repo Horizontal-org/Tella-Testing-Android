@@ -9,8 +9,8 @@ Scenario Outline: Submit new report
 When the user taps the Report 
 And the user taps the New report
 And the user completes the Title and the Description
-And the user presses the "add" icon
-And the user selects the <Select files> option
+And presses the "add" icon
+And selects the <Select files> option
 And the user select files and presses the "verification" icon
 And the user taps Submit 
 And the user sees the file being uploaded
