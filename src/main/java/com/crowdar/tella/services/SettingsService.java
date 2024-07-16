@@ -9,8 +9,6 @@ import org.testng.Assert;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 public class SettingsService {
 
     public static void clickSettingsIcon() {
@@ -105,10 +103,42 @@ public class SettingsService {
             MobileActionManager.click(button);
         }
     }
-
     public static void viewButtonEnable(String configuration) {
         String button = viewButton(configuration);
         MobileActionManager.waitVisibility(button);
         Assert.assertTrue(MobileActionManager.getAttribute(button, "checked").contains("true"));
+    }
+
+    public static void viewTellaIcon() {
+        MobileActionManager.waitVisibility(SettingsConstants.TELLA_ICON);
+        Assert.assertTrue(MobileActionManager.getAttribute(SettingsConstants.TELLA_ICON, "resource-id").contains("id" +
+                "/logo")
+        );
+    }
+    public static void viewVersion(String version) {
+        MobileActionManager.waitVisibility(SettingsConstants.VERSION_TEXT);
+        Assert.assertEquals(MobileActionManager.getText(SettingsConstants.VERSION_TEXT),version);
+    }
+    public static void viewList() {
+        MobileActionManager.waitVisibility(SettingsConstants.ABOUT_HELP_OPTIONS);
+        Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.ABOUT_HELP_OPTIONS));
+    }
+
+    public static void tapTheOption(String option) {
+        Map<String, String> options = new HashMap<>();
+        options.put("FAQ" ,"faq");
+        options.put("Contact us", "contact_us");
+        options.put("Privacy policy", "privacy_policy");
+        String opt = "id:"+options.get(option);
+        try {
+            MobileActionManager.waitVisibility(opt);
+            MobileActionManager.click(opt);
+        } catch (Exception e) {
+            MobileActionManager.click(opt);
+        }
+    }
+
+    public static void redirectedSite(String site) {
+
     }
 }

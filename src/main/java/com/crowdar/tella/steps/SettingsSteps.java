@@ -73,4 +73,26 @@ public class SettingsSteps {
     public void theUserSeesThatTheColorHasChangedToGreenIndicatingItIsActivated(String configuration) {
         SettingsService.viewButtonEnable(configuration);
     }
+    @Then("view the Tella icon")
+    public void viewTheIconTella() {
+        SettingsService.viewTellaIcon();
+    }
+    @And("the number version (.*)")
+    public void theNumberVersion(String version) {
+        SettingsService.viewVersion(version);
+    }
+    @And("view a list options")
+    public void viewAListOptions() {
+        SettingsService.viewList();
+    }
+
+    @And("taps the (.*) option")
+    public void tapsTheOption(String option) {
+        SettingsService.tapTheOption(option);
+    }
+
+    @Then("the user is redirected to the (.*)")
+    public void theUserIsRedirectedToThe(String site) {
+        SettingsService.redirectedSite(site);
+    }
 }

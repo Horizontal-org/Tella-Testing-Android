@@ -1,35 +1,33 @@
-@AboutAndHelp
+@AboutAndHelp @Regression
 
-Feature: About and Help 
-  
-Background:
-  Given the user is authenticated in the Tella application with valid credentials 
-  And is on the main page 
+Feature: About and Help
 
-@Smoke @Android @ViewOptions
-Scenario: about and help - view options 
-  When the user tap settings icon 
-  And taps the "about and help" 
-  Then view  the icon Tella and the version
-  And view a list options
-  
-@Smoke @Android @FAQ
-Scenario: about and help - go to FAQ page 
-  When the user tap setting icon 
-  And taps the "about and help" 
-  And taps the FAQ option  
-  Then is redirected to the Tella Documentation Website
-  
-@Smoke @Android @ContactUs 
-Scenario: about and help - contact us 
-  When the user tap setting icon  
-  And taps the "about and help" 
-  And taps the contact us option 
-  Then is redirected to the email
-  
-@Smoke @Android @PrivacyPolicy
-Scenario: about and help - Privacy policy 
-  When the user tap setting icon 
-  And taps the "about and help" 
-  And taps the Privacy policy option  
-  Then is redirected to the Tella Privacy Policy Website 
+  Background:
+    Given the user is in Tella home page
+    And the user taps the settings icon
+
+
+  @Smoke @Android @ViewOptions
+  Scenario Outline: <category> - view options
+    When clicks on the category <category>
+    Then view the Tella icon
+    And the number version <version>
+    And view a list options
+
+    Examples:
+      | category     | version             |
+      | About & Help | Version 2.9.0 (179) |
+
+
+  @Smoke @Android @FAQ @ContactUs @PrivacyPolicy
+  Scenario Outline: <category> - go to FAQ page
+    When clicks on the category <category>
+    And taps the <option> option
+    Then the user is redirected to the <site>
+
+    Examples:
+      | category     | option         | site                            |
+      | About & Help | FAQ            | the Tella Documentation Website |
+      | About & Help | Contact us     | email                           |
+      | About & Help | Privacy policy | Tella Privacy Policy Website    |
+
