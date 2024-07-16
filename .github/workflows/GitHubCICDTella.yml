@@ -37,8 +37,8 @@ jobs:
         BSUSER: ${{ vars.BSUSER }}
         AUTHTOKEN: ${{ vars.AUTHTOKEN }}
     
-      run: env
-      #run: mvn clean test -PBrowserStack -PAndroid
+      #run: env
+      run: mvn clean test -PBrowserStack -PAndroid
       
     - name: Upload test results
       uses: actions/upload-artifact@v4.3.4
