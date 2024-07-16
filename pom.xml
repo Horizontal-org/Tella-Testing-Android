@@ -37,16 +37,10 @@
         <buildIdentifier>Tella_Android_Testing_${maven.build.timestamp}</buildIdentifier>
         <crowdar.cucumber.filter>@oki</crowdar.cucumber.filter>
         <crowdar.driverHub></crowdar.driverHub>
-        <crowdar.cucumber.plugins>--plugin pretty --plugin
-            com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin
-            com.crowdar.tella.listeners.CucumberListener:
-        </crowdar.cucumber.plugins>
+        <crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin com.crowdar.tella.listeners.CucumberListener:</crowdar.cucumber.plugins>
         <test-manager-plugin>--plugin com.crowdar.tella.report.TestManager:</test-manager-plugin>
-        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes --tags
-            ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.tella.report.Reporter: --plugin pretty
-        </crowdar.cucumber.option>
-        <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json
-        </crowdar.projectType.driverCapabilities.jsonFile>
+        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.tella.report.Reporter: --plugin pretty</crowdar.cucumber.option>
+        <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
         <crowdar.remoteDriverType></crowdar.remoteDriverType>
         <crowdar.reporter.avent>true</crowdar.reporter.avent>
         <crowdar.extent.host.name>LocalMachine</crowdar.extent.host.name>
