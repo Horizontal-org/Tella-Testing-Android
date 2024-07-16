@@ -20,4 +20,7 @@ public class SettingsConstants {
     public static final String SECTION_TEXT = "xpath://android.widget.ScrollView/android.view.ViewGroup/android" +
             ".widget.LinearLayout[4]";
     public static final String SWITCH_LIST_BUTTON = "xpath:(//android.widget.Switch[@resource-id=\"org.hzontal.tella:id/mSwitch\"])" ;
+    public static final String TELLA_ICON = "accessibility_id:Version";
+    public static final String VERSION_TEXT = "id:version";
+    public static final String ABOUT_HELP_OPTIONS = "id:options";
 }
