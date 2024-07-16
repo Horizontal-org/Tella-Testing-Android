@@ -30,6 +30,9 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
+      env:
+        BSUSER: ${{ secrets.BSUSER }}
+        AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
       run: mvn clean test -PBrowserStack -PAndroid
       
     - name: Upload test results
