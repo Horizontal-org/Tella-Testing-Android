@@ -35,22 +35,20 @@
 	
 	@Smoke
   Scenario: Configure Open Data Kit Server
-  Given the user is logged in Tella with valid credentials 654321
-  And taps the wheel icon to access settings
+  When the user taps the settings icon
   And taps the "Servers" option
   And presses the "add" icon
-  When the user selects the "Open Data Kit" option
+  And the user selects the "Open Data Kit" option
   And taps the "OK" button
   Then the user views the server settings with fields "server name"; "server URL" to fill
   And presses "save" to save the configuration
 
   @Smoke
   Scenario: Configure Advanced Open Data Kit Server
-  Given the user is logged in Tella with valid credentials 654321
-  And taps the wheel icon to access settings
+  When the user taps the settings icon
   And taps the "Servers" option
   And presses the "add" icon
-  When the user selects the "Open Data Kit" option
+  And the user selects the "Open Data Kit" option
   And taps the "OK" button
   And the user views the server settings with fields "server name"; "server URL" to fill
   And expands the "advanced" section
@@ -59,11 +57,10 @@
 
   @Smoke
   Scenario Outline: Configure whit URL Server
-  Given the user is logged in Tella with valid credentials 654321
-  And taps the wheel icon to access settings
+  When the user taps the settings icon
   And taps the "Servers" option
   And presses the "add" icon
-  When the user selects the <sever> option
+  And the user selects the <sever> option
   And taps the "OK" button
   Then the user views the server settings with the field "enter project URL" to fill
   
@@ -74,14 +71,13 @@
 
   @Smoke
   Scenario Outline: Access Login for Project Access
-  Given the user is logged in Tella with valid credentials 654321
-  And taps the wheel icon to access settings
+  When the user taps the settings icon
   And taps the "Servers" option
   And presses the "add" icon
   And the user selects the <server>  option
   And taps the "OK" button
   And the user views the server settings with the field "enter project URL" to fill
-  When the user enters the project URL
+  And the user enters the project URL
   And presses Next
   Then the user views the login to access the project with fields "username"; "password"
 
