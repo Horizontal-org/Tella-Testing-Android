@@ -136,4 +136,8 @@ Then the approval message "your report is available Outbox"
 
 
 Scenario: Activate Auto-report
-  
+When the user taps the settings icon
+And selects the "Servers" option
+And selects the "Created project"
+And select Edit 
+And select Auto-report
