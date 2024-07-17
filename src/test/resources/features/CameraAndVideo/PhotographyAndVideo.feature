@@ -86,6 +86,14 @@ Feature: PhotographyAndVideo
     And the user presses the option highest possible
     And the user presses the next button
     Then the video resolution is selected
+    
+  @Smoke @Video 
+  Scenario: Check file size
+    Given that the last file is a video with the highest resolution
+    When the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses "File information"
+    Then The video size is congruent with the video resolution
 
   @Smoke @Video @Ignore
   Scenario: record a video from Tella
@@ -306,3 +314,7 @@ Feature: PhotographyAndVideo
     And the user presses "→"
     Then the user exits from the last file
     And the photo camera appeared
+    
+    @Smoke @Photography
+  Scenario: Edit an image
+    
