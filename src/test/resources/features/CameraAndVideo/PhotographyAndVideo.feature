@@ -224,16 +224,29 @@ Feature: PhotographyAndVideo
     And the user presses confirm Delete button
     Then the file is deleted
 
-  @Smoke @NoCandidate
-  Scenario: Save to device
-    And the user presses the camera button
+  Scenario: Cancel deleting the file
+    When the user presses the camera button
     And the user takes a photography
-    When the user presses the image located at the bottom right to the screen
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses Delete button
+    And the user presses "Cancel"
+    Then the file is not deleted
+
+  @Smoke @NoCandidate
+  Scenario: Save to device with their verification information
+    And the Verification mode is on
+    When the user presses the camera button
+    And the user takes a photography
+    And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
     And the user presses Save to device button
-    And the user presses Save button
-    And the user presses the Continue button
+    And the user presses "Save"
+    And the user selects a folder to save in
+    And the user presses "Use this folder"
+    And the user presses "Allow"
     Then the file is saved in the device
+    And their verification information is available
 
   @Smoke @ToBeAutomated @Ignore
   Scenario: Rename file
