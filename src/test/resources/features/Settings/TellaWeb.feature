@@ -127,6 +127,7 @@ And taps Submit
 And sees the file being uploaded
 And disconnect and connect internet from your cell phone
 And taps Resume
+And sees the file being uploaded
 Then the approval message "your report is available Outbox" 
 
 
