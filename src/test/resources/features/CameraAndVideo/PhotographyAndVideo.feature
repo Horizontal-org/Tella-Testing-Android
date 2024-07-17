@@ -293,9 +293,16 @@ Feature: PhotographyAndVideo
     And the user presses "Move here"
     Then the image is moved to a new folder
   
-  @Photography  
   Scenario: Exit the camera
     When the user presses the camera button
     And the user presses "x" located at the top left corner
     Then the camera is closed
     And the homepage appears
+    
+  Scenario: Exit from the last file
+    When the user presses the camera button
+    And the user takes a photography
+    And the user presses the image located at the bottom right to the screen
+    And the user presses "→"
+    Then the user exits from the last file
+    And the photo camera appeared
