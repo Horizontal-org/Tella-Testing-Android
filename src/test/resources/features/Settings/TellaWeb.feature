@@ -126,7 +126,10 @@ And select files and presses the "verification" icon
 And taps Submit 
 And sees the file being uploaded
 And disconnect and connect internet from your cell phone
-And taps Resume
+And go back 
+And presses Outbox
+And presses "Menu" icon
+And select View 
 And sees the file being uploaded
 Then the approval message "your report is available Outbox" 
 
