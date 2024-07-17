@@ -11,10 +11,10 @@ name: Tella Pipeline Automation
 on:
   schedule:
     - cron: "0 15 * * *" # Ejecuta todos los días a las 15:00 UTC (12:00 en Argentina)
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  #push:
+    #branches: [ "main" ]
+  #pull_request:
+    #branches: [ "main" ]
 
 jobs:
   build:
