@@ -185,7 +185,7 @@
     And set security code valid
     Then view that files were deleted
 
- @Smoke @Android @Security @QuickDelete
+ @Smoke @Android @Security @QuickDelete 
  Scenario: Security - Quick delete - Delete draft and submitted forms
     When the user tap settings icon 
     And taps "Security" option 
