@@ -139,6 +139,8 @@ public class SettingsService {
     }
 
     public static void redirectedSite(String site) {
+        MobileActionManager.waitVisibility(SettingsConstants.URL_BAR);
+        Assert.assertTrue(MobileActionManager.getText(SettingsConstants.URL_BAR).equals(site));
 
     }
 }
