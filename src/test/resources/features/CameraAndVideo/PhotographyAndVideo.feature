@@ -130,16 +130,15 @@ Feature: PhotographyAndVideo
     And the verification information is collected correctly
 
   @Smoke @ShareFile @Ignore
-  Scenario: share file from Tella by mail
+  Scenario: share file from Tella by Gmail
     And the user has an email account registered on the cell phone
     When the user presses the camera button
     And the user takes a photography
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
-    And the user presses the Share button
-    And the user presses the Continue button
+    And the user presses "Share"
     And the user presses the Gmail button
-    And the user write an email account "cfiguera83@hotmail.com"
+    And the user writes an email account "cfiguera83@hotmail.com"
     And the user push the send it button "→"
     Then the file is shared
 
@@ -150,7 +149,6 @@ Feature: PhotographyAndVideo
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
     And the user presses "Share"
-    And the user presses "continue"
     And the user presses instagram "Stories"
     And the user presses "→"
     And the user presses "Share"
@@ -163,8 +161,7 @@ Feature: PhotographyAndVideo
     When the user presses the camera button
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
-    And the user presses "share"
-    And the user presses "continue"
+    And the user presses "Share"
     And the user presses Instagram "Reels"
     And the user presses "→"
     And the user presses "Share"
@@ -177,7 +174,6 @@ Feature: PhotographyAndVideo
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
     And the user presses "Share"
-    And the user presses "continue"
     And the user presses Instagram "Feed"
     And the user presses "→"
     And the user presses "Next"
@@ -191,9 +187,8 @@ Feature: PhotographyAndVideo
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
     And the user presses "Share"
-    And the user presses "continue"
     And the user presses Instagram "Chats"
-    And the user presses "Send" to a instagram account "cfiguera83"
+    And the user presses "Send" to an existing Instagram account
     And the user presses "Done"
     Then the file is shared
 
@@ -204,9 +199,8 @@ Feature: PhotographyAndVideo
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
     And the user presses "Share"
-    And the user presses "continue"
     And the user presses "WhatsApp"
-    And the user presses on a WhatsApp contact "Tella"
+    And the user presses on a WhatsApp contact
     And the user presses "→"
     And the user presses "→"
     Then the file is shared
