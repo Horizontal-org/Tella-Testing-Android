@@ -36,6 +36,9 @@ jobs:
       
         BSUSER: ${{ vars.BSUSER }}
         AUTHTOKEN: ${{ vars.AUTHTOKEN }}
+        BSDEVICE: ${{ vars.BSDEVICE }}
+        BSAPP: ${{ vars.BSAPP }}
+        BSOS: ${{ vars.BSOS }}
     
       #run: env
       run: mvn clean test -PBrowserStack -PAndroid
