@@ -135,3 +135,5 @@ Then the approval message "your report is available Outbox"
 
 
 
+Scenario: Activate Auto-report
+  
