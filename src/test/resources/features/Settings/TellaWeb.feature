@@ -63,7 +63,7 @@ And presses the "Add" icon
 And selects the option Select from Tella files
 And select files and presses the "verification" icon
 And taps Submit 
-And the user sees the file being uploaded and presses Pause
+And sees the file being uploaded and presses Pause
 And go back 
 And presses Outbox
 And presses "Menu" icon
@@ -113,5 +113,21 @@ And presses "Menu" icon
 And select View 
 And taps Resume
 Then the approval message "your report is available Outbox" 
+
+
+@ToBeAutomated
+Scenario: Internet desconnection during report sending
+When the user taps the Report 
+And taps the New report
+And completes the Title and the Description
+And presses the "Add" icon
+And selects the option Select from Tella files 
+And select files and presses the "verification" icon
+And taps Submit 
+And sees the file being uploaded
+And disconnect and connect internet from your cell phone
+And taps Resume
+Then the approval message "your report is available Outbox" 
+
 
 
