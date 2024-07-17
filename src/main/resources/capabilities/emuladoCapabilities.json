@@ -7,5 +7,6 @@
   "appium:unicodeKeyboard": "true",
   "appPackage": "org.hzontal.tella",
   "appActivity": "rs.readahead.washington.mobile.views.activity.SplashActivity",
-  "noReset": false
+  "noReset": false,
+  "appium:automationName": "UiAutomator2"
 }

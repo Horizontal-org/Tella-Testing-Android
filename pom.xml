@@ -35,7 +35,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>dd-MM-yyyy-HH-mm-ss</maven.build.timestamp.format>
         <buildIdentifier>Tella_Android_Testing_${maven.build.timestamp}</buildIdentifier>
-        <crowdar.cucumber.filter>@oki</crowdar.cucumber.filter>
+        <crowdar.cucumber.filter>@Smoke</crowdar.cucumber.filter>
         <crowdar.driverHub></crowdar.driverHub>
         <crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin com.crowdar.tella.listeners.CucumberListener:</crowdar.cucumber.plugins>
         <test-manager-plugin>--plugin com.crowdar.tella.report.TestManager:</test-manager-plugin>
@@ -46,12 +46,15 @@
         <crowdar.extent.host.name>LocalMachine</crowdar.extent.host.name>
         <crowdar.extent.environment>Local</crowdar.extent.environment>
         <crowdar.extent.user.name>User.name</crowdar.extent.user.name>
+        <crowdar.app.location>${env.APPLOCAL}</crowdar.app.location>
 
         <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
         <!--   Browser Stack Profiles Parameters              -->
         <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
-        <crowdar.bs.app>bs://a03bda5f1b1f0a208544457bcb6a3900b184c75d</crowdar.bs.app>
+        <crowdar.bs.device>${env.BSDEVICE}</crowdar.bs.device>
+        <crowdar.bs.os>${env.BSOS}</crowdar.bs.os>
+        <crowdar.bs.app>${env.BSAPP}</crowdar.bs.app>
         <crowdar.bs.hub>https://${env.BSUSER}:${env.AUTHTOKEN}@hub-cloud.browserstack.com/wd/hub</crowdar.bs.hub>
         <crowdar.bs.capabilities>src/main/resources/capabilities/browserStackCapabilities.json</crowdar.bs.capabilities>
     </properties>
@@ -68,6 +71,7 @@
                 <crowdar.avd>Pixel3</crowdar.avd>
                 <crowdar.appLocation>C:\\\\TellaAndroid.apk</crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
+                <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emuladoCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
             </properties>
         </profile>
 
@@ -100,8 +104,8 @@
             <id>BrowserStack</id>
             <properties>
                 <cucumber.runner>testngSecuencial.xml</cucumber.runner>
-                <crowdar.deviceName>Google Pixel 3</crowdar.deviceName>
-                <crowdar.os.version>9.0</crowdar.os.version>
+                <crowdar.deviceName>${crowdar.bs.device}</crowdar.deviceName>
+                <crowdar.os.version>${crowdar.bs.os}</crowdar.os.version>
                 <crowdar.appLocation>${crowdar.bs.app}</crowdar.appLocation>
                 <crowdar.projectType.driverCapabilities.jsonFile>${crowdar.bs.capabilities}</crowdar.projectType.driverCapabilities.jsonFile>
                 <crowdar.driverHub>${crowdar.bs.hub}</crowdar.driverHub>
@@ -109,18 +113,7 @@
             </properties>
         </profile>
 
-        <profile>
-            <id>BrowserStackSamnsungblabla</id>
-            <properties>
-                <cucumber.runner>testngSecuencial.xml</cucumber.runner>
-                <crowdar.deviceName>(cambiar al modelo mas usado)</crowdar.deviceName>
-                <crowdar.os.version>(cambiar a la version de android mas usado)</crowdar.os.version>
-                <crowdar.appLocation>${crowdar.bs.app}</crowdar.appLocation>
-                <crowdar.projectType.driverCapabilities.jsonFile>${crowdar.bs.capabilities}</crowdar.projectType.driverCapabilities.jsonFile>
-                <crowdar.driverHub>${crowdar.bs.hub}</crowdar.driverHub>
-                <crowdar.projectType>MOBILE_ANDROID</crowdar.projectType>
-            </properties>
-        </profile>
+
 
         <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
         <!--   Profiles related to Runners ejecutions         -->
