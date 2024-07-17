@@ -23,4 +23,5 @@ public class SettingsConstants {
     public static final String TELLA_ICON = "accessibility_id:Version";
     public static final String VERSION_TEXT = "id:version";
     public static final String ABOUT_HELP_OPTIONS = "id:options";
+    public static final String URL_BAR = "xpath://android.widget.EditText[@resource-id=\"com.android.chrome:id/url_bar\"]";
 }

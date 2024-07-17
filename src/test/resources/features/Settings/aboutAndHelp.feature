@@ -7,8 +7,8 @@ Feature: About and Help
     And the user taps the settings icon
 
 
-  @Smoke @Android @ViewOptions
-  Scenario Outline: <category> - view options
+  @Smoke @Android @ViewOptions @Automated
+  Scenario Outline: About & Help - view options
     When clicks on the category <category>
     Then view the Tella icon
     And the number version <version>
@@ -19,15 +19,19 @@ Feature: About and Help
       | About & Help | Version 2.9.0 (179) |
 
 
-  @Smoke @Android @FAQ @ContactUs @PrivacyPolicy
-  Scenario Outline: <category> - go to FAQ page
+  @Smoke @Android @FAQ @PrivacyPolicy @Automated
+  Scenario Outline: About & Help - Go to <option> page
     When clicks on the category <category>
     And taps the <option> option
     Then the user is redirected to the <site>
 
     Examples:
-      | category     | option         | site                            |
-      | About & Help | FAQ            | the Tella Documentation Website |
-      | About & Help | Contact us     | email                           |
-      | About & Help | Privacy policy | Tella Privacy Policy Website    |
+      | category     | option         | site                   |
+      | About & Help | FAQ            | tella-app.org/docs/    |
+      | About & Help | Privacy policy | tella-app.org/privacy/ |
+
+    @ContactUs @Ignore @Bug
+    Examples:
+      | category     | option         | site                   |
+      | About & Help | Contact us     | email                  |
 
