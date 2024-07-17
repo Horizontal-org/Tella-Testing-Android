@@ -269,3 +269,10 @@ Feature: PhotographyAndVideo
     And the user presses "tella" folder
     And the user presses "Move here"
     Then the image is moved to a new folder
+  
+  @Photography  
+  Scenario: Exit the camera
+    When the user presses the camera button
+    And the user presses "x" located at the top left corner
+    Then the camera is closed
+    And the homepage appears
