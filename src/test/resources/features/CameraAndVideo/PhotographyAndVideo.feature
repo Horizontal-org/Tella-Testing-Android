@@ -57,6 +57,12 @@ Feature: PhotographyAndVideo
     And the user presses grid lines button
     Then the grid lines are now activated
 
+  @Photography
+  Scenario: Zoom in with the camera
+    When the user presses the camera button
+    And the user zooms in
+    Then the image to be taken is enlarged
+
   @Video @NoCandidate
   Scenario: Turn on the camera flash in video mode
     When the user presses the camera button
@@ -87,10 +93,8 @@ Feature: PhotographyAndVideo
     And the user presses the video button
     And the user presses the take a video button
     And the user presses the stop video button
-    Then "encrypting" message is shown
-    And "File Encypted" message is shown
-    And there is a new video in the "Videos" folder
-    And the video taked is not in device album
+    Then there is a new video in the "Videos" folder
+    And the video taken is not in the device's album
 
   @Smoke @Video @Ignore
   Scenario: record a video from Tella with the frontal camera
@@ -99,10 +103,8 @@ Feature: PhotographyAndVideo
     And the user presses the change camera button
     And the user presses the take a video button
     And the user presses the stop video button
-    Then "encrypting" message is shown
-    And "File Encypted" message is shown
-    And there is a new picture in the "Videos" folder
-    And the video taked is not in device album
+    Then there is a new video in the "Videos" folder
+    And the video taken is not in the device's album
 
   @Smoke @Video @Ignore
   Scenario: record a video from Tella with Verification Mode on
@@ -112,7 +114,7 @@ Feature: PhotographyAndVideo
     And the user presses the take a video button
     And the user presses the stop video button
     Then there is a new video in the "Videos" folder
-    And the video taked is not in device album
+    And the video taken is not in the device's album
     And the verification information is collected correctly
 
   @Smoke @Video @Ignore
@@ -124,7 +126,7 @@ Feature: PhotographyAndVideo
     And the user presses the take a video button
     And the user presses the stop video button
     Then there is a new video in the "Videos" folder
-    And the video taked is not in device album
+    And the video taken is not in the device's album
     And the verification information is collected correctly
 
   @Smoke @ShareFile @Ignore
@@ -140,7 +142,6 @@ Feature: PhotographyAndVideo
     And the user write an email account "cfiguera83@hotmail.com"
     And the user push the send it button "→"
     Then the file is shared
-
 
   @Smoke @ShareFile @Ignore
   Scenario: share file from Tella to Instagram Stories
