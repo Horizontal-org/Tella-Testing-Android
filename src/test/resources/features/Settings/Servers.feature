@@ -24,7 +24,7 @@
   And selects the "Servers" option
   And presses the "Add" icon
   And selects the server <server>
-  And press OK
+  And presses "Ok"
   Then the user sees the chosen server with the corresponding configurations for establishing the connection
  
   Examples:
@@ -39,9 +39,9 @@
   And selects the "Servers" option
   And presses the "Add" icon
   And selects the "Open Data Kit" option
-  And taps the "OK" button
+  And presses "Ok"
   Then the user views the server settings with fields "server name"; "server URL" to fill
-  And presses "save" to save the configuration
+  And presses "Save" to save the configuration
 
   
   Scenario: Configure Advanced Open Data Kit Server
@@ -49,7 +49,7 @@
   And selects the "Servers" option
   And presses the "Add" icon
   And selects the "Open Data Kit" option
-  And taps the "OK" button
+  And presses "Ok"
   And the user views the server settings with fields "server name"; "server URL" to fill
   And expands the "advanced" section
   Then the user views the fields "user name"; "password" to fill
@@ -61,7 +61,7 @@
   And selects the "Servers" option
   And presses the "Add" icon
   And the user selects the <sever> option
-  And taps the "OK" button
+  And presses "Ok"
   Then the user views the server settings with the field "enter project URL" to fill
   
   Examples:
@@ -75,10 +75,10 @@
   And selects the "Servers" option
   And presses the "add" icon
   And the user selects the <server> option
-  And taps the "OK" button
+  And presses "Ok"
   And the user views the server settings with the field "enter project URL" to fill
   And the user enters the project URL
-  And presses Next
+  And presses "Next"
   Then the user views the login to access the project with fields "username"; "password"
 
   Examples:
