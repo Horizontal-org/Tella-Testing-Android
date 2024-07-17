@@ -8,20 +8,20 @@
   
   Scenario: View Settings in the Server Category
   When the user taps the settings icon
-  And selects the option "Servers"
+  And selects the "Servers" option
   Then the user views the server configurations
   
   
   Scenario: View Server Options
   When the user taps the settings icon
-  And selects the option "Servers"
+  And selects the "Servers" option
   And presses the "Add" icon
   Then the user sees all possible server options available for connection
   
   
   Scenario Outline: Select Server
   When the user taps the settings icon
-  And selects the option "Servers"
+  And selects the "Servers" option
   And presses the "Add" icon
   And selects the server <server>
   And press OK
@@ -36,7 +36,7 @@
 	
   Scenario: Configure Open Data Kit Server
   When the user taps the settings icon
-  And selects the option "Servers"
+  And selects the "Servers" option
   And presses the "Add" icon
   And selects the "Open Data Kit" option
   And taps the "OK" button
@@ -46,7 +46,7 @@
   
   Scenario: Configure Advanced Open Data Kit Server
   When the user taps the settings icon
-  And selects the option "Servers"
+  And selects the "Servers" option
   And presses the "Add" icon
   And selects the "Open Data Kit" option
   And taps the "OK" button
@@ -58,7 +58,7 @@
   
   Scenario Outline: Configure whit URL Server
   When the user taps the settings icon
-  And selects the option "Servers"
+  And selects the "Servers" option
   And presses the "Add" icon
   And the user selects the <sever> option
   And taps the "OK" button
@@ -72,7 +72,7 @@
   
   Scenario Outline: Access Login for Project Access
   When the user taps the settings icon
-  And taps the "Servers" option
+  And selects the "Servers" option
   And presses the "add" icon
   And the user selects the <server> option
   And taps the "OK" button
