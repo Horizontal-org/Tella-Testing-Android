@@ -11,9 +11,9 @@ Feature: Plus button
     And selects the option: "Take photovideo"
     And selects the option <option>
     And captures the file of type <type>
-#FROM THIS YOU CAN'T CONTINUE WITH THE VERIFICATION DUE THE MODIFICATIONS MAKE IN TO APP
     And the file of type <type> is saved correctly in the folder <folderSave>
     And the file appears in the list of files in the folder <folderSave>
+    And the file appears in the Recent files list
     Then the file appears in the "All files" folder
 
     Examples:
