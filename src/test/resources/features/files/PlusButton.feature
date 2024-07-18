@@ -59,8 +59,7 @@ Feature: Plus button
     When the user enters the folder <folder>
     And taps the "+" button
     And selects the option "Import from device"
-    And taps the "KEEP ORIGINAL" button
-    And taps the "Continue" button
+    And taps the option "Keep original"
     And selects a file of type <type> from the device
     Then the file is saved in the folder <folderSave>
     And the file of type <type> appears in the list of files in the folder <folderSave>
@@ -75,6 +74,7 @@ Feature: Plus button
       | document | Documents  | Documents |
       | image    | Images     | Images    |
       | audio    | Audios     | Audio     |
+      | video    | Videos     | Videos    |
 
   @Regression
   Scenario Outline: Import a file of type <type> from a folder <folder> - deleting the original
