@@ -101,8 +101,7 @@ And taps the New report
 And completes the Title and the Description
 And presses "Save" icon
 And the approval message "The report was saved as a draft"
-And go back 
-And presses Draft
+And presses the cross
 And presses "Menu" icon
 And select Edit draft
 And taps Send
