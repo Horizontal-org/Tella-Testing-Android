@@ -134,10 +134,12 @@ And sees the file being uploaded
 Then the approval message "your report is available Outbox" 
 
 
-
+@ToBeAutomated
 Scenario: Activate Auto-report
 When the user taps the settings icon
 And selects the "Servers" option
 And selects the "Created project"
 And select Edit 
 And select Auto-report
+And presses "Save" icon
+And go to Tella home page
