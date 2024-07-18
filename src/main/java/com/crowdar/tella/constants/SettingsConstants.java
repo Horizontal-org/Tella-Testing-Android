@@ -24,4 +24,13 @@ public class SettingsConstants {
     public static final String VERSION_TEXT = "id:version";
     public static final String ABOUT_HELP_OPTIONS = "id:options";
     public static final String URL_BAR = "xpath://android.widget.EditText[@resource-id=\"com.android.chrome:id/url_bar\"]";
+    public static final String OPTIONS_TITLE = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" +
+            ".tella:id/title_textview\" and @text=\"%s\"]";
+    public static final String TIMEOUT_SHEET_TITLE = "id:standard_sheet_title";
+    public static final String TIMEOUT_RADIO_BUTTON = "xpath://android.widget.RadioButton[@text=\"%s\"]";
+    public static final String OK_BUTTON = "id:standard_sheet_confirm_btn";
+    public static final String CANCEL_BUTTON = "id:standard_sheet_cancel_btn";
+    public static final String TIMEOUT_TEXTVIEW_LABEL = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" +
+            ".tella:id/label_textview\" and @text=\"%s\"]";
+
 }

@@ -53,7 +53,7 @@ public class SettingsSteps {
         SettingsService.verifyLanguageTitle(title);
     }
 
-    @When("clicks on the category (.*)")
+    @When("^clicks on the category (.*)$")
     public void clicksOnTheCategory(String category) {
         SettingsService.clickCategory(category);
     }
@@ -94,5 +94,26 @@ public class SettingsSteps {
     @Then("the user is redirected to the (.*)")
     public void theUserIsRedirectedToThe(String site) {
         SettingsService.redirectedSite(site);
+    }
+
+    @When("^the user clicks the \"(.*)\" option$")
+    public void theUserClicksTheOption(String option) {
+        SettingsService.clicksOptions(option);
+    }
+
+    @And("^select timeout (.*) option$")
+    public void selectTimeoutOption(String timeout) {
+        SettingsService.SelectTimeoutOption(timeout);
+    }
+
+    @And("^taps \"(.*)\" button$")
+    public void tapsButton(String button) {
+        SettingsService.clickButton(button);
+
+    }
+
+    @Then("^the option timeout (.*) is selected$")
+    public void theOptionTimeoutIsSelected(String timeout) {
+        SettingsService.selectedTimeout(timeout);
     }
 }

@@ -143,4 +143,27 @@ public class SettingsService {
         Assert.assertTrue(MobileActionManager.getText(SettingsConstants.URL_BAR).equals(site));
 
     }
+    public static void clicksOptions(String option) {
+        MobileActionManager.waitVisibility(SettingsConstants.OPTIONS_TITLE,option);
+        MobileActionManager.click(SettingsConstants.OPTIONS_TITLE,option);
+    }
+    public static void SelectTimeoutOption(String timeout) {
+        MobileActionManager.waitVisibility(SettingsConstants.TIMEOUT_SHEET_TITLE);
+        String check = MobileActionManager.getAttribute(SettingsConstants.TIMEOUT_RADIO_BUTTON,"checked" , timeout);
+        if (Boolean.parseBoolean(check) != true) {
+            MobileActionManager.click(SettingsConstants.TIMEOUT_RADIO_BUTTON,timeout);
+        }
+    }
+    public static void clickButton(String button) {
+        Map<String, String> buttons = new HashMap<>();
+        buttons.put("OK", SettingsConstants.OK_BUTTON);
+        buttons.put("CANCEL", SettingsConstants.CANCEL_BUTTON);
+        MobileActionManager.waitVisibility(buttons.get(button));
+        MobileActionManager.click(buttons.get(button));
+    }
+
+    public static void selectedTimeout(String timeout) {
+        MobileActionManager.waitVisibility(SettingsConstants.TIMEOUT_TEXTVIEW_LABEL, timeout);
+        Assert.assertTrue(MobileActionManager.getText(SettingsConstants.TIMEOUT_TEXTVIEW_LABEL,timeout).equals(timeout));
+    }
 }
