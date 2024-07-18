@@ -1,4 +1,4 @@
-@FileOptions
+@FileOptions @Regression
 Feature: File Options
 
 Background:
@@ -19,7 +19,7 @@ Examples:
   | Videos     | video  |
   | Audio      | audio  |
 
-@Regression @Automatable
+@Automatable
 Scenario Outline: Rename a file of <type> from the folder <folder>
 When the user enters the folder <folder>
 And taps the options button "⋮" of the <type> file
@@ -35,7 +35,6 @@ Examples:
   | Audios     | audio     |
   | Videos     | video     |
 
-@Regression
 Scenario Outline: Rename a file <type> with a name identical to an existing file
 When the user enters the folder <folder>
 And taps the options button "⋮" of a <type> file
@@ -52,10 +51,9 @@ Examples:
   | folder     | type      |
   | Images     | image     |
   | Documents  | document  |
-  | Audios     | audio     |
+  | Audio      | audio     |
   | Videos     | video     |
 
-@Regression
 Scenario Outline: Edit an image <Modification> from the folder <folder>
 When the user enters the folder <folder>
 And taps the options button "⋮" for the image file
@@ -103,8 +101,6 @@ Examples:
   | WhatsApp    | Videos    | video      |
   | WhatsApp    | Audios    | audio      |
   
-  
-@Regression
 Scenario Outline: Share multiple files created in Tella of <type> via <SocialMedia> from the folder <folder>
 When the user enters the folder <folder>
 And taps the "Checkbox" button
@@ -190,7 +186,6 @@ Examples:
   | audio     | Audios     |
   | document  | Documents  |
 
-@Regression
 Scenario: Move a file to another existing folder
 When the user enters the folder "All Files"
 And taps the options button "⋮" of a file
@@ -200,7 +195,6 @@ And taps the option "MOVE HERE"
 Then the file is moved to the selected folder
 And the message appears: "File moved successfully"
 
-@Regression
 Scenario: Move a file by creating a folder
 When the user enters the folder "All Files"
 And taps the options button "⋮" of a file
