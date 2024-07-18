@@ -55,7 +55,7 @@
   Then the user views the fields "user name"; "password" to fill
   And presses "save" to save the configuration
 
-  @TellaWeb
+  
   Scenario Outline: Configure whit URL Server
   When the user taps the settings icon
   And selects the "Servers" option
@@ -69,7 +69,7 @@
   |Tella Web|
   |Uwazi    |
 
-  
+  @TellaWeb
   Scenario Outline: Access Login for Project Access
   When the user taps the settings icon
   And selects the "Servers" option
