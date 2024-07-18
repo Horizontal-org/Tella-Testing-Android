@@ -1,11 +1,10 @@
-@SortFiles
+@SortFiles @Regression
 Feature: Organize files in a folder
 
 Background:
     Given the user is unlocked in the Tella app
     And is in the Tella Home
 
-@Regression
 Scenario Outline: Sort files by <sortBy> in the folder <folder>
     When the user enters the folder <folder>
     And the user taps the "Name ↑" icon
@@ -36,7 +35,6 @@ Examples:
 | Name A>Z              | Audio     |
 | Name Z>A              | Audio     |
 
-@Regression
 Scenario Outline: Sort files by <view> in the folder <folder>
     When the user enters the folder <folder>
     And the user taps the <view> button
