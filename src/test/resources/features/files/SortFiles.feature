@@ -17,24 +17,24 @@ Examples:
 | sortBy                | folder    |
 | From newest to oldest | All files |
 | From oldest to newest | All files |
-| Name A-Z              | All files |
-| Name Z-A              | All files |
+| Name A>Z              | All files |
+| Name Z>A              | All files |
 | From newest to oldest | Documents |
 | From oldest to newest | Documents |
-| Name A-Z              | Documents |
-| Name Z-A              | Documents |
+| Name A>Z              | Documents |
+| Name Z>A              | Documents |
 | From newest to oldest | Images    |
 | From oldest to newest | Images    |
-| Name A-Z              | Images    |
-| Name Z-A              | Images    |
+| Name A>Z              | Images    |
+| Name Z>A              | Images    |
 | From newest to oldest | Videos    |
 | From oldest to newest | Videos    |
-| Name A-Z              | Videos    |
-| Name Z-A              | Videos    |
+| Name A>Z              | Videos    |
+| Name Z>A              | Videos    |
 | From newest to oldest | Audio     |
 | From oldest to newest | Audio     |
-| Name A-Z              | Audio     |
-| Name Z-A              | Audio     |
+| Name A>Z              | Audio     |
+| Name Z>A              | Audio     |
 
 @Regression
 Scenario Outline: Sort files by <view> in the folder <folder>
