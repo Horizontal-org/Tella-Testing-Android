@@ -72,7 +72,7 @@ Feature: PhotographyAndVideo
     And the user presses flash button
     Then the flash is off
 
-  @Smoke @Video @Automated
+  @Smoke @Video @Automated @oki
   Scenario: Select video resolution
     When the user presses the camera button
     And the user presses the video button
