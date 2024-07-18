@@ -139,15 +139,14 @@ Feature: Plus button
   Scenario: Successfully add a folder inside another
     When the user enters the "All Files" folder
     And taps the "+" button
-    And selects the option "Create"
+    And selects the option "Create a new folder"
     And enters a folder name "folder1"
-    And taps the "OK" button
+    And taps "Ok"
     And enters "folder1"
     And taps the "+" button
-    And selects the option "Create"
+    And selects the option "Create a new folder"
     And enters a folder name "folder2"
-    And taps the "OK" button
-    And taps the "Create" button
+    And taps "Ok"
     Then "folder2" is successfully created inside "folder1"
 
   @Regression
