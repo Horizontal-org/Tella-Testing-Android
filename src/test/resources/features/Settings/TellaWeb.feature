@@ -134,7 +134,7 @@ And sees the file being uploaded
 Then the approval message "your report is available Outbox" 
 
 
-@ToBeAutomated
+@NoCandidate
 Scenario: Activate Auto-report
 When the user taps the settings icon
 And selects the "Servers" option
@@ -149,7 +149,7 @@ And go to Tella home page
 Then the approval message "The photo(s)/video you took has been automatically uploaded as a report"
 
 
-@ToBeAutomated
+@NoCandidate
 Scenario: Activate Auto-delete
 When the user taps the settings icon
 And selects the "Servers" option
@@ -162,3 +162,25 @@ And go to Tella home page
 And presses the camera button
 And presses the take a photo button
 Then the approval message "The photo/video you took has been uploaded as a report and automatically deleted"
+
+
+@NoCandidate
+Scenario: Activate Background upload
+When the user taps the settings icon
+And selects the "Servers" option
+And selects the "Created project"
+And select Edit 
+And select Background upload
+And presses "Save" icon
+And go to Tella home page
+And taps the Report 
+And taps the New report
+And completes the Title and the Description
+And presses the "Add" icon
+And selects the option Select from Tella files
+And select files and presses the "verification" icon
+And taps Submit 
+And exit the application
+And enter the application 
+
+Then the approval message "The photo/video you took has been uploaded as a 
