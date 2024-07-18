@@ -3,8 +3,9 @@ Feature: Plus button
 
   Background:
     Given the user is in Tella home page
+    And Recent files are enabled to be displayed
 
-@Photo @Video @CaptureFile @Automated @Ignore
+  @Photo @Video @CaptureFile @Automated @Ignore
   Scenario Outline: Capture a file of type <type> from folder <folder>
     When the user enters the folder <folder>
     And taps the "+" button
@@ -13,7 +14,7 @@ Feature: Plus button
     And captures the file of type <type>
     And the file of type <type> is saved correctly in the folder <folderSave>
     And the file appears in the list of files in the folder <folderSave>
-    And the file appears in the Recent files list
+    And the file appears in the "Recent files" list
     Then the file appears in the "All files" folder
 
     Examples:
@@ -42,6 +43,7 @@ Feature: Plus button
     And the audio file is saved correctly in the "Audio" folder
     And the audio file appears in the list of files in the "Audio" folder
     And the audio file appears in the list of files in the "All files" folder
+    And the file appears in the "Recent files" list
 
     Examples:
       | folder    |
