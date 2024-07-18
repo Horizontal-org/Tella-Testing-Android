@@ -180,7 +180,8 @@ And presses the "Add" icon
 And selects the option Select from Tella files
 And select files and presses the "verification" icon
 And taps Submit 
-And exit the application
-And enter the application 
-
-Then the approval message "The photo/video you took has been uploaded as a 
+And exit and enter the application
+And enter password 
+And taps the Report 
+And taps Submitted 
+Then sees the sent report
