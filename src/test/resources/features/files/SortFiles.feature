@@ -5,6 +5,7 @@ Background:
     Given the user is unlocked in the Tella app
     And is in the Tella Home
 
+@Smoke 
 Scenario Outline: Sort files by <sortBy> in the folder <folder>
     When the user enters the folder <folder>
     And the user taps the "Name ↑" icon
