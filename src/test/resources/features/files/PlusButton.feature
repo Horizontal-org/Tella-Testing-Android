@@ -97,6 +97,7 @@ Feature: Plus button
       | document | Documents  | Documents |
       | image    | Images     | Images    |
       | audio    | Audios     | Audio     |
+      | video    | Videos     | Videos    |
 
   @Regression
   Scenario Outline: Import a duplicate file of type <type> from folder <folder>
