@@ -150,15 +150,14 @@ Feature: Plus button
     Then "folder2" is successfully created inside "folder1"
 
   @Regression
-  Scenario: Attempt to add a new folder with a duplicate name
+  Scenario: Add a new folder with a duplicate name without success
     When the user enters the "All Files" folder
     And taps the "+" button
-    And selects the option "Create"
+    And selects the option "Create a new folder"
     And enters a folder name "folder1"
-    And taps the "OK" button
-    And enters "folder1"
+    And taps "Ok"
     And taps the "+" button
-    And selects the option "Create"
+    And selects the option "Create a new folder"
     And enters a folder name "folder1"
-    And taps the "OK" button
+    And taps "Ok"
     Then the folder "folder1" is not created
