@@ -143,3 +143,9 @@ And select Edit
 And select Auto-report
 And presses "Save" icon
 And go to Tella home page
+And presses the camera button
+And presses the take a photo button
+And go to Tella home page
+And select Reports
+And select Submitted
+Then sees sent the file with data
