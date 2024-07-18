@@ -1,4 +1,4 @@
-@PlusButton
+@PlusButton @Regresssion
 Feature: Plus button
 
   Background:
@@ -31,7 +31,6 @@ Feature: Plus button
       | video | Videos     | Video  | Videos    |
       | image | Images     | Photo  | Others    |
       | video | Videos     | Video  | Others    |
-
 
   @Smoke
   Scenario Outline: Record an audio file from the folder <folder>
@@ -77,7 +76,6 @@ Feature: Plus button
       | audio    | Audios     | Audio     |
       | video    | Videos     | Videos    |
 
-  @Regression
   Scenario Outline: Import a file of type <type> from a folder <folder> - deleting the original
     When the user enters the folder <folder>
     And taps the "+" button
@@ -100,7 +98,6 @@ Feature: Plus button
       | audio    | Audios     | Audio     |
       | video    | Videos     | Videos    |
 
-  @Regression
   Scenario Outline: Import a duplicate file of type <type> from folder <folder>
     When the user enters the folder <folder>
     And taps the "+" button
@@ -135,7 +132,6 @@ Feature: Plus button
     And taps "Ok"
     Then a folder with the specified name "folder1" is created
 
-  @Regression
   Scenario: Successfully add a folder inside another
     When the user enters the "All Files" folder
     And taps the "+" button
@@ -149,7 +145,6 @@ Feature: Plus button
     And taps "Ok"
     Then "folder2" is successfully created inside "folder1"
 
-  @Regression
   Scenario: Add a new folder with a duplicate name without success
     When the user enters the "All Files" folder
     And taps the "+" button
