@@ -6,7 +6,7 @@ Background:
 	And the user is in Tella home page
 
 @ToBeAutomated
-Scenario Outline: Submit new report
+Scenario Outline: Submit report with <Select files>
 When the user taps the Report 
 And taps the New report
 And completes the Title and the Description
