@@ -55,7 +55,7 @@ Feature: File Options
      | Audio      | audio     |
      | Videos     | video     |
 
- Scenario Outline: Edit an image <Modification> from the folder <folder>
+ Scenario Outline: Edit an image by <Modification> from the folder <folder>
    When the user enters the folder <folder>
    And taps the options button "⋮" for the image file
    And selects the option "Edit"
