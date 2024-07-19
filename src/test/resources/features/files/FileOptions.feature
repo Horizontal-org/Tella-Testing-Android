@@ -223,6 +223,6 @@ Feature: File Options
    
  @Smoke
  Scenario: Delete a folder with files inside
-
+   
  @Smoke
  Scenario: Rename a folder
