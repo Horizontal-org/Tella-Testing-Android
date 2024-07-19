@@ -255,6 +255,3 @@ Feature: File Options
    And taps the "Checkbox" button
    And taps the same "Checkbox" button
    Then all files are selected
-   
-   
-    
