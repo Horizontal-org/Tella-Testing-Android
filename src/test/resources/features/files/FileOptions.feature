@@ -121,10 +121,10 @@ Feature: File Options
    And the message "1 file saved to the device" appears
    
    Examples:
-     | shareInfo                               | type      | folder     |
-     | share only files                        | image     | Images     |
-     | share files + verification information  | video     | Videos     |
-     | share only files                        | audio     | Audios     |
+     | type      | folder     |
+     | image     | Images     |
+     | video     | Videos     |
+     | audio     | Audios     |
   
  @Smoke @Automatable
  Scenario Outline: Delete a file of <type> from the folder <folder>
