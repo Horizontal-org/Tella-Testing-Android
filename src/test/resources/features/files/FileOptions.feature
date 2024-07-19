@@ -278,3 +278,9 @@ Feature: File Options
    And taps the "Checkbox" button
    And taps the same "Checkbox" button
    Then all files are selected
+   
+ Scenario: Exit with "x" button from Select Files option
+   When the user enters the folder "All files"
+   And taps the "Checkbox" button
+   And presses the "x" button
+   Then the Select Files option disappears
