@@ -77,7 +77,7 @@ Feature: File Options
    And taps the options button "⋮" for the <type> file with verification information
    And selects the option "Share"
    And selects "Share files + verification information"
-   And taps "Ok"
+   And presses "Ok"
    And selects <SocialMedia>
    And sends the file
    Then the file is successfully shared
@@ -100,7 +100,7 @@ Feature: File Options
    And taps the options button "⋮"
    And selects the option "Share"
    And selects "Share files + verification information"
-   And taps "Ok"
+   And presses "Ok"
    And selects <SocialMedia>
    And sends the file
    Then the file is successfully shared
@@ -137,7 +137,7 @@ Feature: File Options
    And selects the option "Save to device"
    And presses "Save"
    And selects "Share files + verification information"
-   And taps "Ok"
+   And presses "Ok"
    And selects a location on the device
    And presses "Use this folder"
    And presses "Allow"
@@ -239,4 +239,13 @@ Feature: File Options
    
  @Smoke
  Scenario: Rename a folder
-   
+   When the user enters the folder "All Files"
+    And taps the option "+"
+    And selects the option "Create a new folder"
+    And enters the name: "folder1"
+    And presses "Ok"
+    And taps the options button "⋮" of the "folder1" folder
+    And selects the option "Rename"
+    And enters the new name: "folder2"
+    And presses "Ok"
+    Then the folder name is updated
