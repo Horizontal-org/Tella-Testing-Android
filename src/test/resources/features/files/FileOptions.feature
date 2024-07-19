@@ -131,7 +131,7 @@ Feature: File Options
    When the user enters the folder <folder>
    And taps the options button "⋮" for the <type> file
    And selects the option "Delete"
-   And taps the "Delete" button
+   And taps "Delete"
    Then the <type> file is deleted from Tella
    And the message "The file was deleted" appears
    
@@ -149,9 +149,9 @@ Feature: File Options
    And selects multiple <type> files
    And taps the options button "⋮"
    And selects the option "Delete"
-   And taps the "Delete" button
+   And taps "Delete"
    Then the <type> files are deleted from Tella
-   And the message "Files deleted successfully" appears
+   And the message "The files were deleted" appears
    
    Examples:
      | type     | folder     |
