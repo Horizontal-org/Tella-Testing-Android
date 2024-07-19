@@ -239,3 +239,4 @@ Feature: File Options
    
  @Smoke
  Scenario: Rename a folder
+   
