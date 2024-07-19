@@ -5,6 +5,7 @@ Feature: Plus button
     Given the user is in Tella home page
     And Recent files are enabled to be displayed
 
+  #El caso siguiente es este mismo pero corregido y completo
   @Photo @Video @CaptureFile @Automated @Ignore
   Scenario Outline: Capture a file of type <type> from folder <folder>
     When the user enters the folder <folder>
@@ -155,6 +156,16 @@ Feature: Plus button
       | image    | Images     | Images    |
       | audio    | Audios     | Audio     |
       | video    | Videos     | Videos    |
+      
+  @Smoke
+  Scenario: Open a pdf file successfully
+    When the user enters the "Documents" folder
+    And taps the "+" button
+    And selects the option "Import from device"
+    And taps the option "Keep original"
+    And selects a PDF file from the device
+    And opens the PDF file from the "Documents" folder
+    Then views the PDF file correctly
       
   @Smoke
   Scenario: Successfully add a folder
