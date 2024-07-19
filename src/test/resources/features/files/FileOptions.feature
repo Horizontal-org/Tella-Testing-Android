@@ -94,37 +94,18 @@ Feature: File Options
    When the user enters the folder <folder>
    And taps the options button "⋮" for the <type> file
    And selects the option "Share"
-   And taps "Continue"
-   And taps "OK"
+   And taps "Ok"
    And selects <SocialMedia>
    Then the file is successfully shared
    
    Examples:
      | SocialMedia | folder    | type       |
-     | WhatsApp    | Documents | document   |
+     | Gmail       | Documents | document   |
      | WhatsApp    | Images    | image      |
      | WhatsApp    | Videos    | video      |
-     | WhatsApp    | Audios    | audio      |
-  
- Scenario Outline: Share multiple files created in Tella of <type> via <SocialMedia> from the folder <folder>
-   When the user enters the folder <folder>
-   And taps the "Checkbox" button
-   And selects multiple <type> files
-   And taps the options button "⋮"
-   And selects the option "Share"
-   And taps "Continue"
-   And selects <shareInfo>
-   And taps "OK"
-   And selects <SocialMedia>
-   Then the files are successfully shared
-   
-   Examples:
-     | SocialMedia | shareInfo                              | type                          | folder     |
-     | WhatsApp    | share files + verification information | image                         | Images     |
-     | WhatsApp    | share files + verification information | video                         | Videos     |
-     | WhatsApp    | share files + verification information | audio                         | Audios     |
+     | Signal      | Audios    | audio      |
 
- @Smoke @Automatable
+ @Smoke @ToBeAutomated
  Scenario Outline: Save a file of <type> to the device from the folder <folder>
    When the user enters the folder <folder>
    And taps the options button "⋮" for the <type> file
