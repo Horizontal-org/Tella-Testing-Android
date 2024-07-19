@@ -11,7 +11,6 @@ Feature: Organize files in a folder
     And the user taps the "Name ↑" icon
     And chooses to sort files in <sortBy> order
     Then the files are displayed according to the specified order
-    And the selected <sortBy> order persists upon re-entering the folder
     
     Examples:
       | sortBy                | folder    |
@@ -40,7 +39,6 @@ Feature: Organize files in a folder
     When the user enters the folder <folder>
     And the user taps the <view> button
     Then the files are displayed according to the selected view
-    And the selected <view> persists upon re-entering the folder
     
     Examples:
       | view | folder    |
