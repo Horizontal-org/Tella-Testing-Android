@@ -34,7 +34,7 @@ Feature: Plus button
 
   @Photo @Video @CaptureFile
   Scenario Outline: Capture a file of type <type> with verification information from folder <folder>
-    Given the verification information mode is on
+    Given the verification mode is on
     When the user enters the folder <folder>
     And taps the "+" button
     And selects the option: "Take photovideo"
