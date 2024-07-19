@@ -240,12 +240,21 @@ Feature: File Options
  @Smoke
  Scenario: Rename a folder
    When the user enters the folder "All Files"
-    And taps the option "+"
-    And selects the option "Create a new folder"
-    And enters the name: "folder1"
-    And presses "Ok"
-    And taps the options button "⋮" of the "folder1" folder
-    And selects the option "Rename"
-    And enters the new name: "folder2"
-    And presses "Ok"
-    Then the folder name is updated
+   And taps the option "+"
+   And selects the option "Create a new folder"
+   And enters the name: "folder1"
+   And presses "Ok"
+   And taps the options button "⋮" of the "folder1" folder
+   And selects the option "Rename"
+   And enters the new name: "folder2"
+   And presses "Ok"
+   Then the folder name is updated
+    
+ Scenario: Select all files in a folder
+   When the user enters the folder "All files"
+   And taps the "Checkbox" button
+   And taps the same "Checkbox" button
+   Then all files are selected
+   
+   
+    
