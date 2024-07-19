@@ -55,6 +55,7 @@ Feature: File Options
      | Audio      | audio     |
      | Videos     | video     |
 
+ @Smoke
  Scenario Outline: Edit an image by <Modification> from the folder "Images"
    When the user enters the folder "Images"
    And taps the options button "⋮" for the image file
