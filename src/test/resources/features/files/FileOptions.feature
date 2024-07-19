@@ -6,7 +6,7 @@ Feature: File Options
     And there are files and folders within Tella
     And they are on the Tella Home screen
 
- @Smoke @Automatable
+ @Smoke @ToBeAutomated
  Scenario Outline: Open a multimedia file <type> from the folder <folder>
    When the user enters the folder <folder>
    And taps on a <type> file
@@ -19,13 +19,13 @@ Feature: File Options
      | Videos     | video  |
      | Audio      | audio  |
 
- @Automatable
+ @Smoke @ToBeAutomated
  Scenario Outline: Rename a file of <type> from the folder <folder>
    When the user enters the folder <folder>
    And taps the options button "⋮" of the <type> file
    And selects the option "Rename"
    And enters the name: "asdf"
-   And presses "OK"
+   And presses "Ok"
    Then the file name is updated
    
    Examples:
@@ -40,12 +40,13 @@ Feature: File Options
    And taps the options button "⋮" of a <type> file
    And selects the option "Rename"
    And enters the name: "asdf"
-   And presses "OK"
+   And presses "Ok"
    And the user taps the options button "⋮" of another <type> file
    And selects the option "Rename"
    And enters the name: "asdf"
-   And presses "OK"
+   And presses "Ok"
    Then the file name is not updated
+   And the correct message appears on the screen
    
    Examples:
      | folder     | type      |
