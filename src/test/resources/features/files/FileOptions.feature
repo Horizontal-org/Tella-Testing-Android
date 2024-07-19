@@ -90,7 +90,7 @@ Feature: File Options
      | WhatsApp    | Images     | image    | a single file   |
      | Signal      | Videos     | video    | a single file   |
 
- Scenario Outline: Share a file not created in Tella of <type> via <SocialMedia> from folder <folder>
+ Scenario Outline: Share a <type> file not created in Tella via <SocialMedia> from the folder <folder>
    When the user enters the folder <folder>
    And taps the options button "⋮" for the <type> file
    And selects the option "Share"
