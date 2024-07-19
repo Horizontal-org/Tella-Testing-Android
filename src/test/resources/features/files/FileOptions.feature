@@ -189,6 +189,8 @@ Feature: File Options
    And selects the option "Move to another folder"
    And taps the option "+"
    And enters a name for the folder: "FILE123"
-   And taps the option "MOVE HERE"
+   And presses "Ok"
+   And chooses the destination folder "FILE123"
+   And taps the option "Move here"
    Then the file is moved to the "FILE123" folder
-   And the message appears: "File moved successfully"
+   And the message appears: "File successfully moved"
