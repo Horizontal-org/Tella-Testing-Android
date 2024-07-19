@@ -32,6 +32,34 @@ Feature: Plus button
       | image | Images     | Photo  | Others    |
       | video | Videos     | Video  | Others    |
 
+  @Photo @Video @CaptureFile
+  Scenario Outline: Capture a file of type <type> with verification information from folder <folder>
+    Given the verification information mode is on
+    When the user enters the folder <folder>
+    And taps the "+" button
+    And selects the option: "Take photovideo"
+    And selects the option <option>
+    And captures the file of type <type>
+    And the file of type <type> is saved correctly in the folder <folderSave>
+    And the file appears in the list of files in the folder <folderSave>
+    And the file appears in the "Recent files" list
+    Then the file appears in the "All files" folder
+
+    Examples:
+      | type  | folderSave | option | folder    |
+      | image | Images     | Photo  | All files |
+      | video | Videos     | Video  | All files |
+      | image | Images     | Photo  | Documents |
+      | video | Videos     | Video  | Documents |
+      | image | Images     | Photo  | Images    |
+      | video | Videos     | Video  | Images    |
+      | image | Images     | Photo  | Audio     |
+      | video | Videos     | Video  | Audio     |
+      | image | Images     | Photo  | Videos    |
+      | video | Videos     | Video  | Videos    |
+      | image | Images     | Photo  | Others    |
+      | video | Videos     | Video  | Others    |
+
   @Smoke
   Scenario Outline: Record an audio file from the folder <folder>
     When the user enters the folder <folder>
