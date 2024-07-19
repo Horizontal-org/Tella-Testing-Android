@@ -315,6 +315,17 @@ Feature: PhotographyAndVideo
     Then the user exits from the last file
     And the photo camera appeared
     
-    @Smoke @Photography
-  Scenario: Edit an image
+  @Smoke @Photography
+  Scenario Outline: Edit an image by <Modification> from the last camera file
+    When the user presses the camera button
+    And the user presses the take a photo button
+    And the user presses the image located at the bottom right to the screen
+    And taps the crop tool button
+    And performs the <Modification>
+    And taps the checkmark button
+    Then the modification is saved as a new image
     
+    Examples:
+      | Modification    |
+      | cropping        |
+      | rotation        |
