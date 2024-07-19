@@ -71,8 +71,8 @@ Feature: File Options
      | Rotation     |
 
  @Smoke
- Scenario Outline: Share <file> created in Tella of type <type> via <SocialMedia> from the folder <folder>
-   Given the Verification mode is on
+ Scenario Outline: Share <file> created in Tella of type <type> via <SocialMedia> from the folder <folder> with verification information
+   Given the user has <file> with verification information
    When the user enters the folder <folder>
    And taps the options button "⋮" for the <type> file with verification information
    And selects the option "Share"
@@ -106,7 +106,8 @@ Feature: File Options
      | Signal      | Audios    | audio      |
 
  @Smoke @ToBeAutomated
- Scenario Outline: Save a file of <type> to the device from the folder <folder>
+ Scenario Outline: Save a file of <type> to the device from the folder <folder> with its verification information
+   Given the user has a file with verification information
    When the user enters the folder <folder>
    And taps the options button "⋮" for the <type> file
    And selects the option "Save to device"
