@@ -55,19 +55,19 @@ Feature: File Options
      | Audio      | audio     |
      | Videos     | video     |
 
- Scenario Outline: Edit an image by <Modification> from the folder <folder>
-   When the user enters the folder <folder>
+ Scenario Outline: Edit an image by <Modification> from the folder "Images"
+   When the user enters the folder "Images"
    And taps the options button "⋮" for the image file
    And selects the option "Edit"
-   And makes the <modification>
-   And taps the checkmark button "Checkbox"
+   And performs the <Modification>
+   And taps the checkmark button
    Then the modification is saved as a new image
-   And the message "Changes saved successfully" appears
+   And the message "Your changes have been saved" appears
    
    Examples:
-     | Modification | folder    |
-     | Crop         | Images    |
-     | Rotate       | Images    |
+     | Modification |
+     | Crop         |
+     | Rotation     |
 
  @Smoke
  Scenario Outline: Share a file created in Tella of <type> via <SocialMedia> from folder <folder>
