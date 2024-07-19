@@ -32,18 +32,20 @@ Feature: Plus button
       | image | Images     | Photo  | Others    |
       | video | Videos     | Video  | Others    |
 
-  @Photo @Video @CaptureFile
-  Scenario Outline: Capture a file of type <type> with verification information from folder <folder>
-    Given the verification mode is on
+  @Smoke @Photo @Video @CaptureFile
+  Scenario Outline: Capture a file of type <type> with verification information and GPS off from folder <folder>
+    Given the Verification Mode is on
+    And GPS is off
     When the user enters the folder <folder>
     And taps the "+" button
-    And selects the option: "Take photovideo"
+    And selects the option: "Take photo/video"
     And selects the option <option>
     And captures the file of type <type>
-    And the file of type <type> is saved correctly in the folder <folderSave>
+    Then the file of type <type> is saved correctly in the folder <folderSave>
     And the file appears in the list of files in the folder <folderSave>
     And the file appears in the "Recent files" list
-    Then the file appears in the "All files" folder
+    And the file appears in the "All files" folder
+    And the verification information is collected correctly
 
     Examples:
       | type  | folderSave | option | folder    |
@@ -61,7 +63,9 @@ Feature: Plus button
       | video | Videos     | Video  | Others    |
 
   @Smoke
-  Scenario Outline: Record an audio file from the folder <folder>
+  Scenario Outline: Record an audio file with verification information and GPS off from the folder <folder>
+    Given the Verification Mode is on
+    And GPS is off
     When the user enters the folder <folder>
     And taps the "+" button
     And selects the option "Record audio"
@@ -71,6 +75,7 @@ Feature: Plus button
     And the audio file appears in the list of files in the "Audio" folder
     And the audio file appears in the list of files in the "All files" folder
     And the file appears in the "Recent files" list
+    And the verification information is collected correctly
 
     Examples:
       | folder    |
