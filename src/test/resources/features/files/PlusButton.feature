@@ -220,31 +220,31 @@ Feature: Plus button
     When the user enters the "All Files" folder
     And taps the "+" button
     And selects the option "Create a new folder"
-    And enters a folder name "folder1"
-    And taps "Ok"
+    And enters a folder name: "folder1"
+    And presses "Ok"
     Then a folder with the specified name "folder1" is created
 
   Scenario: Successfully add a folder inside another
     When the user enters the "All Files" folder
     And taps the "+" button
     And selects the option "Create a new folder"
-    And enters a folder name "folder1"
-    And taps "Ok"
+    And enters a folder name: "folder1"
+    And presses "Ok"
     And enters "folder1"
     And taps the "+" button
     And selects the option "Create a new folder"
-    And enters a folder name "folder2"
-    And taps "Ok"
+    And enters a folder name: "folder2"
+    And presses "Ok"
     Then "folder2" is successfully created inside "folder1"
 
   Scenario: Add a new folder with a duplicate name without success
     When the user enters the "All Files" folder
     And taps the "+" button
     And selects the option "Create a new folder"
-    And enters a folder name "folder1"
-    And taps "Ok"
+    And enters a folder name: "folder1"
+    And presses "Ok"
     And taps the "+" button
     And selects the option "Create a new folder"
-    And enters a folder name "folder1"
-    And taps "Ok"
+    And enters a folder name: "folder1"
+    And presses "Ok"
     Then the folder "folder1" is not created
