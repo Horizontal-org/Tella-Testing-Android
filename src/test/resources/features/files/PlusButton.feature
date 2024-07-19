@@ -5,7 +5,7 @@ Feature: Plus button
     Given the user is in Tella home page
     And Recent files are enabled to be displayed
 
-  #El caso siguiente es este mismo pero corregido y completo
+  #Este caso está copiado y corregido en el caso siguiente
   @Photo @Video @CaptureFile @Automated @Ignore
   Scenario Outline: Capture a file of type <type> from folder <folder>
     When the user enters the folder <folder>
@@ -17,6 +17,33 @@ Feature: Plus button
     And the file appears in the list of files in the folder <folderSave>
     And the file appears in the "Recent files" list
     Then the file appears in the "All files" folder
+
+    Examples:
+      | type  | folderSave | option | folder    |
+      | image | Images     | Photo  | All files |
+      | video | Videos     | Video  | All files |
+      | image | Images     | Photo  | Documents |
+      | video | Videos     | Video  | Documents |
+      | image | Images     | Photo  | Images    |
+      | video | Videos     | Video  | Images    |
+      | image | Images     | Photo  | Audio     |
+      | video | Videos     | Video  | Audio     |
+      | image | Images     | Photo  | Videos    |
+      | video | Videos     | Video  | Videos    |
+      | image | Images     | Photo  | Others    |
+      | video | Videos     | Video  | Others    |
+
+  @Smoke @Photo @Video @CaptureFile
+  Scenario Outline: Capture a file of type <type> from folder <folder>
+    When the user enters the folder <folder>
+    And taps the "+" button
+    And selects the option: "Take photo/video"
+    And selects the option <option>
+    And captures the file of type <type>
+    Then the file of type <type> is saved correctly in the folder <folderSave>
+    And the file appears in the list of files in the folder <folderSave>
+    And the file appears in the "Recent files" list
+    And the file appears in the "All files" folder
 
     Examples:
       | type  | folderSave | option | folder    |
@@ -62,6 +89,27 @@ Feature: Plus button
       | video | Videos     | Video  | Videos    |
       | image | Images     | Photo  | Others    |
       | video | Videos     | Video  | Others    |
+
+  @Smoke
+  Scenario Outline: Record an audio file from the folder <folder>
+    When the user enters the folder <folder>
+    And taps the "+" button
+    And selects the option "Record audio"
+    And captures the audio
+    Then the message "The audio recording was saved to your Tella files" appears
+    And the audio file is saved correctly in the "Audio" folder
+    And the audio file appears in the list of files in the "Audio" folder
+    And the audio file appears in the list of files in the "All files" folder
+    And the file appears in the "Recent files" list
+
+    Examples:
+      | folder    |
+      | All files |
+      | Documents |
+      | Images    |
+      | Audio     |
+      | Video     |
+      | Others    |
 
   @Smoke
   Scenario Outline: Record an audio file with verification information and GPS off from the folder <folder>
