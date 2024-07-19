@@ -107,15 +107,16 @@ Feature: File Options
 
  @Smoke @ToBeAutomated
  Scenario Outline: Save a file of <type> to the device from the folder <folder> with its verification information
-   Given the user has a file with verification information
+   Given the user has a <type> file with verification information
    When the user enters the folder <folder>
    And taps the options button "⋮" for the <type> file
    And selects the option "Save to device"
    And presses "Save"
-   And selects <shareInfo>
-   And taps "Continue"
+   And selects "Share files + verification information"
+   And taps "Ok"
    And selects a location on the device
-   And presses the "USE THIS FOLDER" button
+   And presses "Use this folder"
+   And presses "Allow"
    Then the <type> file is successfully saved to the device
    And the message "1 file saved to the device" appears
    
