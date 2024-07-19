@@ -126,14 +126,14 @@ Feature: File Options
      | video     | Videos     |
      | audio     | Audios     |
   
- @Smoke @Automatable
+ @Smoke @ToBeAutomated
  Scenario Outline: Delete a file of <type> from the folder <folder>
    When the user enters the folder <folder>
    And taps the options button "⋮" for the <type> file
    And selects the option "Delete"
    And taps the "Delete" button
    Then the <type> file is deleted from Tella
-   And the message "File deleted successfully" appears
+   And the message "The file was deleted" appears
    
    Examples:
      | type      | folder     |
@@ -142,7 +142,7 @@ Feature: File Options
      | audio     | Audios     |
      | document  | Documents  |
 
- @ToBeAutomated
+ @Smoke @ToBeAutomated
  Scenario Outline: Delete multiple files of <type> from the folder <folder>
    When the user enters the folder <folder>
    And taps the "Checkbox" button
