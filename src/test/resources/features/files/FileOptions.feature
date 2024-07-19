@@ -55,6 +55,14 @@ Feature: File Options
      | Audio      | audio     |
      | Videos     | video     |
 
+ Scenario: Cancel the renaming of the <type> file from the <folder> folder
+   When the user enters the folder <folder>
+   And taps the options button "⋮" of the <type> file
+   And selects the option "Rename"
+   And enters the name: "123"
+   And presses "Cancel"
+   Then the new file name is not updated
+
  @Smoke
  Scenario Outline: Edit an image by <Modification> from the folder "Images"
    When the user enters the folder "Images"
