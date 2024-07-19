@@ -198,6 +198,7 @@ Feature: File Options
      | audio     | Audios     |
      | document  | Documents  |
 
+ @Smoke
  Scenario: Move a file to another existing folder
    When the user enters the folder "All Files"
    And taps the options button "⋮" of a file
@@ -207,6 +208,7 @@ Feature: File Options
    Then the file is moved to the selected folder
    And the message appears: "File successfully moved"
 
+ @Smoke
  Scenario: Move a file by creating a folder
    When the user enters the folder "All Files"
    And taps the options button "⋮" of a file
@@ -218,3 +220,9 @@ Feature: File Options
    And taps the option "Move here"
    Then the file is moved to the "FILE123" folder
    And the message appears: "File successfully moved"
+   
+ @Smoke
+ Scenario: Delete a folder with files inside
+
+ @Smoke
+ Scenario: Rename a folder
