@@ -179,9 +179,9 @@ Feature: File Options
    And taps the options button "⋮" of a file
    And selects the option "Move to another folder"
    And chooses the destination folder
-   And taps the option "MOVE HERE"
+   And taps the option "Move here"
    Then the file is moved to the selected folder
-   And the message appears: "File moved successfully"
+   And the message appears: "File successfully moved"
 
  Scenario: Move a file by creating a folder
    When the user enters the folder "All Files"
