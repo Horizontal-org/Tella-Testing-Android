@@ -184,13 +184,20 @@ Feature: File Options
      | audio    | Audios     |
      | document | Documents  |
 
- Scenario: Cancel the deletion of a <type> file from the folder <folder>
+ Scenario Outline: Cancel the deletion of a <type> file from the folder <folder>
    When When the user enters the folder <folder>
    And taps the options button "⋮" of the <type> file
    And selects the option "Delete"
    And taps "Cancel"
    Then the deletion is not executed
    And the <type> file still appears in the <folder> folder
+   
+   Examples:
+     | type     | folder     |
+     | image    | Images     |
+     | video    | Videos     |
+     | audio    | Audios     |
+     | document | Documents  |
  
  @ToBeAutomated
  Scenario Outline: View the information of a <type> file from the folder <folder>
