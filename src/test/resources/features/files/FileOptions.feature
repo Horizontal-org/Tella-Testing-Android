@@ -71,24 +71,48 @@ Feature: File Options
      | Rotation     |
 
  @Smoke
- Scenario Outline: Share <file> created in Tella of type <type> via <SocialMedia> from the folder <folder> with verification information
-   Given the user has <file> with verification information
+ Scenario Outline: Share a file created in Tella of type <type> via <SocialMedia> from the folder <folder> with verification information
+   Given the user has a file with verification information
    When the user enters the folder <folder>
    And taps the options button "⋮" for the <type> file with verification information
    And selects the option "Share"
    And selects "Share files + verification information"
    And taps "Ok"
    And selects <SocialMedia>
+   And sends the file
    Then the file is successfully shared
    
    Examples:
-     | SocialMedia | folder     | type     | file            |
-     | Gmail       | Images     | image    | several files   |
-     | WhatsApp    | Videos     | video    | several files   |
-     | Signal      | Audios     | audio    | several files   |
-     | Gmail       | Audios     | audio    | a single file   |
-     | WhatsApp    | Images     | image    | a single file   |
-     | Signal      | Videos     | video    | a single file   |
+     | SocialMedia | folder     | type     |
+     | Gmail       | Images     | image    |
+     | WhatsApp    | Videos     | video    |
+     | Signal      | Audios     | audio    |
+     | Gmail       | Audios     | audio    |
+     | WhatsApp    | Images     | image    |
+     | Signal      | Videos     | video    |
+
+ @Smoke
+ Scenario Outline: Share multiple files created in Tella of type <type> via <SocialMedia> from the folder <folder> with verification information
+   Given the user has a file with verification information
+   When the user enters the folder <folder>
+   And taps the "Checkbox" button
+   And selects multiple <type> files with verification information
+   And taps the options button "⋮"
+   And selects the option "Share"
+   And selects "Share files + verification information"
+   And taps "Ok"
+   And selects <SocialMedia>
+   And sends the file
+   Then the file is successfully shared
+   
+   Examples:
+     | SocialMedia | folder     | type     |
+     | Gmail       | Images     | image    |
+     | WhatsApp    | Videos     | video    |
+     | Signal      | Audios     | audio    |
+     | Gmail       | Audios     | audio    |
+     | WhatsApp    | Images     | image    |
+     | Signal      | Videos     | video    |
 
  Scenario Outline: Share a <type> file not created in Tella via <SocialMedia> from the folder <folder>
    When the user enters the folder <folder>
