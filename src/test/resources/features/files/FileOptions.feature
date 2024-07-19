@@ -71,21 +71,24 @@ Feature: File Options
      | Rotation     |
 
  @Smoke
- Scenario Outline: Share a file created in Tella of <type> via <SocialMedia> from folder <folder>
+ Scenario Outline: Share <file> created in Tella of type <type> via <SocialMedia> from the folder <folder>
+   Given the Verification mode is on
    When the user enters the folder <folder>
-   And taps the options button "⋮" for the <type> file
+   And taps the options button "⋮" for the <type> file with verification information
    And selects the option "Share"
-   And taps "Continue"
-   And selects <shareInfo>
-   And taps "OK"
+   And selects "Share files + verification information"
+   And taps "Ok"
    And selects <SocialMedia>
    Then the file is successfully shared
    
    Examples:
-     | SocialMedia | shareInfo                                       | folder     | type     |
-     | WhatsApp    | share files + verification information          | Images     | image    |
-     | WhatsApp    | share only files                                | Videos     | video    |
-     | WhatsApp    | share files + verification information          | Audios     | audio    |
+     | SocialMedia | folder     | type     | file            |
+     | Gmail       | Images     | image    | several files   |
+     | WhatsApp    | Videos     | video    | several files   |
+     | Signal      | Audios     | audio    | several files   |
+     | Gmail       | Audios     | audio    | a single file   |
+     | WhatsApp    | Images     | image    | a single file   |
+     | Signal      | Videos     | video    | a single file   |
 
  Scenario Outline: Share a file not created in Tella of <type> via <SocialMedia> from folder <folder>
    When the user enters the folder <folder>
