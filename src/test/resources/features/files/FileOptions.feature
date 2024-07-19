@@ -94,8 +94,8 @@ Feature: File Options
    When the user enters the folder <folder>
    And taps the options button "⋮" for the <type> file
    And selects the option "Share"
-   And taps "Ok"
    And selects <SocialMedia>
+   And sends the file
    Then the file is successfully shared
    
    Examples:
