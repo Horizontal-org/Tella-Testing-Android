@@ -46,7 +46,7 @@ Feature: File Options
    And enters the name: "asdf"
    And presses "Ok"
    Then the file name is not updated
-   And the correct message appears on the screen
+   And the correct message appears
    
    Examples:
      | folder     | type      |
@@ -206,7 +206,7 @@ Feature: File Options
    And chooses the destination folder
    And taps the option "Move here"
    Then the file is moved to the selected folder
-   And the message appears: "File successfully moved"
+   And the message "File successfully moved" appears
 
  @Smoke
  Scenario: Move a file by creating a folder
@@ -214,15 +214,28 @@ Feature: File Options
    And taps the options button "⋮" of a file
    And selects the option "Move to another folder"
    And taps the option "+"
-   And enters a name for the folder: "FILE123"
+   And enters a name for the folder: "FOLDER123"
    And presses "Ok"
-   And chooses the destination folder "FILE123"
+   And chooses the destination folder "FOLDER123"
    And taps the option "Move here"
-   Then the file is moved to the "FILE123" folder
-   And the message appears: "File successfully moved"
+   Then the file is moved to the "FOLDER123" folder
+   And the message "File successfully moved" appears
    
  @Smoke
  Scenario: Delete a folder with files inside
+   When the user enters the folder "All Files"
+   And taps the options button "⋮" of a file
+   And selects the option "Move to another folder"
+   And taps the option "+"
+   And enters a name for the folder: "FOLDER123"
+   And presses "Ok"
+   And chooses the destination folder "FOLDER123"
+   And taps the option "Move here"
+   And taps "← All files"
+   And taps the options button "⋮" of the "FOLDER123" folder
+   And selects the option "Delete"
+   And taps "Delete"
+   And the message "The files were deleted" appears  
    
  @Smoke
  Scenario: Rename a folder
