@@ -147,23 +147,66 @@ public class SettingsService {
         MobileActionManager.waitVisibility(SettingsConstants.OPTIONS_TITLE,option);
         MobileActionManager.click(SettingsConstants.OPTIONS_TITLE,option);
     }
-    public static void SelectTimeoutOption(String timeout) {
+    public static void SelectGeneralOption(String timeout) {
         MobileActionManager.waitVisibility(SettingsConstants.TIMEOUT_SHEET_TITLE);
-        String check = MobileActionManager.getAttribute(SettingsConstants.TIMEOUT_RADIO_BUTTON,"checked" , timeout);
+        String check = MobileActionManager.getAttribute(SettingsConstants.GENERAL_RADIO_BUTTON,"checked" , timeout);
         if (Boolean.parseBoolean(check) != true) {
-            MobileActionManager.click(SettingsConstants.TIMEOUT_RADIO_BUTTON,timeout);
+            MobileActionManager.click(SettingsConstants.GENERAL_RADIO_BUTTON,timeout);
         }
     }
     public static void clickButton(String button) {
         Map<String, String> buttons = new HashMap<>();
         buttons.put("OK", SettingsConstants.OK_BUTTON);
         buttons.put("CANCEL", SettingsConstants.CANCEL_BUTTON);
+        buttons.put("Exit Tella", SettingsConstants.OK_BUTTON);
         MobileActionManager.waitVisibility(buttons.get(button));
         MobileActionManager.click(buttons.get(button));
     }
 
     public static void selectedTimeout(String timeout) {
-        MobileActionManager.waitVisibility(SettingsConstants.TIMEOUT_TEXTVIEW_LABEL, timeout);
-        Assert.assertTrue(MobileActionManager.getText(SettingsConstants.TIMEOUT_TEXTVIEW_LABEL,timeout).equals(timeout));
+        MobileActionManager.waitVisibility(SettingsConstants.GENERAL_TEXTVIEW_LABEL, timeout);
+        Assert.assertTrue(MobileActionManager.getText(SettingsConstants.GENERAL_TEXTVIEW_LABEL,timeout).equals(timeout));
     }
+
+    public static void setIncorrectPinWithAttempts(String pin, String attempts) {
+        // Usamos una expresión regular para extraer el número del String
+        String number = attempts.replaceAll("\\D+", "");
+        // Convertimos el String con el número a un Integer
+        Integer attempt = Integer.parseInt(number);
+        // Usamos el valor convertido en el bucle for
+        for (int i = 0; i < attempt; i++) {
+            UnlockService.enterPassword(pin);
+        }
+    }
+
+    public static void selectMethodCamuflage(String option) {
+        Map<String, String> options = new HashMap<>();
+        options.put("CHANGE NAME AND ICON", SettingsConstants.ICON_CAMOUFLAGE_BUTTON);
+        options.put("HIDE BEHIND A CALCULATOR APP", SettingsConstants.APP_CAMOUFLAGE_BUTTON);
+        MobileActionManager.waitVisibility(options.get(option));
+        MobileActionManager.click(options.get(option));
+    }
+
+    public static void selectIcon(String icon) {
+        MobileActionManager.waitVisibility(SettingsConstants.ICON_CAMOUFLAGE_TEXT);
+        String iconSelected = MobileActionManager.getText(SettingsConstants.ICON_CAMOUFLAGE_TEXT, icon);
+        MobileActionManager.click(iconSelected);
+    }
+    public static void showMessage(String message) {
+        MobileActionManager.waitVisibility(SettingsConstants.MESSAGE_CONTENT);
+        Assert.assertTrue(MobileActionManager.getText(SettingsConstants.MESSAGE_CONTENT).contains(message));
+    }
+
+    public static void viewMessage(String message) {
+        if (message != "") {
+            MobileActionManager.waitVisibility(SettingsConstants.MESSAGE_LABEL);
+            Assert.assertTrue(MobileActionManager.getText(SettingsConstants.MESSAGE_LABEL).contains(message));
+        }
+    }
+    public static void changeStatus(String option, String status) {
+        MobileActionManager.waitVisibility(SettingsConstants.GENERAL_TEXTVIEW_LABEL, status);
+        Assert.assertTrue(MobileActionManager.getText(SettingsConstants.GENERAL_TEXTVIEW_LABEL,status).equals(status));
+    }
+
+
 }

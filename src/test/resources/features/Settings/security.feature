@@ -112,49 +112,58 @@ Feature: Security
     And taps "Delete after failed unlock" option in security category
     And select <attempts> option
     And taps "OK" button
-    And leaves the Tella application and opens it again
-    And set incorrect <PIN> in <attempts>
-    And view the Tella application is closed and opens it again
-    And sees that the configuration is set by default
+    And the user close the app
+    And the user set incorrect <PIN> in <attempts>
     Then sees that the files have been deleted
 
     Examples:
-      | attempts    | PIN |
-      | 5 attempts  | 1   |
-      | 10 attempts | 1   |
-      | 20 attempts | 1   |
+      | attempts    | PIN    |
+      | 5 attempts  | 123450 |
+      | 10 attempts | 123451 |
+      | 20 attempts | 123450 |
+
+  @Smoke @Android @DeleteAfterFailedUnlock @Automated
+  Scenario Outline: Security - Delete after failed unlock
+    When the user clicks the "Delete after failed unlock" option
+    And select attempts <attempts> option
+    And taps "OK" button
+    Then the sucessfull message <message> is displayed
+    And the "Delete after failed unlock" option is changed to status <status>
+
+    Examples:
+      | attempts                 | status | message                                                         |
+      | Off (do not delete data) | Off    |                                                                 |
+      | 5 attempts               | On     | Your Tella data will be deleted after 5 failed unlock attempts  |
+      | 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
+      | 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @Android @Camouflage
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon
-    When taps "Security" option
-    And taps "Camouflage" option in security category
-    And set security code valid
-    And taps "Change camuflaje method" option
-    And taps "Change name and icon" option
-    And select <icon> option
-    And taps "next" option
-    And taps exit Tella option
-    And view the <message>
-    And view change Tella <icon>
+    When the user clicks the "Camouflage" option
+    And The user enter the password <password>
+    And select "CHANGE NAME AND ICON" option
+    And select icon <icon> option
+    And tap the next button
+    And taps "Exit Tella" button
+    Then the message "<message>" is displayed
+    And view the Tella icon changed for <icon>
 
     Examples:
-      | icon       | message                                                                   |
-      | Mi camera  | please wait.you will return to your device´s home screen in a few seconds |
-      | Calculator | please wait.you will return to your device´s home screen in a few seconds |
+      | password | icon       | message                                                                     |
+      | 123456   | MiCamera   | Please wait. You will return to your device's home screen in a few seconds. |
+      | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. |
 
 
   @Smoke @Android @Camouflage
   Scenario Outline: Security - camouflage -  change camuflaje method - hide behind a calculator
-    When taps "Security" option
-    And verify "PIN" is selecter in lock option
-    And taps "Camouflage" option in security category
-    And set security code valid
-    And taps "change camuflaje method" option
-    And taps "hide behind a calculator" option
+    When the PIN is selected in lock option
+    And the user clicks the "Camouflage" option
+    And enter the valid PIN
+    And select "HIDE BEHIND A CALCULATOR APP" option
     And select <calculator> option
-    And taps exit Tella option
-    And view the <message>
-    And view change Tella <icon>
+    And taps "Exit Tella" button
+    Then the message "<message>" is displayed
+    And view the Tella icon changed for <calculator>
 
     Examples:
       | password |
@@ -163,7 +172,7 @@ Feature: Security
 
   @Android @Lock
   Scenario Outline: Security - Lock - PIN option
-    And taps "Lock" option in security category
+    When taps "Lock" option in security category
     And set security code valid
     And taps "PIN" option
     And set <PIN>
@@ -187,12 +196,11 @@ Feature: Security
     And taps "next" button
     Then  "Your lock has been changed" message is shown
 
-  @Smoke @Android @LockTimeout @NoCandidate
+  @Smoke @Android @LockTimeout
   Scenario Outline: Security - Lock Timeout
     When the user clicks the "Lock Timeout" option
     And select timeout <timeout> option
     And taps "OK" button
-    And the user exit the app
     And wait timeout <timeout> of time
     Then view screen lock
 
@@ -204,15 +212,8 @@ Feature: Security
       | 30 minutes  |
       | 1 hour      |
 
-  @Smoke @Android @LockTimeout @NoCandidate
-  Scenario: Security - Delete after failed unlock
-    When the user clicks the "Lock Timeout" option
-    And select timeout "Immediately" option
-    And taps "OK" button
-    Then view switch in ON to option "Lock timeout"
-
   @Smoke @Android @LockTimeout @Automated
-  Scenario Outline: Change the Security - Lock Timeout successfully
+  Scenario Outline: Security - Change Lock Timeout
     When the user clicks the "Lock Timeout" option
     And select timeout <timeout> option
     And taps "OK" button
@@ -228,8 +229,8 @@ Feature: Security
 
   @Smoke @Android @DeleteAfterFailedUnlock
   Scenario Outline: Security - Delete after failed unlock
-    When taps "Delete after failed unlock" option in security category
-    And select <attempts> option
+    When the user clicks the "Delete after failed unlock" option
+    And select attempts <attempts> option
     And taps "OK" button
     And leaves the Tella application and opens it again
     And set incorrect <PIN> in <attempts>
@@ -276,11 +277,11 @@ Feature: Security
     And view change Tella <icon>
 
     Examples:
-      | Calculator   | message                                                                   |
-      | Calculator_1 | please wait.you will return to your device´s home screen in a few seconds |
-      | Calculator_2 | please wait.you will return to your device´s home screen in a few seconds |
-      | Calculator_3 | please wait.you will return to your device´s home screen in a few seconds |
-      | Calculator_4 | please wait.you will return to your device´s home screen in a few seconds |
+      | calculator   | message                                                                     |
+      | Calculator_1 | Please wait. You will return to your device's home screen in a few seconds. |
+      | Calculator_2 | Please wait. You will return to your device's home screen in a few seconds. |
+      | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
+      | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
   @Smoke @Android @Camouflage
   Scenario: Security - camouflage - remove camouflage
@@ -290,12 +291,12 @@ Feature: Security
 
   @Smoke @Android @Camouflage
   Scenario: Security - camouflage - remove camouflage
-    When taps "Security" option
-    And taps "Camouflage" option in security category
-    And set security code valid
-    And taps "Remove camouflage" option
-    And view message "Removing camouflage"
-    Then view change Tella icon default
+    When the Camouflage option with Calculator is selected
+    And the user clicks the "Camouflage" option
+    And enter the valid PIN
+    And select "REMOVE CAMOUFLAGE" option
+    And the message "Removing camouflage …" is displayed
+    Then view the Tella icon default
 
 
   @Smoke @Android @QuickDelete
@@ -402,7 +403,7 @@ Feature: Security
     And taps switch in ON to option "Preserve metadata when importing"
     Then the "Preserve metadata when importing" option is activated
 
-  @Smoke @Android @CameraSilentMode
+  @Smoke @Android @CameraSilentMode @NoCandidate
   Scenario: Security - Camera silent mode
     When taps "Security" option
     And view "Camera silent mode"
