@@ -5,6 +5,7 @@ Feature: Plus button
     Given the user is in Tella home page
     And Recent files are enabled to be displayed
 
+
   #Este caso está copiado y corregido en el caso siguiente
   @Photo @Video @CaptureFile @Automated @Ignore
   Scenario Outline: Capture a file of type <type> from folder <folder>

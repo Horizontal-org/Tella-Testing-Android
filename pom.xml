@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>Lippia-mobile-sample-project</artifactId>
@@ -35,7 +35,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>dd-MM-yyyy-HH-mm-ss</maven.build.timestamp.format>
         <buildIdentifier>Tella_Android_Testing_${maven.build.timestamp}</buildIdentifier>
+
+        <crowdar.cucumber.filter></crowdar.cucumber.filter>
+
         <crowdar.cucumber.filter>@Smoke</crowdar.cucumber.filter>
+
         <crowdar.driverHub></crowdar.driverHub>
         <crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin com.crowdar.tella.listeners.CucumberListener:</crowdar.cucumber.plugins>
         <test-manager-plugin>--plugin com.crowdar.tella.report.TestManager:</test-manager-plugin>
@@ -47,6 +51,7 @@
         <crowdar.extent.environment>Local</crowdar.extent.environment>
         <crowdar.extent.user.name>User.name</crowdar.extent.user.name>
         <crowdar.app.location>${env.APPLOCAL}</crowdar.app.location>
+
 
         <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
         <!--   Browser Stack Profiles Parameters              -->
@@ -69,9 +74,25 @@
                 <crowdar.driverHub>http://127.0.0.1:4723/</crowdar.driverHub>
                 <cucumber.runner>testngSecuencial.xml</cucumber.runner>
                 <crowdar.avd>Pixel3</crowdar.avd>
-                <crowdar.appLocation>C:\\\\TellaAndroid.apk</crowdar.appLocation>
+                <crowdar.appLocation>C:\\\\Workspace\\\\Tella-Testing\\\\sample_apk\\\\new\\\\TellaAndroid.apk</crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
+
+                <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emulatedCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>LocalOld</id>
+            <properties>
+                <crowdar.driverHub>http://127.0.0.1:4723/</crowdar.driverHub>
+                <cucumber.runner>testngSecuencial.xml</cucumber.runner>
+                <crowdar.avd>Pixel3</crowdar.avd>
+                <crowdar.appLocation>C:\\\\Workspace\\\\Tella-Testing\\\\sample_apk\\\\old\\\\TellaAndroid.apk</crowdar.appLocation>
+                <crowdar.deviceName>Pixel3</crowdar.deviceName>
+                <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emulatedCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
+
                 <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emuladoCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
+
             </properties>
         </profile>
 
@@ -172,7 +193,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
+                <version>3.2.5</version>
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>${cucumber.runner}</suiteXmlFile>
@@ -188,6 +209,8 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+
+
 
         </plugins>
     </build>

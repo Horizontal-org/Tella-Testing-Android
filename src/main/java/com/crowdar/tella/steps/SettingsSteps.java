@@ -53,7 +53,7 @@ public class SettingsSteps {
         SettingsService.verifyLanguageTitle(title);
     }
 
-    @When("clicks on the category (.*)")
+    @When("^clicks on the category (.*)$")
     public void clicksOnTheCategory(String category) {
         SettingsService.clickCategory(category);
     }
@@ -72,5 +72,48 @@ public class SettingsSteps {
     @Then("the user sees that the color has changed to green, indicating it is activated (.*)")
     public void theUserSeesThatTheColorHasChangedToGreenIndicatingItIsActivated(String configuration) {
         SettingsService.viewButtonEnable(configuration);
+    }
+    @Then("view the Tella icon")
+    public void viewTheIconTella() {
+        SettingsService.viewTellaIcon();
+    }
+    @And("the number version (.*)")
+    public void theNumberVersion(String version) {
+        SettingsService.viewVersion(version);
+    }
+    @And("view a list options")
+    public void viewAListOptions() {
+        SettingsService.viewList();
+    }
+
+    @And("taps the (.*) option")
+    public void tapsTheOption(String option) {
+        SettingsService.tapTheOption(option);
+    }
+
+    @Then("the user is redirected to the (.*)")
+    public void theUserIsRedirectedToThe(String site) {
+        SettingsService.redirectedSite(site);
+    }
+
+    @When("^the user clicks the \"(.*)\" option$")
+    public void theUserClicksTheOption(String option) {
+        SettingsService.clicksOptions(option);
+    }
+
+    @And("^select timeout (.*) option$")
+    public void selectTimeoutOption(String timeout) {
+        SettingsService.SelectTimeoutOption(timeout);
+    }
+
+    @And("^taps \"(.*)\" button$")
+    public void tapsButton(String button) {
+        SettingsService.clickButton(button);
+
+    }
+
+    @Then("^the option timeout (.*) is selected$")
+    public void theOptionTimeoutIsSelected(String timeout) {
+        SettingsService.selectedTimeout(timeout);
     }
 }

@@ -9,8 +9,6 @@ import org.testng.Assert;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 public class SettingsService {
 
     public static void clickSettingsIcon() {
@@ -105,10 +103,67 @@ public class SettingsService {
             MobileActionManager.click(button);
         }
     }
-
     public static void viewButtonEnable(String configuration) {
         String button = viewButton(configuration);
         MobileActionManager.waitVisibility(button);
         Assert.assertTrue(MobileActionManager.getAttribute(button, "checked").contains("true"));
+    }
+
+    public static void viewTellaIcon() {
+        MobileActionManager.waitVisibility(SettingsConstants.TELLA_ICON);
+        Assert.assertTrue(MobileActionManager.getAttribute(SettingsConstants.TELLA_ICON, "resource-id").contains("id" +
+                "/logo")
+        );
+    }
+    public static void viewVersion(String version) {
+        MobileActionManager.waitVisibility(SettingsConstants.VERSION_TEXT);
+        Assert.assertEquals(MobileActionManager.getText(SettingsConstants.VERSION_TEXT),version);
+    }
+    public static void viewList() {
+        MobileActionManager.waitVisibility(SettingsConstants.ABOUT_HELP_OPTIONS);
+        Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.ABOUT_HELP_OPTIONS));
+    }
+
+    public static void tapTheOption(String option) {
+        Map<String, String> options = new HashMap<>();
+        options.put("FAQ" ,"faq");
+        options.put("Contact us", "contact_us");
+        options.put("Privacy policy", "privacy_policy");
+        String opt = "id:"+options.get(option);
+        try {
+            MobileActionManager.waitVisibility(opt);
+            MobileActionManager.click(opt);
+        } catch (Exception e) {
+            MobileActionManager.click(opt);
+        }
+    }
+
+    public static void redirectedSite(String site) {
+        MobileActionManager.waitVisibility(SettingsConstants.URL_BAR);
+        Assert.assertTrue(MobileActionManager.getText(SettingsConstants.URL_BAR).equals(site));
+
+    }
+    public static void clicksOptions(String option) {
+        MobileActionManager.waitVisibility(SettingsConstants.OPTIONS_TITLE,option);
+        MobileActionManager.click(SettingsConstants.OPTIONS_TITLE,option);
+    }
+    public static void SelectTimeoutOption(String timeout) {
+        MobileActionManager.waitVisibility(SettingsConstants.TIMEOUT_SHEET_TITLE);
+        String check = MobileActionManager.getAttribute(SettingsConstants.TIMEOUT_RADIO_BUTTON,"checked" , timeout);
+        if (Boolean.parseBoolean(check) != true) {
+            MobileActionManager.click(SettingsConstants.TIMEOUT_RADIO_BUTTON,timeout);
+        }
+    }
+    public static void clickButton(String button) {
+        Map<String, String> buttons = new HashMap<>();
+        buttons.put("OK", SettingsConstants.OK_BUTTON);
+        buttons.put("CANCEL", SettingsConstants.CANCEL_BUTTON);
+        MobileActionManager.waitVisibility(buttons.get(button));
+        MobileActionManager.click(buttons.get(button));
+    }
+
+    public static void selectedTimeout(String timeout) {
+        MobileActionManager.waitVisibility(SettingsConstants.TIMEOUT_TEXTVIEW_LABEL, timeout);
+        Assert.assertTrue(MobileActionManager.getText(SettingsConstants.TIMEOUT_TEXTVIEW_LABEL,timeout).equals(timeout));
     }
 }
