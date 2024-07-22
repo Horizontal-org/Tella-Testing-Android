@@ -1,4 +1,4 @@
-@Servers @Uwazi
+@Uwazi
 Feature: Uwazi
   
   Background: 
