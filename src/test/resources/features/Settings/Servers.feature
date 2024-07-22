@@ -50,7 +50,7 @@
     Then the user views the fields "user name"; "password" to fill
     And presses "Save" to save the configuration
 
-  Scenario Outline: Configure whit URL Server
+  Scenario Outline: Configure <server> whit URL Server
     When the user taps the settings icon
     And selects the "Servers" option
     And presses the + button
@@ -79,3 +79,15 @@
       | server   |
       | Tella Web|
       | Uwazi    |
+       
+  Scenario: Public Access with Uwazi
+    When the user taps the settings icon
+    And selects the "Servers" option
+    And presses the + button
+    And the user selects "Uwazi"
+    And presses "Ok"
+    And the user enters the project URL
+    And presses "Next"
+    And selects the "Public access" option
+    And presses "Next"
+    Then the user views the language options to choose from
