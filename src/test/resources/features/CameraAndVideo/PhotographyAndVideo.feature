@@ -57,6 +57,12 @@ Feature: PhotographyAndVideo
     And the user presses grid lines button
     Then the grid lines are now activated
 
+  @Photography
+  Scenario: Zoom in with the camera
+    When the user presses the camera button
+    And the user zooms in
+    Then the image to be taken is enlarged
+
   @Video @NoCandidate
   Scenario: Turn on the camera flash in video mode
     When the user presses the camera button
@@ -80,6 +86,14 @@ Feature: PhotographyAndVideo
     And the user presses the option highest possible
     And the user presses the next button
     Then the video resolution is selected
+    
+  @Smoke @Video 
+  Scenario: Check file size
+    Given that the last file is a video with the highest resolution
+    When the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses "File information"
+    Then The video size is congruent with the video resolution
 
   @Smoke @Video @Ignore
   Scenario: record a video from Tella
@@ -87,10 +101,8 @@ Feature: PhotographyAndVideo
     And the user presses the video button
     And the user presses the take a video button
     And the user presses the stop video button
-    Then "encrypting" message is shown
-    And "File Encypted" message is shown
-    And there is a new video in the "Videos" folder
-    And the video taked is not in device album
+    Then there is a new video in the "Videos" folder
+    And the video taken is not in the device's album
 
   @Smoke @Video @Ignore
   Scenario: record a video from Tella with the frontal camera
@@ -99,10 +111,8 @@ Feature: PhotographyAndVideo
     And the user presses the change camera button
     And the user presses the take a video button
     And the user presses the stop video button
-    Then "encrypting" message is shown
-    And "File Encypted" message is shown
-    And there is a new picture in the "Videos" folder
-    And the video taked is not in device album
+    Then there is a new video in the "Videos" folder
+    And the video taken is not in the device's album
 
   @Smoke @Video @Ignore
   Scenario: record a video from Tella with Verification Mode on
@@ -112,7 +122,7 @@ Feature: PhotographyAndVideo
     And the user presses the take a video button
     And the user presses the stop video button
     Then there is a new video in the "Videos" folder
-    And the video taked is not in device album
+    And the video taken is not in the device's album
     And the verification information is collected correctly
 
   @Smoke @Video @Ignore
@@ -124,23 +134,21 @@ Feature: PhotographyAndVideo
     And the user presses the take a video button
     And the user presses the stop video button
     Then there is a new video in the "Videos" folder
-    And the video taked is not in device album
+    And the video taken is not in the device's album
     And the verification information is collected correctly
 
   @Smoke @ShareFile @Ignore
-  Scenario: share file from Tella by mail
+  Scenario: share file from Tella by Gmail
     And the user has an email account registered on the cell phone
     When the user presses the camera button
     And the user takes a photography
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
-    And the user presses the Share button
-    And the user presses the Continue button
+    And the user presses "Share"
     And the user presses the Gmail button
-    And the user write an email account "cfiguera83@hotmail.com"
+    And the user writes an email account "cfiguera83@hotmail.com"
     And the user push the send it button "→"
     Then the file is shared
-
 
   @Smoke @ShareFile @Ignore
   Scenario: share file from Tella to Instagram Stories
@@ -149,7 +157,6 @@ Feature: PhotographyAndVideo
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
     And the user presses "Share"
-    And the user presses "continue"
     And the user presses instagram "Stories"
     And the user presses "→"
     And the user presses "Share"
@@ -162,8 +169,7 @@ Feature: PhotographyAndVideo
     When the user presses the camera button
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
-    And the user presses "share"
-    And the user presses "continue"
+    And the user presses "Share"
     And the user presses Instagram "Reels"
     And the user presses "→"
     And the user presses "Share"
@@ -176,7 +182,6 @@ Feature: PhotographyAndVideo
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
     And the user presses "Share"
-    And the user presses "continue"
     And the user presses Instagram "Feed"
     And the user presses "→"
     And the user presses "Next"
@@ -190,9 +195,8 @@ Feature: PhotographyAndVideo
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
     And the user presses "Share"
-    And the user presses "continue"
     And the user presses Instagram "Chats"
-    And the user presses "Send" to a instagram account "cfiguera83"
+    And the user presses "Send" to an existing Instagram account
     And the user presses "Done"
     Then the file is shared
 
@@ -203,9 +207,8 @@ Feature: PhotographyAndVideo
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
     And the user presses "Share"
-    And the user presses "continue"
     And the user presses "WhatsApp"
-    And the user presses on a WhatsApp contact "Tella"
+    And the user presses on a WhatsApp contact
     And the user presses "→"
     And the user presses "→"
     Then the file is shared
@@ -229,16 +232,39 @@ Feature: PhotographyAndVideo
     And the user presses confirm Delete button
     Then the file is deleted
 
-  @Smoke @NoCandidate
-  Scenario: Save to device
-    And the user presses the camera button
+  Scenario: Cancel deleting the file
+    When the user presses the camera button
     And the user takes a photography
-    When the user presses the image located at the bottom right to the screen
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses Delete button
+    And the user presses "Cancel"
+    Then the file is not deleted
+
+  @Smoke @NoCandidate
+  Scenario: Save a file to the device with its verification information
+    And the Verification mode is on
+    When the user presses the camera button
+    And the user takes a photography
+    And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
     And the user presses Save to device button
-    And the user presses Save button
-    And the user presses the Continue button
+    And the user presses "Save"
+    And the user selects a folder to save in
+    And the user presses "Use this folder"
+    And the user presses "Allow"
     Then the file is saved in the device
+    And its verification information is available
+    
+    @Smoke @NoCandidate
+  Scenario: Cancel saving a file to the device.
+    When the user presses the camera button
+    And the user takes a photography
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses Save to device button
+    And the user presses "Cancel"
+    Then saving a file to the device is canceled
 
   @Smoke @ToBeAutomated @Ignore
   Scenario: Rename file
@@ -274,3 +300,32 @@ Feature: PhotographyAndVideo
     And the user presses "tella" folder
     And the user presses "Move here"
     Then the image is moved to a new folder
+  
+  Scenario: Exit from the camera
+    When the user presses the camera button
+    And the user presses "x" located at the top left corner
+    Then the camera is closed
+    And the homepage appears
+    
+  Scenario: Exit from the last file
+    When the user presses the camera button
+    And the user takes a photography
+    And the user presses the image located at the bottom right to the screen
+    And the user presses "→"
+    Then the user exits from the last file
+    And the photo camera appeared
+    
+  @Smoke @Photography
+  Scenario Outline: Edit an image by <Modification> from the last camera file
+    When the user presses the camera button
+    And the user presses the take a photo button
+    And the user presses the image located at the bottom right to the screen
+    And taps the crop tool button
+    And performs the <Modification>
+    And taps the checkmark button
+    Then the modification is saved as a new image
+    
+    Examples:
+      | Modification    |
+      | cropping        |
+      | rotation        |
