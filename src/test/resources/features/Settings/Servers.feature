@@ -1,4 +1,4 @@
-  @Servers @Smoke
+  @Servers @Smoke @Regression
   Feature: Servers
   
   Background: 
