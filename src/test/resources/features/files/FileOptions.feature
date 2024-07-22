@@ -1,4 +1,4 @@
-@FileOptions @Regression
+@Files @FileOptions @Regression
 Feature: File Options
 
   Background:
