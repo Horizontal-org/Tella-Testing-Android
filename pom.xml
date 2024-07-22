@@ -35,7 +35,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>dd-MM-yyyy-HH-mm-ss</maven.build.timestamp.format>
         <buildIdentifier>Tella_Android_Testing_${maven.build.timestamp}</buildIdentifier>
-        <crowdar.cucumber.filter>@oki</crowdar.cucumber.filter>
+        <crowdar.cucumber.filter></crowdar.cucumber.filter>
         <crowdar.driverHub></crowdar.driverHub>
         <crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin com.crowdar.tella.listeners.CucumberListener:</crowdar.cucumber.plugins>
         <test-manager-plugin>--plugin com.crowdar.tella.report.TestManager:</test-manager-plugin>
@@ -184,7 +184,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
+                <version>3.2.5</version>
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>${cucumber.runner}</suiteXmlFile>
@@ -200,6 +200,8 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+
+
 
         </plugins>
     </build>
