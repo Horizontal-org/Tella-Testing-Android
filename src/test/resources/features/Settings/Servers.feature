@@ -13,13 +13,13 @@
   Scenario: View Server Options
     When the user taps the settings icon
     And selects the "Servers" option
-    And presses the "Add" icon
+    And presses the + button
     Then the user sees all possible server options available for connection
   
   Scenario Outline: Select Server
     When the user taps the settings icon
     And selects the "Servers" option
-    And presses the "Add" icon
+    And presses the + button
     And selects the server <server>
     And presses "Ok"
     Then the user sees the chosen server with the corresponding configurations for establishing the connection
@@ -33,7 +33,7 @@
   Scenario: Configure Open Data Kit Server
     When the user taps the settings icon
     And selects the "Servers" option
-    And presses the "Add" icon
+    And presses the + button
     And selects the "Open Data Kit" option
     And presses "Ok"
     Then the user views the server settings with fields "server name"; "server URL" to fill
@@ -42,7 +42,7 @@
   Scenario: Configure Advanced Open Data Kit Server
     When the user taps the settings icon
     And selects the "Servers" option
-    And presses the "Add" icon
+    And presses the + button
     And selects the "Open Data Kit" option
     And presses "Ok"
     And the user views the server settings with fields "server name"; "server URL" to fill
@@ -53,7 +53,7 @@
   Scenario Outline: Configure whit URL Server
     When the user taps the settings icon
     And selects the "Servers" option
-    And presses the "Add" icon
+    And presses the + button
     And the user selects the <sever> option
     And presses "Ok"
     Then the user views the server settings with the field "enter project URL" to fill
@@ -67,7 +67,7 @@
   Scenario Outline: Access Login for Project Access
     When the user taps the settings icon
     And selects the "Servers" option
-    And presses the "Add" icon
+    And presses the + button
     And the user selects the <server> option
     And presses "Ok"
     And the user views the server settings with the field "enter project URL" to fill
