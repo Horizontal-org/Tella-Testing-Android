@@ -206,5 +206,4 @@ When the user taps the Report
 And taps the New report
 And completes the Title and the Description with 1000 characters
 And taps Submit 
-And sees the file being uploaded
 Then the approval message "your report is available Outbox" 
