@@ -213,3 +213,12 @@ And enter password
 And taps the Report 
 And taps Submitted 
 Then sees the sent report
+
+
+Scenario: Submit report - 1000 characters in Description
+When the user taps the Report 
+And taps the New report
+And completes the Title and the Description with 1000 characters
+And taps Submit 
+And sees the file being uploaded
+Then the approval message "your report is available Outbox" 
