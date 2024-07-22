@@ -48,7 +48,7 @@
     And the user views the server settings with fields "server name"; "server URL" to fill
     And expands the "advanced" section
     Then the user views the fields "user name"; "password" to fill
-    And presses "save" to save the configuration
+    And presses "Save" to save the configuration
 
   Scenario Outline: Configure whit URL Server
     When the user taps the settings icon
@@ -67,7 +67,7 @@
   Scenario Outline: Access Login for Project Access
     When the user taps the settings icon
     And selects the "Servers" option
-    And presses the "add" icon
+    And presses the "Add" icon
     And the user selects the <server> option
     And presses "Ok"
     And the user views the server settings with the field "enter project URL" to fill
