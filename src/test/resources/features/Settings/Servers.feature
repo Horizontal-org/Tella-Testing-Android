@@ -80,7 +80,7 @@
       | Tella Web|
       | Uwazi    |
        
-  Scenario: Public Access with Uwazi
+  Scenario Outline: Public Access with Uwazi in <language>
     When the user taps the settings icon
     And selects the "Servers" option
     And presses the + button
@@ -90,4 +90,13 @@
     And presses "Next"
     And selects the "Public access" option
     And presses "Next"
-    Then the user views the language options to choose from
+    And the user selects the language <language>
+    And presses "Next"
+    Then the message "You hace successfully connected to the server and will be able to share your data." appears
+    And the user is now connected to Uwazi server in <language>
+    
+    Examples:
+      | language    |
+      | English     |
+      | Spanish     |
+      | French      |
