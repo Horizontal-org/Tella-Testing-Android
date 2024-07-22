@@ -51,7 +51,7 @@ Feature: PhotographyAndVideo
     And the user presses flash button
     Then the flash is activated
 
-  @Smoke @Photography @Android @Automated
+  @Smoke @Photography @Android @Automated @oki
   Scenario: Enable grid lines
     When the user presses the camera button
     And the user presses grid lines button
@@ -72,7 +72,7 @@ Feature: PhotographyAndVideo
     And the user presses flash button
     Then the flash is off
 
-  @Smoke @Video @Automated @oki
+  @Smoke @Video @Automated
   Scenario: Select video resolution
     When the user presses the camera button
     And the user presses the video button

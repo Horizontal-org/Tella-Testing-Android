@@ -2,7 +2,7 @@
 Feature: Unlock
 
 
-  @Password @Automated
+ @Password @Automated
   Scenario Outline: The user start the application, unlock the app with a password.
     Given the user is in Tella home page
     And the user close the app
