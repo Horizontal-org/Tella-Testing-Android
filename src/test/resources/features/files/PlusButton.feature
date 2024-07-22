@@ -1,4 +1,4 @@
-@PlusButton @Regresssion
+@Files @PlusButton @Regresssion
 Feature: Plus button
 
   Background:
