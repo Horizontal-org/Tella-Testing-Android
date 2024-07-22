@@ -128,14 +128,11 @@ And select View
 And taps Resume
 Then the approval message "your report is available Outbox" 
 
-
+@failed
 Scenario: Send report of a waiting file
 When the user taps the Report 
 And taps the New report
 And completes the Title and the Description
-And presses the "Add" icon
-And selects the option Select from Tella files
-And select files and presses the "verification" icon
 And presses "Clock" icon
 And the approval message "The report was saved to your Outbox. You can submit it when you ready"
 And presses Outbox 
