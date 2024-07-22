@@ -103,17 +103,50 @@ public class SettingsSteps {
 
     @And("^select timeout (.*) option$")
     public void selectTimeoutOption(String timeout) {
-        SettingsService.SelectTimeoutOption(timeout);
+        SettingsService.SelectGeneralOption(timeout);
     }
 
     @And("^taps \"(.*)\" button$")
     public void tapsButton(String button) {
         SettingsService.clickButton(button);
-
     }
 
     @Then("^the option timeout (.*) is selected$")
     public void theOptionTimeoutIsSelected(String timeout) {
         SettingsService.selectedTimeout(timeout);
+    }
+
+    @And("select attempts (.*) option")
+    public void selectAttemptsOption(String attempts) {
+        SettingsService.SelectGeneralOption(attempts);
+    }
+
+    @And("the user set incorrect (.*) in (.*)")
+    public void theUserSetIncorrectIn(String pin, String attempts) {
+        SettingsService.setIncorrectPinWithAttempts(pin, attempts);    }
+
+
+    @And("^select \"(.*)\" option$")
+    public void selectOption(String option) {
+        SettingsService.selectMethodCamuflage(option);
+    }
+
+    @And("select icon (.*) option")
+    public void selectIconOption(String icon) {
+        SettingsService.selectIcon(icon);
+    }
+
+    @Then("^the message \"(.*)\" is displayed$")
+    public void theMessageIsDisplayed(String message) {
+        SettingsService.showMessage(message);
+    }
+
+    @Then("^the (.*) option is changed to status (.*)$")
+    public void theOptionIsChangedToStatus(String option, String status) {
+        SettingsService.changeStatus(option, status);
+    }
+    @Then("^the sucessfull message (.*) is displayed$")
+    public void theSucessfullMessageIsDisplayed(String message) {
+        SettingsService.viewMessage(message);
     }
 }

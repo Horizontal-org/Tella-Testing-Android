@@ -27,10 +27,15 @@ public class SettingsConstants {
     public static final String OPTIONS_TITLE = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" +
             ".tella:id/title_textview\" and @text=\"%s\"]";
     public static final String TIMEOUT_SHEET_TITLE = "id:standard_sheet_title";
-    public static final String TIMEOUT_RADIO_BUTTON = "xpath://android.widget.RadioButton[@text=\"%s\"]";
+    public static final String GENERAL_RADIO_BUTTON = "xpath://android.widget.RadioButton[@text=\"%s\"]";
     public static final String OK_BUTTON = "id:standard_sheet_confirm_btn";
     public static final String CANCEL_BUTTON = "id:standard_sheet_cancel_btn";
-    public static final String TIMEOUT_TEXTVIEW_LABEL = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" +
+    public static final String GENERAL_TEXTVIEW_LABEL = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" +
             ".tella:id/label_textview\" and @text=\"%s\"]";
 
+    public static final String ICON_CAMOUFLAGE_BUTTON = "id:sheet_one_btn";
+    public static final String APP_CAMOUFLAGE_BUTTON = "id:sheet_two_btn";
+    public static final String ICON_CAMOUFLAGE_TEXT = "id:name";
+    public static final String MESSAGE_CONTENT = "id:standard_sheet_content";
+    public static final String MESSAGE_LABEL = "id:txv_msg";
 }
