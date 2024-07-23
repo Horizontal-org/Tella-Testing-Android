@@ -9,18 +9,6 @@ Feature: Security
 
   @Android @Lock
   Scenario Outline: Security - Lock - password option
-    When the user clicks the "Lock" option
-    And set the security code valid
-    And tap the password button
-    And types a password <password>
-    And tap the next button
-    And types a password <password>
-    And tap the next button
-    Then "Your lock has been changed" message is shown
-
-
-  @Android @Lock
-  Scenario Outline: Security - Lock - password option
     When  taps "Security" option
     And taps "Lock" option in security category
     And set security code valid
@@ -74,33 +62,22 @@ Feature: Security
 
     Examples:
       | timeout     |
-      | immediately |
+      | Immediately |
       | 1 minute    |
       | 5 minutes   |
       | 30 minutes  |
       | 1 hour      |
 
-  @Smoke @Android @LockTimeout
-  Scenario: Security - Delete after failed unlock
-    When taps "Security" option
-    And taps "Lock timeout" option in security category
-    And select "immediately" option
+  @Smoke @Android @LockTimeout @Automated
+  Scenario Outline: Security - Change Lock Timeout
+    When the user clicks the "Lock Timeout" option
+    And select timeout <timeout> option
     And taps "OK" button
-    Then view switch in ON to option "Lock timeout"
-
-  @Smoke @Android @LockTimeout
-  Scenario Outline: Change the Security - Lock Timeout successfully
-    When tap "Security" option
-    And tap "Lock timeout" option in security category
-    And select <timeout> option
-    And tap "OK" button
-    And Go back
-    And tap "Lock timeout" option in security category
-    Then the option <timeout> is selected
+    Then the option timeout <timeout> is selected
 
     Examples:
       | timeout     |
-      | immediately |
+      | Immediately |
       | 1 minute    |
       | 5 minutes   |
       | 30 minutes  |
@@ -153,7 +130,6 @@ Feature: Security
       | 123456   | MiCamera   | Please wait. You will return to your device's home screen in a few seconds. |
       | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. |
 
-
   @Smoke @Android @Camouflage
   Scenario Outline: Security - camouflage -  change camuflaje method - hide behind a calculator
     When the PIN is selected in lock option
@@ -166,138 +142,11 @@ Feature: Security
     And view the Tella icon changed for <calculator>
 
     Examples:
-      | password |
-      | 1234560  |
-
-
-  @Android @Lock
-  Scenario Outline: Security - Lock - PIN option
-    When taps "Lock" option in security category
-    And set security code valid
-    And taps "PIN" option
-    And set <PIN>
-    And taps "next" button
-    And set confirm <PIN>
-    And taps "next" button
-    Then "Your lock has been changed" message is shown
-
-    Examples:
-      | PIN     |
-      | 1234560 |
-
-  @Android @Lock
-  Scenario: Security - lock - pattern option
-    When taps "Lock" option in security category
-    And set security code valid
-    And taps "pattern" option
-    And set pattern
-    And taps "next" button
-    And set confirm pattern
-    And taps "next" button
-    Then  "Your lock has been changed" message is shown
-
-  @Smoke @Android @LockTimeout
-  Scenario Outline: Security - Lock Timeout
-    When the user clicks the "Lock Timeout" option
-    And select timeout <timeout> option
-    And taps "OK" button
-    And wait timeout <timeout> of time
-    Then view screen lock
-
-    Examples:
-      | timeout     |
-      | Immediately |
-      | 1 minute    |
-      | 5 minutes   |
-      | 30 minutes  |
-      | 1 hour      |
-
-  @Smoke @Android @LockTimeout @Automated
-  Scenario Outline: Security - Change Lock Timeout
-    When the user clicks the "Lock Timeout" option
-    And select timeout <timeout> option
-    And taps "OK" button
-    Then the option timeout <timeout> is selected
-
-    Examples:
-      | timeout     |
-      | Immediately |
-      | 1 minute    |
-      | 5 minutes   |
-      | 30 minutes  |
-      | 1 hour      |
-
-  @Smoke @Android @DeleteAfterFailedUnlock
-  Scenario Outline: Security - Delete after failed unlock
-    When the user clicks the "Delete after failed unlock" option
-    And select attempts <attempts> option
-    And taps "OK" button
-    And leaves the Tella application and opens it again
-    And set incorrect <PIN> in <attempts>
-    And view the Tella application is closed and opens it again
-    And sees that the configuration is set by default
-    Then sees that the files have been deleted
-
-    Examples:
-      | attempts    | PIN |
-      | 5 attempts  | 1   |
-      | 10 attempts | 1   |
-      | 20 attempts | 1   |
-
-  @Smoke @Android @Camouflage
-  Scenario Outline: Security - camouflage - change camuflaje method - change name and icon
-    When taps "Security" option
-    And taps "Camouflage" option in security category
-    And set security code valid
-    And taps "Change camuflaje method" option
-    And taps "Change name and icon" option
-    And select <icon> option
-    And taps "next" option
-    And taps exit Tella option
-    And view the <message>
-    And view change Tella <icon>
-
-    Examples:
-      | icon       | message                                                                   |
-      | Mi camera  | please wait.you will return to your device´s home screen in a few seconds |
-      | Calculator | please wait.you will return to your device´s home screen in a few seconds |
-
-
-  @Smoke @Android @Camouflage
-  Scenario Outline: Security - camouflage -  change camuflaje method - hide behind a calculator
-    When taps "Security" option
-    And verify "PIN" is selecter in lock option
-    And taps "Camouflage" option in security category
-    And set security code valid
-    And taps "change camuflaje method" option
-    And taps "hide behind a calculator" option
-    And select <calculator> option
-    And taps exit Tella option
-    And view the <message>
-    And view change Tella <icon>
-
-    Examples:
       | calculator   | message                                                                     |
       | Calculator_1 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_2 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
-
-  @Smoke @Android @Camouflage
-  Scenario: Security - camouflage - remove camouflage
-    When taps "Security" option
-    And taps "Camouflage" option in security category
-    And set security code valid
-
-  @Smoke @Android @Camouflage
-  Scenario: Security - camouflage - remove camouflage
-    When the Camouflage option with Calculator is selected
-    And the user clicks the "Camouflage" option
-    And enter the valid PIN
-    And select "REMOVE CAMOUFLAGE" option
-    And the message "Removing camouflage …" is displayed
-    Then view the Tella icon default
-
 
   @Smoke @Android @QuickDelete
   Scenario: Security - Quick delete - delete file
