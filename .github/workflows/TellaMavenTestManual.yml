@@ -12,7 +12,7 @@ jobs:
     
     steps:
       - name: Checkout al repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
         
       - name: Configurando JDK 17
         uses: actions/setup-java@v2
