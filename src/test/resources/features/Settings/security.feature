@@ -252,33 +252,6 @@ Feature: Security
     And taps switch in ON to option "Preserve metadata when importing"
     Then the "Preserve metadata when importing" option is activated
 
-  @Smoke @Android @CameraSilentMode @NoCandidate
-  Scenario: Security - Camera silent mode
-    When taps "Security" option
-    And view "Camera silent mode"
-    And taps switch in ON to option "Camera silent mode"
-    And go to Tella home page
-    And taps camera button
-    And take photo
-    Then the camera did not make the sound
-
-  @Smoke @Android @ScreenSecurity
-  Scenario: Security - Screen security
-    When taps "security" option
-    And view "Screen security"
-    And taps switch in ON to option "Screen security"
-    And go to Tella home page
-    And take screenshot
-    Then view warning permissions
-
-
-  @Smoke @Android @PreserveMetadata
-  Scenario: Security - Preserve metadata when importing
-    When taps "Security" option
-    And view "Preserve metadata when importing"
-    And taps switch in ON to option "Preserve metadata when importing"
-    Then the "Preserve metadata when importing" option is activated
-
   @Smoke @Android @CameraSilentMode
   Scenario: Security - Camera silent mode
     When taps "Security" option
