@@ -92,6 +92,10 @@ public class SettingsService {
         buttons.put("Favorite templates", SettingsConstants.SWITCH_LIST_BUTTON + "[5]");
         buttons.put("Test justification", SettingsConstants.SWITCH_LIST_BUTTON + "[6]");
         buttons.put("Increase text spacing", SettingsConstants.SWITCH_LIST_BUTTON + "[7]");
+        buttons.put("Quick delete", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON +"[1]" );
+        buttons.put("Preserve metadata when importing", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON +"[2]" );
+        buttons.put("Camera silent mode", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON +"[3]");
+        buttons.put("Screen security", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON +"[4]");
         return buttons.get(configuration);
     }
 
@@ -209,4 +213,17 @@ public class SettingsService {
     }
 
 
+    public static void clickHelpInfo(String option) {
+        Map<String, String> options = new HashMap<>();
+        options.put("Delete files", SettingsConstants.DELETE_INFO_ICON);
+        options.put("Delete draft and submitted forms", SettingsConstants.DELETE_FORM_ICON);
+        options.put("Delete server settings", SettingsConstants.DELETE_SERVER_ICON);
+        MobileActionManager.waitVisibility(options.get(option));
+        MobileActionManager.click(options.get(option));
+    }
+
+    public static void showHelpInfoMessage(String helpInfo) {
+        MobileActionManager.waitVisibility(SettingsConstants.HELP_INFO_TEXTVIEW, helpInfo);
+        Assert.assertTrue(MobileActionManager.getText(SettingsConstants.HELP_INFO_TEXTVIEW, helpInfo).equals(helpInfo));
+    }
 }
