@@ -18,9 +18,23 @@ Feature: Uwazi
   Scenario: Submit entity without attachments
     When the user taps on the "Uwazi" connection
     
-  
+
   @Smoke
   Scenario: Submit entity with only primary document
+    
+
+
+@NoCandidate
+Scenario Outline: Submit new report with <recording>
+When the user taps the Report 
+And taps the New report
+And completes the Title and the Description
+And presses the "Add" icon
+And selects the option <Select files>
+And presses the "rec" and "stop" icon
+And taps Submit 
+And sees the file being uploaded
+Then the approval message "your report is available Outbox" 
     
   @Smoke
   Scenario: Submit entity with both primary document and supporting documentation
