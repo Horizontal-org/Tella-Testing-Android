@@ -22,11 +22,17 @@ Feature: Uwazi
     And completes all the required fields
     And presses "Next"
     And presses "Submit"
-    Then the entity is saved on the Submitted tab
+    Then the entity is saved on the Submitted tab with the corresponding information
 
   @Smoke
   Scenario: Submit entity with only primary document
-    
+    When the user taps on the "Uwazi" connection
+    And taps the new template to fill out
+    And completes the title
+    And completes all the required fields
+    And presses "Next"
+    And presses "Submit"
+    Then the entity is saved on the Submitted tab with the corresponding information
 
 
 @NoCandidate
