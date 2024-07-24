@@ -11,6 +11,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-22.04
+    environment: Automation
 
     steps:
       - name: Checkout al repositorio
@@ -24,4 +25,10 @@ jobs:
           cache: maven
 
       - name: Ejecutando Maven clean test
-        run: mvn clean test -Dcrowdar.cucumber.filter='@Smoke and @Automated' -PBrowserStack -PAndroid
+        env:
+          BSUSER: ${{ vars.BSUSER }}
+          AUTHTOKEN: ${{ vars.AUTHTOKEN }}
+          BSDEVICE: ${{ vars.BSDEVICE }}
+          BSAPP: ${{ vars.BSAPP }}
+          BSOS: ${{ vars.BSOS }}
+        run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
