@@ -59,7 +59,9 @@ Then the approval message "your report is available Outbox"
     
   @Smoke
   Scenario: Delete entity in outbox
-    Given
+    Given the user has an entity in outbox
+    When the user selects the option <Option Report>
+    And the user taps the "⁝" button 
     
 @ToBeAutomated
 Scenario Outline: Delete <Option Report>
