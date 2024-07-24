@@ -15,11 +15,6 @@ public class FilesSteps {
         FilesService.tapPlusIcon();
     }
 
-    @And("selects the option: \"Take photovideo\"")
-    public void selectTakePhotoVideoOption() {
-        FilesService.goPhotoVideoOption();
-    }
-
     @And("selects the option (.*)")
     public void selectOpcion(String option){
         FilesService.selectOpcion(option);
@@ -48,5 +43,10 @@ public class FilesSteps {
     @Then("the file appears in the \"All files\" folder")
     public void validateFileInAllFiles(){
         FilesService.validateFileInAllFiles();
+    }
+
+    @And("selects the option: Take photo or video")
+    public void selectsTheOptionTakePhotoOrVideo() {
+        FilesService.goPhotoVideoOption();
     }
 }

@@ -5,7 +5,6 @@ Feature: File Options
   Background:
     Given the user is in Tella home page
     And there are files and folders within Tella
-    And they are on the Tella Home screen
 
   @Smoke @ToBeAutomated
   Scenario Outline: Open a multimedia file <type> from the folder <folder>
