@@ -5,6 +5,7 @@ Scenario Outline: Delete entity in outbox
     When the user selects the option <Option Report>
     And the user taps the "⁝" button 
     
-    | Option Report   |
-    | hola            |
-    | chau            |
+    Examples: 
+      | Option Report   |
+      | hola            |
+      | chau            |
