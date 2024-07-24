@@ -34,7 +34,6 @@ Feature: Uwazi
     And presses "Submit"
     Then the entity is saved on the Submitted tab with the corresponding information
 
-
 @NoCandidate
 Scenario Outline: Submit new report with <recording>
 When the user taps the Report 
@@ -48,7 +47,22 @@ And sees the file being uploaded
 Then the approval message "your report is available Outbox" 
     
   @Smoke
-  Scenario: Submit entity with both primary document and supporting documentation
+  Scenario Outline: Submit entity with both primary document and supporting documentation
+    When the user taps on the "Uwazi" connection
+    And taps the new template to fill out
+    And completes the title
+    And completes all the required fields
+    And selects a PDF file from the Primary Documents field with the option <selection>
+    And selects a file from the Supporting files field with the option <option>
+    And presses "Next"
+    And presses "Submit"
+    Then the entity is saved on the Submitted tab with the corresponding information
+    
+    Examples:
+      | selection               | option                  |
+      | Select from Tella files | Take photo with camera  |
+      | Select from your device | Select from Tella files |
+      | Select from Tella files | Select from your device |
   
   @Smoke
   Scenario: Submit entities without authentication
