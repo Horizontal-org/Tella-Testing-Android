@@ -17,7 +17,12 @@ Feature: Uwazi
   @Smoke
   Scenario: Submit entity without attachments
     When the user taps on the "Uwazi" connection
-    
+    And taps the new template to fill out
+    And completes the title
+    And completes all the required fields
+    And presses "Next"
+    And presses "Submit"
+    Then the entity is saved on the Submitted tab
 
   @Smoke
   Scenario: Submit entity with only primary document
