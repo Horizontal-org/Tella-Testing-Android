@@ -76,7 +76,15 @@ Feature: Uwazi
     
   @Smoke
   Scenario: Submit entity with large attachments while connected to internet, disconect/reconect internet several times
+    When the user taps on the "Uwazi" connection
+    And taps the new template to fill out
+    And completes all the required fields
+    And selects a large file from the Supporting files field with the option <option>
+  
     
+    Examples:
+      | Select from Tella files |
+      | Select from your device |
  
     
   @Smoke
