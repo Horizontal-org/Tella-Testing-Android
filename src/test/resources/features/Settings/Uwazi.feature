@@ -70,20 +70,6 @@ Then the approval message "your report is available Outbox"
       | Option Report  |
       | Outbox         |
       | Submitted      |
-      
-@ToBeAutomated
-Scenario Outline: Delete <Option Report>
-When the user taps the Report 
-And selects the option <Option Report>
-And select file
-And presses "Menu" icon
-And select Delete and confirms the Delete option
-Then the approval message "File has been deleted"
-
-Examples: 
-|Option Report|
-|Outbox       |
-|Submitted    |
 
   @Smoke 
   Scenario: Delete sent entity
