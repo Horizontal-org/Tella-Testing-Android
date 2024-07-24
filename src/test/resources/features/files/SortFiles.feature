@@ -2,14 +2,13 @@
 Feature: Organize files in a folder
 
   Background:
-    Given the user is unlocked in the Tella app
-    And is in the Tella Home
+    Given the user is in Tella home page
 
   @Smoke 
   Scenario Outline: Sort files by <sortBy> in the folder <folder>
     When the user enters the folder <folder>
     And the user taps the "Name ↑" icon
-    And chooses to sort files in <sortBy> order
+    And the user chooses to sort files in <sortBy> order
     Then the files are displayed according to the specified order
     
     Examples:
