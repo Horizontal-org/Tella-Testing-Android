@@ -62,7 +62,24 @@ Then the approval message "your report is available Outbox"
     Given the user has an entity in outbox
     When the user selects the option <Option Report>
     And the user taps the "⁝" button 
+
+
+
     
+  @Smoke #No se puede unificar con tellaweb
+  Scenario Outline: Delete entity in <Option Report>
+    Given the user has an entity in outbox
+    When the user selects the option <Option Report>
+    And the user taps the "⁝" button
+    And selects Delete 
+    And confirms the Delete option
+    Then the entity is deleted
+    
+    Examples: 
+      | Option Report  |
+      | Outbox         |
+      | Submitted      |
+      
 @ToBeAutomated
 Scenario Outline: Delete <Option Report>
 When the user taps the Report 
