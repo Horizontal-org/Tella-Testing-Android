@@ -25,15 +25,21 @@ Feature: Uwazi
     Then the entity is saved on the Submitted tab with the corresponding information
 
   @Smoke
-  Scenario: Submit entity with only primary document
+  Scenario Outline: Submit entity with only primary document
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
     And completes the title
     And completes all the required fields
+    And selects a PDF file from the Primary Documents field with the option <selection>
     And presses "Next"
     And presses "Submit"
     Then the entity is saved on the Submitted tab with the corresponding information
-
+    
+    Examples:
+      | selection               |
+      | Select from Tella files |
+      | Select from your device |
+      
 @NoCandidate
 Scenario Outline: Submit new report with <recording>
 When the user taps the Report 
