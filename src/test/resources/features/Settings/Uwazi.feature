@@ -82,3 +82,9 @@ Then the approval message "your report is available Outbox"
       | Outbox         |
       | Submitted      |
       | Draft          |
+       
+  Scenario: Edit an entity from draft
+    
+  Scenario: Submit an entity without success due to missing required fields 
+    
+  Scenario: Save entity as draft without success due to missing required fields 
