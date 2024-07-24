@@ -69,6 +69,20 @@ Then the approval message "your report is available Outbox"
     
   @Smoke
   Scenario: Submit entity with only supporting documentation
+    When the user taps on the "Uwazi" connection
+    And taps the new template to fill out
+    And completes the title
+    And completes all the required fields
+    And selects a file from the Supporting files field with the option <option>
+    And presses "Next"
+    And presses "Submit"
+    Then the entity is saved on the Submitted tab with the corresponding information
+    
+    Examples:
+      | option                  |
+      | Take photo with camera  |
+      | Select from Tella files |
+      | Select from your device |
     
   @Smoke
   Scenario: Submit entity with large attachments while connected to internet, disconect/reconect internet several times
