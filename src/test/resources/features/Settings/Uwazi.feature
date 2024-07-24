@@ -70,6 +70,9 @@ Then the approval message "your report is available Outbox"
   
   @Smoke
   Scenario: Save entity to outbox
+    When the user taps on the "Uwazi" connection
+
+
     
   @Smoke #No se puede unificar con tellaweb
   Scenario Outline: Delete entity from <Category>
@@ -87,11 +90,7 @@ Then the approval message "your report is available Outbox"
       | Submitted      |
       | Draft          |
 
-  @Smoke 
-  Scenario: Delete sent entity
-  
-    
-    
+
   @ToBeAutomated
 Scenario: Delete report during sending
 When the user taps the Report 
