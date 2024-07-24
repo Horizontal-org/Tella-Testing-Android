@@ -2,8 +2,11 @@ name: Maven test manual
 
 on:
   workflow_dispatch:
-    branches:
-      - main
+    inputs:
+      filter:
+        description: 'Filtro para los test'
+        required: true
+        default: '@Smoke and @Automated'
 
 jobs:
   test:
