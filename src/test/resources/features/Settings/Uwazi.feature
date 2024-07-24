@@ -49,30 +49,23 @@ Then the approval message "your report is available Outbox"
   Scenario: Submit entity with large attachments while connected to internet, disconect/reconect internet several times
     
   @Smoke
-  Scenario: Save entity as draft
-    
-    
-@ToBeAutomated
-Scenario: Save report to Draft and send later
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses "Save" icon
-And the approval message "The report was saved as a draft"
-And presses the cross
-And presses "Menu" icon
-And select Edit draft
-And presses the "Add" icon
-And selects the option Select from Tella files
-And select files and presses the "verification" icon
-And taps Send
-Then the approval message "your report is available Outbox" 
-  
-  @Smoke
-  Scenario: Save entity to outbox
+  Scenario: Save entity to Outbox
     When the user taps on the "Uwazi" connection
+    And taps the new template to fill out
+    And completes the title
+    And completes all the required fields
+    And presses "Next"
+    And presses "Submit later"
+    Then the entity is saved on the Outbox tab
 
-
+  @Smoke
+  Scenario: Save entity as Draft
+    When the user taps on the "Uwazi" connection
+    And taps the new template to fill out
+    And completes the title
+    And presses the "Save" icon
+    Then the entity is saved on the Draft tab
+    And the message: "Entity is saved as draft" appears
     
   @Smoke #No se puede unificar con tellaweb
   Scenario Outline: Delete entity from <Category>
