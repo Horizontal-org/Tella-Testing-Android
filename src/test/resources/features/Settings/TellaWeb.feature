@@ -2,7 +2,7 @@
 Feature: Tella Web
   
 Background:
-  Given the user is authenticated in the Tella application with valid credentials 654321
+  Given the user is authenticated in the Tella application with valid credentials
 	And the user is in Tella home page
 
 @ToBeAutomated
