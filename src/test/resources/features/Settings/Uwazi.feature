@@ -1,4 +1,4 @@
-@Uwazi 
+@Uwazi @Regression 
 Feature: Uwazi
   
   Background: 
@@ -38,18 +38,6 @@ Feature: Uwazi
       | Select from Tella files |
       | Select from your device |
       
-@NoCandidate
-Scenario Outline: Submit new report with <recording>
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses the "Add" icon
-And selects the option <Select files>
-And presses the "rec" and "stop" icon
-And taps Submit 
-And sees the file being uploaded
-Then the approval message "your report is available Outbox" 
-    
   @Smoke
   Scenario Outline: Submit entity with both primary document and supporting documentation
     When the user taps on the "Uwazi" connection
@@ -67,7 +55,7 @@ Then the approval message "your report is available Outbox"
       | Select from your device | Select from Tella files |
       | Select from Tella files | Select from your device |
   
-  @Smoke
+  @Smoke #A qué se refiere? Desde una conexión pública? o sin completar el campo Nombre del form?
   Scenario: Submit entities without authentication
     
   @Smoke
@@ -89,11 +77,12 @@ Then the approval message "your report is available Outbox"
   @Smoke
   Scenario: Submit entity with large attachments while connected to internet, disconect/reconect internet several times
     
+ 
+    
   @Smoke
   Scenario: Save entity to Outbox
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
-    And completes the title
     And completes all the required fields
     And presses "Next"
     And presses "Submit later"
