@@ -3,8 +3,7 @@ name: Maven test manual
 on:
   workflow_dispatch:
     branches:
-      only:
-        - main
+      - main
 
 jobs:
   test:
