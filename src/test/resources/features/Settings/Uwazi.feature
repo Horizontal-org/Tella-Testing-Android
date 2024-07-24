@@ -35,4 +35,16 @@ Feature: Uwazi
   Scenario: Submit entity with large attachments while connected to internet, disconect/reconect internet several times
     
   @Smoke
-  Scenario: 
+  Scenario: Save entity as draft
+  
+  @Smoke
+  Scenario: Save entity to outbox
+    
+  @Smoke
+  Scenario: Delete entity in outbox
+  
+  @Smoke 
+  Scenario: Delete sent entity
+    
+  @Smoke
+  Scenario: Delete draft entity
