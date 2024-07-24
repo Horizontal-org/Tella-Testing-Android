@@ -18,3 +18,21 @@ Feature: Uwazi
   Scenario: Submit entity without attachments
     When the user taps on the "Uwazi" connection
     
+  
+  @Smoke
+  Scenario: Submit entity with only primary document
+    
+  @Smoke
+  Scenario: Submit entity with both primary document and supporting documentation
+  
+  @Smoke
+  Scenario: Submit entities without authentication
+    
+  @Smoke
+  Scenario: Submit entity with only supporting documentation
+    
+  @Smoke
+  Scenario: Submit entity with large attachments while connected to internet, disconect/reconect internet several times
+    
+  @Smoke
+  Scenario: 
