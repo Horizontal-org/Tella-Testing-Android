@@ -5,6 +5,7 @@ import com.crowdar.tella.services.HomeService;
 import com.crowdar.tella.services.SettingsService;
 import com.crowdar.tella.services.UnlockService;
 import io.cucumber.java.en.*;
+import org.springframework.beans.factory.support.SimpleAutowireCandidateResolver;
 
 public class SettingsSteps {
     @Given("the user is in Tella home page")
@@ -148,5 +149,26 @@ public class SettingsSteps {
     @Then("^the sucessfull message (.*) is displayed$")
     public void theSucessfullMessageIsDisplayed(String message) {
         SettingsService.viewMessage(message);
+    }
+//sacar
+    @And("^taps switch in \"(.*)\" option$")
+    public void tapsSwitchInOption(String option) {
+        SettingsService.switchButtonEnable(option);
+    }
+    @And("^toggle the switch on the \"(.*)\" option$")
+    public void toggleTheSwitchOnTheOption(String option) {
+        SettingsService.switchButtonEnable(option);
+    }
+    @And("click on the help icon in (.*)")
+    public void clickOnTheHelpIconIn(String option) {
+        SettingsService.clickHelpInfo(option);
+    }
+    @Then("the help info message (.*) is displayed")
+    public void theHelpInfoMessageIsDisplayed(String helpInfo) {
+        SettingsService.showHelpInfoMessage(helpInfo);
+    }
+    @Then("^the \"(.*)\" option is activated$")
+    public void theOptionIsActivated(String option) {
+        SettingsService.viewButtonEnable(option);
     }
 }

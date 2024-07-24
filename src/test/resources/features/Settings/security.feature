@@ -8,54 +8,37 @@ Feature: Security
     And clicks on the category Security
 
   @Android @Lock
-  Scenario Outline: Security - Lock - password option
-    When  taps "Security" option
-    And taps "Lock" option in security category
+  Scenario Outline: Security - Lock - <LockOption> option
+    When the user clicks the "Lock" option
     And set security code valid
-    And tap "password" option
-    And set <password>
+    And tap "<LockOption>" option
+    And set <passPin>
     And taps "next" button
-    And set confirm <password>
+    And set confirm <passPin>
     And taps "next" button
     Then "Your lock has been changed" message is shown
 
     Examples:
-      | password |
-      | 1234560  |
+      | passPin | LockOption |
+      | 1234560 | Password   |
+      | 1234560 | PIN        |
+
 
   @Android @Lock
-  Scenario Outline: Security - Lock - PIN option
-    When  taps "Security" option
-    And taps "Lock" option in security category
+  Scenario: Security - Lock - Pattern option
+    When the user clicks the "Lock" option
     And set security code valid
-    And taps "PIN" option
-    And set <PIN>
-    And taps "next" button
-    And set confirm <PIN>
-    And taps "next" button
-    Then "Your lock has been changed" message is shown
-
-    Examples:
-      | PIN     |
-      | 1234560 |
-
-  @Android @Lock
-  Scenario: Security - lock - pattern option
-    When  taps "Security" option
-    And taps "Lock" option in security category
-    And set security code valid
-    And taps "pattern" option
+    And taps "Pattern" option
     And set pattern
     And taps "next" button
     And set confirm pattern
     And taps "next" button
-    Then  "Your lock has been changed" message is shown
+    Then "Your lock has been changed" message is shown
 
   @Smoke @Android @LockTimeout
   Scenario Outline: Security - Lock Timeout
-    When taps "Security" option
-    And taps "Lock timeout" option in security category
-    And select <timeout> option
+    When the user clicks the "Lock timeout" option
+    And select timeout <timeout> option
     And taps "OK" button
     And wait <timeout> of time
     Then view screen lock
@@ -85,9 +68,8 @@ Feature: Security
 
   @Smoke @Android @DeleteAfterFailedUnlock
   Scenario Outline: Security - Delete after failed unlock
-    When taps "Security" option
-    And taps "Delete after failed unlock" option in security category
-    And select <attempts> option
+    When the user clicks the "Delete after failed unlock" option
+    And select attempts <attempts> option
     And taps "OK" button
     And the user close the app
     And the user set incorrect <PIN> in <attempts>
@@ -148,17 +130,11 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @Android @QuickDelete
-  Scenario: Security - Quick delete - delete file
-    When taps "Security" option
-    And taps switch in "Quick delete" option in security category
-    And select check box "Delete files"
 
   @Smoke @Android @QuickDelete
-  Scenario: Security - Quick delete - delete file
-    When taps "Security" option
-    And taps switch in "Quick delete" option in security category
-    And select check box "Delete files"
+  Scenario Outline: Security - Quick delete - <quickDeleteCheck>
+    When toggle the switch on the "Quick delete" option
+    And select check box "<quickDeleteCheck>"
     And go to Tella home page
     And verify slide "DELETE" button is present
     And taps slide "DELETE" button
@@ -169,57 +145,15 @@ Feature: Security
     And set security code valid
     Then view that files were deleted
 
-  @Smoke @Android @QuickDelete
-  Scenario: Security - Quick delete - Delete draft and submitted forms
-    When taps "Security" option
-    And taps switch in "Quick delete" option in security category
-    And select check box “Delete draft and submitted forms”
-
-  @Smoke @Android @QuickDelete
-  Scenario: Security - Quick delete - Delete draft and submitted forms
-    When taps "Security" option
-    And taps switch in "Quick delete" option in security category
-    And select check box “Delete draft and submitted forms”
-    And go to Tella home page
-    And verify slide “DELETE” button is present
-    And taps slide “DELETE” button
-    And view counter message “Quick Delete mode activation”
-    And waits finish counter
-    And view closed the Tella application
-    And open Tella application again
-    And set security code valid
-    Then view that draft and submitted forms were deleted
-
-  @Smoke @Android @QuickDelete
-  Scenario: Security - Quick delete - Delete server settings
-    When taps "Security" option
-    And taps switch in "Quick delete" option in security category
-    And select check box “Delete server settings”
-
-  @Smoke @Android @QuickDelete
-  Scenario: Security - Quick delete - Delete server settings
-    When taps "Security" option
-    And taps switch in "Quick delete" option in security category
-    And select check box “Delete server settings”
-    And go to Tella home page
-    And verify slide “DELETE” button is present
-    And taps slide “DELETE” button
-    And view counter message “Quick Delete mode activation”
-    And waits finish counter
-    And view closed the Tella application
-    And open Tella application again
-    And set security code valid
-    Then view that server settings were deleted
+    Examples:
+      | quickDeleteCheck                 |
+      | Delete files                     |
+      | Delete draft and submitted forms |
+      | Delete server settings           |
 
   @Smoke @Android @QuickDelete
   Scenario: Security - Quick delete - Delete Tella
-    When taps "Security" option
-    Then view that server settings were deleted
-
-  @Smoke @Android @QuickDelete
-  Scenario: Security - Quick delete - Delete Tella
-    When taps "Security" option
-    And taps switch in "Quick delete" option in security category
+    When toggle the switch on the "Quick delete" option
     And select check box “Delete Tella”
     And go to Tella home page
     And verify slide “DELETE” button is present
@@ -229,71 +163,40 @@ Feature: Security
     And view closed the Tella application
     Then view uninstall message
 
-
-  @Smoke @Android @QuickDelete
-  Scenario Outline: Security - Quick delete - help info
-    When taps "Security" option
-    And taps "Quick delete" option in security category
-    And taps icon help in <deleteOption>
-    Then view the help info with <message>
+  @Smoke @Android @QuickDelete @Automated
+  Scenario Outline: Security - Quick delete - Help info
+    When toggle the switch on the "Quick delete" option
+    And click on the help icon in <deleteOption>
+    Then the help info message <message> is displayed
 
     Examples:
-      | deleteOption                     | message                                                                                                                                          |
-      | Delete files                     | Delete all the files stored in Tella                                                                                                             |
-      | Delete draft and submitted forms | Delete all draft and submitted forms                                                                                                             |
-      | Delete server settings           | Delete your connections to servers and all forms associated with them                                                                            |
-      | Delete Tella                     | Delete the app and all the data it contains. You will be asked "Do you want to uninstall this app?" Unless you confirm,Tella will not be delete. |
+      | deleteOption                     | message                                                                |
+      | Delete files                     | Delete all the files stored in Tella.                                  |
+      | Delete draft and submitted forms | Delete all draft and submitted forms.                                  |
+      | Delete server settings           | Delete your connections to servers and all forms associated with them. |
 
+  @Smoke @Android @Automated
+  Scenario Outline: Security - <option> ON
+    When toggle the switch on the "<option>" option
+    Then the "<option>" option is activated
 
-  @Smoke @Android @PreserveMetadata
-  Scenario: Security - Preserve metadata when importing
-    When taps "Security" option
-    And view "Preserve metadata when importing"
-    And taps switch in ON to option "Preserve metadata when importing"
-    Then the "Preserve metadata when importing" option is activated
-
-  @Smoke @Android @CameraSilentMode @NoCandidate
-  Scenario: Security - Camera silent mode
-    When taps "Security" option
-    And view "Camera silent mode"
-    And taps switch in ON to option "Camera silent mode"
-    And go to Tella home page
-    And taps camera button
-    And take photo
-    Then the camera did not make the sound
-
-  @Smoke @Android @ScreenSecurity
-  Scenario: Security - Screen security
-    When taps "security" option
-    And view "Screen security"
-    And taps switch in ON to option "Screen security"
-    And go to Tella home page
-    And take screenshot
-    Then view warning permissions
-
-
-  @Smoke @Android @PreserveMetadata
-  Scenario: Security - Preserve metadata when importing
-    When taps "Security" option
-    And view "Preserve metadata when importing"
-    And taps switch in ON to option "Preserve metadata when importing"
-    Then the "Preserve metadata when importing" option is activated
+    Examples:
+      | option                           |
+      | Quick delete                     |
+      | Preserve metadata when importing |
+      | Camera silent mode               |
 
   @Smoke @Android @CameraSilentMode
   Scenario: Security - Camera silent mode
-    When taps "Security" option
-    And view "Camera silent mode"
-    And taps switch in ON to option "Camera silent mode"
+    When toggle the switch on the "Camera silent mode" option
     And go to Tella home page
     And taps camera button
     And take photo
     Then the camera did not make the sound
 
   @Smoke @Android @ScreenSecurity
-  Scenario: Security - Screen security
-    When taps "security" option
-    And view "Screen security"
-    And taps switch in ON to option "Screen security"
+  Scenario: Security - Screen secuCamera silent mode
+    When toggle the switch on the "Screen security" option
     And go to Tella home page
     And take screenshot
     Then view warning permissions

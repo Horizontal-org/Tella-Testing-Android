@@ -38,4 +38,9 @@ public class SettingsConstants {
     public static final String ICON_CAMOUFLAGE_TEXT = "id:name";
     public static final String MESSAGE_CONTENT = "id:standard_sheet_content";
     public static final String MESSAGE_LABEL = "id:txv_msg";
+    public static final String SECURITY_SWITCH_LIST_BUTTON = "xpath:(//android.widget.Switch[@resource-id=\"org.hzontal.tella:id/mSwitch\"])";
+    public static final String DELETE_INFO_ICON = "id:delete_vault_tooltip";
+    public static final String DELETE_FORM_ICON = "id:delete_forms_tooltip";
+    public static final String DELETE_SERVER_ICON = "id:delete_server_tooltip";
+    public static final String HELP_INFO_TEXTVIEW = "xpath://android.widget.TextView[@text=\"%s\"]";
 }
