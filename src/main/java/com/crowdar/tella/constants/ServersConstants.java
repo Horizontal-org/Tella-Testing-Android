@@ -2,10 +2,8 @@ package com.crowdar.tella.constants;
 
 public class ServersConstants {
 
-    public static final String VIEW_NOT_DISPLAYED_MESSAGE = "Home page is not displayed.";
-    public static final String APP_MSG = "id:txv_msg";
-    public static final String HOME_BUTTON = "id:home";
-    public static final String CAMERA_BUTTON = "id:camera";
-    public static final String MIC_BUTTON = "id:mic";
-
+    public static final String PLUS_BUTTON = "ACCESSIBILITY_ID:Connect to servers to collect and send data to your organization";
+    public static final String WHAT_SERVER_TITLE = "id:standard_sheet_content";
+    public static final String TEXT_SERVER_BUTTON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" +
+            ".tella:id/sheet_textView\" and @text=\"%s\"]";
 }

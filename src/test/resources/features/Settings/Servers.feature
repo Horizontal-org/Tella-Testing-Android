@@ -12,7 +12,7 @@
 
   @Automated
   Scenario: Servers - View Server Options
-    When presses the + button
+    When the user presses the + button
     Then the user sees all possible server options available for connection
   
   Scenario Outline: Select Server
