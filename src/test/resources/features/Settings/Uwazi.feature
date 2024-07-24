@@ -59,7 +59,7 @@ Then the approval message "your report is available Outbox"
     
   @Smoke
   Scenario: Delete entity in outbox
-    
+    Given
     
 @ToBeAutomated
 Scenario Outline: Delete <Option Report>
