@@ -2,12 +2,14 @@ Feature: Common Server
   
   @Smoke
   Scenario Outline: Delete entity in <Option Report> with <server>
-    Given the user has an entity in outbox
+    Given the user has <data> in outbox
     When the user selects the option <Option Report>
     And the user taps the "⁝" button 
     
     Examples: 
-      | Option Report | server      |       
+      | server    | Option Report  | data       |
+      | Tella Web | Outbox         | a form     |
+    
     
 @ToBeAutomated
 Scenario Outline: Delete <Option Report>
