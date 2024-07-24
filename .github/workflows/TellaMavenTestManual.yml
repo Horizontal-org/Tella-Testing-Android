@@ -31,17 +31,16 @@ jobs:
           cache: maven
 
       - name: Ejecutando Maven clean test
-        continue-on-error: true
         run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
 
       - name: Subiendo informes del test
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.3.4
         with:
           name: test-results
           path: target/reports/
 
       - name: Subiendo informes surefire del test
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.3.4
         with:
           name: test-results
           path: target/surefire-reports/
