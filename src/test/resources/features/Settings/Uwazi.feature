@@ -18,7 +18,6 @@ Feature: Uwazi
   Scenario: Submit entity without attachments
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
-    And completes the title
     And completes all the required fields
     And presses "Next"
     And presses "Submit"
@@ -28,7 +27,6 @@ Feature: Uwazi
   Scenario Outline: Submit entity with only primary document
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
-    And completes the title
     And completes all the required fields
     And selects a PDF file from the Primary Documents field with the option <selection>
     And presses "Next"
@@ -56,7 +54,6 @@ Then the approval message "your report is available Outbox"
   Scenario Outline: Submit entity with both primary document and supporting documentation
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
-    And completes the title
     And completes all the required fields
     And selects a PDF file from the Primary Documents field with the option <selection>
     And selects a file from the Supporting files field with the option <option>
@@ -77,7 +74,6 @@ Then the approval message "your report is available Outbox"
   Scenario: Submit entity with only supporting documentation
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
-    And completes the title
     And completes all the required fields
     And selects a file from the Supporting files field with the option <option>
     And presses "Next"
