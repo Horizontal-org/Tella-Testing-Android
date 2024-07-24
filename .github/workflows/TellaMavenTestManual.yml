@@ -32,3 +32,15 @@ jobs:
           BSAPP: ${{ vars.BSAPP }}
           BSOS: ${{ vars.BSOS }}
         run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
+
+      - name: Subiendo informes del test
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: target/reports/
+
+      - name: Subiendo informes surefire del test
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: target/surefire-reports/
