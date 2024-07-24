@@ -4,11 +4,17 @@ Feature: Common Server
   Scenario Outline: Delete entity in <Option Report> with <server>
     Given the user has <data> in outbox
     When the user selects the option <Option Report>
-    And the user taps the "⁝" button 
+    And the user taps the "⁝" button
+    And selects Delete 
+    And confirms the Delete option
+    Then the approval message "File has been deleted"    
     
     Examples: 
       | server    | Option Report  | data       |
       | Tella Web | Outbox         | a form     |
+      | Tella Web | Submitted      | a form     |
+      | Uwazi     | Outbox         | an entity  |
+      | Uwazi     | Submitted      | an entity  |
     
     
 @ToBeAutomated
