@@ -71,7 +71,7 @@ And select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
 
 @ToBeAutomated
-Scenario Outline: Delete draf
+Scenario Outline: Delete draft
 When the user taps the Report 
 And select file
 And presses "Menu" icon
