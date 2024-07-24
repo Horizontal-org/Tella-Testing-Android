@@ -4,6 +4,7 @@ Feature: Tella Web
 Background:
   Given the user is authenticated in the Tella application with valid credentials
 	And the user is in Tella home page
+  And the user is connected to the Tella Web server
 
 @ToBeAutomated
 Scenario Outline: Submit report with <Select files>
@@ -66,15 +67,14 @@ And taps Submit
 And sees the file being uploaded and presses Pause
 And go back 
 And presses Outbox
-And presses "Menu" icon
+And presses the file "Menu" icon
 And select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
 
 @ToBeAutomated
-Scenario Outline: Delete draft
+Scenario Outline: Delete draf
 When the user taps the Report 
-And select file
-And presses "Menu" icon
+And presses the file "Menu" icon
 And select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
 
@@ -83,8 +83,7 @@ Then the approval message "File has been deleted"
 Scenario Outline: Delete <Option Report>
 When the user taps the Report 
 And selects the option <Option Report>
-And select file
-And presses "Menu" icon
+And presses the file "Menu" icon
 And select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
 
@@ -102,7 +101,7 @@ And completes the Title and the Description
 And presses "Save" icon
 And the approval message "The report was saved as a draft"
 And presses the cross
-And presses "Menu" icon
+And presses the file "Menu" icon
 And select Edit draft
 And presses the "Add" icon
 And selects the option Select from Tella files
@@ -122,8 +121,7 @@ And select files and presses the "verification" icon
 And presses "Clock" icon
 And the approval message "The report was saved to your Outbox. You can submit it when you ready"
 And presses Outbox 
-And select file
-And presses "Menu" icon
+And presses the file "Menu" icon
 And select View 
 And taps Resume
 Then the approval message "your report is available Outbox" 
