@@ -57,15 +57,6 @@ Then the approval message "your report is available Outbox"
   @Smoke
   Scenario: Save entity to outbox
     
-  @Smoke
-  Scenario: Delete entity in outbox
-    Given the user has an entity in outbox
-    When the user selects the option <Option Report>
-    And the user taps the "⁝" button 
-
-
-
-    
   @Smoke #No se puede unificar con tellaweb
   Scenario Outline: Delete entity in <Option Report>
     Given the user has an entity in outbox
