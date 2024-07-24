@@ -144,6 +144,7 @@ And go back
 And presses Outbox
 And presses "Menu" icon
 And select View 
+And presses Resume
 And sees the file being uploaded
 Then the approval message "your report is available Outbox" 
 
