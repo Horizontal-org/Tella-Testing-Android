@@ -82,20 +82,3 @@ Then the approval message "your report is available Outbox"
       | Outbox         |
       | Submitted      |
       | Draft          |
-
-
-  @ToBeAutomated
-Scenario: Delete report during sending
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses the "Add" icon
-And selects the option Select from Tella files
-And select files and presses the "verification" icon
-And taps Submit 
-And sees the file being uploaded and presses Pause
-And go back 
-And presses Outbox
-And presses "Menu" icon
-And select Delete and confirms the Delete option
-Then the approval message "File has been delete
