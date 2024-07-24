@@ -1,25 +1,22 @@
   @Servers @Smoke @Regression
   Feature: Servers
   
-  Background: 
-    Given the user is authenticated in the Tella application with valid credentials
-    And the user is in Tella home page
+  Background:
+    Given the user is in Tella home page
+    And the user taps the settings icon
+    And clicks on the category Servers
   
   Scenario: View Settings in the Server Category
-    When the user taps the settings icon
-    And selects the "Servers" option
+    When the user presses the + button
     Then the user views the server configurations
-  
-  Scenario: View Server Options
-    When the user taps the settings icon
-    And selects the "Servers" option
-    And presses the + button
+
+  @Automated
+  Scenario: Servers - View Server Options
+    When presses the + button
     Then the user sees all possible server options available for connection
   
   Scenario Outline: Select Server
-    When the user taps the settings icon
-    And selects the "Servers" option
-    And presses the + button
+    When the user presses the + button
     And selects the server <server>
     And presses "Ok"
     Then the user sees the chosen server with the corresponding configurations for establishing the connection
@@ -31,18 +28,14 @@
       | Uwazi              |
 	
   Scenario: Configure Open Data Kit Server
-    When the user taps the settings icon
-    And selects the "Servers" option
-    And presses the + button
+    When the user presses the + button
     And selects the "Open Data Kit" option
     And presses "Ok"
     Then the user views the server settings with fields "server name"; "server URL" to fill
     And presses "Save" to save the configuration
 
   Scenario: Configure Advanced Open Data Kit Server
-    When the user taps the settings icon
-    And selects the "Servers" option
-    And presses the + button
+    When the user presses the + button
     And selects the "Open Data Kit" option
     And presses "Ok"
     And the user views the server settings with fields "server name"; "server URL" to fill
@@ -51,9 +44,7 @@
     And presses "Save" to save the configuration
 
   Scenario Outline: Configure <server> whit URL Server
-    When the user taps the settings icon
-    And selects the "Servers" option
-    And presses the + button
+    When the user presses the + button
     And the user selects the <sever> option
     And presses "Ok"
     Then the user views the server settings with the field "enter project URL" to fill
@@ -65,9 +56,7 @@
 
   @TellaWeb
   Scenario Outline: Access Login for Project Access
-    When the user taps the settings icon
-    And selects the "Servers" option
-    And presses the + button
+    When the user presses the + button
     And the user selects the <server> option
     And presses "Ok"
     And the user views the server settings with the field "enter project URL" to fill
@@ -81,9 +70,7 @@
       | Uwazi    |
        
   Scenario Outline: Public Access with Uwazi in <language>
-    When the user taps the settings icon
-    And selects the "Servers" option
-    And presses the + button
+    When the user presses the + button
     And the user selects "Uwazi"
     And presses "Ok"
     And the user enters the project URL
