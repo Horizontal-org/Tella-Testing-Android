@@ -72,9 +72,10 @@ Then the approval message "your report is available Outbox"
   Scenario: Save entity to outbox
     
   @Smoke #No se puede unificar con tellaweb
-  Scenario Outline: Delete entity in <Option Report>
-    Given the user has an entity in outbox
-    When the user selects the option <Option Report>
+  Scenario Outline: Delete entity from <Option Report>
+    Given the user has an entity in <Option Report>
+    When the user taps on the "Uwazi" connection
+    And the user selects the category <Option Report>
     And the user taps the "⁝" button
     And selects Delete 
     And confirms the Delete option
@@ -84,6 +85,7 @@ Then the approval message "your report is available Outbox"
       | Option Report  |
       | Outbox         |
       | Submitted      |
+      | Draft          |
 
   @Smoke 
   Scenario: Delete sent entity
