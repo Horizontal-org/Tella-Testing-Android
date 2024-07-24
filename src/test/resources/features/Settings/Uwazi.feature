@@ -9,7 +9,7 @@ Feature: Uwazi
   @Smoke  
   Scenario: Download templates 
     When the user taps on the "Uwazi" connection
-    And the user presses "+"
+    And the user presses the "Add" icon
   
   @Smoke
   Scenario: Submit entity without attachments
