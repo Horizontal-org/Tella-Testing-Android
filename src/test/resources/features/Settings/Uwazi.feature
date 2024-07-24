@@ -36,15 +36,74 @@ Feature: Uwazi
     
   @Smoke
   Scenario: Save entity as draft
+    
+    
+@ToBeAutomated
+Scenario: Save report to Draft and send later
+When the user taps the Report 
+And taps the New report
+And completes the Title and the Description
+And presses "Save" icon
+And the approval message "The report was saved as a draft"
+And presses the cross
+And presses "Menu" icon
+And select Edit draft
+And presses the "Add" icon
+And selects the option Select from Tella files
+And select files and presses the "verification" icon
+And taps Send
+Then the approval message "your report is available Outbox" 
   
   @Smoke
   Scenario: Save entity to outbox
     
   @Smoke
   Scenario: Delete entity in outbox
-  
+    
+    
+@ToBeAutomated
+Scenario Outline: Delete <Option Report>
+When the user taps the Report 
+And selects the option <Option Report>
+And select file
+And presses "Menu" icon
+And select Delete and confirms the Delete option
+Then the approval message "File has been deleted"
+
+Examples: 
+|Option Report|
+|Outbox       |
+|Submitted    |
+
   @Smoke 
   Scenario: Delete sent entity
     
   @Smoke
   Scenario: Delete draft entity
+    
+    
+@ToBeAutomated
+Scenario Outline: Delete draft
+When the user taps the Report 
+And select file
+And presses "Menu" icon
+And select Delete and confirms the Delete option
+Then the approval message "File has been deleted"
+  
+    
+    
+  @ToBeAutomated
+Scenario: Delete report during sending
+When the user taps the Report 
+And taps the New report
+And completes the Title and the Description
+And presses the "Add" icon
+And selects the option Select from Tella files
+And select files and presses the "verification" icon
+And taps Submit 
+And sees the file being uploaded and presses Pause
+And go back 
+And presses Outbox
+And presses "Menu" icon
+And select Delete and confirms the Delete option
+Then the approval message "File has been delete
