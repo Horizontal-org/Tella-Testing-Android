@@ -32,7 +32,7 @@ jobs:
 
       - name: Ejecutando Maven clean test
         continue-on-error: true
-        run: mvn clean test -D"crowdar.cucumber.filter='${{ github.event.inputs.filter }}'" -PBrowserStack -PAndroid
+        run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
 
       - name: Subiendo informes del test
         uses: actions/upload-artifact@v4.3.4
