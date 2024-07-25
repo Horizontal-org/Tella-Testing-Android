@@ -105,7 +105,7 @@ Feature: Uwazi
     Then the entity is saved on the Draft tab
     And the message: "Entity is saved as draft" appears
     
-  @Smoke #No se puede unificar con tellaweb
+  @Smoke
   Scenario Outline: Delete entity from <Category>
     Given the user has an entity in <Category>
     When the user taps on the "Uwazi" connection
