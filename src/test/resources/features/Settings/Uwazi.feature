@@ -31,6 +31,7 @@ Feature: Uwazi
     And selects a PDF file from the Primary Documents field with the option <selection>
     And presses "Next"
     And presses "Submit"
+    And sees the file being uploaded
     Then the entity is saved on the Submitted tab with the corresponding information
     
     Examples:
@@ -47,6 +48,7 @@ Feature: Uwazi
     And selects a file from the Supporting files field with the option <option>
     And presses "Next"
     And presses "Submit"
+    And sees the files being uploaded
     Then the entity is saved on the Submitted tab with the corresponding information
     
     Examples:
@@ -66,6 +68,7 @@ Feature: Uwazi
     And selects a file from the Supporting files field with the option <option>
     And presses "Next"
     And presses "Submit"
+    And sees the file being uploaded
     Then the entity is saved on the Submitted tab with the corresponding information
     
     Examples:
