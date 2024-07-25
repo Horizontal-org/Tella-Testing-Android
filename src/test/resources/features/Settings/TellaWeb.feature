@@ -72,8 +72,9 @@ And select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
 
 @ToBeAutomated
-Scenario Outline: Delete draf
-When the user taps the Report 
+Scenario: Delete draf
+Given: the user has a report in the draft folder
+When the user taps the Report folder
 And presses the file "Menu" icon
 And select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
