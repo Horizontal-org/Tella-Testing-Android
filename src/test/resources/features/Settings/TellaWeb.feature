@@ -14,7 +14,7 @@ And completes the Title and the Description
 And taps the "+" button
 And selects the option <Select files> 
 And selects files and presses the "verification" icon
-And taps Submit 
+And presses "Submit"
 And sees the file being uploaded
 Then the approval message "your report is available Outbox" appears
 
@@ -32,7 +32,7 @@ And completes the Title and the Description
 And taps the "+" button
 And selects the option Take photo with camera
 And presses the "rec" icon
-And taps Submit 
+And presses "Submit" 
 And sees the file being uploaded
 Then the approval message "your report is available Outbox" appears 
 
@@ -45,7 +45,7 @@ And completes the Title and the Description
 And taps the "+" button
 And selects the option <Select files>
 And presses the "rec" and "stop" icon
-And taps Submit 
+And presses "Submit"
 And sees the file being uploaded
 Then the approval message "your report is available Outbox" appears
 
@@ -63,7 +63,7 @@ And completes the Title and the Description
 And taps the "+" button
 And selects the option Select from Tella files
 And selects files and presses the "verification" icon
-And taps Submit 
+And presses "Submit"
 And sees the file being uploaded and presses Pause
 And goes back 
 And presses Outbox
@@ -139,7 +139,7 @@ And completes the Title and the Description
 And taps the "+" button
 And selects the option Select from Tella files 
 And selects files and presses the "verification" icon
-And taps Submit 
+And presses "Submit"
 And sees the file being uploaded
 And disconnect and connect internet from your cell phone
 And goes back 
@@ -210,7 +210,7 @@ And completes the Title and the Description
 And taps the "+" button
 And selects the option Select from Tella files
 And selects files and presses the "verification" icon
-And taps Submit 
+And presses "Submit"
 And exit and enter the application
 And enter password 
 And taps the Reports 
@@ -222,5 +222,5 @@ Scenario: Submit report - 1000 characters in Description
 When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description with 1000 characters
-And taps Submit 
+And presses "Submit"
 Then the approval message "your report is available Outbox" appears
