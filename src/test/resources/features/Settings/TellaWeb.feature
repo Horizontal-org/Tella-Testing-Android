@@ -11,7 +11,7 @@ Scenario Outline: Submit report with <Select files>
 When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
-And presses the "Add" icon
+And taps the "+" button
 And selects the option <Select files> 
 And selects files and presses the "verification" icon
 And taps Submit 
@@ -29,7 +29,7 @@ Scenario: Submit new report with photo
 When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
-And presses the "Add" icon
+And taps the "+" button
 And selects the option Take photo with camera
 And presses the "rec" icon
 And taps Submit 
@@ -42,7 +42,7 @@ Scenario Outline: Submit new report with <recording>
 When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
-And presses the "Add" icon
+And taps the "+" button
 And selects the option <Select files>
 And presses the "rec" and "stop" icon
 And taps Submit 
@@ -60,7 +60,7 @@ Scenario: Delete report during sending
 When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
-And presses the "Add" icon
+And taps the "+" button
 And selects the option Select from Tella files
 And selects files and presses the "verification" icon
 And taps Submit 
@@ -100,7 +100,7 @@ Scenario Outline: Save a report from <option>
 When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
-And presses the "Add" icon
+And taps the "+" button
 And selects the option Select from Tella files
 And selects files and presses the "verification" icon
 And presses <option> icon
@@ -136,7 +136,7 @@ Scenario: Internet desconnection during report sending
 When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
-And presses the "Add" icon
+And taps the "+" button
 And selects the option Select from Tella files 
 And selects files and presses the "verification" icon
 And taps Submit 
@@ -207,7 +207,7 @@ Given the Background upload option is activated
 And The user taps the Reports 
 And taps the New report
 And completes the Title and the Description
-And presses the "Add" icon
+And taps the "+" button
 And selects the option Select from Tella files
 And selects files and presses the "verification" icon
 And taps Submit 
