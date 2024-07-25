@@ -12,4 +12,9 @@ public class ServersConstants {
     public static final String NEXT_BUTTON = "id:next_btn";
     public static final String URL_INPUT = "id:url";
     public static final String BACK_BUTTON = "id:back";
+    public static final String SAVE_BUTTON = "id:next";
+    public static final String SERVER_NAME_INPUT = "id:name";
+    public static final String URL_NAME_INPUT = "id:url";
+    public static final String TEXT_SERVER_MSG = "id:txv_msg";
+    public static final String SERVER_TITLE_LIST = "id:server_title";
 }
