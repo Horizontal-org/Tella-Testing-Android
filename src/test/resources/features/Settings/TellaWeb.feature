@@ -68,15 +68,18 @@ And sees the file being uploaded and presses Pause
 And goes back 
 And presses Outbox
 And presses the "Menu" icon of a Outbox report
-And selects Delete and confirms the Delete option
+And selects Delete
+And confirms the Delete option
 Then the approval message "File has been deleted" appears
+
 
 @ToBeAutomated
 Scenario: Delete draf
 Given: the user has a report in the Draft folder
 When the user taps the Reports
 And presses the "Menu" icon of a Draft report
-And selects Delete and confirms the Delete option
+And selects Delete 
+And confirms the Delete option
 Then the approval message "File has been deleted" appears
 
 
@@ -86,7 +89,8 @@ Given: the user has a report in the Folder <Option Report>
 When the user taps the Reports
 And selects the option <Option Report>
 And presses the file "Menu" icon of a <Option Report> report
-And selects Delete and confirms the Delete option
+And selects Delete 
+And confirms the Delete option
 Then the approval message "File has been deleted" appears
 
 Examples: 
