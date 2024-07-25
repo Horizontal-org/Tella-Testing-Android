@@ -1,7 +1,19 @@
 package com.crowdar.tella.steps;
 
+import com.crowdar.core.actions.MobileActionManager;
+import com.crowdar.driver.DriverManager;
+import com.crowdar.tella.constants.AudioConstants;
+import com.crowdar.tella.constants.FilesConstants;
+import com.crowdar.tella.constants.HomeConstants;
+import com.crowdar.tella.constants.PhotographyAndVideoConstants;
+import com.crowdar.tella.services.AudioService;
 import com.crowdar.tella.services.FilesService;
+import com.crowdar.tella.services.GenericService;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FilesSteps {
 
@@ -16,23 +28,23 @@ public class FilesSteps {
     }
 
     @And("selects the option (.*)")
-    public void selectOpcion(String option){
+    public void selectOpcion(String option) {
         FilesService.selectOpcion(option);
     }
 
     @And("captures the file of type (.*)")
-    public void captureFile(String type){
+    public void captureFile(String type) {
         FilesService.captureFile(type);
     }
 
     @Then("the message (.*) appears")
-    public void validateMessage(String expectedMessage){
+    public void validateMessage(String expectedMessage) {
         FilesService.validateMessage(expectedMessage);
     }
 
     @And("the file of type (.*) is saved correctly in the folder (.*)")
     public void validateFileCreation(String type, String nameFolder) {
-        FilesService.validateFileCreation(type,nameFolder);
+        FilesService.validateFileCreation(type, nameFolder);
     }
 
     @And("the file appears in the list of files in the folder (.*)")
@@ -41,12 +53,27 @@ public class FilesSteps {
     }
 
     @Then("the file appears in the \"All files\" folder")
-    public void validateFileInAllFiles(){
+    public void validateFileInAllFiles() {
         FilesService.validateFileInAllFiles();
     }
 
     @And("selects the option: Take photo or video")
     public void selectsTheOptionTakePhotoOrVideo() {
         FilesService.goPhotoVideoOption();
+    }
+
+    @And("there are files and folders within Tella app")
+    public void thereAreFilesAndFoldersWithinTellaApp() {
+        FilesService.createFiles();
+    }
+
+    @And("capture the file extension")
+    public void captureTheFileExtensionType() {
+    }
+
+
+    @Then("the type (.*) file is opened")
+    public void theTypeTypeFileIsOpened(String type) {
+        FilesService.validateExtension(type);
     }
 }

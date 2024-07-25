@@ -8,6 +8,6 @@ import io.cucumber.java.en.When;
 public class ServersSteps extends PageSteps {
     @When("the user presses the + button")
     public void theUserPressesTheButton() {
-        ServersService.clickPlusButton();
+       ServersService.clickPlusButton();
     }
 }

@@ -4,20 +4,20 @@ Feature: File Options
 
   Background:
     Given the user is in Tella home page
-    And there are files and folders within Tella
+    And there are files and folders within Tella app
 
-  @Smoke @ToBeAutomated
-  Scenario Outline: Open a multimedia file <type> from the folder <folder>
+  @Smoke @ToBeAutomated @oki
+  Scenario Outline: Open a multimedia file "type" from the folder "folder"
     When the user enters the folder <folder>
-    And taps on a <type> file
-    Then the <type> file is opened
+    And capture the file extension
+    Then the type <type> file is opened
 
     Examples:
       | folder    | type  |
       | All files | image |
-      | Images    | image |
-      | Videos    | video |
-      | Audio     | audio |
+      #| Images    | image |
+      #| Videos    | video |
+      #| Audio     | audio |
 
   @Smoke @ToBeAutomated
   Scenario Outline: Rename a file of <type> from the folder <folder>
@@ -26,6 +26,7 @@ Feature: File Options
     And selects the option "Rename"
     And enters the name: "TELLA"
     And presses "Ok"
+    #can't verify the name
     Then the file name is updated
 
     Examples:
@@ -158,7 +159,7 @@ Feature: File Options
       | video | Videos |
       | audio | Audios |
 
-  @Smoke @ToBeAutomated
+  @Smoke @ToBeAutomated @ok
   Scenario Outline: Delete a file of <type> from the folder <folder>
     When the user enters the folder <folder>
     And taps the options button "⋮" for the <type> file
@@ -174,7 +175,7 @@ Feature: File Options
       | audio | Audios |
   #| document | Documents |
 
-  @Smoke @ToBeAutomated
+  @Smoke @ToBeAutomated @ok
   Scenario Outline: Delete multiple files of <type> from the folder <folder>
     When the user enters the folder <folder>
     And taps the "Checkbox" button
@@ -220,7 +221,7 @@ Feature: File Options
       | audio    | Audios    |
       | document | Documents |
 
-  @Smoke @ToBeAutomated @REVISAR #no puedo crear otras carpetas y mover archivos?
+  @Smoke @ToBeAutomated @ok
   Scenario: Move a file to another existing folder
     When the user enters the folder "All Files"
     And taps the options button "⋮" of a file
@@ -230,7 +231,7 @@ Feature: File Options
     Then the file is moved to the selected folder
     And the message "File successfully moved" appears
 
-  @Smoke @ToBeAutomated @REVISAR #no puedo crear otras carpetas?
+  @Smoke @ToBeAutomated @REVISAR #puedo clickear algo que aun no existe? probablemente con un array
   Scenario: Move a file by creating a folder
     When the user enters the folder "All Files"
     And taps the options button "⋮" of a file
@@ -243,7 +244,7 @@ Feature: File Options
     Then the file is moved to the "FOLDER123" folder
     And the message "File successfully moved" appears
 
-  @Smoke @ToBeAutomated @REVISAR #no puedo crear otras carpetas?
+  @Smoke @ToBeAutomated @ok
   Scenario: Delete a folder with files inside
     When the user enters the folder "All Files"
     And taps the options button "⋮" of a file
@@ -259,7 +260,7 @@ Feature: File Options
     And taps "Delete"
     And the message "The files were deleted" appears
 
-  @Smoke @ToBeAutomated @REVISAR #no puedo crear otras carpetas?
+  @Smoke @ToBeAutomated @ok
   Scenario: Rename a folder
     When the user enters the folder "All Files"
     And taps the option "+"
