@@ -8,7 +8,7 @@ Background:
 
 @ToBeAutomated
 Scenario Outline: Submit report with <Select files>
-When the user taps the Report 
+When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
 And presses the "Add" icon
@@ -26,7 +26,7 @@ Examples:
 
 @NoCandidate
 Scenario: Submit new report with photo
-When the user taps the Report 
+When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
 And presses the "Add" icon
@@ -39,7 +39,7 @@ Then the approval message "your report is available Outbox"
 
 @NoCandidate
 Scenario Outline: Submit new report with <recording>
-When the user taps the Report 
+When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
 And presses the "Add" icon
@@ -57,7 +57,7 @@ Examples:
 
 @ToBeAutomated
 Scenario: Delete report during sending
-When the user taps the Report 
+When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
 And presses the "Add" icon
@@ -74,7 +74,7 @@ Then the approval message "File has been deleted"
 @ToBeAutomated
 Scenario: Delete draf
 Given: the user has a report in the Draft folder
-When the user taps the Report folder
+When the user taps the Reports
 And presses the "Menu" icon of a Draft report
 And select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
@@ -83,7 +83,7 @@ Then the approval message "File has been deleted"
 @ToBeAutomated
 Scenario Outline: Delete <Option Report>
 Given: the user has a report in the Folder <Option Report>
-When the user taps the Report Folder
+When the user taps the Reports
 And selects the option <Option Report>
 And presses the file "Menu" icon of a <Option Report> report
 And select Delete and confirms the Delete option
@@ -97,7 +97,7 @@ Examples:
 
 @ToBeAutomated
 Scenario Outline: Save a report from <option>
-When the user taps the Report 
+When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
 And presses the "Add" icon
@@ -133,7 +133,7 @@ Then the approval message "your report is available Outbox"
 
 @ToBeAutomated
 Scenario: Internet desconnection during report sending
-When the user taps the Report 
+When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description
 And presses the "Add" icon
@@ -202,11 +202,9 @@ And presses "Save" icon
 Then the approval message "Served updated" 
 
 
-
-
-
-And go to Tella home page
-And taps the Report 
+Scenario: Send report with Background upload activated
+Given the Background upload option is activated
+And The user taps the Reports 
 And taps the New report
 And completes the Title and the Description
 And presses the "Add" icon
@@ -215,13 +213,13 @@ And select files and presses the "verification" icon
 And taps Submit 
 And exit and enter the application
 And enter password 
-And taps the Report 
+And taps the Reports 
 And taps Submitted 
 Then sees the sent report
 
 
 Scenario: Submit report - 1000 characters in Description
-When the user taps the Report 
+When the user taps the Reports 
 And taps the New report
 And completes the Title and the Description with 1000 characters
 And taps Submit 
