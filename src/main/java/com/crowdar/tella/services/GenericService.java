@@ -15,7 +15,7 @@ public class GenericService {
         } else if (locatorString.startsWith("xpath:")) {
             return By.xpath(locatorString.substring("xpath:".length()));
         } else if (locatorString.startsWith("accessibilityId:")) {
-        return MobileBy.AccessibilityId(locatorString.substring("ACCESSIBILITYID:".length()));
+        return MobileBy.AccessibilityId(locatorString.substring("ACCESSIBILITY_ID:".length()));
         }
         return null;
     }
