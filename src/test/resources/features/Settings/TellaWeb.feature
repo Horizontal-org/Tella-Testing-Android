@@ -151,45 +151,60 @@ And sees the file being uploaded
 Then the approval message "your report is available Outbox" 
 
 
-@NoCandidate
+@ToBeAutomated
 Scenario: Activate Auto-report
 When the user taps the settings icon
 And selects the "Servers" option
-And selects the "Created project Tella Web"
+And selects the "Project created in Tella Web"
 And select Edit 
 And select Auto-report
-
+And sees that the color has changed to green, indicating it is activated
 And presses "Save" icon
-And go to Tella home page
-And presses the camera button
+Then the approval message "Served updated" 
+
+@NoCandidate
+Scenario: Take photo or video with Auto-report activated
+Given the Auto-report option is activated
+When the user presses the camera button
 And presses the take a photo button
-And go to Tella home page
 Then the approval message "The photo(s)/video you took has been automatically uploaded as a report"
 
 
-@NoCandidate
+@ToBeAutomated
 Scenario: Activate Auto-delete
+Given the Auto-report option is activated
 When the user taps the settings icon
 And selects the "Servers" option
-And selects the "Created project"
+And selects the "Project created in Tella Web"
 And select Edit 
-And select Auto-report
 And select Auto-delete
+And sees that the color has changed to green, indicating it is activated
 And presses "Save" icon
-And go to Tella home page
-And presses the camera button
+Then the approval message "Served updated" 
+
+@NoCandidate
+Scenario: Take photo or video with Auto-delete activated
+Given the Auto-report and Auto-report option is activated
+When the user presses the camera button
 And presses the take a photo button
 Then the approval message "The photo/video you took has been uploaded as a report and automatically deleted"
 
 
-@NoCandidate
+@ToBeAutomated
 Scenario: Activate Background upload
 When the user taps the settings icon
 And selects the "Servers" option
-And selects the "Created project"
+And selects the "Project created in Tella Web"
 And select Edit 
 And select Background upload
+And sees that the color has changed to green, indicating it is activated
 And presses "Save" icon
+Then the approval message "Served updated" 
+
+
+
+
+
 And go to Tella home page
 And taps the Report 
 And taps the New report
