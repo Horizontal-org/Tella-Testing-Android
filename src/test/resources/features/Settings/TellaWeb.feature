@@ -122,6 +122,16 @@ Then the approval message "your report is available Outbox"
 
 
 @ToBeAutomated
+Scenario: Send a report from Outbox
+Given:the user has a report in the Outbox folder
+When the user taps the Report Folder
+And selects the option Outbox
+And presses the "Menu" icon of a Outbox report
+And select View 
+And taps Resume
+Then the approval message "your report is available Outbox" 
+
+@ToBeAutomated
 Scenario: Internet desconnection during report sending
 When the user taps the Report 
 And taps the New report
@@ -145,9 +155,10 @@ Then the approval message "your report is available Outbox"
 Scenario: Activate Auto-report
 When the user taps the settings icon
 And selects the "Servers" option
-And selects the "Created project"
+And selects the "Created project Tella Web"
 And select Edit 
 And select Auto-report
+
 And presses "Save" icon
 And go to Tella home page
 And presses the camera button
