@@ -67,24 +67,25 @@ And taps Submit
 And sees the file being uploaded and presses Pause
 And go back 
 And presses Outbox
-And presses the file "Menu" icon
+And presses the "Menu" icon of a Outbox report
 And select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
 
 @ToBeAutomated
 Scenario: Delete draf
-Given: the user has a report in the draft folder
+Given: the user has a report in the Draft folder
 When the user taps the Report folder
-And presses the file "Menu" icon
+And presses the "Menu" icon of a Draft report
 And select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
 
 
 @ToBeAutomated
 Scenario Outline: Delete <Option Report>
-When the user taps the Report 
+Given: the user has a report in the Folder <Option Report>
+When the user taps the Report Folder
 And selects the option <Option Report>
-And presses the file "Menu" icon
+And presses the file "Menu" icon of a <Option Report> report
 And select Delete and confirms the Delete option
 Then the approval message "File has been deleted"
 
@@ -95,36 +96,28 @@ Examples:
 
 
 @ToBeAutomated
-Scenario: Save report to Draft and send later
+Scenario Outline: Save a report from <option>
 When the user taps the Report 
 And taps the New report
 And completes the Title and the Description
-And presses "Save" icon
-And the approval message "The report was saved as a draft"
-And presses the cross
-And presses the file "Menu" icon
-And select Edit draft
 And presses the "Add" icon
 And selects the option Select from Tella files
 And select files and presses the "verification" icon
-And taps Send
-Then the approval message "your report is available Outbox" 
+And presses <option> icon
+Then the approval message <message> 
+
+Examples:
+|option  |  message                                                               |
+|Save    |  The report was saved as a draft                                       |
+|Clock   |  The report was saved to your Outbox. You can submit it when you ready |
 
 
 @ToBeAutomated
-Scenario: Send report of a waiting file
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses the "Add" icon
-And selects the option Select from Tella files
-And select files and presses the "verification" icon
-And presses "Clock" icon
-And the approval message "The report was saved to your Outbox. You can submit it when you ready"
-And presses Outbox 
-And presses the file "Menu" icon
-And select View 
-And taps Resume
+Scenario: Send a report from Draft
+Given:the user has a report in the Draft folder
+When presses the "Menu" icon of a Draft report
+And select Edit draft 
+And taps Send
 Then the approval message "your report is available Outbox" 
 
 
