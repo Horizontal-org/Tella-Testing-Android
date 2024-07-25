@@ -103,7 +103,7 @@ Feature: Uwazi
     And completes the title
     And presses the "Save" icon
     Then the entity is saved on the Draft tab
-    And the message: "Entity is saved as draft" appears
+    And the message "Entity is saved as draft" appears
     
   @Smoke
   Scenario Outline: Delete entity from <Category>
