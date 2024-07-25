@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-22.04
     environment: Automation
     env:
-          BSUSER: ${{ vars.BSUSER }}
-          AUTHTOKEN: ${{ vars.AUTHTOKEN }}
-          BSDEVICE: ${{ vars.BSDEVICE }}
-          BSAPP: ${{ vars.BSAPP }}
-          BSOS: ${{ vars.BSOS }}
+      BSUSER: ${{ vars.BSUSER }}
+      AUTHTOKEN: ${{ vars.AUTHTOKEN }}
+      BSDEVICE: ${{ vars.BSDEVICE }}
+      BSAPP: ${{ vars.BSAPP }}
+      BSOS: ${{ vars.BSOS }}
 
     steps:
       - name: Checkout al repositorio
