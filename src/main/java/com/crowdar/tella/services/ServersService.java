@@ -31,6 +31,8 @@ public class ServersService {
         buttons.put("OK", ServersConstants.OK_BUTTON);
         buttons.put("Cancel", ServersConstants.CANCEL_BUTTON);
         buttons.put("Next", ServersConstants.NEXT_BUTTON);
+        buttons.put("SAVE", ServersConstants.SAVE_BUTTON);
+
         String getButton = buttons.get(button);
         MobileActionManager.waitVisibility(getButton);
         MobileActionManager.click(getButton);

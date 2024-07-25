@@ -17,9 +17,9 @@ Feature: Servers
   @Automated
   Scenario Outline: Select Server <server>
     When the user presses the + button
-    And selects the server <server>
-    And the user presses "OK"
-    Then the user enters the tella web server <server> settings
+    And selects the server "<server>"
+    And the user presses "OK" button
+    Then the user views the server <server> settings
 
     Examples:
       | server              |
@@ -29,10 +29,24 @@ Feature: Servers
 
   Scenario: Configure Open Data Kit Server
     When the user presses the + button
-    And selects the "Open Data Kit" option
-    And the user presses "OK"
+    And selects the server "Open Data Kit (ODK)"
+    And the user presses "OK" button
     Then the user views the server settings with fields "server name"; "server URL" to fill
-    And presses "Save" to save the configuration
+
+  @Automated
+  Scenario Outline: Server - ODK Server Configuration
+    When the user presses the + button
+    And selects the server "Open Data Kit (ODK)"
+    And the user presses "OK" button
+    And enter the sever name <serverName>
+    And enter the server url <serverUrl>
+    And the user presses "SAVE" button
+    Then the user views the message <message>
+    And the user views the <serverName> in the connect list
+
+    Examples:
+      | serverName     | serverUrl                                      | message        |
+      | Server Crowdar | https://kc.kobotoolbox.org/tella_internal_test | Server created |
 
   Scenario: Configure Advanced Open Data Kit Server
     When the user presses the + button

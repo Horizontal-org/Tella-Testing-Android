@@ -23,18 +23,18 @@ public class ServersSteps extends PageSteps {
         SettingsService.clickCategory(option);
     }
 
-    @And("^selects the server (.*)$")
+    @And("^selects the server \"(.*)\"$")
     public void selectsTheServer(String server) {
         ServersService.selectServer(server);
     }
 
-    @And("^the user presses \"(.*)\"$")
+    @And("^the user presses \"(.*)\" button$")
     public void theUserPresses(String button) {
         ServersService.pressButton(button);
     }
 
-    @Then("^the user enters the tella web server (.*) settings$")
-    public void theUserEntersTheTellaWebServerSettings(String server) {
+    @Then("^the user views the server (.*) settings$")
+    public void theUserEntersTheServerSettings(String server) {
         ServersService.viewSettingServer(server);
     }
 }
