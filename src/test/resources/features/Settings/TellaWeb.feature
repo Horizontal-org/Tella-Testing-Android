@@ -1,4 +1,4 @@
-@TellaWeb @Smoke
+@TellaWeb @Regression
 Feature: Tella Web
   
 Background:
@@ -6,7 +6,7 @@ Background:
 	And the user is in Tella home page
   And the user is connected to the Tella Web server
 
-@ToBeAutomated
+@ToBeAutomated @Smoke
 Scenario Outline: Submit report with <Select files>
 When the user taps the Reports 
 And taps the New report
@@ -24,7 +24,7 @@ Examples:
 |Select from your device|
 
 
-@NoCandidate
+@NoCandidate @Smoke
 Scenario: Submit new report with photo
 When the user taps the Reports 
 And taps the New report
@@ -37,7 +37,7 @@ And sees the file being uploaded
 Then the approval message "your report is available Outbox" appears 
 
 
-@NoCandidate
+@NoCandidate  @Smoke
 Scenario Outline: Submit new report with <recording>
 When the user taps the Reports 
 And taps the New report
@@ -55,7 +55,7 @@ Examples:
 |audio    |  Record audio             |
 
 
-@ToBeAutomated
+@ToBeAutomated  @Smoke
 Scenario: Delete report during sending
 When the user taps the Reports 
 And taps the New report
@@ -73,7 +73,7 @@ And confirms the Delete option
 Then the approval message "File has been deleted" appears
 
 
-@ToBeAutomated
+@ToBeAutomated  @Smoke
 Scenario: Delete draf
 Given: the user has a report in the Draft folder
 When the user taps the Reports
@@ -83,7 +83,7 @@ And confirms the Delete option
 Then the approval message "File has been deleted" appears
 
 
-@ToBeAutomated
+@ToBeAutomated  @Smoke
 Scenario Outline: Delete <Option Report>
 Given: the user has a report in the Folder <Option Report>
 When the user taps the Reports
@@ -99,7 +99,7 @@ Examples:
 |Submitted    |
 
 
-@ToBeAutomated
+@ToBeAutomated  @Smoke
 Scenario Outline: Save a report from <option>
 When the user taps the Reports 
 And taps the New report
@@ -116,7 +116,7 @@ Examples:
 |Clock   |  The report was saved to your Outbox. You can submit it when you ready |
 
 
-@ToBeAutomated
+@ToBeAutomated  @Smoke
 Scenario: Send a report from Draft
 Given:the user has a report in the Draft folder
 When presses the "Menu" icon of a Draft report
@@ -125,7 +125,7 @@ And taps Send
 Then the approval message "your report is available Outbox" appears
 
 
-@ToBeAutomated
+@ToBeAutomated  @Smoke
 Scenario: Send a report from Outbox
 Given:the user has a report in the Outbox folder
 When the user taps the Report Folder
@@ -136,7 +136,7 @@ And taps Resume
 Then the approval message "your report is available Outbox" appears
 
 
-@ToBeAutomated
+@ToBeAutomated  @Smoke
 Scenario: Activate Auto-report
 When the user taps the settings icon
 And selects the "Servers" option
@@ -147,7 +147,7 @@ And sees that the color has changed to green, indicating it is activated
 And presses "Save" icon
 Then the approval message "Served updated" appears
 
-@NoCandidate
+@NoCandidate  @Smoke
 Scenario: Take photo or video with Auto-report activated
 Given the Auto-report option is activated
 When the user presses the camera button
@@ -155,7 +155,7 @@ And presses the take a photo button
 Then the approval message "The photo(s)/video you took has been automatically uploaded as a report" appears
 
 
-@ToBeAutomated
+@ToBeAutomated  @Smoke
 Scenario: Activate Auto-delete
 Given the Auto-report option is activated
 When the user taps the settings icon
@@ -167,7 +167,7 @@ And sees that the color has changed to green, indicating it is activated
 And presses "Save" icon
 Then the approval message "Served updated" appears
 
-@NoCandidate
+@NoCandidate  @Smoke
 Scenario: Take photo or video with Auto-delete activated
 Given the Auto-report and Auto-report option is activated
 When the user presses the camera button
@@ -175,7 +175,7 @@ And presses the take a photo button
 Then the approval message "The photo/video you took has been uploaded as a report and automatically deleted" appears
 
 
-@ToBeAutomated
+@ToBeAutomated  @Smoke
 Scenario: Activate Background upload
 When the user taps the settings icon
 And selects the "Servers" option
@@ -186,7 +186,7 @@ And sees that the color has changed to green, indicating it is activated
 And presses "Save" icon
 Then the approval message "Served updated" appears
 
-
+@ToBeAutomated  @Smoke
 Scenario: Send report with Background upload activated
 Given the Background upload option is activated
 And The user taps the Reports 
@@ -203,7 +203,7 @@ And taps Submitted
 Then sees the sent report
 
 
-@ToBeAutomated
+@ToBeAutomated @Smoke
 Scenario: Send a report with video while the internet is desconnecting
 Given the Auto-report option is activated and the user has a report with video 
 And taps Submit 
