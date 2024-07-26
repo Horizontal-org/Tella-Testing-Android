@@ -6,7 +6,7 @@ Feature: Common Server
   And the user is connected to the servers.
   
   
-  @Smoke 
+  @Smoke
   Scenario Outline: Delete <File> from <Category>
     Given the user has an <File> in <Category>
     When the user taps on the <Conecction> connection
@@ -16,8 +16,16 @@ Feature: Common Server
     And confirms the Delete option
     Then the file is deleted
     
+    @ODK
+    Examples: 
+      |File   | Category       |Conecction|
+      |Form   | Submitted      |ODK       |
+    @TellaWeb
+    Examples: 
+      |File   | Category       |Conecction|
+      |Reports| Draft          |Tella Web |    
+    @Uwazi
     Examples: 
       |File   | Category       |Conecction|
       |Entity | Outbox         |Uwazi     |
-      |Form   | Submitted      |ODK       |
-      |Reports| Draft          |Tella Web |
+      
