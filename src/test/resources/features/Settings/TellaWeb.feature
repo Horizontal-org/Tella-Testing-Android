@@ -77,7 +77,7 @@ Then the approval message "File has been deleted" appears
 Scenario: Delete draf
 Given: the user has a report in the Draft folder
 When the user taps the "Reports" connection
-And presses the "Menu" icon of a Draft report
+And the user taps the "⁝" button
 And selects Delete 
 And confirms the Delete option
 Then the approval message "File has been deleted" appears
@@ -104,7 +104,7 @@ Examples:
 @ToBeAutomated  @Smoke
 Scenario: Send a report from Draft
 Given:the user has a report in the Draft folder
-When presses the "Menu" icon of a Draft report
+When the user taps the "⁝" button
 And selects Edit draft 
 And taps Send
 Then the approval message "your report is available Outbox" appears
@@ -115,7 +115,7 @@ Scenario: Send a report from Outbox
 Given:the user has a report in the Outbox folder
 When the user taps the "Reports" connection
 And selects the option Outbox
-And presses the "Menu" icon of a Outbox report
+And the user taps the "⁝" button
 And selects View 
 And taps Resume
 Then the approval message "your report is available Outbox" appears
@@ -196,7 +196,7 @@ And sees the file being uploaded
 And disconnect and connect internet from your cell phone
 And go back 
 And presses Outbox
-And presses "Menu" icon
+And the user taps the "⁝" button
 And select View 
 And presses Resume
 And sees the file being uploaded
