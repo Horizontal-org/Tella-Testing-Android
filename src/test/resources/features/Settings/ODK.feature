@@ -33,11 +33,11 @@ Scenario: Save forms to Draft
   
    @Smoke
   Scenario: Delete form from Draft
-    Given the user has an <File> in <Category>
-    When the user taps on the <Conecction> connection
-    And the user selects the category <Category>
+    Given the user has an form in Draft
+    When the user taps on the Forms connection
+    And the user selects the category Draft
     And the user taps the "⁝" button
     And selects Delete 
     And confirms the Delete option
-    Then the approval message "File has been deleted" appears
+    Then the approval message "The form was deleted" appears
 
