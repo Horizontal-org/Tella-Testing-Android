@@ -246,16 +246,9 @@ Feature: File Options
    
  @Smoke
  Scenario: Delete a folder with files inside
+   Given the user has a folder with a file inside in "All Files"
    When the user enters the folder "All Files"
-   And taps the options button "⋮" of a file
-   And selects the option "Move to another folder"
-   And taps the option "+"
-   And enters a name for the folder: "FOLDER123"
-   And presses "Ok"
-   And chooses the destination folder "FOLDER123"
-   And taps the option "Move here"
-   And taps "← All files"
-   And taps the options button "⋮" of the "FOLDER123" folder
+   And taps the options button "⋮" of the corresponding folder with files inside
    And selects the option "Delete"
    And taps "Delete"
    And the message "The files were deleted" appears  
