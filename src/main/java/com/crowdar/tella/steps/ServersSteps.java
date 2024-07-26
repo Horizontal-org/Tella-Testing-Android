@@ -23,7 +23,7 @@ public class ServersSteps extends PageSteps {
 
     @And("^selects the server \"(.*)\"$")
     public void selectsTheServer(String server) {
-        ServersService.selectServer(server);
+        ServersService.selectButton(server);
     }
 
     @And("^the user presses \"(.*)\" button$")
@@ -69,5 +69,24 @@ public class ServersSteps extends PageSteps {
     @Then("the user views the buttons:")
     public void theUserViewsTheButtons(List<String> listAccessButton) {
         ServersService.viewListAccessButton(listAccessButton);
+    }
+
+    @And("^selects the \"(.*)\" button$")
+    public void selectsTheButton(String buttonAccess) {
+        ServersService.selectButton(buttonAccess);
+    }
+
+    @And("^the user selects the language (.*)$")
+    public void theUserSelectsTheLanguage(String language) {
+        ServersService.selectLanguage(language);
+    }
+
+    @Then("^the user view the message \"(.*)\"$")
+    public void theUserViewTheMessage(String message) {
+        ServersService.viewConnectMessage(message);
+    }
+
+    @And("^the user is now connected to Uwazi server in (.*)$")
+    public void theUserIsNowConnectedToUwaziServerIn(String language) {
     }
 }

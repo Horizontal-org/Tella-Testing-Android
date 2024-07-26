@@ -70,18 +70,18 @@ Feature: Servers
       | Log in        |
       | Public access |
 
-    @Automated
-    Scenario Outline: Public Access with Uwazi in <language>
+  @Automated
+  Scenario Outline: Public Access with Uwazi in <language>
     When the user presses the + button
-    And the user selects "Uwazi"
-    And the user presses "OK"
-    And the user enters the project URL
-    And the user presses "Next"
-    And selects the "Public access" option
-    And the user presses "Next"
+    And selects the server "Uwazi"
+    And the user presses "OK" button
+    And enter the server url "https://horizontal.uwazi.io"
+    And the user presses "Next" button
+    And selects the "Public access" button
+    And the user presses "Next" button
     And the user selects the language <language>
-    And the user presses "Next"
-    Then the message "You hace successfully connected to the server and will be able to share your data." appears
+    And the user presses "Next" button
+    Then the user view the message "You have successfully connected to the server and will be able to share your data."
     And the user is now connected to Uwazi server in <language>
 
     Examples:
