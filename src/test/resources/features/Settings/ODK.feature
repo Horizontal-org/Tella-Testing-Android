@@ -30,4 +30,14 @@ Scenario: Save forms to Draft
   And completes all the required fields
   And presses "Save" icon 
   Then the form is saved on the Draft
+  
+   @Smoke
+  Scenario: Delete form from Draft
+    Given the user has an <File> in <Category>
+    When the user taps on the <Conecction> connection
+    And the user selects the category <Category>
+    And the user taps the "⁝" button
+    And selects Delete 
+    And confirms the Delete option
+    Then the approval message "File has been deleted" appears
 
