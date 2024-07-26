@@ -37,4 +37,39 @@ public class ServersSteps extends PageSteps {
     public void theUserEntersTheServerSettings(String server) {
         ServersService.viewSettingServer(server);
     }
+
+    @And("^enter the sever name (.*)$")
+    public void enterTheSeverName(String serverName) {
+        ServersService.inputServerName(serverName);
+    }
+
+    @And("^enter the server url \"(.*)\"$")
+    public void enterTheServerUrl(String serverUrl) {
+        ServersService.inputServerUrl(serverUrl);
+    }
+
+    @Then("^the user views the message (.*)$")
+    public void theUserViewsTheMessage(String message) {
+        ServersService.viewMessage(message);
+    }
+
+    @And("^the user views the (.*) in the connect list$")
+    public void theUserViewsTheInTheConnectList(String serverName) {
+        ServersService.viewServerOnTheList(serverName);
+    }
+
+    @Then("^the user views the \"(.*)\"$")
+    public void theUserViewsTheLoginToAccessTheProject(String titleLogin) {
+        ServersService.viewLoginToProject(titleLogin);
+    }
+
+    @And("^the user views the fields \"(.*)\" and \"(.*)\"$")
+    public void theUserViewsTheFieldsAnd(String username, String password) {
+        ServersService.viewFieldsLogin(username, password);
+    }
+
+    @Then("the user views the buttons:")
+    public void theUserViewsTheButtons(List<String> listAccessButton) {
+        ServersService.viewListAccessButton(listAccessButton);
+    }
 }

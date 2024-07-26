@@ -15,7 +15,7 @@ Feature: Servers
       | Uwazi               |
 
   @Automated
-  Scenario Outline: Select Server <server>
+  Scenario Outline: Server - Select Server <server>
     When the user presses the + button
     And selects the server "<server>"
     And the user presses "OK" button
@@ -27,19 +27,13 @@ Feature: Servers
       | Tella Web           |
       | Uwazi               |
 
-  Scenario: Configure Open Data Kit Server
-    When the user presses the + button
-    And selects the server "Open Data Kit (ODK)"
-    And the user presses "OK" button
-    Then the user views the server settings with fields "server name"; "server URL" to fill
-
   @Automated
-  Scenario Outline: Server - ODK Server Configuration
+  Scenario Outline: Servers - ODK Server Configuration
     When the user presses the + button
     And selects the server "Open Data Kit (ODK)"
     And the user presses "OK" button
     And enter the sever name <serverName>
-    And enter the server url <serverUrl>
+    And enter the server url "<serverUrl>"
     And the user presses "SAVE" button
     Then the user views the message <message>
     And the user views the <serverName> in the connect list
@@ -48,42 +42,36 @@ Feature: Servers
       | serverName     | serverUrl                                      | message        |
       | Server Crowdar | https://kc.kobotoolbox.org/tella_internal_test | Server created |
 
-  Scenario: Configure Advanced Open Data Kit Server
+  Scenario: Servers - Advanced Configuration in Open Data Kit Server
     When the user presses the + button
-    And selects the "Open Data Kit" option
-    And the user presses "OK"
-    And the user views the server settings with fields "server name"; "server URL" to fill
-    And expands the "advanced" section
-    Then the user views the fields "user name"; "password" to fill
-    And presses "Save" to save the configuration
+    And selects the server "Open Data Kit (ODK)"
+    And the user presses "OK" button
+    And expands the "Advanced" section
+    Then the user views the fields "Username"; "Password" to fill
 
-  Scenario Outline: Configure <server> whit URL Server
+  @Automated
+  Scenario: Server - Tella Web configuration with URL
     When the user presses the + button
-    And the user selects the <server> option
-    And the user presses "OK"
-    Then the user views the server settings with the field "enter project URL" to fill
+    And selects the server "Tella Web"
+    And the user presses "OK" button
+    And enter the server url "https://tella.world/p/server-project-crowdar"
+    And the user presses "Next" button
+    Then the user views the "Log in to access the project"
+    And the user views the fields "Username" and "Password"
 
-    Examples:
-      | server    |
-      | Tella Web |
-      | Uwazi     |
-
-  @TellaWeb
-  Scenario Outline: Access Login for Project Access
+  @Automated
+  Scenario: Server - Uwazi configuration with URL
     When the user presses the + button
-    And the user selects the <server> option
-    And the user presses "OK"
-    And the user views the server settings with the field "enter project URL" to fill
-    And the user enters the project URL
-    And the user presses "Next"
-    Then the user views the login to access the project with fields "username"; "password"
+    And selects the server "Uwazi"
+    And the user presses "OK" button
+    And enter the server url "https://horizontal.uwazi.io"
+    And the user presses "Next" button
+    Then the user views the buttons:
+      | Log in        |
+      | Public access |
 
-    Examples:
-      | server    |
-      | Tella Web |
-      | Uwazi     |
-
-  Scenario Outline: Public Access with Uwazi in <language>
+    @Automated
+    Scenario Outline: Public Access with Uwazi in <language>
     When the user presses the + button
     And the user selects "Uwazi"
     And the user presses "OK"
