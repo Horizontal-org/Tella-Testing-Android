@@ -88,7 +88,7 @@ Feature: Uwazi
     Examples:
       | Select from Tella files |
       | Select from your device |
- 
+
     
   @Smoke
   Scenario: Save entity to Outbox
