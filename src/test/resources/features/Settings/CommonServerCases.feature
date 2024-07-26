@@ -14,7 +14,7 @@ Feature: Common Server
     And the user taps the "⁝" button
     And selects Delete 
     And confirms the Delete option
-    Then the file is deleted
+    Then the approval message "File has been deleted" appears
     
     @ODK
     Examples: 
