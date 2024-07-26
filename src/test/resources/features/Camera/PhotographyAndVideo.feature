@@ -88,7 +88,7 @@ Feature: PhotographyAndVideo
     Then the video resolution is selected
     
   @Smoke @Video 
-  Scenario: Check file size from the las file 
+  Scenario: Check file size from the last file 
     Given that the last file is a video with the highest resolution
     When the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
