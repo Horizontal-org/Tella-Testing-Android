@@ -34,7 +34,10 @@ jobs:
         run: mvn dependency:resolve
 
       - name: Instalando las dependencias de Cucumber
-        run: mvn dependency:resolve -Dclassifier=cucumber    
+        run: mvn dependency:resolve -Dclassifier=cucumber
+
+      - name: Instalando las dependencias de TestNG
+        run: mvn dependency:resolve -Dclassifier=testng
 
       - name: Ejecutando Maven clean test
         run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
