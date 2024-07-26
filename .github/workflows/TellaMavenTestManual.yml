@@ -30,6 +30,12 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Verificando las dependencias de Maven
+        run: mvn dependency:resolve
+
+      - name: Instalando las dependencias de Cucumber
+        run: mvn dependency:resolve -Dclassifier=cucumber    
+
       - name: Ejecutando Maven clean test
         run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
 
