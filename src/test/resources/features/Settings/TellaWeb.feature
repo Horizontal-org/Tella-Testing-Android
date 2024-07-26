@@ -100,7 +100,7 @@ Examples:
 
 
 @ToBeAutomated  @Smoke
-Scenario Outline: Save a report from <option>
+Scenario Outline: Save report to <option>
 When the user taps the "Reports" connection
 And taps the New report
 And completes the Title and the Description
