@@ -193,7 +193,7 @@ Feature: File Options
      | document | Documents  |
 
  Scenario Outline: Cancel the deletion of a <type> file from the folder <folder>
-   When When the user enters the folder <folder>
+   When the user enters the folder <folder>
    And taps the options button "⋮" of the <type> file
    And selects the option "Delete"
    And taps "Cancel"
@@ -254,12 +254,9 @@ Feature: File Options
    And the message "The files were deleted" appears  
    
  @Smoke
- Scenario: Rename a folder
+ Scenario: Rename a folder from All Files
+   Given the user has a folder named "folder1" in the "All Files" folder 
    When the user enters the folder "All Files"
-   And taps the option "+"
-   And selects the option "Create a new folder"
-   And enters the name: "folder1"
-   And presses "Ok"
    And taps the options button "⋮" of the "folder1" folder
    And selects the option "Rename"
    And enters the new name: "folder2"
