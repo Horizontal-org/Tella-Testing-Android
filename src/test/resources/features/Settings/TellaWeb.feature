@@ -83,21 +83,6 @@ And confirms the Delete option
 Then the approval message "File has been deleted" appears
 
 
-@ToBeAutomated  @Smoke
-Scenario Outline: Delete <Option Report>
-Given: the user has a report in the Folder <Option Report>
-When the user taps the "Reports" connection
-And selects the option <Option Report>
-And presses the file "Menu" icon of a <Option Report> report
-And selects Delete 
-And confirms the Delete option
-Then the approval message "File has been deleted" appears
-
-Examples: 
-|Option Report|
-|Outbox       |
-|Submitted    |
-
 
 @ToBeAutomated  @Smoke
 Scenario Outline: Save report to <option>
