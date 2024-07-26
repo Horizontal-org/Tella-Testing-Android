@@ -28,16 +28,23 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
+
+      - name: Cache de las dependencias de Maven
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
       - name: Verificando las dependencias de Maven
         run: mvn dependency:resolve
 
-#      - name: Instalando las dependencias de Cucumber
-#        run: mvn dependency:resolve -Dclassifier=cucumber
+  #    - name: Instalando las dependencias de Cucumber
+  #      run: mvn dependency:resolve -Dclassifier=cucumber
 
-#      - name: Instalando las dependencias de TestNG
-#        run: mvn dependency:resolve -Dclassifier=testng
+  #    - name: Instalando las dependencias de TestNG
+  #      run: mvn dependency:resolve -Dclassifier=testng    
 
       - name: Ejecutando Maven clean test
         run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
@@ -51,5 +58,5 @@ jobs:
       - name: Subiendo informes surefire del test
         uses: actions/upload-artifact@v4.3.4
         with:
-          name: test-results
+          name: test-results-surefire
           path: target/surefire-reports/
