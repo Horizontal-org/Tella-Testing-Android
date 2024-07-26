@@ -113,7 +113,7 @@ Feature: Uwazi
     Given the user has an entity in <Category>
     When the user taps on the "Uwazi" connection
     And the user selects the category <Category>
-    And the user taps the "⁝" button
+    And taps the "⁝" button of the corresponding entity
     And selects Delete 
     And confirms the Delete option
     Then the entity is deleted
@@ -124,8 +124,32 @@ Feature: Uwazi
       | Submitted      |
       | Draft          |
        
+  #The edit can be add files, change the title or the type of incident
   Scenario: Edit an entity from draft
+    Given the user has an entity as draft
+    When the user taps on the "Uwazi" connection
+    And selects the category Draft
+    And taps the "⁝" button of the corresponding entity
+    And selects "Edit draft"
+    And <edit> to the entity
+    And taps the save icon
+    Then the edits are saved correctly to the entity as a draft
     
+    Examples:
+      | edit                          |
+      | changes the title             |
+      | changes the type of incident  |
+      | adds a file                   | #debería especificar desde dónde siendo que todas las opciones dan error?
+      | adds a geolocation            | 
+       
   Scenario: Submit an entity without success due to missing required fields 
+    When the user taps on the "Uwazi" connection
+    And taps the new template to fill out
+    And presses "Next"
+    Then the message "There were validation errors in some answers" appears
     
-  Scenario: Save entity as draft without success due to missing required fields 
+  Scenario: Save entity as draft without success due to missing the title
+    When the user taps on the "Uwazi" connection
+    And taps the new template to fill out
+    And taps the save icon
+    Then the message "You must fill in the title" appears
