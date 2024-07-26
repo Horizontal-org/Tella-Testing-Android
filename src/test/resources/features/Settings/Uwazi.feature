@@ -142,13 +142,13 @@ Feature: Uwazi
       | adds a file                   | #debería especificar desde dónde siendo que todas las opciones dan error?
       | adds a geolocation            | 
        
-  Scenario: Submit an entity without success due to missing required fields 
+  Scenario: Fail to submit an entity due to missing required fields 
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
     And presses "Next"
     Then the message "There were validation errors in some answers" appears
     
-  Scenario: Save entity as draft without success due to missing the title
+  Scenario: Fail to save entity as draft due to missing title
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
     And presses the "Save" icon
