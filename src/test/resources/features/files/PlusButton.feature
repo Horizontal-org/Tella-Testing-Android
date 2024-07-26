@@ -55,7 +55,7 @@ Feature: Plus button
       | image | Images     | Photo  | Images    |
       | video | Videos     | Video  | Images    |
       | image | Images     | Photo  | Audio     |
-      | video | Videos     | Video  | Audio     |
+      | video | Videos     | Video  | Audios    |
       | image | Images     | Photo  | Videos    |
       | video | Videos     | Video  | Videos    |
       | image | Images     | Photo  | Others    |
@@ -109,7 +109,7 @@ Feature: Plus button
       | Documents |
       | Images    |
       | Audio     |
-      | Video     |
+      | Videos    |
       | Others    |
 
   @Smoke
@@ -133,7 +133,7 @@ Feature: Plus button
       | Documents |
       | Images    |
       | Audio     |
-      | Video     |
+      | Videos    |
       | Others    |
 
   @Smoke
@@ -152,11 +152,11 @@ Feature: Plus button
       | type     | folderSave | folder    |
       | image    | Images     | All files |
       | video    | Videos     | All files |
-      | audio    | Audios     | All files |
+      | audio    | Audio      | All files |
       | document | Documents  | All files |
       | document | Documents  | Documents |
       | image    | Images     | Images    |
-      | audio    | Audios     | Audio     |
+      | audio    | Audio      | Audio     |
       | video    | Videos     | Videos    |
 
   Scenario Outline: Import a file of type <type> from a folder <folder> - deleting the original
@@ -174,11 +174,11 @@ Feature: Plus button
       | type     | folderSave | folder    |
       | image    | Images     | All files |
       | video    | Videos     | All files |
-      | audio    | Audios     | All files |
+      | audio    | Audio      | All files |
       | document | Documents  | All files |
       | document | Documents  | Documents |
       | image    | Images     | Images    |
-      | audio    | Audios     | Audio     |
+      | audio    | Audio      | Audio     |
       | video    | Videos     | Videos    |
 
   Scenario Outline: Import a duplicate file of type <type> from folder <folder>
@@ -203,7 +203,7 @@ Feature: Plus button
       | document | Documents  | All files |
       | document | Documents  | Documents |
       | image    | Images     | Images    |
-      | audio    | Audios     | Audio     |
+      | audio    | Audio      | Audio     |
       | video    | Videos     | Videos    |
       
   @Smoke
