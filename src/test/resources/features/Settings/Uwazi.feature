@@ -132,7 +132,7 @@ Feature: Uwazi
     And taps the "⁝" button of the corresponding entity
     And selects "Edit draft"
     And <edit> to the entity
-    And taps the save icon
+    And presses the "Save" icon
     Then the edits are saved correctly to the entity as a draft
     
     Examples:
@@ -151,5 +151,5 @@ Feature: Uwazi
   Scenario: Save entity as draft without success due to missing the title
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
-    And taps the save icon
+    And presses the "Save" icon
     Then the message "You must fill in the title" appears
