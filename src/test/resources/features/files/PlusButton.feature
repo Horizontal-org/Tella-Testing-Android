@@ -232,7 +232,7 @@ Feature: Plus button
     And presses "Ok"
     Then "folder2" is successfully created inside "folder1"
 
-  Scenario: Add a new folder with a duplicate name without success
+  Scenario: Fail to add a new folder with a duplicate name
     Given the user has a folder named "folder1" in the "All Files" folder on the Tella homepage
     When the user enters the "All Files" folder
     And taps the "+" button
