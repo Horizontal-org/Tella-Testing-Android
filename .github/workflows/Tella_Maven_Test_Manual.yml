@@ -47,7 +47,6 @@ jobs:
   #      run: mvn dependency:resolve -Dclassifier=testng    
 
       - name: Ejecutando Maven clean test
-        continue-on-error: true
         run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
 
       - name: Subiendo informes del test
