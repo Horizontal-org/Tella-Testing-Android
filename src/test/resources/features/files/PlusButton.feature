@@ -137,6 +137,29 @@ Feature: Plus button
       | Others    |
 
   @Smoke
+  Scenario Outline: Record an audio file with verification information from the folder <folder>
+    Given the Verification Mode is on
+    When the user enters the folder <folder>
+    And taps the "+" button
+    And selects the option "Record audio"
+    And captures the audio
+    Then the message "The audio recording was saved to your Tella files" appears
+    And the audio file is saved correctly in the "Audio" folder
+    And the audio file appears in the list of files in the "Audio" folder
+    And the audio file appears in the list of files in the "All files" folder
+    And the file appears in the "Recent files" list
+    And the verification information is collected correctly
+
+    Examples:
+      | folder    |
+      | All files |
+      | Documents |
+      | Images    |
+      | Audio     |
+      | Videos    |
+      | Others    |
+
+  @Smoke
   Scenario Outline: Import a file of type <type> from a folder <folder> - preserving the original
     When the user enters the folder <folder>
     And taps the "+" button
