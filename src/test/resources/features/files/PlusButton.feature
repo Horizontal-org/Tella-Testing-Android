@@ -182,18 +182,15 @@ Feature: Plus button
       | video    | Videos     | Videos    |
 
   Scenario Outline: Import a duplicate file of type <type> from folder <folder>
+    Given the user has a file of type <type> imported into the folder <folder>
     When the user enters the folder <folder>
     And taps the "+" button
     And selects the option "Import from device"
     And taps the option "Keep original"
-    And selects a file of type <type> from the device
-    And taps the "+" button again
-    And selects the option "Import from device"
-    And taps the option "Keep original"
-    And selects the same file type <type> from the device
+    And selects the same imported file of type <type> from the device
     Then the duplicate file is imported correctly with a different name
     And the file of type <type> appears in the list of files in the folder <folderSave>
-    And the file appears in the "All files" folder
+    And the file appears in the "All Files" folder
 
     Examples:
       | type     | folderSave | folder    |
