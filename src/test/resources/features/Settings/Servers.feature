@@ -6,7 +6,7 @@ Feature: Servers
     And the user taps the settings icon
     And clicks on the option Servers
 
-  @Automated
+  @Automated @ViewServers
   Scenario: Servers - View Server Options
     When the user presses the + button
     Then the user sees all possible server options available for connection
@@ -14,7 +14,7 @@ Feature: Servers
       | Tella Web           |
       | Uwazi               |
 
-  @Automated
+  @Automated @SelectServers
   Scenario Outline: Server - Select Server <server>
     When the user presses the + button
     And selects the server "<server>"
@@ -27,7 +27,7 @@ Feature: Servers
       | Tella Web           |
       | Uwazi               |
 
-  @Automated
+  @Automated @ODKConfig
   Scenario Outline: Servers - ODK Server Configuration
     When the user presses the + button
     And selects the server "Open Data Kit (ODK)"
@@ -42,6 +42,7 @@ Feature: Servers
       | serverName     | serverUrl                                      | message        |
       | Server Crowdar | https://kc.kobotoolbox.org/tella_internal_test | Server created |
 
+  @ODKConfigAdvanced
   Scenario: Servers - Advanced Configuration in Open Data Kit Server
     When the user presses the + button
     And selects the server "Open Data Kit (ODK)"
@@ -49,7 +50,7 @@ Feature: Servers
     And expands the "Advanced" section
     Then the user views the fields "Username"; "Password" to fill
 
-  @Automated
+  @Automated @TellaWebConfig
   Scenario: Server - Tella Web configuration with URL
     When the user presses the + button
     And selects the server "Tella Web"
@@ -59,7 +60,7 @@ Feature: Servers
     Then the user views the "Log in to access the project"
     And the user views the fields "Username" and "Password"
 
-  @Automated
+  @Automated @UwaziConfig
   Scenario: Server - Uwazi configuration with URL
     When the user presses the + button
     And selects the server "Uwazi"
@@ -70,7 +71,7 @@ Feature: Servers
       | Log in        |
       | Public access |
 
-  @Automated
+  @Automated @UwaziConfigLanguage
   Scenario Outline: Public Access with Uwazi in <language>
     When the user presses the + button
     And selects the server "Uwazi"
