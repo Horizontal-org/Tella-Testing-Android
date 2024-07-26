@@ -11,9 +11,13 @@ public class AudioConstants {
     public static final String RECORD_NAME_INPUT = "id:renameEditText";
     public static final String OK_BUTTON = "id:standard_sheet_confirm_btn";
     public static final String STOP_BUTTON = "ACCESSIBILITY_ID:Stop";
+
     public static final String MESSAGE_TITLE = "id:txv_msg";
+
     public static final String RECORD_AUDIO = "id:record_audio";
+
     public static final String PAUSE_BUTTON = "ACCESSIBILITY_ID:pause";
+
     public static final String MICROPHONE_ICON2 = "id:mic";
 
 }

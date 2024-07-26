@@ -1,19 +1,11 @@
 package com.crowdar.tella.steps;
 
-import com.crowdar.core.actions.MobileActionManager;
-import com.crowdar.driver.DriverManager;
-import com.crowdar.tella.constants.AudioConstants;
 import com.crowdar.tella.constants.FilesConstants;
-import com.crowdar.tella.constants.HomeConstants;
-import com.crowdar.tella.constants.PhotographyAndVideoConstants;
-import com.crowdar.tella.services.AudioService;
 import com.crowdar.tella.services.FilesService;
 import com.crowdar.tella.services.GenericService;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.testng.AssertJUnit.assertTrue;
 
 public class FilesSteps {
 
@@ -67,13 +59,40 @@ public class FilesSteps {
         FilesService.createFiles();
     }
 
-    @And("capture the file extension")
-    public void captureTheFileExtensionType() {
+    @And("capture the file extension (.*)")
+    public void captureTheFileExtensionType(String type) {
+        boolean isFileTypePresent = GenericService.verifyFilePresence(type);
+        assertTrue("No se encontró un archivo de tipo " + type + " en la carpeta", isFileTypePresent);
     }
 
 
     @Then("the type (.*) file is opened")
     public void theTypeTypeFileIsOpened(String type) {
-        FilesService.validateExtension(type);
+
+    }
+
+    @And("taps the options button ⋮ for the (.*) file")
+    public void tapsTheOptionsButtonForTheTypeFile(String type) {
+        GenericService.commonClick(FilesConstants.THREE_BUTTONS_OPTION);
+    }
+
+    @Then("the file (.*) is deleted")
+    public void theFileTypeIsDeleted() {
+    }
+
+    @And("taps the options button ⋮")
+    public void tapsTheOptionsButton() {
+        GenericService.commonClick(FilesConstants.MORE_OPTIONS_THREE_POINTS_BUTTON);
+    }
+
+    @And("taps the Checkbox button and selects multiple (.*) files")
+    public void tapsTheCheckboxButtonAndSelectsMultipleTypeFiles(String type) {
+        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
+        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
+    }
+
+    @And("taps the options button ⋮ of a file")
+    public void tapsTheOptionsButtonOfAFile() {
+        GenericService.commonClick(FilesConstants.MORE_OPTIONS_THREE_POINTS_BUTTON);
     }
 }

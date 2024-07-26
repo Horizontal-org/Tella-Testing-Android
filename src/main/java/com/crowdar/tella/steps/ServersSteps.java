@@ -2,9 +2,7 @@ package com.crowdar.tella.steps;
 import com.crowdar.core.PageSteps;
 import com.crowdar.tella.services.ServersService;
 import com.crowdar.tella.services.SettingsService;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 
 import java.util.List;
 

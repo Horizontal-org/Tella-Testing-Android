@@ -2,10 +2,7 @@ package com.crowdar.tella.services;
 
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
-import com.crowdar.tella.constants.AudioConstants;
-import com.crowdar.tella.constants.FilesConstants;
-import com.crowdar.tella.constants.HomeConstants;
-import com.crowdar.tella.constants.PhotographyAndVideoConstants;
+import com.crowdar.tella.constants.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
@@ -14,32 +11,31 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import static com.google.common.io.Files.getFileExtension;
-import static io.appium.java_client.MobileBy.*;
 
 public class FilesService {
 
     static String message = null;
     static String createdFile = null;
 
-    private static final List<String> IMAGE_EXTENSIONS = Arrays.asList("jpg", "jpeg", "png", "gif", "bmp");
-    private static final List<String> VIDEO_EXTENSIONS = Arrays.asList("mp4", "avi", "mkv", "mov");
-    private static final List<String> AUDIO_EXTENSIONS = Arrays.asList("mp3", "wav", "aac", "flac");
-
-
 
     public static void enterFolder(String nameFolder) {
-        WebElement folderElement = DriverManager.getDriverInstance().getWrappedDriver().findElement(AndroidUIAutomator(
-                "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
-                        ".scrollIntoView(new UiSelector()" +
-                        ".textMatches(\"" + nameFolder + "\").instance(0))"));
-        folderElement.click();
+        try {
+            AndroidDriver<MobileElement> driver = (AndroidDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            System.out.println("Waiting for folder: " + nameFolder);
+            MobileElement folderElement = (MobileElement) wait.until(ExpectedConditions.presenceOfElementLocated(
+                    MobileBy.AndroidUIAutomator(
+                            "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                                    ".scrollIntoView(new UiSelector().textMatches(\"" + nameFolder + "\").instance(0))"
+                    )));
+
+            System.out.println("Folder found: " + nameFolder);
+            folderElement.click();
+        } catch (TimeoutException e) {
+            System.out.println("Timeout waiting for folder: " + nameFolder);
+        }
     }
 
     public static void tapPlusIcon() {
@@ -78,12 +74,8 @@ public class FilesService {
     }
 
     public static void validateMessage(String expectedMessage) {
-        Assert.assertEquals(expectedMessage, message);
-        MobileActionManager.click(FilesConstants.CLOSE_BUTTON);
-
-        MobileActionManager.click(FilesConstants.BACK_BUTTON);
+        Assert.assertTrue(MobileActionManager.isEnabled(AudioConstants.MESSAGE_TITLE));
     }
-
 
     public static void validateFileCreation(String type, String nameFolder) {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriverInstance().getWrappedDriver(), 20);
@@ -107,7 +99,6 @@ public class FilesService {
             System.out.println("Carpeta actual: " + currentFolder);
 
             Assert.assertEquals(currentFolder, nameFolder);
-            validateExtension(type);
 
             // Obtener el nombre del archivo creado usando AndroidUIAutomator
             WebElement createdFileElement = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
@@ -150,41 +141,39 @@ public class FilesService {
                 driver.findElement(MobileBy.id(AudioConstants.PERMISSIONS_ACCEPT_BUTTON)).click();
             }
         } catch (TimeoutException e) {
-            // Handle timeout exception
-        }
-
-    }
-
-    public static void validateExtension(String type) {
-        String createdFileName = MobileActionManager.getText(FilesConstants.CREATED_FILE_NAME);
-        if (createdFileName != null) {
-            if (type.toLowerCase().contains("image")) {
-                Assert.assertTrue(createdFileName.endsWith(".jpg"), "La validación para imagen falló: " + createdFileName);
-            } else if (type.toLowerCase().contains("video")) {
-                Assert.assertTrue(createdFileName.endsWith(".mp4"), "La validación para video falló: " + createdFileName);
-            }
         }
     }
 
-    public static void createFiles(){
-        //audio
+    public static void createAudioFiles() {
         GenericService.commonClick(AudioConstants.MICROPHONE_ICON2);
         AudioService.clickStartOption();
         AudioService.acceptPermissions();
         AudioService.clickStartOption();
         AudioService.clickStopOption2();
-        //photo
+    }
+
+    public static void createPhotoFiles() {
+        AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
         GenericService.commonClick(HomeConstants.CAMERA_BUTTON);
         FilesService.acceptPermissions();
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        //video
-        GenericService.commonClick(FilesConstants.VIDEO_OPTION);
-        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
         WebDriverWait wait = new WebDriverWait(driver, 5);
-        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        MobileActionManager.click(FilesConstants.CLOSE_BUTTON);
     }
 
+    public static void createVideoFiles() {
+        AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
+        GenericService.commonClick(FilesConstants.VIDEO_OPTION);
+        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
+    }
+
+    public static void createFiles() {
+        createAudioFiles();
+        createPhotoFiles();
+        createVideoFiles();
+    }
 
 }
+

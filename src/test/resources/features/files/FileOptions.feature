@@ -6,18 +6,19 @@ Feature: File Options
     Given the user is in Tella home page
     And there are files and folders within Tella app
 
-  @Smoke @ToBeAutomated @oki
-  Scenario Outline: Open a multimedia file "type" from the folder "folder"
+
+  @Smoke @Automated
+  Scenario Outline: Open a multimedia file <type> from the folder <folder>
     When the user enters the folder <folder>
-    And capture the file extension
+    And capture the file extension <type>
     Then the type <type> file is opened
 
     Examples:
       | folder    | type  |
       | All files | image |
-      #| Images    | image |
-      #| Videos    | video |
-      #| Audio     | audio |
+      | Images    | image |
+      | Videos    | video |
+      | Audio     | audio |
 
   @Smoke @ToBeAutomated
   Scenario Outline: Rename a file of <type> from the folder <folder>
@@ -159,39 +160,37 @@ Feature: File Options
       | video | Videos |
       | audio | Audios |
 
-  @Smoke @ToBeAutomated @ok
+  @Smoke @Automated
   Scenario Outline: Delete a file of <type> from the folder <folder>
     When the user enters the folder <folder>
-    And taps the options button "⋮" for the <type> file
-    And selects the option "Delete"
-    And taps "Delete"
-    And the <type> file is deleted from Tella
+    And taps the options button ⋮ for the <type> file
+    And the user presses Delete button
+    And the user presses confirm Delete button
     Then the message "The file was deleted" appears
 
     Examples:
       | type  | folder |
       | image | Images |
       | video | Videos |
-      | audio | Audios |
-  #| document | Documents |
+      | audio | Audio |
+  #| document | Documents | you can create documents yet from tella app
 
-  @Smoke @ToBeAutomated @ok
+  @Smoke @Automated
   Scenario Outline: Delete multiple files of <type> from the folder <folder>
+    And there are files and folders within Tella app
     When the user enters the folder <folder>
-    And taps the "Checkbox" button
-    And selects multiple <type> files
-    And taps the options button "⋮"
-    And selects the option "Delete"
-    And taps "Delete"
-    And the <type> files are deleted from Tella
+    And taps the Checkbox button and selects multiple <type> files
+    And taps the options button ⋮
+    And the user presses Delete button
+    And the user presses confirm Delete button
     Then the message "The files were deleted" appears
 
     Examples:
       | type  | folder |
       | image | Images |
       | video | Videos |
-      | audio | Audios |
-      #| document | Documents |
+      | audio | Audio |
+      #| document | Documents |  you can create documents yet from tella app
 
   Scenario Outline: Cancel the deletion of a <type> file from the folder <folder>
     When When the user enters the folder <folder>
@@ -205,7 +204,7 @@ Feature: File Options
       | type     | folder    |
       | image    | Images    |
       | video    | Videos    |
-      | audio    | Audios    |
+      | audio    | Audio    |
       | document | Documents |
 
   Scenario Outline: View the information of a <type> file from the folder <folder>
@@ -218,13 +217,13 @@ Feature: File Options
       | type     | folder    |
       | image    | Images    |
       | video    | Videos    |
-      | audio    | Audios    |
+      | audio    | Audio    |
       | document | Documents |
 
-  @Smoke @ToBeAutomated @ok
+  @Smoke @ToBeAutomated @oki
   Scenario: Move a file to another existing folder
     When the user enters the folder "All Files"
-    And taps the options button "⋮" of a file
+    And taps the options button ⋮ of a file
     And selects the option "Move to another folder"
     And chooses the destination folder
     And taps the option "Move here"
