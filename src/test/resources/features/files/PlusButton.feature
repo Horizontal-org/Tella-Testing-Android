@@ -223,14 +223,11 @@ Feature: Plus button
     And selects the option "Create a new folder"
     And enters a folder name: "folder1"
     And presses "Ok"
-    Then a folder with the specified name "folder1" is created
+    Then a folder named "folder1" is created in the "All Files" section
 
   Scenario: Successfully add a folder inside another
+    Given the user has a folder named "folder1" in the "All Files" folder on the Tella homepage
     When the user enters the "All Files" folder
-    And taps the "+" button
-    And selects the option "Create a new folder"
-    And enters a folder name: "folder1"
-    And presses "Ok"
     And enters "folder1"
     And taps the "+" button
     And selects the option "Create a new folder"
@@ -239,13 +236,10 @@ Feature: Plus button
     Then "folder2" is successfully created inside "folder1"
 
   Scenario: Add a new folder with a duplicate name without success
+    Given the user has a folder named "folder1" in the "All Files" folder on the Tella homepage
     When the user enters the "All Files" folder
     And taps the "+" button
     And selects the option "Create a new folder"
     And enters a folder name: "folder1"
     And presses "Ok"
-    And taps the "+" button
-    And selects the option "Create a new folder"
-    And enters a folder name: "folder1"
-    And presses "Ok"
-    Then the folder "folder1" is not created
+    Then the new folder "folder1" is not created
