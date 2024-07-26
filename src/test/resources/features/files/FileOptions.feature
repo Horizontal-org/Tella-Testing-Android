@@ -64,7 +64,7 @@ Feature: File Options
    Then the new file name is not updated
 
  @Smoke
- Scenario Outline: Edit an image by <Modification> from the  "Images" folder
+ Scenario Outline: Edit an image by <Modification> from the "Images" folder
    When the user enters the folder "Images"
    And taps the options button "⋮" for the image file
    And selects the option "Edit"
