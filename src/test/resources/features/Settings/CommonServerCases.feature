@@ -20,12 +20,10 @@ Feature: Common Server
     Examples: 
       |File   | Category       |Conecction|
       |Form   | Submitted      |ODK       |
+      |Form   | Outbox         |ODK       |
     @TellaWeb
     Examples: 
       |File   | Category       |Conecction|
-      |Reports| Draft          |Tella Web |    
-    @Uwazi
-    Examples: 
-      |File   | Category       |Conecction|
-      |Entity | Outbox         |Uwazi     |
+      |Reports| Submitted      |Tella Web |    
+      |Reports| Outbox         |Tella Web |
       
