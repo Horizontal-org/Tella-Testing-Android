@@ -8,7 +8,7 @@ Background:
 
 @ToBeAutomated @Smoke
 Scenario Outline: Submit report with <Select files>
-When the user taps the Reports 
+When the user taps the "Reports" connection
 And taps the New report
 And completes the Title and the Description
 And taps the "+" button
@@ -26,7 +26,7 @@ Examples:
 
 @NoCandidate @Smoke
 Scenario: Submit new report with photo
-When the user taps the Reports 
+When the user taps the "Reports" connection
 And taps the New report
 And completes the Title and the Description
 And taps the "+" button
@@ -39,7 +39,7 @@ Then the approval message "your report is available Outbox" appears
 
 @NoCandidate  @Smoke
 Scenario Outline: Submit new report with <recording>
-When the user taps the Reports 
+When the user taps the "Reports" connection
 And taps the New report
 And completes the Title and the Description
 And taps the "+" button
@@ -57,7 +57,7 @@ Examples:
 
 @ToBeAutomated  @Smoke
 Scenario: Delete report during sending
-When the user taps the Reports 
+When the user taps the "Reports" connection 
 And taps the New report
 And completes the Title and the Description
 And taps the "+" button
@@ -76,7 +76,7 @@ Then the approval message "File has been deleted" appears
 @ToBeAutomated  @Smoke
 Scenario: Delete draf
 Given: the user has a report in the Draft folder
-When the user taps the Reports
+When the user taps the "Reports" connection
 And presses the "Menu" icon of a Draft report
 And selects Delete 
 And confirms the Delete option
@@ -86,7 +86,7 @@ Then the approval message "File has been deleted" appears
 @ToBeAutomated  @Smoke
 Scenario Outline: Delete <Option Report>
 Given: the user has a report in the Folder <Option Report>
-When the user taps the Reports
+When the user taps the "Reports" connection
 And selects the option <Option Report>
 And presses the file "Menu" icon of a <Option Report> report
 And selects Delete 
@@ -101,7 +101,7 @@ Examples:
 
 @ToBeAutomated  @Smoke
 Scenario Outline: Save a report from <option>
-When the user taps the Reports 
+When the user taps the "Reports" connection
 And taps the New report
 And completes the Title and the Description
 And taps the "+" button
@@ -128,7 +128,7 @@ Then the approval message "your report is available Outbox" appears
 @ToBeAutomated  @Smoke
 Scenario: Send a report from Outbox
 Given:the user has a report in the Outbox folder
-When the user taps the Report Folder
+When the user taps the "Reports" connection
 And selects the option Outbox
 And presses the "Menu" icon of a Outbox report
 And selects View 
@@ -189,7 +189,7 @@ Then the approval message "Served updated" appears
 @ToBeAutomated  @Smoke
 Scenario: Send report with Background upload activated
 Given the Background upload option is activated
-And The user taps the Reports 
+And The user taps the "Reports" connection
 And taps the New report
 And completes the Title and the Description
 And taps the "+" button
@@ -198,7 +198,7 @@ And selects files and presses the "verification" icon
 And presses "Submit"
 And exit and enter the application
 And enter password 
-And taps the Reports 
+And taps the "Reports" connection
 And taps Submitted 
 Then sees the sent report
 
@@ -206,7 +206,7 @@ Then sees the sent report
 @ToBeAutomated @Smoke
 Scenario: Send a report with video while the internet is desconnecting
 Given the Auto-report option is activated and the user has a report with video 
-And taps Submit 
+When taps Submit 
 And sees the file being uploaded
 And disconnect and connect internet from your cell phone
 And go back 
@@ -219,7 +219,7 @@ Then the approval message "your report is available Outbox"
 
 
 Scenario: Submit report - 1000 characters in Description
-When the user taps the Reports 
+When the user taps the "Reports" connection
 And taps the New report
 And completes the Title and the Description with 1000 characters
 And presses "Submit"
