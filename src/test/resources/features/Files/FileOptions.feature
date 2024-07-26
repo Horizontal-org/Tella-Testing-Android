@@ -274,3 +274,22 @@ Feature: File Options
    And taps the "Checkbox" button
    And presses the "x" button
    Then the Select Files option disappears
+   
+ @Smoke @ToBeAutomated
+ Scenario Outline: Save a file of <type> to the device from the folder <folder>
+   Given the user has a <type> file
+   When the user enters the folder <folder>
+   And taps the options button "⋮" for the <type> file
+   And selects the option "Save to device"
+   And presses "Save"
+   And selects a location on the device
+   And presses "Use this folder"
+   And presses "Allow"
+   Then the <type> file is successfully saved to the device
+   And the message "1 file saved to the device" appears
+   
+   Examples:
+     | type      | folder     |
+     | image     | Images     |
+     | video     | Videos     |
+     | audio     | Audios     |
