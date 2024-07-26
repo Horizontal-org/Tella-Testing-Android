@@ -144,7 +144,7 @@ And selects the "Project created in Tella Web"
 And selects Edit 
 And selects Auto-report
 And sees that the color has changed to green, indicating it is activated
-And presses "Save" icon
+And presses the "Save" icon
 Then the approval message "Served updated" appears
 
 @NoCandidate  @Smoke
@@ -164,7 +164,7 @@ And selects the "Project created in Tella Web"
 And selects Edit 
 And selects Auto-delete
 And sees that the color has changed to green, indicating it is activated
-And presses "Save" icon
+And presses the "Save" icon
 Then the approval message "Served updated" appears
 
 @NoCandidate  @Smoke
@@ -183,7 +183,7 @@ And selects the "Project created in Tella Web"
 And selects Edit 
 And selects Background upload
 And sees that the color has changed to green, indicating it is activated
-And presses "Save" icon
+And presses the "Save" icon
 Then the approval message "Served updated" appears
 
 @ToBeAutomated  @Smoke
