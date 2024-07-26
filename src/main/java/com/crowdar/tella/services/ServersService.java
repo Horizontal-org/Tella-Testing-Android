@@ -20,16 +20,16 @@ public class ServersService {
             Assert.assertTrue(MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_BUTTON, serverName));
         }
     }
-    public static void selectServer(String server) {
+    public static void selectButton(String server) {
         MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
         ActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, server);
     }
 
     public static void pressButton(String button) {
         Map<String, String> buttons = new HashMap<>();
-        buttons.put("OK", ServersConstants.OK_BUTTON);
-        buttons.put("Cancel", ServersConstants.CANCEL_BUTTON);
-        buttons.put("Next", ServersConstants.NEXT_BUTTON);
+        buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
+        buttons.put("Cancel", ServersConstants.GRAL_NEXT_BUTTON);
+        buttons.put("Next", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("SAVE", ServersConstants.SAVE_BUTTON);
 
         String getButton = buttons.get(button);
@@ -79,4 +79,19 @@ public class ServersService {
             Assert.assertTrue(MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_BUTTON, accessName));
         }
     }
+
+    public static void selectLanguage(String language) {
+        MobileActionManager.waitVisibility(ServersConstants.LANGUAGE_TITLE);
+        Map<String,String> languages = new HashMap<>();
+        languages.put("English",ServersConstants.TEXT_LANGUAGE_TITLE+"[1]" );
+        languages.put("Spanish",ServersConstants.TEXT_LANGUAGE_TITLE+"[2]" );
+        languages.put("French",ServersConstants.TEXT_LANGUAGE_TITLE+"[3]" );
+        ActionManager.click(languages.get(language));
+    }
+
+    public static void viewConnectMessage(String message) {
+        MobileActionManager.waitVisibility(ServersConstants.CONNECTED_SERVER_TITLE);
+        Assert.assertTrue(MobileActionManager.getText(ServersConstants.CONNECTED_SERVER_MSG).contains(message));
+    }
+
 }
