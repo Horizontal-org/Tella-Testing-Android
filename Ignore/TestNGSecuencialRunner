@@ -9,14 +9,14 @@ public class com.crowdar.tella.TestNGSecuencialRunner extends AbstractTestNGCucu
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        File directory = new File("C:/Workspace/Tella-Testing/Ignore");
-        if (!directory.exists()) {
-            // Crear el directorio si no existe
-            if (!directory.mkdirs()) {
-                throw new IllegalArgumentException("No se pudo crear el directorio: " + directory.getAbsolutePath());
-            }
-        } else if (!directory.isDirectory()) {
-            throw new IllegalArgumentException("No es un directorio: " + directory.getAbsolutePath());
-        }
+//        File directory = new File("C:/Workspace/Tella-Testing/Ignore");
+//        if (!directory.exists()) {
+//            // Crear el directorio si no existe
+//            if (!directory.mkdirs()) {
+//                throw new IllegalArgumentException("No se pudo crear el directorio: " + directory.getAbsolutePath());
+//            }
+//        } else if (!directory.isDirectory()) {
+//            throw new IllegalArgumentException("No es un directorio: " + directory.getAbsolutePath());
+//        }
     }
 }
