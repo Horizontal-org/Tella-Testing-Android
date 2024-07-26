@@ -135,25 +135,6 @@ And selects View
 And taps Resume
 Then the approval message "your report is available Outbox" appears
 
-@ToBeAutomated
-Scenario: Internet desconnection during report sending
-When the user taps the Reports 
-And taps the New report
-And completes the Title and the Description
-And taps the "+" button
-And selects the option Select from Tella files 
-And selects files and presses the "verification" icon
-And presses "Submit"
-And sees the file being uploaded
-And disconnect and connect internet from your cell phone
-And goes back 
-And presses Outbox
-And presses "Menu" icon
-And selects View 
-And presses Resume
-And sees the file being uploaded
-Then the approval message "your report is available Outbox" appears
-
 
 @ToBeAutomated
 Scenario: Activate Auto-report
@@ -220,6 +201,21 @@ And enter password
 And taps the Reports 
 And taps Submitted 
 Then sees the sent report
+
+
+@ToBeAutomated
+Scenario: Send a report with video while the internet is desconnecting
+Given the Auto-report option is activated and the user has a report with video 
+And taps Submit 
+And sees the file being uploaded
+And disconnect and connect internet from your cell phone
+And go back 
+And presses Outbox
+And presses "Menu" icon
+And select View 
+And presses Resume
+And sees the file being uploaded
+Then the approval message "your report is available Outbox" 
 
 
 Scenario: Submit report - 1000 characters in Description
