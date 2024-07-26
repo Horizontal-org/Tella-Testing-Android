@@ -292,4 +292,4 @@ Feature: File Options
      | type      | folder     |
      | image     | Images     |
      | video     | Videos     |
-     | audio     | Audios     |
+     | audio     | Audio      |
