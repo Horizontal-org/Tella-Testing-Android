@@ -94,8 +94,8 @@ Feature: File Options
      | SocialMedia | folder     | type     |
      | Gmail       | Images     | image    |
      | WhatsApp    | Videos     | video    |
-     | Signal      | Audios     | audio    |
-     | Gmail       | Audios     | audio    |
+     | Signal      | Audio      | audio    |
+     | Gmail       | Audio      | audio    |
      | WhatsApp    | Images     | image    |
      | Signal      | Videos     | video    |
 
@@ -117,8 +117,8 @@ Feature: File Options
      | SocialMedia | folder     | type     |
      | Gmail       | Images     | image    |
      | WhatsApp    | Videos     | video    |
-     | Signal      | Audios     | audio    |
-     | Gmail       | Audios     | audio    |
+     | Signal      | Audio      | audio    |
+     | Gmail       | Audio      | audio    |
      | WhatsApp    | Images     | image    |
      | Signal      | Videos     | video    |
 
@@ -135,7 +135,7 @@ Feature: File Options
      | Gmail       | Documents | document   |
      | WhatsApp    | Images    | image      |
      | WhatsApp    | Videos    | video      |
-     | Signal      | Audios    | audio      |
+     | Signal      | Audio     | audio      |
 
  @Smoke @ToBeAutomated
  Scenario Outline: Save a file of <type> to the device from the folder <folder> with its verification information
