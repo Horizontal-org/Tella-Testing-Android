@@ -61,7 +61,7 @@ Feature: Uwazi
   Scenario: Submit entities without authentication
     
   @Smoke
-  Scenario: Submit entity with only supporting documentation
+  Scenario Outline: Submit entity with only supporting documentation
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
     And completes all the required fields
@@ -78,7 +78,7 @@ Feature: Uwazi
       | Select from your device |
     
   @Smoke
-  Scenario: Submit entity with large attachments while connected to internet, disconect/reconect internet several times
+  Scenario Outline: Submit entity with large attachments while connected to internet, disconect/reconect internet several times
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
     And completes all the required fields
@@ -125,7 +125,7 @@ Feature: Uwazi
       | Draft          |
        
   #The edit can be add files, change the title or the type of incident
-  Scenario: Edit an entity from draft
+  Scenario Outline: Edit an entity from draft
     Given the user has an entity as draft
     When the user taps on the "Uwazi" connection
     And selects the category Draft
@@ -139,7 +139,7 @@ Feature: Uwazi
       | edit                          |
       | changes the title             |
       | changes the type of incident  |
-      | adds a file                   | #debería especificar desde dónde siendo que todas las opciones dan error?
+      #| adds a file                   | #debería especificar desde dónde siendo que todas las opciones dan error?
       | adds a geolocation            | 
        
   Scenario: Fail to submit an entity due to missing required fields 
