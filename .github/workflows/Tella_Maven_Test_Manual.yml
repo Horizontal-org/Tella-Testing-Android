@@ -11,6 +11,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-22.04
+    container: crowdar/lippia:3.3.0.0-jdk17
     environment: Automation
     env:
       BSUSER: ${{ vars.BSUSER }}
