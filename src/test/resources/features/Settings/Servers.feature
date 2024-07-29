@@ -55,7 +55,7 @@
     When the user taps the settings icon
     And selects the "Servers" option
     And taps the "+" button
-    And the user selects the <sever> option
+    And the user selects the <server> option
     And presses "Ok"
     Then the user views the server settings with the field "enter project URL" to fill
     
