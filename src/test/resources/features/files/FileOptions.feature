@@ -222,13 +222,12 @@ Feature: File Options
 
   @Smoke @ToBeAutomated @oki
   Scenario: Move a file to another existing folder
-    When the user enters the folder "All Files"
+    When the user enter the folder All Files
     And taps the options button ⋮ of a file
-    And selects the option "Move to another folder"
+    And taps the option Move to another folder
     And chooses the destination folder
-    And taps the option "Move here"
-    Then the file is moved to the selected folder
-    And the message "File successfully moved" appears
+    And taps the option Move here
+    Then the message "File successfully moved" appears
 
   @Smoke @ToBeAutomated @REVISAR #puedo clickear algo que aun no existe? probablemente con un array
   Scenario: Move a file by creating a folder

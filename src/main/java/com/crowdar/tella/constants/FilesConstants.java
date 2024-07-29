@@ -1,6 +1,7 @@
 package com.crowdar.tella.constants;
 
 public class FilesConstants {
+    public static final String ALL_FILES = "xpath:(//android.view.ViewGroup[@resource-id=\"org.hzontal.tella:id/root\"])[1]";
 
     public static final String PLUS_ICON = "id:fab_button";
 
@@ -34,5 +35,11 @@ public class FilesConstants {
 
     public static final String MORE_OPTIONS_THREE_POINTS_BUTTON = "id:action_more";
 
+    public static final String CREATE_FOLDER_BUTTON = "id:createFolderActionTV";
 
+    public static final String MOVE_TO_BUTTON = "id:moveActionTV";
+
+    public static final String MOVE_HERE_BUTTON = "id:moveHere";
+
+    public static final String EMPTY_VIEW_MSG_CONTAINER = "//android.widget.LinearLayout[@resource-id=\"org.hzontal.tella:id/emptyViewMsgContainer\"]/android.widget.ImageView";
 }

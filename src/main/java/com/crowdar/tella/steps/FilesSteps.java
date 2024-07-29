@@ -93,6 +93,38 @@ public class FilesSteps {
 
     @And("taps the options button ⋮ of a file")
     public void tapsTheOptionsButtonOfAFile() {
-        GenericService.commonClick(FilesConstants.MORE_OPTIONS_THREE_POINTS_BUTTON);
+        GenericService.commonClick(FilesConstants.THREE_BUTTONS_OPTION);
+    }
+
+    @And("taps the option Move to another folder")
+    public void tapsTheOptionMoveToAnotherFolder() {
+        GenericService.commonClick(FilesConstants.MOVE_TO_BUTTON);
+    }
+
+    @And("chooses the destination folder")
+    public void choosesTheDestinationFolder() {
+        FilesService.moveFilesToFolder();
+    }
+
+    @And("taps the option Move here")
+    public void tapsTheOptionMoveHere() {
+        GenericService.commonClick(FilesConstants.MOVE_HERE_BUTTON);
+    }
+
+    @Then("the file is moved to the selected folder")
+    public void theFileIsMovedToTheSelectedFolder() {
+        FilesService.validateFolderEmptyFolder();
+    }
+
+    @And("the user creates a new folder called (.*)")
+    public void theUserCreatesANewFolderCalled(String nameNewFolder) {
+        FilesService.createFolder();
+        FilesService.validateFolderCreation();
+    }
+
+
+    @When("the user enter the folder All Files")
+    public void theUserEnterTheFolderAllFiles() {
+        GenericService.commonClick(FilesConstants.ALL_FILES);
     }
 }
