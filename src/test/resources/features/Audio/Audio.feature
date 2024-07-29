@@ -4,12 +4,12 @@ Feature: Audio
   Background:
     Given the user is in Tella home page
 
-  @Smoke @Automated 
+  @Smoke @Automated
   Scenario Outline: Record an audio file
     When the user press the Rec option
     And the user press the microphone
     And the user press stop option
-    Then the approval message <message_title> is displayed
+    Then the approval message <message_title> is displayed|
 
     Examples:
       | message_title                                     |

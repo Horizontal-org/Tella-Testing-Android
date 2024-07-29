@@ -29,7 +29,7 @@ public class FilesConstants {
 
     public static final String IMAGES_FILE = "id:imagesBtn";
 
-    public static final String THREE_BUTTONS_OPTION = "xpath:(//android.widget.ImageView[@content-desc=\"open bottom sheet\"])";
+    public static final String THREE_BUTTONS_OPTION = "xpath:(//android.widget.ImageView[@content-desc=\"open bottom sheet\"])[1]";
 
     public static final String CHECKBOX_BUTTON = "id:checkBoxList";
 
@@ -41,5 +41,13 @@ public class FilesConstants {
 
     public static final String MOVE_HERE_BUTTON = "id:moveHere";
 
-    public static final String EMPTY_VIEW_MSG_CONTAINER = "//android.widget.LinearLayout[@resource-id=\"org.hzontal.tella:id/emptyViewMsgContainer\"]/android.widget.ImageView";
+    public static final String EMPTY_VIEW_MSG_CONTAINER = "xpath://android.widget.LinearLayout[@resource-id=\"org.hzontal.tella:id/emptyViewMsgContainer\"]/android.widget.ImageView";
+
+    public static final String SORT_BUTTON = "id:filterNameTv";
+
+    public static final String SORT_OLDEST_TO_NEWEST_BUTTON = "id:radioBtnDESC";
+
+    public static final String PICK_FOLDER = "xpath:(//android.view.ViewGroup[@resource-id=\"org.hzontal.tella:id/root\"])[4]";
+
+
 }

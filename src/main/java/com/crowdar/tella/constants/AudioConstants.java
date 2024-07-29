@@ -20,7 +20,7 @@ public class AudioConstants {
 
     public static final String STOP_BUTTON = "ACCESSIBILITY_ID:Stop";
 
-    public static final String MESSAGE_TITLE = "txv_msg";
+    public static final String MESSAGE_TITLE = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/txv_msg\"]";
 
     public static final String RECORD_AUDIO = "id:record_audio";
 

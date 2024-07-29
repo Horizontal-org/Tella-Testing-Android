@@ -1,9 +1,11 @@
 package com.crowdar.tella.steps;
 
+import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.services.FilesService;
 import com.crowdar.tella.services.GenericService;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.By;
 
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -30,7 +32,7 @@ public class FilesSteps {
     }
 
     @Then("the message (.*) appears")
-    public void validateMessage(String expectedMessage) {
+    public void validateMessage(String expectedMessage) throws InterruptedException {
         FilesService.validateMessage(expectedMessage);
     }
 
@@ -103,7 +105,8 @@ public class FilesSteps {
 
     @And("chooses the destination folder")
     public void choosesTheDestinationFolder() {
-        FilesService.moveFilesToFolder();
+        GenericService.commonClick(FilesConstants.PICK_FOLDER);
+        //MobileActionManager.click(By.xpath());
     }
 
     @And("taps the option Move here")
@@ -126,5 +129,6 @@ public class FilesSteps {
     @When("the user enter the folder All Files")
     public void theUserEnterTheFolderAllFiles() {
         GenericService.commonClick(FilesConstants.ALL_FILES);
+        FilesService.orderBy();
     }
 }
