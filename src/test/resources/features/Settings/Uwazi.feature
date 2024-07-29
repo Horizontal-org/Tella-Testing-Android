@@ -56,9 +56,6 @@ Feature: Uwazi
       | Select from Tella files | Take photo with camera  |
       | Select from your device | Select from Tella files |
       | Select from Tella files | Select from your device |
-  
-  @Smoke #A qué se refiere? Desde una conexión pública? o sin completar el campo Nombre del form?
-  Scenario: Submit entities without authentication
     
   @Smoke
   Scenario Outline: Submit entity with only supporting documentation
