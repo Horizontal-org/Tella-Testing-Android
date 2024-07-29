@@ -65,8 +65,8 @@ Feature: Uwazi
     And selects a file from the Supporting files field with the option <option>
     And presses "Next"
     And presses "Submit"
-    And sees the file being uploaded
-    Then the entity is saved on the Submitted tab with the corresponding information
+    Then the file is uploaded
+    And the entity is saved on the Submitted tab with the corresponding information
     
     Examples:
       | option                  |
@@ -74,15 +74,15 @@ Feature: Uwazi
       | Select from Tella files |
       | Select from your device |
     
-  Scenario Outline: Submit entity with large attachments
+  Scenario Outline: Submit entity with large attachments from the Supporting files
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
     And completes all the required fields
     And selects a file of more than 100 MB from the Supporting files field with the option <option>
     And presses "Next"
     And presses "Submit"
-    And sees the file being uploaded
-    Then the entity is saved on the Submitted tab with the corresponding information
+    Then the file is uploaded
+    And the entity is saved on the Submitted tab with the corresponding information
     
     Examples:
       | Select from Tella files |
@@ -94,7 +94,7 @@ Feature: Uwazi
     And taps the new template to fill out
     And completes all the required fields
     And selects a file of more than 100 MB from the Supporting files field with the option <option>
-    And disconnects internet
+    And disconnects the internet
     And presses "Next"
     And presses "Submit"
     Then the message "There was an error submitting the form. Please try again" appears
@@ -103,6 +103,25 @@ Feature: Uwazi
     Examples:
       | Select from Tella files |
       | Select from your device |
+      
+  @Smoke
+  Scenario Outline: Submit entity with large attachments while disconnecting and reconnecting to the internet
+    When the user taps on the "Uwazi" connection
+    And taps the new template to fill out
+    And completes all the required fields
+    And selects a file of more than 100 MB from the Supporting files field with the option <option>
+    And disconnects the internet
+    And presses "Next"
+    And presses "Submit"
+    And selects the corresponding entity saved on the Outbox
+    And reconnects to the internet
+    And presses "Submit"
+    Then the file is uploaded
+    And the entity is saved on the Submitted tab with the corresponding information
+    
+    Examples:
+      | Select from Tella files |
+      | Select from your device |    
       
   @Smoke
   Scenario: Save entity to Outbox
