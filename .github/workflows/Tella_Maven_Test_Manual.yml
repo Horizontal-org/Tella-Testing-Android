@@ -7,12 +7,11 @@ on:
         description: 'Filtro para los test'
         required: true
         default: '@Smoke and @Automated'
-        type: string
 
 jobs:
   test:
     runs-on: ubuntu-22.04
-#    container: crowdar/lippia:3.3.0.0-jdk17
+    container: crowdar/lippia:3.3.0.0-jdk17
     environment: Automation
     env:
       BSUSER: ${{ vars.BSUSER }}
