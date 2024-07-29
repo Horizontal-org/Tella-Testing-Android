@@ -42,7 +42,7 @@ jobs:
         run: mvn dependency:resolve  
 
       - name: Ejecutando Maven clean test
-        run: mvn clean test -Dcrowdar.cucumber.filter.tags='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
+        run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
 
       - name: Subiendo informes del test
         uses: actions/upload-artifact@v4.3.4
