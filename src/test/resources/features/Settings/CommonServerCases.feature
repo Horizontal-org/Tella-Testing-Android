@@ -1,4 +1,3 @@
-@TellaWeb  @ODK
 Feature: Common Server
   
   Background:
