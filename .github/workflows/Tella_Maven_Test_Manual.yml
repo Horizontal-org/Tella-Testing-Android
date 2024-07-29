@@ -39,16 +39,10 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Verificando las dependencias de Maven
-        run: mvn dependency:resolve
-
-  #    - name: Instalando las dependencias de Cucumber
-  #      run: mvn dependency:resolve -Dclassifier=cucumber
-
-  #    - name: Instalando las dependencias de TestNG
-  #      run: mvn dependency:resolve -Dclassifier=testng    
+        run: mvn dependency:resolve  
 
       - name: Ejecutando Maven clean test
-        run: mvn clean test -Dcrowdar.cucumber.filter.tags='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
+        run: mvn clean test -Dcrowdar.cucumber.filter.tags="${{ github.event.inputs.filter }}" -PBrowserStack -PAndroid
 
       - name: Subiendo informes del test
         uses: actions/upload-artifact@v4.3.4
