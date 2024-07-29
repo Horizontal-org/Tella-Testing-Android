@@ -77,19 +77,20 @@ Feature: Uwazi
       | Select from Tella files |
       | Select from your device |
     
-  @Smoke
-  Scenario Outline: Submit entity with large attachments while connected to internet, disconect/reconect internet several times
+  Scenario Outline: Submit entity with large attachments
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
     And completes all the required fields
-    And selects a large file from the Supporting files field with the option <option>
-  
+    And selects a file of more than 100 MB from the Supporting files field with the option <option>
+    And presses "Next"
+    And presses "Submit"
+    And sees the file being uploaded
+    Then the entity is saved on the Submitted tab with the corresponding information
     
     Examples:
       | Select from Tella files |
       | Select from your device |
 
-    
   @Smoke
   Scenario: Save entity to Outbox
     When the user taps on the "Uwazi" connection
@@ -139,7 +140,7 @@ Feature: Uwazi
       | edit                          |
       | changes the title             |
       | changes the type of incident  |
-      #| adds a file                   | #debería especificar desde dónde siendo que todas las opciones dan error?
+      | adds a file                   |
       | adds a geolocation            | 
        
   Scenario: Fail to submit an entity due to missing required fields 
