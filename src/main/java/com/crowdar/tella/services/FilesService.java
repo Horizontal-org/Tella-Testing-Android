@@ -78,11 +78,11 @@ public class FilesService {
         MobileActionManager.click(FilesConstants.BACK_BUTTON);
     }
 
-    public static void validateMessage(String expectedMessage) {
-        WebDriver driver = null;
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(expectedMessage)));
-        Assert.assertTrue(MobileActionManager.isEnabled(AudioConstants.MESSAGE_TITLE));
+    public static void validateMessage(String expectedMessage) throws InterruptedException {
+        //Assert.assertTrue(MobileActionManager.isEnabled(AudioConstants.MESSAGE_TITLE));
+        Thread.sleep(300);
+        String actualMessage = MobileActionManager.getText(AudioConstants.MESSAGE_TITLE);
+        Assert.assertEquals(actualMessage, expectedMessage, "The actual message does not match the expected message");
     }
 
     public static void validateFileCreation(String type, String nameFolder) {
@@ -193,9 +193,9 @@ public class FilesService {
         createVideoFiles();
     }
 
-    public static void moveFilesToFolder() {
-        By folderLocator = (By.xpath("//android.widget.TextView[@resource-id=\"org.hzontal.tella:id/fileNameTextView\" and @text=\"Tella\"]"));
-        GenericService.commonClick(String.valueOf(folderLocator));
+    public static void orderBy() {
+        GenericService.commonClick(FilesConstants.SORT_BUTTON);
+        GenericService.commonClick(FilesConstants.SORT_OLDEST_TO_NEWEST_BUTTON);
     }
 
     public static void validateFolderEmptyFolder() {

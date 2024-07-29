@@ -220,16 +220,16 @@ Feature: File Options
       | audio    | Audio    |
       | document | Documents |
 
-  @Smoke @ToBeAutomated @oki
+  @Smoke @ToBeAutomated
   Scenario: Move a file to another existing folder
     When the user enter the folder All Files
     And taps the options button ⋮ of a file
     And taps the option Move to another folder
     And chooses the destination folder
     And taps the option Move here
-    Then the message "File successfully moved" appears
+    Then the message File successfully moved appears
 
-  @Smoke @ToBeAutomated @REVISAR #puedo clickear algo que aun no existe? probablemente con un array
+  @Smoke @ToBeAutomated @REVISAR @oki #puedo clickear algo que aun no existe? probablemente con un array
   Scenario: Move a file by creating a folder
     When the user enters the folder "All Files"
     And taps the options button "⋮" of a file
