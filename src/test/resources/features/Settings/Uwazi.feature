@@ -4,7 +4,7 @@ Feature: Uwazi
   Background: 
     Given the user is authenticated in the Tella application with valid credentials
     And the user is in Tella home page
-    And the user is connected to the Uwazi server
+    And the user is connected to the Uwazi server with public access
   
   @Smoke  
   Scenario: Download templates 
@@ -88,6 +88,17 @@ Feature: Uwazi
       | Select from Tella files |
       | Select from your device |
 
+  Scenario: Submit entity with large attachments while disconnecting the internet
+    When the user taps on the "Uwazi" connection
+    And taps the new template to fill out
+    And completes all the required fields
+    And selects a file of more than 100 MB from the Supporting files field with the option <option>
+    And disconnects internet
+    And presses "Next"
+    And presses "Submit"
+    Then the message "There was an error submitting the form. Please try again" appears
+    And the entity is saved on the Outbox tab with the corresponding information
+  
   @Smoke
   Scenario: Save entity to Outbox
     When the user taps on the "Uwazi" connection
@@ -95,7 +106,7 @@ Feature: Uwazi
     And completes all the required fields
     And presses "Next"
     And presses "Submit later"
-    Then the entity is saved on the Outbox tab
+    Then the entity is saved on the Outbox tab with the corresponding information
 
   @Smoke
   Scenario: Save entity as Draft
@@ -103,7 +114,7 @@ Feature: Uwazi
     And taps the new template to fill out
     And completes the title
     And presses the "Save" icon
-    Then the entity is saved on the Draft tab
+    Then the entity is saved on the Draft tab with the corresponding information
     And the message "Entity is saved as draft" appears
     
   @Smoke
