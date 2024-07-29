@@ -88,7 +88,8 @@ Feature: Uwazi
       | Select from Tella files |
       | Select from your device |
 
-  Scenario: Submit entity with large attachments while disconnecting the internet
+  @Smoke
+  Scenario Outline: Submit entity with large attachments while disconnecting the internet
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
     And completes all the required fields
@@ -98,7 +99,11 @@ Feature: Uwazi
     And presses "Submit"
     Then the message "There was an error submitting the form. Please try again" appears
     And the entity is saved on the Outbox tab with the corresponding information
-  
+    
+    Examples:
+      | Select from Tella files |
+      | Select from your device |
+      
   @Smoke
   Scenario: Save entity to Outbox
     When the user taps on the "Uwazi" connection
