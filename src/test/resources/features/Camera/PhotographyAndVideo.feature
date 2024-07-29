@@ -51,7 +51,7 @@ Feature: PhotographyAndVideo
     And the user presses flash button
     Then the flash is activated
 
-  @Smoke @Photography @Android @Automated @oki
+  @Smoke @Photography @Automated @okiDoki
   Scenario: Enable grid lines
     When the user presses the camera button
     And the user presses grid lines button
