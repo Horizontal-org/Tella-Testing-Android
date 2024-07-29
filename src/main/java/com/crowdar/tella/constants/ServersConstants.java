@@ -19,4 +19,22 @@ public class ServersConstants {
             ".RecyclerView[@resource-id=\"org.hzontal.tella:id/language_recyclerView\"]/android.view.ViewGroup";
     public static final String CONNECTED_SERVER_TITLE = "id:setupMainLockTv";
     public static final String CONNECTED_SERVER_MSG = "id:setupMsgLockTv";
+    public static final String TELLA_LOGIN_BUTTON = "id:sheet_textView";
+    public static final String TELLA_USER_INPUT = "id:username";
+    public static final String TELLA_PASS_INPUT = "id:password";
+    public static final String BACK_BUTTON = "id:btn_back";
+    public static final String CONNECTIONS_VIEW_GROUP = "xpath://androidx.recyclerview.widget.RecyclerView[@resource-id=\"org.hzontal.tella:id/serversRecyclerView\"]/android.view.ViewGroup";
+    public static final String NEW_REPORT_BUTTON = "id:new_report_btn";
+    public static final String REPORT_TITLE_INPUT = "id:report_title_et";
+    public static final String REPORT_DESCRIPTION_INPUT = "id:report_description_et";
+    public static final String REPORT_TITLE_TEXTVIEW = "id:startTitleTv";
+    public static final String ATTACH_BUTTON = "ACCESSIBILITY_ID:Select files";
+    public static final String PHOTO_FILES_SELECT = "id:cameraActionTV";
+    public static final String AUDIO_FILES_SELECT = "id:recordActionTV";
+    public static final String SELECT_FILES_TITLE = "id:sheetTitleTv";
+    public static final String TAKE_PHOTO_BUTTON = "ACCESSIBILITY_ID:Take photo with camera";
+    public static final String SUBMIT_BUTTON = "id:send_report_btn";
+    public static final String TITLE_UPLOAD_TEXT = "id:title";
+    public static final String DESCRIPTION_UPLOAD_TEXT = "id:form_description";
+    public static final String UPLOAD_TEXT = "id:formSize";
 }

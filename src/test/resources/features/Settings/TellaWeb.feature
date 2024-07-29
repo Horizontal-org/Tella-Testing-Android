@@ -1,209 +1,210 @@
-@TellaWeb @Smoke
+@TellaWeb @Regression
 Feature: Tella Web
-  
-Background:
-  Given the user is authenticated in the Tella application with valid credentials 654321
-	And the user is in Tella home page
 
-@ToBeAutomated
-Scenario Outline: Submit report with <Select files>
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses the "Add" icon
-And selects the option <Select files> 
-And select files and presses the "verification" icon
-And taps Submit 
-And sees the file being uploaded
-Then the approval message "your report is available Outbox" 
+  Background:
+    Given the user is in Tella home page
+    And the user is connected to the Tella Web server
 
-Examples: 
-|Select files           |
-|Select from Tella files|
-|Select from your device|
+  @Smoke @NoCandidate
+  Scenario Outline: Submit report with <Select files>
+    When the user taps the "Reports" connection
+    And the user presses "NEW REPORT" button
+    And completes the Title "Crowdar" and the Description "Evidence photo"
+    And the user taps + button for the attach files
+    And selects files option "<Select files>"
+    And selects files and presses the "verification" icon
+    And the user presses "SUBMIT" button
+    Then sees the file being uploaded
+    And the sucessfull message "Your report is available in the Outbox" appears
 
-
-@NoCandidate
-Scenario: Submit new report with photo
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses the "Add" icon
-And selects the option Take photo with camera
-And presses the "rec" icon
-And taps Submit 
-And sees the file being uploaded
-Then the approval message "your report is available Outbox" 
+    Examples:
+      |Select files           |
+      |Select from Tella files|
+      |Select from your device|
 
 
-@NoCandidate
-Scenario Outline: Submit new report with <recording>
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses the "Add" icon
-And selects the option <Select files>
-And presses the "rec" and "stop" icon
-And taps Submit 
-And sees the file being uploaded
-Then the approval message "your report is available Outbox" 
-
-Examples:
-|recording|  Select files             |
-|video    |  Take photo with camera   |
-|audio    |  Record audio             |
+  @Smoke @Automated
+  Scenario: Submit new report with photo
+    When the user taps the "Reports" connection
+    And the user presses "NEW REPORT" button
+    And completes the Title "Crowdar" and the Description "Evidence photo"
+    And the user taps + button for the attach files
+    And selects files option "Take photo with camera"
+    And the user presses the button for take a photo
+    And the user presses "SUBMIT" button
+    Then sees the file whith title "Crowdar" and description "Evidence photo" being uploaded
+    And the sucessfull message "Your report is available in the Outbox" appears
 
 
-@ToBeAutomated
-Scenario: Delete report during sending
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses the "Add" icon
-And selects the option Select from Tella files
-And select files and presses the "verification" icon
-And taps Submit 
-And sees the file being uploaded and presses Pause
-And go back 
-And presses Outbox
-And presses "Menu" icon
-And select Delete and confirms the Delete option
-Then the approval message "File has been deleted"
+  @Smoke @ToBeAutomated
+  Scenario Outline: Submit new report with <recording>
+    When the user taps the "Reports" connection
+    And the user presses "NEW REPORT" button
+    And completes the Title "Crowdar" and the Description "Evidence <recording>"
+    And the user taps + button for the attach files
+    And selects files option "<Select files>"
+    And presses the "rec" and "stop" icon
+    And the user presses "SUBMIT" button
+    Then sees the file whith title "Crowdar" and description "Evidence <recording>" being uploaded
+    And the sucessfull message "Your report is available in the Outbox" appears
 
-@ToBeAutomated
-Scenario Outline: Delete draf
-When the user taps the Report 
-And select file
-And presses "Menu" icon
-And select Delete and confirms the Delete option
-Then the approval message "File has been deleted"
+    Examples:
+      |recording|  Select files             |
+      |video    |  Take photo with camera   |
+      |audio    |  Record audio             |
 
 
-@ToBeAutomated
-Scenario Outline: Delete <Option Report>
-When the user taps the Report 
-And selects the option <Option Report>
-And select file
-And presses "Menu" icon
-And select Delete and confirms the Delete option
-Then the approval message "File has been deleted"
-
-Examples: 
-|Option Report|
-|Outbox       |
-|Submitted    |
-
-
-@ToBeAutomated
-Scenario: Save report to Draft and send later
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses "Save" icon
-And the approval message "The report was saved as a draft"
-And presses the cross
-And presses "Menu" icon
-And select Edit draft
-And presses the "Add" icon
-And selects the option Select from Tella files
-And select files and presses the "verification" icon
-And taps Send
-Then the approval message "your report is available Outbox" 
+  @Smoke @NoCandidate
+  Scenario: Delete report during sending
+    When the user taps the "Reports" connection
+    And the user presses "NEW REPORT" button
+    And completes the Title and the Description
+    And taps the "+" button
+    And selects the option Select from Tella files
+    And selects files and presses the "verification" icon
+    And presses "Submit"
+    And sees the file being uploaded and presses Pause
+    And goes back
+    And presses Outbox
+    And presses the "Menu" icon of a Outbox report
+    And selects Delete
+    And confirms the Delete option
+    Then the approval message "File has been deleted" appears
 
 
-@ToBeAutomated
-Scenario: Send report of a waiting file
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses the "Add" icon
-And selects the option Select from Tella files
-And select files and presses the "verification" icon
-And presses "Clock" icon
-And the approval message "The report was saved to your Outbox. You can submit it when you ready"
-And presses Outbox 
-And select file
-And presses "Menu" icon
-And select View 
-And taps Resume
-Then the approval message "your report is available Outbox" 
+  @ToBeAutomated  @Smoke
+  Scenario: Delete draf
+  Given: the user has a report in the Draft folder
+    When the user taps the "Reports" connection
+    And the user taps the "⁝" button
+    And selects Delete
+    And confirms the Delete option
+    Then the approval message "File has been deleted" appears
 
 
-@ToBeAutomated
-Scenario: Internet desconnection during report sending
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses the "Add" icon
-And selects the option Select from Tella files 
-And select files and presses the "verification" icon
-And taps Submit 
-And sees the file being uploaded
-And disconnect and connect internet from your cell phone
-And go back 
-And presses Outbox
-And presses "Menu" icon
-And select View 
-And sees the file being uploaded
-Then the approval message "your report is available Outbox" 
+
+  @ToBeAutomated  @Smoke
+  Scenario Outline: Save report to <option>
+    When the user taps the "Reports" connection
+    And the user presses "NEW REPORT" button
+    And completes the Title and the Description
+    And taps the "+" button
+    And selects the option Select from Tella files
+    And selects files and presses the "verification" icon
+    And presses <option> icon
+    Then the approval message <message> appears
+
+    Examples:
+      |option  |  message                                                               |
+      |Save    |  The report was saved as a draft                                       |
+      |Clock   |  The report was saved to your Outbox. You can submit it when you ready |
 
 
-@NoCandidate
-Scenario: Activate Auto-report
-When the user taps the settings icon
-And selects the "Servers" option
-And selects the "Created project"
-And select Edit 
-And select Auto-report
-And presses "Save" icon
-And go to Tella home page
-And presses the camera button
-And presses the take a photo button
-And go to Tella home page
-Then the approval message "The photo(s)/video you took has been automatically uploaded as a report"
+  @ToBeAutomated  @Smoke
+  Scenario: Send a report from Draft
+  Given:the user has a report in the Draft folder
+    When the user taps the "⁝" button
+    And selects Edit draft
+    And taps Send
+    Then the approval message "your report is available Outbox" appears
 
 
-@NoCandidate
-Scenario: Activate Auto-delete
-When the user taps the settings icon
-And selects the "Servers" option
-And selects the "Created project"
-And select Edit 
-And select Auto-report
-And select Auto-delete
-And presses "Save" icon
-And go to Tella home page
-And presses the camera button
-And presses the take a photo button
-Then the approval message "The photo/video you took has been uploaded as a report and automatically deleted"
+  @ToBeAutomated  @Smoke
+  Scenario: Send a report from Outbox
+  Given:the user has a report in the Outbox folder
+    When the user taps the "Reports" connection
+    And selects the option Outbox
+    And the user taps the "⁝" button
+    And selects View
+    And taps Resume
+    Then the approval message "your report is available Outbox" appears
 
 
-@NoCandidate
-Scenario: Activate Background upload
-When the user taps the settings icon
-And selects the "Servers" option
-And selects the "Created project"
-And select Edit 
-And select Background upload
-And presses "Save" icon
-And go to Tella home page
-And taps the Report 
-And taps the New report
-And completes the Title and the Description
-And presses the "Add" icon
-And selects the option Select from Tella files
-And select files and presses the "verification" icon
-And taps Submit 
-And exit and enter the application
-And enter password 
-And taps the Report 
-And taps Submitted 
-Then sees the sent report
+  @ToBeAutomated  @Smoke
+  Scenario: Activate Auto-report
+    When the user taps the settings icon
+    And selects the "Servers" option
+    And selects the "Project created in Tella Web"
+    And selects Edit
+    And selects Auto-report
+    And sees that the color has changed to green, indicating it is activated
+    And presses the "Save" icon
+    Then the approval message "Served updated" appears
+
+  @NoCandidate  @Smoke
+  Scenario: Take photo or video with Auto-report activated
+    Given the Auto-report option is activated
+    When the user presses the camera button
+    And presses the take a photo button
+    Then the approval message "The photo(s)/video you took has been automatically uploaded as a report" appears
 
 
-Scenario: Submit report - 1000 characters in Description
-When the user taps the Report 
-And taps the New report
-And completes the Title and the Description with 1000 characters
-And taps Submit 
-Then the approval message "your report is available Outbox" 
+  @ToBeAutomated  @Smoke
+  Scenario: Activate Auto-delete
+    Given the Auto-report option is activated
+    When the user taps the settings icon
+    And selects the "Servers" option
+    And selects the "Project created in Tella Web"
+    And selects Edit
+    And selects Auto-delete
+    And sees that the color has changed to green, indicating it is activated
+    And presses the "Save" icon
+    Then the approval message "Served updated" appears
+
+  @NoCandidate  @Smoke
+  Scenario: Take photo or video with Auto-delete activated
+    Given the Auto-report and Auto-report option is activated
+    When the user presses the camera button
+    And presses the take a photo button
+    Then the approval message "The photo/video you took has been uploaded as a report and automatically deleted" appears
+
+
+  @ToBeAutomated  @Smoke
+  Scenario: Activate Background upload
+    When the user taps the settings icon
+    And selects the "Servers" option
+    And selects the "Project created in Tella Web"
+    And selects Edit
+    And selects Background upload
+    And sees that the color has changed to green, indicating it is activated
+    And presses the "Save" icon
+    Then the approval message "Served updated" appears
+
+  @ToBeAutomated  @Smoke
+  Scenario: Send report with Background upload activated
+    Given the Background upload option is activated
+    And The user taps the "Reports" connection
+    And taps the New report
+    And completes the Title and the Description
+    And taps the "+" button
+    And selects the option Select from Tella files
+    And selects files and presses the "verification" icon
+    And presses "Submit"
+    And exit and enter the application
+    And enter password
+    And taps the "Reports" connection
+    And taps Submitted
+    Then sees the sent report
+
+
+  @ToBeAutomated @Smoke
+  Scenario: Send a report with video while the internet is desconnecting
+    Given the Auto-report option is activated and the user has a report with video
+    When taps Submit
+    And sees the file being uploaded
+    And disconnect and connect internet from your cell phone
+    And go back
+    And presses Outbox
+    And the user taps the "⁝" button
+    And select View
+    And presses Resume
+    And sees the file being uploaded
+    Then the approval message "your report is available Outbox"
+
+
+  Scenario: Submit report - 1000 characters in Description
+    When the user taps the "Reports" connection
+    And taps the New report
+    And completes the Title and the Description with 1000 characters
+    And presses "Submit"
+    Then the approval message "your report is available Outbox" appears

@@ -1,5 +1,6 @@
 package com.crowdar.tella.services;
 
+import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.constants.ServersConstants;
@@ -31,6 +32,8 @@ public class ServersService {
         buttons.put("Cancel", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Next", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("SAVE", ServersConstants.SAVE_BUTTON);
+        buttons.put("NEW REPORT",ServersConstants.NEW_REPORT_BUTTON);
+        buttons.put("SUBMIT", ServersConstants.SUBMIT_BUTTON);
 
         String getButton = buttons.get(button);
         MobileActionManager.waitVisibility(getButton);
@@ -94,4 +97,50 @@ public class ServersService {
         Assert.assertTrue(MobileActionManager.getText(ServersConstants.CONNECTED_SERVER_MSG).contains(message));
     }
 
+    public static void connectToTellaServer() {
+        MobileActionManager.waitVisibility(ServersConstants.TELLA_LOGIN_BUTTON);
+        MobileActionManager.setInput(ServersConstants.TELLA_USER_INPUT,PropertyManager.getProperty("tellauser"));
+        MobileActionManager.setInput(ServersConstants.TELLA_PASS_INPUT,PropertyManager.getProperty("tellapass"));
+        MobileActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, "Log in");
+        MobileActionManager.click(ServersConstants.SAVE_BUTTON);
+        MobileActionManager.click(ServersConstants.TEXT_SERVER_BUTTON,"OK");
+        MobileActionManager.click(ServersConstants.BACK_BUTTON);
+        MobileActionManager.click(ServersConstants.BACK_BUTTON);
+    }
+
+    public static void tapsConnection(String connection) {
+        Map<String,String> connections = new HashMap<>();
+        connections.put("Reports",ServersConstants.CONNECTIONS_VIEW_GROUP+"[1]" );
+        connections.put("Resources",ServersConstants.CONNECTIONS_VIEW_GROUP+"[2]" );
+        ActionManager.click(connections.get(connection));
+    }
+
+    public static void completeReport(String title, String description) {
+        MobileActionManager.waitVisibility(ServersConstants.REPORT_TITLE_TEXTVIEW);
+        MobileActionManager.setInput(ServersConstants.REPORT_TITLE_INPUT, title);
+        MobileActionManager.setInput(ServersConstants.REPORT_DESCRIPTION_INPUT, description);
+    }
+    public static void clickAttachFiles() {
+        MobileActionManager.waitVisibility(ServersConstants.ATTACH_BUTTON);
+        MobileActionManager.click(ServersConstants.ATTACH_BUTTON);
+    }
+
+    public static void selectFiles(String filesOptions) {
+        MobileActionManager.waitVisibility(ServersConstants.SELECT_FILES_TITLE);
+        Map<String,String> file = new HashMap<>();
+        file.put("Take photo with camera",ServersConstants.PHOTO_FILES_SELECT);
+        file.put("Record audio",ServersConstants.AUDIO_FILES_SELECT );
+        ActionManager.click(file.get(filesOptions));
+    }
+    public static void takePhoto() {
+        MobileActionManager.waitVisibility(ServersConstants.TAKE_PHOTO_BUTTON);
+        MobileActionManager.click(ServersConstants.TAKE_PHOTO_BUTTON);
+    }
+
+    public static void viewFileUpload(String title, String description) {
+        MobileActionManager.waitVisibility(ServersConstants.REPORT_TITLE_TEXTVIEW);
+        Assert.assertTrue(MobileActionManager.getText(ServersConstants.TITLE_UPLOAD_TEXT).contains(title));
+        Assert.assertTrue(MobileActionManager.getText(ServersConstants.DESCRIPTION_UPLOAD_TEXT).contains(description));
+        Assert.assertTrue(MobileActionManager.getText(ServersConstants.UPLOAD_TEXT).contains("uploaded"));
+    }
 }
