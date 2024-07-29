@@ -18,9 +18,9 @@ Feature: Tella Web
     And the sucessfull message "Your report is available in the Outbox" appears
 
     Examples:
-      |Select files           |
-      |Select from Tella files|
-      |Select from your device|
+      | Select files            |
+      | Select from Tella files |
+      | Select from your device |
 
 
   @Smoke @Automated
@@ -49,20 +49,20 @@ Feature: Tella Web
     And the sucessfull message "Your report is available in the Outbox" appears
 
     Examples:
-      |recording|  Select files             |
-      |video    |  Take photo with camera   |
-      |audio    |  Record audio             |
+      | recording | Select files           |
+      | video     | Take photo with camera |
+      | audio     | Record audio           |
 
 
   @Smoke @NoCandidate
   Scenario: Delete report during sending
     When the user taps the "Reports" connection
     And the user presses "NEW REPORT" button
-    And completes the Title and the Description
-    And taps the "+" button
+    And completes the Title "Crowdar" and the Description "Evidence"
+    And the user taps + button for the attach files
     And selects the option Select from Tella files
     And selects files and presses the "verification" icon
-    And presses "Submit"
+    And the user presses "SUBMIT" button
     And sees the file being uploaded and presses Pause
     And goes back
     And presses Outbox
@@ -82,22 +82,21 @@ Feature: Tella Web
     Then the approval message "File has been deleted" appears
 
 
-
   @ToBeAutomated  @Smoke
   Scenario Outline: Save report to <option>
     When the user taps the "Reports" connection
     And the user presses "NEW REPORT" button
-    And completes the Title and the Description
-    And taps the "+" button
+    And completes the Title "Crowdar" and the Description "Evidence"
+    And the user taps + button for the attach files
     And selects the option Select from Tella files
     And selects files and presses the "verification" icon
     And presses <option> icon
     Then the approval message <message> appears
 
     Examples:
-      |option  |  message                                                               |
-      |Save    |  The report was saved as a draft                                       |
-      |Clock   |  The report was saved to your Outbox. You can submit it when you ready |
+      | option | message                                                               |
+      | Save   | The report was saved as a draft                                       |
+      | Clock  | The report was saved to your Outbox. You can submit it when you ready |
 
 
   @ToBeAutomated  @Smoke
