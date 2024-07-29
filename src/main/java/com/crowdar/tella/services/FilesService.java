@@ -11,8 +11,13 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.asserts.Assertion;
+
 import java.util.List;
 import java.util.NoSuchElementException;
+
+import static com.crowdar.core.actions.ActionManager.waitInvisibility;
+import static com.crowdar.core.actions.ActionManager.waitVisibility;
 
 public class FilesService {
 
@@ -39,18 +44,18 @@ public class FilesService {
     }
 
     public static void tapPlusIcon() {
-        MobileActionManager.waitVisibility(FilesConstants.PLUS_ICON);
+        waitVisibility(FilesConstants.PLUS_ICON);
         MobileActionManager.click(FilesConstants.PLUS_ICON);
     }
 
     public static void goPhotoVideoOption() {
-        MobileActionManager.waitVisibility(FilesConstants.PHOTOVIDEO_OPTION);
+        waitVisibility(FilesConstants.PHOTOVIDEO_OPTION);
         MobileActionManager.click(FilesConstants.PHOTOVIDEO_OPTION);
         acceptPermissions();
     }
 
     public static void selectOpcion(String option) {
-        MobileActionManager.waitVisibility(FilesConstants.PHOTO_OPTION);
+        waitVisibility(FilesConstants.PHOTO_OPTION);
         String optionLowerCase = option.toLowerCase();
         if (optionLowerCase.contains("photo")) {
             MobileActionManager.click(FilesConstants.PHOTO_OPTION);
@@ -65,7 +70,7 @@ public class FilesService {
 
         if (type.contains("image")) {
         } else if (type.contains("video")) {
-            MobileActionManager.waitVisibility(FilesConstants.STOP_RECORDING_BUTTON);
+            waitVisibility(FilesConstants.STOP_RECORDING_BUTTON);
             MobileActionManager.click(FilesConstants.STOP_RECORDING_BUTTON);
         }
 
@@ -74,6 +79,9 @@ public class FilesService {
     }
 
     public static void validateMessage(String expectedMessage) {
+        WebDriver driver = null;
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(expectedMessage)));
         Assert.assertTrue(MobileActionManager.isEnabled(AudioConstants.MESSAGE_TITLE));
     }
 
@@ -89,10 +97,6 @@ public class FilesService {
             System.out.println("Carpeta encontrada: " + nameFolder);
             folderSaveElement.click();
 
-            // Espera explícita para que el texto de la carpeta actual se actualice
-            System.out.println("Esperando a que se actualice la carpeta actual...");
-
-            // Usar MobileBy.AndroidUIAutomator para seleccionar el elemento y extraer el texto
             WebElement currentFolderElement = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
                     "new UiSelector().resourceId(\"org.hzontal.tella:id/startTitleTv\")")));
             String currentFolder = currentFolderElement.getText();
@@ -105,9 +109,6 @@ public class FilesService {
                     "new UiSelector().resourceId(\"" + FilesConstants.CREATED_FILE_NAME + "\")")));
             String createdFile = createdFileElement.getText();
             System.out.println("Archivo creado: " + createdFile);
-        } catch (TimeoutException e) {
-            System.err.println("Timeout esperando por el elemento: " + e.getMessage());
-            throw e;
         } catch (NoSuchElementException e) {
             System.err.println("No se encontró el elemento: " + e.getMessage());
             throw e;
@@ -116,7 +117,7 @@ public class FilesService {
 
 
     public static void validateAppearsFolderSave(String folderSave) {
-        MobileActionManager.waitVisibility(FilesConstants.CREATED_FILE_NAME);
+        waitVisibility(FilesConstants.CREATED_FILE_NAME);
         String currentFolder = MobileActionManager.getText(FilesConstants.CURRENT_FOLDER);
         Assert.assertEquals(currentFolder, folderSave);
         //regresamos al homepage de la aplicación
@@ -124,9 +125,9 @@ public class FilesService {
     }
 
     public static void validateFileInAllFiles() {
-        MobileActionManager.waitVisibility(FilesConstants.ALL_FILES_FOLDER);
+        waitVisibility(FilesConstants.ALL_FILES_FOLDER);
         MobileActionManager.click(FilesConstants.ALL_FILES_FOLDER);
-        MobileActionManager.waitVisibility(FilesConstants.CURRENT_FILE);
+        waitVisibility(FilesConstants.CURRENT_FILE);
         String currentFile = MobileActionManager.getText(FilesConstants.CURRENT_FILE);
         Assert.assertEquals(createdFile, currentFile);
     }
@@ -167,13 +168,39 @@ public class FilesService {
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
         WebDriverWait wait = new WebDriverWait(driver, 5);
         GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
+        GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
+    }
+
+
+    public static void createFolder() {
+        GenericService.commonClick(FilesConstants.ALL_FILES);
+        GenericService.commonClick(FilesConstants.PLUS_ICON);
+        GenericService.commonClick(FilesConstants.CREATE_FOLDER_BUTTON);
+        PhotographyAndVideoService.deleteTextAndSendKeys();
+        GenericService.commonClick(SettingsConstants.OK_BUTTON);
+        GenericService.commonClick(FilesConstants.BACK_BUTTON);
+    }
+
+    public static void validateFolderCreation() {
+        waitVisibility(FilesConstants.CREATED_FILE_NAME);
+        Assert.assertTrue(MobileActionManager.isEnabled(FilesConstants.CREATED_FILE_NAME));
     }
 
     public static void createFiles() {
+        createFolder();
         createAudioFiles();
         createPhotoFiles();
         createVideoFiles();
     }
 
+    public static void moveFilesToFolder() {
+        By folderLocator = (By.xpath("//android.widget.TextView[@resource-id=\"org.hzontal.tella:id/fileNameTextView\" and @text=\"Tella\"]"));
+        GenericService.commonClick(String.valueOf(folderLocator));
+    }
+
+    public static void validateFolderEmptyFolder() {
+        waitInvisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER);
+        Assert.assertFalse(MobileActionManager.isEnabled(FilesConstants.CREATED_FILE_NAME));
+    }
 }
 
