@@ -6,7 +6,7 @@ on:
       filter:
         description: 'Filtro para los test'
         required: true
-        default: '@Smoke,@Automated'
+        default: '@Smoke and @Automated'
 
 jobs:
   test:
@@ -43,21 +43,13 @@ jobs:
 
       - name: Ejecutando Maven clean test
         #run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
-        run: |
-          FILTER="${{ github.event.inputs.filter }}"
-          COMBINED_FILTER=""
-          IFS=','
-          for TAG in $FILTER; do
-            if [ -n "$COMBINED_FILTER" ]; then
-              COMBINED_FILTER="$COMBINED_FILTER and $TAG"
-            else
-              COMBINED_FILTER="$TAG"
-            fi
-          done
-          echo "COMBINED_FILTER=$COMBINED_FILTER" >> $GITHUB_ENV
+        run: echo "COMBINED_FILTER=${{ github.event.inputs.filter }}" >> $GITHUB_ENV
 
       - name: Run Cucumber Tests
-        run: mvn clean test -Dcrowdar.cucumber.filter="$COMBINED_FILTER" -PBrowserStack -PAndroid
+        run: |
+          echo "Running tests with filter: '$COMBINED_FILTER'"
+          mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" -PBrowserStack -PAndroid
+        shell: bash
 
       - name: Subiendo informes del test
         uses: actions/upload-artifact@v4.3.4
