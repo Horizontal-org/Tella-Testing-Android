@@ -14,11 +14,11 @@ jobs:
     container: crowdar/lippia:3.3.0.0-jdk17
     environment: Automation
     env:
-      BSUSER: ${{ vars.BSUSER }}
-      AUTHTOKEN: ${{ vars.AUTHTOKEN }}
-      BSDEVICE: ${{ vars.BSDEVICE }}
-      BSAPP: ${{ vars.BSAPP }}
-      BSOS: ${{ vars.BSOS }}
+      BSUSER: ${{ secrets.BSUSER }}
+      AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
+      BSDEVICE: ${{ secrets.BSDEVICE }}
+      BSAPP: ${{ secrets.BSAPP }}
+      BSOS: ${{ secrets.BSOS }}
 
     steps:
       - name: Checkout al repositorio
