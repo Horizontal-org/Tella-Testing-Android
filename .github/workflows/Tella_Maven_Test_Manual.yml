@@ -11,14 +11,15 @@ on:
 jobs:
   test:
     runs-on: ubuntu-22.04
-#    container: crowdar/lippia:3.3.0.0-jdk17
+    container: crowdar/lippia:3.3.0.0-jdk17
     environment: Automation
     env:
-      BSUSER: ${{ vars.BSUSER }}
-      AUTHTOKEN: ${{ vars.AUTHTOKEN }}
-      BSDEVICE: ${{ vars.BSDEVICE }}
-      BSAPP: ${{ vars.BSAPP }}
-      BSOS: ${{ vars.BSOS }}
+      BSUSER: ${{ secrets.BSUSER }}
+      AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
+      BSDEVICE: ${{ secrets.BSDEVICE }}
+      BSAPP: ${{ secrets.BSAPP }}
+      BSOS: ${{ secrets.BSOS }}
+
 
     steps:
       - name: Checkout al repositorio
@@ -29,6 +30,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Lista los directorios para verificar la ruta
+        run: ls -al ~/.m2
 
       - name: Cache de las dependencias de Maven
         uses: actions/cache@v4
@@ -49,6 +53,16 @@ jobs:
 
       - name: Ejecutando Maven clean test
         run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
+
+      - name: Seteando variable de entorno
+        run: echo "COMBINED_FILTER=${{ github.event.inputs.filter }}" >> $GITHUB_ENV
+
+      - name: Ejecutando Maven clean test
+        run: |
+          echo "Running tests with filter: '$COMBINED_FILTER'"
+          mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" -PBrowserStack -PAndroid
+        shell: bash
+
 
       - name: Subiendo informes del test
         uses: actions/upload-artifact@v4.3.4

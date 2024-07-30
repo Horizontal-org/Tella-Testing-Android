@@ -12,7 +12,7 @@ Feature: PhotographyAndVideo
     And the picture taken is not in the device's album
 
   @Smoke @Photography @NoCandidate
-  Scenario: take a photo with the frontal camera on Tella
+  Scenario: take a photo from Camera with the frontal camera on Tella
     When the user presses the camera button
     And the user presses the change camera button
     And the user presses the take a photo button
@@ -20,7 +20,7 @@ Feature: PhotographyAndVideo
     And the picture taken is not in the device's album
 
   @Smoke @Photography @NoCandidate
-  Scenario: take a photo on Tella with Verification Mode on
+  Scenario: take a photo from Camera with Verification Mode on
     Given the Verification Mode is on
     When the user presses the camera button
     And the user presses the take a photo button
@@ -29,7 +29,7 @@ Feature: PhotographyAndVideo
     And the verification information is collected correctly
 
   @Smoke @Photography @NoCandidate
-  Scenario: take a photo on Tella with Verification Mode on and GPS off
+  Scenario: take a photo from Camera with Verification Mode on and GPS off
     Given the Verification Mode is on
     And the GPS is off
     When the user presses the camera button
@@ -49,7 +49,7 @@ Feature: PhotographyAndVideo
     And the user presses flash button
     Then the flash is activated
 
-  @Smoke @Photography @Android @Automated @okidoki
+  @Smoke @Photography @Automated
   Scenario: Enable grid lines
     When the user presses the camera button
     And the user presses grid lines button
@@ -83,7 +83,7 @@ Feature: PhotographyAndVideo
     Then the video resolution is selected
 
   @Smoke @Video @ToBeAutomatable
-  Scenario: Check file size
+  Scenario: Check file size from the last file
     Given that the last file is a video with the highest resolution
     When the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
@@ -91,7 +91,7 @@ Feature: PhotographyAndVideo
     Then The video size is congruent with the video resolution
 
   @Smoke @Video @NoCandidate
-  Scenario: record a video from Tella
+  Scenario: record a video from Camera
     When the user presses the camera button
     And the user presses the video button
     And the user presses the take a video button
@@ -100,7 +100,7 @@ Feature: PhotographyAndVideo
     And the video taken is not in the device's album
 
   @Smoke @Video @NoCandidate
-  Scenario: record a video from Tella with the frontal camera
+  Scenario: record a video from Camera with the frontal camera
     When the user presses the camera button
     And the user presses the video button
     And the user presses the change camera button
@@ -110,7 +110,7 @@ Feature: PhotographyAndVideo
     And the video taken is not in the device's album
 
   @Smoke @Video @NoCandidate
-  Scenario: record a video from Tella with Verification Mode on
+  Scenario: record a video from Camera with Verification Mode on
     And the Verification Mode is on
     When the user presses the camera button
     And the user presses the video button
@@ -121,7 +121,7 @@ Feature: PhotographyAndVideo
     And the verification information is collected correctly
 
   @Smoke @Video @NoCandidate
-  Scenario: record a video from Tella with Verification Mode on and GPS off
+  Scenario: record a video from Camera with Verification Mode on and GPS off
     And the Verification Mode is on
     And the GPS is off
     When the user presses the camera button
