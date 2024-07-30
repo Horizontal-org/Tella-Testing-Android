@@ -1,4 +1,4 @@
-name: browserStack facilities 
+name: BrowserStack facilities EN
 
 on:
   workflow_dispatch:
