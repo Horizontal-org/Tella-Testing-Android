@@ -1,4 +1,4 @@
-@SortFiles @Regression
+@Files @SortFiles @Regression
 Feature: Organize files in a folder
 
   Background:
