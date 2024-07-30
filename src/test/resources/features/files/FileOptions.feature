@@ -229,39 +229,38 @@ Feature: File Options
     And taps the option Move here
     Then the message File successfully moved appears
 
-  @Smoke @ToBeAutomated @REVISAR @oki #puedo clickear algo que aun no existe? probablemente con un array
+  @Smoke @Automated
   Scenario: Move a file by creating a folder
-    When the user enters the folder "All Files"
-    And taps the options button "⋮" of a file
-    And selects the option "Move to another folder"
-    And taps the option "+"
-    And enters a name for the folder: "FOLDER123"
-    And presses "Ok"
-    And chooses the destination folder "FOLDER123"
-    And taps the option "Move here"
-    Then the file is moved to the "FOLDER123" folder
-    And the message "File successfully moved" appears
+    When the user enter the folder All Files
+    And taps the options button ⋮ of a file
+    And taps the option Move to another folder
+    And taps the option +
+    And enters a name for the folder
+    And presses Ok button
+    And chooses the new folder a destination
+    And taps the option Move here
+    Then the message File successfully moved appears
 
-  @Smoke @ToBeAutomated @ok
+  @Smoke @Automated
   Scenario: Delete a folder with files inside
-    When the user enters the folder "All Files"
-    And taps the options button "⋮" of a file
-    And selects the option "Move to another folder"
-    And taps the option "+"
-    And enters a name for the folder: "FOLDER123"
-    And presses "Ok"
-    And chooses the destination folder "FOLDER123"
-    And taps the option "Move here"
-    And taps "← All files"
-    And taps the options button "⋮" of the "FOLDER123" folder
-    And selects the option "Delete"
-    And taps "Delete"
-    And the message "The files were deleted" appears
+    When the user enter the folder All Files
+    And taps the options button ⋮ of a file
+    And taps the option Move to another folder
+    And taps the option +
+    And enters a name for the folder
+    And presses Ok button
+    And chooses the new folder a destination
+    And taps the option Move here
+    And taps go back button
+    And taps the options button ⋮ of the created folder
+    And the user presses Delete button
+    And the user presses confirm Delete button
+    And the message The files were deleted. appears
 
-  @Smoke @ToBeAutomated @ok
+  @Smoke @ToBeAutomated @oki
   Scenario: Rename a folder
-    When the user enters the folder "All Files"
-    And taps the option "+"
+    When the user enter the folder All Files
+    And taps the option +
     And selects the option "Create a new folder"
     And enters the name: "folder1"
     And presses "Ok"

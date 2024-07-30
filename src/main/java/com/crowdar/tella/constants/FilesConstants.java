@@ -49,5 +49,5 @@ public class FilesConstants {
 
     public static final String PICK_FOLDER = "xpath:(//android.view.ViewGroup[@resource-id=\"org.hzontal.tella:id/root\"])[4]";
 
-
+    public static final String ADD_FOLDER = "id:fab_move_button";
 }

@@ -2,8 +2,10 @@ package com.crowdar.tella.steps;
 
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.constants.FilesConstants;
+import com.crowdar.tella.constants.SettingsConstants;
 import com.crowdar.tella.services.FilesService;
 import com.crowdar.tella.services.GenericService;
+import com.crowdar.tella.services.PhotographyAndVideoService;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
 
@@ -106,7 +108,6 @@ public class FilesSteps {
     @And("chooses the destination folder")
     public void choosesTheDestinationFolder() {
         GenericService.commonClick(FilesConstants.PICK_FOLDER);
-        //MobileActionManager.click(By.xpath());
     }
 
     @And("taps the option Move here")
@@ -130,5 +131,37 @@ public class FilesSteps {
     public void theUserEnterTheFolderAllFiles() {
         GenericService.commonClick(FilesConstants.ALL_FILES);
         FilesService.orderBy();
+    }
+
+    @And("taps the option +")
+    public void tapsTheOption() {
+        GenericService.commonClick(FilesConstants.ADD_FOLDER);
+    }
+
+    @And("enters a name for the folder")
+    public void entersANameForTheFolder() {
+        PhotographyAndVideoService.sendKeysFolder();
+    }
+
+    @And("presses Ok button")
+    public void pressesOkButton() {
+        GenericService.commonClick(SettingsConstants.OK_BUTTON);
+    }
+
+    @And("chooses the new folder a destination")
+    public void choosesTheNewFolderADestination() {
+        GenericService.commonClick(FilesConstants.ALL_FILES);
+    }
+
+    @And("taps go back button")
+    public void tapsGoBackButton() {
+        GenericService.commonClick(FilesConstants.BACK_BUTTON);
+    }
+
+    @And("taps the options button ⋮ of the created folder")
+    public void tapsTheOptionsButtonOfTheCreatedFolder() {
+        GenericService.commonClick(FilesConstants.THREE_BUTTONS_OPTION);
+
+
     }
 }
