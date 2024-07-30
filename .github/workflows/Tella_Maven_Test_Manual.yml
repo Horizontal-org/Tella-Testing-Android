@@ -57,7 +57,7 @@ jobs:
           echo "COMBINED_FILTER=$COMBINED_FILTER" >> $GITHUB_ENV
 
       - name: Run Cucumber Tests
-        run: mvn clean test -Dcrowdar.cucumber.filter.tags="$COMBINED_FILTER" -PBrowserStack -PAndroid
+        run: mvn clean test -Dcrowdar.cucumber.filter="$COMBINED_FILTER" -PBrowserStack -PAndroid
 
       - name: Subiendo informes del test
         uses: actions/upload-artifact@v4.3.4
