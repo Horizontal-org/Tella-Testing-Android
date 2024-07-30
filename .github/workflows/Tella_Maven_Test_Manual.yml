@@ -30,8 +30,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Crea el directorio de Maven si no existe
-        run: mkdir -p ~/.m2/repository
+      - name: Listar directorios para verificar ruta
+        run: ls -al ~/.m2
+
+      #- name: Crea el directorio de Maven si no existe
+      #  run: mkdir -p ~/.m2/repository
 
       - name: Cache de las dependencias de Maven
         uses: actions/cache@v4
