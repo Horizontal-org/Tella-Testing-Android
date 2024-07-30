@@ -1,4 +1,4 @@
-@TellaWeb @Regression
+@TellaWeb @Regression @Servers
 Feature: Tella Web
 
   Background:
