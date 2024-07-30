@@ -1,4 +1,4 @@
-@Odk @Regression
+@ODK @Regression
 Feature: ODK
   
 Background: 
