@@ -1,13 +1,11 @@
 package com.crowdar.tella.steps;
 
-import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.SettingsConstants;
 import com.crowdar.tella.services.FilesService;
 import com.crowdar.tella.services.GenericService;
 import com.crowdar.tella.services.PhotographyAndVideoService;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.By;
 
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -161,7 +159,15 @@ public class FilesSteps {
     @And("taps the options button ⋮ of the created folder")
     public void tapsTheOptionsButtonOfTheCreatedFolder() {
         GenericService.commonClick(FilesConstants.THREE_BUTTONS_OPTION);
+    }
 
+    @And("select the option Create a new folder")
+    public void selectTheOptionCreateANewFolder() {
+        GenericService.commonClick(FilesConstants.CREATE_FOLDER_BUTTON);
+    }
 
+    @And("enters a name for the folder (.*)")
+    public void entersANameForTheFolder(String TellaFolder) {
+        PhotographyAndVideoService.deleteTextAndSendKeys();
     }
 }

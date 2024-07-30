@@ -85,13 +85,12 @@ public class PhotographyAndVideoService {
     }
 
 
-    public static void sendKeysFolder(){
+    public static void sendKeysFolder( ){
         WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
         MobileElement textField = (MobileElement) driver.findElement(By.id("renameEditText"));
         textField.clear();
         textField.sendKeys("TellaFolder");
     }
-
 
 
     public static void changeNameAssert(){
