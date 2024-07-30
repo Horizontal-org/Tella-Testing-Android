@@ -46,9 +46,9 @@ jobs:
         run: |
           FILTER="${{ github.event.inputs.filter }}"
           COMBINED_FILTER=""
-          IFS=',' read -r -a TAGS <<< "$FILTER"
-          for TAG in "${TAGS[@]}"; do
-            if [[ -n "$COMBINED_FILTER" ]]; then
+          IFS=','
+          for TAG in $FILTER; do
+            if [ -n "$COMBINED_FILTER" ]; then
               COMBINED_FILTER="$COMBINED_FILTER and $TAG"
             else
               COMBINED_FILTER="$TAG"
@@ -56,7 +56,6 @@ jobs:
           done
           echo "COMBINED_FILTER=$COMBINED_FILTER" >> $GITHUB_ENV
 
-    
       - name: Run Cucumber Tests
         run: mvn clean test -Dcrowdar.cucumber.filter.tags="$COMBINED_FILTER" -PBrowserStack -PAndroid
 
