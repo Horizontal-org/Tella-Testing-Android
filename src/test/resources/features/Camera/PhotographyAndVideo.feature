@@ -78,7 +78,7 @@ Feature: PhotographyAndVideo
     And the user presses flash button
     Then the flash is off
 
-  @Smoke @Video @Automated @okiDoki
+  @Smoke @Video @Automated @okiDoki 
   Scenario: Select video resolution
     When the user presses the camera button
     And the user presses the video button
@@ -222,7 +222,7 @@ Feature: PhotographyAndVideo
     And the user presses the button File information
     Then the file information is in the screen
 
-  @Smoke @Automated
+  @Smoke @Automated @okiDoki
   Scenario: Delete file
     And the user presses the camera button
     And the user takes a photography
