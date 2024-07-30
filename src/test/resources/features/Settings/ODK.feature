@@ -1,4 +1,4 @@
-@ODK @Regression
+@ODK @Regression @Servers
 Feature: ODK
   
 Background: 
