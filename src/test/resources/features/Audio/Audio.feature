@@ -9,7 +9,7 @@ Feature: Audio
     When the user press the Rec option
     And the user press the microphone
     And the user press stop option
-    Then the approval message <message_title> is displayed|
+    Then the approval message <message_title> is displayed
 
     Examples:
       | message_title                                     |
