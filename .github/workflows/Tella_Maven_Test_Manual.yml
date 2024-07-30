@@ -1,4 +1,4 @@
-name: Maven test manual
+name: BrowserStack facilities ES
 
 on:
   workflow_dispatch:
