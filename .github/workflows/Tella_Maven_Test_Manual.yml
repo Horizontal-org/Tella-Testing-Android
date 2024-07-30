@@ -41,11 +41,10 @@ jobs:
       - name: Verificando las dependencias de Maven
         run: mvn dependency:resolve  
 
-      - name: Ejecutando Maven clean test
-        #run: mvn clean test -Dcrowdar.cucumber.filter='${{ github.event.inputs.filter }}' -PBrowserStack -PAndroid
+      - name: Seteando variable de entorno
         run: echo "COMBINED_FILTER=${{ github.event.inputs.filter }}" >> $GITHUB_ENV
 
-      - name: Run Cucumber Tests
+      - name: Ejecutando Maven clean test
         run: |
           echo "Running tests with filter: '$COMBINED_FILTER'"
           mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" -PBrowserStack -PAndroid
