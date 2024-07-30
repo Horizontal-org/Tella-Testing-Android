@@ -172,7 +172,7 @@ Feature: File Options
       | type  | folder |
       | image | Images |
       | video | Videos |
-      | audio | Audio |
+      | audio | Audio  |
   #| document | Documents | you can create documents yet from tella app
 
   @Smoke @Automated
@@ -189,7 +189,7 @@ Feature: File Options
       | type  | folder |
       | image | Images |
       | video | Videos |
-      | audio | Audio |
+      | audio | Audio  |
       #| document | Documents |  you can create documents yet from tella app
 
   Scenario Outline: Cancel the deletion of a <type> file from the folder <folder>
@@ -204,7 +204,7 @@ Feature: File Options
       | type     | folder    |
       | image    | Images    |
       | video    | Videos    |
-      | audio    | Audio    |
+      | audio    | Audio     |
       | document | Documents |
 
   Scenario Outline: View the information of a <type> file from the folder <folder>
@@ -217,7 +217,7 @@ Feature: File Options
       | type     | folder    |
       | image    | Images    |
       | video    | Videos    |
-      | audio    | Audio    |
+      | audio    | Audio     |
       | document | Documents |
 
   @Smoke @ToBeAutomated
@@ -255,19 +255,19 @@ Feature: File Options
     And taps the options button ⋮ of the created folder
     And the user presses Delete button
     And the user presses confirm Delete button
-    And the message The files were deleted. appears
+    Then the message The files were deleted. appears
 
   @Smoke @ToBeAutomated @oki
   Scenario: Rename a folder
     When the user enter the folder All Files
-    And taps the option +
-    And selects the option "Create a new folder"
-    And enters the name: "folder1"
-    And presses "Ok"
-    And taps the options button "⋮" of the "folder1" folder
-    And selects the option "Rename"
-    And enters the new name: "folder2"
-    And presses "Ok"
+    And taps the "+" button
+    And select the option Create a new folder
+    And enters a name for the folder
+    And presses Ok button
+    And taps the options button ⋮ of the created folder
+    And the user presses Rename button
+    And enters a name for the folder "Tella"
+    And presses Ok button
     Then the folder name is updated
 
   Scenario: Select all files in a folder
