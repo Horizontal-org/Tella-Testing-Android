@@ -6,7 +6,7 @@ on:
       filter:
         description: 'Filtro para los test'
         required: true
-        default: '@Smoke'
+        default: '@Smoke and @Automated'
 
 jobs:
   test:
