@@ -1,5 +1,6 @@
 package com.crowdar.tella.steps;
 import com.crowdar.core.PageSteps;
+import com.crowdar.tella.constants.ServersConstants;
 import com.crowdar.tella.services.ServersService;
 import com.crowdar.tella.services.SettingsService;
 import io.cucumber.java.en.*;
@@ -88,5 +89,50 @@ public class ServersSteps extends PageSteps {
 
     @And("^the user is now connected to Uwazi server in (.*)$")
     public void theUserIsNowConnectedToUwaziServerIn(String language) {
+    }
+    @And("the user is connected to the Tella Web server")
+    public void theUserIsConnectedToTheTellaWebServer() {
+        SettingsService.clickSettingsIcon();
+        SettingsService.clickCategory("Servers");
+        ServersService.clickPlusButton();
+        ServersService.selectButton("Tella Web");
+        ServersService.pressButton("OK");
+        ServersService.inputServerUrl("https://tella.world/p/server-project-crowdar");
+        ServersService.pressButton("Next");
+        ServersService.connectToTellaServer();
+    }
+    @When("^the user taps the \"(.*)\" connection$")
+    public void theUserTapsTheConnection(String connection) {
+        ServersService.tapsConnection(connection);
+    }
+
+    @And("^completes the Title \"(.*)\" and the Description \"(.*)\"$")
+    public void completesTheTitleAndTheDescription(String title, String description) {
+        ServersService.completeReport(title, description);
+    }
+
+    @And("the user taps + button for the attach files")
+    public void theUserTapsButtonForTheAttachFiles() {
+        ServersService.clickAttachFiles();
+    }
+
+    @And("^selects files option \"(.*)\"$")
+    public void selectsFilesOption(String filesOptions) {
+        ServersService.selectFiles(filesOptions);
+    }
+
+    @And("the user presses the button for take a photo")
+    public void theUserPressesTheButtonForTakeAPhoto() {
+        ServersService.takePhoto();
+    }
+
+    @And("^sees the file whith title \"(.*)\" and description \"(.*)\" being uploaded$")
+    public void seesTheFileWhithTitleAndDescriptionBeingUploaded(String title, String description) {
+        ServersService.viewFileUpload(title, description);
+    }
+
+    @And("the sucessfull message \"(.*)\" appears")
+    public void theSucessfullMessageAppears(String message) {
+        ServersService.viewMessage(message);
     }
 }
