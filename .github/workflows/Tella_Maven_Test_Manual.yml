@@ -30,7 +30,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Listar directorios para verificar ruta
+      - name: Lista los directorios para verificar la ruta
         run: ls -al ~/.m2
 
       - name: Cache de las dependencias de Maven
