@@ -1,4 +1,4 @@
-@Uwazi @Regression 
+@Uwazi @Servers @Regression 
 Feature: Uwazi
   
   Background: 
