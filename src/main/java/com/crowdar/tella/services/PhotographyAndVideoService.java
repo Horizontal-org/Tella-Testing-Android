@@ -85,6 +85,15 @@ public class PhotographyAndVideoService {
     }
 
 
+    public static void sendKeysFolder(){
+        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+        MobileElement textField = (MobileElement) driver.findElement(By.id("renameEditText"));
+        textField.clear();
+        textField.sendKeys("TellaFolder");
+    }
+
+
+
     public static void changeNameAssert(){
         WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30); // Espera de hasta 30 segundos
