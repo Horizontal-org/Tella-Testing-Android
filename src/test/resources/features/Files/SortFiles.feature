@@ -1,10 +1,10 @@
-@Files @SortFiles @Regression
+@Regression @Files @SortFiles
 Feature: Organize files in a folder
 
   Background:
     Given the user is in Tella home page
 
-  @Smoke 
+  @Smoke @ToBeAutomated
   Scenario Outline: Sort files by <sortBy> in the folder <folder>
     When the user enters the folder <folder>
     And the user taps the "Name ↑" icon

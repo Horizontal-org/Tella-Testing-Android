@@ -17,7 +17,7 @@ public class PhotographyAndVideoService {
 
     public static void tapGridButtonAssert() {
         WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
-        boolean isElementEnabled = driver.findElements(By.xpath(CAMERA_GRID_SHOW)).isEmpty();
+        boolean isElementEnabled = driver.findElements(By.xpath("//android.widget.ImageButton[@content-desc='show grid view']")).isEmpty();
         Assert.assertEquals("El elemento no está activado", true, isElementEnabled);
     }
 

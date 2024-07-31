@@ -1,4 +1,4 @@
-@AboutAndHelp @Regression
+@Regression @AboutAndHelp
 
 Feature: About and Help
 
@@ -7,7 +7,7 @@ Feature: About and Help
     And the user taps the settings icon
 
 
-  @Smoke @Android @ViewOptions @Automated
+  @Smoke @ViewOptions @Automated
   Scenario Outline: About & Help - view options
     When clicks on the category <category>
     Then view the Tella icon

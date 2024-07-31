@@ -1,4 +1,4 @@
-@Files @PlusButton @Regresssion
+@Regression @Files @PlusButton
 Feature: Plus button
 
   Background:
@@ -33,7 +33,7 @@ Feature: Plus button
       | image | Images     | Photo  | Others    |
       | video | Videos     | Video  | Others    |
 
-  @Smoke @Photo @Video @CaptureFile
+  @Smoke @CaptureFile @ToBeAutomated
   Scenario Outline: Capture a file of type <type> with verification information and GPS off from folder <folder>
     Given the Verification Mode is on
     And GPS is off
@@ -62,8 +62,8 @@ Feature: Plus button
       | video | Videos     | Video  | Videos    |
       | image | Images     | Photo  | Others    |
       | video | Videos     | Video  | Others    |
-       
-  @Smoke @Photo @Video @CaptureFile
+
+  @Smoke @CaptureFile @ToBeAutomated
   Scenario Outline: Capture a file of type <type> with verification information from folder <folder>
     Given the Verification Mode is on
     When the user enters the folder <folder>
@@ -90,9 +90,9 @@ Feature: Plus button
       | image | Images     | Photo  | Videos    |
       | video | Videos     | Video  | Videos    |
       | image | Images     | Photo  | Others    |
-      | video | Videos     | Video  | Others    |    
+      | video | Videos     | Video  | Others    |
 
-  @Smoke
+  @Smoke @ToBeAutomated
   Scenario Outline: Record an audio file from the folder <folder>
     When the user enters the folder <folder>
     And taps the "+" button
@@ -113,7 +113,7 @@ Feature: Plus button
       | Videos    |
       | Others    |
 
-  @Smoke
+  @Smoke @ToBeAutomated
   Scenario Outline: Record an audio file with verification information and GPS off from the folder <folder>
     Given the Verification Mode is on
     And GPS is off
@@ -137,7 +137,7 @@ Feature: Plus button
       | Videos    |
       | Others    |
 
-  @Smoke
+  @Smoke @ToBeAutomated
   Scenario Outline: Record an audio file with verification information from the folder <folder>
     Given the Verification Mode is on
     When the user enters the folder <folder>
@@ -160,7 +160,7 @@ Feature: Plus button
       | Videos    |
       | Others    |
 
-  @Smoke
+  @Smoke @ToBeAutomated
   Scenario Outline: Import a file of type <type> from a folder <folder> - preserving the original
     When the user enters the folder <folder>
     And taps the "+" button
@@ -226,8 +226,8 @@ Feature: Plus button
       | image    | Images     | Images    |
       | audio    | Audio      | Audio     |
       | video    | Videos     | Videos    |
-      
-  @Smoke
+
+  @Smoke @ToBeAutomated
   Scenario: Open a pdf file successfully
     When the user enters the "Documents" folder
     And taps the "+" button
@@ -236,8 +236,8 @@ Feature: Plus button
     And selects a PDF file from the device
     And opens the PDF file from the "Documents" folder
     Then views the PDF file correctly
-      
-  @Smoke
+
+  @Smoke @ToBeAutomated
   Scenario: Successfully add a folder
     When the user enters the "All Files" folder
     And taps the "+" button

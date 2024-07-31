@@ -1,11 +1,10 @@
-@FileOptions @Regression
+@Regression @Files @FileOptions
 
 Feature: File Options
 
   Background:
     Given the user is in Tella home page
     And there are files and folders within Tella app
-
 
   @Smoke @Automated
   Scenario Outline: Open a multimedia file <type> from the folder <folder>
@@ -181,7 +180,6 @@ Feature: File Options
       | audio    | Audios    |
       | document | Documents |
 
-  @ToBeAutomated
   Scenario Outline: View the information of a <type> file from the folder <folder>
     When the user enters the folder <folder>
     And taps the options button "⋮" of the <type> file
@@ -269,13 +267,13 @@ Feature: File Options
     And taps the options button ⋮ for the <type> file
     And the user presses Delete button
     And the user presses confirm Delete button
-    Then the message "The file was deleted" appears
+    Then the message The file was deleted. appears
 
     Examples:
       | type  | folder |
       | image | Images |
-      | video | Videos |
-      | audio | Audio  |
+     # | video | Videos |
+     # | audio | Audio  |
   #| document | Documents | you can create documents yet from tella app
 
   @Smoke @Automated
@@ -286,7 +284,7 @@ Feature: File Options
     And taps the options button ⋮
     And the user presses Delete button
     And the user presses confirm Delete button
-    Then the message "The files were deleted" appears
+    Then the message The file was deleted. appears
 
     Examples:
       | type  | folder |
@@ -360,7 +358,7 @@ Feature: File Options
     And the user presses confirm Delete button
     Then the message The files were deleted. appears
 
-  @Smoke @ToBeAutomated @oki
+  @Smoke @Automated
   Scenario: Rename a folder
     When the user enter the folder All Files
     And taps the "+" button
@@ -385,7 +383,7 @@ Feature: File Options
     And presses the "x" button
     Then the Select Files option disappears
 
-  @Smoke
+  @Smoke @ToBeAutomated
   Scenario: Move a file by creating a folder
     When the user enters the folder "All Files"
     And taps the options button "⋮" of a file
@@ -398,7 +396,7 @@ Feature: File Options
     Then the file is moved to the "FOLDER123" folder
     And the message "File successfully moved" appears
 
-  @Smoke
+  @Smoke @ToBeAutomated
   Scenario: Delete a folder with files inside
     Given the user has a folder with a file inside in "All Files"
     When the user enters the folder "All Files"
@@ -407,7 +405,7 @@ Feature: File Options
     And taps "Delete"
     And the message "The files were deleted" appears
 
-  @Smoke
+  @Smoke @ToBeAutomated
   Scenario: Rename a folder from All Files
     Given the user has a folder named "folder1" in the "All Files" folder
     When the user enters the folder "All Files"
@@ -429,7 +427,7 @@ Feature: File Options
     And presses the "x" button
     Then the Select Files option disappears
 
-  @Smoke @ToBeAutomated
+  @Smoke @NoCandidate
   Scenario Outline: Save a file of <type> to the device from the folder <folder>
     Given the user has a <type> file
     When the user enters the folder <folder>

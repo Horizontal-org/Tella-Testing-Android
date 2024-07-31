@@ -1,5 +1,6 @@
 package com.crowdar.tella.steps;
 
+import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.SettingsConstants;
 import com.crowdar.tella.services.FilesService;
@@ -75,7 +76,7 @@ public class FilesSteps {
 
     @And("taps the options button ⋮ for the (.*) file")
     public void tapsTheOptionsButtonForTheTypeFile(String type) {
-        GenericService.commonClick(FilesConstants.THREE_BUTTONS_OPTION);
+        MobileActionManager.click(FilesConstants.THREE_BUTTONS_OPTION_FILE,type);
     }
 
     @Then("the file (.*) is deleted")
@@ -169,5 +170,10 @@ public class FilesSteps {
     @And("enters a name for the folder (.*)")
     public void entersANameForTheFolder(String TellaFolder) {
         PhotographyAndVideoService.deleteTextAndSendKeys();
+    }
+
+    @Then("the folder name is updated")
+    public void theFolderNameIsUpdated() {
+        FilesService.validateFolderName();
     }
 }
