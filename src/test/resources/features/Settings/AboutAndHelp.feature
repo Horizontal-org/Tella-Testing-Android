@@ -6,8 +6,7 @@ Feature: About and Help
     Given the user is in Tella home page
     And the user taps the settings icon
 
-
-  @Smoke @ViewOptions @Automated
+  @Smoke @Automated
   Scenario Outline: About & Help - view options
     When clicks on the category <category>
     Then view the Tella icon
@@ -18,8 +17,7 @@ Feature: About and Help
       | category     | version             |
       | About & Help | Version 2.9.0 (179) |
 
-
-  @Smoke @Android @FAQ @PrivacyPolicy @Automated
+  @Smoke @Automated
   Scenario Outline: About & Help - Go to <option> page
     When clicks on the category <category>
     And taps the <option> option
@@ -30,8 +28,8 @@ Feature: About and Help
       | About & Help | FAQ            | tella-app.org/docs/    |
       | About & Help | Privacy policy | tella-app.org/privacy/ |
 
-    @ContactUs @Ignore @Bug
+    @Ignore @Bug
     Examples:
-      | category     | option         | site                   |
-      | About & Help | Contact us     | email                  |
+      | category     | option     | site  |
+      | About & Help | Contact us | email |
 

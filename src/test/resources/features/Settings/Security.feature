@@ -1,5 +1,4 @@
-@Security @Regression
-
+@Regression @Security
 Feature: Security
 
   Background:
@@ -7,7 +6,8 @@ Feature: Security
     And the user taps the settings icon
     And clicks on the category Security
 
-  @Android @Lock
+
+  @Smoke @ToBeAutomated @Lock
   Scenario Outline: Security - Lock - <LockOption> option
     When the user clicks the "Lock" option
     And set security code valid
@@ -23,7 +23,6 @@ Feature: Security
       | 1234560 | Password   |
       | 1234560 | PIN        |
 
-
   @Android @Lock
   Scenario: Security - Lock - Pattern option
     When the user clicks the "Lock" option
@@ -35,7 +34,7 @@ Feature: Security
     And taps "next" button
     Then "Your lock has been changed" message is shown
 
-  @Smoke @Android @LockTimeout
+  @Smoke @Automated @LockTimeout
   Scenario Outline: Security - Lock Timeout
     When the user clicks the "Lock timeout" option
     And select timeout <timeout> option
@@ -51,7 +50,7 @@ Feature: Security
       | 30 minutes  |
       | 1 hour      |
 
-  @Smoke @Android @LockTimeout @Automated
+  @Smoke @LockTimeout @Automated
   Scenario Outline: Security - Change Lock Timeout
     When the user clicks the "Lock Timeout" option
     And select timeout <timeout> option
@@ -66,7 +65,7 @@ Feature: Security
       | 30 minutes  |
       | 1 hour      |
 
-  @Smoke @Android @DeleteAfterFailedUnlock
+  @Smoke @DeleteAfterFailedUnlock
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
@@ -81,7 +80,7 @@ Feature: Security
       | 10 attempts | 123451 |
       | 20 attempts | 123450 |
 
-  @Smoke @Android @DeleteAfterFailedUnlock @Automated
+  @Smoke @DeleteAfterFailedUnlock @Automated
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
@@ -96,7 +95,7 @@ Feature: Security
       | 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
       | 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
 
-  @Smoke @Android @Camouflage
+  @Smoke @Camouflage @ToBeAutomated
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon
     When the user clicks the "Camouflage" option
     And The user enter the password <password>
@@ -112,7 +111,7 @@ Feature: Security
       | 123456   | MiCamera   | Please wait. You will return to your device's home screen in a few seconds. |
       | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @Android @Camouflage
+  @Smoke @Camouflage @ToBeAutomated
   Scenario Outline: Security - camouflage -  change camuflaje method - hide behind a calculator
     When the PIN is selected in lock option
     And the user clicks the "Camouflage" option
@@ -130,8 +129,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-
-  @Smoke @Android @QuickDelete
+  @Smoke @QuickDelete @ToBeAutomated
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
     When toggle the switch on the "Quick delete" option
     And select check box "<quickDeleteCheck>"
@@ -151,7 +149,7 @@ Feature: Security
       | Delete draft and submitted forms |
       | Delete server settings           |
 
-  @Smoke @Android @QuickDelete
+  @Smoke @QuickDelete @ToBeAutomated
   Scenario: Security - Quick delete - Delete Tella
     When toggle the switch on the "Quick delete" option
     And select check box “Delete Tella”
@@ -163,7 +161,7 @@ Feature: Security
     And view closed the Tella application
     Then view uninstall message
 
-  @Smoke @Android @QuickDelete @Automated
+  @Smoke @QuickDelete @Automated
   Scenario Outline: Security - Quick delete - Help info
     When toggle the switch on the "Quick delete" option
     And click on the help icon in <deleteOption>
@@ -175,7 +173,7 @@ Feature: Security
       | Delete draft and submitted forms | Delete all draft and submitted forms.                                  |
       | Delete server settings           | Delete your connections to servers and all forms associated with them. |
 
-  @Smoke @Android @Automated
+  @Smoke @Automated
   Scenario Outline: Security - <option> ON
     When toggle the switch on the "<option>" option
     Then the "<option>" option is activated
@@ -186,7 +184,7 @@ Feature: Security
       | Preserve metadata when importing |
       | Camera silent mode               |
 
-  @Smoke @Android @CameraSilentMode
+  @Smoke @CameraSilentMode @ToBeAutomated
   Scenario: Security - Camera silent mode
     When toggle the switch on the "Camera silent mode" option
     And go to Tella home page
@@ -194,14 +192,13 @@ Feature: Security
     And take photo
     Then the camera did not make the sound
 
-  @Smoke @Android @ScreenSecurity
+  @Smoke @ScreenSecurity @ToBeAutomated
   Scenario: Security - Screen secuCamera silent mode
     When toggle the switch on the "Screen security" option
     And go to Tella home page
     And take screenshot
     Then view warning permissions
 
-  @Android @Lock
   Scenario Outline: Security - Lock - <LockOption> option
     When the user clicks the "Lock" option
     And set security code valid
@@ -217,8 +214,6 @@ Feature: Security
       | 1234560 | password   |
       | 1234560 | PIN        |
 
-
-  @Android @Lock
   Scenario: Security - lock - pattern option
     When the user clicks the "Lock" option
     And set security code valid
@@ -229,7 +224,7 @@ Feature: Security
     And taps "next" button
     Then  "Your lock has been changed" message is shown
 
-  @Smoke @Android @LockTimeout
+  @Smoke @LockTimeout @ToBeAutomated
   Scenario Outline: Security - Lock Timeout
     When the user clicks the "Lock timeout" option
     And select timeout <timeout> option
@@ -245,7 +240,7 @@ Feature: Security
       | 30 minutes  |
       | 1 hour      |
 
-  @Smoke @Android @LockTimeout @Automated
+  @Smoke @LockTimeout @Automated
   Scenario Outline: Security - Change Lock Timeout
     When the user clicks the "Lock Timeout" option
     And select timeout <timeout> option
@@ -260,7 +255,7 @@ Feature: Security
       | 30 minutes  |
       | 1 hour      |
 
-  @Smoke @Android @DeleteAfterFailedUnlock
+  @Smoke @DeleteAfterFailedUnlock @ToBeAutomated
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
@@ -275,7 +270,7 @@ Feature: Security
       | 10 attempts | 123451 |
       | 20 attempts | 123450 |
 
-  @Smoke @Android @DeleteAfterFailedUnlock @Automated
+  @Smoke @Automated
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
@@ -290,7 +285,7 @@ Feature: Security
       | 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
       | 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
 
-  @Smoke @Android @Camouflage
+  @Smoke @Camouflage @ToBeAutomated
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon
     When the user clicks the "Camouflage" option
     And The user enter the password <password>
@@ -306,7 +301,7 @@ Feature: Security
       | 123456   | MiCamera   | Please wait. You will return to your device's home screen in a few seconds. |
       | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @Android @Camouflage
+  @Smoke @Camouflage @ToBeAutomated
   Scenario Outline: Security - camouflage -  change camuflaje method - hide behind a calculator
     When the PIN is selected in lock option
     And the user clicks the "Camouflage" option
@@ -324,8 +319,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-
-  @Smoke @Android @QuickDelete
+  @Smoke @QuickDelete @ToBeAutomated
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
     When taps switch in "Quick delete" option
     And select check box "<quickDeleteCheck>"
@@ -345,9 +339,6 @@ Feature: Security
       | Delete draft and submitted forms |
       | Delete server settings           |
 
-
-    #Este escenario no aparece
-  @Smoke @Android @QuickDelete
   Scenario: Security - Quick delete - Delete Tella
     When taps switch in "Quick delete" option
     And select check box “Delete Tella”
@@ -359,7 +350,7 @@ Feature: Security
     And view closed the Tella application
     Then view uninstall message
 
-  @Smoke @Android @QuickDelete @Automated
+  @Smoke @QuickDelete @ToBeAutomated
   Scenario Outline: Security - Quick delete - help info
     When taps switch in "Quick delete" option
     And taps icon help in <deleteOption>
@@ -371,13 +362,13 @@ Feature: Security
       | Delete draft and submitted forms | Delete all draft and submitted forms                                  |
       | Delete server settings           | Delete your connections to servers and all forms associated with them |
 
-  @Smoke @Android @PreserveMetadata
+  @Smoke @ToBeAutomated
   Scenario: Security - Preserve metadata when importing
     When view "Preserve metadata when importing"
     And taps switch in ON to option "Preserve metadata when importing"
     Then the "Preserve metadata when importing" option is activated
 
-  @Smoke @Android @CameraSilentMode
+  @Smoke @CameraSilentMode @ToBeAutomated
   Scenario: Security - Camera silent mode
     When view "Camera silent mode"
     And taps switch in ON to option "Camera silent mode"
@@ -386,7 +377,7 @@ Feature: Security
     And take photo
     Then the camera did not make the sound
 
-  @Smoke @Android @ScreenSecurity
+  @Smoke @ToBeAutomated
   Scenario: Security - Screen security
     When view "Screen security"
     And taps switch in ON to option "Screen security"
