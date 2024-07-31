@@ -24,11 +24,9 @@ Feature: Audio
     And the user press stop option
     Then the approval message <message_title> is displayed
 
-  Examples:
-  | message_title                                     |
-  | The audio recording was saved to your Tella files |
-
-
+    Examples:
+      | message_title                                     |
+      | The audio recording was saved to your Tella files |
 
   @Smoke @Automated
   Scenario Outline: Rename an audio file
@@ -38,11 +36,10 @@ Feature: Audio
     And the user write a new recording name <recording_name>
     And the user press ok
     Then the file change the original name for a new one: <recording_name>
-    
+
     Examples:
       | recording_name |
       | Audio1         |
-
 
   @Smoke @Automated
   Scenario Outline: Rename an audio file during the recording
@@ -60,7 +57,7 @@ Feature: Audio
       | recording_name | message_title                                     |
       | Audio2         | The audio recording was saved to your Tella files |
 
-  @NoCandidate
+
   Scenario: Listen an audio file
     When the user press "Rec"
     And the user press headphones
@@ -68,7 +65,6 @@ Feature: Audio
     And the user press play
     Then the audio file is reproduced
 
-  @NoCandidate
   Scenario: Pause an audio file
     When the user press "Rec"
     And the user press headphones
@@ -77,7 +73,6 @@ Feature: Audio
     And the user press pause
     Then the audio file is paused
 
-  @NoCandidate
   Scenario: Pause an audio file and play it again
     When the user press "Rec"
     And the user press headphones
@@ -87,7 +82,6 @@ Feature: Audio
     And the user press play
     Then the audio file is played
 
-  @NoCandidate
   Scenario: Rewind audio file
     When the user press "Rec"
     And the user press headphones

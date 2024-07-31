@@ -82,7 +82,7 @@ Feature: PhotographyAndVideo
     And the user presses the next button
     Then the video resolution is selected
 
-  @Smoke @Video @ToBeAutomatable
+  @Smoke @Video @ToBeAutomated
   Scenario: Check file size from the last file
     Given that the last file is a video with the highest resolution
     When the user presses the image located at the bottom right to the screen
@@ -217,7 +217,7 @@ Feature: PhotographyAndVideo
     And the user presses the button File information
     Then the file information is in the screen
 
-  @Smoke @File @Automated
+  @Smoke @Automated
   Scenario: Delete file
     And the user presses the camera button
     And the user takes a photography
@@ -236,7 +236,7 @@ Feature: PhotographyAndVideo
     And the user presses "Cancel"
     Then the file is not deleted
 
-  @Smoke @NoCandidate
+  @Smoke @File @NoCandidate
   Scenario: Save a file to the device with its verification information
     And the Verification mode is on
     When the user presses the camera button
@@ -251,7 +251,7 @@ Feature: PhotographyAndVideo
     Then the file is saved in the device
     And its verification information is available
 
-  @Smoke @NoCandidate
+  @Smoke @File @NoCandidate
   Scenario: Cancel saving a file to the device.
     When the user presses the camera button
     And the user takes a photography
@@ -261,7 +261,7 @@ Feature: PhotographyAndVideo
     And the user presses "Cancel"
     Then saving a file to the device is canceled
 
-  @Smoke @ToBeAutomated
+  @Smoke @File @ToBeAutomated
   Scenario: Rename file
     And the user presses the camera button
     And the user takes a photography
@@ -272,7 +272,7 @@ Feature: PhotographyAndVideo
     And the user enters the images folder
     Then the file is saved with the new name
 
-  @Smoke @ToBeAutomated
+  @Smoke @File @ToBeAutomated
   Scenario: Rename a file with an existing name
     And the user presses the camera button
     And the user takes a photography

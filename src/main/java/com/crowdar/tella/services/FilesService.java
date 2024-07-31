@@ -168,7 +168,6 @@ public class FilesService {
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
         WebDriverWait wait = new WebDriverWait(driver, 5);
         GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
-        GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
     }
 
 
@@ -202,5 +201,15 @@ public class FilesService {
         waitInvisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER);
         Assert.assertFalse(MobileActionManager.isEnabled(FilesConstants.CREATED_FILE_NAME));
     }
+     public static void validateFolderName(){
+         AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
+         MobileElement folderNameElement = driver.findElement(By.xpath("//android.widget.TextView[@resource-id='org.hzontal.tella:id/fileNameTextView' and @text='Tella']"));
+         boolean isDisplayed = folderNameElement.isDisplayed();
+         Assert.assertTrue(isDisplayed, "The folder named 'Tella' is not displayed on the screen");
+     }
+
+
+
+
 }
 

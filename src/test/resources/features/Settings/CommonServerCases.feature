@@ -1,4 +1,4 @@
-@Servers
+@Regression @Servers
 Feature: Common Server
   
   Background:

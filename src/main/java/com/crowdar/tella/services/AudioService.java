@@ -56,20 +56,11 @@ public class AudioService {
         MobileActionManager.click(AudioConstants.STOP_BUTTON);
     }
 
-
-
-
-
-
     public static void clickStopOption2(){
         MobileActionManager.waitClickable(AudioConstants.RECORD_AUDIO);
         nameChanged = MobileActionManager.getText(AudioConstants.RECORD_NAME_PENCIL_ICON);
         MobileActionManager.click(AudioConstants.RECORD_AUDIO);
     }
-
-
-
-
 
     public static void validateAprovalMessage(String message){
         String aprovalMessagePage = MobileActionManager.getText(AudioConstants.MESSAGE_TITLE);
