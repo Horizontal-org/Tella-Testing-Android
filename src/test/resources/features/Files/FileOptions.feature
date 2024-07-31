@@ -6,7 +6,7 @@ Feature: File Options
     Given the user is in Tella home page
     And there are files and folders within Tella app
 
-  @Smoke @Automated
+  @Smoke @ToBeAutomated
   Scenario Outline: Open a multimedia file <type> from the folder <folder>
     When the user enters the folder <folder>
     And capture the file extension <type>
@@ -261,7 +261,7 @@ Feature: File Options
       | video | Videos |
       | audio | Audios |
 
-  @Smoke @Automated
+  @Smoke @ToBeAutomated
   Scenario Outline: Delete a file of <type> from the folder <folder>
     When the user enters the folder <folder>
     And taps the options button ⋮ for the <type> file

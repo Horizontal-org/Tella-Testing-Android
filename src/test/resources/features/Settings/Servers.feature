@@ -1,4 +1,4 @@
-@Servers @Regression
+@Regression @Servers
 Feature: Servers
 
   Background:
@@ -6,7 +6,7 @@ Feature: Servers
     And the user taps the settings icon
     And clicks on the option Servers
 
-  @Automated @ViewServers
+  @Smoke @Automated @ViewServers
   Scenario: Servers - View Server Options
     When the user presses the + button
     Then the user sees all possible server options available for connection
@@ -14,7 +14,7 @@ Feature: Servers
       | Tella Web           |
       | Uwazi               |
 
-  @Automated @SelectServers
+  @Smoke @Automated @SelectServers
   Scenario Outline: Server - Select Server <server>
     When the user presses the + button
     And selects the server "<server>"
@@ -27,7 +27,7 @@ Feature: Servers
       | Tella Web           |
       | Uwazi               |
 
-  @Automated @ODKConfig
+  @Smoke @Automated @ODKConfig
   Scenario Outline: Servers - ODK Server Configuration
     When the user presses the + button
     And selects the server "Open Data Kit (ODK)"
@@ -42,7 +42,7 @@ Feature: Servers
       | serverName     | serverUrl                                      | message        |
       | Server Crowdar | https://kc.kobotoolbox.org/tella_internal_test | Server created |
 
-  @ODKConfigAdvanced
+  @Smoke @ODKConfig
   Scenario: Servers - Advanced Configuration in Open Data Kit Server
     When the user presses the + button
     And selects the server "Open Data Kit (ODK)"
@@ -50,7 +50,7 @@ Feature: Servers
     And expands the "Advanced" section
     Then the user views the fields "Username"; "Password" to fill
 
-  @Automated @TellaWebConfig
+  @Smoke @Automated @TellaWebConfig
   Scenario: Server - Tella Web configuration with URL
     When the user presses the + button
     And selects the server "Tella Web"
@@ -60,7 +60,7 @@ Feature: Servers
     Then the user views the "Log in to access the project"
     And the user views the fields "Username" and "Password"
 
-  @Automated @UwaziConfig
+  @Smoke @Automated @UwaziConfig
   Scenario: Server - Uwazi configuration with URL
     When the user presses the + button
     And selects the server "Uwazi"
@@ -71,7 +71,7 @@ Feature: Servers
       | Log in        |
       | Public access |
 
-  @Automated @UwaziConfigLanguage
+  @Smoke @Automated @UwaziConfigLanguage
   Scenario Outline: Public Access with Uwazi in <language>
     When the user presses the + button
     And selects the server "Uwazi"
@@ -90,7 +90,7 @@ Feature: Servers
       | English  |
       | Spanish  |
 
-  @Automated @ViewServers
+  @Smoke @Automated @ViewServers
   Scenario: Servers - View Server Options
     When the user presses the + button
     Then the user sees all possible server options available for connection
@@ -98,7 +98,7 @@ Feature: Servers
       | Tella Web           |
       | Uwazi               |
 
-  @Automated @SelectServers
+  @Smoke @Automated @SelectServers
   Scenario Outline: Server - Select Server <server>
     When the user presses the + button
     And selects the server "<server>"
@@ -111,7 +111,7 @@ Feature: Servers
       | Tella Web           |
       | Uwazi               |
 
-  @Automated @ODKConfig
+  @Smoke @Automated @ODKConfig
   Scenario Outline: Servers - ODK Server Configuration
     When the user presses the + button
     And selects the server "Open Data Kit (ODK)"
@@ -126,7 +126,7 @@ Feature: Servers
       | serverName     | serverUrl                                      | message        |
       | Server Crowdar | https://kc.kobotoolbox.org/tella_internal_test | Server created |
 
-  @ODKConfigAdvanced
+  @ODKConfig
   Scenario: Servers - Advanced Configuration in Open Data Kit Server
     When the user presses the + button
     And selects the server "Open Data Kit (ODK)"
@@ -134,7 +134,7 @@ Feature: Servers
     And expands the "Advanced" section
     Then the user views the fields "Username"; "Password" to fill
 
-  @Automated @TellaWebConfig
+  @Smoke @Automated @TellaWebConfig
   Scenario: Server - Tella Web configuration with URL
     When the user presses the + button
     And selects the server "Tella Web"
@@ -144,7 +144,7 @@ Feature: Servers
     Then the user views the "Log in to access the project"
     And the user views the fields "Username" and "Password"
 
-  @Automated @UwaziConfig
+  @Smoke @Automated @UwaziConfig
   Scenario: Server - Uwazi configuration with URL
     When the user presses the + button
     And selects the server "Uwazi"
@@ -155,7 +155,7 @@ Feature: Servers
       | Log in        |
       | Public access |
 
-  @Automated @UwaziConfigLanguage
+  @Smoke @Automated @UwaziConfigLanguage
   Scenario Outline: Public Access with Uwazi in <language>
     When the user presses the + button
     And selects the server "Uwazi"

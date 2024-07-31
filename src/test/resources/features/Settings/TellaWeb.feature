@@ -1,10 +1,11 @@
-@TellaWeb @Regression @Servers
+@Regression @TellaWeb @Servers
 
 Feature: Tella Web
 
   Background:
     Given the user is in Tella home page
     And the user is connected to the Tella Web server
+
 
   @Smoke @NoCandidate
   Scenario Outline: Submit report with <Select files>
@@ -73,9 +74,9 @@ Feature: Tella Web
     Then the approval message "File has been deleted" appears
 
 
-  @ToBeAutomated  @Smoke
+  @Smoke @ToBeAutomated
   Scenario: Delete draf
-  Given: the user has a report in the Draft folder
+    And the user has a report in the Draft folder
     When the user taps the "Reports" connection
     And the user taps the "⁝" button
     And selects Delete
@@ -83,7 +84,7 @@ Feature: Tella Web
     Then the approval message "File has been deleted" appears
 
 
-  @ToBeAutomated  @Smoke
+  @Smoke @ToBeAutomated
   Scenario Outline: Save report to <option>
     When the user taps the "Reports" connection
     And the user presses "NEW REPORT" button
@@ -100,7 +101,7 @@ Feature: Tella Web
       | Clock  | The report was saved to your Outbox. You can submit it when you ready |
 
 
-  @ToBeAutomated  @Smoke
+  @Smoke @ToBeAutomated
   Scenario: Send a report from Draft
   Given:the user has a report in the Draft folder
     When the user taps the "⁝" button
@@ -109,7 +110,7 @@ Feature: Tella Web
     Then the approval message "your report is available Outbox" appears
 
 
-  @ToBeAutomated  @Smoke
+  @Smoke @ToBeAutomated
   Scenario: Send a report from Outbox
   Given:the user has a report in the Outbox folder
     When the user taps the "Reports" connection
@@ -120,7 +121,7 @@ Feature: Tella Web
     Then the approval message "your report is available Outbox" appears
 
 
-  @ToBeAutomated  @Smoke
+  @Smoke @ToBeAutomated
   Scenario: Activate Auto-report
     When the user taps the settings icon
     And selects the "Servers" option
@@ -131,7 +132,8 @@ Feature: Tella Web
     And presses the "Save" icon
     Then the approval message "Served updated" appears
 
-  @NoCandidate  @Smoke
+
+  @Smoke @NoCandidate
   Scenario: Take photo or video with Auto-report activated
     Given the Auto-report option is activated
     When the user presses the camera button
@@ -139,7 +141,7 @@ Feature: Tella Web
     Then the approval message "The photo(s)/video you took has been automatically uploaded as a report" appears
 
 
-  @ToBeAutomated  @Smoke
+  @Smoke @ToBeAutomated
   Scenario: Activate Auto-delete
     Given the Auto-report option is activated
     When the user taps the settings icon
@@ -151,7 +153,8 @@ Feature: Tella Web
     And presses the "Save" icon
     Then the approval message "Served updated" appears
 
-  @NoCandidate  @Smoke
+
+  @Smoke @NoCandidate
   Scenario: Take photo or video with Auto-delete activated
     Given the Auto-report and Auto-report option is activated
     When the user presses the camera button
@@ -159,7 +162,7 @@ Feature: Tella Web
     Then the approval message "The photo/video you took has been uploaded as a report and automatically deleted" appears
 
 
-  @ToBeAutomated  @Smoke
+  @Smoke @ToBeAutomated
   Scenario: Activate Background upload
     When the user taps the settings icon
     And selects the "Servers" option
@@ -170,7 +173,8 @@ Feature: Tella Web
     And presses the "Save" icon
     Then the approval message "Served updated" appears
 
-  @ToBeAutomated  @Smoke
+
+  @Smoke @ToBeAutomated
   Scenario: Send report with Background upload activated
     Given the Background upload option is activated
     And The user taps the "Reports" connection
@@ -187,7 +191,7 @@ Feature: Tella Web
     Then sees the sent report
 
 
-  @ToBeAutomated @Smoke
+  @Smoke @ToBeAutomated
   Scenario: Send a report with video while the internet is desconnecting
     Given the Auto-report option is activated and the user has a report with video
     When taps Submit
