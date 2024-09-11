@@ -4,14 +4,14 @@ Feature: PhotographyAndVideo
   Background:
     Given the user is in Tella home page
 
-  @Smoke @Photography @NoCandidate
+  @Smoke @Photography @SmokeManual
   Scenario:Take a photo with the back camera on Tella
     When the user presses the camera button
     And the user presses the take a photo button
     Then there is a new picture in the "Images" folder on Tella
     And the picture taken is not in the device's album
 
-  @Smoke @Photography @NoCandidate
+  @Smoke @Photography @SmokeManual
   Scenario: take a photo from Camera with the frontal camera on Tella
     When the user presses the camera button
     And the user presses the change camera button
@@ -19,7 +19,7 @@ Feature: PhotographyAndVideo
     Then there is a new picture in the "Images" folder on Tella
     And the picture taken is not in the device's album
 
-  @Smoke @Photography @NoCandidate
+  @Smoke @Photography @SmokeManual
   Scenario: take a photo from Camera with Verification Mode on
     Given the Verification Mode is on
     When the user presses the camera button
@@ -28,7 +28,7 @@ Feature: PhotographyAndVideo
     And the picture taken is not in the device's album
     And the verification information is collected correctly
 
-  @Smoke @Photography @NoCandidate
+  @Smoke @Photography @SmokeManual
   Scenario: take a photo from Camera with Verification Mode on and GPS off
     Given the Verification Mode is on
     And the GPS is off
@@ -90,7 +90,7 @@ Feature: PhotographyAndVideo
     And the user presses "File information"
     Then The video size is congruent with the video resolution
 
-  @Smoke @Video @NoCandidate
+  @Smoke @Video @SmokeManual
   Scenario: record a video from Camera
     When the user presses the camera button
     And the user presses the video button
@@ -99,7 +99,7 @@ Feature: PhotographyAndVideo
     Then there is a new video in the "Videos" folder
     And the video taken is not in the device's album
 
-  @Smoke @Video @NoCandidate
+  @Smoke @Video @SmokeManual
   Scenario: record a video from Camera with the frontal camera
     When the user presses the camera button
     And the user presses the video button
@@ -109,7 +109,7 @@ Feature: PhotographyAndVideo
     Then there is a new video in the "Videos" folder
     And the video taken is not in the device's album
 
-  @Smoke @Video @NoCandidate
+  @Smoke @Video @SmokeManual
   Scenario: record a video from Camera with Verification Mode on
     And the Verification Mode is on
     When the user presses the camera button
@@ -120,7 +120,7 @@ Feature: PhotographyAndVideo
     And the video taken is not in the device's album
     And the verification information is collected correctly
 
-  @Smoke @Video @NoCandidate
+  @Smoke @Video @SmokeManual
   Scenario: record a video from Camera with Verification Mode on and GPS off
     And the Verification Mode is on
     And the GPS is off
@@ -132,7 +132,7 @@ Feature: PhotographyAndVideo
     And the video taken is not in the device's album
     And the verification information is collected correctly
 
-  @Smoke @ShareFile @NoCandidate
+  @Smoke @ShareFile @SmokeManual
   Scenario: share file from Tella by Gmail
     And the user has an email account registered on the cell phone
     When the user presses the camera button
@@ -145,7 +145,7 @@ Feature: PhotographyAndVideo
     And the user push the send it button "→"
     Then the file is shared
 
-  @Smoke @ShareFile @NoCandidate
+  @Smoke @ShareFile @SmokeManual
   Scenario: share file from Tella to Instagram Stories
     And the user has an instagram account
     When the user presses the camera button
@@ -158,7 +158,7 @@ Feature: PhotographyAndVideo
     And the user presses "Done"
     Then the file is shared
 
-  @Smoke @ShareFile @NoCandidate
+  @Smoke @ShareFile @SmokeManual
   Scenario: share file from Tella to Instagram Reels
     And the user has an instagram account
     When the user presses the camera button
@@ -170,7 +170,7 @@ Feature: PhotographyAndVideo
     And the user presses "Share"
     Then The file is shared
 
-  @Smoke @ShareFile @NoCandidate
+  @Smoke @ShareFile @SmokeManual
   Scenario: share file from Tella to Instagram Feed
     And the user has an instagram account
     When the user presses the camera button
@@ -183,7 +183,7 @@ Feature: PhotographyAndVideo
     And the user presses "Share"
     Then the file is shared
 
-  @Smoke @ShareFile @NoCandidate
+  @Smoke @ShareFile @SmokeManual
   Scenario: share file from tella to Instagram Chats
     And the user has an instagram account
     When the user presses the camera button
@@ -195,7 +195,7 @@ Feature: PhotographyAndVideo
     And the user presses "Done"
     Then the file is shared
 
-  @Smoke @ShareFile @NoCandidate
+  @Smoke @ShareFile @SmokeManual
   Scenario: share file from tella to WhatsApp
     And the user has WhatsApp
     When the user presses the camera button
@@ -236,7 +236,7 @@ Feature: PhotographyAndVideo
     And the user presses "Cancel"
     Then the file is not deleted
 
-  @Smoke @File @NoCandidate
+  @Smoke @File @SmokeManual
   Scenario: Save a file to the device with its verification information
     And the Verification mode is on
     When the user presses the camera button
@@ -251,7 +251,7 @@ Feature: PhotographyAndVideo
     Then the file is saved in the device
     And its verification information is available
 
-  @Smoke @File @NoCandidate
+  @Smoke @File @SmokeManual
   Scenario: Cancel saving a file to the device.
     When the user presses the camera button
     And the user takes a photography
@@ -282,7 +282,7 @@ Feature: PhotographyAndVideo
     And the user writes a new name "Tella"
     Then the sistem notified there is a existing file with the same name
 
-  @Smoke @IOS @NoCandidate
+  @Smoke @IOS @SmokeManual
   Scenario: Move a file to another folder
     When the user presses the camera button
     And the user presses the image located at the bottom right of the screen
@@ -310,7 +310,7 @@ Feature: PhotographyAndVideo
     Then the user exits from the last file
     And the photo camera appeared
 
-  @Smoke @Photography @NoCandidate
+  @Smoke @Photography @SmokeManual
   Scenario Outline: Edit an image by <Modification> from the last camera file
     When the user presses the camera button
     And the user presses the take a photo button

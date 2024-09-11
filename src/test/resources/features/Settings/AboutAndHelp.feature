@@ -1,5 +1,4 @@
 @Regression @AboutAndHelp
-
 Feature: About and Help
 
   Background:

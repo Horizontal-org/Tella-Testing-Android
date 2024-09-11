@@ -6,7 +6,6 @@ Feature: Common Server
     And the user is in Tella home page
     And the user is connected to the servers.
 
-
   @Smoke @ToBeAutomated
   Scenario Outline: Delete <File> from <Category>
     Given the user has an <File> in <Category>
