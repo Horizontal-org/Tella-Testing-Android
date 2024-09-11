@@ -30,19 +30,20 @@ Feature: General
       | language   | title         |
       | Arabic     | اللغة         |
       | Belarusian | Мова          |
-      | English    | Language      |
-      | Spanish    | Idioma        |
+      | English    | English       |
+      | Spanish    | Español       |
       | Persian    | زبان          |
-      | French     | Langue        |
+      | French     | Français      |
       | Indonesian | Bahasa        |
       | Kachin     | Tsun Shaga Ga |
       | Kannada    | ಭಾಷೆ          |
       | Kurdish    | زمان          |
       | Malayalam  | ഭാഷ          |
       | Burmese    | ဘာသာစကား     |
-      | Portuguese | Idioma        |
+      | Portuguese | Portugu       |
       | Russian    | Язык          |
       | Tamil      | மொழி        |
+      | Vietnamese | Tiếng Việt    |
 
 
   @Smoke @Automated

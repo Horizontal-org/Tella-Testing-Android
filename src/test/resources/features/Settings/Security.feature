@@ -6,7 +6,6 @@ Feature: Security
     And the user taps the settings icon
     And clicks on the category Security
 
-
   @Smoke @ToBeAutomated @Lock
   Scenario Outline: Security - Lock - <LockOption> option
     When the user clicks the "Lock" option
@@ -65,7 +64,7 @@ Feature: Security
       | 30 minutes  |
       | 1 hour      |
 
-  @Smoke @DeleteAfterFailedUnlock
+  @Smoke @DeleteAfterFailedUnlock @SmokeManual
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
@@ -95,7 +94,7 @@ Feature: Security
       | 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
       | 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
 
-  @Smoke @Camouflage @ToBeAutomated
+  @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon
     When the user clicks the "Camouflage" option
     And The user enter the password <password>
@@ -111,8 +110,8 @@ Feature: Security
       | 123456   | MiCamera   | Please wait. You will return to your device's home screen in a few seconds. |
       | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @Camouflage @ToBeAutomated
-  Scenario Outline: Security - camouflage -  change camuflaje method - hide behind a calculator
+  @Smoke @Camouflage @SmokeManual
+  Scenario Outline: Security - camouflage - change camuflaje method - hide behind a calculator
     When the PIN is selected in lock option
     And the user clicks the "Camouflage" option
     And enter the valid PIN
@@ -129,7 +128,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @ToBeAutomated
+  @Smoke @QuickDelete @SmokeManual
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
     When toggle the switch on the "Quick delete" option
     And select check box "<quickDeleteCheck>"
@@ -149,7 +148,7 @@ Feature: Security
       | Delete draft and submitted forms |
       | Delete server settings           |
 
-  @Smoke @QuickDelete @ToBeAutomated
+  @Smoke @QuickDelete @SmokeManual
   Scenario: Security - Quick delete - Delete Tella
     When toggle the switch on the "Quick delete" option
     And select check box “Delete Tella”
@@ -184,7 +183,7 @@ Feature: Security
       | Preserve metadata when importing |
       | Camera silent mode               |
 
-  @Smoke @CameraSilentMode @ToBeAutomated
+  @Smoke @CameraSilentMode @SmokeManual
   Scenario: Security - Camera silent mode
     When toggle the switch on the "Camera silent mode" option
     And go to Tella home page
@@ -255,7 +254,7 @@ Feature: Security
       | 30 minutes  |
       | 1 hour      |
 
-  @Smoke @DeleteAfterFailedUnlock @ToBeAutomated
+  @Smoke @DeleteAfterFailedUnlock @SmokeManual
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
@@ -285,7 +284,7 @@ Feature: Security
       | 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
       | 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
 
-  @Smoke @Camouflage @ToBeAutomated
+  @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon
     When the user clicks the "Camouflage" option
     And The user enter the password <password>
@@ -301,7 +300,7 @@ Feature: Security
       | 123456   | MiCamera   | Please wait. You will return to your device's home screen in a few seconds. |
       | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @Camouflage @ToBeAutomated
+  @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage -  change camuflaje method - hide behind a calculator
     When the PIN is selected in lock option
     And the user clicks the "Camouflage" option
@@ -319,7 +318,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @ToBeAutomated
+  @Smoke @QuickDelete @SmokeManual
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
     When taps switch in "Quick delete" option
     And select check box "<quickDeleteCheck>"
@@ -350,7 +349,7 @@ Feature: Security
     And view closed the Tella application
     Then view uninstall message
 
-  @Smoke @QuickDelete @ToBeAutomated
+  @Smoke @QuickDelete @ToBeAutomated @Bug
   Scenario Outline: Security - Quick delete - help info
     When taps switch in "Quick delete" option
     And taps icon help in <deleteOption>
@@ -368,7 +367,7 @@ Feature: Security
     And taps switch in ON to option "Preserve metadata when importing"
     Then the "Preserve metadata when importing" option is activated
 
-  @Smoke @CameraSilentMode @ToBeAutomated
+  @Smoke @CameraSilentMode @SmokeManual
   Scenario: Security - Camera silent mode
     When view "Camera silent mode"
     And taps switch in ON to option "Camera silent mode"

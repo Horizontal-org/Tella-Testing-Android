@@ -1,5 +1,4 @@
 @Regression @Files @FileOptions
-
 Feature: File Options
 
   Background:
@@ -64,7 +63,7 @@ Feature: File Options
     And presses "Cancel"
     Then the new file name is not updated
 
-  @Smoke
+  @Smoke @SmokeManual
   Scenario Outline: Edit an image by <Modification> from the "Images" folder
     When the user enters the folder "Images"
     And taps the options button "⋮" for the image file
@@ -79,7 +78,7 @@ Feature: File Options
       | Cropping     |
       | Rotation     |
 
-  @Smoke
+  @Smoke @SmokeManual
   Scenario Outline: Share a file created in Tella of type <type> via <SocialMedia> from the folder <folder> with verification information
     Given the user has a file with verification information
     When the user enters the folder <folder>
@@ -100,7 +99,7 @@ Feature: File Options
       | WhatsApp    | Images | image |
       | Signal      | Videos | video |
 
-  @Smoke
+  @Smoke @SmokeManual
   Scenario Outline: Share multiple files created in Tella of type <type> via <SocialMedia> from the folder <folder> with verification information
     Given the user has a file with verification information
     When the user enters the folder <folder>
@@ -138,7 +137,7 @@ Feature: File Options
       | WhatsApp    | Videos    | video    |
       | Signal      | Audio     | audio    |
 
-  @Smoke @NoCandidate
+  @Smoke @SmokeManual
   Scenario Outline: Edit an image by <Modification> from the "Images" folder
     When the user enters the folder "Images"
     And taps the options button "⋮" for the image file
@@ -153,7 +152,7 @@ Feature: File Options
       | Cropping     |
       | Rotation     |
 
-  @Smoke @NoCandidate
+  @Smoke @SmokeManual
   Scenario: Share a file created in Tella of type <type> via <SocialMedia> from the folder <folder> with verification information
     Given the user has a file with verification information
     When the user enters the folder <folder>
@@ -202,7 +201,7 @@ Feature: File Options
       | WhatsApp    | Images | image |
       | Signal      | Videos | video |
 
-  @Smoke @NoCandidate
+  @Smoke @SmokeManual
   Scenario Outline: Share multiple files created in Tella of type <type> via <SocialMedia> from the folder <folder> with verification information
     Given the user has a file with verification information
     When the user enters the folder <folder>
@@ -240,7 +239,7 @@ Feature: File Options
       | WhatsApp    | Videos    | video    |
       | Signal      | Audios    | audio    |
 
-  @Smoke @NoCandidate
+  @Smoke @SmokeManual
   Scenario Outline: Save a file of <type> to the device from the folder <folder> with its verification information
     Given the user has a <type> file with verification information
     When the user enters the folder <folder>
@@ -427,7 +426,7 @@ Feature: File Options
     And presses the "x" button
     Then the Select Files option disappears
 
-  @Smoke @NoCandidate
+  @Smoke @SmokeManual
   Scenario Outline: Save a file of <type> to the device from the folder <folder>
     Given the user has a <type> file
     When the user enters the folder <folder>
