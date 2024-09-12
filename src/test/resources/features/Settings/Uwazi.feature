@@ -24,6 +24,22 @@ Feature: Uwazi
     Then the entity is saved on the Submitted tab with the corresponding information
 
   @Smoke @ToBeAutomated
+  Scenario Outline: Delete entity from <Category>
+    Given the user has an entity in <Category>
+    When the user taps on the "Uwazi" connection
+    And the user selects the category <Category>
+    And taps the "⁝" button of the corresponding entity
+    And selects Delete
+    And confirms the Delete option
+    Then the entity is deleted
+
+    Examples:
+      | Category  |
+      | Outbox    |
+      | Submitted |
+      | Draft     |
+
+  @Smoke @ToBeAutomated
   Scenario Outline: Submit entity with only primary document
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
@@ -39,7 +55,7 @@ Feature: Uwazi
       | Select from Tella files |
       | Select from your device |
 
-  @Smoke @ToBeAutomated
+  @Smoke @SmokeManual
   Scenario Outline: Submit entity with both primary document and supporting documentation
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
@@ -57,7 +73,7 @@ Feature: Uwazi
       | Select from your device | Select from Tella files |
       | Select from Tella files | Select from your device |
 
-  @Smoke @ToBeAutomated
+  @Smoke @SmokeManual
   Scenario Outline: Submit entity with only supporting documentation
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
@@ -88,7 +104,7 @@ Feature: Uwazi
       | Select from Tella files |
       | Select from your device |
 
-  @Smoke @ToBeAutomated
+  @Smoke @SmokeManual
   Scenario Outline: Submit entity with large attachments while disconnecting the internet
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
@@ -104,7 +120,7 @@ Feature: Uwazi
       | Select from Tella files |
       | Select from your device |
 
-  @Smoke @ToBeAutomated
+  @Smoke @SmokeManual
   Scenario Outline: Submit entity with large attachments while disconnecting and reconnecting to the internet
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
@@ -140,23 +156,7 @@ Feature: Uwazi
     And presses the "Save" icon
     Then the entity is saved on the Draft tab with the corresponding information
     And the message "Entity is saved as draft" appears
-
-  @Smoke @ToBeAutomated
-  Scenario Outline: Delete entity from <Category>
-    Given the user has an entity in <Category>
-    When the user taps on the "Uwazi" connection
-    And the user selects the category <Category>
-    And taps the "⁝" button of the corresponding entity
-    And selects Delete
-    And confirms the Delete option
-    Then the entity is deleted
-
-    Examples:
-      | Category  |
-      | Outbox    |
-      | Submitted |
-      | Draft     |
-       
+    
   #The edit can be add files, change the title or the type of incident
   Scenario Outline: Edit an entity from draft
     Given the user has an entity as draft

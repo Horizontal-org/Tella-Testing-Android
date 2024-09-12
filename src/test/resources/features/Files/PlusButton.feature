@@ -112,7 +112,7 @@ Feature: Plus button
       | Videos    |
       | Others    |
 
-  @Smoke @ToBeAutomated
+  @Smoke @SmokeManual
   Scenario Outline: Record an audio file with verification information and GPS off from the folder <folder>
     Given the Verification Mode is on
     And GPS is off

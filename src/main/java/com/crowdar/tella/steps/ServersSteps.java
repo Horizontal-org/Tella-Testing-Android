@@ -126,8 +126,8 @@ public class ServersSteps extends PageSteps {
         ServersService.takePhoto();
     }
 
-    @And("^sees the file whith title \"(.*)\" and description \"(.*)\" being uploaded$")
-    public void seesTheFileWhithTitleAndDescriptionBeingUploaded(String title, String description) {
+    @And("^the file whith title \"(.*)\" and description \"(.*)\" being uploaded$")
+    public void theFileWhithTitleAndDescriptionBeingUploaded(String title, String description) {
         ServersService.viewFileUpload(title, description);
     }
 

@@ -33,7 +33,7 @@ Feature: Security
     And taps "next" button
     Then "Your lock has been changed" message is shown
 
-  @Smoke @Automated @LockTimeout
+  @Smoke @SmokeManual @LockTimeout
   Scenario Outline: Security - Lock Timeout
     When the user clicks the "Lock timeout" option
     And select timeout <timeout> option
@@ -137,10 +137,9 @@ Feature: Security
     And taps slide "DELETE" button
     And view counter message "Quick Delete mode activation"
     And waits finish counter
-    And view closed the Tella application
     And open Tella application again
     And set security code valid
-    Then view that files were deleted
+    Then that files were deleted
 
     Examples:
       | quickDeleteCheck                 |
@@ -157,8 +156,7 @@ Feature: Security
     And taps slide “DELETE” button
     And view counter message “Quick Delete mode activation”
     And waits finish counter
-    And view closed the Tella application
-    Then view uninstall message
+    Then uninstall message appears
 
   @Smoke @QuickDelete @Automated
   Scenario Outline: Security - Quick delete - Help info
@@ -223,7 +221,7 @@ Feature: Security
     And taps "next" button
     Then  "Your lock has been changed" message is shown
 
-  @Smoke @LockTimeout @ToBeAutomated
+  @Smoke @LockTimeout @SmokeManual
   Scenario Outline: Security - Lock Timeout
     When the user clicks the "Lock timeout" option
     And select timeout <timeout> option
@@ -261,7 +259,7 @@ Feature: Security
     And taps "OK" button
     And the user close the app
     And the user set incorrect <PIN> in <attempts>
-    Then sees that the files have been deleted
+    Then the files have been deleted
 
     Examples:
       | attempts    | PIN    |
@@ -285,7 +283,7 @@ Feature: Security
       | 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @Camouflage @SmokeManual
-  Scenario Outline: Security - camouflage - change camuflaje method - change name and icon
+  Scenario Outline: Security - camouflage - change camouflage method - change name and icon
     When the user clicks the "Camouflage" option
     And The user enter the password <password>
     And select "CHANGE NAME AND ICON" option
@@ -301,7 +299,7 @@ Feature: Security
       | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. |
 
   @Smoke @Camouflage @SmokeManual
-  Scenario Outline: Security - camouflage -  change camuflaje method - hide behind a calculator
+  Scenario Outline: Security - camouflage -  change camouflage method - hide behind a calculator
     When the PIN is selected in lock option
     And the user clicks the "Camouflage" option
     And enter the valid PIN
@@ -376,7 +374,7 @@ Feature: Security
     And take photo
     Then the camera did not make the sound
 
-  @Smoke @ToBeAutomated
+  @Smoke @SmokeManual
   Scenario: Security - Screen security
     When view "Screen security"
     And taps switch in ON to option "Screen security"
