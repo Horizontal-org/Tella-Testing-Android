@@ -42,7 +42,7 @@ Feature: Servers
       | serverName     | serverUrl                                      | message        |
       | Server Crowdar | https://kc.kobotoolbox.org/tella_internal_test | Server created |
 
-  @Smoke @ODKConfig
+  @Smoke @ODKConfig @ToBeAutomated
   Scenario: Servers - Advanced Configuration in Open Data Kit Server
     When the user presses the + button
     And selects the server "Open Data Kit (ODK)"
@@ -126,13 +126,6 @@ Feature: Servers
       | serverName     | serverUrl                                      | message        |
       | Server Crowdar | https://kc.kobotoolbox.org/tella_internal_test | Server created |
 
-  @ODKConfig
-  Scenario: Servers - Advanced Configuration in Open Data Kit Server
-    When the user presses the + button
-    And selects the server "Open Data Kit (ODK)"
-    And the user presses "OK" button
-    And expands the "Advanced" section
-    Then the user views the fields "Username"; "Password" to fill
 
   @Smoke @Automated @TellaWebConfig
   Scenario: Server - Tella Web configuration with URL

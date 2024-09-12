@@ -275,7 +275,7 @@ Feature: File Options
      # | audio | Audio  |
   #| document | Documents | you can create documents yet from tella app
 
-  @Smoke @Automated
+  @Smoke @Automated @SmokeManual
   Scenario Outline: Delete multiple files of <type> from the folder <folder>
     And there are files and folders within Tella app
     When the user enters the folder <folder>
@@ -290,7 +290,7 @@ Feature: File Options
       | image | Images |
       | video | Videos |
       | audio | Audio  |
-      #| document | Documents |  you can create documents yet from tella app
+      #| document | Documents |  you can't create documents yet from tella app
 
   Scenario Outline: Cancel the deletion of a <type> file from the folder <folder>
     When When the user enters the folder <folder>

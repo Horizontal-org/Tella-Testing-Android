@@ -82,7 +82,7 @@ Feature: PhotographyAndVideo
     And the user presses the next button
     Then the video resolution is selected
 
-  @Smoke @Video @ToBeAutomated
+  @Smoke @Video @SmokeManual
   Scenario: Check file size from the last file
     Given that the last file is a video with the highest resolution
     When the user presses the image located at the bottom right to the screen
