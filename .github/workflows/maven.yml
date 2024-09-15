@@ -20,16 +20,20 @@ on:
         required: true
         type: choice
         options:
-          - iPhone 13
+          - Google Pixel 3
           - Samsung Galaxy A13
-          - Google Pixel 6
+          - iPhone 13
           - Huawei P30
+          - Oppo A74
+          - Redmi Note 11
         default: 'Samsung Galaxy A13'
       os_version:
         description: 'Select the OS version to test'
         required: true
         default: '14.0'
         options:
+          - '9.0'
+          - '10.0'
           - '11.0'
           - '12.0'
           - '13.0'
@@ -74,6 +78,14 @@ jobs:
       - name: Setting environment variable
         run: echo "COMBINED_FILTER=${{ github.event.inputs.filter }}" >> $GITHUB_ENV
 
+      - name: Debugging environment variables
+        run: |
+          echo "BSDEVICE: $BSDEVICE"
+          echo "BSOS: $BSOS"
+          echo "BSUSER: $BSUSER"
+          echo "AUTHTOKEN: $AUTHTOKEN"
+          echo "BSAPP: $BSAPP"
+
       - name: Running Maven clean test
         run: |
           echo "Running tests with filter: '$COMBINED_FILTER' on device: '$BSDEVICE' with OS version: '$BSOS'"
@@ -94,3 +106,4 @@ jobs:
         with:
           name: test-results-surefire
           path: target/surefire-reports/
+
