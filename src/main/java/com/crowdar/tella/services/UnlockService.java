@@ -15,7 +15,7 @@ import java.time.Duration;
 
 
 public class UnlockService {
-    public static final int NEXT_BUTTON_CLICK_COUNT = 3;
+    public static final int NEXT_BUTTON_CLICK_COUNT = 4;
 
     public static void isViewLoaded() {
         MobileActionManager.waitVisibility(LockUnlockConstants.START_BUTTON);
@@ -27,7 +27,7 @@ public class UnlockService {
         MobileActionManager.click(LockUnlockConstants.REOPEN_APP_PASSWORD_VERIFICATION);
     }
 
-    public static void  isViewLoadedReopenAppWithPin() {
+    public static void isViewLoadedReopenAppWithPin() {
         MobileActionManager.waitVisibility(LockUnlockConstants.REOPEN_APP_PIN_VERIFICATION);
         MobileActionManager.click(LockUnlockConstants.REOPEN_APP_PIN_VERIFICATION);
     }
@@ -43,7 +43,7 @@ public class UnlockService {
         Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.START_BUTTON), LockUnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
     }
 
-    public static void enterPassword(String password){
+    public static void enterPassword(String password) {
         MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
         EventFiringWebDriver driver = DriverManager.getDriverInstance();
         driver.getKeyboard().sendKeys(Keys.ENTER);
@@ -89,7 +89,7 @@ public class UnlockService {
         }
     }
 
-    public static void enterPin(String pin){
+    public static void enterPin(String pin) {
         setPin(pin);
         MobileActionManager.click(LockUnlockConstants.PIN_OK_BUTTON);
     }
@@ -132,26 +132,26 @@ public class UnlockService {
                 .perform();
     }
 
-    public static void clickExit(){
+    public static void clickExit() {
         MobileActionManager.click(LockUnlockConstants.EXIT_BUTTON);
     }
 
-    public static void tapTellaApp(){
+    public static void tapTellaApp() {
         TouchAction touchAction = new TouchAction((PerformsTouchActions) DriverManager.getDriverInstance().getWrappedDriver());
         touchAction.press(PointOption.point(550, 1700))
-                   .waitAction(WaitOptions.waitOptions(Duration.ofMillis(3000)))
-                   .moveTo(PointOption.point(550, 400))
-                   .release()
-                   .perform();
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(3000)))
+                .moveTo(PointOption.point(550, 400))
+                .release()
+                .perform();
         MobileActionManager.click(LockUnlockConstants.TELLA_APP);
     }
 
-    public static void reopenTheApp () throws InterruptedException {
-            AppiumDriver<MobileElement> driver;
-            driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
-            driver.runAppInBackground(Duration.ofSeconds(5)); // Envía la app al fondo por 5 segundos
-            driver.activateApp("org.hzontal.tella"); // Usa el package name de tu app para traerla de vuelta al frente
-        }
-
+    public static void reopenTheApp() throws InterruptedException {
+        AppiumDriver<MobileElement> driver;
+        driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
+        driver.runAppInBackground(Duration.ofSeconds(5)); // Envía la app al fondo por 5 segundos
+        driver.activateApp("org.hzontal.tella"); // Usa el package name de tu app para traerla de vuelta al frente
     }
+
+}
 
