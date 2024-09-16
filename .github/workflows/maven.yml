@@ -1,0 +1,115 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: BrowserStack devices
+
+on:
+  workflow_dispatch:
+    inputs:
+      filter:
+        description: 'Filter for tests'
+        required: true
+        default: '@Smoke and @Automated'
+      device:
+        description: 'Select the device to test'
+        required: true
+        type: choice
+        options:
+          - Google Pixel 3
+          - Samsung Galaxy A11
+          - Samsung Galaxy A51
+          - Motorola Moto G71 5G
+          - Google Pixel 7 Pro
+          - Xiaomi Redmi Note 11
+          - Huawei P30
+          - Oppo Reno 6
+          - iPhone 11
+          - iPhone 12
+         
+        default: 'Google Pixel 3'
+      os_version:
+        description: 'Select the OS version to test'
+        required: true
+        default: '13.0'
+        options:
+          - '9.0'
+          - '10.0'
+          - '11.0'
+          - '12.0'
+          - '13.0'
+          - '14.0'
+          - '15.0'
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    container: crowdar/lippia:3.3.0.0-jdk17
+    environment: Automation
+    env:
+      BSUSER: ${{ secrets.BSUSER }}
+      AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
+      BSDEVICE: ${{ github.event.inputs.device }}
+      BSAPP: ${{ secrets.BSAPP }}
+      BSOS: ${{ github.event.inputs.os_version }}
+
+    steps:
+      - name: Checkout to the repository
+        uses: actions/checkout@v4
+
+      - name: Configuring JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: List directories to verify path
+        run: ls -al ~/.m2
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Checking Maven dependencies
+        run: mvn dependency:resolve  
+
+      - name: Setting environment variable
+        run: echo "COMBINED_FILTER=${{ github.event.inputs.filter }}" >> $GITHUB_ENV
+
+      - name: Debugging environment variables
+        run: |
+          echo "BSDEVICE: $BSDEVICE"
+          echo "BSOS: $BSOS"
+          echo "BSUSER: $BSUSER"
+          echo "AUTHTOKEN: $AUTHTOKEN"
+          echo "BSAPP: $BSAPP"
+
+      - name: Running Maven clean test
+        run: |
+          echo "Running tests with filter: '$COMBINED_FILTER' on device: '$BSDEVICE' with OS version: '$BSOS'"
+          mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
+                         -Denv.BSDEVICE="${{ github.event.inputs.device }}" \
+                         -Denv.BSOS="${{ github.event.inputs.os_version }}" \
+                         -PBrowserStack -PAndroid
+        shell: bash
+
+      - name: Uploading test reports
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: test-results
+          path: target/reports/
+
+      - name: Uploading surefire test reports
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: test-results-surefire
+          path: target/surefire-reports/
+
