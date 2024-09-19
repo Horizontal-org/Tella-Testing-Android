@@ -2,8 +2,7 @@
 Feature: Uwazi
 
   Background:
-    Given the user is authenticated in the Tella application with valid credentials
-    And the user is in Tella home page
+    Given the user is in Tella home page
     And the user is connected to the Uwazi server with public access
 
   @Smoke @ToBeAutomated

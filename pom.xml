@@ -1,6 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0">
-    <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0"><modelVersion>4.0.0</modelVersion>
 
     <artifactId>Lippia-mobile-sample-project</artifactId>
     <url>https://maven.apache.org</url>
@@ -41,6 +40,7 @@
         <test-manager-plugin>--plugin com.crowdar.tella.report.TestManager:</test-manager-plugin>
         <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.tella.report.Reporter: --plugin pretty</crowdar.cucumber.option>
         <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
+
         <crowdar.remoteDriverType></crowdar.remoteDriverType>
         <crowdar.reporter.avent>true</crowdar.reporter.avent>
         <crowdar.extent.host.name>LocalMachine</crowdar.extent.host.name>
@@ -70,9 +70,9 @@
                 <crowdar.driverHub>http://127.0.0.1:4723/</crowdar.driverHub>
                 <cucumber.runner>testngSecuencial.xml</cucumber.runner>
                 <crowdar.avd>Pixel3</crowdar.avd>
-                <crowdar.appLocation>C:\\\\Workspace\\\\Tella-Testing\\\\sample_apk\\\\new\\\\NewTellaApp.apk</crowdar.appLocation>
+                <crowdar.appLocation>C:\\\\Workspace\\\\Tella-Testing\\\\sample_apk\\\\new\\\\NewTellaApp.apk
+                </crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
-
                 <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emulatedCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
             </properties>
         </profile>
@@ -86,9 +86,7 @@
                 <crowdar.appLocation>C:\\\\Tella-Testing\\\\sample_apk\\\\old\\\\TellaAndroid.apk</crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
                 <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emulatedCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
-
                 <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emuladoCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
-
             </properties>
         </profile>
 
@@ -131,7 +129,6 @@
         </profile>
 
 
-
         <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
         <!--   Profiles related to Runners ejecutions         -->
         <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -168,7 +165,7 @@
         <dependency>
             <groupId>io.lippia.report</groupId>
             <artifactId>ltm-cucumber4-adapter</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.2-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -205,7 +202,6 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
-
 
 
         </plugins>
