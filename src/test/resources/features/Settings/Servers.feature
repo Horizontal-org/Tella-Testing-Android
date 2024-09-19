@@ -6,10 +6,12 @@ Feature: Servers
     And the user taps the settings icon
     And clicks on the option Servers
 
-  @Smoke @Automated @ViewServers
-  Scenario: Servers - View Server Options
+  @Smoke @ToBeAutomated @ViewServers
+  Scenario Outline: <Servers>  - View Server Options
     When the user presses the + button
     Then the user sees all possible server options available for connection
+    Examples:
+      | Servers             |
       | Open Data Kit (ODK) |
       | Tella Web           |
       | Uwazi               |
@@ -26,6 +28,30 @@ Feature: Servers
       | Open Data Kit (ODK) |
       | Tella Web           |
       | Uwazi               |
+
+  @Smoke @ViewServers @IOS
+  Scenario Outline: <Servers> - View Server Options
+    When the user presses the + button
+    Then the user sees all possible server options available for connection
+
+    Examples:
+      | Servers      |
+      | Tella Web    |
+      | Uwazi        |
+      | Google Drive |
+
+  @Smoke @SelectServers @IOS
+  Scenario Outline: Server - Select Server <server>
+    When the user presses the + button
+    And selects the server "<server>"
+    And the user presses "OK" button
+    Then the user views the server <server> settings
+
+    Examples:
+      | server       |
+      | Tella Web    |
+      | Uwazi        |
+      | Google Drive |
 
   @Smoke @Automated @ODKConfig
   Scenario Outline: Servers - ODK Server Configuration
@@ -167,3 +193,26 @@ Feature: Servers
       | English  |
       | Spanish  |
       | French   |
+
+  @Smoke @SmokeManual @IOS
+  Scenario Outline: Server - Google Drive
+    When the user presses the + button
+    And selects the server "Google Drive"
+    And the user presses "Next" button
+    And the user acepts permisions
+    And the user pick up the google account
+    And acepta los permisos
+    And elige la opcion <opciones>
+    And crea una nueva carpeta y la nombra
+    And the user presses "Next" button
+    Then the user view the message "You have successfully connected to the server and will be able to share your data."
+
+    Examples:
+      | options            |
+      | use shared drive   |
+      | use personal drive |
+
+
+
+
+
