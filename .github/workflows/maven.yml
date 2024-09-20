@@ -20,7 +20,6 @@ on:
         required: true
         type: choice
         options:
-          - Google Pixel 3
           - Samsung Galaxy A11
           - Samsung Galaxy A51
           - Motorola Moto G71 5G
@@ -28,22 +27,7 @@ on:
           - Xiaomi Redmi Note 11
           - Huawei P30
           - Oppo Reno 6
-          - iPhone 11
-          - iPhone 12
-         
-        default: 'Google Pixel 3'
-      os_version:
-        description: 'Select the OS version to test'
-        required: true
-        default: '13.0'
-        options:
-          - '9.0'
-          - '10.0'
-          - '11.0'
-          - '12.0'
-          - '13.0'
-          - '14.0'
-          - '15.0'
+        default: 'Samsung Galaxy A11'
 
 jobs:
   test:
@@ -55,7 +39,6 @@ jobs:
       AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
       BSDEVICE: ${{ github.event.inputs.device }}
       BSAPP: ${{ secrets.BSAPP }}
-      BSOS: ${{ github.event.inputs.os_version }}
 
     steps:
       - name: Checkout to the repository
@@ -67,9 +50,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: List directories to verify path
-        run: ls -al ~/.m2
-
       - name: Cache Maven dependencies
         uses: actions/cache@v4
         with:
@@ -78,11 +58,26 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Checking Maven dependencies
-        run: mvn dependency:resolve  
-
-      - name: Setting environment variable
-        run: echo "COMBINED_FILTER=${{ github.event.inputs.filter }}" >> $GITHUB_ENV
+      # Map device to the correct Android version
+      - name: Map device to OS version
+        run: |
+          if [[ "$BSDEVICE" == "Samsung Galaxy A11" ]]; then
+            echo "BSOS=10.0" >> $GITHUB_ENV
+          elif [[ "$BSDEVICE" == "Samsung Galaxy A51" ]]; then
+            echo "BSOS=10.0" >> $GITHUB_ENV
+          elif [[ "$BSDEVICE" == "Motorola Moto G71 5G" ]]; then
+            echo "BSOS=11.0" >> $GITHUB_ENV
+          elif [[ "$BSDEVICE" == "Google Pixel 7 Pro" ]]; then
+            echo "BSOS=13.0" >> $GITHUB_ENV
+          elif [[ "$BSDEVICE" == "Xiaomi Redmi Note 11" ]]; then
+            echo "BSOS=11.0" >> $GITHUB_ENV
+          elif [[ "$BSDEVICE" == "Huawei P30" ]]; then
+            echo "BSOS=9.0" >> $GITHUB_ENV
+          elif [[ "$BSDEVICE" == "Oppo Reno 6" ]]; then
+            echo "BSOS=11.0" >> $GITHUB_ENV
+          else
+            echo "BSOS=latest" >> $GITHUB_ENV
+          fi
 
       - name: Debugging environment variables
         run: |
@@ -96,8 +91,8 @@ jobs:
         run: |
           echo "Running tests with filter: '$COMBINED_FILTER' on device: '$BSDEVICE' with OS version: '$BSOS'"
           mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
-                         -Denv.BSDEVICE="${{ github.event.inputs.device }}" \
-                         -Denv.BSOS="${{ github.event.inputs.os_version }}" \
+                         -Denv.BSDEVICE="$BSDEVICE" \
+                         -Denv.BSOS="$BSOS" \
                          -PBrowserStack -PAndroid
         shell: bash
 
@@ -112,4 +107,3 @@ jobs:
         with:
           name: test-results-surefire
           path: target/surefire-reports/
-
