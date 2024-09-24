@@ -29,7 +29,7 @@ Feature: Servers
       | Tella Web           |
       | Uwazi               |
 
-  @Smoke @ViewServers @IOS
+  @Smoke @SmokeManual @ViewServers @IOS
   Scenario Outline: <Servers> - View Server Options
     When the user presses the + button
     Then the user sees all possible server options available for connection
@@ -40,7 +40,7 @@ Feature: Servers
       | Uwazi        |
       | Google Drive |
 
-  @Smoke @SelectServers @IOS
+  @Smoke @SmokeManual @SelectServers @IOS
   Scenario Outline: Server - Select Server <server>
     When the user presses the + button
     And selects the server "<server>"
