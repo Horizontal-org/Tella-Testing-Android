@@ -14,7 +14,8 @@ on:
       filter:
         description: 'Filter for tests'
         required: true
-        default: '@Smoke and @Automated'
+        default: '@Smoke and @Automated'  # Puedes definir un valor por defecto
+        type: string  # Permitir la entrada de un string libre
       device:
         description: 'Select the device to test'
         required: true
@@ -58,7 +59,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      # Map device to the correct Android version
       - name: Map device to OS version
         run: |
           if [[ "$BSDEVICE" == "Samsung Galaxy A11" ]]; then
