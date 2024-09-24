@@ -5,9 +5,7 @@ import io.lippia.reporter.ltm.TestManagerAPIAdapter;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
 import java.sql.SQLException;
-
 import static java.sql.DriverManager.getDriver;
 
 public class TestManagerReporter extends TestManagerAPIAdapter {

@@ -37,16 +37,16 @@
         <crowdar.cucumber.filter>@oki</crowdar.cucumber.filter>
         <crowdar.driverHub></crowdar.driverHub>
         <crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin com.crowdar.tella.listeners.CucumberListener:</crowdar.cucumber.plugins>
-        <test-manager-plugin>--plugin com.crowdar.tella.report.TestManager:</test-manager-plugin>
-        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.tella.report.Reporter: --plugin pretty</crowdar.cucumber.option>
+        <test-manager-plugin>--plugin com.crowdar.tella.report.TestManagerReporter:</test-manager-plugin>
+        <crowdar.cucumber.option>src/test/resources/features --glue com/crowdar --glue com/crowdar/bdd/cukes --tags ${crowdar.cucumber.filter} --tags 'not @Ignore' --plugin com.crowdar.tella.report.TestManagerReporter: --plugin com.crowdar.tella.report.Reporter: --plugin pretty</crowdar.cucumber.option>
         <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/androidCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
-
         <crowdar.remoteDriverType></crowdar.remoteDriverType>
         <crowdar.reporter.avent>true</crowdar.reporter.avent>
         <crowdar.extent.host.name>LocalMachine</crowdar.extent.host.name>
         <crowdar.extent.environment>Local</crowdar.extent.environment>
         <crowdar.extent.user.name>User.name</crowdar.extent.user.name>
         <crowdar.app.location>${env.APPLOCAL}</crowdar.app.location>
+
 
 
         <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -152,21 +152,25 @@
     </profiles>
 
     <dependencies>
+
         <dependency>
             <groupId>io.lippia</groupId>
             <artifactId>core</artifactId>
-            <version>${project.parent.version}</version>
+            <version>3.3.0.2</version>
         </dependency>
+
         <dependency>
             <groupId>io.lippia.report</groupId>
             <artifactId>extentreports-cucumber4-adapter</artifactId>
             <version>1.1.0.10</version>
         </dependency>
+
         <dependency>
             <groupId>io.lippia.report</groupId>
             <artifactId>ltm-cucumber4-adapter</artifactId>
             <version>1.2-SNAPSHOT</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -192,16 +196,21 @@
                         <suiteXmlFile>${cucumber.runner}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
-                        <TEST_MANAGER_USERNAME>admin</TEST_MANAGER_USERNAME>
-                        <TEST_MANAGER_PASSWORD>admin</TEST_MANAGER_PASSWORD>
-                        <TEST_MANAGER_API_HOST>https://runs.demo.lippia.io</TEST_MANAGER_API_HOST>
+
+                        <TEST_MANAGER_API_HOST>https://crowdaracademy.testmanager.lippia.io/run-result-import</TEST_MANAGER_API_HOST>
                         <TEST_MANAGER_API_PORT></TEST_MANAGER_API_PORT>
-                        <TEST_MANAGER_RUN_NAME>Mobile Demo</TEST_MANAGER_RUN_NAME>
-                        <TEST_MANAGER_PROJECT_CODE>LIPDEM</TEST_MANAGER_PROJECT_CODE>
+                        <TEST_MANAGER_RUN_NAME>Tella2024</TEST_MANAGER_RUN_NAME>
+                        <TEST_MANAGER_PROJECT_CODE>TELL</TEST_MANAGER_PROJECT_CODE>
+                        <TEST_MANAGER_USERNAME>AriadnaGarcía</TEST_MANAGER_USERNAME>
+                        <TEST_MANAGER_PASSWORD>Tel4978133</TEST_MANAGER_PASSWORD>
+                        <TEST_MANAGER_REPOSITORY_URL>https://github.com/Horizontal-org/Tella-Testing.git</TEST_MANAGER_REPOSITORY_URL>
+                        <TEST_MANAGER_REPOSITORY_BRANCH>main</TEST_MANAGER_REPOSITORY_BRANCH>
                         <buildIdentifier>${buildIdentifier}</buildIdentifier>
+
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+
 
 
         </plugins>
