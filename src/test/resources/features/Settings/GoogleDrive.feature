@@ -7,7 +7,7 @@ Feature: Google Drive
     And the user is connected to the Google Drive server
 
 
-  @Smoke @SmokeManual #falla, le subi con  fotos y no las puede subir
+  @Smoke @SmokeManual 
   Scenario Outline: Submit report with <Select files>
     When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button
@@ -27,7 +27,7 @@ Feature: Google Drive
       | Select from your device |
 
 
-  @Smoke @SmokeManual #echo falla en mostrar el cartel final
+  @Smoke @SmokeManual 
   Scenario: Submit new report with photo
     When the user taps the "Reports" connection
     And the user presses "NEW REPORT" button
@@ -39,7 +39,7 @@ Feature: Google Drive
     Then sees the file whith title "Crowdar" and description "Evidence photo" being uploaded
 
 
-  @Smoke @ToBeAutomated #echo
+  @Smoke @SmokeManual
   Scenario Outline: Submit new report with <recording>
     When the user taps the "Reports" connection
     And the user presses "NEW REPORT" button
@@ -56,7 +56,7 @@ Feature: Google Drive
       | audio     | Record audio           |
 
 
-  @Smoke @ToBeAutomated #echo falla en mostrar el cartel final
+  @Smoke @SmokeManual
   Scenario: Delete report during sending
     When the user taps the "Reports" connection
     And the user presses "NEW REPORT" button
@@ -74,7 +74,7 @@ Feature: Google Drive
     Then the approval message "File has been deleted" appears
 
 
-  @Smoke @ToBeAutomated  #echo
+  @Smoke @SmokeManual
   Scenario Outline: Save report to <option>
     When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button
@@ -90,7 +90,7 @@ Feature: Google Drive
       | Clock  | The report was saved to your Outbox. You can submit it when you ready |
 
 
-  @Smoke @ToBeAutomated  #echo falla en mostrar el cartel final
+  @Smoke @SmokeManual
   Scenario: Send a report from Outbox
   Given:the user has a report in the Outbox folder
     When the user taps the "Google Drive" connection
@@ -101,7 +101,7 @@ Feature: Google Drive
     Then the approval message "your report is available Outbox" appears
 
 
-  @Smoke @ToBeAutomated  #echo
+  @Smoke @SmokeManual
   Scenario: Send a report with video while the internet is desconnecting
     When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button
@@ -111,4 +111,4 @@ Feature: Google Drive
     And the user presses the button for take a photo
     And the user presses "SUBMIT" button
     And disconnect internet from your cell phone
-  # then el reporte no se subira pero estara disponible en OutBox
+    Then el reporte no se subira pero estara disponible en OutBox
