@@ -64,7 +64,7 @@ Feature: Tella Web
     And selects the option Select from Tella files
     And selects files and presses the "verification" icon
     And the user presses "SUBMIT" button
-    And in the file being uploaded presses Pause
+    And in the file being uploaded presses Resume
     And goes back
     And presses Outbox
     And presses the "Menu" icon of a Outbox report
@@ -190,7 +190,6 @@ Feature: Tella Web
     And presses Outbox
     And the user taps the "⁝" button
     And select View
-    And presses Resume
     And sees the file being uploaded
     Then the approval message "your report is available Outbox"
 
