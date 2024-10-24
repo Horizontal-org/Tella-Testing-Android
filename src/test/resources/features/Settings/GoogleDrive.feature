@@ -1,4 +1,4 @@
-@Regression @GoogleDrive @Servers @IOS
+@Regression @GoogleDrive @Servers
 
 Feature: Google Drive
 
@@ -7,7 +7,7 @@ Feature: Google Drive
     And the user is connected to the Google Drive server
 
 
-  @Smoke @SmokeManual 
+  @Smoke @SmokeManual
   Scenario Outline: Submit report with <Select files>
     When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button
@@ -27,7 +27,7 @@ Feature: Google Drive
       | Select from your device |
 
 
-  @Smoke @SmokeManual 
+  @Smoke @SmokeManual
   Scenario: Submit new report with photo
     When the user taps the "Reports" connection
     And the user presses "NEW REPORT" button
@@ -112,3 +112,5 @@ Feature: Google Drive
     And the user presses "SUBMIT" button
     And disconnect internet from your cell phone
     Then el reporte no se subira pero estara disponible en OutBox
+
+

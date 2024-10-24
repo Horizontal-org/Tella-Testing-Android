@@ -4,7 +4,7 @@ public class AudioConstants {
 
     public static final String REC_OPTION = "ACCESSIBILITY_ID:Rec";
 
-    public static final String MICROPHONE_ICON = "ACCESSIBILITY_ID:Record";
+    public static final String MICROPHONE_ICON = "id:record_audio";
 
     public static final String PERMISSIONS_MESSAGE = "com.android.permissioncontroller:id/permission_message";
 
