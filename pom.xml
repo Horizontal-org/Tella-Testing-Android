@@ -180,7 +180,6 @@
                         <suiteXmlFile>${cucumber.runner}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
-
                         <TEST_MANAGER_API_HOST>https://crowdaracademy.testmanager.lippia.io/run-result-import</TEST_MANAGER_API_HOST>
                         <TEST_MANAGER_API_PORT></TEST_MANAGER_API_PORT>
                         <TEST_MANAGER_RUN_NAME>AUTO-${crowdar.deviceName}-${crowdar.cucumber.filter}</TEST_MANAGER_RUN_NAME>
@@ -190,13 +189,9 @@
                         <TEST_MANAGER_REPOSITORY_URL>https://github.com/Horizontal-org/Tella-Testing.git</TEST_MANAGER_REPOSITORY_URL>
                         <TEST_MANAGER_REPOSITORY_BRANCH>main</TEST_MANAGER_REPOSITORY_BRANCH>
                         <buildIdentifier>${buildIdentifier}</buildIdentifier>
-
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
-
-
-
         </plugins>
     </build>
 

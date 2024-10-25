@@ -1,64 +1,35 @@
-@Regression @GoogleDrive @Servers
+@Regression @NextCloud @Servers @IOS
 
-Feature: Google Drive
+Feature: NextCloud
 
   Background:
     Given the user is in Tella home page
-    And the user is connected to the Google Drive server
+    And the user is connected to the NextCloud server
 
 
   @Smoke @SmokeManual
   Scenario Outline: Submit report with <Select files>
-    When the user taps the "Google Drive" connection
+    When the user taps the "NextCloud" connection
     And the user presses "NEW REPORT" button
     And completes the Title "Crowdar" and the Description "Evidence photo"
     And the user taps + button for the attach files
     And selects files option "<Select files>"
     And  optional selects files and presses the "verification" icon
     And the user presses "SUBMIT" button
-    Then sees the file being uploaded
-    And the sucessfull message "Your report is available in the Outbox" appears
+    Then the form will be visible in the submitted section
 
     Examples:
       | Select files            |
       | Take photo with camera  |
+      | Take video with camera  |
       | Record audio            |
       | Select from Tella files |
       | Select from your device |
 
 
   @Smoke @SmokeManual
-  Scenario: Submit new report with photo
-    When the user taps the "Reports" connection
-    And the user presses "NEW REPORT" button
-    And completes the Title "Crowdar" and the Description "Evidence photo"
-    And the user taps + button for the attach files
-    And selects files option "Take photo with camera"
-    And the user presses the button for take a photo
-    And the user presses "SUBMIT" button
-    Then sees the file whith title "Crowdar" and description "Evidence photo" being uploaded
-
-
-  @Smoke @SmokeManual
-  Scenario Outline: Submit new report with <recording>
-    When the user taps the "Reports" connection
-    And the user presses "NEW REPORT" button
-    And completes the Title "Crowdar" and the Description "Evidence <recording>"
-    And the user taps + button for the attach files
-    And selects files option "<Select files>"
-    And presses the "rec" and "stop" icon
-    And the user presses "SUBMIT" button
-    Then sees the file whith title "Crowdar" and description "Evidence <recording>" being uploaded
-
-    Examples:
-      | recording | Select files           |
-      | video     | Take photo with camera |
-      | audio     | Record audio           |
-
-
-  @Smoke @SmokeManual
   Scenario: Delete report during sending
-    When the user taps the "Reports" connection
+    When the user taps the "NextCloud" connection
     And the user presses "NEW REPORT" button
     And completes the Title "Crowdar" and the Description "Evidence"
     And the user taps + button for the attach files
@@ -71,13 +42,12 @@ Feature: Google Drive
     And presses the "Menu" icon of a Outbox report
     And selects Delete
     And confirms the Delete option
-    Then the approval message "File has been deleted" appears
+    Then the approval message "filename has been deleted" appears
 
 
   @Smoke @SmokeManual
-
   Scenario Outline: Save report to <option>
-    When the user taps the "GoogleDrive" connection
+    When the user taps the "NextCloud" connection
     And the user presses "NEW REPORT" button
     And completes the Title "Crowdar" and the Description "Evidence"
     And the user taps + button for the attach files
@@ -95,16 +65,17 @@ Feature: Google Drive
   @Smoke @SmokeManual
   Scenario: Send a report from Outbox
     And the user has a report in the Outbox folder
-    When the user taps the "Google Drive" connection
+    When the user taps the "NextCloud" connection
     And selects the option Outbox
     And the user taps the "⁝" button
     And selects View
-    And taps Submit
-    Then the approval message "your report is available Outbox" appears
+    And taps Resume
+    Then the form will be visible in the submitted section
+
 
   @Smoke @SmokeManual
-  Scenario: Send a report with video while the internet is desconnecting
-    When the user taps the "Google Drive" connection
+  Scenario: Send a report while the internet is desconnecting
+    When the user taps the "NextCloud" connection
     And the user presses "NEW REPORT" button
     And completes the Title "Crowdar" and the Description "Evidence photo"
     And the user taps + button for the attach files
@@ -112,11 +83,11 @@ Feature: Google Drive
     And the user presses the button for take a photo
     And the user presses "SUBMIT" button
     And disconnect internet from your cell phone
-    Then el reporte no se subira pero estara disponible en OutBox
+    Then the report will not be uploaded but will be available in OutBox
 
   @Smoke @ToBeAutomated
   Scenario: Save forms to Draft
-    When the user taps the "Google Drive" connection
+    When the user taps the "NextCloud" connection
     And the user presses "NEW REPORT" button
     And completes the Title "Crowdar" and the Description "Evidence photo"
     And the user taps + button for the attach files
@@ -131,4 +102,4 @@ Feature: Google Drive
     And the user taps the "⁝" button
     And selects Delete
     And confirms the Delete option
-    Then the approval message "The form was deleted" appears
+    Then the approval message "The "name form" was deleted" appears
