@@ -89,7 +89,7 @@ Feature: Uwazi
       | Select from Tella files |
       | Select from your device |
 
-  Scenario Outline: Submit entity with large attachments from the Supporting files
+  Scenario Outline: Submit entity with large attachments from the Supporting files <Files>
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
     And completes all the required fields
@@ -100,6 +100,7 @@ Feature: Uwazi
     And the entity is saved on the Submitted tab with the corresponding information
 
     Examples:
+      | Files                   |
       | Select from Tella files |
       | Select from your device |
 
