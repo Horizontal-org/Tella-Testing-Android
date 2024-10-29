@@ -1,7 +1,11 @@
 package com.crowdar.tella.services;
 
 import com.crowdar.core.actions.MobileActionManager;
+import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.driver.DriverManager;
+import com.crowdar.tella.constants.HomeConstants;
+import com.crowdar.tella.constants.LockUnlockConstants;
+import com.crowdar.tella.constants.ServersConstants;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -9,6 +13,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +26,7 @@ public class GenericService {
         } else if (locatorString.startsWith("xpath:")) {
             return By.xpath(locatorString.substring("xpath:".length()));
         } else if (locatorString.startsWith("accessibilityId:")) {
-        return MobileBy.AccessibilityId(locatorString.substring("ACCESSIBILITY_ID:".length()));
+            return MobileBy.AccessibilityId(locatorString.substring("ACCESSIBILITY_ID:".length()));
         }
         return null;
     }
@@ -35,6 +40,7 @@ public class GenericService {
             System.err.println("Tipo de localizador no soportado: " + locator);
         }
     }
+
     public static boolean verifyFilePresence(String fileType) {
         AndroidDriver<MobileElement> driver = (AndroidDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -84,6 +90,14 @@ public class GenericService {
         return false;
     }
 
+    public static void confirmLeaveTellaButton() {
+        MobileActionManager.waitVisibility(HomeConstants.LEAVE_TELLA);
+        MobileActionManager.waitClickable(HomeConstants.LEAVE_TELLA);
+        MobileActionManager.click(HomeConstants.LEAVE_TELLA);
+    }
 
+    public static void pickGoogle() { //OKI AÑADIR TRY CATCH AQUI
+        MobileActionManager.click(HomeConstants.PICK_GOOGLE_ACCOUNT);
+        //MobileActionManager.click(HomeConstants.ALOW_GOOGLE_IN_TELLA); esto va en el try catch
+    }
 }
-

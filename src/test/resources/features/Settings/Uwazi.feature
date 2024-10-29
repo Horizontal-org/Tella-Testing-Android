@@ -3,7 +3,8 @@ Feature: Uwazi
 
   Background:
     Given the user is in Tella home page
-    And the user is connected to the Uwazi server with public access
+    And the user is connected to the "Uwazi" server
+    #With public access
 
   @Smoke @ToBeAutomated
   Scenario: Download templates

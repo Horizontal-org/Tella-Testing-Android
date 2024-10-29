@@ -1,17 +1,24 @@
 package com.crowdar.tella.steps;
+
 import com.crowdar.core.PageSteps;
+import com.crowdar.core.actions.WebActionManager;
+import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.ServersConstants;
+import com.crowdar.tella.services.FilesService;
+import com.crowdar.tella.services.GenericService;
 import com.crowdar.tella.services.ServersService;
 import com.crowdar.tella.services.SettingsService;
 import io.cucumber.java.en.*;
+import org.testng.Assert;
 
 import java.util.List;
 
 public class ServersSteps extends PageSteps {
     @When("the user presses the + button")
     public void theUserPressesTheButton() {
-       ServersService.clickPlusButton();
+        ServersService.clickPlusButton();
     }
+
     @Then("the user sees all possible server options available for connection")
     public void theUserSeesAllPossibleServerOptionsAvailableForConnection(List<String> listServer) {
         ServersService.viewConectionsServerOptions(listServer);
@@ -90,6 +97,7 @@ public class ServersSteps extends PageSteps {
     @And("^the user is now connected to Uwazi server in (.*)$")
     public void theUserIsNowConnectedToUwaziServerIn(String language) {
     }
+
     @And("the user is connected to the Tella Web server")
     public void theUserIsConnectedToTheTellaWebServer() {
         SettingsService.clickSettingsIcon();
@@ -101,6 +109,7 @@ public class ServersSteps extends PageSteps {
         ServersService.pressButton("Next");
         ServersService.connectToTellaServer();
     }
+
     @When("^the user taps the \"(.*)\" connection$")
     public void theUserTapsTheConnection(String connection) {
         ServersService.tapsConnection(connection);
@@ -119,6 +128,7 @@ public class ServersSteps extends PageSteps {
     @And("^selects files option \"(.*)\"$")
     public void selectsFilesOption(String filesOptions) {
         ServersService.selectFiles(filesOptions);
+        FilesService.acceptPermissions();
     }
 
     @And("the user presses the button for take a photo")
@@ -135,4 +145,18 @@ public class ServersSteps extends PageSteps {
     public void theSucessfullMessageAppears(String message) {
         ServersService.viewMessage(message);
     }
+
+
+    @And("the user is connected to the Google drive server")
+    public void theUserIsConnectedToTheServer() {
+        SettingsService.clickSettingsIcon();
+        SettingsService.clickCategory("Servers");
+        ServersService.clickPlusButton();
+        ServersService.selectButton("Google drive");
+        ServersService.pressButton("OK");
+        GenericService.confirmLeaveTellaButton();
+        GenericService.pickGoogle();
+        ServersService.googleDrive();
+    }
 }
+
