@@ -99,6 +99,7 @@ jobs:
           mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
                          -Denv.BSDEVICE="${{ github.event.inputs.device }}" \
                          -Denv.BSOS="$BSOS" \
+                         -DTEST_MANAGER_RUN_NAME="AUTO-${{ github.event.inputs.device }}-${{ github.event.inputs.filter }}" \
                          -PBrowserStack -PAndroid
         shell: bash
 
@@ -113,3 +114,4 @@ jobs:
         with:
           name: test-results-surefire
           path: target/surefire-reports/
+
