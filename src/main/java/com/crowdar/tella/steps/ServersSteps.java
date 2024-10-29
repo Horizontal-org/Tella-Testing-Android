@@ -2,6 +2,7 @@ package com.crowdar.tella.steps;
 
 import com.crowdar.core.PageSteps;
 import com.crowdar.core.actions.WebActionManager;
+import com.crowdar.tella.constants.AudioConstants;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.ServersConstants;
 import com.crowdar.tella.services.FilesService;
@@ -129,10 +130,12 @@ public class ServersSteps extends PageSteps {
     public void selectsFilesOption(String filesOptions) {
         ServersService.selectFiles(filesOptions);
         FilesService.acceptPermissions();
+        FilesService.acceptPermissions();
     }
 
     @And("the user presses the button for take a photo")
     public void theUserPressesTheButtonForTakeAPhoto() {
+
         ServersService.takePhoto();
     }
 

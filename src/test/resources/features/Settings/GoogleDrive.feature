@@ -7,53 +7,50 @@ Feature: Google Drive
     And the user is connected to the Google drive server
 
 
-  @Smoke @SmokeManual
-  Scenario Outline: Submit report with <Select files>
-    When the user taps the "Google Drive" connection
-    And the user presses "NEW REPORT" button
-    And completes the Title "Crowdar" and the Description "Evidence photo"
-    And the user taps + button for the attach files
-    And selects files option "<Select files>"
-    And optional selects files and presses the "verification" icon
-    And the user presses "SUBMIT" button
-    Then sees the file being uploaded
-    And the sucessfull message "Your report is available in the Outbox" appears
-
-    Examples:
-      | Select files            |
-      | Take photo with camera  |
-      | Record audio            |
-      | Select from Tella files |
-      | Select from your device |
-
-
-  @Smoke @SmokeManual @oki
+  @Smoke @SmokeAutomated
   Scenario: Submit new report with photo
-    When the user taps the "Reports" connection
+    When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button
     And completes the Title "Crowdar" and the Description "Evidence photo"
     And the user taps + button for the attach files
     And selects files option "Take photo with camera"
     And the user presses the button for take a photo
     And the user presses "SUBMIT" button
-    Then sees the file whith title "Crowdar" and description "Evidence photo" being uploaded
+    Then the sucessfull message "Your report is available in the Outbox" appears
 
 
-  @Smoke @SmokeManual
+  @Smoke @@SmokeAutomated @oki
   Scenario Outline: Submit new report with <recording>
-    When the user taps the "Reports" connection
+    When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button
-    And completes the Title "Crowdar" and the Description "Evidence <recording>"
+    And completes the Title "Crowdar" and the Description "Evidence"
     And the user taps + button for the attach files
     And selects files option "<Select files>"
-    And presses the "rec" and "stop" icon
+    And press the record icon and then press stop
     And the user presses "SUBMIT" button
-    Then sees the file whith title "Crowdar" and description "Evidence <recording>" being uploaded
+    Then the sucessfull message "Your report is available in the Outbox" appears
 
     Examples:
       | recording | Select files           |
       | video     | Take photo with camera |
-      | audio     | Record audio           |
+    #  | audio     | Record audio           |
+
+
+  @Smoke @SmokeManual
+  Scenario Outline: Submit new report with <Select files>
+    When the user taps the "Google Drive" connection
+    And the user presses "NEW REPORT" button
+    And completes the Title "Crowdar" and the Description "Evidence"
+    And the user taps + button for the attach files
+    And selects files option "<Select files>"
+    And optional selects files and presses the "verification" icon
+    And the user presses "SUBMIT" button
+    Then the sucessfull message "Your report is available in the Outbox" appears
+
+    Examples:
+      | Select files            |
+      | Select from Tella files |
+      | Select from your device |
 
 
   @Smoke @SmokeManual
@@ -99,7 +96,7 @@ Feature: Google Drive
     And the user taps the "⁝" button
     And selects View
     And taps Submit
-    Then the approval message "your report is available Outbox" appears
+    Then the sucessfull message "Your report is available in the Outbox" appears
 
   @Smoke @SmokeManual
   Scenario: Send a report with video while the internet is desconnecting

@@ -176,4 +176,11 @@ public class FilesSteps {
     public void theFolderNameIsUpdated() {
         FilesService.validateFolderName();
     }
+
+
+    @And("press the record icon and then press stop")
+    public void pressTheRecordIconAndThenPressStop() {
+        GenericService.recAndStopRecord();
+
+    }
 }
