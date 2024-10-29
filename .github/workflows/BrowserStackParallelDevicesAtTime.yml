@@ -5,7 +5,6 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-
 name: BrowserStackParallelDevicesAtTime
 
 on:
@@ -101,6 +100,7 @@ jobs:
           mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
                          -Denv.BSDEVICE="${{ matrix.device }}" \
                          -Denv.BSOS="${{ matrix.android_version }}" \
+                         -DTEST_MANAGER_RUN_NAME="AUTO-${{ matrix.device }}-${{ github.event.inputs.filter }}" \
                          -PBrowserStack -PAndroid
         shell: bash
 
@@ -115,4 +115,3 @@ jobs:
         with:
           name: test-results-surefire
           path: target/surefire-reports/
-
