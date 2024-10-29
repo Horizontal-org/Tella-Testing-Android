@@ -4,7 +4,7 @@ Feature: Google Drive
 
   Background:
     Given the user is in Tella home page
-    And the user is connected to the Google Drive server
+    And the user is connected to the Google drive server
 
 
   @Smoke @SmokeManual
@@ -14,7 +14,7 @@ Feature: Google Drive
     And completes the Title "Crowdar" and the Description "Evidence photo"
     And the user taps + button for the attach files
     And selects files option "<Select files>"
-    And  optional selects files and presses the "verification" icon
+    And optional selects files and presses the "verification" icon
     And the user presses "SUBMIT" button
     Then sees the file being uploaded
     And the sucessfull message "Your report is available in the Outbox" appears
@@ -27,7 +27,7 @@ Feature: Google Drive
       | Select from your device |
 
 
-  @Smoke @SmokeManual
+  @Smoke @SmokeManual @oki
   Scenario: Submit new report with photo
     When the user taps the "Reports" connection
     And the user presses "NEW REPORT" button
@@ -75,7 +75,6 @@ Feature: Google Drive
 
 
   @Smoke @SmokeManual
-
   Scenario Outline: Save report to <option>
     When the user taps the "GoogleDrive" connection
     And the user presses "NEW REPORT" button
