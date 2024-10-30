@@ -19,7 +19,7 @@ Feature: Google Drive
     Then the sucessfull message "Your report is available in the Outbox" appears
 
 
-  @Smoke @@SmokeAutomated @oki
+  @Smoke @@SmokeAutomated
   Scenario Outline: Submit new report with <recording>
     When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button

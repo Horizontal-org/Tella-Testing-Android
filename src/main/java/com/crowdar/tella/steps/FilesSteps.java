@@ -128,8 +128,8 @@ public class FilesSteps {
 
     @When("the user enter the folder All Files")
     public void theUserEnterTheFolderAllFiles() {
-        GenericService.commonClick(FilesConstants.ALL_FILES);
-        FilesService.orderBy();
+ FilesService.clickFiles();
+      //  FilesService.orderBy();
     }
 
     @And("taps the option +")

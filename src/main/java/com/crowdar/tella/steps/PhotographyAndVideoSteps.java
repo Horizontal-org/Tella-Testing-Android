@@ -52,6 +52,7 @@ public class PhotographyAndVideoSteps {
 
     @And("the user takes a photography")
     public void theUserTakesAPhotography() {
+        FilesService.acceptPermissions();
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
     }
 
