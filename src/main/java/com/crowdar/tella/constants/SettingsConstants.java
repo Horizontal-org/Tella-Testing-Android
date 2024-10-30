@@ -19,7 +19,7 @@ public class SettingsConstants {
     public static final String FILES_SECTION = "id:favorites";
     public static final String SECTION_TEXT = "xpath://android.widget.ScrollView/android.view.ViewGroup/android" +
             ".widget.LinearLayout[4]";
-    public static final String SWITCH_LIST_BUTTON = "xpath:(//android.widget.Switch[@resource-id=\"org.hzontal.tella:id/mSwitch\"])" ;
+    public static final String SWITCH_LIST_BUTTON = "xpath:(//android.widget.Switch[@resource-id=\"org.hzontal.tella:id/mSwitch\"])";
     public static final String TELLA_ICON = "accessibility_id:Version";
     public static final String VERSION_TEXT = "id:version";
     public static final String ABOUT_HELP_OPTIONS = "id:options";
@@ -43,4 +43,7 @@ public class SettingsConstants {
     public static final String DELETE_FORM_ICON = "id:delete_forms_tooltip";
     public static final String DELETE_SERVER_ICON = "id:delete_server_tooltip";
     public static final String HELP_INFO_TEXTVIEW = "xpath://android.widget.TextView[@text=\"%s\"]";
+
+
+    public static final String REMAINING_UNLOCK_ATTEMPTS = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/titleTV\" and @text=\"Show unlock attempts remaining\"]";
 }

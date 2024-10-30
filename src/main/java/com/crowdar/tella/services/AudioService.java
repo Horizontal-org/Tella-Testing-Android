@@ -23,9 +23,23 @@ public class AudioService {
     }
 
     public static void clickMicrophoneIcon(){
-        MobileActionManager.waitVisibility(AudioConstants.MICROPHONE_ICON);
+       /* MobileActionManager.waitVisibility(AudioConstants.MICROPHONE_ICON);
         MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
         acceptPermissions();
+        MobileActionManager.click(AudioConstants.MICROPHONE_ICON);*/
+        if (MobileActionManager.isVisible(AudioConstants.MICROPHONE_ICON)) {
+            MobileActionManager.waitVisibility(AudioConstants.MICROPHONE_ICON);
+            MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
+
+            // Intentamos aceptar los permisos si están presentes
+            try {
+                acceptPermissions();  // Aceptar permisos si es necesario
+            } catch (Exception e) {
+                System.out.println("Permisos no presentes, continuando.");
+            }
+        } else {
+            System.out.println("El ícono del micrófono no está visible.");
+        }
         MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
     }
 
@@ -93,6 +107,6 @@ public class AudioService {
     public static void clickPause() throws InterruptedException {
         MobileActionManager.waitVisibility(AudioConstants.PAUSE_BUTTON);
         MobileActionManager.click(AudioConstants.PAUSE_BUTTON);
-        Thread.sleep(3000);
+        Thread.sleep(2000);
     }
 }

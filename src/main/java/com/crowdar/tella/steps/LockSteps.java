@@ -11,7 +11,7 @@ public class LockSteps {
 
     @When("tap the next button until reaching the lock options")
     public void tapNextButton() {
-        UnlockService.clickNextButtons(3);
+        UnlockService.clickNextButtons(4);
     }
     @And("tap the password button")
     public void tapThePasswordButton() {

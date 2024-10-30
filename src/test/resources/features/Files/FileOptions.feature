@@ -341,7 +341,7 @@ Feature: File Options
     And taps the option Move here
     Then the message File successfully moved appears
 
-  @Smoke @Automated
+  @Smoke @Automated @oki
   Scenario: Delete a folder with files inside
     When the user enter the folder All Files
     And taps the options button ⋮ of a file

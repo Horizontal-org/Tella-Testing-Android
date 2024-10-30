@@ -1,4 +1,5 @@
 @Regression @Audio
+
 Feature: Audio
 
   Background:
@@ -20,7 +21,7 @@ Feature: Audio
     When the user press the Rec option
     And the user press the microphone
     And the user press pause
-    And the user press the microphone
+    And the user press the microphone again
     And the user press stop option
     Then the approval message <message_title> is displayed
 

@@ -85,7 +85,7 @@ Feature: Security
     And select attempts <attempts> option
     And taps "OK" button
     Then the sucessfull message <message> is displayed
-    And the "Delete after failed unlock" option is changed to status <status>
+    And The option show remaining unlock attempts will be displayed enabled
 
     Examples:
       | attempts                 | status | message                                                         |

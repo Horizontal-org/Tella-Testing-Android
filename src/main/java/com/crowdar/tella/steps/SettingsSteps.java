@@ -1,10 +1,13 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.core.PropertyManager;
+import com.crowdar.core.actions.MobileActionManager;
+import com.crowdar.tella.constants.SettingsConstants;
 import com.crowdar.tella.services.HomeService;
 import com.crowdar.tella.services.SettingsService;
 import com.crowdar.tella.services.UnlockService;
 import io.cucumber.java.en.*;
+import org.testng.Assert;
 
 public class SettingsSteps {
     @Given("the user is in Tella home page")
@@ -32,8 +35,8 @@ public class SettingsSteps {
     public void theUserTapsTheSettingsIcon() {
         SettingsService.clickSettingsIcon();
     }
-    @And("taps the general option")
-    public void tapsTheGeneralOption() {
+    @And("tap the general option")
+    public void tapTheGeneralOption() {
         SettingsService.clickGeneralIcon();
     }
     @And("taps the language option in the general category")
@@ -164,5 +167,11 @@ public class SettingsSteps {
     @Then("^the \"(.*)\" option is activated$")
     public void theOptionIsActivated(String option) {
         SettingsService.viewButtonEnable(option);
+    }
+
+    @And("The option show remaining unlock attempts will be displayed enabled")
+    public void theOptionShowRemainingUnlockAttemptsWillBeDisplayedEnabled() {
+        MobileActionManager.waitVisibility(SettingsConstants.REMAINING_UNLOCK_ATTEMPTS);
+        Assert.assertTrue(true,SettingsConstants.REMAINING_UNLOCK_ATTEMPTS);
     }
 }

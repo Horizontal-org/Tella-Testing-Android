@@ -13,8 +13,8 @@ Feature: About and Help
     And view a list options
 
     Examples:
-      | category     | version             |
-      | About & Help | Version 2.9.0 (179) |
+      | category     | version              |
+      | About & Help | Version 2.12.0 (188) |
 
   @Smoke @Automated
   Scenario Outline: About & Help - Go to <option> page
