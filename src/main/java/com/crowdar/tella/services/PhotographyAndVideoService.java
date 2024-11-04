@@ -2,6 +2,7 @@ package com.crowdar.tella.services;
 
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
+import com.crowdar.tella.constants.PhotographyAndVideoConstants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import junit.framework.Assert;
@@ -110,6 +111,10 @@ public class PhotographyAndVideoService {
             e.printStackTrace();
             Assert.fail("Se produjo un error durante la verificación del cambio de nombre del archivo.");
         }
+    }
+    public static void enableGrid(){
+        MobileActionManager.waitClickable(PhotographyAndVideoConstants.CAMERA_GRID_SHOW);
+      GenericService.commonClick(PhotographyAndVideoConstants.CAMERA_GRID_SHOW);
     }
 }
 

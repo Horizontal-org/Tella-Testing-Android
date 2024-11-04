@@ -30,6 +30,7 @@ public class GenericService {
         By byLocator = stringToBy(locator);
         if (byLocator != null) {
             MobileActionManager.waitVisibility(locator);
+            MobileActionManager.waitClickable(locator);
             MobileActionManager.click(locator);
         } else {
             System.err.println("Tipo de localizador no soportado: " + locator);

@@ -23,17 +23,14 @@ public class AudioService {
     }
 
     public static void clickMicrophoneIcon(){
-       /* MobileActionManager.waitVisibility(AudioConstants.MICROPHONE_ICON);
-        MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
-        acceptPermissions();
-        MobileActionManager.click(AudioConstants.MICROPHONE_ICON);*/
+        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         if (MobileActionManager.isVisible(AudioConstants.MICROPHONE_ICON)) {
             MobileActionManager.waitVisibility(AudioConstants.MICROPHONE_ICON);
             MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
 
-            // Intentamos aceptar los permisos si están presentes
             try {
-                acceptPermissions();  // Aceptar permisos si es necesario
+                acceptPermissions();
             } catch (Exception e) {
                 System.out.println("Permisos no presentes, continuando.");
             }

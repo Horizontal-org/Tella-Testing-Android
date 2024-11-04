@@ -4,6 +4,7 @@ Feature: File Options
   Background:
     Given the user is in Tella home page
     And there are files and folders within Tella app
+    #this works bad
 
   @Smoke @ToBeAutomated
   Scenario Outline: Open a multimedia file <type> from the folder <folder>
@@ -341,7 +342,7 @@ Feature: File Options
     And taps the option Move here
     Then the message File successfully moved appears
 
-  @Smoke @Automated @oki
+  @Smoke @Automated
   Scenario: Delete a folder with files inside
     When the user enter the folder All Files
     And taps the options button ⋮ of a file

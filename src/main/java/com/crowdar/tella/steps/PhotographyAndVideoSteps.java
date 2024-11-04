@@ -1,8 +1,10 @@
 package com.crowdar.tella.steps;
 
+import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.PhotographyAndVideoConstants;
+import com.crowdar.tella.services.AudioService;
 import com.crowdar.tella.services.FilesService;
 import com.crowdar.tella.services.GenericService;
 import com.crowdar.tella.services.PhotographyAndVideoService;
@@ -18,7 +20,8 @@ public class PhotographyAndVideoSteps {
 
     @And("the user presses grid lines button")
     public void theUserPressesGridLinesButton() {
-        GenericService.commonClick(PhotographyAndVideoConstants.CAMERA_GRID_SHOW);
+        AudioService.acceptPermissions();
+        PhotographyAndVideoService.enableGrid();
     }
 
     @Then("the grid lines are now activated")

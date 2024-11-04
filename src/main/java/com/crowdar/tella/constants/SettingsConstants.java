@@ -2,7 +2,9 @@ package com.crowdar.tella.constants;
 
 public class SettingsConstants {
     public static final String SETTINGS_ICON = "id:left_img";
-    public static final String GENERAL_BUTTON = "id:general_settings_button";
+
+    public static final String GENERAL_BUTTON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/general_settings_button\"]";
+
     public static final String LANGUAGE_BUTTON = "id:language_settings_button";
     public static final String LANGUAGE_LIST = "id:language_list";
     public static final String LANGUAGE_TITLE = "id:startTitleTv";

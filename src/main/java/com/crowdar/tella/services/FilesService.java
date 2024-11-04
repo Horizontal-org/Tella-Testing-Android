@@ -154,22 +154,19 @@ public class FilesService {
     }
 
     public static void createPhotoFiles() {
-        AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
         GenericService.commonClick(HomeConstants.CAMERA_BUTTON);
         FilesService.acceptPermissions();
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        WebDriverWait wait = new WebDriverWait(driver, 5);
     }
 
-    public static void createVideoFiles() {
+    public static void createVideoFiles() throws InterruptedException {
         AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
         GenericService.commonClick(FilesConstants.VIDEO_OPTION);
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-       // driver.navigate().back();
-        WebActionManager.waitVisibility(FilesConstants.CLOSE_BUTTON);
-        WebActionManager.click(FilesConstants.CLOSE_BUTTON);
+        Thread.sleep(100);
+        MobileActionManager.click(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        WebActionManager.waitClickable(FilesConstants.CLOSE_BUTTON);
+
     }
 
 
@@ -187,7 +184,7 @@ public class FilesService {
         Assert.assertTrue(MobileActionManager.isEnabled(FilesConstants.CREATED_FILE_NAME));
     }
 
-    public static void createFiles() {
+    public static void createFiles() throws InterruptedException {
         createFolder();
         createAudioFiles();
         createPhotoFiles();
@@ -212,9 +209,9 @@ public class FilesService {
     }
 
     public static void clickFiles() {
-WebActionManager.click(HomeConstants.HOME_BUTTON);
+        MobileActionManager.click(HomeConstants.HOME_BUTTON);
         waitVisibility(FilesConstants.ALL_FILES);
-        WebActionManager.click(FilesConstants.ALL_FILES);
+        MobileActionManager.click(FilesConstants.ALL_FILES);
     }
 
 

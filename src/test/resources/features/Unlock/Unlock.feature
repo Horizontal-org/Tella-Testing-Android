@@ -2,7 +2,7 @@
 
 Feature: Unlock
 
-  @Smoke @Password @Automated #This test cannot be run in browserStack
+  @Smoke @Password @SmokeManual #This test cannot be run in browserStack
   Scenario Outline: Unlock the app with a password.
     Given the user is in Tella home page
     And the user close the app

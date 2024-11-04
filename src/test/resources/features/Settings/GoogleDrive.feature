@@ -1,13 +1,15 @@
 @Regression @GoogleDrive @Servers
 
 Feature: Google Drive
+  #CANNOT BE RUN VIA BROWSER STACK
 
   Background:
     Given the user is in Tella home page
     And the user is connected to the Google drive server
 
 
-  @Smoke @SmokeAutomated
+
+  @Smoke @SmokeManual
   Scenario: Submit new report with photo
     When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button
@@ -19,11 +21,11 @@ Feature: Google Drive
     Then the sucessfull message "Your report is available in the Outbox" appears
 
 
-  @Smoke @@SmokeAutomated
-  Scenario Outline: Submit new report with <recording>
+  @Smoke @@SmokeManual
+  Scenario Outline: Submit new report with <Recording>
     When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button
-    And completes the Title "Crowdar" and the Description "Evidence"
+    And completes the Title "Crowdar" and the Description "Evidence <Recording>"
     And the user taps + button for the attach files
     And selects files option "<Select files>"
     And press the record icon and then press stop
@@ -31,9 +33,9 @@ Feature: Google Drive
     Then the sucessfull message "Your report is available in the Outbox" appears
 
     Examples:
-      | recording | Select files           |
+      | Recording | Select files           |
       | video     | Take photo with camera |
-    #  | audio     | Record audio           |
+      | audio     | Record audio           |
 
 
   @Smoke @SmokeManual
@@ -68,7 +70,7 @@ Feature: Google Drive
     And presses the "Menu" icon of a Outbox report
     And selects Delete
     And confirms the Delete option
-    Then the approval message "File has been deleted" appears
+    Then the sucessfull message "File has been deleted" appears
 
 
   @Smoke @SmokeManual
@@ -108,9 +110,9 @@ Feature: Google Drive
     And the user presses the button for take a photo
     And the user presses "SUBMIT" button
     And disconnect internet from your cell phone
-    Then el reporte no se subira pero estara disponible en OutBox
+    Then the report will not be uploaded but will be available in OutBox
 
-  @Smoke @ToBeAutomated
+  @Smoke @SmokeManual
   Scenario: Save forms to Draft
     When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button
@@ -120,7 +122,7 @@ Feature: Google Drive
     Then the approval message "The report was saved as a draft" appears
     And the form is saved on the Draft
 
-  @Smoke @ToBeAutomated
+  @Smoke @SmokeManual
   Scenario: Delete form from Draft
     Given the user has an form in Draft
     When the user selects is in the category Draft
