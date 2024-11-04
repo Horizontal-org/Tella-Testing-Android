@@ -13,7 +13,7 @@ public class FilesConstants {
 
     public static final String CAPTURE_BUTTON = "xpath://android.widget.ImageButton[@content-desc='Take photo with camera']";
 
-    public static final String CLOSE_BUTTON = "id:close";
+    public static final String CLOSE_BUTTON = "ACCESSIBILITY_ID:cancel";
 
     public static final String STOP_RECORDING_BUTTON = "xpath://android.widget.ImageButton[@content-desc='Take video with camera']";
 

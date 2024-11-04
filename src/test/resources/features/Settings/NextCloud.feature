@@ -3,7 +3,7 @@ Feature: NextCloud
 
   Background:
     Given the user is in Tella home page
-    And the user is connected to the NextCloud server
+    And the user is connected to the "NextCloud" server
 
 
   @Smoke @SmokeManual

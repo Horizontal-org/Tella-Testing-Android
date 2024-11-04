@@ -1,4 +1,5 @@
 @General @Regression @Settings
+
 Feature: General
 
   Background:
@@ -20,7 +21,7 @@ Feature: General
 
   @Smoke @ChangeLanguage @Automated
   Scenario Outline: Change Language
-    When taps the general option
+    When taps the general button
     And taps the language option in the general category
     And views the list with all available languages
     And clicks on the language <language>
@@ -30,30 +31,30 @@ Feature: General
       | language   | title         |
       | Arabic     | اللغة         |
       | Belarusian | Мова          |
-      | English    | English       |
-      | Spanish    | Español       |
+      | English    | Language      |
+      | Spanish    | Idioma        |
       | Persian    | زبان          |
-      | French     | Français      |
+      | French     | Langue        |
       | Indonesian | Bahasa        |
       | Kachin     | Tsun Shaga Ga |
       | Kannada    | ಭಾಷೆ          |
       | Kurdish    | زمان          |
-      | Malayalam  | ഭാഷ          |
-      | Burmese    | ဘာသာစကား     |
-      | Portuguese | Portugu       |
+      | Malayalam  | ഭാഷ           |
+      | Burmese    | ဘာသာစကား      |
+      | Portuguese | Idioma        |
       | Russian    | Язык          |
-      | Tamil      | மொழி        |
-      | Vietnamese | Tiếng Việt    |
+      | Tamil      | மொழி         |
+      | Vietnamese | Ngôn ngữ      |
 
 
   @Smoke @Automated
   Scenario: View General Category Configurations
-    When taps the general option
+    When taps the general button
     Then the user should view a list with the general configurations of the app
 
   @Smoke @Automated
   Scenario Outline: Activate configuration <configuration>
-    When taps the general option
+    When taps the general button
     And switch configuration <configuration> to enable
     Then the user sees that the color has changed to green, indicating it is activated <configuration>
 

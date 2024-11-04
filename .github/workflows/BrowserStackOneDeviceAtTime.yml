@@ -5,7 +5,6 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-
 name: BrowserStack 1to1 Devices
 
 on:
@@ -80,7 +79,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Checking Maven dependencies
-        run: mvn dependency:resolve  
+        run: mvn dependency:resolve
 
       - name: Setting environment variable
         run: echo "COMBINED_FILTER=${{ github.event.inputs.filter }}" >> $GITHUB_ENV

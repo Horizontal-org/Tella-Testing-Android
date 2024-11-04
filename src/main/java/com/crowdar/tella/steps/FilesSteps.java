@@ -58,7 +58,7 @@ public class FilesSteps {
     }
 
     @And("there are files and folders within Tella app")
-    public void thereAreFilesAndFoldersWithinTellaApp() {
+    public void thereAreFilesAndFoldersWithinTellaApp() throws InterruptedException {
         FilesService.createFiles();
     }
 
@@ -76,7 +76,7 @@ public class FilesSteps {
 
     @And("taps the options button ⋮ for the (.*) file")
     public void tapsTheOptionsButtonForTheTypeFile(String type) {
-        MobileActionManager.click(FilesConstants.THREE_BUTTONS_OPTION_FILE,type);
+        MobileActionManager.click(FilesConstants.THREE_BUTTONS_OPTION_FILE, type);
     }
 
     @Then("the file (.*) is deleted")
@@ -128,8 +128,7 @@ public class FilesSteps {
 
     @When("the user enter the folder All Files")
     public void theUserEnterTheFolderAllFiles() {
-        GenericService.commonClick(FilesConstants.ALL_FILES);
-        FilesService.orderBy();
+        FilesService.clickFiles();
     }
 
     @And("taps the option +")
@@ -175,5 +174,12 @@ public class FilesSteps {
     @Then("the folder name is updated")
     public void theFolderNameIsUpdated() {
         FilesService.validateFolderName();
+    }
+
+
+    @And("press the record icon and then press stop")
+    public void pressTheRecordIconAndThenPressStop() {
+        GenericService.recAndStopRecord();
+
     }
 }
