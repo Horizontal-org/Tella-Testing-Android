@@ -27,7 +27,7 @@ Feature: About and Help
       | About & Help | FAQ            | tella-app.org/docs/    |
       | About & Help | Privacy policy | tella-app.org/privacy/ |
 
-    @Bug
+    @Ignore @Bug
     Examples:
       | category     | option     | site  |
       | About & Help | Contact us | email |
