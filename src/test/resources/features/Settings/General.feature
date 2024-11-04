@@ -46,12 +46,12 @@ Feature: General
       | Vietnamese | Ngôn ngữ      |
 
 
-  @Smoke @Automated @oki
+  @Smoke @Automated
   Scenario: View General Category Configurations
     When taps the general button
     Then the user should view a list with the general configurations of the app
 
-  @Smoke @Automated @oki
+  @Smoke @Automated
   Scenario Outline: Activate configuration <configuration>
     When taps the general button
     And switch configuration <configuration> to enable
