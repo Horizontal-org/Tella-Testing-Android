@@ -1,6 +1,7 @@
 package com.crowdar.tella.services;
 
 import com.crowdar.core.actions.MobileActionManager;
+import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.*;
 import io.appium.java_client.AppiumDriver;
@@ -16,8 +17,7 @@ import org.testng.asserts.Assertion;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static com.crowdar.core.actions.ActionManager.waitInvisibility;
-import static com.crowdar.core.actions.ActionManager.waitVisibility;
+import static com.crowdar.core.actions.ActionManager.*;
 
 public class FilesService {
 
@@ -120,7 +120,6 @@ public class FilesService {
         waitVisibility(FilesConstants.CREATED_FILE_NAME);
         String currentFolder = MobileActionManager.getText(FilesConstants.CURRENT_FOLDER);
         Assert.assertEquals(currentFolder, folderSave);
-        //regresamos al homepage de la aplicación
         MobileActionManager.click(FilesConstants.BACK_BUTTON);
     }
 
@@ -145,6 +144,7 @@ public class FilesService {
         }
     }
 
+
     public static void createAudioFiles() {
         GenericService.commonClick(AudioConstants.MICROPHONE_ICON2);
         AudioService.clickStartOption();
@@ -154,20 +154,19 @@ public class FilesService {
     }
 
     public static void createPhotoFiles() {
-        AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
         GenericService.commonClick(HomeConstants.CAMERA_BUTTON);
         FilesService.acceptPermissions();
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        WebDriverWait wait = new WebDriverWait(driver, 5);
     }
 
-    public static void createVideoFiles() {
+    public static void createVideoFiles() throws InterruptedException {
         AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
         GenericService.commonClick(FilesConstants.VIDEO_OPTION);
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
+        Thread.sleep(100);
+        MobileActionManager.click(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        WebActionManager.waitClickable(FilesConstants.CLOSE_BUTTON);
+
     }
 
 
@@ -185,7 +184,7 @@ public class FilesService {
         Assert.assertTrue(MobileActionManager.isEnabled(FilesConstants.CREATED_FILE_NAME));
     }
 
-    public static void createFiles() {
+    public static void createFiles() throws InterruptedException {
         createFolder();
         createAudioFiles();
         createPhotoFiles();
@@ -201,14 +200,19 @@ public class FilesService {
         waitInvisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER);
         Assert.assertFalse(MobileActionManager.isEnabled(FilesConstants.CREATED_FILE_NAME));
     }
-     public static void validateFolderName(){
-         AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
-         MobileElement folderNameElement = driver.findElement(By.xpath("//android.widget.TextView[@resource-id='org.hzontal.tella:id/fileNameTextView' and @text='Tella']"));
-         boolean isDisplayed = folderNameElement.isDisplayed();
-         Assert.assertTrue(isDisplayed, "The folder named 'Tella' is not displayed on the screen");
-     }
 
+    public static void validateFolderName() {
+        AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
+        MobileElement folderNameElement = driver.findElement(By.xpath("//android.widget.TextView[@resource-id='org.hzontal.tella:id/fileNameTextView' and @text='Tella']"));
+        boolean isDisplayed = folderNameElement.isDisplayed();
+        Assert.assertTrue(isDisplayed, "The folder named 'Tella' is not displayed on the screen");
+    }
 
+    public static void clickFiles() {
+        MobileActionManager.click(HomeConstants.HOME_BUTTON);
+        waitVisibility(FilesConstants.ALL_FILES);
+        MobileActionManager.click(FilesConstants.ALL_FILES);
+    }
 
 
 }

@@ -4,7 +4,7 @@ public class AudioConstants {
 
     public static final String REC_OPTION = "ACCESSIBILITY_ID:Rec";
 
-    public static final String MICROPHONE_ICON = "id:record_audio";
+    public static final String MICROPHONE_ICON = "xpath://android.widget.ImageButton[@content-desc=\"Record\"]";
 
     public static final String PERMISSIONS_MESSAGE = "com.android.permissioncontroller:id/permission_message";
 
@@ -18,7 +18,7 @@ public class AudioConstants {
 
     public static final String OK_BUTTON = "id:standard_sheet_confirm_btn";
 
-    public static final String STOP_BUTTON = "ACCESSIBILITY_ID:Stop";
+    public static final String STOP_BUTTON = "xpath://android.widget.ImageButton[@content-desc=\"Stop\"]";
 
     public static final String MESSAGE_TITLE = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/txv_msg\"]";
 

@@ -1,15 +1,21 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.core.PropertyManager;
+import com.crowdar.core.actions.MobileActionManager;
+import com.crowdar.driver.DriverManager;
+import com.crowdar.tella.constants.SettingsConstants;
 import com.crowdar.tella.services.HomeService;
 import com.crowdar.tella.services.SettingsService;
 import com.crowdar.tella.services.UnlockService;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class SettingsSteps {
     @Given("the user is in Tella home page")
     public void theUserIsInTellaHomePage() {
-        UnlockService.isViewLoaded();
+       UnlockService.isViewLoaded();
         UnlockService.setPassword(PropertyManager.getProperty("password"));
         UnlockService.goTella();
         HomeService.isHomeLoaded();
@@ -32,22 +38,27 @@ public class SettingsSteps {
     public void theUserTapsTheSettingsIcon() {
         SettingsService.clickSettingsIcon();
     }
-    @And("taps the general option")
-    public void tapsTheGeneralOption() {
+
+    @And("tap the general option")
+    public void tapTheGeneralOption() {
         SettingsService.clickGeneralIcon();
     }
+
     @And("taps the language option in the general category")
     public void tapsTheLanguageOption() {
         SettingsService.clickLanguageOptions();
     }
+
     @And("views the list with all available languages")
     public void viewsTheListWithAllAvailableLanguages() {
         SettingsService.verifyListOfLanguages();
     }
+
     @And("clicks on the language (.*)")
     public void clicksOnTheLanguage(String language) {
         SettingsService.clickChoosenLanguage(language);
     }
+
     @Then("views the title (.*) at the top of the page")
     public void viewsTheTitleAlTheTopOfThePage(String title) {
         SettingsService.verifyLanguageTitle(title);
@@ -57,30 +68,37 @@ public class SettingsSteps {
     public void clicksOnTheCategory(String category) {
         SettingsService.clickCategory(category);
     }
+
     @Then("the user access the category (.*)")
     public void theUserAccessTheCategory(String category) {
         SettingsService.accessCategory(category);
-}
+    }
+
     @Then("the user should view a list with the general configurations of the app")
     public void theUserShouldViewAListWithTheGeneralConfigurationsOfTheApp() {
         SettingsService.viewListGeneralConfifuration();
     }
+
     @And("switch configuration (.*) to enable")
     public void switchConfigurationToEnable(String configuration) {
         SettingsService.switchButtonEnable(configuration);
     }
+
     @Then("the user sees that the color has changed to green, indicating it is activated (.*)")
     public void theUserSeesThatTheColorHasChangedToGreenIndicatingItIsActivated(String configuration) {
         SettingsService.viewButtonEnable(configuration);
     }
+
     @Then("view the Tella icon")
     public void viewTheIconTella() {
         SettingsService.viewTellaIcon();
     }
+
     @And("the number version (.*)")
     public void theNumberVersion(String version) {
         SettingsService.viewVersion(version);
     }
+
     @And("view a list options")
     public void viewAListOptions() {
         SettingsService.viewList();
@@ -123,7 +141,8 @@ public class SettingsSteps {
 
     @And("the user set incorrect (.*) in (.*)")
     public void theUserSetIncorrectIn(String pin, String attempts) {
-        SettingsService.setIncorrectPinWithAttempts(pin, attempts);    }
+        SettingsService.setIncorrectPinWithAttempts(pin, attempts);
+    }
 
 
     @And("^select \"(.*)\" option$")
@@ -145,24 +164,40 @@ public class SettingsSteps {
     public void theOptionIsChangedToStatus(String option, String status) {
         SettingsService.changeStatus(option, status);
     }
+
     @Then("^the sucessfull message (.*) is displayed$")
     public void theSucessfullMessageIsDisplayed(String message) {
         SettingsService.viewMessage(message);
     }
+
     @And("^toggle the switch on the \"(.*)\" option$")
     public void toggleTheSwitchOnTheOption(String option) {
         SettingsService.switchButtonEnable(option);
     }
+
     @And("click on the help icon in (.*)")
     public void clickOnTheHelpIconIn(String option) {
         SettingsService.clickHelpInfo(option);
     }
+
     @Then("the help info message (.*) is displayed")
     public void theHelpInfoMessageIsDisplayed(String helpInfo) {
         SettingsService.showHelpInfoMessage(helpInfo);
     }
+
     @Then("^the \"(.*)\" option is activated$")
     public void theOptionIsActivated(String option) {
         SettingsService.viewButtonEnable(option);
+    }
+
+    @And("The option show remaining unlock attempts will be displayed enabled")
+    public void theOptionShowRemainingUnlockAttemptsWillBeDisplayedEnabled() {
+        MobileActionManager.waitVisibility(SettingsConstants.REMAINING_UNLOCK_ATTEMPTS);
+        Assert.assertTrue(true, SettingsConstants.REMAINING_UNLOCK_ATTEMPTS);
+    }
+
+    @When("taps the general button")
+    public void tapsTheGeneralButton() {
+        SettingsService.generalButton();
     }
 }

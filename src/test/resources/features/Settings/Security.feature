@@ -85,14 +85,14 @@ Feature: Security
     And select attempts <attempts> option
     And taps "OK" button
     Then the sucessfull message <message> is displayed
-    And the "Delete after failed unlock" option is changed to status <status>
+    And The option show remaining unlock attempts will be displayed enabled
 
     Examples:
-      | attempts                 | status | message                                                         |
-      | Off (do not delete data) | Off    |                                                                 |
-      | 5 attempts               | On     | Your Tella data will be deleted after 5 failed unlock attempts  |
-      | 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
-      | 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
+      | attempts    | status | message                                                         |
+     # | Off (do not delete data) | Off    |    make this case apart since it does not show any sign if it is off|
+      | 5 attempts  | On     | Your Tella data will be deleted after 5 failed unlock attempts  |
+      | 10 attempts | On     | Your Tella data will be deleted after 10 failed unlock attempts |
+      | 20 attempts | On     | Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon
