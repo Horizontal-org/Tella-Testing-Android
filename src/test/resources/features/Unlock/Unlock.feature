@@ -1,5 +1,4 @@
 @Regression @Unlock
-
 Feature: Unlock
 
   @Smoke @Password @Automated #This test cannot be run in browserStack
