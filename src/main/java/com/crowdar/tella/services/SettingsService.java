@@ -4,7 +4,9 @@ import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.SettingsConstants;
 import io.appium.java_client.MobileBy;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.util.HashMap;
 import java.util.Map;
@@ -126,6 +128,11 @@ public class SettingsService {
     public static void viewList() {
         MobileActionManager.waitVisibility(SettingsConstants.ABOUT_HELP_OPTIONS);
         Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.ABOUT_HELP_OPTIONS));
+    }
+
+    public static void generalButton() {
+        MobileActionManager.waitVisibility(SettingsConstants.GENERAL_BUTTON);
+        MobileActionManager.click(SettingsConstants.GENERAL_BUTTON);
     }
 
     public static void tapTheOption(String option) {

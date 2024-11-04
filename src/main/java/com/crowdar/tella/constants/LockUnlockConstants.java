@@ -1,7 +1,7 @@
 package com.crowdar.tella.constants;
 
 public class LockUnlockConstants {
-    public static final String START_BUTTON = "id:startBtn";
+    public static final String START_BUTTON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/startBtn\"]";
     public static final String REOPEN_APP_PASSWORD_VERIFICATION= "id:password_msgTV";
     public static final String REOPEN_APP_PIN_VERIFICATION= "id:pin_enterTV";
     public static final String NEXT_BUTTON = "id:next_btn";

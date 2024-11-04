@@ -8,7 +8,9 @@ import io.appium.java_client.*;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
@@ -16,6 +18,7 @@ import java.time.Duration;
 
 public class UnlockService {
     public static final int NEXT_BUTTON_CLICK_COUNT = 4;
+
 
     public static void isViewLoaded() {
         MobileActionManager.waitVisibility(LockUnlockConstants.START_BUTTON);
