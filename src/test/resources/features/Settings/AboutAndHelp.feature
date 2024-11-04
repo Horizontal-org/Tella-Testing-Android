@@ -1,4 +1,4 @@
-@Regression @AboutAndHelp
+@Regression @AboutAndHelp @Settings
 Feature: About and Help
 
   Background:
