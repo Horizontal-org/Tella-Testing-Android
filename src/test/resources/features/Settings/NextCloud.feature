@@ -1,5 +1,4 @@
 @Regression @NextCloud @Servers @IOS
-
 Feature: NextCloud
 
   Background:
