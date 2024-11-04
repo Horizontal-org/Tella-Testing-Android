@@ -1,4 +1,4 @@
-@General @Regression
+@General @Regression @Settings
 Feature: General
 
   Background:
