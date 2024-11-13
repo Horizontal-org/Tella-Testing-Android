@@ -1,0 +1,142 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+
+name: BrowserStack Experiment
+
+on:
+  workflow_dispatch:
+    inputs:
+      filter:
+        description: 'Filter for tests'
+        required: true
+        default: '@Smoke and @Automated'
+      device:
+        description: 'Select the device to test'
+        required: true
+        type: choice
+        options:
+          - Samsung Galaxy A11
+          - Samsung Galaxy A51
+          - Motorola Moto G71 5G
+          - Google Pixel 7 Pro
+          - Xiaomi Redmi Note 11
+          - Huawei P30
+          - Oppo Reno 6
+        default: 'Samsung Galaxy A11'
+      upload_apk:
+        description: 'Select whether to upload the APK'
+        required: true
+        type: choice
+        options:
+          - 'Yes'
+          - 'No'
+        default: 'No'
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    container: crowdar/lippia:3.3.0.0-jdk17
+    environment: Automation
+    env:
+      BSUSER: ${{ secrets.BSUSER }}
+      AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
+      BSDEVICE: ${{ github.event.inputs.device }}
+      BSAPP: ${{ secrets.BSAPP }}
+      UPLOAD_APK: ${{ github.event.inputs.upload_apk }} # Nuevo parámetro
+
+    steps:
+      - name: Checkout to the repository
+        uses: actions/checkout@v4
+
+      # Añadir autenticación para Google Drive si es necesario
+      - name: Configuring JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set Android version based on selected device
+        run: |
+          if [[ "${{ github.event.inputs.device }}" == "Samsung Galaxy A11" ]]; then
+            echo "BSOS=10" >> $GITHUB_ENV
+          elif [[ "${{ github.event.inputs.device }}" == "Samsung Galaxy A51" ]]; then
+            echo "BSOS=10" >> $GITHUB_ENV
+          elif [[ "${{ github.event.inputs.device }}" == "Motorola Moto G71 5G" ]]; then
+            echo "BSOS=11" >> $GITHUB_ENV
+          elif [[ "${{ github.event.inputs.device }}" == "Google Pixel 7 Pro" ]]; then
+            echo "BSOS=13" >> $GITHUB_ENV
+          elif [[ "${{ github.event.inputs.device }}" == "Xiaomi Redmi Note 11" ]]; then
+            echo "BSOS=11" >> $GITHUB_ENV
+          elif [[ "${{ github.event.inputs.device }}" == "Huawei P30" ]]; then
+            echo "BSOS=9" >> $GITHUB_ENV
+          elif [[ "${{ github.event.inputs.device }}" == "Oppo Reno 6" ]]; then
+            echo "BSOS=11" >> $GITHUB_ENV
+          fi
+
+      - name: List directories to verify path
+        run: ls -al ~/.m2
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Checking Maven dependencies
+        run: mvn dependency:resolve
+
+      - name: Setting environment variable
+        run: echo "COMBINED_FILTER=${{ github.event.inputs.filter }}" >> $GITHUB_ENV
+
+      - name: Debugging environment variables
+        run: |
+          echo "BSDEVICE: $BSDEVICE"
+          echo "BSOS: $BSOS"
+          echo "BSUSER: $BSUSER"
+          echo "AUTHTOKEN: $AUTHTOKEN"
+          echo "BSAPP: $BSAPP"
+
+      # Solo sube la APK si el valor de UPLOAD_APK es 'Yes'
+      - name: Upload APK to BrowserStack
+        if: ${{ env.UPLOAD_APK == 'Yes' }}
+        run: |
+          APK_PATH="$BSAPP"  # Ruta de la APK
+          response=$(curl -u "$BSUSER:$AUTHTOKEN" "https://api-cloud.browserstack.com/app-automate/versions.json?app_name=$(basename $APK_PATH)")
+          
+          if echo "$response" | grep -q '"status":"ok"'; then
+            echo "APK already uploaded to BrowserStack."
+          else
+            echo "APK not found on BrowserStack. Uploading..."
+            curl -u "$BSUSER:$AUTHTOKEN" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@$APK_PATH"
+            echo "APK uploaded successfully."
+          fi
+
+      - name: Running Maven clean test
+        run: |
+          echo "Running tests with filter: '$COMBINED_FILTER' on device: '$BSDEVICE' with OS version: '$BSOS'"
+          mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
+                         -Denv.BSDEVICE="${{ github.event.inputs.device }}" \
+                         -Denv.BSOS="$BSOS" \
+                         -DTEST_MANAGER_RUN_NAME="AUTO-${{ github.event.inputs.device }}-${{ github.event.inputs.filter }}" \
+                         -PBrowserStack -PAndroid
+        shell: bash
+
+      - name: Uploading test reports
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: test-results
+          path: target/reports/
+
+      - name: Uploading surefire test reports
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: test-results-surefire
+          path: target/surefire-reports/
