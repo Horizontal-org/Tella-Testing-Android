@@ -54,7 +54,7 @@ Feature: Google Drive
 
   @Smoke @SmokeManual
   Scenario: Delete report during sending
-    When the user taps the "Reports" connection
+    When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button
     And completes the Title "Crowdar" and the Description "Evidence"
     And the user taps + button for the attach files

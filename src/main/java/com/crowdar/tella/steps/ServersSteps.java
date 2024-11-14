@@ -20,7 +20,7 @@ public class ServersSteps extends PageSteps {
         ServersService.clickPlusButton();
     }
 
-    @Then("the user sees all possible server options available for connection")
+    @Then("the user sees all possible (.*) options available for connection")
     public void theUserSeesAllPossibleServerOptionsAvailableForConnection(List<String> listServer) {
         ServersService.viewConectionsServerOptions(listServer);
     }
