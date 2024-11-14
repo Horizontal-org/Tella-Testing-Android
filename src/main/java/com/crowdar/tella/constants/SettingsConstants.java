@@ -45,7 +45,8 @@ public class SettingsConstants {
     public static final String DELETE_FORM_ICON = "id:delete_forms_tooltip";
     public static final String DELETE_SERVER_ICON = "id:delete_server_tooltip";
     public static final String HELP_INFO_TEXTVIEW = "xpath://android.widget.TextView[@text=\"%s\"]";
+    public static final String REMAINING_UNLOCK_ATTEMPTS = "(//android.widget.Switch[@resource-id=\"org.hzontal.tella:id/mSwitch\"])[1]";
 
 
-    public static final String REMAINING_UNLOCK_ATTEMPTS = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/titleTV\" and @text=\"Show unlock attempts remaining\"]";
+
 }

@@ -26,7 +26,7 @@ public class ServersService {
     }
 
     public static void selectButton(String server) {
-        MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
+        //MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
         ActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, server);
     }
 
