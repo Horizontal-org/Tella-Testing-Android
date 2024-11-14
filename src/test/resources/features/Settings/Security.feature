@@ -67,6 +67,7 @@ Feature: Security
   @Smoke @DeleteAfterFailedUnlock @SmokeManual
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
+    And the sucessfull message <message> is displayed
     And select attempts <attempts> option
     And taps "OK" button
     And the user close the app
@@ -74,10 +75,10 @@ Feature: Security
     Then sees that the files have been deleted
 
     Examples:
-      | attempts    | PIN    |
-      | 5 attempts  | 123450 |
-      | 10 attempts | 123451 |
-      | 20 attempts | 123450 |
+      | attempts    | PIN    | message                                                         |
+      | 5 attempts  | 123450 | Your Tella data will be deleted after 5 failed unlock attempts  |
+      | 10 attempts | 123451 | Your Tella data will be deleted after 10 failed unlock attempts |
+      | 20 attempts | 123450 | Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @DeleteAfterFailedUnlock @Automated
   Scenario Outline: Security - Delete after failed unlock
@@ -91,7 +92,7 @@ Feature: Security
       | attempts    | status | message                                                         |
      # | Off (do not delete data) | Off    |    make this case apart since it does not show any sign if it is off|
       | 5 attempts  | On     | Your Tella data will be deleted after 5 failed unlock attempts  |
-      | 10 attempts | On     | Your Tella data will be deleted after 10 failed unlock attempts |
+     | 10 attempts | On     | Your Tella data will be deleted after 10 failed unlock attempts |
       | 20 attempts | On     | Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @Camouflage @SmokeManual
