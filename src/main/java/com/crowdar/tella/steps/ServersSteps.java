@@ -20,7 +20,7 @@ public class ServersSteps extends PageSteps {
         ServersService.clickPlusButton();
     }
 
-    @Then("the user sees all possible server options available for connection")
+    @Then("the user sees all possible (.*) options available for connection")
     public void theUserSeesAllPossibleServerOptionsAvailableForConnection(List<String> listServer) {
         ServersService.viewConectionsServerOptions(listServer);
     }
@@ -56,7 +56,7 @@ public class ServersSteps extends PageSteps {
     }
 
     @Then("^the user views the message (.*)$")
-    public void theUserViewsTheMessage(String message) {
+    public void theUserViewsTheMessage(String message) throws InterruptedException {
         ServersService.viewMessage(message);
     }
 
@@ -145,7 +145,7 @@ public class ServersSteps extends PageSteps {
     }
 
     @And("the sucessfull message \"(.*)\" appears")
-    public void theSucessfullMessageAppears(String message) {
+    public void theSucessfullMessageAppears(String message) throws InterruptedException {
         ServersService.viewMessage(message);
     }
 

@@ -22,7 +22,8 @@ public class AudioService {
         MobileActionManager.click(AudioConstants.REC_OPTION);
     }
 
-    public static void clickMicrophoneIcon(){
+    public static void clickMicrophoneIcon() throws InterruptedException {
+        Thread.sleep(1000);
         WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
         WebDriverWait wait = new WebDriverWait(driver, 5);
         if (MobileActionManager.isVisible(AudioConstants.MICROPHONE_ICON)) {

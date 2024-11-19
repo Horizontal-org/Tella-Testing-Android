@@ -267,7 +267,7 @@ Feature: File Options
     And taps the options button ⋮ for the <type> file
     And the user presses Delete button
     And the user presses confirm Delete button
-    Then the message The file was deleted. appears
+    Then the sucessfull message "The files were deleted." appears
 
     Examples:
       | type  | folder |
@@ -278,13 +278,13 @@ Feature: File Options
 
   @Smoke @Automated @SmokeManual
   Scenario Outline: Delete multiple files of <type> from the folder <folder>
-    And there are files and folders within Tella app
     When the user enters the folder <folder>
     And taps the Checkbox button and selects multiple <type> files
     And taps the options button ⋮
     And the user presses Delete button
     And the user presses confirm Delete button
-    Then the message The file was deleted. appears
+    Then the sucessfull message "The file was deleted." appears
+
 
     Examples:
       | type  | folder |
@@ -321,14 +321,15 @@ Feature: File Options
       | audio    | Audio     |
       | document | Documents |
 
-  @Smoke @ToBeAutomated
+  @Smoke @Automated
   Scenario: Move a file to another existing folder
     When the user enter the folder All Files
     And taps the options button ⋮ of a file
     And taps the option Move to another folder
     And chooses the destination folder
     And taps the option Move here
-    Then the message File successfully moved appears
+    Then the sucessfull message "File successfully moved" appears
+
 
   @Smoke @Automated
   Scenario: Move a file by creating a folder
@@ -340,7 +341,7 @@ Feature: File Options
     And presses Ok button
     And chooses the new folder a destination
     And taps the option Move here
-    Then the message File successfully moved appears
+    Then the sucessfull message "File successfully moved" appears
 
   @Smoke @Automated
   Scenario: Delete a folder with files inside
@@ -356,7 +357,7 @@ Feature: File Options
     And taps the options button ⋮ of the created folder
     And the user presses Delete button
     And the user presses confirm Delete button
-    Then the message The files were deleted. appears
+    Then the sucessfull message "The file was deleted." appears
 
   @Smoke @Automated
   Scenario: Rename a folder

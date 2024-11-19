@@ -13,10 +13,10 @@ Feature: About and Help
     And view a list options
 
     Examples:
-      | category     | version              |
-      | About & Help | Version 2.12.0 (188) |
+      | category     | version                            |
+      | About & Help | Version 2.13.1 (SS disabled) (191) |
 
-  @Smoke @Automated
+  @Smoke @SmokeManual
   Scenario Outline: About & Help - Go to <option> page
     When clicks on the category <category>
     And taps the <option> option

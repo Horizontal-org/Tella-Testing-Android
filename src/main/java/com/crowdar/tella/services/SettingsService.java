@@ -1,11 +1,15 @@
 package com.crowdar.tella.services;
 
 import com.crowdar.core.actions.MobileActionManager;
+import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.SettingsConstants;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.util.HashMap;
@@ -232,5 +236,11 @@ public class SettingsService {
     public static void showHelpInfoMessage(String helpInfo) {
         MobileActionManager.waitVisibility(SettingsConstants.HELP_INFO_TEXTVIEW, helpInfo);
         Assert.assertTrue(MobileActionManager.getText(SettingsConstants.HELP_INFO_TEXTVIEW, helpInfo).equals(helpInfo));
+    }
+
+    public static void checkedButton() {
+        AndroidDriver driver = (AndroidDriver) GenericService.getDriver();
+        MobileElement checked = (MobileElement) driver.findElement(MobileBy.xpath(SettingsConstants.REMAINING_UNLOCK_ATTEMPTS));
+        Assert.assertTrue(checked.isEnabled());
     }
 }

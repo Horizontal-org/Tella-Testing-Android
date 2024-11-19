@@ -13,7 +13,7 @@ public class FilesConstants {
 
     public static final String CAPTURE_BUTTON = "xpath://android.widget.ImageButton[@content-desc='Take photo with camera']";
 
-    public static final String CLOSE_BUTTON = "ACCESSIBILITY_ID:cancel";
+    public static final String CLOSE_BUTTON = "xpath://android.widget.ImageView[@content-desc=\"cancel\"]";
 
     public static final String STOP_RECORDING_BUTTON = "xpath://android.widget.ImageButton[@content-desc='Take video with camera']";
 
@@ -52,4 +52,6 @@ public class FilesConstants {
     public static final String PICK_FOLDER = "xpath:(//android.view.ViewGroup[@resource-id=\"org.hzontal.tella:id/root\"])[4]";
 
     public static final String ADD_FOLDER = "id:fab_move_button";
+
+    public static final String NEW_FOLDER = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/fileNameTextView\" and @text=\"TellaFolder\"]";
 }
