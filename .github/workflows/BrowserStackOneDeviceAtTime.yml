@@ -93,6 +93,8 @@ jobs:
           echo "BSUSER: $BSUSER"
           echo "AUTHTOKEN: $AUTHTOKEN"
           echo "BSAPP: $BSAPP"
+          echo "LTM_GENERAL: $LTM_GENERAL"
+          echo "LTM_GENERAL_PASS: $LTM_GENERAL_PASS"
 
       - name: Running Maven clean test
         run: |
@@ -101,6 +103,8 @@ jobs:
                          -Denv.BSDEVICE="${{ github.event.inputs.device }}" \
                          -Denv.BSOS="$BSOS" \
                          -DTEST_MANAGER_RUN_NAME="AUTO-${{ github.event.inputs.device }}-${{ github.event.inputs.filter }}" \
+                         -DLTM_GENERAL="${{ secrets.LTM_GENERAL }}" \
+                         -DLTM_GENERAL_PASS="${{ secrets.LTM_GENERAL_PASS }}" \
                          -PBrowserStack -PAndroid
         shell: bash
 
