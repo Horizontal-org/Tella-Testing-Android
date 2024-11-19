@@ -6,7 +6,7 @@ public class HomeConstants {
 
     public static final String APP_MSG = "id:txv_msg";
 
-    public static final String HOME_BUTTON = "id:home";
+    public static final String HOME_BUTTON = "xpath:(//android.widget.ImageView[@resource-id=\"org.hzontal.tella:id/navigation_bar_item_icon_view\"])[1]";
 
     public static final String CAMERA_BUTTON = "id:camera";
 

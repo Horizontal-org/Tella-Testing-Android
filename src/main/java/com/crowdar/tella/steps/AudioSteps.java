@@ -13,7 +13,7 @@ public class AudioSteps {
     }
 
     @And("the user press the microphone")
-    public void tapsTheGeneralOption() {
+    public void tapsTheGeneralOption() throws InterruptedException {
         AudioService.clickMicrophoneIcon();
     }
 
