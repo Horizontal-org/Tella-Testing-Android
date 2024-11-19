@@ -38,6 +38,8 @@ jobs:
       AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
       BSDEVICE: ${{ github.event.inputs.device }}
       BSAPP: ${{ secrets.BSAPP }}
+      LTM_GENERAL: ${{ secrets.LTM_GENERAL }}
+      LTM_GENERAL_PASS: ${{ secrets.LTM_GENERAL_PASS }}
 
     steps:
       - name: Checkout to the repository
