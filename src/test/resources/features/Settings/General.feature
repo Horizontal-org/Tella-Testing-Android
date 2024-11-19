@@ -6,18 +6,18 @@ Feature: General
     Given the user is in Tella home page
     And the user taps the settings icon
 
-  @Smoke @Automated
+  @Smoke @Automated 
   Scenario Outline: View Settings Categories
     When clicks on the category <category>
-    Then the user access the category <category>
+    Then the user access the category <visible>
 
     Examples:
-      | category     |
-      | General      |
-      | Security     |
-      | Servers      |
-      | About & Help |
-      | Feedback     |
+      | category     | visible      |
+      | General      | General      |
+      | Security     | Security     |
+      | Servers      | Connections  |
+      | About & Help | About & Help |
+      | Feedback     | Feedback     |
 
   @Smoke @ChangeLanguage @Automated
   Scenario Outline: Change Language
