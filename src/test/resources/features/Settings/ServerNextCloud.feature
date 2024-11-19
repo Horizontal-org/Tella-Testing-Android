@@ -1,5 +1,6 @@
-@Regression @NextCloud @Servers @IOS
+@Regression @NextCloud @Servers
 Feature: NextCloud
+  #CANNOT BE RUN VIA BROWSER STACK
 
   Background:
     Given the user is in Tella home page

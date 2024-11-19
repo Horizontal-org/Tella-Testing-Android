@@ -1,12 +1,10 @@
 @Regression @GoogleDrive @Servers
-
 Feature: Google Drive
   #CANNOT BE RUN VIA BROWSER STACK
 
   Background:
     Given the user is in Tella home page
     And the user is connected to the Google drive server
-
 
 
   @Smoke @SmokeManual
@@ -19,7 +17,6 @@ Feature: Google Drive
     And the user presses the button for take a photo
     And the user presses "SUBMIT" button
     Then the sucessfull message "Your report is available in the Outbox" appears
-
 
   @Smoke @@SmokeManual
   Scenario Outline: Submit new report with <Recording>
@@ -57,7 +54,7 @@ Feature: Google Drive
 
   @Smoke @SmokeManual
   Scenario: Delete report during sending
-    When the user taps the "Reports" connection
+    When the user taps the "Google Drive" connection
     And the user presses "NEW REPORT" button
     And completes the Title "Crowdar" and the Description "Evidence"
     And the user taps + button for the attach files
@@ -71,7 +68,6 @@ Feature: Google Drive
     And selects Delete
     And confirms the Delete option
     Then the sucessfull message "File has been deleted" appears
-
 
   @Smoke @SmokeManual
   Scenario Outline: Save report to <option>
@@ -111,16 +107,6 @@ Feature: Google Drive
     And the user presses "SUBMIT" button
     And disconnect internet from your cell phone
     Then the report will not be uploaded but will be available in OutBox
-
-  @Smoke @SmokeManual
-  Scenario: Save forms to Draft
-    When the user taps the "Google Drive" connection
-    And the user presses "NEW REPORT" button
-    And completes the Title "Crowdar" and the Description "Evidence photo"
-    And the user taps + button for the attach files
-    And presses "Save" icon
-    Then the approval message "The report was saved as a draft" appears
-    And the form is saved on the Draft
 
   @Smoke @SmokeManual
   Scenario: Delete form from Draft

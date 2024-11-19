@@ -192,8 +192,7 @@ public class SettingsSteps {
 
     @And("The option show remaining unlock attempts will be displayed enabled")
     public void theOptionShowRemainingUnlockAttemptsWillBeDisplayedEnabled() {
-        MobileActionManager.waitVisibility(SettingsConstants.REMAINING_UNLOCK_ATTEMPTS);
-        Assert.assertTrue(true, SettingsConstants.REMAINING_UNLOCK_ATTEMPTS);
+        SettingsService.checkedButton();
     }
 
     @When("taps the general button")
