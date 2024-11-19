@@ -59,7 +59,8 @@ public class ServersService {
         MobileActionManager.setInput(ServersConstants.URL_INPUT, serverUrl);
     }
 
-    public static void viewMessage(String message) {
+    public static void viewMessage(String message) throws InterruptedException {
+        Thread.sleep(100);
         MobileActionManager.waitVisibility(ServersConstants.TEXT_SERVER_MSG);
         Assert.assertTrue(MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG).contains(message));
     }

@@ -156,7 +156,7 @@ Feature: DropBox
     And disconnect internet from your cell phone
     Then the report will not be uploaded but will be available in OutBox
 
-    
+
   #Submitted Reports
   @Smoke @SmokeManual
   Scenario: View a report from Submitted

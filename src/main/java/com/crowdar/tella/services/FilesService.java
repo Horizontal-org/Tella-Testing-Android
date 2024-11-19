@@ -164,8 +164,10 @@ public class FilesService {
         GenericService.commonClick(FilesConstants.VIDEO_OPTION);
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
         Thread.sleep(100);
-        MobileActionManager.click(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        WebActionManager.waitClickable(FilesConstants.CLOSE_BUTTON);
+        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        Thread.sleep(100);
+        MobileActionManager.waitClickable(FilesConstants.CLOSE_BUTTON);
+        GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
 
     }
 
@@ -214,6 +216,10 @@ public class FilesService {
         MobileActionManager.click(FilesConstants.ALL_FILES);
     }
 
+    public static void chooseNewCreatedFolder() {
+        MobileActionManager.getText(FilesConstants.NEW_FOLDER);
+        GenericService.commonClick(FilesConstants.NEW_FOLDER);
+    }
 
 }
 

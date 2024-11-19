@@ -148,7 +148,7 @@ public class FilesSteps {
 
     @And("chooses the new folder a destination")
     public void choosesTheNewFolderADestination() {
-        GenericService.commonClick(FilesConstants.ALL_FILES);
+        FilesService.chooseNewCreatedFolder();
     }
 
     @And("taps go back button")
