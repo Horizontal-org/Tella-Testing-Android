@@ -69,6 +69,19 @@ jobs:
             echo "BSOS=11" >> $GITHUB_ENV
           fi
 
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2
+          echo '<settings>
+          <mirrors>
+            <mirror>
+                <id>central</id>
+                <url>https://repo.maven.apache.org/maven2</url>
+                <mirrorOf>*</mirrorOf>
+            </mirror>
+          </mirrors>
+          </settings>' > ~/.m2/settings.xml
+
       - name: List directories to verify path
         run: ls -al ~/.m2
 
@@ -105,7 +118,7 @@ jobs:
                          -DTEST_MANAGER_RUN_NAME="AUTO-${{ github.event.inputs.device }}-${{ github.event.inputs.filter }}" \
                          -DLTM_GENERAL="${{ secrets.LTM_GENERAL }}" \
                          -DLTM_GENERAL_PASS="${{ secrets.LTM_GENERAL_PASS }}" \
-                         -PBrowserStack -PAndroid
+                         -PBrowserStack -PAndroid -U
         shell: bash
 
       - name: Uploading test reports
