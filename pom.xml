@@ -37,11 +37,19 @@
         <!--   Browser Stack Profiles Parameters              -->
         <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
+        <crowdar.bs.hub>https://${env.BSUSER}:${env.AUTHTOKEN}@hub-cloud.browserstack.com/wd/hub</crowdar.bs.hub>
+
+        <!-- Browser Stack for Android -->
         <crowdar.bs.device>${env.BSDEVICE}</crowdar.bs.device>
         <crowdar.bs.os>${env.BSOS}</crowdar.bs.os>
         <crowdar.bs.app>${env.BSAPP}</crowdar.bs.app>
-        <crowdar.bs.hub>https://${env.BSUSER}:${env.AUTHTOKEN}@hub-cloud.browserstack.com/wd/hub</crowdar.bs.hub>
         <crowdar.bs.capabilities>src/main/resources/capabilities/browserStackCapabilities.json</crowdar.bs.capabilities>
+
+        <!--  Browser Stack for IOS -->
+        <crowdar.bsIOS.device>${env.BSDEVICE_IOS}</crowdar.bsIOS.device>
+        <crowdar.bsIOS.os>${env.BS_IOS}</crowdar.bsIOS.os>
+        <crowdar.bsIOS.app>${env.BSAPP_IOS}</crowdar.bsIOS.app>
+
     </properties>
 
     <profiles>
@@ -94,12 +102,13 @@
             </properties>
         </profile>
         <profile>
-            <id>Ios</id>
+            <id>IOS</id>
             <properties>
                 <crowdar.projectType>MOBILE_IOS</crowdar.projectType>
             </properties>
         </profile>
         <profile>
+
             <id>BrowserStack</id>
             <properties>
                 <cucumber.runner>testngSecuencial.xml</cucumber.runner>
@@ -109,6 +118,20 @@
                 <crowdar.projectType.driverCapabilities.jsonFile>${crowdar.bs.capabilities}</crowdar.projectType.driverCapabilities.jsonFile>
                 <crowdar.driverHub>${crowdar.bs.hub}</crowdar.driverHub>
                 <crowdar.projectType>MOBILE_ANDROID</crowdar.projectType>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>BrowserStackIOS</id>
+            <properties>
+                <cucumber.runner>testngSecuencial.xml</cucumber.runner>
+                <crowdar.deviceName>${crowdar.bsIOS.device}</crowdar.deviceName>
+                <crowdar.os.version>${crowdar.bsIOS.os}</crowdar.os.version>
+                <crowdar.appLocation>${crowdar.bsIOS.app}</crowdar.appLocation>
+                <crowdar.projectType.driverCapabilities.jsonFile>${crowdar.bs.capabilities}</crowdar.projectType.driverCapabilities.jsonFile>
+                <crowdar.driverHub>${crowdar.bs.hub}</crowdar.driverHub>
+                <crowdar.projectType>MOBILE_IOS</crowdar.projectType>
             </properties>
         </profile>
 
@@ -153,6 +176,7 @@
             <groupId>io.lippia.report</groupId>
             <artifactId>ltm-cucumber4-adapter</artifactId>
             <version>1.0.0-SNAPSHOT</version>
+            <version>1.2</version>
         </dependency>
 
     </dependencies>
