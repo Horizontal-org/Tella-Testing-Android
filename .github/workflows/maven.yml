@@ -135,6 +135,19 @@ jobs:
             echo "APK uploaded successfully."
           fi
 
+      - name: Save APK ID to a file
+        if: ${{ env.UPLOAD_APK == 'Yes' }}
+        run: |
+          echo "APK ID: $apk_id" > apk_id.txt
+          echo "APK ID saved to apk_id.txt"
+
+      - name: Upload APK ID as an artifact
+        if: ${{ env.UPLOAD_APK == 'Yes' }}
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: apk-id
+          path: apk_id.txt
+
       - name: Running Maven clean test
         run: |
           echo "Running tests with filter: '$COMBINED_FILTER' on device: '$BSDEVICE' with OS version: '$BSOS'"
@@ -158,3 +171,4 @@ jobs:
         with:
           name: test-results-surefire
           path: target/surefire-reports/
+
