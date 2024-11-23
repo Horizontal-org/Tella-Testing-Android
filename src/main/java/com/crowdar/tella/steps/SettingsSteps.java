@@ -140,7 +140,7 @@ public class SettingsSteps {
     }
 
     @And("the user set incorrect (.*) in (.*)")
-    public void theUserSetIncorrectIn(String pin, String attempts) {
+    public void theUserSetIncorrectIn(String pin, String attempts) throws InterruptedException {
         SettingsService.setIncorrectPinWithAttempts(pin, attempts);
     }
 

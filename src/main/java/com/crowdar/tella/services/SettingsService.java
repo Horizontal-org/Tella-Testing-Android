@@ -183,7 +183,7 @@ public class SettingsService {
         Assert.assertTrue(MobileActionManager.getText(SettingsConstants.GENERAL_TEXTVIEW_LABEL,timeout).equals(timeout));
     }
 
-    public static void setIncorrectPinWithAttempts(String pin, String attempts) {
+    public static void setIncorrectPinWithAttempts(String pin, String attempts) throws InterruptedException {
         // Usamos una expresión regular para extraer el número del String
         String number = attempts.replaceAll("\\D+", "");
         // Convertimos el String con el número a un Integer
