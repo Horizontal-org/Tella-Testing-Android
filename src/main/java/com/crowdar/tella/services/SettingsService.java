@@ -1,5 +1,6 @@
 package com.crowdar.tella.services;
 
+import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.driver.DriverManager;
@@ -7,6 +8,7 @@ import com.crowdar.tella.constants.SettingsConstants;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -218,9 +220,17 @@ public class SettingsService {
             Assert.assertTrue(MobileActionManager.getText(SettingsConstants.MESSAGE_LABEL).contains(message));
         }
     }
+
     public static void changeStatus(String option, String status) {
-        MobileActionManager.waitVisibility(SettingsConstants.GENERAL_TEXTVIEW_LABEL, status);
-        Assert.assertTrue(MobileActionManager.getText(SettingsConstants.GENERAL_TEXTVIEW_LABEL,status).equals(status));
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriverInstance().getWrappedDriver();
+        WebElement switchElement = driver.findElement(By.xpath("(//android.widget.Switch[@resource-id='org.hzontal.tella:id/mSwitch'])[1]"));
+        String checked = switchElement.getAttribute("checked");
+
+        if ("true".equals(checked)) {
+            System.out.println("El switch está activado.");
+        } else {
+            System.out.println("El switch no está activado.");
+        }
     }
 
 

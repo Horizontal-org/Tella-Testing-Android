@@ -129,10 +129,8 @@ public class UnlockService {
                 System.out.println("numero:" + number);
                 ActionManager.click(IOSxpath2, number);
             }
-        }}
-
-
-
+        }
+    }
 
         public static void enterPin(String pin) {
         setPin(pin);

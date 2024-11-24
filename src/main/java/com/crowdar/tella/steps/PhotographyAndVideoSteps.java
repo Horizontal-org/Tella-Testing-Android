@@ -1,5 +1,6 @@
 package com.crowdar.tella.steps;
 
+import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.HomeConstants;
@@ -73,6 +74,7 @@ public class PhotographyAndVideoSteps {
 
     @And("the user presses Delete button")
     public void theUserPressesDeleteButton() {
+        MobileActionManager.isPresent(PhotographyAndVideoConstants.DELETE_FILE_BUTTON);
         GenericService.commonClick(PhotographyAndVideoConstants.DELETE_FILE_BUTTON);
     }
 
