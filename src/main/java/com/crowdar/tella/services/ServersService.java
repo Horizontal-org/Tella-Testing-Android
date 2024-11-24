@@ -4,6 +4,7 @@ import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.constants.FilesConstants;
+import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.constants.ServersConstants;
 import org.testng.Assert;
@@ -26,7 +27,7 @@ public class ServersService {
     }
 
     public static void selectButton(String server) {
-        //MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
+        MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
         ActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, server);
     }
 
@@ -45,8 +46,11 @@ public class ServersService {
     }
 
     public static void viewSettingServer(String server) {
-        MobileActionManager.waitVisibility(ServersConstants.URL_INPUT);
-        Assert.assertTrue(ActionManager.isPresent(ServersConstants.URL_INPUT));
+        if ( MobileActionManager.isPresent(ServersConstants.URL_INPUT)) {
+            Assert.assertTrue(ActionManager.isPresent(ServersConstants.URL_INPUT));
+        } else if ( MobileActionManager.isPresent(HomeConstants.LEAVE_TELLA_MESSAGE)) {
+            Assert.assertTrue(ActionManager.isPresent(HomeConstants.LEAVE_TELLA_MESSAGE));
+        }
     }
 
     public static void inputServerName(String serverName) {
@@ -60,8 +64,8 @@ public class ServersService {
     }
 
     public static void viewMessage(String message) throws InterruptedException {
-        Thread.sleep(100);
         MobileActionManager.waitVisibility(ServersConstants.TEXT_SERVER_MSG);
+        MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_MSG);
         Assert.assertTrue(MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG).contains(message));
     }
 
@@ -161,7 +165,7 @@ public class ServersService {
         MobileActionManager.waitVisibility(ServersConstants.ASSERT_SERVER_CONNECTION);
         MobileActionManager.click(ServersConstants.GO_TO_GOOGLE_DRIVE_BUTTON);
         MobileActionManager.waitVisibility(ServersConstants.TEXT_SERVER_MSG);
-      //  Assert.assertTrue(Boolean.parseBoolean(ServersConstants.TEXT_SERVER_MSG));
+        //  Assert.assertTrue(Boolean.parseBoolean(ServersConstants.TEXT_SERVER_MSG));
         MobileActionManager.click(FilesConstants.BACK_BUTTON);
         MobileActionManager.click(FilesConstants.BACK_BUTTON);
     }

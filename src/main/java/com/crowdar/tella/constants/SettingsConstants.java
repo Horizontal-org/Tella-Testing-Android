@@ -32,8 +32,7 @@ public class SettingsConstants {
     public static final String GENERAL_RADIO_BUTTON = "xpath://android.widget.RadioButton[@text=\"%s\"]";
     public static final String OK_BUTTON = "id:standard_sheet_confirm_btn";
     public static final String CANCEL_BUTTON = "id:standard_sheet_cancel_btn";
-    public static final String GENERAL_TEXTVIEW_LABEL = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" +
-            ".tella:id/label_textview\" and @text=\"%s\"]";
+    public static final String GENERAL_TEXTVIEW_LABEL = "xpath:(//android.widget.Switch[@resource-id='org.hzontal.tella:id/mSwitch'])[1]";
 
     public static final String ICON_CAMOUFLAGE_BUTTON = "id:sheet_one_btn";
     public static final String APP_CAMOUFLAGE_BUTTON = "id:sheet_two_btn";

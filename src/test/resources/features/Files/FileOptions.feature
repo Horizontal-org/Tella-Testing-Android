@@ -285,7 +285,6 @@ Feature: File Options
     And the user presses confirm Delete button
     Then the sucessfull message "The file was deleted." appears
 
-
     Examples:
       | type  | folder |
       | image | Images |
@@ -357,7 +356,7 @@ Feature: File Options
     And taps the options button ⋮ of the created folder
     And the user presses Delete button
     And the user presses confirm Delete button
-    Then the sucessfull message "The file was deleted." appears
+    Then the sucessfull message "The files were deleted." appears
 
   @Smoke @Automated
   Scenario: Rename a folder
