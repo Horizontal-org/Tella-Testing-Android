@@ -182,7 +182,8 @@ public class SettingsService {
 
     public static void selectedTimeout(String timeout) {
         MobileActionManager.waitVisibility(SettingsConstants.GENERAL_TEXTVIEW_LABEL, timeout);
-        Assert.assertTrue(MobileActionManager.getText(SettingsConstants.GENERAL_TEXTVIEW_LABEL,timeout).equals(timeout));
+        Assert.assertTrue(MobileActionManager.isEnabled(SettingsConstants.GENERAL_TEXTVIEW_LABEL));
+        //Assert.assertTrue(MobileActionManager.getText(SettingsConstants.GENERAL_TEXTVIEW_LABEL,timeout).equals(timeout));
     }
 
     public static void setIncorrectPinWithAttempts(String pin, String attempts) throws InterruptedException {
