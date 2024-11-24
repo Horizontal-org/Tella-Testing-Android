@@ -32,12 +32,14 @@ public class AudioService {
 
             try {
                 acceptPermissions();
+                MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
             } catch (Exception e) {
                 System.out.println("Permits not present, continuing.");
             }
         } else {
             System.out.println("The microphone icon is not visible.");
         }
+        Thread.sleep(1000);
         MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
     }
 
