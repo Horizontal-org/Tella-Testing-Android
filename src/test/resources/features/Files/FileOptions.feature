@@ -261,7 +261,7 @@ Feature: File Options
       | video | Videos |
       | audio | Audios |
 
-  @Smoke @ToBeAutomated
+  @Smoke @Automated #@oki
   Scenario Outline: Delete a file of <type> from the folder <folder>
     When the user enters the folder <folder>
     And taps the options button ⋮ for the <type> file
@@ -276,7 +276,7 @@ Feature: File Options
      # | audio | Audio  |
   #| document | Documents | you can create documents yet from tella app
 
-  @Smoke @Automated @SmokeManual
+  @Smoke @Automated @SmokeManual 
   Scenario Outline: Delete multiple files of <type> from the folder <folder>
     When the user enters the folder <folder>
     And taps the Checkbox button and selects multiple <type> files

@@ -3,10 +3,18 @@ package com.crowdar.tella.services;
 import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
+import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.constants.ServersConstants;
+import io.appium.java_client.MobileDriver;
+import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.util.HashMap;
@@ -46,9 +54,9 @@ public class ServersService {
     }
 
     public static void viewSettingServer(String server) {
-        if ( MobileActionManager.isPresent(ServersConstants.URL_INPUT)) {
+        if (MobileActionManager.isPresent(ServersConstants.URL_INPUT)) {
             Assert.assertTrue(ActionManager.isPresent(ServersConstants.URL_INPUT));
-        } else if ( MobileActionManager.isPresent(HomeConstants.LEAVE_TELLA_MESSAGE)) {
+        } else if (MobileActionManager.isPresent(HomeConstants.LEAVE_TELLA_MESSAGE)) {
             Assert.assertTrue(ActionManager.isPresent(HomeConstants.LEAVE_TELLA_MESSAGE));
         }
     }
@@ -68,6 +76,9 @@ public class ServersService {
         MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_MSG);
         Assert.assertTrue(MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG).contains(message));
     }
+
+
+
 
     public static void viewServerOnTheList(String serverName) {
         MobileActionManager.waitVisibility(ServersConstants.PLUS_BUTTON);
