@@ -238,20 +238,6 @@ Feature: Security
       | 30 minutes  |
       | 1 hour      |
 
-  @Smoke @LockTimeout @Automated
-  Scenario Outline: Security - Change Lock Timeout
-    When the user clicks the "Lock Timeout" option
-    And select timeout <timeout> option
-    And taps "OK" button
-    Then the option timeout <timeout> is selected
-
-    Examples:
-      | timeout     |
-      | Immediately |
-      | 1 minute    |
-      | 5 minutes   |
-      | 30 minutes  |
-      | 1 hour      |
 
   @Smoke @DeleteAfterFailedUnlock @SmokeManual
   Scenario Outline: Security - Delete after failed unlock
