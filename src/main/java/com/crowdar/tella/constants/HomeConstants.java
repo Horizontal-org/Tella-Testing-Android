@@ -13,6 +13,7 @@ public class HomeConstants {
     public static final String MIC_BUTTON = "id:mic";
 
     public static final String LEAVE_TELLA = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/standard_sheet_confirm_btn\"]";
+    public static final String LEAVE_TELLA_MESSAGE = "xpath://android.widget.FrameLayout[@resource-id=\"org.hzontal.tella:id/design_bottom_sheet\"]/android.view.ViewGroup";
 
 
     public static final String PICK_GOOGLE_ACCOUNT = "xpath:(//android.widget.LinearLayout[@resource-id=\"com.google.android.gms:id/container\"])[1]";

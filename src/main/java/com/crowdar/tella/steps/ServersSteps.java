@@ -78,6 +78,7 @@ public class ServersSteps extends PageSteps {
     @Then("the user views the buttons:")
     public void theUserViewsTheButtons(List<String> listAccessButton) {
         ServersService.viewListAccessButton(listAccessButton);
+
     }
 
     @And("^selects the \"(.*)\" button$")

@@ -26,7 +26,7 @@ public class AudioService {
         Thread.sleep(1000);
         WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
         WebDriverWait wait = new WebDriverWait(driver, 5);
-        if (MobileActionManager.isVisible(AudioConstants.MICROPHONE_ICON)) {
+        if (MobileActionManager.isPresent(AudioConstants.MICROPHONE_ICON)) {
             MobileActionManager.waitVisibility(AudioConstants.MICROPHONE_ICON);
             MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
 

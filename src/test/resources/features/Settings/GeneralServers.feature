@@ -16,8 +16,8 @@ Feature: Servers
       | Open Data Kit (ODK) |
       | Tella Web           |
       | Uwazi               |
-      | Google Drive        |
-      | NextCloud           |
+      | Google drive        |
+      | Dropbox             |
 
   @Smoke @SmokeManual @ViewServers @IOS
   Scenario Outline: <Servers>  - View Server Options
@@ -28,9 +28,9 @@ Feature: Servers
       | Servers      |
       | Tella Web    |
       | Uwazi        |
-      | Google Drive |
+      | Google drive |
       | NextCloud    |
-      | DropBox      |
+      | Dropbox      |
 
   @Smoke @Automated @SelectServers
   Scenario Outline: Server - Select Server <server>
@@ -40,12 +40,12 @@ Feature: Servers
     Then the user views the server <server> settings
 
     Examples:
-      | server              |
+      | server       |
       | Open Data Kit (ODK) |
       | Tella Web           |
       | Uwazi               |
-      | Google Drive        |
-      | NextCloud           |
+      | Google drive |
+      | Dropbox      |
 
 
   @Smoke @SmokeManual @SelectServers @IOS
@@ -56,12 +56,12 @@ Feature: Servers
     Then the user views the server <server> settings
 
     Examples:
-      | server      |
+      | server       |
       | Tella Web    |
       | Uwazi        |
-      | Google Drive |
+      | Google drive |
       | NextCloud    |
-      | DropBox      |
+      | Dropbox      |
 
 
   @Smoke @Automated @ODKConfig
@@ -132,7 +132,7 @@ Feature: Servers
   @Smoke @SmokeManual @GoogleDrive
   Scenario Outline: Server - Google Drive
     When the user presses the + button
-    And selects the server "Google Drive"
+    And selects the server "Google drive"
     And the user presses the "Next" button
     And the user accepts the permissions
     And the user chooses the Google account

@@ -7,7 +7,8 @@ import io.cucumber.java.en.*;
 public class UnlockSteps extends PageSteps {
 
     @Given("The app is loaded correctly with a password set")
-    public void isHomePageVisibleWithPassword() {
+    public void isHomePageVisibleWithPassword() throws InterruptedException {
+        Thread.sleep(500);
         UnlockService.isViewLoadedReopenAppWithPassword();
     }
 
@@ -18,7 +19,7 @@ public class UnlockSteps extends PageSteps {
 
 
     @When("The user enter the password (.*)")
-    public void theUserEnterAPassword(String password) {
+    public void theUserEnterAPassword(String password) throws InterruptedException {
         UnlockService.enterPassword(password);
     }
     @When("The user click the go to tella button")
