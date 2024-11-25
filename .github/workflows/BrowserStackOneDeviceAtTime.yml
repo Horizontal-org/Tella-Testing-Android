@@ -127,6 +127,13 @@ jobs:
           name: test-results
           path: target/reports/
 
+      - name: Uploading HTML test report
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: html-report
+          path: target/cucumber-reports/cucumber-html-report/*.html
+
+
       - name: Uploading surefire test reports
         uses: actions/upload-artifact@v4.3.4
         with:
