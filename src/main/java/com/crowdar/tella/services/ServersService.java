@@ -72,11 +72,19 @@ public class ServersService {
     }
 
     public static void viewMessage(String message) throws InterruptedException {
-        MobileActionManager.waitVisibility(ServersConstants.TEXT_SERVER_MSG);
-        MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_MSG);
-        Assert.assertTrue(MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG).contains(message));
-    }
+        MobileActionManager.waitVisibility(ServersConstants.TEXT_SERVER_MSG);  // Espera que el mensaje sea visible
 
+        // Verifica si el texto está presente
+        if (MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_MSG)) {
+            String actualMessage = MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG);
+            System.out.println("Actual message: " + actualMessage);
+            Assert.assertTrue(actualMessage.contains(message));  // Compara si contiene el mensaje esperado
+        } else {
+            // Si el mensaje no está presente, puedes manejar el caso de error o agregar más lógica de espera aquí
+            System.out.println("The expected message was not found!");
+            Assert.fail("The expected message was not found!");
+        }
+    }
 
 
 

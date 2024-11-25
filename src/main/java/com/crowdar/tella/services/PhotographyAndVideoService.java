@@ -78,7 +78,7 @@ public class PhotographyAndVideoService {
         }
     }
 
-    public static void deleteTextAndSendKeys(){
+    public static void deleteTextAndSendKeys() {
         WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
         MobileElement textField = (MobileElement) driver.findElement(By.id("renameEditText"));
         textField.clear();
@@ -86,7 +86,7 @@ public class PhotographyAndVideoService {
     }
 
 
-    public static void sendKeysFolder( ){
+    public static void sendKeysFolder() {
         WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
         MobileElement textField = (MobileElement) driver.findElement(By.id("renameEditText"));
         textField.clear();
@@ -94,7 +94,7 @@ public class PhotographyAndVideoService {
     }
 
 
-    public static void changeNameAssert(){
+    public static void changeNameAssert() {
         WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30); // Espera de hasta 30 segundos
         try {
@@ -112,9 +112,19 @@ public class PhotographyAndVideoService {
             Assert.fail("Se produjo un error durante la verificación del cambio de nombre del archivo.");
         }
     }
-    public static void enableGrid(){
+
+    public static void enableGrid() {
         MobileActionManager.waitClickable(PhotographyAndVideoConstants.CAMERA_GRID_SHOW);
-      GenericService.commonClick(PhotographyAndVideoConstants.CAMERA_GRID_SHOW);
+        GenericService.commonClick(PhotographyAndVideoConstants.CAMERA_GRID_SHOW);
+    }
+
+    public static void deleteButton() throws InterruptedException {
+        if (MobileActionManager.isPresent(PhotographyAndVideoConstants.DELETE_FILE_BUTTON)) {
+            GenericService.commonClick(PhotographyAndVideoConstants.DELETE_FILE_BUTTON);
+        } else {
+            GenericService.commonClick(PhotographyAndVideoConstants.CONFIRM_DELETE_FILE_BUTTON);
+
+        }
     }
 }
 

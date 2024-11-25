@@ -73,14 +73,13 @@ public class PhotographyAndVideoSteps {
 
 
     @And("the user presses Delete button")
-    public void theUserPressesDeleteButton() {
-        MobileActionManager.isPresent(PhotographyAndVideoConstants.DELETE_FILE_BUTTON);
-        GenericService.commonClick(PhotographyAndVideoConstants.DELETE_FILE_BUTTON);
+    public void theUserPressesDeleteButton() throws InterruptedException {
+      PhotographyAndVideoService.deleteButton();
     }
 
     @And("the user presses confirm Delete button")
-    public void theUserPressesConfirmDeleteButton() {
-        GenericService.commonClick(PhotographyAndVideoConstants.CONFIRM_DELETE_FILE_BUTTON);
+    public void theUserPressesConfirmDeleteButton() throws InterruptedException {
+        PhotographyAndVideoService.deleteButton();
     }
 
     @Then("the file is deleted")
