@@ -1,0 +1,111 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: BrowserStackParallelIOSDevices
+
+on:
+  workflow_dispatch:
+    inputs:
+      filter:
+        description: 'Filter for tests'
+        required: true
+        default: '@IOS and @Automated'
+      device:
+        description: 'Select the device to test'
+        required: true
+        type: choice
+        options:
+          - iPhone XR 
+          - iPhone 11 
+          - iPhone 15 Pro Max 
+        default: 'iPhone XR version 15'
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    container: crowdar/lippia:3.3.0.0-jdk17
+    environment: Automation
+
+    strategy:
+      matrix:
+        include:
+          - device: "iPhone XR"
+            ios_version: "15"
+          - device: "iPhone 11"
+            ios_version: "13"
+          - device: "iPhone 15 Pro Max"
+            ios_version: "17"
+
+    env:
+      BSUSER: ${{ secrets.BSUSER }}
+      AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
+      BS_IOS_Device: ${{ matrix.device }}
+      BS_IOS_OS: ${{ matrix.ios_version }}
+      bs_IOS_APP: ${{ secrets.bs_IOS_APP }}
+      LTM_GENERAL: ${{ secrets.LTM_GENERAL }}
+      LTM_GENERAL_PASS: ${{ secrets.LTM_GENERAL_PASS }}
+
+    steps:
+      - name: Checkout to the repository
+        uses: actions/checkout@v4
+
+      - name: Configuring JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: List directories to verify path
+        run: ls -al ~/.m2
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Checking Maven dependencies
+        run: mvn dependency:resolve
+
+      - name: Setting environment variable
+        run: echo "COMBINED_FILTER=${{ github.event.inputs.filter }}" >> $GITHUB_ENV
+
+      - name: Debugging environment variables
+        run: |
+          echo "BS_IOS_Device: $BS_IOS_Device"
+          echo "BS_IOS_OS: $BS_IOS_OS"
+          echo "BSUSER: $BSUSER"
+          echo "AUTHTOKEN: $AUTHTOKEN"
+          echo "bs_IOS_APP: $bs_IOS_APP"
+          echo "LTM_GENERAL: $LTM_GENERAL"
+          echo "LTM_GENERAL_PASS: $LTM_GENERAL_PASS"
+
+      - name: Running Maven clean test
+        run: |
+          echo "Running tests with filter: '$COMBINED_FILTER' on iOS device: '$BS_IOS_Device' with OS version: '$BS_IOS_OS'"
+          mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
+                         -Denv.BS_IOS_Device="${{ matrix.device }}" \
+                         -Denv.BS_IOS_OS="${{ matrix.ios_version }}" \
+                         -DTEST_MANAGER_RUN_NAME="AUTO-${{ matrix.device }}-${{ github.event.inputs.filter }}" \
+                         -DLTM_GENERAL="${{ secrets.LTM_GENERAL }}" \
+                         -DLTM_GENERAL_PASS="${{ secrets.LTM_GENERAL_PASS }}" \
+                         -PBrowserStack -PIOS
+
+      - name: Uploading test reports
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: test-results
+          path: target/reports/
+
+      - name: Uploading surefire test reports
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: test-results-surefire
+          path: target/surefire-reports/
