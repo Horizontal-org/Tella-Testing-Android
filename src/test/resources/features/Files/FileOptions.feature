@@ -261,13 +261,14 @@ Feature: File Options
       | video | Videos |
       | audio | Audios |
 
-  @Smoke @Automated #@oki
+  @Smoke @Automated @oki
   Scenario Outline: Delete a file of <type> from the folder <folder>
     When the user enters the folder <folder>
     And taps the options button ⋮ for the <type> file
     And the user presses Delete button
     And the user presses confirm Delete button
     Then the sucessfull message "The files were deleted." appears
+
 
     Examples:
       | type  | folder |
