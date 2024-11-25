@@ -5,7 +5,7 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-name: BrowserStackParallelDevicesAtTime
+name: BrowserStackParallel4DevicesAtTime
 
 on:
   workflow_dispatch:
@@ -23,9 +23,6 @@ on:
           - Samsung Galaxy A51
           - Motorola Moto G71 5G
           - Google Pixel 7 Pro
-          - Xiaomi Redmi Note 11
-          - Huawei P30
-          - Oppo Reno 6
         default: 'Samsung Galaxy A11'
 
 jobs:
@@ -45,12 +42,6 @@ jobs:
             android_version: "11"
           - device: "Google Pixel 7 Pro"
             android_version: "13"
-          - device: "Xiaomi Redmi Note 11"
-            android_version: "11"
-          - device: "Huawei P30"
-            android_version: "9"
-          - device: "Oppo Reno 6"
-            android_version: "11"
 
     env:
       BSUSER: ${{ secrets.BSUSER }}
@@ -58,6 +49,8 @@ jobs:
       BSDEVICE: ${{ matrix.device }}
       BSOS: ${{ matrix.android_version }}
       BSAPP: ${{ secrets.BSAPP }}
+      LTM_GENERAL: ${{ secrets.LTM_GENERAL }}
+      LTM_GENERAL_PASS: ${{ secrets.LTM_GENERAL_PASS }}
 
     steps:
       - name: Checkout to the repository
@@ -81,7 +74,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Checking Maven dependencies
-        run: mvn dependency:resolve  
+        run: mvn dependency:resolve
 
       - name: Setting environment variable
         run: echo "COMBINED_FILTER=${{ github.event.inputs.filter }}" >> $GITHUB_ENV
@@ -93,6 +86,8 @@ jobs:
           echo "BSUSER: $BSUSER"
           echo "AUTHTOKEN: $AUTHTOKEN"
           echo "BSAPP: $BSAPP"
+          echo "LTM_GENERAL: $LTM_GENERAL"
+          echo "LTM_GENERAL_PASS: $LTM_GENERAL_PASS"
 
       - name: Running Maven clean test
         run: |
@@ -101,8 +96,9 @@ jobs:
                          -Denv.BSDEVICE="${{ matrix.device }}" \
                          -Denv.BSOS="${{ matrix.android_version }}" \
                          -DTEST_MANAGER_RUN_NAME="AUTO-${{ matrix.device }}-${{ github.event.inputs.filter }}" \
+                         -DLTM_GENERAL="${{ secrets.LTM_GENERAL }}" \
+                         -DLTM_GENERAL_PASS="${{ secrets.LTM_GENERAL_PASS }}" \
                          -PBrowserStack -PAndroid
-        shell: bash
 
       - name: Uploading test reports
         uses: actions/upload-artifact@v4.3.4
@@ -115,3 +111,4 @@ jobs:
         with:
           name: test-results-surefire
           path: target/surefire-reports/
+
