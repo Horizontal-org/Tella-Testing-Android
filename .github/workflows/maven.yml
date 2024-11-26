@@ -126,9 +126,11 @@ jobs:
         if: ${{ env.UPLOAD_APK == 'Yes' }}
         run: |
           echo "Downloading APK from Dropbox..."
-          curl -L -o /sample_apk/new/app.apk "$DROPBOX_LINK"  # Descargar la APK desde Dropbox
+          # Crear el directorio antes de descargar el archivo
+          mkdir -p Tella-Testing/sample_apk/new
+          curl -L -o Tella-Testing/sample_apk/new/app.apk "$DROPBOX_LINK"  # Descargar la APK desde Dropbox
           echo "APK downloaded successfully."
-      
+
       # Subir la APK a BrowserStack si 'UPLOAD_APK' es 'Yes'
       - name: Upload APK to BrowserStack
         if: ${{ env.UPLOAD_APK == 'Yes' }}
@@ -180,5 +182,6 @@ jobs:
         with:
           name: test-results-surefire
           path: target/surefire-reports/
+
 
 
