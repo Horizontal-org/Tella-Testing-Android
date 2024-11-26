@@ -221,5 +221,9 @@ public class FilesService {
         GenericService.commonClick(FilesConstants.NEW_FOLDER);
     }
 
+    public static void chooseFolder() {
+        GenericService.commonClick(FilesConstants.PICK_FOLDER);
+    }
+
 }
 

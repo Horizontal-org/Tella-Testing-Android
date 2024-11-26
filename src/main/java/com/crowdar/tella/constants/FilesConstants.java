@@ -49,7 +49,7 @@ public class FilesConstants {
 
     public static final String SORT_OLDEST_TO_NEWEST_BUTTON = "id:radioBtnDESC";
 
-    public static final String PICK_FOLDER = "xpath:(//android.view.ViewGroup[@resource-id=\"org.hzontal.tella:id/root\"])[4]";
+    public static final String PICK_FOLDER = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/fileNameTextView\" and @text=\"Tella\"]";
 
     public static final String ADD_FOLDER = "id:fab_move_button";
 

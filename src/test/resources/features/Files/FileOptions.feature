@@ -4,7 +4,6 @@ Feature: File Options
   Background:
     Given the user is in Tella home page
     And there are files and folders within Tella app
-    #this works bad
 
   @Smoke @ToBeAutomated
   Scenario Outline: Open a multimedia file <type> from the folder <folder>
@@ -269,7 +268,6 @@ Feature: File Options
     And the user presses confirm Delete button
     Then the sucessfull message "The files were deleted." appears
 
-
     Examples:
       | type  | folder |
       | image | Images |
@@ -277,7 +275,7 @@ Feature: File Options
      # | audio | Audio  |
   #| document | Documents | you can create documents yet from tella app
 
-  @Smoke @Automated @SmokeManual 
+  @Smoke @Automated @SmokeManual
   Scenario Outline: Delete multiple files of <type> from the folder <folder>
     When the user enters the folder <folder>
     And taps the Checkbox button and selects multiple <type> files

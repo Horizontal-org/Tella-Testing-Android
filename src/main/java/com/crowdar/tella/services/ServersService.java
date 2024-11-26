@@ -72,9 +72,6 @@ public class ServersService {
     }
 
     public static void viewMessage(String message) throws InterruptedException {
-        MobileActionManager.waitVisibility(ServersConstants.TEXT_SERVER_MSG);  // Espera que el mensaje sea visible
-
-        // Verifica si el texto está presente
         if (MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_MSG)) {
             String actualMessage = MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG);
             System.out.println("Actual message: " + actualMessage);

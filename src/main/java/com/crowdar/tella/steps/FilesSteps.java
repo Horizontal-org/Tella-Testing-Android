@@ -106,7 +106,7 @@ public class FilesSteps {
 
     @And("chooses the destination folder")
     public void choosesTheDestinationFolder() {
-        GenericService.commonClick(FilesConstants.PICK_FOLDER);
+        FilesService.chooseFolder();
     }
 
     @And("taps the option Move here")
