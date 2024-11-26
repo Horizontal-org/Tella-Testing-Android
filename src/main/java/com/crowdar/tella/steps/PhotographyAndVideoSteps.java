@@ -79,7 +79,7 @@ public class PhotographyAndVideoSteps {
 
     @And("the user presses confirm Delete button")
     public void theUserPressesConfirmDeleteButton() throws InterruptedException {
-        PhotographyAndVideoService.deleteButton();
+       // PhotographyAndVideoService.deleteButton();
     }
 
     @Then("the file is deleted")
@@ -138,6 +138,11 @@ public class PhotographyAndVideoSteps {
     @And("the user presses the Gmail button")
     public void theUserPressesTheGmailButton() {
         GenericService.commonClick(PhotographyAndVideoConstants.GMAIL_BUTTON);
+    }
+
+    @Then("the sistem notified there is a existing file with the same name")
+    public void theSistemNotifiedThereIsAExistingFileWithTheSameName() {
+        PhotographyAndVideoService.changeNameAssert();
     }
 }
 

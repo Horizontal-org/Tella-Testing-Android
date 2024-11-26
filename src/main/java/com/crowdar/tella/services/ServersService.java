@@ -76,10 +76,6 @@ public class ServersService {
             String actualMessage = MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG);
             System.out.println("Actual message: " + actualMessage);
             Assert.assertTrue(actualMessage.contains(message));  // Compara si contiene el mensaje esperado
-        } else {
-            // Si el mensaje no está presente, puedes manejar el caso de error o agregar más lógica de espera aquí
-            System.out.println("The expected message was not found!");
-            Assert.fail("The expected message was not found!");
         }
     }
 

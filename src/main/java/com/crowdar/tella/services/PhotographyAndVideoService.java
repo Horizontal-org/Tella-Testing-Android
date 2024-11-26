@@ -96,8 +96,7 @@ public class PhotographyAndVideoService {
 
     public static void changeNameAssert() {
         WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 30); // Espera de hasta 30 segundos
-        try {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
             MobileElement textView = (MobileElement) wait.until(
                     ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text='Tella']"))
             );
@@ -106,11 +105,9 @@ public class PhotographyAndVideoService {
             System.out.println("Texto actual del TextView: " + actualText);
             String expectedText = "Tella";
 
-            Assert.assertEquals(actualText, expectedText, "El nombre del archivo no se ha cambiado correctamente.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            Assert.fail("Se produjo un error durante la verificación del cambio de nombre del archivo.");
-        }
+            Assert.assertEquals(actualText, expectedText);
+
+
     }
 
     public static void enableGrid() {

@@ -186,8 +186,15 @@ public class FilesService {
         Assert.assertTrue(MobileActionManager.isEnabled(FilesConstants.CREATED_FILE_NAME));
     }
 
-    public static void createFiles() throws InterruptedException {
+    public static void createFilesAndFolder() throws InterruptedException {
         createFolder();
+        createAudioFiles();
+        createPhotoFiles();
+        createVideoFiles();
+    }
+
+
+    public static void createFiles() throws InterruptedException {
         createAudioFiles();
         createPhotoFiles();
         createVideoFiles();

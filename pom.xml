@@ -32,7 +32,6 @@
         <crowdar.app.location>${env.APPLOCAL}</crowdar.app.location>
 
 
-
         <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
         <!--   Browser Stack Profiles Parameters              -->
         <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->

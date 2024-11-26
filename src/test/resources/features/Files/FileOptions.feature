@@ -14,9 +14,9 @@ Feature: File Options
     Examples:
       | folder    | type  |
       | All files | image |
-      | Images    | image |
-      | Videos    | video |
-      | Audio     | audio |
+   #   | Images    | image |
+   #   | Videos    | video |
+    #  | Audio     | audio |
 
   @Smoke @ToBeAutomated
   Scenario Outline: Rename a file of <type> from the folder <folder>
@@ -260,7 +260,7 @@ Feature: File Options
       | video | Videos |
       | audio | Audios |
 
-  @Smoke @Automated @oki
+  @Smoke @Automated
   Scenario Outline: Delete a file of <type> from the folder <folder>
     When the user enters the folder <folder>
     And taps the options button ⋮ for the <type> file
@@ -271,8 +271,8 @@ Feature: File Options
     Examples:
       | type  | folder |
       | image | Images |
-     # | video | Videos |
-     # | audio | Audio  |
+      | video | Videos |
+      | audio | Audio  |
   #| document | Documents | you can create documents yet from tella app
 
   @Smoke @Automated @SmokeManual

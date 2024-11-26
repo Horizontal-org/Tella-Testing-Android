@@ -59,7 +59,7 @@ public class FilesSteps {
 
     @And("there are files and folders within Tella app")
     public void thereAreFilesAndFoldersWithinTellaApp() throws InterruptedException {
-        FilesService.createFiles();
+        FilesService.createFilesAndFolder();
     }
 
     @And("capture the file extension (.*)")
@@ -181,5 +181,10 @@ public class FilesSteps {
     public void pressTheRecordIconAndThenPressStop() {
         GenericService.recAndStopRecord();
 
+    }
+
+    @And("there are files created")
+    public void thereAreFilesCreated() throws InterruptedException {
+        FilesService.createFiles();
     }
 }
