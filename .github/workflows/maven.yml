@@ -1,3 +1,4 @@
+
 name: BrowserStack Experiment
 
 on:
@@ -55,7 +56,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Install jq (for parsing JSON)
-        run: sudo apt-get install jq
+        run: |
+          curl -sSL https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -o /usr/local/bin/jq
+          chmod +x /usr/local/bin/jq
 
       - name: Set Android version based on selected device
         run: |
