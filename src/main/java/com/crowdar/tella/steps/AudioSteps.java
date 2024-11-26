@@ -38,8 +38,8 @@ public class AudioSteps {
     }
 
     @And("the user press stop option")
-    public void pressStopOption() {
-        AudioService.clickStopOption();
+    public void pressStopOption() throws InterruptedException {
+        AudioService.clickMicrophoneIcon();
     }
 
     @Then("the approval message (.*) is displayed")

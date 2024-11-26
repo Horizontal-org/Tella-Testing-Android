@@ -4,7 +4,9 @@ public class AudioConstants {
 
     public static final String REC_OPTION = "ACCESSIBILITY_ID:Rec";
 
-    public static final String MICROPHONE_ICON = "xpath://android.widget.ImageButton[@content-desc=\"Record\"]";
+    public static final String MICROPHONE_ICON = "id:record_audio_layout";
+
+   // public static final String  MICROPHONE_ICON_STOP = "id/record_audio_layout";
 
     public static final String PERMISSIONS_MESSAGE = "com.android.permissioncontroller:id/permission_message";
 
