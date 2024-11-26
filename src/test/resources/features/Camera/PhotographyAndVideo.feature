@@ -261,7 +261,7 @@ Feature: PhotographyAndVideo
     And the user presses "Cancel"
     Then saving a file to the device is canceled
 
-  @Smoke @File @ToBeAutomated
+  @Smoke @File @Automated
   Scenario: Rename file
     And the user presses the camera button
     And the user takes a photography
@@ -272,7 +272,7 @@ Feature: PhotographyAndVideo
     And the user enters the images folder
     Then the file is saved with the new name
 
-  @Smoke @File @ToBeAutomated
+  @Smoke @File @Automated @Bug @Ignore
   Scenario: Rename a file with an existing name
     And the user presses the camera button
     And the user takes a photography
