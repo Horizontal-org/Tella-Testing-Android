@@ -54,6 +54,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Install jq (for parsing JSON)
+        run: sudo apt-get install jq
+
       - name: Set Android version based on selected device
         run: |
           if [[ "${{ github.event.inputs.device }}" == "Samsung Galaxy A11" ]]; then
@@ -190,4 +193,3 @@ jobs:
         with:
           name: test-results-surefire
           path: target/surefire-reports/
-
