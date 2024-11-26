@@ -1,11 +1,3 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 
 name: BrowserStack Experiment
 
@@ -50,7 +42,8 @@ jobs:
       BSAPP: ${{ secrets.BSAPP }}
       LTM_GENERAL: ${{ secrets.LTM_GENERAL }}
       LTM_GENERAL_PASS: ${{ secrets.LTM_GENERAL_PASS }}
-      UPLOAD_APK: ${{ github.event.inputs.upload_apk }} # Nuevo parámetro
+      UPLOAD_APK: ${{ github.event.inputs.upload_apk }}
+      DROPBOX_LINK: "https://www.dropbox.com/scl/fi/jjic9h02azue9w7j1l50r/app.apk?rlkey=ndq15oeynsotqv44fyji3tv7x&st=bzoyr5y0&dl=1"  # URL de Dropbox con dl=1
 
     steps:
       - name: Checkout to the repository
@@ -61,6 +54,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Install jq (for parsing JSON)
+        run: |
+          curl -sSL https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -o /usr/local/bin/jq
+          chmod +x /usr/local/bin/jq
 
       - name: Set Android version based on selected device
         run: |
@@ -120,19 +118,46 @@ jobs:
           echo "LTM_GENERAL: $LTM_GENERAL"
           echo "LTM_GENERAL_PASS: $LTM_GENERAL_PASS"
 
-      # Solo sube la APK si el valor de UPLOAD_APK es 'Yes'
+      # Descargar la APK desde Dropbox si 'UPLOAD_APK' es 'Yes'
+      - name: Download APK from Dropbox
+        if: ${{ env.UPLOAD_APK == 'Yes' }}
+        run: |
+          echo "Downloading APK from Dropbox..."
+          # Crear el directorio antes de descargar el archivo
+          mkdir -p Tella-Testing/sample_apk/new
+          curl -L -o Tella-Testing/sample_apk/new/app.apk "$DROPBOX_LINK"  # Descargar la APK desde Dropbox
+          echo "APK downloaded successfully."
+
+      # Verificar si la APK es accesible antes de subirla a BrowserStack
+      - name: Verify APK exists
+        if: ${{ env.UPLOAD_APK == 'Yes' }}
+        run: |
+          echo "Verifying APK file existence..."
+          ls -l Tella-Testing/sample_apk/new/app.apk  # Verificar que el archivo esté allí
+          echo "APK file verified."
+
+      # Subir la APK a BrowserStack si 'UPLOAD_APK' es 'Yes'
       - name: Upload APK to BrowserStack
         if: ${{ env.UPLOAD_APK == 'Yes' }}
         run: |
-          APK_PATH="$BSAPP"  # Ruta de la APK
-          response=$(curl -u "$BSUSER:$AUTHTOKEN" "https://api-cloud.browserstack.com/app-automate/versions.json?app_name=$(basename $APK_PATH)")
+          APK_PATH="Tella-Testing/sample_apk/new/app.apk"  # Ruta directamente al archivo descargado
+          response=$(curl -v -u "$BSUSER:$AUTHTOKEN" "https://api-cloud.browserstack.com/app-automate/versions.json?app_name=$(basename $APK_PATH)")  # Agregando -v para más detalles en la respuesta
           
           if echo "$response" | grep -q '"status":"ok"'; then
             echo "APK already uploaded to BrowserStack."
           else
             echo "APK not found on BrowserStack. Uploading..."
-            curl -u "$BSUSER:$AUTHTOKEN" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@$APK_PATH"
-            echo "APK uploaded successfully."
+            upload_response=$(curl -v -u "$BSUSER:$AUTHTOKEN" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@$APK_PATH")  # Respuesta de la carga
+
+            # Extraer el APK ID de la respuesta JSON
+            apk_id=$(echo "$upload_response" | jq -r '.app_id')  # Usamos 'jq' para extraer el ID del JSON
+
+            if [ "$apk_id" != "null" ]; then
+              echo "APK uploaded successfully. APK ID: $apk_id"
+              echo "APK ID: $apk_id" > apk_id.txt  # Guardar el APK ID en un archivo
+            else
+              echo "Failed to upload APK. No APK ID returned."
+            fi
           fi
 
       - name: Save APK ID to a file
@@ -171,4 +196,3 @@ jobs:
         with:
           name: test-results-surefire
           path: target/surefire-reports/
-
