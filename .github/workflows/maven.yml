@@ -5,8 +5,6 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-
-
 name: BrowserStack Experiment
 
 on:
@@ -131,18 +129,26 @@ jobs:
           curl -L -o Tella-Testing/sample_apk/new/app.apk "$DROPBOX_LINK"  # Descargar la APK desde Dropbox
           echo "APK downloaded successfully."
 
+      # Verificar si la APK es accesible antes de subirla a BrowserStack
+      - name: Verify APK exists
+        if: ${{ env.UPLOAD_APK == 'Yes' }}
+        run: |
+          echo "Verifying APK file existence..."
+          ls -l Tella-Testing/sample_apk/new/app.apk  # Verificar que el archivo esté allí
+          echo "APK file verified."
+
       # Subir la APK a BrowserStack si 'UPLOAD_APK' es 'Yes'
       - name: Upload APK to BrowserStack
         if: ${{ env.UPLOAD_APK == 'Yes' }}
         run: |
-          APK_PATH="$BSAPP"  # Ruta de la APK
-          response=$(curl -u "$BSUSER:$AUTHTOKEN" "https://api-cloud.browserstack.com/app-automate/versions.json?app_name=$(basename $APK_PATH)")
+          APK_PATH="Tella-Testing/sample_apk/new/app.apk"  # Ruta directamente al archivo descargado
+          response=$(curl -v -u "$BSUSER:$AUTHTOKEN" "https://api-cloud.browserstack.com/app-automate/versions.json?app_name=$(basename $APK_PATH)")  # Agregando -v para más detalles en la respuesta
           
           if echo "$response" | grep -q '"status":"ok"'; then
             echo "APK already uploaded to BrowserStack."
           else
             echo "APK not found on BrowserStack. Uploading..."
-            curl -u "$BSUSER:$AUTHTOKEN" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@$APK_PATH"
+            curl -v -u "$BSUSER:$AUTHTOKEN" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@$APK_PATH"  # Agregado -v para depuración detallada
             echo "APK uploaded successfully."
           fi
 
@@ -182,6 +188,5 @@ jobs:
         with:
           name: test-results-surefire
           path: target/surefire-reports/
-
 
 
