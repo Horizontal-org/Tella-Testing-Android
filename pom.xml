@@ -196,7 +196,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
+                <version>3.5.2</version>
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>${cucumber.runner}</suiteXmlFile>
@@ -214,39 +214,6 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
-
-
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <exec executable="java">
-                                    <arg value="-cp"/>
-                                    <arg value="${project.build.directory}/classes:${project.build.directory}/test-classes"/>
-                                    <arg value="io.cucumber.core.cli.Main"/>
-                                    <arg value="--plugin"/>
-                                    <arg value="html:target/cucumber-reports/cucumber-html-report"/>
-                                    <arg value="--glue"/>
-                                    <arg value="classpath:"/>
-                                    <arg value="classpath:features"/>
-                                </exec>
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-
-
 
         </plugins>
     </build>
