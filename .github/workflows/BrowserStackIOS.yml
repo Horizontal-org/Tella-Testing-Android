@@ -16,7 +16,7 @@ on:
         required: true
         default: '@IOS and @Automated'
       device:
-        description: 'Select the device to test'
+        description: 'Devices to test'
         required: true
         type: choice
         options:
@@ -34,10 +34,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - device: "iPhone XR"
-            ios_version: "15"
-          - device: "iPhone 11"
-            ios_version: "13"
           - device: "iPhone 15 Pro Max"
             ios_version: "17"
 
@@ -46,7 +42,7 @@ jobs:
       AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
       BS_IOS_Device: ${{ matrix.device }}
       BS_IOS_OS: ${{ matrix.ios_version }}
-      bs_IOS_APP: ${{ env.bs_IOS_APP }}
+      bs_IOS_APP: ${{ env.BSAPP_IOS }}
       LTM_GENERAL: ${{ secrets.LTM_GENERAL }}
       LTM_GENERAL_PASS: ${{ secrets.LTM_GENERAL_PASS }}
 
@@ -83,7 +79,7 @@ jobs:
           echo "BS_IOS_OS: $BS_IOS_OS"
           echo "BSUSER: $BSUSER"
           echo "AUTHTOKEN: $AUTHTOKEN"
-          echo "bs_IOS_APP: $bs_IOS_APP"
+          echo "BSAPP_IOS: $BSAPP_IOS"
           echo "LTM_GENERAL: $LTM_GENERAL"
           echo "LTM_GENERAL_PASS: $LTM_GENERAL_PASS"
 
