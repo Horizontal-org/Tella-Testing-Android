@@ -14,9 +14,9 @@ Feature: File Options
     Examples:
       | folder    | type  |
       | All files | image |
-   #   | Images    | image |
-   #   | Videos    | video |
-    #  | Audio     | audio |
+      | Images    | image |
+     | Videos    | video |
+     | Audio     | audio |
 
   @Smoke @ToBeAutomated
   Scenario Outline: Rename a file of <type> from the folder <folder>
