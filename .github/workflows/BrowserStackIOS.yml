@@ -39,7 +39,7 @@ jobs:
       AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
       BS_IOS_Device: ${{ matrix.device }}
       BS_IOS_OS: ${{ matrix.ios_version }}
-      bs_IOS_APP: ${{ env.BSAPP_IOS }}
+      bs_IOS_APP: ${{ secrets.BSAPP_IOS }}
       LTM_GENERAL: ${{ secrets.LTM_GENERAL }}
       LTM_GENERAL_PASS: ${{ secrets.LTM_GENERAL_PASS }}
 
