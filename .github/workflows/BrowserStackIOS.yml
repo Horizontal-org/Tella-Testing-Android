@@ -83,13 +83,14 @@ jobs:
       - name: Running Maven clean test
         run: |
           echo "Running tests with filter: '$COMBINED_FILTER' on iOS device: '$BS_IOS_Device' with OS version: '$BS_IOS_OS'"
-          mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
-                         -Denv.BS_IOS_Device="${{ matrix.device }}" \
-                         -Denv.BS_IOS_OS="${{ matrix.ios_version }}" \
-                         -DTEST_MANAGER_RUN_NAME="AUTO-${{ matrix.device }}-${{ github.event.inputs.filter }}" \
-                         -DLTM_GENERAL="${{ secrets.LTM_GENERAL }}" \
-                         -DLTM_GENERAL_PASS="${{ secrets.LTM_GENERAL_PASS }}" \
-                         -PBrowserStack -PIOS
+              mvn clean test -X -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
+                   -Denv.BS_IOS_Device="${{ matrix.device }}" \
+                   -Denv.BS_IOS_OS="${{ matrix.ios_version }}" \
+                   -DTEST_MANAGER_RUN_NAME="AUTO-${{ matrix.device }}-${{ github.event.inputs.filter }}" \
+                   -DLTM_GENERAL="${{ secrets.LTM_GENERAL }}" \
+                   -DLTM_GENERAL_PASS="${{ secrets.LTM_GENERAL_PASS }}" \
+                   -PBrowserStack -PIOS
+
 
       - name: Uploading test reports
         uses: actions/upload-artifact@v4.3.4
