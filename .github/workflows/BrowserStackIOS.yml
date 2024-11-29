@@ -20,10 +20,7 @@ on:
         required: true
         type: choice
         options:
-          - iPhone XR 
-          - iPhone 11 
           - iPhone 15 Pro Max 
-        default: 'iPhone XR version 15'
 
 jobs:
   test:
