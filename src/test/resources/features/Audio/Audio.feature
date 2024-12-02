@@ -135,10 +135,10 @@ Feature: Audio
   Scenario: Audio cannot be edited if it is less than 3 seconds
     And the user has recorded audio with a duration of 3 seconds
     And the user enters the audio folder
-    And the user taps the settings icon
+    And the user taps the ellipsis menu icon
     When the user taps edit
     And the message "The audio cannot be trimmed because it is shorter than 3 seconds." is displayed
-
+#se reemplaza: And  the user taps the settings icon por And the user taps the ellipsis menu icon
 
 
 
