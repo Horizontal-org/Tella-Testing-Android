@@ -18,6 +18,7 @@ Feature: Servers
       | Uwazi               |
       | Google drive        |
       | Dropbox             |
+      | NextCloud           |
 
   @Smoke @SmokeManual @ViewServers @IOS
   Scenario Outline: <Servers>  - View Server Options
@@ -40,12 +41,13 @@ Feature: Servers
     Then the user views the server <server> settings
 
     Examples:
-      | server       |
+      | server              |
       | Open Data Kit (ODK) |
       | Tella Web           |
       | Uwazi               |
-      | Google drive |
-      | Dropbox      |
+      | Google drive        |
+      | Dropbox             |
+      | NextCloud           |
 
 
   @Smoke @SmokeManual @SelectServers @IOS
