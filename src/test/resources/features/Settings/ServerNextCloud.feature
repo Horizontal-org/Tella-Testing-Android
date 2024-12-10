@@ -1,6 +1,5 @@
 @Regression @NextCloud @Servers
 Feature: NextCloud
-  #CANNOT BE RUN VIA BROWSER STACK
 
   Background:
     Given the user is in Tella home page
@@ -85,17 +84,8 @@ Feature: NextCloud
     And disconnect internet from your cell phone
     Then the report will not be uploaded but will be available in OutBox
 
-  @Smoke @ToBeAutomated
-  Scenario: Save forms to Draft
-    When the user taps the "NextCloud" connection
-    And the user presses "NEW REPORT" button
-    And completes the Title "Crowdar" and the Description "Evidence photo"
-    And the user taps + button for the attach files
-    And presses "Save" icon
-    Then the approval message "The report was saved as a draft" appears
-    And the form is saved on the Draft
 
-  @Smoke @ToBeAutomated
+  @Smoke
   Scenario: Delete form from Draft
     Given the user has an form in Draft
     When the user selects is in the category Draft
@@ -103,3 +93,21 @@ Feature: NextCloud
     And selects Delete
     And confirms the Delete option
     Then the approval message "The "name form" was deleted" appears
+
+
+  @Smoke
+  Scenario: Delete form from Submitted
+    Given the user has an form in Submitted
+    When the user selects is in the category Submitted
+    And the user taps the "⁝" button
+    And selects Delete
+    And confirms the Delete option
+    Then the approval message "The "name form" was deleted" appears
+
+  @Smoke
+  Scenario: View file form from Submitted
+    Given the user has an form in Submitted
+    When the user selects is in the category Submitted
+    And the user taps the "⁝" button
+    And selects View
+    Then the user will be able to see the submitted form in detail.

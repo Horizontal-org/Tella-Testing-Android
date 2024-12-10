@@ -140,8 +140,6 @@ Feature: Audio
     And the message "The audio cannot be trimmed because it is shorter than 3 seconds." is displayed
 
 
-
-
   Scenario: Listen an audio file
     When the user press "Rec"
     And the user press headphones
