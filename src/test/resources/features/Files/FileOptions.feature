@@ -193,15 +193,6 @@ Feature: File Options
       | audio    | Audios    |
       | document | Documents |
 
-   # Examples:
-   #   | SocialMedia | folder | type  |
-   #   | Gmail       | Images | image |
-   #   | WhatsApp    | Videos | video |
-   #   | Signal      | Audios | audio |
-   #   | Gmail       | Audios | audio |
-   #   | WhatsApp    | Images | image |
-   #   | Signal      | Videos | video |
-
   @Smoke @SmokeManual
   Scenario Outline: Share multiple files created in Tella of type <type> via <SocialMedia> from the folder <folder> with verification information
     Given the user has a file with verification information
