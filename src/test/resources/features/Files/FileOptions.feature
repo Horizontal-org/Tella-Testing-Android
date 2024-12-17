@@ -179,6 +179,7 @@ Feature: File Options
       | audio    | Audios    |
       | document | Documents |
 
+  @casoraro
   Scenario Outline: View the information of a <type> file from the folder <folder>
     When the user enters the folder <folder>
     And taps the options button "⋮" of the <type> file
