@@ -25,7 +25,7 @@ Feature: Unlock
       | pin    |
       | 654321 |
 
-  @Pattern
+  @Pattern @Password
   Scenario: The user start the application, unlock the app with a pattern.
     Given The app is loaded correctly with a pattern set
     When The user set a pattern
