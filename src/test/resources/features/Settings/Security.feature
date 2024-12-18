@@ -181,14 +181,31 @@ Feature: Security
       | Quick delete                     |
       | Preserve metadata when importing |
       | Camera silent mode               |
-
-  @Smoke @CameraSilentMode @SmokeManual
+  
+  #Ver linea 355
+  @Smoke @CameraSilentMode @SmokeManual 
   Scenario: Security - Camera silent mode
     When toggle the switch on the "Camera silent mode" option
     And go to Tella home page
     And taps camera button
     And take photo
     Then the camera did not make the sound
+    
+  #Colocarlos Tags 
+  #Scenario Outline: Security - Camera silent mode 
+  #  Given the user is on the Tella home page 
+  #  And the user taps the settings icon 
+  #  And clicks on the Security category 
+  # When the user <action> the switch of the "Camera silent mode" option 
+  #  And goes to the Tella home page 
+  #  And taps the camera button 
+  #  And takes a photo 
+  #  Then the camera <result> 
+  
+  Examples: 
+    | action    | result                  |
+    | enables   | did not make the sound  |
+    | disables  | made the sound          |  
 
   @Smoke @ScreenSecurity @ToBeAutomated
   Scenario: Security - Screen secuCamera silent mode
