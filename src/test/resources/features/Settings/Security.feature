@@ -304,7 +304,7 @@ Feature: Security
 
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage -  change camouflage method - hide behind a calculator
-    When the PIN is selected in lock option
+    When the PIN is selected in lock option 
     And the user clicks the "Camouflage" option
     And enter the valid PIN
     And select "HIDE BEHIND A CALCULATOR APP" option
@@ -319,6 +319,22 @@ Feature: Security
       | Calculator_2 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
+      
+  #Scenario Outline: Security - Camouflage - Change camouflage method - Hide behind a calculator
+  #When the user clicks the "Camouflage" option
+  #And the user enters a valid PIN
+  #And the user selects the option "HIDE BEHIND A CALCULATOR APP"
+  #And the user selects the <calculator> icon
+  #And the user taps the "Exit Tella" button
+  #Then the message "Please wait. You will return to your device's home screen in a few seconds." is displayed
+  #And the Tella icon is displayed as <calculator>
+
+  Examples:
+    | calculator   |
+    | Calculator_1 |
+    | Calculator_2 |
+    | Calculator_3 |
+    | Calculator_4 |    
 
   @Smoke @QuickDelete @SmokeManual
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
