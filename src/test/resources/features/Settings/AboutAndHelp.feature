@@ -24,7 +24,7 @@ Feature: About and Help
 
     Examples:
       | category     | option         | site                   |
-      | About & Help | FAQ            | tella-app.org/docs/    |
+      | About & Help | FAQ            | tella-app.org/faq/    |
       | About & Help | Privacy policy | tella-app.org/privacy/ |
 
     @Ignore @Bug
