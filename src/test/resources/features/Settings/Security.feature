@@ -111,6 +111,7 @@ Feature: Security
       | 123456   | MiCamera   | Please wait. You will return to your device's home screen in a few seconds. |
       | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. |
 
+  #Linea repetida a la 306 
   @Smoke @Camouflage @SmokeManual @igualesPrueba
   Scenario Outline: Security - camouflage - change camuflaje method - hide behind a calculator
     When the PIN is selected in lock option
