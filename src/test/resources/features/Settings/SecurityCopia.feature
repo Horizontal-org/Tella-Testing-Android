@@ -6,7 +6,6 @@ Feature: Security
     And the user taps the settings icon
     And clicks on the category Security 
  
- 
   @Smoke @SmokeManual @LockTimeout
   Scenario Outline: Security - Lock Timeout
     When the user clicks the "Lock timeout" option
@@ -53,4 +52,25 @@ Feature: Security
     Examples:
       | password | icon       | message                                                                     |
       | 123456   | MiCamera   | Please wait. You will return to your device's home screen in a few seconds. |
-      | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. |   
+      | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. | 
+      
+      
+  @Smoke @QuickDelete @SmokeManual
+  Scenario Outline: Security - Quick delete - <quickDeleteCheck>
+    When the switch is toggled on in the "Quick delete" option
+    And select the checkbox "<quickDeleteCheck>"
+    And go to the Tella home page
+    And verify that the "DELETE" slide button is present
+    And tap the "DELETE" slide button
+    And view the counter message "Quick Delete mode activation"
+    And wait for the counter to finish
+    And open the Tella application again
+    And set a valid security code
+    Then verify that the files were deleted
+  
+  Examples:
+    | quickDeleteCheck                 |
+    | Delete files                     |
+    | Delete draft and submitted forms |
+    | Delete server settings           |  
+        
