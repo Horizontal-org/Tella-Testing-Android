@@ -63,7 +63,8 @@ Feature: Security
       | 5 minutes   |
       | 30 minutes  |
       | 1 hour      |
-
+ 
+ #ver linea 260
   @Smoke @DeleteAfterFailedUnlock @SmokeManual
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
@@ -256,7 +257,7 @@ Feature: Security
       | 30 minutes  |
       | 1 hour      |
 
-
+ #ver linea 67
   @Smoke @DeleteAfterFailedUnlock @SmokeManual
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
