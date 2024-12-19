@@ -5,7 +5,8 @@ Feature: Security
     Given the user is in Tella home page
     And the user taps the settings icon
     And clicks on the category Security 
-
+ 
+ 
   @Smoke @SmokeManual @LockTimeout
   Scenario Outline: Security - Lock Timeout
     When the user clicks the "Lock timeout" option
