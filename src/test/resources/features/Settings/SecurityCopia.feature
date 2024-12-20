@@ -24,9 +24,9 @@ Feature: Security
       | 1 hour      |
       
       
-  # Copia Linea 98 - linea 274 del feature Security     
+  # Copia Linea 98 - linea 274 del feature Security la diferencia sola es como esta escrita camuflage  
    @Smoke @Camouflage @SmokeManual
-  Scenario Outline: Security - camouflage - change camuflaje method - change name and icon 
+  Scenario Outline: Security - camouflage - change camuflage method - change name and icon 
     When the user clicks the "Camouflage" option
     And The user enter the password <password>
     And select "CHANGE NAME AND ICON" option
@@ -42,7 +42,7 @@ Feature: Security
       | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. | 
       
  
-  #Linea 133 - linea 308 del feature Security     
+  # CopiaLinea 133 - linea 308 del feature Security     
   @Smoke @QuickDelete @SmokeManual
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
     When the switch is toggled on in the "Quick delete" option
