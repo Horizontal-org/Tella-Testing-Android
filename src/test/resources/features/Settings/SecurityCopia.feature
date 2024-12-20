@@ -38,7 +38,7 @@ Feature: Security
       | 10 attempts | 123451 |
       | 20 attempts | 123450 |   
       
-      
+  #Linea 98 - linea 274 del feature Security     
    @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon 
     When the user clicks the "Camouflage" option
