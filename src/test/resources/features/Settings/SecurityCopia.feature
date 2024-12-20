@@ -23,22 +23,7 @@ Feature: Security
       | 30 minutes  |
       | 1 hour      |
       
- 	@Smoke @DeleteAfterFailedUnlock @SmokeManual
-  Scenario Outline: Security - Delete after failed unlock
-    When the user clicks the "Delete after failed unlock" option
-    And select attempts <attempts> option
-    And taps "OK" button
-    And the user close the app
-    And the user set incorrect <PIN> in <attempts>
-    Then the files have been deleted
-
-    Examples:
-      | attempts    | PIN    |
-      | 5 attempts  | 123450 |
-      | 10 attempts | 123451 |
-      | 20 attempts | 123450 |   
       
- 
   #Linea 98 - linea 274 del feature Security     
    @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon 
@@ -76,6 +61,7 @@ Feature: Security
     | Delete files                     |
     | Delete draft and submitted forms |
     | Delete server settings           |  
+    
     
    @Smoke @QuickDelete @SmokeManual
   Scenario: Security - Quick delete - Delete Tella
