@@ -82,27 +82,5 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. | 
    
-      
-   #Estos dos ultimos entiendo que uno es regresion y el otro smoke pero no se si se pueda optimizar a uno solo  
-   @Smoke @QuickDelete @SmokeManual
-  Scenario: Security - Quick delete - Delete Tella
-    When toggle the switch on the "Quick delete" option
-    And select check box “Delete Tella”
-    And go to Tella home page
-    And verify slide “DELETE” button is present
-    And taps slide “DELETE” button
-    And view counter message “Quick Delete mode activation”
-    And waits finish counter
-    Then uninstall message appears
-	
-  Scenario: Security - Quick delete - Delete Tella
-    When taps switch in "Quick delete" option
-    And select check box “Delete Tella”
-    And go to Tella home page
-    And verify slide “DELETE” button is present
-    And taps slide “DELETE” button
-    And view counter message “Quick Delete mode activation”
-    And waits finish counter
-    And view closed the Tella application
-    Then view uninstall message     
+
         
