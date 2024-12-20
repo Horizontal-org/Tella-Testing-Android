@@ -101,7 +101,7 @@ Feature: Security
   
   #Lineas 115 - linea 290  
    @Smoke @Camouflage @SmokeManual 
-  Scenario Outline: Security - camouflage - change camuflaje method - hide behind a calculator
+  Scenario Outline: Security - camouflage - change camuflage method - hide behind a calculator
     When the PIN is selected in lock option
     And the user clicks the "Camouflage" option
     And enter the valid PIN
