@@ -63,7 +63,7 @@ Feature: Security
     | Delete server settings           |  
     
   
-  #Lineas 115 - linea 290  
+  #Lineas 115 - linea 290 la diferencia sola es como esta escrita camuflage 
    @Smoke @Camouflage @SmokeManual 
   Scenario Outline: Security - camouflage - change camuflage method - hide behind a calculator
     When the PIN is selected in lock option
