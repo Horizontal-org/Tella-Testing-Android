@@ -81,8 +81,9 @@ Feature: Security
       | Calculator_2 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. | 
+   
       
-     
+   #Estos dos ultimos entiendo que uno es regresion y el otro smoke pero no se si se pueda optimizar a uno solo  
    @Smoke @QuickDelete @SmokeManual
   Scenario: Security - Quick delete - Delete Tella
     When toggle the switch on the "Quick delete" option
