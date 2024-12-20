@@ -73,4 +73,44 @@ Feature: Security
     | Delete files                     |
     | Delete draft and submitted forms |
     | Delete server settings           |  
+    
+   @Smoke @QuickDelete @SmokeManual
+  Scenario: Security - Quick delete - Delete Tella
+    When toggle the switch on the "Quick delete" option
+    And select check box “Delete Tella”
+    And go to Tella home page
+    And verify slide “DELETE” button is present
+    And taps slide “DELETE” button
+    And view counter message “Quick Delete mode activation”
+    And waits finish counter
+    Then uninstall message appears
+	
+  Scenario: Security - Quick delete - Delete Tella
+    When taps switch in "Quick delete" option
+    And select check box “Delete Tella”
+    And go to Tella home page
+    And verify slide “DELETE” button is present
+    And taps slide “DELETE” button
+    And view counter message “Quick Delete mode activation”
+    And waits finish counter
+    And view closed the Tella application
+    Then view uninstall message 
+    
+   @Smoke @Camouflage @SmokeManual 
+  Scenario Outline: Security - camouflage - change camuflaje method - hide behind a calculator
+    When the PIN is selected in lock option
+    And the user clicks the "Camouflage" option
+    And enter the valid PIN
+    And select "HIDE BEHIND A CALCULATOR APP" option
+    And select <calculator> option
+    And taps "Exit Tella" button
+    Then the message "<message>" is displayed
+    And view the Tella icon changed for <calculator>
+
+    Examples:
+      | calculator   | message                                                                     |
+      | Calculator_1 | Please wait. You will return to your device's home screen in a few seconds. |
+      | Calculator_2 | Please wait. You will return to your device's home screen in a few seconds. |
+      | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
+      | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |    
         
