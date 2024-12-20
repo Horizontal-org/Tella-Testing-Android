@@ -6,7 +6,7 @@ Feature: Security
     And the user taps the settings icon
     And clicks on the category Security 
  
-  #Linea 36 - linea 228 del feature Security 
+  # Copia Linea 36 - linea 228 del feature Security 
   @Smoke @SmokeManual @LockTimeout
   Scenario Outline: Security - Lock Timeout
     When the user clicks the "Lock timeout" option
@@ -24,7 +24,7 @@ Feature: Security
       | 1 hour      |
       
       
-  #Linea 98 - linea 274 del feature Security     
+  # Copia Linea 98 - linea 274 del feature Security     
    @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon 
     When the user clicks the "Camouflage" option
@@ -63,7 +63,7 @@ Feature: Security
     | Delete server settings           |  
     
   
-  #Lineas 115 - linea 290 la diferencia sola es como esta escrita camuflage 
+  # Copia Lineas 115 - linea 290 la diferencia sola es como esta escrita camuflage 
    @Smoke @Camouflage @SmokeManual 
   Scenario Outline: Security - camouflage - change camuflage method - hide behind a calculator
     When the PIN is selected in lock option
