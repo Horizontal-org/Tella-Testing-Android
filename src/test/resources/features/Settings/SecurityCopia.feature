@@ -62,7 +62,27 @@ Feature: Security
     | Delete draft and submitted forms |
     | Delete server settings           |  
     
-    
+  
+  #Lineas 115 - linea 290  
+   @Smoke @Camouflage @SmokeManual 
+  Scenario Outline: Security - camouflage - change camuflage method - hide behind a calculator
+    When the PIN is selected in lock option
+    And the user clicks the "Camouflage" option
+    And enter the valid PIN
+    And select "HIDE BEHIND A CALCULATOR APP" option
+    And select <calculator> option
+    And taps "Exit Tella" button
+    Then the message "<message>" is displayed
+    And view the Tella icon changed for <calculator>
+
+    Examples:
+      | calculator   | message                                                                     |
+      | Calculator_1 | Please wait. You will return to your device's home screen in a few seconds. |
+      | Calculator_2 | Please wait. You will return to your device's home screen in a few seconds. |
+      | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
+      | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. | 
+      
+     
    @Smoke @QuickDelete @SmokeManual
   Scenario: Security - Quick delete - Delete Tella
     When toggle the switch on the "Quick delete" option
@@ -83,24 +103,5 @@ Feature: Security
     And view counter message “Quick Delete mode activation”
     And waits finish counter
     And view closed the Tella application
-    Then view uninstall message 
-  
-  #Lineas 115 - linea 290  
-   @Smoke @Camouflage @SmokeManual 
-  Scenario Outline: Security - camouflage - change camuflage method - hide behind a calculator
-    When the PIN is selected in lock option
-    And the user clicks the "Camouflage" option
-    And enter the valid PIN
-    And select "HIDE BEHIND A CALCULATOR APP" option
-    And select <calculator> option
-    And taps "Exit Tella" button
-    Then the message "<message>" is displayed
-    And view the Tella icon changed for <calculator>
-
-    Examples:
-      | calculator   | message                                                                     |
-      | Calculator_1 | Please wait. You will return to your device's home screen in a few seconds. |
-      | Calculator_2 | Please wait. You will return to your device's home screen in a few seconds. |
-      | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
-      | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |    
+    Then view uninstall message     
         
