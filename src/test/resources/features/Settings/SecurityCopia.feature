@@ -6,6 +6,7 @@ Feature: Security
     And the user taps the settings icon
     And clicks on the category Security 
  
+  #Linea 36 - linea 228 del feature Security 
   @Smoke @SmokeManual @LockTimeout
   Scenario Outline: Security - Lock Timeout
     When the user clicks the "Lock timeout" option
