@@ -38,6 +38,7 @@ Feature: Security
       | 10 attempts | 123451 |
       | 20 attempts | 123450 |   
       
+ 
   #Linea 98 - linea 274 del feature Security     
    @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon 
@@ -55,7 +56,8 @@ Feature: Security
       | 123456   | MiCamera   | Please wait. You will return to your device's home screen in a few seconds. |
       | 123456   | Calculator | Please wait. You will return to your device's home screen in a few seconds. | 
       
-      
+ 
+  #Linea 133 - linea 308 del feature Security     
   @Smoke @QuickDelete @SmokeManual
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
     When the switch is toggled on in the "Quick delete" option
