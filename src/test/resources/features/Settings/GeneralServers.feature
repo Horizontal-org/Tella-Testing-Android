@@ -20,18 +20,6 @@ Feature: Servers
       | Dropbox             |
       | NextCloud           |
 
-  @Smoke @SmokeManual @ViewServers @IOS
-  Scenario Outline: <Servers>  - View Server Options
-    When the user presses the + button
-    Then the user sees all possible <Servers> options available for connection
-
-    Examples:
-      | Servers      |
-      | Tella Web    |
-      | Uwazi        |
-      | Google drive |
-      | NextCloud    |
-      | Dropbox      |
 
   @Smoke @Automated @SelectServers
   Scenario Outline: Server - Select Server <server>
@@ -48,22 +36,6 @@ Feature: Servers
       | Google drive        |
       | Dropbox             |
       | NextCloud           |
-
-
-  @Smoke @SmokeManual @SelectServers @IOS
-  Scenario Outline: Server - Select Server <server>
-    When the user presses the + button
-    And selects the server "<server>"
-    And the user presses "OK" button
-    Then the user views the server <server> settings
-
-    Examples:
-      | server       |
-      | Tella Web    |
-      | Uwazi        |
-      | Google drive |
-      | NextCloud    |
-      | Dropbox      |
 
 
   @Smoke @Automated @ODKConfig

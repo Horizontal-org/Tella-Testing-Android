@@ -13,7 +13,7 @@ Feature: Unlock
       | password |
       | 123456   |
 
-  @Smoke @Pin @Automated @IOS
+  @Smoke @Pin @Automated
   Scenario Outline: Unlock the app with a pin.
     Given the user is in Tella home page and log in with pin <pin>
     And the user close the app

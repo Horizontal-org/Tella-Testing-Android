@@ -282,20 +282,6 @@ Feature: PhotographyAndVideo
     And the user writes a new name "Tella"
     Then the sistem notified there is a existing file with the same name
 
-  @Smoke @IOS @SmokeManual
-  Scenario: Move a file to another folder
-    When the user presses the camera button
-    And the user presses the image located at the bottom right of the screen
-    And the user presses the image
-    And the user presses the three points button located at the top right of the screen
-    And the user presses "Move to another folder"
-    And the user presses "+"
-    And the user write a folder name "Tella"
-    And the user presses "Create"
-    And the user presses "tella" folder
-    And the user presses "Move here"
-    Then the image is moved to a new folder
-
   Scenario: Exit from the camera
     When the user presses the camera button
     And the user presses "x" located at the top left corner
