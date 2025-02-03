@@ -1,11 +1,4 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-name: BrowserStackParallel4DevicesAtTime
+name: BrowserStack Parallel Devices
 
 on:
   workflow_dispatch:
@@ -14,16 +7,6 @@ on:
         description: 'Filter for tests'
         required: true
         default: '@Smoke and @Automated'
-      device:
-        description: 'Select the device to test'
-        required: true
-        type: choice
-        options:
-          - Samsung Galaxy A11
-          - Samsung Galaxy A51
-          - Motorola Moto G71 5G
-          - Google Pixel 7 Pro
-        default: 'Samsung Galaxy A11'
 
 jobs:
   test:
@@ -33,21 +16,16 @@ jobs:
 
     strategy:
       matrix:
-        include:
-          - device: "Samsung Galaxy A11"
-            android_version: "10"
-          - device: "Samsung Galaxy A51"
-            android_version: "10"
-          - device: "Motorola Moto G71 5G"
-            android_version: "11"
-          - device: "Google Pixel 7 Pro"
-            android_version: "13"
+        device: 
+          - "Samsung Galaxy A11"
+          - "Samsung Galaxy A51"
+          - "Motorola Moto G71 5G"
+      fail-fast: false  # Esto permite que si un trabajo falla, los otros continúen ejecutándose
 
     env:
       BSUSER: ${{ secrets.BSUSER }}
       AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
       BSDEVICE: ${{ matrix.device }}
-      BSOS: ${{ matrix.android_version }}
       BSAPP: ${{ secrets.BSAPP }}
       LTM_GENERAL: ${{ secrets.LTM_GENERAL }}
       LTM_GENERAL_PASS: ${{ secrets.LTM_GENERAL_PASS }}
@@ -62,8 +40,26 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: List directories to verify path
-        run: ls -al ~/.m2
+      - name: Set Android version based on selected device
+        run: |
+          case "${{ matrix.device }}" in
+            "Samsung Galaxy A11") echo "BSOS=10" >> $GITHUB_ENV ;;
+            "Samsung Galaxy A51") echo "BSOS=10" >> $GITHUB_ENV ;;
+            "Motorola Moto G71 5G") echo "BSOS=11" >> $GITHUB_ENV ;;
+          esac
+
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2
+          echo '<settings>
+          <mirrors>
+            <mirror>
+                <id>central</id>
+                <url>https://repo.maven.apache.org/maven2</url>
+                <mirrorOf>*</mirrorOf>
+            </mirror>
+          </mirrors>
+          </settings>' > ~/.m2/settings.xml
 
       - name: Cache Maven dependencies
         uses: actions/cache@v4
@@ -94,21 +90,28 @@ jobs:
           echo "Running tests with filter: '$COMBINED_FILTER' on device: '$BSDEVICE' with OS version: '$BSOS'"
           mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
                          -Denv.BSDEVICE="${{ matrix.device }}" \
-                         -Denv.BSOS="${{ matrix.android_version }}" \
+                         -Denv.BSOS="$BSOS" \
                          -DTEST_MANAGER_RUN_NAME="AUTO-${{ matrix.device }}-${{ github.event.inputs.filter }}" \
                          -DLTM_GENERAL="${{ secrets.LTM_GENERAL }}" \
                          -DLTM_GENERAL_PASS="${{ secrets.LTM_GENERAL_PASS }}" \
-                         -PBrowserStack -PAndroid
+                         -PBrowserStack -PAndroid -U
+        shell: bash
 
       - name: Uploading test reports
         uses: actions/upload-artifact@v4.3.4
         with:
-          name: test-results
+          name: test-results-${{ matrix.device }}
           path: target/reports/
+
+      - name: Uploading HTML test report
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: html-report-${{ matrix.device }}
+          path: target/cucumber-reports/cucumber-html-report/*.html
 
       - name: Uploading surefire test reports
         uses: actions/upload-artifact@v4.3.4
         with:
-          name: test-results-surefire
+          name: test-results-surefire-${{ matrix.device }}
           path: target/surefire-reports/
 
