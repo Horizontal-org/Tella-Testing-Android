@@ -15,8 +15,8 @@ Feature: File Options
       | folder    | type  |
       | All files | image |
       | Images    | image |
-     | Videos    | video |
-     | Audio     | audio |
+      | Videos    | video |
+      | Audio     | audio |
 
   @Smoke @ToBeAutomated
   Scenario Outline: Rename a file of <type> from the folder <folder>
@@ -122,21 +122,6 @@ Feature: File Options
       | WhatsApp    | Images | image |
       | Signal      | Videos | video |
 
-  Scenario Outline: Share a <type> file not created in Tella via <SocialMedia> from the folder <folder>
-    When the user enters the folder <folder>
-    And taps the options button "⋮" for the <type> file
-    And selects the option "Share"
-    And selects <SocialMedia>
-    And sends the file
-    Then the file is successfully shared
-
-    Examples:
-      | SocialMedia | folder    | type     |
-      | Gmail       | Documents | document |
-      | WhatsApp    | Images    | image    |
-      | WhatsApp    | Videos    | video    |
-      | Signal      | Audio     | audio    |
-
   @Smoke @SmokeManual
   Scenario Outline: Edit an image by <Modification> from the "Images" folder
     When the user enters the folder "Images"
@@ -151,18 +136,6 @@ Feature: File Options
       | Modification |
       | Cropping     |
       | Rotation     |
-
-  @Smoke @SmokeManual
-  Scenario: Share a file created in Tella of type <type> via <SocialMedia> from the folder <folder> with verification information
-    Given the user has a file with verification information
-    When the user enters the folder <folder>
-    And taps the options button "⋮" for the <type> file with verification information
-    And selects the option "Share"
-    And selects "Share files + verification information"
-    And presses "Ok"
-    And selects <SocialMedia>
-    And sends the file
-    Then the file is successfully shared
 
   Scenario Outline: Cancel the deletion of a <type> file from the folder <folder>
     When the user enters the folder <folder>
@@ -191,38 +164,6 @@ Feature: File Options
       | video    | Videos    |
       | audio    | Audios    |
       | document | Documents |
-
-    Examples:
-      | SocialMedia | folder | type  |
-      | Gmail       | Images | image |
-      | WhatsApp    | Videos | video |
-      | Signal      | Audios | audio |
-      | Gmail       | Audios | audio |
-      | WhatsApp    | Images | image |
-      | Signal      | Videos | video |
-
-  @Smoke @SmokeManual
-  Scenario Outline: Share multiple files created in Tella of type <type> via <SocialMedia> from the folder <folder> with verification information
-    Given the user has a file with verification information
-    When the user enters the folder <folder>
-    And taps the "Checkbox" button
-    And selects multiple <type> files with verification information
-    And taps the options button "⋮"
-    And selects the option "Share"
-    And selects "Share files + verification information"
-    And presses "Ok"
-    And selects <SocialMedia>
-    And sends the file
-    Then the file is successfully shared
-
-    Examples:
-      | SocialMedia | folder | type  |
-      | Gmail       | Images | image |
-      | WhatsApp    | Videos | video |
-      | Signal      | Audios | audio |
-      | Gmail       | Audios | audio |
-      | WhatsApp    | Images | image |
-      | Signal      | Videos | video |
 
   Scenario Outline: Share a <type> file not created in Tella via <SocialMedia> from the folder <folder>
     When the user enters the folder <folder>
@@ -273,7 +214,7 @@ Feature: File Options
       | image | Images |
       | video | Videos |
       | audio | Audio  |
-  #| document | Documents | you can create documents yet from tella app
+  #| document | Documents | you can't create documents yet from tella app
 
   @Smoke @Automated @SmokeManual
   Scenario Outline: Delete multiple files of <type> from the folder <folder>
@@ -306,18 +247,6 @@ Feature: File Options
       | audio    | Audio     |
       | document | Documents |
 
-  Scenario Outline: View the information of a <type> file from the folder <folder>
-    When the user enters the folder <folder>
-    And taps the options button "⋮" of the <type> file
-    And selects the option "File information"
-    Then the file information is displayed
-
-    Examples:
-      | type     | folder    |
-      | image    | Images    |
-      | video    | Videos    |
-      | audio    | Audio     |
-      | document | Documents |
 
   @Smoke @Automated
   Scenario: Move a file to another existing folder
