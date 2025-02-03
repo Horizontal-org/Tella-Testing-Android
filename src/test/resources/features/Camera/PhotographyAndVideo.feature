@@ -20,7 +20,7 @@ Feature: PhotographyAndVideo
     And the picture taken is not in the device's album
 
   @Smoke @Photography @SmokeManual
-  Scenario: take a photo from Camera with Verification Mode on
+  Scenario:General - Take a photo from Camera with Verification Mode on
     Given the Verification Mode is on
     When the user presses the camera button
     And the user presses the take a photo button
@@ -29,7 +29,7 @@ Feature: PhotographyAndVideo
     And the verification information is collected correctly
 
   @Smoke @Photography @SmokeManual
-  Scenario: take a photo from Camera with Verification Mode on and GPS off
+  Scenario:General - Take a photo from Camera with Verification Mode on and GPS (of device) off
     Given the Verification Mode is on
     And the GPS is off
     When the user presses the camera button
@@ -91,7 +91,7 @@ Feature: PhotographyAndVideo
     Then The video size is congruent with the video resolution
 
   @Smoke @Video @SmokeManual
-  Scenario: record a video from Camera
+  Scenario: Record a video from Camera
     When the user presses the camera button
     And the user presses the video button
     And the user presses the take a video button
@@ -272,8 +272,9 @@ Feature: PhotographyAndVideo
     And the user enters the images folder
     Then the file is saved with the new name
 
-  @Smoke @File @Automated @Bug @Ignore
+  @Smoke @File @Automated
   Scenario: Rename a file with an existing name
+    And the user have a photo taken named "Tella"
     And the user presses the camera button
     And the user takes a photography
     When the user presses the image located at the bottom right to the screen
@@ -281,6 +282,7 @@ Feature: PhotographyAndVideo
     And the user presses Rename button
     And the user writes a new name "Tella"
     Then the sistem notified there is a existing file with the same name
+    Then the message "File name taken. Please use a different one." is displayed
 
   Scenario: Exit from the camera
     When the user presses the camera button

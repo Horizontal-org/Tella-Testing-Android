@@ -14,7 +14,7 @@ Feature: About and Help
 
     Examples:
       | category     | version                            |
-      | About & Help | Version 2.13.1 (SS disabled) (191) |
+      | About & Help | Version 2.15.0 (SS disabled) (191) |
 
   @Smoke @SmokeManual
   Scenario Outline: About & Help - Go to <option> page
@@ -24,11 +24,8 @@ Feature: About and Help
 
     Examples:
       | category     | option         | site                   |
-      | About & Help | FAQ            | tella-app.org/docs/    |
+      | About & Help | Tutorial            | tella-app.org/get-started-android/|
+      | About & Help | FAQ            | tella-app.org/faq/    |
       | About & Help | Privacy policy | tella-app.org/privacy/ |
-
-    @Ignore @Bug
-    Examples:
-      | category     | option     | site  |
-      | About & Help | Contact us | email |
+      | About & Help | Contact us     | email                  |
 

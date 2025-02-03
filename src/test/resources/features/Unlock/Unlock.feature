@@ -2,7 +2,7 @@
 Feature: Unlock
 
   @Smoke @Password @SmokeManual #This test cannot be run in browserStack
-  Scenario Outline: Unlock the app with a password.
+  Scenario Outline: Unlock the app with a password
     Given the user is in Tella home page
     And the user close the app
     And The app is loaded correctly with a password set
@@ -14,7 +14,7 @@ Feature: Unlock
       | 123456   |
 
   @Smoke @Pin @Automated
-  Scenario Outline: Unlock the app with a pin.
+  Scenario Outline: Unlock the app with a pin
     Given the user is in Tella home page and log in with pin <pin>
     And the user close the app
     And The app is loaded correctly with a pin set
