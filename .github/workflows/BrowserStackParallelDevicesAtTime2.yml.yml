@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: BrowserStackParallel3DevicesAtTime
+name: BrowserStack Parallel Devices At Time2
 
 on:
   workflow_dispatch:
@@ -15,15 +15,6 @@ on:
         description: 'Filter for tests'
         required: true
         default: '@Smoke and @Automated'
-      device:
-        description: 'Select the device to test'
-        required: true
-        type: choice
-        options:
-          - Xiaomi Redmi Note 11
-          - Huawei P30
-          - Oppo Reno 6
-        default: 'Xiaomi Redmi Note 11'
 
 jobs:
   test:
@@ -33,19 +24,17 @@ jobs:
 
     strategy:
       matrix:
-        include:
-          - device: "Xiaomi Redmi Note 11"
-            android_version: "11"
-          - device: "Huawei P30"
-            android_version: "9"
-          - device: "Oppo Reno 6"
-            android_version: "11"
+        device: 
+          - "Google Pixel 7 Pro"
+          - "Xiaomi Redmi Note 11"
+          - "Huawei P30"
+          - "Oppo Reno 6"
+      fail-fast: false  # Permite que si un job falla, los otros continúen ejecutándose
 
     env:
       BSUSER: ${{ secrets.BSUSER }}
       AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
       BSDEVICE: ${{ matrix.device }}
-      BSOS: ${{ matrix.android_version }}
       BSAPP: ${{ secrets.BSAPP }}
       LTM_GENERAL: ${{ secrets.LTM_GENERAL }}
       LTM_GENERAL_PASS: ${{ secrets.LTM_GENERAL_PASS }}
@@ -60,8 +49,27 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: List directories to verify path
-        run: ls -al ~/.m2
+      - name: Set Android version based on selected device
+        run: |
+          case "${{ matrix.device }}" in
+            "Google Pixel 7 Pro") echo "BSOS=13" >> $GITHUB_ENV ;;
+            "Xiaomi Redmi Note 11") echo "BSOS=11" >> $GITHUB_ENV ;;
+            "Huawei P30") echo "BSOS=9" >> $GITHUB_ENV ;;
+            "Oppo Reno 6") echo "BSOS=11" >> $GITHUB_ENV ;;
+          esac
+
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2
+          echo '<settings>
+          <mirrors>
+            <mirror>
+                <id>central</id>
+                <url>https://repo.maven.apache.org/maven2</url>
+                <mirrorOf>*</mirrorOf>
+            </mirror>
+          </mirrors>
+          </settings>' > ~/.m2/settings.xml
 
       - name: Cache Maven dependencies
         uses: actions/cache@v4
@@ -92,20 +100,27 @@ jobs:
           echo "Running tests with filter: '$COMBINED_FILTER' on device: '$BSDEVICE' with OS version: '$BSOS'"
           mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
                          -Denv.BSDEVICE="${{ matrix.device }}" \
-                         -Denv.BSOS="${{ matrix.android_version }}" \
+                         -Denv.BSOS="$BSOS" \
                          -DTEST_MANAGER_RUN_NAME="AUTO-${{ matrix.device }}-${{ github.event.inputs.filter }}" \
                          -DLTM_GENERAL="${{ secrets.LTM_GENERAL }}" \
                          -DLTM_GENERAL_PASS="${{ secrets.LTM_GENERAL_PASS }}" \
-                         -PBrowserStack -PAndroid
+                         -PBrowserStack -PAndroid -U
+        shell: bash
 
       - name: Uploading test reports
         uses: actions/upload-artifact@v4.3.4
         with:
-          name: test-results
+          name: test-results-${{ matrix.device }}
           path: target/reports/
+
+      - name: Uploading HTML test report
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: html-report-${{ matrix.device }}
+          path: target/cucumber-reports/cucumber-html-report/*.html
 
       - name: Uploading surefire test reports
         uses: actions/upload-artifact@v4.3.4
         with:
-          name: test-results-surefire
+          name: test-results-surefire-${{ matrix.device }}
           path: target/surefire-reports/
