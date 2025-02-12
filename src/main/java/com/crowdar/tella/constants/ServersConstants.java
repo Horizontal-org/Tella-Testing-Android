@@ -4,7 +4,7 @@ public class ServersConstants {
     public static final String PLUS_BUTTON = "ACCESSIBILITY_ID:Connect to servers to collect and send data to your organization";
     public static final String WHAT_SERVER_TITLE = "id:standard_sheet_content";
     public static final String TEXT_SERVER_BUTTON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" + ".tella:id/sheet_textView\" and @text=\"%s\"]";
-    public static final String GRAL_NEXT_BUTTON = "id:next_btn";
+    public static final String GRAL_NEXT_BUTTON = "id:org.hzontal.tella:id/next_btn";
     public static final String URL_INPUT = "id:url";
     public static final String SAVE_BUTTON = "id:next";
     public static final String SERVER_NAME_INPUT = "id:name";

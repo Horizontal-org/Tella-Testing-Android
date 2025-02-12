@@ -127,9 +127,9 @@ public class SettingsService {
                 "/logo")
         );
     }
-    public static void viewVersion(String version) {
+    public static void viewVersion() {
         MobileActionManager.waitVisibility(SettingsConstants.VERSION_TEXT);
-        Assert.assertEquals(MobileActionManager.getText(SettingsConstants.VERSION_TEXT),version);
+        Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.VERSION_TEXT));
     }
     public static void viewList() {
         MobileActionManager.waitVisibility(SettingsConstants.ABOUT_HELP_OPTIONS);

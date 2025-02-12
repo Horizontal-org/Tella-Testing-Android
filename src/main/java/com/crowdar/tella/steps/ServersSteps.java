@@ -162,5 +162,10 @@ public class ServersSteps extends PageSteps {
         GenericService.pickGoogle();
         ServersService.googleDrive();
     }
+
+    @And("the user presses OK button")
+    public void theUserPressesOKButton() {
+        ServersService.okServerButton();
+    }
 }
 

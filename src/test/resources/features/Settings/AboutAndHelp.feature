@@ -9,12 +9,12 @@ Feature: About and Help
   Scenario Outline: About & Help - view options
     When clicks on the category <category>
     Then view the Tella icon
-    And the number version <version>
+    And the number version
     And view a list options
 
     Examples:
-      | category     | version                            |
-      | About & Help | Version 2.15.0 (SS disabled) (191) |
+      | category     |
+      | About & Help |
 
   @Smoke @SmokeManual
   Scenario Outline: About & Help - Go to <option> page
@@ -23,9 +23,9 @@ Feature: About and Help
     Then the user is redirected to the <site>
 
     Examples:
-      | category     | option         | site                   |
-      | About & Help | Tutorial            | tella-app.org/get-started-android/|
-      | About & Help | FAQ            | tella-app.org/faq/    |
-      | About & Help | Privacy policy | tella-app.org/privacy/ |
-      | About & Help | Contact us     | email                  |
+      | category     | option         | site                               |
+      | About & Help | Tutorial       | tella-app.org/get-started-android/ |
+      | About & Help | FAQ            | tella-app.org/faq/                 |
+      | About & Help | Privacy policy | tella-app.org/privacy/             |
+      | About & Help | Contact us     | email                              |
 

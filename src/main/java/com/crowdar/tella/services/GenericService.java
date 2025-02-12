@@ -6,8 +6,6 @@ import com.crowdar.tella.constants.HomeConstants;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
-import org.bouncycastle.oer.Switch;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -97,9 +95,8 @@ public class GenericService {
         MobileActionManager.click(HomeConstants.LEAVE_TELLA);
     }
 
-    public static void pickGoogle() { //OKI AÑADIR TRY CATCH AQUI
+    public static void pickGoogle() {
         MobileActionManager.click(HomeConstants.PICK_GOOGLE_ACCOUNT);
-        //MobileActionManager.click(HomeConstants.ALOW_GOOGLE_IN_TELLA); esto va en el try catch
     }
 
     public static void recAndStopRecord() {
@@ -138,8 +135,6 @@ public class GenericService {
         AndroidDriver driver = (AndroidDriver) DriverManager.getDriverInstance().getWrappedDriver();
         return driver;
     }
-
-
 
 }
 
