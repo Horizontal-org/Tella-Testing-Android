@@ -15,7 +15,7 @@ Feature: Audio
       | message_title                                     |
       | The audio recording was saved to your Tella files |
 
-  @Smoke @Automated
+  @Smoke @Automated @oki
   Scenario Outline: Record an audio file in two parts
     When the user press the Rec option
     And the user press the microphone

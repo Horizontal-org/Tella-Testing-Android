@@ -6,7 +6,7 @@ Feature: General
     Given the user is in Tella home page
     And the user taps the settings icon
 
-  @Smoke @Automated 
+  @Smoke @Automated
   Scenario Outline: View Settings Categories
     When clicks on the category <category>
     Then the user access the category <visible>
@@ -45,6 +45,7 @@ Feature: General
       | Russian    | Язык          |
       | Tamil      | மொழி         |
       | Vietnamese | Ngôn ngữ      |
+      | Bangla     | বাংলা         |
 
 
   @Smoke @Automated

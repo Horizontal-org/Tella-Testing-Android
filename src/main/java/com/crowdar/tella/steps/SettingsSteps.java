@@ -94,9 +94,9 @@ public class SettingsSteps {
         SettingsService.viewTellaIcon();
     }
 
-    @And("the number version (.*)")
-    public void theNumberVersion(String version) {
-        SettingsService.viewVersion(version);
+    @And("the number version")
+    public void theNumberVersion() {
+        SettingsService.viewVersion();
     }
 
     @And("view a list options")

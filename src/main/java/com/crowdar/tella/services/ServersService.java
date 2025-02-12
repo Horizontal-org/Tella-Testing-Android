@@ -3,23 +3,32 @@ package com.crowdar.tella.services;
 import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
+import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.constants.ServersConstants;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileDriver;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Pause;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public class ServersService {
     public static void clickPlusButton() {
@@ -40,8 +49,10 @@ public class ServersService {
     }
 
     public static void pressButton(String button) {
+
+
         Map<String, String> buttons = new HashMap<>();
-        buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
+        //  buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Cancel", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Next", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("SAVE", ServersConstants.SAVE_BUTTON);
@@ -52,6 +63,33 @@ public class ServersService {
         MobileActionManager.waitVisibility(getButton);
         MobileActionManager.click(getButton);
     }
+
+
+    public static void okServerButton() {
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriverInstance().getWrappedDriver();
+
+        Dimension size = driver.manage().window().getSize();
+        int startX = size.getWidth() / 2;
+        int startY = (int) (size.getHeight() * 0.8);
+        int endY = (int) (size.getHeight() * 0.4);
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence scroll = new Sequence(finger, 1)
+                .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY))
+                .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(new Pause(finger, Duration.ofMillis(500)))
+                .addAction(finger.createPointerMove(Duration.ofMillis(1000), PointerInput.Origin.viewport(), startX, endY))
+                .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        List<Sequence> actions = new ArrayList<>();
+        actions.add(scroll);
+        driver.perform(actions);
+
+        MobileActionManager.click(ServersConstants.GRAL_NEXT_BUTTON);
+    }
+
+
+
 
     public static void viewSettingServer(String server) {
         if (MobileActionManager.isPresent(ServersConstants.URL_INPUT)) {
@@ -78,7 +116,6 @@ public class ServersService {
             Assert.assertTrue(actualMessage.contains(message));  // Compara si contiene el mensaje esperado
         }
     }
-
 
 
     public static void viewServerOnTheList(String serverName) {

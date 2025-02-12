@@ -25,8 +25,8 @@ Feature: Servers
   Scenario Outline: Server - Select Server <server>
     When the user presses the + button
     And selects the server "<server>"
-    And the user presses "OK" button
-    Then the user views the server <server> settings
+    And the user presses OK button
+    Then the user views the server <server> settix ngs
 
     Examples:
       | server              |
@@ -35,7 +35,7 @@ Feature: Servers
       | Uwazi               |
       | Google drive        |
       | Dropbox             |
-      | NextCloud           |
+      | Nextcloud           |
 
 
   @Smoke @Automated @ODKConfig
