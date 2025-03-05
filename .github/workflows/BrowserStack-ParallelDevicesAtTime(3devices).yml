@@ -20,7 +20,7 @@ jobs:
           - "Samsung Galaxy A11"
           - "Samsung Galaxy A51"
           - "Motorola Moto G71 5G"
-      fail-fast: false  # Esto permite que si un trabajo falla, los otros continúen ejecutándose
+      fail-fast: false
 
     env:
       BSUSER: ${{ secrets.BSUSER }}
@@ -115,3 +115,9 @@ jobs:
           name: test-results-surefire-${{ matrix.device }}
           path: target/surefire-reports/
 
+      - name: Uploading Extent Reports
+        if: always()
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: extent-report
+          path: target/reports/*.html

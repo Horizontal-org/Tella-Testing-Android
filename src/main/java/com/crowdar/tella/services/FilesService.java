@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import static com.crowdar.core.actions.ActionManager.*;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class FilesService {
 
@@ -232,5 +233,10 @@ public class FilesService {
         GenericService.commonClick(FilesConstants.PICK_FOLDER);
     }
 
+    public static void filePrecense(String type) {
+        boolean isFileTypePresent = GenericService.verifyFilePresence(type);
+        assertTrue("No se encontró un archivo de tip" +
+                "o " + type + " en la carpeta", isFileTypePresent);
+    }
 }
 

@@ -64,8 +64,8 @@ public class FilesSteps {
 
     @And("capture the file extension (.*)")
     public void captureTheFileExtensionType(String type) {
-        boolean isFileTypePresent = GenericService.verifyFilePresence(type);
-        assertTrue("No se encontró un archivo de tipo " + type + " en la carpeta", isFileTypePresent);
+
+        FilesService
     }
 
 

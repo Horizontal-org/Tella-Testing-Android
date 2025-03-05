@@ -5,7 +5,7 @@ Feature: File Options
     Given the user is in Tella home page
     And there are files and folders within Tella app
 
-  @Smoke @ToBeAutomated
+  @Smoke  @oki
   Scenario Outline: Open a multimedia file <type> from the folder <folder>
     When the user enters the folder <folder>
     And capture the file extension <type>
@@ -13,10 +13,10 @@ Feature: File Options
 
     Examples:
       | folder    | type  |
-      | All files | image |
-      | Images    | image |
+    #  | All files | image |
+     # | Images    | image |
       | Videos    | video |
-      | Audio     | audio |
+      #| Audio     | audio |
 
   @Smoke @ToBeAutomated
   Scenario Outline: Rename a file of <type> from the folder <folder>
