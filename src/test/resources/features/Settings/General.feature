@@ -45,7 +45,7 @@ Feature: General
       | Russian    | Язык          |
       | Tamil      | மொழி         |
       | Vietnamese | Ngôn ngữ      |
-      | Bangla     | বাংলা         |
+      | Bangla     | ভাষা         |
 
 
   @Smoke @Automated
