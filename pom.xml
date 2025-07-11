@@ -7,18 +7,17 @@
     <name>Lippia-mobile-sample-project</name>
     <version>1.0.0</version>
 
-
     <parent>
         <groupId>io.lippia</groupId>
         <artifactId>root</artifactId>
-        <version>3.3.0.2</version>
+        <version>3.3.0.4</version>
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>dd-MM-yyyy-HH-mm-ss</maven.build.timestamp.format>
         <buildIdentifier>Tella_Android_Testing_${maven.build.timestamp}</buildIdentifier>
-        <crowdar.cucumber.filter>@oki</crowdar.cucumber.filter>
+        <crowdar.cucumber.filter>@Smoke</crowdar.cucumber.filter>
         <crowdar.driverHub></crowdar.driverHub>
         <crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin com.crowdar.tella.listeners.CucumberListener:</crowdar.cucumber.plugins>
         <test-manager-plugin>--plugin com.crowdar.tella.report.TestManagerReporter:</test-manager-plugin>
@@ -31,24 +30,15 @@
         <crowdar.extent.user.name>User.name</crowdar.extent.user.name>
         <crowdar.app.location>${env.APPLOCAL}</crowdar.app.location>
 
-
-        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-        <!--   Browser Stack Profiles Parameters              -->
-        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-
+        <!-- Browser Stack Profiles Parameters -->
         <crowdar.bs.hub>https://${env.BSUSER}:${env.AUTHTOKEN}@hub-cloud.browserstack.com/wd/hub</crowdar.bs.hub>
-
-        <!-- Browser Stack for Android -->
         <crowdar.bs.device>${env.BSDEVICE}</crowdar.bs.device>
         <crowdar.bs.os>${env.BSOS}</crowdar.bs.os>
         <crowdar.bs.app>${env.BSAPP}</crowdar.bs.app>
         <crowdar.bs.capabilities>src/main/resources/capabilities/browserStackCapabilities.json</crowdar.bs.capabilities>
-
-        <!--  Browser Stack for IOS -->
         <crowdar.bsIOS.device>${env.BSDEVICE_IOS}</crowdar.bsIOS.device>
         <crowdar.bsIOS.os>${env.BS_IOS}</crowdar.bsIOS.os>
         <crowdar.bsIOS.app>${env.BSAPP_IOS}</crowdar.bsIOS.app>
-
     </properties>
 
     <profiles>
@@ -61,8 +51,7 @@
                 <crowdar.driverHub>http://127.0.0.1:4723/</crowdar.driverHub>
                 <cucumber.runner>testngSecuencial.xml</cucumber.runner>
                 <crowdar.avd>Pixel3</crowdar.avd>
-                <crowdar.appLocation>C:\\\\app.apk
-                </crowdar.appLocation>
+                <crowdar.appLocation>C:\\\\app.apk</crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
                 <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emulatedCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
             </properties>
@@ -76,7 +65,6 @@
                 <crowdar.avd>Pixel3</crowdar.avd>
                 <crowdar.appLocation>C:\\\\Tella-Testing\\\\sample_apk\\\\old\\\\app.apk</crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
-                <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emulatedCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
                 <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emuladoCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
             </properties>
         </profile>
@@ -100,14 +88,15 @@
                 <crowdar.projectType>MOBILE_ANDROID</crowdar.projectType>
             </properties>
         </profile>
+
         <profile>
             <id>IOS</id>
             <properties>
                 <crowdar.projectType>MOBILE_IOS</crowdar.projectType>
             </properties>
         </profile>
-        <profile>
 
+        <profile>
             <id>BrowserStack</id>
             <properties>
                 <cucumber.runner>testngSecuencial.xml</cucumber.runner>
@@ -119,7 +108,6 @@
                 <crowdar.projectType>MOBILE_ANDROID</crowdar.projectType>
             </properties>
         </profile>
-
 
         <profile>
             <id>BrowserStackIOS</id>
@@ -133,11 +121,6 @@
                 <crowdar.projectType>MOBILE_IOS</crowdar.projectType>
             </properties>
         </profile>
-
-
-        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-        <!--   Profiles related to Runners ejecutions         -->
-        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
         <profile>
             <id>secuencial</id>
@@ -158,25 +141,21 @@
     </profiles>
 
     <dependencies>
-
         <dependency>
             <groupId>io.lippia</groupId>
             <artifactId>core</artifactId>
-            <version>3.3.0.2</version>
+            <version>3.3.0.4</version>
         </dependency>
-
         <dependency>
             <groupId>io.lippia.report</groupId>
             <artifactId>extentreports-cucumber4-adapter</artifactId>
             <version>1.1.0.10</version>
         </dependency>
-
         <dependency>
             <groupId>io.lippia.report</groupId>
             <artifactId>ltm-cucumber4-adapter</artifactId>
-            <version>1.4</version>
+            <version>1.6</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -190,8 +169,6 @@
                 <filtering>true</filtering>
             </testResource>
         </testResources>
-
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -201,9 +178,9 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${cucumber.runner}</suiteXmlFile>
                     </suiteXmlFiles>
+
                     <systemPropertyVariables>
-                        <TEST_MANAGER_API_HOST>https://crowdaracademy.testmanager.lippia.io/run-result-import</TEST_MANAGER_API_HOST>
-                        <TEST_MANAGER_API_PORT></TEST_MANAGER_API_PORT>
+                        <TEST_MANAGER_API_HOST>https://crowdaracademy.testmanager.lippia.io/</TEST_MANAGER_API_HOST>
                         <TEST_MANAGER_RUN_NAME>AUTO-${crowdar.deviceName}-${crowdar.cucumber.filter}</TEST_MANAGER_RUN_NAME>
                         <TEST_MANAGER_PROJECT_CODE>TELL</TEST_MANAGER_PROJECT_CODE>
                         <TEST_MANAGER_USERNAME>${env.LTM_GENERAL}</TEST_MANAGER_USERNAME>
@@ -222,7 +199,6 @@
                     <target>9</target>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
@@ -238,5 +214,4 @@
             </snapshots>
         </repository>
     </repositories>
-
 </project>
