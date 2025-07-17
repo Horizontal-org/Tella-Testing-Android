@@ -17,6 +17,9 @@ public class AudioService {
 
     static String nameChanged = null;
 
+    //cambio Angi
+    static boolean flagAcceptPermissions = false;
+
     public static void clickRecOption() {
         MobileActionManager.waitVisibility(AudioConstants.REC_OPTION);
         MobileActionManager.click(AudioConstants.REC_OPTION);
@@ -25,13 +28,17 @@ public class AudioService {
     public static void clickMicrophoneIcon() throws InterruptedException {
         if (MobileActionManager.isPresent(AudioConstants.MICROPHONE_ICON)) {
             GenericService.commonClick(AudioConstants.MICROPHONE_ICON);
-            try {
-                acceptPermissions();
-                MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
-            } catch (Exception e) {
-                System.out.println("Permits not present, continuing.");
+            //En el caso de que los permisos ya fueron aceptados
+            if (flagAcceptPermissions == false) {
+                try {
+                    acceptPermissions();
+                    MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
+                } catch (Exception e) {
+                    System.out.println("Permits not present, continuing.");
+                }
             }
-        }}
+        }
+    }
 
 /*
         public static void clickMicrophoneIconStop () {
@@ -92,6 +99,8 @@ public class AudioService {
             if (elems.size() > 0) {
                 DriverManager.getDriverInstance().getWrappedDriver().findElement(By.id(AudioConstants.PERMISSIONS_ACCEPT_BUTTON)).click();
             }
+            //Aceptar permiso
+            flagAcceptPermissions = true;
         } catch (TimeoutException e) {
         }
     }
