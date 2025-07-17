@@ -43,7 +43,7 @@ Feature: Security
       | timeout     |
       | Immediately |
       | 1 minute    |
-      #| 5 minutes   |
+      | 5 minutes   |
       #| 30 minutes  |
       #| 1 hour      |
 
