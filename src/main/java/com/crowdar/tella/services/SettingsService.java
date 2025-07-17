@@ -1,21 +1,22 @@
 package com.crowdar.tella.services;
 
-import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
-import com.crowdar.core.actions.WebActionManager;
-import com.crowdar.driver.DriverManager;
+import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.constants.SettingsConstants;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.crowdar.driver.DriverManager.*;
+import static org.bouncycastle.oer.its.ieee1609dot2.basetypes.Duration.seconds;
 
 public class SettingsService {
 
@@ -40,7 +41,7 @@ public class SettingsService {
     }
 
     public static void clickChoosenLanguage(String language) {
-        WebElement pedidoEle = DriverManager.getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
+        WebElement pedidoEle = getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
                 "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
                         ".scrollIntoView(new UiSelector()" +
                         ".textMatches(\"" + language + "\").instance(0))"));
@@ -100,10 +101,10 @@ public class SettingsService {
         buttons.put("Favorite templates", SettingsConstants.SWITCH_LIST_BUTTON + "[5]");
         buttons.put("Test justification", SettingsConstants.SWITCH_LIST_BUTTON + "[6]");
         buttons.put("Increase text spacing", SettingsConstants.SWITCH_LIST_BUTTON + "[7]");
-        buttons.put("Quick delete", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON +"[1]" );
-        buttons.put("Preserve metadata when importing", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON +"[2]" );
-        buttons.put("Camera silent mode", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON +"[3]");
-        buttons.put("Screen security", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON +"[4]");
+        buttons.put("Quick delete", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[1]");
+        buttons.put("Preserve metadata when importing", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[2]");
+        buttons.put("Camera silent mode", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[3]");
+        buttons.put("Screen security", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[4]");
         return buttons.get(configuration);
     }
 
@@ -115,6 +116,7 @@ public class SettingsService {
             MobileActionManager.click(button);
         }
     }
+
     public static void viewButtonEnable(String configuration) {
         String button = viewButton(configuration);
         MobileActionManager.waitVisibility(button);
@@ -127,10 +129,12 @@ public class SettingsService {
                 "/logo")
         );
     }
+
     public static void viewVersion() {
         MobileActionManager.waitVisibility(SettingsConstants.VERSION_TEXT);
         Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.VERSION_TEXT));
     }
+
     public static void viewList() {
         MobileActionManager.waitVisibility(SettingsConstants.ABOUT_HELP_OPTIONS);
         Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.ABOUT_HELP_OPTIONS));
@@ -143,10 +147,10 @@ public class SettingsService {
 
     public static void tapTheOption(String option) {
         Map<String, String> options = new HashMap<>();
-        options.put("FAQ" ,"faq");
+        options.put("FAQ", "faq");
         options.put("Contact us", "contact_us");
         options.put("Privacy policy", "privacy_policy");
-        String opt = "id:"+options.get(option);
+        String opt = "id:" + options.get(option);
         try {
             MobileActionManager.waitVisibility(opt);
             MobileActionManager.click(opt);
@@ -160,17 +164,20 @@ public class SettingsService {
         Assert.assertTrue(MobileActionManager.getText(SettingsConstants.URL_BAR).equals(site));
 
     }
+
     public static void clicksOptions(String option) {
-        MobileActionManager.waitVisibility(SettingsConstants.OPTIONS_TITLE,option);
-        MobileActionManager.click(SettingsConstants.OPTIONS_TITLE,option);
+        MobileActionManager.waitVisibility(SettingsConstants.OPTIONS_TITLE, option);
+        MobileActionManager.click(SettingsConstants.OPTIONS_TITLE, option);
     }
+
     public static void SelectGeneralOption(String timeout) {
         MobileActionManager.waitVisibility(SettingsConstants.TIMEOUT_SHEET_TITLE);
-        String check = MobileActionManager.getAttribute(SettingsConstants.GENERAL_RADIO_BUTTON,"checked" , timeout);
+        String check = MobileActionManager.getAttribute(SettingsConstants.GENERAL_RADIO_BUTTON, "checked", timeout);
         if (Boolean.parseBoolean(check) != true) {
-            MobileActionManager.click(SettingsConstants.GENERAL_RADIO_BUTTON,timeout);
+            MobileActionManager.click(SettingsConstants.GENERAL_RADIO_BUTTON, timeout);
         }
     }
+
     public static void clickButton(String button) {
         Map<String, String> buttons = new HashMap<>();
         buttons.put("OK", SettingsConstants.OK_BUTTON);
@@ -210,6 +217,7 @@ public class SettingsService {
         String iconSelected = MobileActionManager.getText(SettingsConstants.ICON_CAMOUFLAGE_TEXT, icon);
         MobileActionManager.click(iconSelected);
     }
+
     public static void showMessage(String message) {
         MobileActionManager.waitVisibility(SettingsConstants.MESSAGE_CONTENT);
         Assert.assertTrue(MobileActionManager.getText(SettingsConstants.MESSAGE_CONTENT).contains(message));
@@ -223,7 +231,7 @@ public class SettingsService {
     }
 
     public static void changeStatus(String option, String status) {
-        AndroidDriver driver = (AndroidDriver) DriverManager.getDriverInstance().getWrappedDriver();
+        AndroidDriver driver = (AndroidDriver) getDriverInstance().getWrappedDriver();
         WebElement switchElement = driver.findElement(By.xpath("(//android.widget.Switch[@resource-id='org.hzontal.tella:id/mSwitch'])[1]"));
         String checked = switchElement.getAttribute("checked");
 
@@ -253,5 +261,35 @@ public class SettingsService {
         AndroidDriver driver = (AndroidDriver) GenericService.getDriver();
         MobileElement checked = (MobileElement) driver.findElement(MobileBy.xpath(SettingsConstants.REMAINING_UNLOCK_ATTEMPTS));
         Assert.assertTrue(checked.isEnabled());
+    }
+
+    public static void pressHomeAndroid(String waitTime) throws InterruptedException {
+        int timeSelect = selectMinutetime(waitTime);
+        GenericService.waitOnHomeScreenReturnApp(timeSelect);
+    }
+
+    public static void pressBlockInAndroid(String waitTime) throws InterruptedException {
+        int timeSelect = selectMinutetime(waitTime);
+        GenericService.lockScreenWaitAndUnlock(timeSelect);
+    }
+
+    public static void checkscreenlock() {
+        //Validamos que sea visible el campo input password
+        Assert.assertTrue(MobileActionManager.waitVisibility(LockUnlockConstants.PASSWORD_INPUT).isDisplayed());
+    }
+
+    private static int selectMinutetime(String waitTime) {
+        switch (waitTime) {
+            case "Immediately":
+                return 0;
+            case "1 minute":
+                return 1;
+            case "5 minutes":
+                return 5;
+            case "30 minutes":
+                return 30;
+            default:
+                return 0;
+        }
     }
 }
