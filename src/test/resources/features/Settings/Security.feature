@@ -43,7 +43,7 @@ Feature: Security
       | timeout     |
       | Immediately |
       | 1 minute    |
-      #| 5 minutes   |
+      | 5 minutes   |
       #| 30 minutes  |
       #| 1 hour      |
 
@@ -141,7 +141,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual
+  @Smoke @QuickDelete @SmokeManual #Ok
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
     When toggle the switch on the "Quick delete" option
     And select check box "<quickDeleteCheck>"
@@ -160,7 +160,7 @@ Feature: Security
       | Delete draft and submitted forms |
       | Delete server settings           |
 
-  @Smoke @QuickDelete @SmokeManual
+  @Smoke @QuickDelete @SmokeManual #Ok
   Scenario: Security - Quick delete - Delete Tella
     When toggle the switch on the "Quick delete" option
     And select check box “Delete Tella”
@@ -171,7 +171,7 @@ Feature: Security
     And waits finish counter
     Then uninstall message appears
 
-  @Smoke @QuickDelete @Automated
+  @Smoke @QuickDelete @Automated #Ok
   Scenario Outline: Security - Quick delete - Help info
     When toggle the switch on the "Quick delete" option
     And click on the help icon in <deleteOption>
@@ -315,7 +315,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual
+  @Smoke @QuickDelete @SmokeManual #RepetidoEscenarioEstaMasArriba
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
     When taps switch in "Quick delete" option
     And select check box "<quickDeleteCheck>"
@@ -334,7 +334,7 @@ Feature: Security
       | Delete files                     |
       | Delete draft and submitted forms |
       | Delete server settings           |
-
+#RepetidoEscenarioEstaMasArriba
   Scenario: Security - Quick delete - Delete Tella
     When taps switch in "Quick delete" option
     And select check box “Delete Tella”
@@ -346,6 +346,7 @@ Feature: Security
     And view closed the Tella application
     Then view uninstall message
 
+    #RepetidoEscenarioEstaMasArriba
   @Smoke @QuickDelete @ToBeAutomated @Bug
   Scenario Outline: Security - Quick delete - help info
     When taps switch in "Quick delete" option
