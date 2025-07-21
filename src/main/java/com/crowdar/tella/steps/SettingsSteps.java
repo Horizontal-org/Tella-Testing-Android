@@ -15,7 +15,7 @@ import org.testng.Assert;
 public class SettingsSteps {
     @Given("the user is in Tella home page")
     public void theUserIsInTellaHomePage() {
-       UnlockService.isViewLoaded();
+        UnlockService.isViewLoaded();
         UnlockService.setPassword(PropertyManager.getProperty("password"));
         UnlockService.goTella();
         HomeService.isHomeLoaded();
@@ -198,5 +198,39 @@ public class SettingsSteps {
     @When("taps the general button")
     public void tapsTheGeneralButton() {
         SettingsService.generalButton();
+    }
+
+    @And("wait (.*) of time")
+    public void waitTimeoutOfTime(String waitTime) throws InterruptedException {
+        SettingsService.pressHomeAndroid(waitTime);
+    }
+
+
+    @Then("view screen lock")
+    public void viewScreenLock() {
+        SettingsService.checkscreenlock();
+    }
+
+    @Given("the user sets the app lock timeout to (.*)")
+    public void theUserHasSelectedTheLockTimeInTimeout(String timeout) {
+        SettingsService.clicksOptions("Lock Timeout");
+        SettingsService.SelectGeneralOption(timeout);
+        SettingsService.clickButton("OK");
+        SettingsService.selectedTimeout(timeout);
+    }
+
+    @When("the user leaves the app, waits for the configured time (.*) , and returns")
+    public void theUserLeavesTheAppWaitsForTheConfiguredTimeTimeoutAndReturns(String timeout) throws InterruptedException {
+        SettingsService.pressHomeAndroid(timeout);
+    }
+
+    @Then("The screen lock must be displayed in the application")
+    public void theScreenLockShouldBeDisplayedInTheApp() {
+        SettingsService.checkscreenlock();
+    }
+
+    @When("the user locks the device screen, waits for the configured time (.*), and unlocks it")
+    public void theUserLocksTheDeviceScreenWaitsForTheConfiguredTimeTimeoutAndUnlocksIt(String timeout) throws InterruptedException {
+        SettingsService.pressBlockInAndroid(timeout);
     }
 }

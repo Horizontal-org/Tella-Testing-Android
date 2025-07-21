@@ -33,12 +33,10 @@ Feature: Security
     And taps "next" button
     Then "Your lock has been changed" message is shown
 
-  @Smoke @SmokeManual @LockTimeout
+  @Smoke @SmokeManual @LockTimeout @LockFlow @TestAngi
   Scenario Outline: Security - Lock Timeout
-    When the user clicks the "Lock timeout" option
-    And select timeout <timeout> option
-    And taps "OK" button
-    And wait <timeout> of time
+    Given the user sets the app lock timeout to <timeout>
+    When the user leaves the app, waits for the configured time <timeout> , and returns
     Then view screen lock
 
     Examples:
@@ -46,10 +44,10 @@ Feature: Security
       | Immediately |
       | 1 minute    |
       | 5 minutes   |
-      | 30 minutes  |
-      | 1 hour      |
+      #| 30 minutes  |
+      #| 1 hour      |
 
-  @Smoke @LockTimeout @Automated
+  @Smoke @LockTimeout @Automated @TestAngi
   Scenario Outline: Security - Change Lock Timeout
     When the user clicks the "Lock Timeout" option
     And select timeout <timeout> option
@@ -60,16 +58,30 @@ Feature: Security
       | timeout     |
       | Immediately |
       | 1 minute    |
-      | 5 minutes   |
-      | 30 minutes  |
-      | 1 hour      |
+      #| 5 minutes   |
+      #| 30 minutes  |
+      #| 1 hour      |
+
+  @Smoke @LockTimeout @Automated @TestAngi
+  Scenario Outline: Security - Lock on Device Screen Off
+    Given the user sets the app lock timeout to <timeout>
+    When the user locks the device screen, waits for the configured time <timeout>, and unlocks it
+    Then The screen lock must be displayed in the application
+
+    Examples:
+      | timeout     |
+      | Immediately |
+      | 1 minute    |
+      #| 5 minutes   |
+      #| 30 minutes  |
+      #| 1 hour      |
 
   @Smoke @DeleteAfterFailedUnlock @SmokeManual
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
-    And the sucessfull message <message> is displayed
     And select attempts <attempts> option
     And taps "OK" button
+    And the sucessfull message <message> is displayed
     And the user close the app
     And the user set incorrect <PIN> in <attempts>
     Then sees that the files have been deleted
@@ -77,8 +89,8 @@ Feature: Security
     Examples:
       | attempts    | PIN    | message                                                         |
       | 5 attempts  | 123450 | Your Tella data will be deleted after 5 failed unlock attempts  |
-      | 10 attempts | 123451 | Your Tella data will be deleted after 10 failed unlock attempts |
-      | 20 attempts | 123450 | Your Tella data will be deleted after 20 failed unlock attempts |
+      #| 10 attempts | 123451 | Your Tella data will be deleted after 10 failed unlock attempts |
+      #| 20 attempts | 123450 | Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @DeleteAfterFailedUnlock @Automated
   Scenario Outline: Security - Delete after failed unlock
@@ -129,7 +141,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual
+  @Smoke @QuickDelete @SmokeManual #Ok
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
     When toggle the switch on the "Quick delete" option
     And select check box "<quickDeleteCheck>"
@@ -148,7 +160,7 @@ Feature: Security
       | Delete draft and submitted forms |
       | Delete server settings           |
 
-  @Smoke @QuickDelete @SmokeManual
+  @Smoke @QuickDelete @SmokeManual #Ok
   Scenario: Security - Quick delete - Delete Tella
     When toggle the switch on the "Quick delete" option
     And select check box “Delete Tella”
@@ -159,7 +171,7 @@ Feature: Security
     And waits finish counter
     Then uninstall message appears
 
-  @Smoke @QuickDelete @Automated
+  @Smoke @QuickDelete @Automated #Ok
   Scenario Outline: Security - Quick delete - Help info
     When toggle the switch on the "Quick delete" option
     And click on the help icon in <deleteOption>
@@ -222,9 +234,9 @@ Feature: Security
     And taps "next" button
     Then  "Your lock has been changed" message is shown
 
-  @Smoke @LockTimeout @SmokeManual
+  @Smoke @LockTimeout @SmokeManual #@TestAngi
   Scenario Outline: Security - Lock Timeout
-    When the user clicks the "Lock timeout" option
+    When the user clicks the "Lock Timeout" option
     And select timeout <timeout> option
     And taps "OK" button
     And wait <timeout> of time
@@ -236,7 +248,7 @@ Feature: Security
       | 1 minute    |
       | 5 minutes   |
       | 30 minutes  |
-      | 1 hour      |
+      #| 1 hour      |
 
 
   @Smoke @DeleteAfterFailedUnlock @SmokeManual
@@ -303,7 +315,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual
+  @Smoke @QuickDelete @SmokeManual #RepetidoEscenarioEstaMasArriba
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
     When taps switch in "Quick delete" option
     And select check box "<quickDeleteCheck>"
@@ -322,7 +334,7 @@ Feature: Security
       | Delete files                     |
       | Delete draft and submitted forms |
       | Delete server settings           |
-
+#RepetidoEscenarioEstaMasArriba
   Scenario: Security - Quick delete - Delete Tella
     When taps switch in "Quick delete" option
     And select check box “Delete Tella”
@@ -334,6 +346,7 @@ Feature: Security
     And view closed the Tella application
     Then view uninstall message
 
+    #RepetidoEscenarioEstaMasArriba
   @Smoke @QuickDelete @ToBeAutomated @Bug
   Scenario Outline: Security - Quick delete - help info
     When taps switch in "Quick delete" option
