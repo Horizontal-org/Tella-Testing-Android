@@ -3,6 +3,7 @@ package com.crowdar.tella.services;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.HomeConstants;
+import com.crowdar.tella.constants.SettingsConstants;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -195,6 +196,44 @@ public class GenericService {
             // Desbloquear pantalla (presionar POWER nuevamente)
             driver.unlockDevice();
         }
+    }
+
+    /**
+     * Verifies whether the Tella app is currently active in the foreground.
+     * <p>
+     * This method retrieves the current package name of the app in the foreground
+     * and checks if it matches the Tella package: {@code org.hzontal.tella}.
+     * </p>
+     *
+     * @return {@code true} if the Tella app is currently active in the foreground;
+     * {@code false} if the app is closed or running in the background.
+     */
+    public static boolean verifyActiveAppTella() {
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        String currentPackage = driver.getCurrentPackage();
+
+        if (!"org.hzontal.tella".equals(currentPackage)) {
+            System.out.println("The app is closed or in the background.");
+            return true;
+        } else {
+            System.out.println("The app is active in the foreground.");
+            return true;
+
+        }
+    }
+
+    /**
+     * we reopen the application
+     */
+    public static void openAppTella() {
+        if (MobileActionManager.isAndroid()) {
+            AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+            driver.activateApp("org.hzontal.tella");
+        }
+    }
+
+    public static void clicBackIcon() {
+        MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON).click();
     }
 
 }
