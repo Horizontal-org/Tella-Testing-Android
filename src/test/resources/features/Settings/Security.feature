@@ -33,7 +33,7 @@ Feature: Security
     And taps "next" button
     Then "Your lock has been changed" message is shown
 
-  @Smoke @SmokeManual @LockTimeout @LockFlow @TestAngi
+  @Smoke @SmokeManual @LockTimeout @LockFlow #@TestAngi
   Scenario Outline: Security - Lock Timeout
     Given the user sets the app lock timeout to <timeout>
     When the user leaves the app, waits for the configured time <timeout> , and returns
@@ -47,7 +47,7 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
-  @Smoke @LockTimeout @Automated @TestAngi
+  @Smoke @LockTimeout @Automated #@TestAngi
   Scenario Outline: Security - Change Lock Timeout
     When the user clicks the "Lock Timeout" option
     And select timeout <timeout> option
@@ -62,7 +62,7 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
-  @Smoke @LockTimeout @Automated @TestAngi
+  @Smoke @LockTimeout @Automated #@TestAngi
   Scenario Outline: Security - Lock on Device Screen Off
     Given the user sets the app lock timeout to <timeout>
     When the user locks the device screen, waits for the configured time <timeout>, and unlocks it
@@ -141,15 +141,16 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual #Ok
+  @Smoke @QuickDelete @SmokeManual @TestAngi
   Scenario Outline: Security - Quick delete - <quickDeleteCheck>
+    Given the user records an audio file
     When toggle the switch on the "Quick delete" option
-    And select check box "<quickDeleteCheck>"
-    And go to Tella home page
+    And select check box <quickDeleteCheck>
+    And Go to the Tella homepage from Security Page
     And verify slide "DELETE" button is present
     And taps slide "DELETE" button
-    And view counter message "Quick Delete mode activation"
-    And waits finish counter
+    And view counter message Quick Delete mode activation
+    And the app is closed
     And open Tella application again
     And set security code valid
     Then that files were deleted
@@ -157,8 +158,8 @@ Feature: Security
     Examples:
       | quickDeleteCheck                 |
       | Delete files                     |
-      | Delete draft and submitted forms |
-      | Delete server settings           |
+      #| Delete draft and submitted forms |Por defecto ya viene seleccionado
+      #| Delete server settings           |Por defecto ya viene seleccionado
 
   @Smoke @QuickDelete @SmokeManual #Ok
   Scenario: Security - Quick delete - Delete Tella
