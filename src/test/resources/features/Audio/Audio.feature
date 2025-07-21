@@ -4,7 +4,7 @@ Feature: Audio
   Background:
     Given the user is in Tella home page
 
-  @Smoke @Automated
+  @Smoke @Automated #@TestAngi #@ok
   Scenario Outline: Record an audio file
     When the user press the Rec option
     And the user press the microphone
@@ -15,7 +15,7 @@ Feature: Audio
       | message_title                                     |
       | The audio recording was saved to your Tella files |
 
-  @Smoke @Automated
+  @Smoke @Automated #@ok
   Scenario Outline: Record an audio file in two parts
     When the user press the Rec option
     And the user press the microphone

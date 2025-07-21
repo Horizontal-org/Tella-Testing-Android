@@ -4,9 +4,7 @@ import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.SettingsConstants;
-import com.crowdar.tella.services.HomeService;
-import com.crowdar.tella.services.SettingsService;
-import com.crowdar.tella.services.UnlockService;
+import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,7 +13,7 @@ import org.testng.Assert;
 public class SettingsSteps {
     @Given("the user is in Tella home page")
     public void theUserIsInTellaHomePage() {
-       UnlockService.isViewLoaded();
+        UnlockService.isViewLoaded();
         UnlockService.setPassword(PropertyManager.getProperty("password"));
         UnlockService.goTella();
         HomeService.isHomeLoaded();
@@ -198,5 +196,105 @@ public class SettingsSteps {
     @When("taps the general button")
     public void tapsTheGeneralButton() {
         SettingsService.generalButton();
+    }
+
+    @And("wait (.*) of time")
+    public void waitTimeoutOfTime(String waitTime) throws InterruptedException {
+        SettingsService.pressHomeAndroid(waitTime);
+    }
+
+
+    @Then("view screen lock")
+    public void viewScreenLock() {
+        SettingsService.checkscreenlock();
+    }
+
+    @Given("the user sets the app lock timeout to (.*)")
+    public void theUserHasSelectedTheLockTimeInTimeout(String timeout) {
+        SettingsService.clicksOptions("Lock Timeout");
+        SettingsService.SelectGeneralOption(timeout);
+        SettingsService.clickButton("OK");
+        SettingsService.selectedTimeout(timeout);
+    }
+
+    @When("the user leaves the app, waits for the configured time (.*) , and returns")
+    public void theUserLeavesTheAppWaitsForTheConfiguredTimeTimeoutAndReturns(String timeout) throws InterruptedException {
+        SettingsService.pressHomeAndroid(timeout);
+    }
+
+    @Then("The screen lock must be displayed in the application")
+    public void theScreenLockShouldBeDisplayedInTheApp() {
+        SettingsService.checkscreenlock();
+    }
+
+    @When("the user locks the device screen, waits for the configured time (.*), and unlocks it")
+    public void theUserLocksTheDeviceScreenWaitsForTheConfiguredTimeTimeoutAndUnlocksIt(String timeout) throws InterruptedException {
+        SettingsService.pressBlockInAndroid(timeout);
+    }
+
+    @And("select check box (.*)")
+    public void selectCheckBox(String quickDeleteCheck) {
+        SettingsService.selectedDeleteCheck(quickDeleteCheck);
+    }
+
+    @And("Go to the Tella homepage from Security Page")
+    public void goToTheTellaHomepageFromSecurityPage() {
+        SettingsService.goToHomeFromSecurityPage();
+        HomeService.isHomeLoaded();
+    }
+
+    @And("verify slide {string} button is present")
+    public void verifySlideButtonIsPresent(String DELETE) {
+        HomeService.verifySwipeDeleteButtonIsVisibleOnHomeScreen();
+    }
+
+    @And("taps slide {string} button")
+    public void tapsSlideButton(String arg0) {
+        HomeService.moveFingerSeekBarToEnd();
+    }
+
+    @And("view counter message (.*)")
+    public void viewCounterMessage(String message) {
+        SettingsService.viewCounterMessage(message);
+    }
+
+    @And("the app is closed")
+    public void theAppIsClosed() throws InterruptedException {
+        SettingsService.theAppIsClosed();
+
+    }
+
+    @And("open Tella application again")
+    public void openTellaApplicationAgain() {
+        GenericService.openAppTella();
+    }
+
+    @And("set security code valid")
+    public void setSecurityCodeValid() throws InterruptedException {
+        UnlockService.enterPassword(PropertyManager.getProperty("password"));
+        System.out.println("");
+    }
+
+    @Given("the user records an audio file")
+    public void theUserRecordsAnAudioFile() throws InterruptedException {
+        //Volvemos a la home para gravar un audio
+        SettingsService.goToHomeFromSecurityPage();
+        HomeService.isHomeLoaded();
+        //Inicia la grabacion
+        AudioService.clickRecOption();
+        AudioService.clickMicrophoneIcon();
+        AudioService.clickMicrophoneIcon();
+        AudioService.validateAprovalMessage("The audio recording was saved to your Tella files");
+        //Volvemos a la Home
+        HomeService.clicHomeButton();
+        //Validamos el archivo de audio
+        FilesService.clicFolder("Audio");
+        FilesService.validateIsNotEmptyFolder();
+        GenericService.clicBackIcon();
+
+        //Volvemos a Setting
+        SettingsService.clickSettingsIcon();
+        SettingsService.clickCategory("Security");
+        System.out.println("");
     }
 }

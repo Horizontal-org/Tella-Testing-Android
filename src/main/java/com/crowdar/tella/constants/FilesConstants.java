@@ -54,4 +54,6 @@ public class FilesConstants {
     public static final String ADD_FOLDER = "id:fab_move_button";
 
     public static final String NEW_FOLDER = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/fileNameTextView\" and @text=\"TellaFolder\"]";
+
+    public static final String SELECT_FOLDER_ICON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/textTitle\" and @text=\"%s\"]";
 }

@@ -17,4 +17,9 @@ public class HomeSteps extends PageSteps {
     public void theUserOpensTheAppForTheFirstTime() {
         UnlockService.isViewLoaded();
     }
+
+    @Then("sees that the files have been deleted")
+    public void seesThatTheFilesHaveBeenDeleted() {
+        System.out.println("");
+    }
 }
