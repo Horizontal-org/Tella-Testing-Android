@@ -232,5 +232,28 @@ public class FilesService {
         GenericService.commonClick(FilesConstants.PICK_FOLDER);
     }
 
+    /**
+     * Open Open a folder by passing the name
+     *
+     * @param nameFolder name of the folder to access
+     */
+    public static void clicFolder(String nameFolder) {
+        MobileActionManager.waitClickable(FilesConstants.SELECT_FOLDER_ICON, nameFolder).click();
+    }
+
+    /**
+     * Validates that the current folder is not empty by checking the absence of the
+     * "empty folder" icon on the screen.
+     */
+    public static void validateIsNotEmptyFolder() {
+        try {
+            MobileActionManager.waitVisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER);
+            Assert.fail();
+        } catch (Exception e) {
+            // Element not found means the empty icon is not present, so the folder is not empty
+            System.out.println("Empty icon not found, folder is not empty.");
+        }
+    }
+
 }
 

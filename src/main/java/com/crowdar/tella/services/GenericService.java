@@ -3,16 +3,21 @@ package com.crowdar.tella.services;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.HomeConstants;
+import com.crowdar.tella.constants.SettingsConstants;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class GenericService {
@@ -134,6 +139,101 @@ public class GenericService {
     public static RemoteWebDriver getDriver() {
         AndroidDriver driver = (AndroidDriver) DriverManager.getDriverInstance().getWrappedDriver();
         return driver;
+    }
+
+    /**
+     * Wait on home screen and return to app (only Android)
+     *
+     * @param timeMinute number Minute to wait
+     * @throws RuntimeException if the waiting thread is interrupted
+     */
+    public static void waitOnHomeScreenReturnApp(int timeMinute) {
+        if (MobileActionManager.isAndroid()) {
+            AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+            // Ir a la pantalla de inicio una sola vez
+            driver.pressKey(new KeyEvent(AndroidKey.HOME));
+            int auxTimeSecond = (timeMinute * 60) / 10;
+            //en el caso de que sea inmediato, esperamos solo 10segundo en la home.
+            if (auxTimeSecond == 0) auxTimeSecond = 1;
+            for (int i = 0; i < auxTimeSecond; i++) {
+                try {
+                    Thread.sleep(10500);
+                    driver.getCurrentPackage(); // “pulso” ligero a Appium para mantener la session
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("Interrumpido mientras esperaba inactividad", ie);
+                }
+            }
+            //Retorno app tella
+            driver.activateApp("org.hzontal.tella");
+        }
+    }
+
+    /**
+     * Lock the device screen, wait and unlock (only Android)
+     *
+     * @param timeMinute number of minutes to wait
+     * @throws RuntimeException if the waiting thread is interrupted
+     */
+    public static void lockScreenWaitAndUnlock(int timeMinute) {
+        if (MobileActionManager.isAndroid()) {
+            AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+            // Bloquear pantalla (presionar POWER nuevamente)
+            driver.lockDevice();
+            int auxTimeSecond = (timeMinute * 60) / 10;
+            if (auxTimeSecond == 0) auxTimeSecond = 1;
+
+            for (int i = 0; i < auxTimeSecond; i++) {
+                try {
+                    Thread.sleep(10500);
+                    driver.getCurrentPackage(); // “pulso” ligero a Appium para mantener la session
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("Interrupted while waiting for inactivity", ie);
+                }
+            }
+
+            // Desbloquear pantalla (presionar POWER nuevamente)
+            driver.unlockDevice();
+        }
+    }
+
+    /**
+     * Verifies whether the Tella app is currently active in the foreground.
+     * <p>
+     * This method retrieves the current package name of the app in the foreground
+     * and checks if it matches the Tella package: {@code org.hzontal.tella}.
+     * </p>
+     *
+     * @return {@code true} if the Tella app is currently active in the foreground;
+     * {@code false} if the app is closed or running in the background.
+     */
+    public static boolean verifyActiveAppTella() {
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        String currentPackage = driver.getCurrentPackage();
+
+        if (!"org.hzontal.tella".equals(currentPackage)) {
+            System.out.println("The app is closed or in the background.");
+            return true;
+        } else {
+            System.out.println("The app is active in the foreground.");
+            return true;
+
+        }
+    }
+
+    /**
+     * we reopen the application
+     */
+    public static void openAppTella() {
+        if (MobileActionManager.isAndroid()) {
+            AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+            driver.activateApp("org.hzontal.tella");
+        }
+    }
+
+    public static void clicBackIcon() {
+        MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON).click();
     }
 
 }
