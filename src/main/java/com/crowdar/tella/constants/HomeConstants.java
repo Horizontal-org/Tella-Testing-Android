@@ -19,4 +19,5 @@ public class HomeConstants {
     public static final String PICK_GOOGLE_ACCOUNT = "xpath:(//android.widget.LinearLayout[@resource-id=\"com.google.android.gms:id/container\"])[1]";
     public static final String ALOW_GOOGLE_IN_TELLA = "xpath://android.widget.Button[@resource-id=\"com.google.android.gms:id/agree_and_share_button\"]";
     public static final String SLIDE_DELETE = "id:org.hzontal.tella:id/panic_seek";
+    public static final String LBL_CONNECTIOS = "id:org.hzontal.tella:id/serversText";
 }

@@ -242,17 +242,21 @@ public class FilesService {
     }
 
     /**
-     * Validates that the current folder is not empty by checking the absence of the
-     * "empty folder" icon on the screen.
+     * Validate that the all files folder is not empty.
+     * This is confirmed by audio icon.
      */
-    public static void validateIsNotEmptyFolder() {
-        try {
-            MobileActionManager.waitVisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER);
-            Assert.fail();
-        } catch (Exception e) {
-            // Element not found means the empty icon is not present, so the folder is not empty
-            System.out.println("Empty icon not found, folder is not empty.");
-        }
+    public static void validateIsNotEmptyFolderAllFile() {
+        clicFolder("All files");
+        Assert.assertTrue(MobileActionManager.waitVisibility(FilesConstants.ICON_FILE_AUDIO).isDisplayed());
+    }
+
+    /**
+     * Validate that the all files folder is empty.
+     * This is confirmed by the empty folder icon.
+     */
+    public static void validateIsEmptyFolderAllFile() {
+        clicFolder("All files");
+        Assert.assertTrue(MobileActionManager.waitVisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER).isDisplayed());
     }
 
 }

@@ -89,8 +89,6 @@ public class ServersService {
     }
 
 
-
-
     public static void viewSettingServer(String server) {
         if (MobileActionManager.isPresent(ServersConstants.URL_INPUT)) {
             Assert.assertTrue(ActionManager.isPresent(ServersConstants.URL_INPUT));
@@ -161,7 +159,7 @@ public class ServersService {
         MobileActionManager.setInput(ServersConstants.TELLA_PASS_INPUT, PropertyManager.getProperty("tellapass"));
         MobileActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, "Log in");
         MobileActionManager.click(ServersConstants.SAVE_BUTTON);
-        MobileActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, "OK");
+        MobileActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, "GO TO REPORTS");
         MobileActionManager.click(ServersConstants.BACK_BUTTON);
         MobileActionManager.click(ServersConstants.BACK_BUTTON);
     }
@@ -219,5 +217,30 @@ public class ServersService {
         MobileActionManager.click(FilesConstants.BACK_BUTTON);
     }
 
+
+
+    public static void clicNextBtn() {
+       //Como el boton esta abajo de la pantalla, tenemos q escroliar hasta el final
+        // por ello utilizamos PointerInput para simular el movimiento del dedo
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+
+        Dimension size = driver.manage().window().getSize();
+        int width = size.width / 2;
+
+        // Cambiar: empezar desde abajo y mover hacia arriba
+        int startY = (int) (size.height * 0.70); // más abajo
+        int endY = (int) (size.height * 0.30);   // más arriba
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence swipe = new Sequence(finger, 1);
+        swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), width, startY));
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(300), PointerInput.Origin.viewport(), width, endY));
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(List.of(swipe));
+
+        MobileActionManager.waitPresence(FilesConstants.NEXT_BTN).click();
+
+    }
 
 }

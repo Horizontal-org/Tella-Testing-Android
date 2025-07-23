@@ -18,7 +18,6 @@ import java.time.Duration;
 import java.util.Arrays;
 
 
-
 public class HomeService {
 
     public static void isHomeLoaded() {
@@ -50,7 +49,7 @@ public class HomeService {
         //Validamos que se encuentre y este visible
         if (MobileActionManager.waitVisibility(HomeConstants.SLIDE_DELETE).isDisplayed()) {
             AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
-            //Aquie recuperamos parte de la cadena, pero obtener el Id del elemento
+            //Aqui recuperamos parte de la cadena, pero obtener el Id del elemento
             WebElement seekBar = MobileActionManager.getElement(HomeConstants.SLIDE_DELETE);
             //driver.findElement(By.id(HomeConstants.SLIDE_DELETE.split(":")[1]));
 
@@ -74,7 +73,24 @@ public class HomeService {
         }
     }
 
-    public static void clicHomeButton(){
+    public static void isConnection() {
+        isHomeLoaded();
+        Assert.assertTrue(MobileActionManager.waitVisibility(HomeConstants.LBL_CONNECTIOS).isDisplayed());
+    }
+
+    public static void isNotConnection() {
+        isHomeLoaded();
+        try{
+            //Hacemos falla al proposito para indicar que el LBl de conexion ya no esta.
+            // Indicando que la conexion desaparecio
+            boolean flag = MobileActionManager.getElement(HomeConstants.LBL_CONNECTIOS).isDisplayed();
+            Assert.assertFalse(flag);
+        } catch (Exception e) {
+            System.out.println("The user is no longer connected to the Tella web server.");
+        }
+    }
+
+    public static void clicHomeButton() {
         MobileActionManager.waitClickable(HomeConstants.HOME_BUTTON).click();
     }
 
