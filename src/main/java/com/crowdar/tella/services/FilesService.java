@@ -232,5 +232,32 @@ public class FilesService {
         GenericService.commonClick(FilesConstants.PICK_FOLDER);
     }
 
+    /**
+     * Open Open a folder by passing the name
+     *
+     * @param nameFolder name of the folder to access
+     */
+    public static void clicFolder(String nameFolder) {
+        MobileActionManager.waitClickable(FilesConstants.SELECT_FOLDER_ICON, nameFolder).click();
+    }
+
+    /**
+     * Validate that the all files folder is not empty.
+     * This is confirmed by audio icon.
+     */
+    public static void validateIsNotEmptyFolderAllFile() {
+        clicFolder("All files");
+        Assert.assertTrue(MobileActionManager.waitVisibility(FilesConstants.ICON_FILE_AUDIO).isDisplayed());
+    }
+
+    /**
+     * Validate that the all files folder is empty.
+     * This is confirmed by the empty folder icon.
+     */
+    public static void validateIsEmptyFolderAllFile() {
+        clicFolder("All files");
+        Assert.assertTrue(MobileActionManager.waitVisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER).isDisplayed());
+    }
+
 }
 

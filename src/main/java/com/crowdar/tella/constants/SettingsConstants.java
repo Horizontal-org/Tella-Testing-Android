@@ -45,7 +45,10 @@ public class SettingsConstants {
     public static final String DELETE_SERVER_ICON = "id:delete_server_tooltip";
     public static final String HELP_INFO_TEXTVIEW = "xpath://android.widget.TextView[@text=\"%s\"]";
     public static final String REMAINING_UNLOCK_ATTEMPTS = "(//android.widget.Switch[@resource-id=\"org.hzontal.tella:id/mSwitch\"])[1]";
-
-
+    public static final String CHECKBOX_DELETE_FILE = "xpath://android.widget.CheckBox[@resource-id=\"org.hzontal.tella:id/delete_vault\"]";
+    public static final String CHECKBOX_DELETE_DRAFT_SUBMITTE_DFORMS = "xpath://android.widget.CheckBox[@resource-id=\"org.hzontal.tella:id/delete_vault\"]";
+    public static final String CHECKBOX_DELETE_SERVER_SETTING = "xpath://android.widget.CheckBox[@resource-id=\"org.hzontal.tella:id/delete_server_settings\"]";
+    public static final String GO_BACK_BUTTON = "xpath://android.widget.ImageButton[@content-desc=\"go back\"]";
+    public static final String VIEW_COUNTER_MESSAGE = "xpath://android.widget.TextView[@text=\"%s\"]";
 
 }

@@ -17,6 +17,7 @@ import java.util.Map;
 
 import static com.crowdar.driver.DriverManager.*;
 import static org.bouncycastle.oer.its.ieee1609dot2.basetypes.Duration.seconds;
+import static org.mozilla.javascript.Context.exit;
 
 public class SettingsService {
 
@@ -291,5 +292,41 @@ public class SettingsService {
             default:
                 return 0;
         }
+    }
+
+    public static void selectedDeleteCheck(String quickDeleteCheck) {
+        String selectDeleteCheck = "";
+        switch (quickDeleteCheck) {
+            case "Delete files":
+                selectDeleteCheck = SettingsConstants.CHECKBOX_DELETE_FILE;
+                break;
+            case "Delete draft and submitted forms":
+                selectDeleteCheck = SettingsConstants.CHECKBOX_DELETE_DRAFT_SUBMITTE_DFORMS;
+                break;
+            case "Delete server settings":
+                selectDeleteCheck = SettingsConstants.CHECKBOX_DELETE_SERVER_SETTING;
+                break;
+            default:
+                System.out.println("[WARNING] Opcion invalida");
+        }
+        MobileActionManager.waitVisibility(selectDeleteCheck).click();
+
+
+    }
+
+    public static void goToHomeFromSecurityPage() {
+        //La pagina de seguridad esta a dos paginas de la home, por ello simulo dos tab
+        MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON).click();
+        MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON).click();
+    }
+
+    public static void viewCounterMessage(String message) {
+        Assert.assertTrue(MobileActionManager.waitVisibility(SettingsConstants.VIEW_COUNTER_MESSAGE, message).isDisplayed());
+    }
+
+    public static void theAppIsClosed() throws InterruptedException {
+        //Esperamos por el cierre de la app y validamos que se haya cerrado
+        Thread.sleep(6000);
+        Assert.assertTrue(GenericService.verifyActiveAppTella());
     }
 }
