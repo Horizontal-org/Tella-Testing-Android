@@ -87,8 +87,8 @@ Feature: Security
     Then sees that the files have been deleted
 
     Examples:
-      | attempts    | PIN    | message                                                         |
-      | 5 attempts  | 123450 | Your Tella data will be deleted after 5 failed unlock attempts  |
+      | attempts   | PIN    | message                                                        |
+      | 5 attempts | 123450 | Your Tella data will be deleted after 5 failed unlock attempts |
       #| 10 attempts | 123451 | Your Tella data will be deleted after 10 failed unlock attempts |
       #| 20 attempts | 123450 | Your Tella data will be deleted after 20 failed unlock attempts |
 
@@ -141,11 +141,11 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual @TestAngi
-  Scenario Outline: Security - Quick delete - <quickDeleteCheck>
+  @Smoke @QuickDelete @SmokeManual #@TestAngi #Ok # Prueba E2E, de crear un archivo y eliminarlo
+  Scenario: Security - Quick delete - Delete files
     Given the user records an audio file
     When toggle the switch on the "Quick delete" option
-    And select check box <quickDeleteCheck>
+    And select check box Delete files
     And Go to the Tella homepage from Security Page
     And verify slide "DELETE" button is present
     And taps slide "DELETE" button
@@ -155,13 +155,28 @@ Feature: Security
     And set security code valid
     Then that files were deleted
 
-    Examples:
-      | quickDeleteCheck                 |
-      | Delete files                     |
-      #| Delete draft and submitted forms |Por defecto ya viene seleccionado
-      #| Delete server settings           |Por defecto ya viene seleccionado
 
-  @Smoke @QuickDelete @SmokeManual #Ok
+  @Smoke @QuickDelete @SmokeManual #@TestAngi #Ok # Prueba E2E, de eliminar conexion
+  Scenario: Security - Quick delete - Delete connection to the server
+    Given The user has already connected to the Tella web server
+    When toggle the switch on the "Quick delete" option
+    And Go to the Tella homepage from Security Page
+    And verify slide "DELETE" button is present
+    And taps slide "DELETE" button
+    And view counter message Quick Delete mode activation
+    And the app is closed
+    And open Tella application again
+    And set security code valid
+    Then The user is no longer connected to the Tella web server.
+
+  @Smoke @QuickDelete @SmokeManual @TestAngi #Ok #Validamos que este el Slider para eliminar.
+  Scenario: Security - Quick delete - Verify slide Delete
+    When toggle the switch on the "Quick delete" option
+    And Go to the Tella homepage from Security Page
+    Then verify slide "DELETE" button is present
+
+
+  @Smoke @QuickDelete @SmokeManual #Ok #En la APP no esta el check para eliminar la APP
   Scenario: Security - Quick delete - Delete Tella
     When toggle the switch on the "Quick delete" option
     And select check box “Delete Tella”
@@ -172,7 +187,7 @@ Feature: Security
     And waits finish counter
     Then uninstall message appears
 
-  @Smoke @QuickDelete @Automated #Ok
+  @Smoke @QuickDelete @Automated  @TestAngi #Ok
   Scenario Outline: Security - Quick delete - Help info
     When toggle the switch on the "Quick delete" option
     And click on the help icon in <deleteOption>
