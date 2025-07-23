@@ -36,9 +36,9 @@ public class UnlockService {
 
     public static void isViewLoadedReopenAppWithPin() {
         if (MobileActionManager.isAndroid()) {
-        MobileActionManager.waitVisibility(LockUnlockConstants.REOPEN_APP_PIN_VERIFICATION);
-        MobileActionManager.click(LockUnlockConstants.REOPEN_APP_PIN_VERIFICATION);
-    } else {
+            MobileActionManager.waitVisibility(LockUnlockConstants.REOPEN_APP_PIN_VERIFICATION);
+            MobileActionManager.click(LockUnlockConstants.REOPEN_APP_PIN_VERIFICATION);
+        } else {
             GenericService.commonClick(LockUnlockConstantsIOS.REOPEN_APP_PIN_VERIFICATION);
         }
     }
@@ -59,7 +59,7 @@ public class UnlockService {
             MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
             EventFiringWebDriver driver = DriverManager.getDriverInstance();
             driver.getKeyboard().sendKeys(Keys.ENTER);
-        }else{
+        } else {
             Thread.sleep(1000);
             MobileActionManager.waitVisibility(LockUnlockConstantsIOS.PASSWORD_INPUT);
             MobileActionManager.waitClickable(LockUnlockConstantsIOS.PASSWORD_INPUT);
@@ -132,11 +132,11 @@ public class UnlockService {
         }
     }
 
-        public static void enterPin(String pin) {
+    public static void enterPin(String pin) {
         setPin(pin);
         if (MobileActionManager.isAndroid()) {
             MobileActionManager.click(LockUnlockConstants.PIN_OK_BUTTON);
-        }else {
+        } else {
             GenericService.commonClick(LockUnlockConstantsIOS.PIN_OK_BUTTON);
         }
     }
@@ -203,5 +203,7 @@ public class UnlockService {
             driver.activateApp("org.wearehorizontal.tella"); // Usa el package name de tu app para traerla de vuelta al frente
 
 
-}}}
+        }
+    }
+}
 

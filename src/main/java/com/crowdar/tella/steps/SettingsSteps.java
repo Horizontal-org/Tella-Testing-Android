@@ -4,9 +4,7 @@ import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.SettingsConstants;
-import com.crowdar.tella.services.HomeService;
-import com.crowdar.tella.services.SettingsService;
-import com.crowdar.tella.services.UnlockService;
+import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -232,5 +230,102 @@ public class SettingsSteps {
     @When("the user locks the device screen, waits for the configured time (.*), and unlocks it")
     public void theUserLocksTheDeviceScreenWaitsForTheConfiguredTimeTimeoutAndUnlocksIt(String timeout) throws InterruptedException {
         SettingsService.pressBlockInAndroid(timeout);
+    }
+
+    @And("select check box (.*)")
+    public void selectCheckBox(String quickDeleteCheck) {
+        SettingsService.selectedDeleteCheck(quickDeleteCheck);
+    }
+
+    @And("Go to the Tella homepage from Security Page")
+    public void goToTheTellaHomepageFromSecurityPage() {
+        SettingsService.goToHomeFromSecurityPage();
+        HomeService.isHomeLoaded();
+    }
+
+    @And("verify slide {string} button is present")
+    public void verifySlideButtonIsPresent(String DELETE) {
+        HomeService.verifySwipeDeleteButtonIsVisibleOnHomeScreen();
+    }
+
+    @And("taps slide {string} button")
+    public void tapsSlideButton(String arg0) {
+        HomeService.moveFingerSeekBarToEnd();
+    }
+
+    @And("view counter message (.*)")
+    public void viewCounterMessage(String message) {
+        SettingsService.viewCounterMessage(message);
+    }
+
+    @And("the app is closed")
+    public void theAppIsClosed() throws InterruptedException {
+        SettingsService.theAppIsClosed();
+
+    }
+
+    @And("open Tella application again")
+    public void openTellaApplicationAgain() {
+        GenericService.openAppTella();
+    }
+
+    @And("set security code valid")
+    public void setSecurityCodeValid() throws InterruptedException {
+        UnlockService.enterPassword(PropertyManager.getProperty("password"));
+    }
+
+    @Given("the user records an audio file")
+    public void theUserRecordsAnAudioFile() throws InterruptedException {
+        //Volvemos a la home para grabar un audio
+        SettingsService.goToHomeFromSecurityPage();
+        HomeService.isHomeLoaded();
+        //Inicia la grabacion
+        AudioService.clickRecOption();
+        AudioService.clickMicrophoneIcon();
+        AudioService.clickMicrophoneIcon();
+        AudioService.validateAprovalMessage("The audio recording was saved to your Tella files");
+        //Volvemos a la Home
+        HomeService.clicHomeButton();
+        //Validamos el archivo de audio
+        FilesService.validateIsNotEmptyFolderAllFile();
+        GenericService.clicBackIcon();
+
+        //Volvemos a Settings
+        SettingsService.clickSettingsIcon();
+        SettingsService.clickCategory("Security");
+
+    }
+
+    @Then("that files were deleted")
+    public void thatFilesWereDeleted() {
+        FilesService.validateIsEmptyFolderAllFile();
+    }
+
+    @Given("The user has already connected to the Tella web server")
+    public void theUserHasAlreadyConnectedToTheTellaWebServer() {
+        //Volvemos a la home para configuracion de conexion
+        SettingsService.goToHomeFromSecurityPage();
+        HomeService.isHomeLoaded();
+
+        //Iniciamos la configuracion de conexion
+        SettingsService.clickSettingsIcon();
+        SettingsService.clickCategory("Servers");
+        ServersService.clickPlusButton();
+        ServersService.selectButton("Tella Web");
+        ServersService.clicNextBtn();
+        ServersService.inputServerUrl("https://tella.world/p/server-project-crowdar");
+        ServersService.pressButton("Next");
+        ServersService.connectToTellaServer();
+
+        //Verificamos el forms de conexion
+        HomeService.isConnection();
+        //Volvemos a Settings
+        SettingsService.clickSettingsIcon();
+        SettingsService.clickCategory("Security");
+    }
+
+    @Then("The user is no longer connected to the Tella web server.")
+    public void theUserIsNoLongerConnectedToTheTellaWebServer() {
+        HomeService.isNotConnection();
     }
 }
