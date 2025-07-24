@@ -43,7 +43,7 @@ Feature: Security
       | timeout     |
       | Immediately |
       | 1 minute    |
-      #| 5 minutes   |
+      | 5 minutes   |
       #| 30 minutes  |
       #| 1 hour      |
 
@@ -141,7 +141,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual @TestAngi #Ok # Prueba E2E, de crear un archivo y eliminarlo
+  @Smoke @QuickDelete @SmokeManual #@TestAngi #Ok # Prueba E2E, de crear un archivo y eliminarlo
   Scenario: Security - Quick delete - Delete files
     Given the user records an audio file
     When toggle the switch on the "Quick delete" option
@@ -156,7 +156,7 @@ Feature: Security
     Then that files were deleted
 
 
-  @Smoke @QuickDelete @SmokeManual #@TestAngi #Ok # Prueba E2E, de eliminar conexion
+  @Smoke @QuickDelete @SmokeManual @TestAngi #Ok # Prueba E2E, de eliminar conexion
   Scenario: Security - Quick delete - Delete connection to the server
     Given The user has already connected to the Tella web server
     When toggle the switch on the "Quick delete" option
