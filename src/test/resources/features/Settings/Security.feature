@@ -156,7 +156,7 @@ Feature: Security
     Then that files were deleted
 
 
-  @Smoke @QuickDelete @SmokeManual @TestAngi @E2E #Ok # Prueba E2E,de eliminar conexion
+  @Smoke @QuickDelete @SmokeManual @TestAngi @E2E #Ok # Prueba E2E,de eliminar conexion, revisar
   Scenario: Security - Quick delete - Delete connection to the server
     Given The user has already connected to the Tella web server
     When toggle the switch on the "Quick delete" option
