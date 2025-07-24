@@ -33,7 +33,7 @@ Feature: Security
     And taps "next" button
     Then "Your lock has been changed" message is shown
 
-  @Smoke @SmokeManual @LockTimeout @LockFlow @TestAngi
+  @Smoke @SmokeManual @LockTimeout @LockFlow #@TestAngi
   Scenario Outline: Security - Lock Timeout
     Given the user sets the app lock timeout to <timeout>
     When the user leaves the app, waits for the configured time <timeout> , and returns
@@ -141,7 +141,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual #@TestAngi #Ok # Prueba E2E, de crear un archivo y eliminarlo
+  @Smoke @QuickDelete @SmokeManual @TestAngi #Ok # Prueba E2E, de crear un archivo y eliminarlo
   Scenario: Security - Quick delete - Delete files
     Given the user records an audio file
     When toggle the switch on the "Quick delete" option
