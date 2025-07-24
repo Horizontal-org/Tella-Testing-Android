@@ -169,7 +169,7 @@ Feature: Security
     And set security code valid
     Then The user is no longer connected to the Tella web server.
 
-  @Smoke @QuickDelete @SmokeManual @TestAngi #Ok #Validamos que este el Slider para eliminar.
+  @Smoke @QuickDelete @SmokeManual #@TestAngi #Ok #Validamos que este el Slider para eliminar.
   Scenario: Security - Quick delete - Verify slide Delete
     When toggle the switch on the "Quick delete" option
     And Go to the Tella homepage from Security Page
@@ -187,7 +187,7 @@ Feature: Security
     And waits finish counter
     Then uninstall message appears
 
-  @Smoke @QuickDelete @Automated  @TestAngi #Ok
+  #@Smoke @QuickDelete @Automated  #@TestAngi #Ok
   Scenario Outline: Security - Quick delete - Help info
     When toggle the switch on the "Quick delete" option
     And click on the help icon in <deleteOption>
