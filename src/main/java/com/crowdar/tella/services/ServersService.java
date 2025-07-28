@@ -218,29 +218,41 @@ public class ServersService {
     }
 
 
-
     public static void clicNextBtn() {
-       //Como el boton esta abajo de la pantalla, tenemos q escroliar hasta el final
+        WebElement botonOK = scrollAndroid("text", "OK", 0);
+        //Como el boton esta abajo de la pantalla, tenemos q escroliar hasta el final
         // por ello utilizamos PointerInput para simular el movimiento del dedo
-        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        // AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
 
-        Dimension size = driver.manage().window().getSize();
-        int width = size.width / 2;
+        //Dimension size = driver.manage().window().getSize();
+        //int width = size.width / 2;
 
         // Cambiar: empezar desde abajo y mover hacia arriba
-        int startY = (int) (size.height * 0.70); // más abajo
-        int endY = (int) (size.height * 0.30);   // más arriba
+        //int startY = (int) (size.height * 0.70); // más abajo
+        //int endY = (int) (size.height * 0.30);   // más arriba
 
-        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-        Sequence swipe = new Sequence(finger, 1);
-        swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), width, startY));
-        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        swipe.addAction(finger.createPointerMove(Duration.ofMillis(300), PointerInput.Origin.viewport(), width, endY));
-        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(List.of(swipe));
+        //PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        //Sequence swipe = new Sequence(finger, 1);
+        //swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), width, startY));
+        //swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        //swipe.addAction(finger.createPointerMove(Duration.ofMillis(300), PointerInput.Origin.viewport(), width, endY));
+        //swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        //driver.perform(List.of(swipe));
 
         MobileActionManager.waitPresence(FilesConstants.NEXT_BTN).click();
 
+    }
+
+    private static WebElement scrollAndroid(String locatorType, String locatorValue, int index) {
+        String locator = String.format(
+                "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                        ".setAsVerticalList()" +
+                        ".scrollForward()" +
+                        ".scrollIntoView(new UiSelector().%s(\"%s\").instance(%d))",
+                locatorType, locatorValue, index
+        );
+
+        return DriverManager.getDriverInstance().findElement(MobileBy.AndroidUIAutomator(locator));
     }
 
 }
