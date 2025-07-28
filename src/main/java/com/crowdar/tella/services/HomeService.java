@@ -7,6 +7,8 @@ import com.crowdar.tella.constants.HomeConstantsIOS;
 import io.appium.java_client.android.AndroidDriver;
 
 
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -16,6 +18,7 @@ import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Collections;
 
 
 public class HomeService {
