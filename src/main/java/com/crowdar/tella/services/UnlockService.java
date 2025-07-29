@@ -57,8 +57,7 @@ public class UnlockService {
     public static void enterPassword(String password) throws InterruptedException {
         if (MobileActionManager.isAndroid()) {
             MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
-            EventFiringWebDriver driver = DriverManager.getDriverInstance();
-            driver.getKeyboard().sendKeys(Keys.ENTER);
+            MobileActionManager.waitClickable(LockUnlockConstants.BTN_UNLOCK).click();
         } else {
             Thread.sleep(1000);
             MobileActionManager.waitVisibility(LockUnlockConstantsIOS.PASSWORD_INPUT);
@@ -201,8 +200,6 @@ public class UnlockService {
             driver.activateApp("org.hzontal.tella");
         } else {
             driver.activateApp("org.wearehorizontal.tella"); // Usa el package name de tu app para traerla de vuelta al frente
-
-
         }
     }
 }

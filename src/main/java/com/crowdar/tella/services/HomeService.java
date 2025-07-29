@@ -3,19 +3,11 @@ package com.crowdar.tella.services;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.HomeConstantsIOS;
-
 import io.appium.java_client.android.AndroidDriver;
-
-
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
-
 import org.testng.Assert;
-
-
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collections;
@@ -83,7 +75,7 @@ public class HomeService {
 
     public static void isNotConnection() {
         isHomeLoaded();
-        try{
+        try {
             //Hacemos falla al proposito para indicar que el LBl de conexion ya no esta.
             // Indicando que la conexion desaparecio
             boolean flag = MobileActionManager.getElement(HomeConstants.LBL_CONNECTIOS).isDisplayed();
@@ -97,4 +89,7 @@ public class HomeService {
         MobileActionManager.waitClickable(HomeConstants.HOME_BUTTON).click();
     }
 
+    public static void clicClosesBtnInHome() {
+        MobileActionManager.waitClickable(HomeConstants.BTN_CLOSES_APP).click();
+    }
 }

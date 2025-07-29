@@ -328,4 +328,22 @@ public class SettingsSteps {
     public void theUserIsNoLongerConnectedToTheTellaWebServer() {
         HomeService.isNotConnection();
     }
+
+    @And("the user closes and reopens the Tella app")
+    public void theUserClosesTheTellaApplicationFromTheCloseButton() throws InterruptedException {
+        SettingsService.goToHomeFromSecurityPage();
+        HomeService.isHomeLoaded();
+        HomeService.clicClosesBtnInHome();
+        Thread.sleep(2000);
+        GenericService.openAppTella();
+    }
+
+    @Then("the app displays the {string} screen to the user")
+    public void theAppDisplaysTheScreenToTheUser(String arg0) {
+        GenericService.openAppTella();
+        UnlockService.isViewLoaded();
+        UnlockService.setPassword(PropertyManager.getProperty("password"));
+        UnlockService.goTella();
+        HomeService.isHomeLoaded();
+    }
 }
