@@ -20,4 +20,5 @@ public class HomeConstants {
     public static final String ALOW_GOOGLE_IN_TELLA = "xpath://android.widget.Button[@resource-id=\"com.google.android.gms:id/agree_and_share_button\"]";
     public static final String SLIDE_DELETE = "id:org.hzontal.tella:id/panic_seek";
     public static final String LBL_CONNECTIOS = "id:org.hzontal.tella:id/serversText";
+    public static final String BTN_CLOSES_APP = "xpath://android.widget.ImageButton[@content-desc=\"quick exit\"]";
 }
