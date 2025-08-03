@@ -46,7 +46,7 @@ public class HomeService {
             AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
             //Aqui recuperamos parte de la cadena, pero obtener el Id del elemento
             WebElement seekBar = MobileActionManager.getElement(HomeConstants.SLIDE_DELETE);
-            //driver.findElement(By.id(HomeConstants.SLIDE_DELETE.split(":")[1]));
+
 
             int startX = seekBar.getLocation().getX();
             int width = seekBar.getSize().getWidth();
