@@ -33,7 +33,7 @@ Feature: Security
     And taps "next" button
     Then "Your lock has been changed" message is shown
 
-  @Smoke @SmokeManual @LockTimeout @LockFlow @Automated @TestAngi
+  @Smoke @SmokeManual @LockTimeout @Automated @E2E
   Scenario Outline: Security - Lock Timeout
     Given the user sets the app lock timeout to <timeout>
     When the user leaves the app, waits for the configured time <timeout> , and returns
@@ -47,7 +47,7 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
-  @Smoke @LockTimeout @Automated @TestAngi
+  @Smoke @LockTimeout @Automated @LockFlow
   Scenario Outline: Security - Change Lock Timeout
     When the user clicks the "Lock Timeout" option
     And select timeout <timeout> option
@@ -62,7 +62,7 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
-  @Smoke @LockOnDeviceScreenOff @Automated @TestAngi
+  @Smoke @LockOnDeviceScreenOff @Automated @E2E
   Scenario Outline: Security - Lock on Device Screen Off
     Given the user sets the app lock timeout to <timeout>
     When the user locks the device screen, waits for the configured time <timeout>, and unlocks it
@@ -76,7 +76,7 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
-  @Smoke @DeleteAfterFailedUnlock @SmokeManual @E2E #@TestAngi
+  @Smoke @DeleteAfterFailedUnlock @SmokeManual @E2E
   Scenario Outline: Security - Delete after failed unlock
     Given the user records an audio file
     When the user clicks the "Delete after failed unlock" option
@@ -94,7 +94,7 @@ Feature: Security
       #| 10 attempts | 123451 | Your Tella data will be deleted after 10 failed unlock attempts |
       #| 20 attempts | 123450 | Your Tella data will be deleted after 20 failed unlock attempts |
 
-  @Smoke @DeleteAfterFailedUnlock @Automated @LockFlow @TestAngi
+  @Smoke @DeleteAfterFailedUnlock @Automated @LockFlow
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
@@ -143,7 +143,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual @Automated #@TestAngi @E2E
+  @Smoke @QuickDelete @SmokeManual @Automated #@E2E
   Scenario: Security - Quick delete - Delete files
     Given the user records an audio file
     When toggle the switch on the "Quick delete" option
@@ -158,7 +158,7 @@ Feature: Security
     Then that files were deleted
 
 
-  @Smoke @QuickDelete @SmokeManual @Automated  @E2E #@TestAngi
+  @Smoke @QuickDelete @SmokeManual @Automated #@E2E
   Scenario: Security - Quick delete - Delete connection to the server
     Given The user has already connected to the Tella web server
     When toggle the switch on the "Quick delete" option
@@ -171,7 +171,7 @@ Feature: Security
     And set security code valid
     Then The user is no longer connected to the Tella web server.
 
-  @Smoke @QuickDelete @SmokeManual @Automated @TestAngi
+  @Smoke @QuickDelete @SmokeManual @Automated
   Scenario: Security - Quick delete - Verify slide Delete
     When toggle the switch on the "Quick delete" option
     And Go to the Tella homepage from Security Page
@@ -189,7 +189,7 @@ Feature: Security
     And waits finish counter
     Then uninstall message appears
 
-  @Smoke @QuickDelete @HelpInfo @Automated  @TestAngi
+  @Smoke @QuickDelete @HelpInfo @Automated
   Scenario Outline: Security - Quick delete - Help info
     When toggle the switch on the "Quick delete" option
     And click on the help icon in <deleteOption>
@@ -252,7 +252,7 @@ Feature: Security
     And taps "next" button
     Then  "Your lock has been changed" message is shown
 
-  @Smoke @LockTimeout @SmokeManual #@TestAngi
+  @Smoke @LockTimeout @SmokeManual
   Scenario Outline: Security - Lock Timeout
     When the user clicks the "Lock Timeout" option
     And select timeout <timeout> option
@@ -353,7 +353,7 @@ Feature: Security
       | Delete draft and submitted forms |
       | Delete server settings           |
 
-#RepetidoEscenarioEstaMasArribaDeleteTella
+#RepetidoEscenarioDeleteTella
   Scenario: Security - Quick delete - Delete Tella
     When taps switch in "Quick delete" option
     And select check box “Delete Tella”
