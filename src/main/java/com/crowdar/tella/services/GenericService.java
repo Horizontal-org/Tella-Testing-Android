@@ -15,9 +15,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Arrays;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 
 public class GenericService {
