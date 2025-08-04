@@ -1,4 +1,4 @@
-@Regression #@Security
+@Regression @Security
 Feature: Security
 
   Background:
@@ -47,7 +47,7 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
-  @Smoke @LockTimeout @Automated @LockFlow @Security
+  @Smoke @LockTimeout @Automated @LockFlow
   Scenario Outline: Security - Change Lock Timeout
     When the user clicks the "Lock Timeout" option
     And select timeout <timeout> option
@@ -94,7 +94,7 @@ Feature: Security
       #| 10 attempts | 123451 | Your Tella data will be deleted after 10 failed unlock attempts |
       #| 20 attempts | 123450 | Your Tella data will be deleted after 20 failed unlock attempts |
 
-  @Smoke @DeleteAfterFailedUnlock @Automated @LockFlow @Security
+  @Smoke @DeleteAfterFailedUnlock @Automated @LockFlow
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
@@ -143,7 +143,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual #@Automated #@E2E
+  @Smoke @QuickDelete @SmokeManual @Automated @E2E
   Scenario: Security - Quick delete - Delete files
     Given the user records an audio file
     When toggle the switch on the "Quick delete" option
@@ -158,7 +158,7 @@ Feature: Security
     Then that files were deleted
 
 
-  @Smoke @QuickDelete @SmokeManual #@Automated #@E2E
+  @Smoke @QuickDelete @SmokeManual @Automated @E2E
   Scenario: Security - Quick delete - Delete connection to the server
     Given The user has already connected to the Tella web server
     When toggle the switch on the "Quick delete" option
@@ -171,7 +171,7 @@ Feature: Security
     And set security code valid
     Then The user is no longer connected to the Tella web server.
 
-  @Smoke @QuickDelete @SmokeManual @Automated @Security
+  @Smoke @QuickDelete @SmokeManual @Automated
   Scenario: Security - Quick delete - Verify slide Delete
     When toggle the switch on the "Quick delete" option
     And Go to the Tella homepage from Security Page
@@ -189,7 +189,7 @@ Feature: Security
     And waits finish counter
     Then uninstall message appears
 
-  @Smoke @QuickDelete @HelpInfo @Automated @Security
+  @Smoke @QuickDelete @HelpInfo @Automated
   Scenario Outline: Security - Quick delete - Help info
     When toggle the switch on the "Quick delete" option
     And click on the help icon in <deleteOption>
