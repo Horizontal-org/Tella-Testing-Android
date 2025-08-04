@@ -26,7 +26,7 @@ Feature: Servers
     When the user presses the + button
     And selects the server "<server>"
     And the user presses OK button
-    Then the user views the server <server> settix ngs
+    Then the user views the server <server> setting
 
     Examples:
       | server              |
