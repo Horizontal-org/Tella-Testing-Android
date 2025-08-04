@@ -3,14 +3,20 @@ package com.crowdar.tella.services;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.HomeConstantsIOS;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Map;
 
 
 public class HomeService {
@@ -40,33 +46,46 @@ public class HomeService {
      *
      * @throws org.openqa.selenium.NoSuchElementException si no se encuentra el SeekBar por ID.
      */
+    /**
+     * Simula el movimiento del dedo para arrastrar un SeekBar hasta su posición final (90%).
+     * Compatible con ejecución local y en BrowserStack.
+     *
+     * @throws org.openqa.selenium.NoSuchElementException si no se encuentra el SeekBar por ID.
+     */
     public static void moveFingerSeekBarToEnd() {
-        //Validamos que se encuentre y este visible
         if (MobileActionManager.waitVisibility(HomeConstants.SLIDE_DELETE).isDisplayed()) {
             AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
-            //Aqui recuperamos parte de la cadena, pero obtener el Id del elemento
             WebElement seekBar = MobileActionManager.getElement(HomeConstants.SLIDE_DELETE);
 
+            // Asegurarse de que el SeekBar esté visible en pantalla
+            ((JavascriptExecutor) driver).executeScript("mobile: scroll", Map.of(
+                    "direction", "down",
+                    "element", ((RemoteWebElement) seekBar).getId()
+            ));
 
-            int startX = seekBar.getLocation().getX();
+            // Coordenadas dinámicas
+            int startX = seekBar.getLocation().getX() + 10; // pequeño offset
             int width = seekBar.getSize().getWidth();
-            int endX = startX + width - 10;
+            int endX = startX + (int)(width * 0.85); // 85% para evitar desplazamientos bruscos
+            int centerY = seekBar.getLocation().getY() + (seekBar.getSize().getHeight() / 2);
 
-            // Simula el movimiento del dedo al desplazar el SeekBar
-            PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-            Sequence drag = new Sequence(finger, 1);
+            // Esperar un poco antes del gesto
+            try { Thread.sleep(500); } catch (InterruptedException ignored) {}
 
-            int thumbX = 117;     // Posición inicial del thumb (ajustado manualmente según el dispositivo)
-            int thumbY = 1850;    // Altura del SeekBar en pantalla
+            // Usar TouchAction (más compatible con BrowserStack)
+            new TouchAction<>(driver)
+                    .press(PointOption.point(startX, centerY))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(600)))
+                    .moveTo(PointOption.point(endX, centerY))
+                    .release()
+                    .perform();
 
-            // Presionar el thumb y mover hacia la derecha
-            drag.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), thumbX, thumbY));
-            drag.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-            drag.addAction(finger.createPointerMove(Duration.ofMillis(600), PointerInput.Origin.viewport(), endX, thumbY));
-            drag.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-            driver.perform(Arrays.asList(drag));
+            System.out.println("✅ SeekBar deslizado correctamente.");
+        } else {
+            System.out.println("⚠️ SeekBar no visible, no se pudo deslizar.");
         }
     }
+
 
     public static void isConnection() {
         isHomeLoaded();
