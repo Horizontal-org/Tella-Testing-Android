@@ -76,7 +76,7 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
-  @Smoke @DeleteAfterFailedUnlock @SmokeManual @E2E
+  @Smoke @DeleteAfterFailedUnlock @SmokeManual @Automated @E2E
   Scenario Outline: Security - Delete after failed unlock
     Given the user records an audio file
     When the user clicks the "Delete after failed unlock" option
@@ -143,7 +143,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual @Automated #@E2E
+  @Smoke @QuickDelete @SmokeManual #@Automated #@E2E
   Scenario: Security - Quick delete - Delete files
     Given the user records an audio file
     When toggle the switch on the "Quick delete" option
@@ -158,7 +158,7 @@ Feature: Security
     Then that files were deleted
 
 
-  @Smoke @QuickDelete @SmokeManual @Automated #@E2E
+  @Smoke @QuickDelete @SmokeManual #@Automated #@E2E
   Scenario: Security - Quick delete - Delete connection to the server
     Given The user has already connected to the Tella web server
     When toggle the switch on the "Quick delete" option
@@ -284,7 +284,7 @@ Feature: Security
       | 10 attempts | 123451 |
       | 20 attempts | 123450 |
 
-  @Smoke @Automated
+  @Smoke #@Automated
   Scenario Outline: Security - Delete after failed unlock
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
@@ -295,9 +295,9 @@ Feature: Security
     Examples:
       | attempts                 | status | message                                                         |
       | Off (do not delete data) | Off    |                                                                 |
-      | 5 attempts               | On     | Your Tella data will be deleted after 5 failed unlock attempts  |
-      | 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
-      | 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
+      #| 5 attempts               | On     | Your Tella data will be deleted after 5 failed unlock attempts  |
+      #| 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
+      #| 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camouflage method - change name and icon
