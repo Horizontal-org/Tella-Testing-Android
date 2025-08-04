@@ -34,7 +34,7 @@ Feature: Security
     Then "Your lock has been changed" message is shown
 
   @Smoke @SmokeManual @LockTimeout @Automated @E2E
-  Scenario Outline: Security - Lock Timeout
+  Scenario Outline: Security - Lock Timeout - E2E 
     Given the user sets the app lock timeout to <timeout>
     When the user leaves the app, waits for the configured time <timeout> , and returns
     Then view screen lock
@@ -63,7 +63,7 @@ Feature: Security
       #| 1 hour      |
 
   @Smoke @LockOnDeviceScreenOff @Automated @E2E
-  Scenario Outline: Security - Lock on Device Screen Off
+  Scenario Outline: Security - Change Lock Timeout - E2E
     Given the user sets the app lock timeout to <timeout>
     When the user locks the device screen, waits for the configured time <timeout>, and unlocks it
     Then The screen lock must be displayed in the application
@@ -77,7 +77,7 @@ Feature: Security
       #| 1 hour      |
 
   @Smoke @DeleteAfterFailedUnlock @SmokeManual @Automated @E2E
-  Scenario Outline: Security - Delete after failed unlock
+  Scenario Outline: Security - Delete after failed unlock - E2E
     Given the user records an audio file
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
@@ -144,7 +144,7 @@ Feature: Security
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
   @Smoke @QuickDelete @SmokeManual @Automated @E2E
-  Scenario: Security - Quick delete - Delete files
+  Scenario: Security - Quick delete - Delete files - E2E
     Given the user records an audio file
     When toggle the switch on the "Quick delete" option
     And select check box Delete files
@@ -159,7 +159,7 @@ Feature: Security
 
 
   @Smoke @QuickDelete @SmokeManual @Automated @E2E
-  Scenario: Security - Quick delete - Delete connection to the server
+  Scenario: Security - Quick delete - Delete connection to the server - E2E
     Given The user has already connected to the Tella web server
     When toggle the switch on the "Quick delete" option
     And Go to the Tella homepage from Security Page
@@ -171,14 +171,14 @@ Feature: Security
     And set security code valid
     Then The user is no longer connected to the Tella web server.
 
-  @Smoke @QuickDelete @SmokeManual @Automated
+  @Smoke @QuickDelete @SmokeManual @Automated 
   Scenario: Security - Quick delete - Verify slide Delete
     When toggle the switch on the "Quick delete" option
     And Go to the Tella homepage from Security Page
     Then verify slide "DELETE" button is present
 
 
-  @Smoke @QuickDelete @SmokeManual  #En la APP no esta el check para eliminar la APP
+  @Smoke @QuickDelete @SmokeManual @Deprecated #En la APP no esta el check para eliminar la APP
   Scenario: Security - Quick delete - Delete Tella
     When toggle the switch on the "Quick delete" option
     And select check box “Delete Tella”
