@@ -311,18 +311,6 @@ Feature: File Options
     And presses the "x" button
     Then the Select Files option disappears
 
-  @Smoke @ToBeAutomated
-  Scenario: Move a file by creating a folder
-    When the user enters the folder "All Files"
-    And taps the options button "⋮" of a file
-    And selects the option "Move to another folder"
-    And taps the option "+"
-    And enters a name for the folder: "FOLDER123"
-    And presses "Ok"
-    And chooses the destination folder "FOLDER123"
-    And taps the option "Move here"
-    Then the file is moved to the "FOLDER123" folder
-    And the message "File successfully moved" appears
 
   @Smoke @ToBeAutomated
   Scenario: Delete a folder with files inside
@@ -373,3 +361,37 @@ Feature: File Options
       | image | Images |
       | video | Videos |
       | audio | Audio  |
+
+
+
+
+  @Smoke @E2E @Automated
+  Scenario: Rename a folder and delete it (cleanup)
+    When the user enter the folder All Files
+    And taps the option +
+    And enters a name for the folder: "E2E_RENAME"
+    And presses Ok button
+    And taps the options button ⋮ of the created folder
+    And the user presses Rename button
+    And enters a name for the folder "E2E_RENAMED"
+    And presses Ok button
+    And taps the options button "⋮" of the "E2E_RENAMED" folder
+    And the user presses Delete button
+    And the user presses confirm Delete button
+    Then the sucessfull message "The files were deleted." appears
+
+
+  @Smoke @E2E @Automated
+  Scenario: Move a file to an existing folder and move it back (cleanup)
+    When the user enter the folder All Files
+    And taps the options button ⋮ of a file
+    And taps the option Move to another folder
+    And chooses the destination folder "Images"
+    And taps the option Move here
+    Then the sucessfull message "File successfully moved" appears
+    When the user enters the folder "Images"
+    And taps the options button ⋮ of a file
+    And taps the option Move to another folder
+    And chooses the destination folder "All Files"
+    And taps the option Move here
+    Then the sucessfull message "File successfully moved" appears
