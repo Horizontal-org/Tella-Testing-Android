@@ -51,3 +51,36 @@ Feature: Organize files in a folder
       | list | Audio     |
       | grid | Videos    |
       | list | Videos    |
+
+
+    nuevos añadidos x gpt
+  @Smoke @E2E @Automated
+  Scenario: Sort by date (newest ↔ oldest) with two freshly captured photos
+    When the user enters the folder "Images"
+    And taps the "+" button
+    And selects the option: Take photo or video
+    And selects the option Photo
+    And captures the file of type image
+    And the user waits 5 seconds
+    And taps the "+" button
+    And selects the option: Take photo or video
+    And selects the option Photo
+    And captures the file of type image
+
+  # Newest → Oldest
+    And the user taps the "Name ↑" icon
+    And the user chooses to sort files in "From newest to oldest" order
+    Then the first listed file is the last captured one
+
+  # Oldest → Newest
+    And the user chooses to sort files in "From oldest to newest" order
+    Then the first listed file is the first captured one
+
+  # Cleanup
+    When taps the options button ⋮ of the first listed file
+    And the user presses Delete button
+    And the user presses confirm Delete button
+    And taps the options button ⋮ of the first listed file
+    And the user presses Delete button
+    And the user presses confirm Delete button
+    Then the sucessfull message "The files were deleted." appears

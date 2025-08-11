@@ -116,6 +116,69 @@ Feature: Lock Options
 
 
 
+nuevos casos
+  @Regression @Lock
+  Feature: Unlock
+
+  Background:
+    Given the app is installed
+    And the user previously configured a lock
+
+  # --- E2E SMOKE ---
+  @Smoke @E2E @Password @Automated
+  Scenario Outline: Unlock with password (happy path)
+    Given the app has a password lock set to "<password>"
+    And the app is locked
+    When the user launches the app
+    And types a password <password>
+    And taps the "Unlock" button
+    Then the homepage appears
+
+    Examples:
+      | password |
+      | abcdef   |
+
+  @Smoke @E2E @Pin @Automated
+  Scenario Outline: Unlock with PIN (happy path)
+    Given the app has a PIN lock set to "<PIN>"
+    And the app is locked
+    When the user launches the app
+    And types a pin <PIN>
+    And taps the "Unlock" button
+    Then the homepage appears
+
+    Examples:
+      | PIN    |
+      | 123456 |
+
+  # --- Negativos (Regression) ---
+  @Regression @Password @Automated
+  Scenario Outline: Unlock fails with wrong password
+    Given the app has a password lock set to "abcdef"
+    And the app is locked
+    When the user launches the app
+    And types a password <wrong_password>
+    And taps the "Unlock" button
+    Then a message "<message>" is displayed to the user
+    And the homepage does not appear
+
+    Examples:
+      | wrong_password | message                                  |
+      | abcabc         | Wrong password. Please try again.        |
+
+  @Regression @Pin @Automated
+  Scenario Outline: Unlock fails with wrong PIN
+    Given the app has a PIN lock set to "123456"
+    And the app is locked
+    When the user launches the app
+    And types a pin <wrong_pin>
+    And taps the "Unlock" button
+    Then a message "<message>" is displayed to the user
+    And the homepage does not appear
+
+    Examples:
+      | wrong_pin | message                          |
+      | 654321    | Wrong PIN. Please try again.     |
 
 
 
