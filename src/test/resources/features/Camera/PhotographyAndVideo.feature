@@ -4,15 +4,28 @@ Feature: PhotographyAndVideo
   Background:
     Given the user is in Tella home page
 
+
+  @Smoke @E2E @Photography @ToBeAutomated
+  Scenario: Take a photo with the back camera on Tella, verify info and delete - E2E
+    When the user presses the camera button
+    And the user presses the take a photo button
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses the button File information
+    And the file information is in the screen
+    And the user presses Delete button
+    And the user presses confirm Delete button
+    Then the file is deleted
+
   @Smoke @Photography @SmokeManual
-  Scenario:Take a photo with the back camera on Tella
+  Scenario:Take a photo with the back camera on Tella and check it is not saved in the device's album
     When the user presses the camera button
     And the user presses the take a photo button
     Then there is a new picture in the "Images" folder on Tella
     And the picture taken is not in the device's album
 
   @Smoke @Photography @SmokeManual
-  Scenario: take a photo from Camera with the frontal camera on Tella
+  Scenario:Take a photo with the frontal camera on Tella and check it is not saved in the device's album
     When the user presses the camera button
     And the user presses the change camera button
     And the user presses the take a photo button
@@ -20,78 +33,90 @@ Feature: PhotographyAndVideo
     And the picture taken is not in the device's album
 
   @Smoke @Photography @SmokeManual
-  Scenario:General - Take a photo from Camera with Verification Mode on
+  Scenario:General - Take a photo from camera with General configuration -> Verification Mode "ON"
     Given the Verification Mode is on
     When the user presses the camera button
     And the user presses the take a photo button
     Then there is a new picture in the "Images" folder on Tella
-    And the picture taken is not in the device's album
     And the verification information is collected correctly
+    And the gps information is avaible
 
   @Smoke @Photography @SmokeManual
-  Scenario:General - Take a photo from Camera with Verification Mode on and GPS (of device) off
+  Scenario:General - Take a photo from camera with Verification Mode on and GPS (of device) off
     Given the Verification Mode is on
-    And the GPS is off
+    And the GPS of device is off
     When the user presses the camera button
     And the user presses the take a photo button
     Then there is a new picture in the "Images" folder on Tella
-    And the picture taken is not in the device's album
     And the verification information is collected correctly
+    And the gps information is not avaible
 
+  @Photography @ToBeAutomated
   Scenario:Turn on camera flash automatic mode
     When the user presses the camera button
     And the user presses flash button
-    Then the automatic flash mode is activated
+    Then the automatic flash mode is now activated
 
+  @Photography
   Scenario: Turn on camera flash
     When the user presses the camera button
     And the user presses flash button
     And the user presses flash button
     Then the flash is activated
 
-  @Smoke @Photography @Automated
-  Scenario: Enable grid lines
-    When the user presses the camera button
-    And the user presses grid lines button
-    Then the grid lines are now activated
-
+  @Photography
   Scenario: Zoom in with the camera
     When the user presses the camera button
     And the user zooms in
     Then the image to be taken is enlarged
 
-  Scenario: Turn on the camera flash in video mode
-    When the user presses the camera button
-    And the user presses the video button
-    And the user presses flash button
-    Then the flash is activated
+        #--------------------------------------Video
 
-  Scenario: Turn off camera flash in video mode
+  @Smoke @E2E @Video @ToBeAutomated
+  Scenario: Record a video at highest resolution, verify info and delete - E2E
     When the user presses the camera button
     And the user presses the video button
-    And the user presses flash button
-    And the user presses flash button
-    Then the flash is off
-
-  @Smoke @Video @Automated
-  Scenario: Select video resolution
-    When the user presses the camera button
-    And the user presses the video button
-    When the user presses the configurations button
+    And the user presses the configurations button
     And the user presses the option highest possible
     And the user presses the next button
+    And the video resolution is selected
+    And the user presses the take a video button
+    And the user presses the stop video button
+    And the user presses the image located at the bottom right to the screen
+    And the user presses the three points button located at the top right screen
+    And the user presses the button File information
+    And the file information is in the screen
+    And the user presses Delete button
+    And the user presses confirm Delete button
+    Then the file is deleted
+
+  @Smoke @Video @Automated
+  Scenario Outline: Select video resolution
+    And the user presses the camera button
+    And the user presses the video button
+    When the user presses the configurations button
+    And the user presses the option <Resolution>
+    And the user presses the next button
     Then the video resolution is selected
+    And the user presses the configurations button
+   # And the user check the resolution <Resolution> its selected in
+    Examples:
+      | Resolution       |
+      | highest possible |
+      | High             |
+      | Medium           |
+      | Low              |
 
   @Smoke @Video @SmokeManual
   Scenario: Check file size from the last file
     Given that the last file is a video with the highest resolution
     When the user presses the image located at the bottom right to the screen
-    And the user presses the three points button located at the top right screen
+    And the user presses the elipsis button located at the top right screen
     And the user presses "File information"
-    Then The video size is congruent with the video resolution
+    Then the video size is congruent with the video resolution
 
   @Smoke @Video @SmokeManual
-  Scenario: Record a video from Camera
+  Scenario: Record a video from camera on Tella and check it is not saved in the device's album
     When the user presses the camera button
     And the user presses the video button
     And the user presses the take a video button
@@ -100,7 +125,7 @@ Feature: PhotographyAndVideo
     And the video taken is not in the device's album
 
   @Smoke @Video @SmokeManual
-  Scenario: record a video from Camera with the frontal camera
+  Scenario: Record a video from the frontal camera on Tella and check it is not saved in the device's album
     When the user presses the camera button
     And the user presses the video button
     And the user presses the change camera button
@@ -110,7 +135,7 @@ Feature: PhotographyAndVideo
     And the video taken is not in the device's album
 
   @Smoke @Video @SmokeManual
-  Scenario: record a video from Camera with Verification Mode on
+  Scenario: General - Record a video from Camera with General configuration -> Verification Mode "ON"
     And the Verification Mode is on
     When the user presses the camera button
     And the user presses the video button
@@ -121,9 +146,9 @@ Feature: PhotographyAndVideo
     And the verification information is collected correctly
 
   @Smoke @Video @SmokeManual
-  Scenario: record a video from Camera with Verification Mode on and GPS off
+  Scenario: General - Record a video from camera with Verification Mode on and GPS (of device) off
     And the Verification Mode is on
-    And the GPS is off
+    And the GPS of device is off
     When the user presses the camera button
     And the user presses the video button
     And the user presses the take a video button
@@ -132,6 +157,27 @@ Feature: PhotographyAndVideo
     And the video taken is not in the device's album
     And the verification information is collected correctly
 
+  @Video
+  Scenario: Turn ON the camera flash in video mode
+    When the user presses the camera button
+    And the user presses the video button
+    And the user presses flash button
+    Then the flash is activated
+
+  @Video
+  Scenario: Turn off camera flash in video mode
+    Given the flash is activated
+    When the user presses flash button
+    Then the flash is off
+
+  @Automated
+  Scenario: Enable grid lines
+    When the user presses the camera button
+    And the user presses grid lines button
+    Then the grid lines are now activated
+
+
+ # ---------------------------------------- FileOptions from thumbnail image
   @Smoke @ShareFile @SmokeManual
   Scenario: share file from Tella by Gmail
     And the user has an email account registered on the cell phone
@@ -284,11 +330,6 @@ Feature: PhotographyAndVideo
     Then the sistem notified there is a existing file with the same name
     Then the message "File name taken. Please use a different one." is displayed
 
-  Scenario: Exit from the camera
-    When the user presses the camera button
-    And the user presses "x" located at the top left corner
-    Then the camera is closed
-    And the homepage appears
 
   Scenario: Exit from the last file
     When the user presses the camera button
@@ -312,3 +353,11 @@ Feature: PhotographyAndVideo
       | Modification |
       | cropping     |
       | rotation     |
+
+
+
+  Scenario: Exit from the camera
+    When the user presses the camera button
+    And the user presses "x" located at the top left corner
+    Then the camera is closed
+    And the homepage appears

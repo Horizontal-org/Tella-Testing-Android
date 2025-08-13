@@ -1,10 +1,10 @@
 @Regression @Unlock
 Feature: Unlock
 
-  @Smoke @Password @SmokeManual #This test cannot be run in browserStack
+  @Smoke @Password @E2E @ToBeAutomated #This test cannot be run in browserStack
   Scenario Outline: Unlock the app with a password
-    Given the user is in Tella home page
-    And the user close the app
+    And The user uses the unlock method password
+    And the user opens the app
     And The app is loaded correctly with a password set
     When The user enter the password <password>
     Then Home page is displayed
@@ -13,11 +13,22 @@ Feature: Unlock
       | password |
       | 123456   |
 
-  @Smoke @Pin @Automated
+  @Password @ToBeAutomated #This test cannot be run in browserStack
+  Scenario Outline: Unlock fails with wrong password
+    And The user uses the unlock method password
+    And the user opens the app
+    When The user enter the password <wrong_password>
+    Then a message "<message>" is displayed to the user
+    And Home page is not displayed
+
+    Examples:
+      | wrong_password | message                           |
+      | abcabc         | Wrong password. Please try again. |
+
+  @Smoke @Pin @ToBeAutomated @E2E
   Scenario Outline: Unlock the app with a pin
-    Given the user is in Tella home page and log in with pin <pin>
-    And the user close the app
-    And The app is loaded correctly with a pin set
+    And The user uses the unlock method pin
+    And the user opens the app
     When The user enter the pin <pin>
     Then Home page is displayed
 
@@ -25,11 +36,33 @@ Feature: Unlock
       | pin    |
       | 654321 |
 
-  @Pattern
-  Scenario: The user start the application, unlock the app with a pattern.
-    Given The app is loaded correctly with a pattern set
-    When The user set a pattern
-    When The user click the go to tella button
+  @Pin @ToBeAutomated
+  Scenario Outline: Unlock fails with wrong pin
+    And The user uses the unlock method pin
+    And the user opens the app
+    When The user enter the pin <wrong_pin>
+    Then a message "<message>" is displayed to the user
+    And Home page is not displayed
+
+    Examples:
+      | wrong_pin | message                      |
+      | 111111    | Wrong PIN. Please try again. |
+
+  @Smoke @Pattern @ToBeAutomated @E2E
+  Scenario: Unlock the app with a pattern
+    And The user uses the unlock method pattern
+    And the user opens the app
+    When the user draws the pattern
     Then Home page is displayed
 
+  @Pattern @ToBeAutomated
+  Scenario Outline: Unlock fails with wrong pattern
+    And The user uses the unlock method pattern
+    And the user opens the app
+    When the user draws a different pattern with no less than six points
+    Then a message "<message>" is displayed to the user
+    And Home page is not displayed
 
+    Examples:
+      | message                      |
+      | Wrong PIN. Please try again. |
