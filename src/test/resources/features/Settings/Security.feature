@@ -178,7 +178,7 @@ Feature: Security
     Then verify slide "DELETE" button is present
 
 
-  @Smoke @QuickDelete @SmokeManual  #En la APP no esta el check para eliminar la APP
+  @Smoke @QuickDelete @SmokeManual  @deprecated #En la APP no esta el check para eliminar la APP
   Scenario: Security - Quick delete - Delete Tella
     When toggle the switch on the "Quick delete" option
     And select check box “Delete Tella”
@@ -353,30 +353,6 @@ Feature: Security
       | Delete draft and submitted forms |
       | Delete server settings           |
 
-#RepetidoEscenarioDeleteTella
-  Scenario: Security - Quick delete - Delete Tella
-    When taps switch in "Quick delete" option
-    And select check box “Delete Tella”
-    And go to Tella home page
-    And verify slide “DELETE” button is present
-    And taps slide “DELETE” button
-    And view counter message “Quick Delete mode activation”
-    And waits finish counter
-    And view closed the Tella application
-    Then view uninstall message
-
-    #EscenaioRepetidoCon@HelpInfo
-  @Smoke @QuickDelete @ToBeAutomated @Bug
-  Scenario Outline: Security - Quick delete - help info
-    When taps switch in "Quick delete" option
-    And taps icon help in <deleteOption>
-    Then the message "<message>" is displayed
-
-    Examples:
-      | deleteOption                     | message                                                               |
-      | Delete files                     | Delete all the files stored in Tella                                  |
-      | Delete draft and submitted forms | Delete all draft and submitted forms                                  |
-      | Delete server settings           | Delete your connections to servers and all forms associated with them |
 
   @Smoke @ToBeAutomated
   Scenario: Security - Preserve metadata when importing
