@@ -6,7 +6,6 @@ Feature: Google Drive
     Given the user is in Tella home page
     And the user is connected to the Google drive server
 
-
   @Smoke @SmokeManual
   Scenario: Submit new report with photo
     When the user taps the "Google Drive" connection
