@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class SettingsSteps {
-    @Given("the user is in Tella home page")
+    @Given("the user is (.*) Tella home page")
     public void theUserIsInTellaHomePage() {
         UnlockService.isViewLoaded();
         UnlockService.setPassword(PropertyManager.getProperty("password"));

@@ -70,7 +70,7 @@ public class ServersSteps extends PageSteps {
         ServersService.viewLoginToProject(titleLogin);
     }
 
-    @And("^the user views the fields \"(.*)\" and \"(.*)\"$")
+    @And("^the user fills the fields \"(.*)\" and \"(.*)\"$")
     public void theUserViewsTheFieldsAnd(String username, String password) {
         ServersService.viewFieldsLogin(username, password);
     }

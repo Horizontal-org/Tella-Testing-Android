@@ -355,7 +355,6 @@ Feature: PhotographyAndVideo
       | rotation     |
 
 
-
   Scenario: Exit from the camera
     When the user presses the camera button
     And the user presses "x" located at the top left corner
