@@ -232,6 +232,14 @@ Feature: Security
     And take photo
     Then the camera did not make the sound
 
+  @CameraSilentMode @SmokeManual @E2E
+  Scenario: Security - Camera silent mode
+    When toggle the switch on the "Camera silent mode" option
+    And go to Tella home page
+    And taps camera button
+    And take a video
+    Then the camera did not make the sound
+
   @Smoke @ScreenSecurity @ToBeAutomated
   Scenario: Security - Screen security
     When toggle the switch on the "Screen security" option
