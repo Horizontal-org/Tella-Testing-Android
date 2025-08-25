@@ -1,4 +1,4 @@
-@TellaDesktop @NearbySharing @Received
+@Regression @TellaDesktop @NearbySharing @SmokeManual
 Feature: NearbySharing and Received
   # For now, the desktop app can only receive files, NOT send them.
   #Prepare the smoke when we have all the app working correctly

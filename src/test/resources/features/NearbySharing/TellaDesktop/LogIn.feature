@@ -1,4 +1,4 @@
-@TellaDesktop @RegisterAndLogIn
+@Regression @TellaDesktop @RegisterAndLogIn @SmokeManual
 Feature: Register, Login and Lock Tella Desktop
 
   @Register
