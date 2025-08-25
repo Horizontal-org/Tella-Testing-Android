@@ -1,116 +1,190 @@
-@NearbySharing
+@Regression @NearbySharing
 
-Feature: NearbySharing
+Feature: NearbySharing - Estas pruebas deben hacerse Android, ios, Tella Desktop
+#No pueden automatizarse
 
-  @Smoke @Connections
+  @Smoke @Connections @Flow
   Scenario: Nearby sharing button is visible on the Homescreen
     Given the user is in Tella home page
     When the "Connections" section is displayed
-    Then the "Nearby sharing" button is visible inside the "Connections" section
+    And the "Nearby sharing" button is visible
+    And the "+" button is visible
+    Then the user presses "NearbySharing" button
+    And the sees the "SEND FILES" and "RECEIVE FILES" button
 
+  @Smoke @LinkInfo
+  Scenario: Learn more link opens info page
+    Given the user is in the nearby Sharing option
+    When the user taps the "Learn more about nearby sharing" link
+    Then an info page or webview about "Nearby sharing" is displayed
 
-  @Smoke @ToBeAutomated
-  Scenario: NearbySharing - SEND FILES
-    Given the user presses "NearbySharing" button
-    When the user taps "SEND FILES" button
-    And the user presses "Next" button
-    Then the "Wi-Fi" screen is displayed
+  @Smoke @GetConnected @WifiScreen
+  Scenario: Wi-Fi screen - checking confirmation enables Next button
+    Given the user is in the nearby Sharing option
+    And the user presses "SEND FILES" button
+    And the "Get connected" screen is displayed
+    And the "Next" button is disabled
+    When the devices are connected to the same Wi-Fi
+    And the user taps the checkbox "Yes, we are on the same Wi-Fi network"
+    Then the "Next" button is enabled
 
-    @WifiScreen
-  Scenario: Wi-Fi screen - checking confirmation enables Next
-    Given the "Wi-Fi" screen is displayed
-    When the user taps the checkbox "Yes, we are on the same Wi-Fi network"
-    Then the checkbox "Yes, we are on the same Wi-Fi network" is checked
-    And the "Next" button is enabled
-
-  @WifiScreen
-  Scenario: Wi-Fi screen - default state with connection - check button disabled
-    Given the "Wi-Fi" screen is displayed
-    And the section "Tips to connect" is visible
-    And the row "Current WiFi network" shows a network name
-    And the checkbox "Yes, we are on the same Wi-Fi network" is visible and unchecked and enabled
-    And the "Next" button remains disabled
-
-  @WifiScreen
-  Scenario: Wi-Fi screen - No wifi conection device
+  @GetConnected @Fail @WifiScreen
+  Scenario: Wi-Fi screen - No wifi connection device
     Given the "Wi-Fi" screen is displayed
     And the device is NOT connected to a Wi-Fi network
-    Then the row "Current WiFi network" shows "No connection"
+    Then the row "Current WiFi network" shows "No network connected"
     And the checkbox "Yes, we are on the same Wi-Fi network" is disabled
     And the "Next" button remains disabled
 
-  @WifiScreen
-#revisar si este caso funcionaria de este modo
-  Scenario: Wi-Fi screen - location permission banner
+  @GetConnected @WifiScreen
+  Scenario: Wi-Fi screen - location permission banner - GPS disabled
     Given the "Wi-Fi" screen is displayed
-    And Location permission is disabled for the app
+    And Location permission (GPS) is disabled for the app
     Then the text "Location access" is displayed
     And the message "To detect the Wi-Fi network, please enable location access in your device Settings." is displayed
-    And the "CANCEL" and "SETTINGS" buttons are visible
 
+  @GetConnected @WifiScreen
+  Scenario: Wi-Fi screen - change wifi network
+    Given the "Wi-Fi" screen is displayed
+    And the user taps the checkbox "Yes, we are on the same Wi-Fi network"
+    And the user presses "Next" button
+    When the devices connect
+    And the sending device changes its Wi-Fi networkthe sending device changes its Wi-Fi network
+    Then the message "Your wifi connection has changed. Please start over" is displayed
 
+  @Smoke @GetConnected @WifiScreen @Hotspot
+  Scenario: Wi-Fi screen - Hotspot success connection
+    Given the user activates mobile data on their device
+    And the user activates the hotspot option on their device
+    And the devices are connected to the same Hotspot connection
+    And the user is in the nearby Sharing option
+    And the "Get connected" screen is displayed
+    When the user taps the checkbox "Yes, we are on the same Wi-Fi network"
+    Then the devices connect successfully
+    And you can send and receive files
 
+   @GetConnected @WifiScreen @Hotspot
+  Scenario: Wi-Fi screen - Hotspot fail connection - The connection fails due to a lack of mobile data
+    Given the user activates mobile data on their device
+    And the user activates the hotspot option on their device
+    And the devices are connected to the same Hotspot connection
+    And the user is in the nearby Sharing option
+    And the "Get connected" screen is displayed
+     #aqui aparece un cartel que no pude capturar, habla de que si no tenes credito para conectarte a internet tendras fallas
+    Then the checkbox "Yes, we are on the same Wi-Fi network" is disabled
 
-@QRScreen
-  Scenario: QR screen - scanner and manual entry
+  @ConnectToDevice
+  Scenario: Connect To Device - qr scanner and manual entry
     Given the "Connect to device" screen is displayed
-    And the QR scanner view is visible
+    And the QR or QR SCANNER view is visible
     And the "CONNECT MANUALLY" button is enabled
 
-  Scenario: Manual form - inputs and Next gating
-    Given the "Connect to device" screen is displayed
+  @Smoke @ConnectToDevice @Sender @ManualConnect @Flow
+  Scenario: Manual connect - Sender device - Success connection
+    Given the user is in the nearby Sharing option
+    And the user presses "SEND FILES" button
+    And the user presses "Next" button
+    And the devices are connected to the same Wi-Fi network
     When the user taps "CONNECT MANUALLY" button
-    Then the "Connect manually" screen is displayed
-    And the inputs "Connect code", "PIN", and "Port" are visible
-    And the "Next" button remains disabled
-    When the user types "23-127-8" into "Connect code"
-    And the user types "391283" into "PIN"
-    And the user types "443" into "Port"
-    Then the "Next" button is enabled
+    And the "Connect manually" screen is displayed
+    And the user enter valid "Connect code", "PIN" and "Port" provide from the Recipient device
+    And the user taps the "Next" button
+    Then the "Send files" screen is visible
 
-  Scenario: Verification - UI and actions
-    Given the "Connect manually" screen is displayed
-    And the user has entered valid "Connect code", "PIN" and "Port"
-    When the user taps "Next" button
-    Then the "Verification" screen is displayed
-    And the sequence hash is visible in grouped format
-    And the "CONFIRM AND CONNECT" button is enabled
-    And the "DISCARD AND START OVER" button is visible
+  @Smoke @ConnectToDevice @Sender @QRConnect @Flow
+  Scenario: QR connect - Sender device - Success connection
+    Given the user is in the nearby Sharing option
+    And the user presses "SEND FILES" button
+    And the user presses "Next" button
+    And the devices are connected to the same Wi-Fi network
+    When the user views the QR scan
+    And the user scans the QR code provided by the recipient device
+    Then the "Send files" screen is visible
 
-  Scenario: Verification - confirm shows waiting state
-    Given the "Verification" screen is displayed
-    When the user taps "CONFIRM AND CONNECT" button
-    Then the button shows "WAITING FOR RECIPIENT ..."
-    And the "WAITING FOR RECIPIENT ..." button is disabled
+  @Smoke @ConnectToDevice @Sender @ManualConnect @E2E
+  Scenario Outline: Manual connect - Sender device - Success connection from <device1> to Recipient device <device2>
+    Given the user is connected to the Recipient device
+    And  the "Send files" screen is visible
+    When the user fills in the title and selects a file from the option
+      | Import from Tella app          |
+      | from the device                |
+      | takes a photo/video from Tella |
+      | records an audio               |
+    And the files are visible
+    And the user presses "Send" button
+    And the sender presses the "Confirm and Connect" button
+    And the message ""Waiting for the recipient to accept files"" is displayed
+    #supuestamente aparee un codigo de coneccion entre los dispositivos para verificacion extra. Actualmente no funciona para android a ios
+    And the receiver device presses the "Accept files" button
+    Then the files from the sender device are sent
+    And a success message is displayed in the sender device
+    And a new folder is in the Recipient device with the received files
 
-  Scenario: Verification - discard returns to QR
-    Given the "Verification" screen is displayed
-    When the user taps "DISCARD AND START OVER" button
-    Then the "Connect to device" screen is displayed
-    And the QR scanner view is visible
+    Examples:
+      | device1 | device2     |
+      | Android | Android     |
+      | Android | iOS         |
+      | Android | Desktop App |
+      | iOS     | iOS         |
+      | iOS     | Android     |
+      | iOS     | Desktop App |
 
+  @Smoke @ConnectToDevice @Sender @QRConnect @E2E
+  Scenario Outline: QR connect - Sender device - Success connection from <device1> to Recipient device <device2>
+    Given the user <device1> is connected to the Recipient device <device2>
+    And  the "Send files" screen is visible
+    When the user fills in the title and selects a file from the option
+      | Import from Tella app          |
+      | from the device                |
+      | takes a photo/video from Tella |
+      | records an audio               |
+    And the files are visible
+    And the user presses "Send" button
+    And the sender <device1> presses the "Confirm and Connect" button
+    And the message ""Waiting for the recipient to accept files"" is displayed
+    #supuestamente aparee un codigo de coneccion entre los dispositivos para verificacion extra. Actualmente no funciona para android a ios
+    And the receiver device <device2> presses the "Accept files" button
+    Then the files from the sender device are sent
+    And a success message is displayed in the sender device
+    And a new folder is in the Recipient device <device2> with the received files
 
+    Examples:
+      | device1 | device2     |
+      | Android | Android     |
+      | Android | iOS         |
+      | Android | Desktop App |
+      | iOS     | iOS         |
+      | iOS     | Android     |
+      | iOS     | Desktop App |
 
+  @ConnectToDevice @Sender @Fail
+  Scenario: Manual connect - Sender device - Fail connection by empty tittle
+    Given the user is connected to the Recipient device
+    And  the "Send files" screen is visible
+    When the user DONT fills in the title and selects a file from the option
+      | Import from Tella app          |
+      | from the device                |
+      | takes a photo/video from Tella |
+      | records an audio               |
+    And the files are visible
+    Then the send button is not avaible
 
+  @ConnectToDevice @Fail
+  Scenario: Reject files
+    Given the user is connected to the Recipient device
+    And  the "Send files" screen is visible
+    And the user fills in the title and uploads a file
+    And the user presses "Send" button
+    When the receiver press "Reject" buton
+    Then the "Send files" screen is visible in the sender device
 
+  @Smoke @ConnectToDevice
+  Scenario: Stop receiving files
+    Given the user is connected to the Recipient device
+    And  the "Send files" screen is visible
+    And the user fills in the title and uploads a file
+    And the user presses "Send" button
+    When the receiver press Cancel receiving
+    Then the message "Transfer interrupted" is displayed in sender device
+    And the receiving device can see that the files are not in its tella archives
 
-
-
-
-
-
-
-
-
-
-  @Smoke @E2E @Automated
-  Scenario: NearbySharing - RECEIVE FILES
-    When the user taps "RECEIVE FILES" button
-    And taps "Next"
-    Then the "Receive files" waiting screen is displayed
-    And the indicator "Waiting to receive" (or equivalent) is visible
-  @LinkInfo
-  Scenario: Learn more link opens info page
-    When the user taps the "Learn more about nearby sharing" link
-    Then an info page or webview about "Nearby sharing" is displayed
-    And the user can return to the "Nearby sharing" screen

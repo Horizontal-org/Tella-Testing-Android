@@ -1,73 +1,71 @@
-@TellaDesktop @NearbySharing  @Received
-
+@TellaDesktop @NearbySharing @Received
 Feature: NearbySharing and Received
-  #De momento la app de escritorio solo puede recibir archivos NO enviarlos
-
+  # For now, the desktop app can only receive files, NOT send them.
+  #Prepare the smoke when we have all the app working correctly
 
   @Received
   Scenario: Received files
-  #aca se pueden ver los archivos recibidos, aun no podemos ver como es esta funcion
+  # Here you can see the received files; we still cannot see how this feature works. Not avaible yet
   Given
   When
   Then
 
   @NearbySharing
   Scenario: Nearby Sharing - Step 1
-    Given el usuario esta conectado a la misma linea wifi con sus dos dispositivos (PC y movil)
-    When el usuario selecciona el checkbox "Yes, we are on the same Wi-Fi network"
-    And el usuario presiona el botton "Continue"
-    Then el usuario esta en el step 2 de nearby sharing
+    Given the user’s PC and mobile are connected to the same Wi-Fi network
+    When the user selects the checkbox "Yes, we are on the same Wi-Fi network"
+    And the user presses the "Continue" button
+    Then the user is on step 2 of Nearby Sharing
 
-  @NearbySharing  @Fail
+  @NearbySharing @Fail
   Scenario: Nearby Sharing - Step 1
-    Given el usuario esta conectado a la misma linea wifi con sus dos dispositivos
-    When el usuario NO selecciona el checkbox "Yes, we are on the same Wi-Fi network"
-    And el usuario presiona el botton "Continue"
-    Then el boton continue permanece deshabilitado
+    Given the user’s two devices are connected to the same Wi-Fi network
+    When the user does NOT select the checkbox "Yes, we are on the same Wi-Fi network"
+    And the user presses the "Continue" button
+    Then the "Continue" button remains disabled
 
-    #Probar un caso de si se puede conectar aunque esten en dos redes diferentes los dispositivos
+    # Test a case to see if it is possible to connect when the devices are on two different networks
 
   @NearbySharing
   Scenario: Nearby Sharing - Step 2 - Manual Connection
-    Given la informacion de "IP ADDRESS", "PIN" y "Port" es visible
-    When el usuario configura el "Ip ADDRESS", "PIN" y "Port" en su celular
-    And los datos coinciden con los de tella desktop
-    Then los dipositivos se conectan automaticamente
-    #revisar este caso luego cuando se pueda ver
+    Given the information "IP ADDRESS", "PIN", and "Port" is visible
+    When the user sets the "IP ADDRESS", "PIN", and "Port" on the phone
+    And the values match those shown on Tella Desktop
+    Then the devices connect automatically
+    # Review this case later when it can be verified
 
   @NearbySharing @Fail
-  Scenario Outline: Nearby Sharing - Step 2 - Manual Connection fail by wrong data <dato>
-    Given el usuario tiene configurado el dato <dato> en su pc
-    When el usuario configura el <dato> con valor <valor> en su celular
-    Then los dipositivos no se conectan automaticamente
-    #revisar este caso luego cuando se pueda ver
+  Scenario Outline: Nearby Sharing - Step 2 - Manual Connection fails due to incorrect <field>
+    Given the user has the <field> configured on the PC
+    When the user sets the <field> to <value> on the phone
+    Then the devices do not connect automatically
+    # Review this case later when it can be verified
 
     Examples:
-      | dato       | valor                         |
-      | Ip ADDRESS | 000.000.000.00, 000.000.000.0 |
-      | PIN        | 000000                        |
-      | Port       | 00000                         |
-
+      | field      | value                          |
+      | IP ADDRESS | 000.000.000.00, 000.000.000.0  |
+      | PIN        | 000000                         |
+      | Port       | 00000                          |
 
   @NearbySharing
   Scenario: Nearby Sharing - Step 2 - Automatic connection with QR code
-    Given la informacion de "IP ADDRESS", "PIN" y "Port" es visible
-    When el usuario presiona el botton "See QR code"
-    Then los dipositivos se conectan automaticamente
-    #revisar este caso luego cuando se pueda ver
+    Given the information "IP ADDRESS", "PIN", and "Port" is visible
+    When the user presses the "See QR code" button
+    Then the devices connect automatically
+    # Review this case later when it can be verified
 
   @Received
-  Scenario: Exit nearby sharing
-    Given el usuario esta en el step 2 de nearby sharing
-    When el usuario presiona el boton "Received"
-    And el usuario vera un cartel de advertencia "If you exit Nearby Sharing, you will have to restart the process from the beginning."
-    And el usuario presiona el boton "Exit"
-    Then el usuario se encuentra en la seccion "Received"
+  Scenario: Exit Nearby Sharing
+    Given the user is on step 2 of Nearby Sharing
+    When the user presses the "Received" button
+    And the user sees a warning "If you exit Nearby Sharing, you will have to restart the process from the beginning."
+    And the user presses the "Exit" button
+    Then the user is in the "Received" section
 
   @Received
-  Scenario: Cancel Exit nearby sharing
-    Given el usuario esta en el step 2 de nearby sharing
-    When el usuario presiona el boton "Received"
-    And el usuario vera un cartel de advertencia "If you exit Nearby Sharing, you will have to restart the process from the beginning."
-    And el usuario presiona el boton "Continue nearby Sharing"
-    Then el usuario esta en el step 2 de nearby sharing
+  Scenario: Cancel Exit Nearby Sharing
+    Given the user is on step 2 of Nearby Sharing
+    When the user presses the "Received" button
+    And the user sees a warning "If you exit Nearby Sharing, you will have to restart the process from the beginning."
+    And the user presses the "Continue Nearby Sharing" button
+    Then the user remains on step 2 of Nearby Sharing
