@@ -1,4 +1,4 @@
-@Regression @NearbySharing
+@Regression @NearbySharing @SmokeManual
 
 Feature: NearbySharing - Estas pruebas deben hacerse Android, ios, Tella Desktop
 #No pueden automatizarse
