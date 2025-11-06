@@ -52,6 +52,4 @@ Feature: Register, Login and Lock Tella Desktop
 
   Scenario: Lock Tella desktop
     # we still cannot see how this feature works
-  Given
-  When
-  Then
+ 

@@ -4,7 +4,7 @@ Feature: File Options - Options for files in their individual folders
   Background:
     Given the user is in Tella home page
     And there are files and folders within Tella app
-rename share save to device file information delete
+#rename share save to device file information delete
 
   @Smoke @ToBeAutomated @Flow
   Scenario Outline: Open a multimedia file <type> from the folder <folder>
@@ -49,9 +49,6 @@ rename share save to device file information delete
     Then the sucessfull message "File successfully moved" appears
 
 
-
-
-
   @Smoke @ToBeAutomated @E2E
   Scenario Outline: Rename a file of <type> from the folder <folder>
     When the user enters the folder <folder>
@@ -68,7 +65,7 @@ rename share save to device file information delete
       | Audios    | audio    |
       | Videos    | video    |
 
-    @ToBeAutomated
+  @ToBeAutomated
   Scenario Outline: Rename a file <type> with a name identical to an existing file
     When the user enters the folder <folder>
     And taps the options button "⋮" of a <type> file
@@ -173,7 +170,6 @@ rename share save to device file information delete
       | document | Documents |
 
 
-    ------------from folder
   Scenario Outline: View the information of a <type> file from the folder <folder>
     When the user enters the folder <folder>
     And taps the options button "⋮" of the <type> file
@@ -187,7 +183,7 @@ rename share save to device file information delete
       | audio    | Audios    |
       | document | Documents |
 
-   @SmokeManual @E2E
+  @SmokeManual @E2E
   Scenario Outline: Save a file of <type> to the device from the folder <folder> with its verification information
     Given the user has a <type> file with verification information
     When the user enters the folder <folder>
@@ -291,7 +287,7 @@ rename share save to device file information delete
     And presses Ok button
     Then the folder name is updated
 
-    @ToBeAutomated
+  @ToBeAutomated
   Scenario: Select all files in a folder
     When the user enters the folder "All files"
     And taps the "Checkbox" button
