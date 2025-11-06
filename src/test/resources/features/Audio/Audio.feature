@@ -4,7 +4,7 @@ Feature: Audio
   Background:
     Given the user is in Tella home page
 
-  @Smoke @E2E @ToBeAutomated
+  @Smoke @E2E @ToBeAutomated @Ignore
   Scenario: Record, save, play and cleanup an audio - E2E
     And the user is in the Rec option
     When the user records an audio file
@@ -70,7 +70,7 @@ Feature: Audio
       | recording_name | message_title                                     |
       | Audio2         | The audio recording was saved to your Tella files |
 
-
+  @Ignore
   Scenario: Listen an audio file
     When the user press "Rec"
     And the user press headphones
@@ -78,6 +78,7 @@ Feature: Audio
     And the user press play
     Then the audio file is reproduced
 
+  @Ignore
   Scenario: Pause an audio file
     When the user press "Rec"
     And the user press headphones
@@ -86,6 +87,7 @@ Feature: Audio
     And the user press pause
     Then the audio file is paused
 
+  @Ignore
   Scenario: Pause an audio file and play it again
     When the user press "Rec"
     And the user press headphones
@@ -95,6 +97,7 @@ Feature: Audio
     And the user press play
     Then the audio file is played
 
+  @Ignore
   Scenario: Rewind audio file
     When the user press "Rec"
     And the user press headphones

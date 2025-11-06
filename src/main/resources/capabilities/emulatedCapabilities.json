@@ -8,5 +8,6 @@
   "appPackage": "org.hzontal.tella",
   "appActivity": "org.horizontal.tella.mobile.views.activity.SplashActivity",
   "noReset": false,
-  "appium:automationName": "UiAutomator2"
+  "appium:automationName": "UiAutomator2",
+  "appium:autoGrantPermissions": true
 }

@@ -28,15 +28,6 @@ public class AudioService {
     public static void clickMicrophoneIcon() throws InterruptedException {
         if (MobileActionManager.isPresent(AudioConstants.MICROPHONE_ICON)) {
             GenericService.commonClick(AudioConstants.MICROPHONE_ICON);
-            //En el caso de que los permisos ya fueron aceptados
-            if (flagAcceptPermissions == false) {
-                try {
-                    acceptPermissions();
-                    MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
-                } catch (Exception e) {
-                    System.out.println("Permits not present, continuing.");
-                }
-            }
         }
     }
 
