@@ -4,7 +4,7 @@ Feature: File Options - Options for files in their individual folders
   Background:
     Given the user is in Tella home page
     And there are files and folders within Tella app
-rename share save to device file information delete
+#rename share save to device file information delete
 
   @Smoke @ToBeAutomated @Flow
   Scenario Outline: Open a multimedia file <type> from the folder <folder>
@@ -173,7 +173,7 @@ rename share save to device file information delete
       | document | Documents |
 
 
-    ------------from folder
+    #------------from folder
   Scenario Outline: View the information of a <type> file from the folder <folder>
     When the user enters the folder <folder>
     And taps the options button "⋮" of the <type> file
