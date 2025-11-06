@@ -6,9 +6,9 @@ Feature: NearbySharing and Received
   @Received
   Scenario: Received files
   # Here you can see the received files; we still cannot see how this feature works. Not avaible yet
-  Given
-  When
-  Then
+  #Given
+  #When
+  #Then
 
   @NearbySharing
   Scenario: Nearby Sharing - Step 1

@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>dd-MM-yyyy-HH-mm-ss</maven.build.timestamp.format>
         <buildIdentifier>Tella_Android_Testing_${maven.build.timestamp}</buildIdentifier>
-        <crowdar.cucumber.filter>@oki</crowdar.cucumber.filter>
+        <crowdar.cucumber.filter>@testGabo</crowdar.cucumber.filter>
         <crowdar.driverHub></crowdar.driverHub>
         <crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin com.crowdar.tella.listeners.CucumberListener:</crowdar.cucumber.plugins>
         <test-manager-plugin>--plugin com.crowdar.tella.report.TestManagerReporter:</test-manager-plugin>
@@ -27,10 +27,9 @@
         <crowdar.reporter.avent>true</crowdar.reporter.avent>
         <crowdar.extent.host.name>LocalMachine</crowdar.extent.host.name>
         <crowdar.extent.environment>Local</crowdar.extent.environment>
-        <crowdar.extent.user.name>User.name</crowdar.extent.user.name>
+        <crowdar.extent.user.name>User</crowdar.extent.user.name>
         <crowdar.app.location>${env.APPLOCAL}</crowdar.app.location>
 
-        <!-- Browser Stack Profiles Parameters -->
         <crowdar.bs.hub>https://${env.BSUSER}:${env.AUTHTOKEN}@hub-cloud.browserstack.com/wd/hub</crowdar.bs.hub>
         <crowdar.bs.device>${env.BSDEVICE}</crowdar.bs.device>
         <crowdar.bs.os>${env.BSOS}</crowdar.bs.os>
@@ -54,18 +53,6 @@
                 <crowdar.appLocation>C:\\\\app.apk</crowdar.appLocation>
                 <crowdar.deviceName>Pixel3</crowdar.deviceName>
                 <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emulatedCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>LocalOld</id>
-            <properties>
-                <crowdar.driverHub>http://127.0.0.1:4723/</crowdar.driverHub>
-                <cucumber.runner>testngSecuencial.xml</cucumber.runner>
-                <crowdar.avd>Pixel3</crowdar.avd>
-                <crowdar.appLocation>C:\\\\Tella-Testing\\\\sample_apk\\\\old\\\\app.apk</crowdar.appLocation>
-                <crowdar.deviceName>Pixel3</crowdar.deviceName>
-                <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emuladoCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
             </properties>
         </profile>
 

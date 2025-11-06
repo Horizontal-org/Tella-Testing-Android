@@ -1,6 +1,7 @@
 @Regression @NearbySharing @SmokeManual
 
 Feature: NearbySharing - Estas pruebas deben hacerse Android, ios, Tella Desktop
+
 #No pueden automatizarse
 
   @Smoke @Connections @Flow
@@ -49,7 +50,8 @@ Feature: NearbySharing - Estas pruebas deben hacerse Android, ios, Tella Desktop
     And the user taps the checkbox "Yes, we are on the same Wi-Fi network"
     And the user presses "Next" button
     When the devices connect
-    And the sending device changes its Wi-Fi networkthe sending device changes its Wi-Fi network
+    And the sending device changes its Wi-Fi network
+    And  the sending device changes its Wi-Fi network
     Then the message "Your wifi connection has changed. Please start over" is displayed
 
   @Smoke @GetConnected @WifiScreen @Hotspot
@@ -63,7 +65,7 @@ Feature: NearbySharing - Estas pruebas deben hacerse Android, ios, Tella Desktop
     Then the devices connect successfully
     And you can send and receive files
 
-   @GetConnected @WifiScreen @Hotspot
+  @GetConnected @WifiScreen @Hotspot
   Scenario: Wi-Fi screen - Hotspot fail connection - The connection fails due to a lack of mobile data
     Given the user activates mobile data on their device
     And the user activates the hotspot option on their device

@@ -111,4 +111,5 @@ public class HomeService {
     public static void clicClosesBtnInHome() {
         MobileActionManager.waitClickable(HomeConstants.BTN_CLOSES_APP).click();
     }
+
 }
