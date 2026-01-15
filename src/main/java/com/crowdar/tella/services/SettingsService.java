@@ -1,5 +1,12 @@
 package com.crowdar.tella.services;
 
+import com.crowdar.driver.DriverManager;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.Dimension;
+import java.time.Duration;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.constants.SettingsConstants;
@@ -115,6 +122,15 @@ public class SettingsService {
         String check = MobileActionManager.getAttribute(button, "checked");
         if (Boolean.parseBoolean(check) != true) {
             MobileActionManager.click(button);
+        }
+    }
+
+    public static void switchButtonDisable(String configuration) {
+        String buttonLocator = viewButton(configuration);
+        MobileActionManager.waitVisibility(buttonLocator);
+        String check = MobileActionManager.getAttribute(buttonLocator, "checked");
+        if (Boolean.parseBoolean(check) == true) {
+            MobileActionManager.click(buttonLocator);
         }
     }
 
@@ -328,5 +344,22 @@ public class SettingsService {
         //Esperamos por el cierre de la app y validamos que se haya cerrado
         Thread.sleep(6000);
         Assert.assertTrue(GenericService.verifyActiveAppTella());
+    }
+
+    public static void scrollDown() {
+
+        AppiumDriver driver = (AppiumDriver) DriverManager.getDriverInstance().getWrappedDriver();
+        Dimension size = driver.manage().window().getSize();
+
+        int startX = size.width / 2;
+        int startY = (int) (size.height * 0.7); // Empezar desde el 70% (abajo)
+        int endY = (int) (size.height * 0.3); // Terminar en el 30% (arriba)
+
+        new TouchAction(driver)
+                .press(PointOption.point(startX, startY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+                .moveTo(PointOption.point(startX, endY))
+                .release()
+                .perform();
     }
 }

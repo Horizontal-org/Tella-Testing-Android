@@ -4,8 +4,21 @@ Feature: Audio
   Background:
     Given the user is in Tella home page
 
-  @Smoke @Automated #@TestAngi #paso en BS
-  Scenario Outline: Record an audio file
+  @Smoke @E2E @ToBeAutomated @Ignore
+  Scenario: Record, save, play and cleanup an audio - E2E
+    And the user is in the Rec option
+    When the user records an audio file
+     And the user opens the recording from the list
+    And the user presses "Play"
+    And the playback position increases for at least "2" seconds
+    And the user presses "Pause"
+    And the playback is paused
+    And the user goes back to the list
+    And the user deletes the recording
+    Then the recording is not listed anymore
+
+  @Smoke @Automated @testGabo
+  Scenario Outline: Record an audio file - message verification
     When the user press the Rec option
     And the user press the microphone
     And the user press stop option
@@ -15,7 +28,7 @@ Feature: Audio
       | message_title                                     |
       | The audio recording was saved to your Tella files |
 
-  @Smoke @Automated #@TestAngi
+  @Automated
   Scenario Outline: Record an audio file in two parts
     When the user press the Rec option
     And the user press the microphone
@@ -28,7 +41,7 @@ Feature: Audio
       | message_title                                     |
       | The audio recording was saved to your Tella files |
 
-  @Smoke @Automated #@TestAngi
+  @Smoke @Automated
   Scenario Outline: Rename an audio file
     When the user press the Rec option
     And the user press the pencil icon
@@ -41,7 +54,7 @@ Feature: Audio
       | recording_name |
       | Audio1         |
 
-  @Smoke @Automated #@TestAngi
+  @Automated
   Scenario Outline: Rename an audio file during the recording
     When the user press the Rec option
     And the user press the microphone

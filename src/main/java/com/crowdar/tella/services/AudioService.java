@@ -71,9 +71,12 @@ public class AudioService {
         nameChanged = MobileActionManager.getText(AudioConstants.RECORD_NAME_PENCIL_ICON);
     }
 
-    public static void clickStopOption() {
+    /*public static void clickStopOption() throws InterruptedException {
+        MobileActionManager.isPresent(AudioConstants.MICROPHONE_ICON_STOP);
+        Thread.sleep(2000);
+        GenericService.commonClick(AudioConstants.MICROPHONE_ICON_STOP);
 
-    }
+    }*/
 
     public static void clickStopOption2() {
         MobileActionManager.waitClickable(AudioConstants.RECORD_AUDIO);
