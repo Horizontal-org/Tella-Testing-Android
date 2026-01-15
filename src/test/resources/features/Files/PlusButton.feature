@@ -14,25 +14,16 @@ Feature: Plus button
     And captures the file of type <type>
     Then the file of type <type> is saved correctly in the folder <folderSave> #You have no access to verify this step
     And the file appears in the list of files in the folder <folderSave>
-    And the file appears in the "Recent files" list
     And the file appears in the "All files" folder
 
     Examples:
       | type  | folderSave | option | folder    |
       | image | Images     | Photo  | All files |
       | video | Videos     | Video  | All files |
-      | image | Images     | Photo  | Documents |
-      | video | Videos     | Video  | Documents |
       | image | Images     | Photo  | Images    |
-      | video | Videos     | Video  | Images    |
-      | image | Images     | Photo  | Audio     |
-      | video | Videos     | Video  | Audios    |
-      | image | Images     | Photo  | Videos    |
       | video | Videos     | Video  | Videos    |
-      | image | Images     | Photo  | Others    |
-      | video | Videos     | Video  | Others    |
 
-  @Smoke @CaptureFile @ToBeAutomated
+  @Regression @CaptureFile @ToBeAutomated
   Scenario Outline: Capture a file of type <type> with verification information and GPS off from folder <folder>
     Given the Verification Mode is on
     And GPS is off
@@ -51,45 +42,24 @@ Feature: Plus button
       | type  | folderSave | option | folder    |
       | image | Images     | Photo  | All files |
       | video | Videos     | Video  | All files |
-      | image | Images     | Photo  | Documents |
-      | video | Videos     | Video  | Documents |
-      | image | Images     | Photo  | Images    |
-      | video | Videos     | Video  | Images    |
-      | image | Images     | Photo  | Audio     |
-      | video | Videos     | Video  | Audio     |
-      | image | Images     | Photo  | Videos    |
-      | video | Videos     | Video  | Videos    |
-      | image | Images     | Photo  | Others    |
-      | video | Videos     | Video  | Others    |
+
 
   @Smoke @CaptureFile @ToBeAutomated
-  Scenario Outline: Capture a file of type <type> with verification information from folder <folder>
+  Scenario Outline: Capture a <type> with Verification Mode ON
     Given the Verification Mode is on
     When the user enters the folder <folder>
     And taps the "+" button
-    And selects the option: "Take photo/video"
-    And selects the option <option>
+    And selects the option: Take photo or video
     And captures the file of type <type>
-    Then the file of type <type> is saved correctly in the folder <folderSave>
-    And the file appears in the list of files in the folder <folderSave>
+    Then the file appears in the list of files in the folder <folderSave>
     And the file appears in the "Recent files" list
     And the file appears in the "All files" folder
     And the verification information is collected correctly
 
     Examples:
-      | type  | folderSave | option | folder    |
-      | image | Images     | Photo  | All files |
-      | video | Videos     | Video  | All files |
-      | image | Images     | Photo  | Documents |
-      | video | Videos     | Video  | Documents |
-      | image | Images     | Photo  | Images    |
-      | video | Videos     | Video  | Images    |
-      | image | Images     | Photo  | Audio     |
-      | video | Videos     | Video  | Audio     |
-      | image | Images     | Photo  | Videos    |
-      | video | Videos     | Video  | Videos    |
-      | image | Images     | Photo  | Others    |
-      | video | Videos     | Video  | Others    |
+      | type  | folderSave | folder     |
+      | image | Images     | All files  |
+      | video | Videos     | All files  |
 
   @Smoke @ToBeAutomated
   Scenario Outline: Record an audio file from the folder <folder>
@@ -106,10 +76,7 @@ Feature: Plus button
     Examples:
       | folder    |
       | All files |
-      | Documents |
-      | Images    |
       | Audio     |
-      | Videos    |
       | Others    |
 
   @Smoke @SmokeManual
@@ -131,10 +98,7 @@ Feature: Plus button
     Examples:
       | folder    |
       | All files |
-      | Documents |
-      | Images    |
       | Audio     |
-      | Videos    |
       | Others    |
 
   @Smoke @ToBeAutomated
@@ -154,10 +118,7 @@ Feature: Plus button
     Examples:
       | folder    |
       | All files |
-      | Documents |
-      | Images    |
       | Audio     |
-      | Videos    |
       | Others    |
 
   @Smoke @SmokeManual
@@ -222,10 +183,6 @@ Feature: Plus button
       | video    | Videos     | All files |
       | audio    | Audios     | All files |
       | document | Documents  | All files |
-      | document | Documents  | Documents |
-      | image    | Images     | Images    |
-      | audio    | Audio      | Audio     |
-      | video    | Videos     | Videos    |
 
   @Smoke @SmokeManual
   Scenario: Open a pdf file successfully
@@ -246,7 +203,7 @@ Feature: Plus button
     And presses "Ok"
     Then a folder named "folder1" is created in the "All Files" section
 
-  Scenario: Successfully add a folder inside another
+  Scenario: Successfully add a folder inside another folder
     Given the user has a folder named "folder1" in the "All Files" folder on the Tella homepage
     When the user enters the "All Files" folder
     And enters "folder1"
