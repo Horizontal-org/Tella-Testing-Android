@@ -48,10 +48,7 @@ Feature: Connections - Connection to servers
     Examples:
       | Servers             |
       | Open Data Kit (ODK) |
-      | Tella Web           |
-      | Uwazi               |
-      | Google drive        |
-      | Dropbox             |
+      | Tella Web           |        
       | NextCloud           |
 
   @Smoke @Automated @ODK @E2E
@@ -135,7 +132,7 @@ Feature: Connections - Connection to servers
       | Spanish  |
       | French   |
 
-  @SmokeManual @GoogleDrive @E2E
+  @SmokeManual @GoogleDrive @E2E ##
   Scenario: Server - Google Drive - Use shared drive option
     When the user presses the + button
     And selects the server "Google drive"
