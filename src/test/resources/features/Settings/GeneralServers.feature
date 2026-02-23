@@ -49,8 +49,7 @@ Feature: Connections - Connection to servers
       | Servers             |
       | Open Data Kit (ODK) |
       | Tella Web           |        
-      | NextCloud           |
-
+            
   @Smoke @Automated @ODK @E2E
   Scenario Outline: Servers - ODK Server
     When the user presses the + button
