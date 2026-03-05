@@ -133,6 +133,8 @@ Feature: Tella Web
     When the user presses the camera button
     And presses the take a photo button
     Then the approval message "The photo(s)/video you took has been automatically uploaded as a report" appears
+    
+    #Agregar el paso de outbox Mismo ciclo de vida de los reportes 
 
   @Smoke @ToBeAutomated
   Scenario: Activate Auto-delete
