@@ -50,7 +50,8 @@
                 <crowdar.driverHub>http://127.0.0.1:4723/</crowdar.driverHub>
                 <cucumber.runner>testngSecuencial.xml</cucumber.runner>
                 <crowdar.avd>Pixel3</crowdar.avd>
-                <crowdar.appLocation>C:\\\\Users\\\\GaboDLV-Crowdar\\\\Documents\\\\Repos\\\\Tella-Testing-Android\\\\sample_apk\\\\new\\\\app.apk</crowdar.appLocation>                <crowdar.deviceName>Pixel3</crowdar.deviceName>
+                <crowdar.appLocation>C:\\\\Workspace\\\\app.apk</crowdar.appLocation>
+                <crowdar.deviceName>Pixel3</crowdar.deviceName>
                 <crowdar.projectType.driverCapabilities.jsonFile>src/main/resources/capabilities/emulatedCapabilities.json</crowdar.projectType.driverCapabilities.jsonFile>
             </properties>
         </profile>
