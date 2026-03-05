@@ -1,12 +1,11 @@
 {
-  "appium:deviceName": "{{deviceName}}",
-  "appium:app": "{{app}}",
   "platformName": "Android",
+  "appium:automationName": "UiAutomator2",
+  "appium:deviceName": "{{deviceName}}",
   "appium:avd": "{{avd}}",
-  "appium:resetKeyboard": "true",
-  "appium:unicodeKeyboard": "true",
-  "appPackage": "org.hzontal.tella",
-  "appActivity": "org.horizontal.tella.mobile.views.activity.SplashActivity",
-  "noReset": false,
-  "appium:automationName": "UiAutomator2"
+  "appium:app": "{{app}}",
+  "appium:appPackage": "org.hzontal.tella",
+  "appium:appWaitActivity": "*",
+  "appium:noReset": false,
+  "appium:autoGrantPermissions": true
 }

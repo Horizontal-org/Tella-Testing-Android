@@ -17,8 +17,11 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.testng.Assert;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -347,19 +350,47 @@ public class SettingsService {
     }
 
     public static void scrollDown() {
-
         AppiumDriver driver = (AppiumDriver) DriverManager.getDriverInstance().getWrappedDriver();
         Dimension size = driver.manage().window().getSize();
 
         int startX = size.width / 2;
         int startY = (int) (size.height * 0.7); // Empezar desde el 70% (abajo)
         int endY = (int) (size.height * 0.3); // Terminar en el 30% (arriba)
-
-        new TouchAction(driver)
-                .press(PointOption.point(startX, startY))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
-                .moveTo(PointOption.point(startX, endY))
-                .release()
-                .perform();
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence swipe = new Sequence(finger, 1);
+        swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY));
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), startX, endY));
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Collections.singletonList(swipe));
     }
+    public static WebElement scrollTo(String locatorString) {
+        AppiumDriver driver = (AppiumDriver) DriverManager.getDriverInstance().getWrappedDriver();
+        String uiAutomatorCommand = "";
+
+        int separatorIndex = locatorString.indexOf(":");
+        String type = (separatorIndex != -1) ? locatorString.substring(0, separatorIndex).toLowerCase() : "text";
+        String value = (separatorIndex != -1) ? locatorString.substring(separatorIndex + 1) : locatorString;
+        switch (type) {
+            case "id":
+            case "ID":
+                uiAutomatorCommand = "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".scrollIntoView(new UiSelector().resourceId(\"" + value + "\"))";
+                break;
+            case "text":
+            case "TEXT": // Coincidencia EXACTA
+                uiAutomatorCommand = "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".scrollIntoView(new UiSelector().text(\"" + value + "\"))";
+                //Ejemplo: SettingsService.scrollTo("text:" + "Texto de Ejemplo");
+                //Ejemplo: SettingsService.scrollTo("text:" + nombreVariable);
+                break;
+            default:
+                throw new IllegalArgumentException("El método scrollTo solo soporta 'id:', 'text:' o 'description:'. XPath no es soportado por UiScrollable.");
+        }
+
+
+        return driver.findElement(MobileBy.AndroidUIAutomator(uiAutomatorCommand));
+    }
+
+
 }
