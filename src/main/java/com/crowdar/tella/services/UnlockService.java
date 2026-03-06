@@ -46,11 +46,13 @@ public class UnlockService {
     public static void setPassword(String password) {
         clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
         MobileActionManager.click(LockUnlockConstants.LOCK_PASSWORD_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.LOCK_UNDERSTAND_BUTTON);
         MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
         MobileActionManager.click(LockUnlockConstants.PASSWORD_RIGHT_BUTTON);
         MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
         MobileActionManager.click(LockUnlockConstants.PASSWORD_RIGHT_BUTTON);
-        MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.PASSWORD_CONTINUE_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.PASSWORD_NEXT_BUTTON);
         Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.START_BUTTON), LockUnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
     }
 
