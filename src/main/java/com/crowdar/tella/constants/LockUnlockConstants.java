@@ -5,6 +5,7 @@ public class LockUnlockConstants {
     public static final String REOPEN_APP_PASSWORD_VERIFICATION = "id:password_msgTV";
     public static final String REOPEN_APP_PIN_VERIFICATION = "id:pin_enterTV";
     public static final String NEXT_BUTTON = "id:next_btn";
+    public static final String PASSWORD_NEXT_BUTTON = "id:org.hzontal.tella:id/nextBtn";
     public static final String LOCK_PASSWORD_BUTTON = "id:lockPasswordBtn";
     public static final String PASSWORD_RIGHT_BUTTON = "id:password_right_button";
     public static final String PASSWORD_INPUT = "id:password_editText"; //xxpath://android.widget.EditText[@resource-id="org.hzontal.tella:id/password_editText"]
@@ -22,4 +23,6 @@ public class LockUnlockConstants {
 
     public static final String BTN_UNLOCK = "id:org.hzontal.tella:id/password_right_button";
 
+    public static final String LOCK_UNDERSTAND_BUTTON = "id:org.hzontal.tella:id/understandBtn";
+    public static final String PASSWORD_CONTINUE_BUTTON = "id:org.hzontal.tella:id/standard_sheet_confirm_btn";
 }
