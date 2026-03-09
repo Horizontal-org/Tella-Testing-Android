@@ -31,7 +31,7 @@ public class FilesConstants {
 
     public static final String THREE_BUTTONS_OPTION = "xpath:(//android.widget.ImageView[@content-desc=\"open bottom sheet\"])[1]";
 
-    public static final String THREE_BUTTONS_OPTION_FILE = "xpath:(//android.widget.ImageView[@content-desc=\"open bottom sheet\"])";
+    public static final String THREE_BUTTONS_OPTION_FILE = "xpath://android.widget.ImageView[@content-desc=\"open bottom sheet\"]";
 
     public static final String CHECKBOX_BUTTON = "id:checkBoxList";
 
