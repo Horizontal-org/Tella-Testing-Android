@@ -6,19 +6,25 @@ Feature: Lock Options
 
   @Smoke @Password @Automated @E2E
   Scenario Outline: Register with password
-    When tap the next get started until reaching the lock options
-    And tap the password button
+    When tap the "GET STARTED" button
+    And tap the "Next" button until reaching the lock options
+    And tap the Password button
+    And tap the "I UNDERSTAND" button
     And types a password <password>
-    And tap the next button
+    And tap the "Next" button
     And types a password <password>
-    And tap the next button
+    And tap the "Next" button
+    And tap the "CONTINUE" button
+    And tap the "Next" button
     Then a successfully registered message <message> is displayed to the user and a link to landing page
-    And the user presses the go to tella button
+    And tap the "GO TO TELLA" button
     And the user is in Tella home page
 
     Examples:
-      | password | message                                                     |
-      | abcdef   | Your lock is set up! You can change it anytime in Settings. |
+      | password |  message         |
+      | abcdef   | You re all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.| 
+      | 123456   | You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
+      | @+1234   | You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
 
   @Smoke @Password @Automated
   Scenario Outline: Failed register - password confirmation
