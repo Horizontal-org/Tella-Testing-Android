@@ -6,7 +6,7 @@ Feature: Lock Options
 
   @Smoke @Password @Automated @E2E
   Scenario Outline: Register with password
-    When tap the next button until reaching the lock options
+    When tap the next get started until reaching the lock options
     And tap the password button
     And types a password <password>
     And tap the next button
