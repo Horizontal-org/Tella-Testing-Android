@@ -43,7 +43,7 @@ public class FilesConstants {
 
     public static final String MOVE_HERE_BUTTON = "id:moveHere";
 
-    public static final String EMPTY_VIEW_MSG_CONTAINER = "xpath://android.widget.LinearLayout[@resource-id=\"org.hzontal.tella:id/emptyViewMsgContainer\"]/android.widget.ImageView";
+    public static final String EMPTY_VIEW_MSG_CONTAINER = "xpath://android.widget.TextView[@text=\"You don’t have any files on your Tella yet. Click the “+” button below to import your first file, or go to the Camera or Microphone to create one. You can also create folders to keep your files organized.\"]";
 
     public static final String SORT_BUTTON = "id:filterNameTv";
 

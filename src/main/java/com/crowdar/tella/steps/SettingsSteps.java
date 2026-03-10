@@ -1,14 +1,8 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.core.PropertyManager;
-import com.crowdar.core.actions.MobileActionManager;
-import com.crowdar.driver.DriverManager;
-import com.crowdar.tella.constants.SettingsConstants;
 import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 public class SettingsSteps {
     @Given("the user is in Tella home page")
@@ -164,8 +158,8 @@ public class SettingsSteps {
         SettingsService.changeStatus(option, status);
     }
 
-    @Then("^the sucessfull message (.*) is displayed$")
-    public void theSucessfullMessageIsDisplayed(String message) {
+    @Then("^the successful message (.*) is displayed$")
+    public void theSuccessfulMessageIsDisplayed(String message) {
         SettingsService.viewMessage(message);
     }
 
@@ -262,7 +256,6 @@ public class SettingsSteps {
     @And("the app is closed")
     public void theAppIsClosed() throws InterruptedException {
         SettingsService.theAppIsClosed();
-
     }
 
     @And("open Tella application again")

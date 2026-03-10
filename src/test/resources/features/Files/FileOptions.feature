@@ -204,7 +204,7 @@ Feature: File Options - Options for files in their individual folders
       | video | Videos |
       | audio | Audios |
 
-  @Smoke @Automated @testAbel
+  @Smoke @Automated
   Scenario Outline: Delete a file of <type> from the folder <folder>
     When the user enters the folder <folder>
     And taps the options button ⋮ for the <type> file
