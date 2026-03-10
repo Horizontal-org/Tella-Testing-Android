@@ -21,7 +21,7 @@ Feature: Lock Options
     And the user is in Tella home page
 
     Examples:
-      | password_a   |  password_b   |           message                                                                                    |
+      | password_a   |  password_b   |           message                                                                                   |
       |   abcdef     |    abcdef     | You re all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.| 
       |   123456     |    123456     | You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
       |   @+1234     |    @+1234     | You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
@@ -60,21 +60,27 @@ Feature: Lock Options
 
   @Smoke @Pin @Automated @E2E
   Scenario Outline: Register with PIN
-    When tap the next button until reaching the lock options
-    And tap the pin button
-    And types a pin <PIN>
-    And tap the next pin button
-    And types a pin <PIN>
-    And tap the next pin button
+    When tap the "GET STARTED" button
+    And tap the "Next" button until reaching the lock options
+    And tap the "PIN" button
+    And tap the "I UNDERSTAND" button
+    And types a pin <PIN_a>
+    And tap the "OK" button
+    And types a pin <PIN_b>
+    And tap the "OK" button
+    And tap the "CONTINUE" button
+    And tap the "Next" button
     Then a successfully registered message <message> is displayed to the user and a link to landing page
-    And the user presses the go to tella button
+    And tap the "GO TO TELLA" button
     And the user is in Tella home page
 
 
-    Examples:
-      | PIN    | message                                                     |
-      | 123456 | Your lock is set up! You can change it anytime in Settings. |
 
+    Examples:
+      | PIN_a    | PIN_b   |         message                                                                                      |
+      | 123456   | 123456  |  You re all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
+      | 000000   | 000000  |  You re all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
+      
   @Smoke @Pin @Automated
   Scenario Outline: Failed PIN confirmation - pin don't match
     When tap the next button until reaching the lock options
@@ -86,7 +92,7 @@ Feature: Lock Options
     Then a message <message> is displayed to the user
 
     Examples:
-      | PIN_a  | PIN_b  | message                                   |
+      | PIN_a  | PIN_b  | message                                   | 
       | 123456 | 654321 | Please try again. Your PINs do not match. |
 
   @Smoke @Pin @Automated
