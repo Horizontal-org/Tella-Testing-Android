@@ -35,7 +35,7 @@ Feature: Security
 
   @Smoke @SmokeManual @LockTimeout @Automated @E2E
   Scenario Outline: Security - Lock Timeout - E2E 
-    Given the user sets the app lock timeout to <timeout>
+    And the user sets the app lock timeout to <timeout>
     When the user leaves the app, waits for the configured time <timeout> , and returns
     Then view screen lock
 
@@ -82,7 +82,7 @@ Feature: Security
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
     And taps "OK" button
-    And the sucessfull message <message> is displayed
+    And the successful message <message> is displayed
     And the user closes and reopens the Tella app
     And the user set incorrect <PIN> in <attempts>
     Then the app displays the "Get started" screen to the user
@@ -99,7 +99,7 @@ Feature: Security
     When the user clicks the "Delete after failed unlock" option
     And select attempts <attempts> option
     And taps "OK" button
-    Then the sucessfull message <message> is displayed
+    Then the successful message <message> is displayed
     And The option show remaining unlock attempts will be displayed enabled
 
     Examples:
@@ -143,11 +143,10 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual @Automated @E2E
+  @Smoke @QuickDelete @SmokeManual @Automated @E2E @testAbel
   Scenario: Security - Quick delete - Delete files - E2E
     Given the user records an audio file
     When toggle the switch on the "Quick delete" option
-    And select check box Delete files
     And Go to the Tella homepage from Security Page
     And verify slide "DELETE" button is present
     And taps slide "DELETE" button
