@@ -8,7 +8,7 @@ Feature: Lock Options
   Scenario Outline: Register with password
     When tap the "GET STARTED" button
     And tap the "Next" button until reaching the lock options
-    And tap the Password button
+    And tap the "Password" button
     And tap the "I UNDERSTAND" button
     And types a password <password_a>
     And tap the "Next" button
@@ -28,28 +28,35 @@ Feature: Lock Options
 
   @Smoke @Password @Automated
   Scenario Outline: Failed register - password confirmation
-    When tap the next button until reaching the lock options
-    And tap the password button
+    When tap the "GET STARTED" button
+    And tap the "Next" button until reaching the lock options
+    And tap the "Password" button
+    And tap the "I UNDERSTAND" button
     And types a password <password_a>
-    And tap the next button
+    And tap the "Next" button
     And types a password <password_b>
-    And tap the next button
+    And tap the "Next" button
     Then a message <message> is displayed to the user
 
     Examples:
       | password_a | password_b | message                                        |
       | abcdef     | abcabc     | Please try again. Your passwords do not match. |
-
+      | 123456     | 567890     | Please try again. Your passwords do not match. |
+      | #$%123     | 123#$%     | Please try again. Your passwords do not match. |
+      
   @Smoke @Password @Automated
   Scenario Outline: Failed register - password lenght
-    When tap the next button until reaching the lock options
-    And tap the password button
+    When tap the "GET STARTED" button
+    And tap the "Next" button until reaching the lock options
+    And tap the "Password" button
+    And tap the "I UNDERSTAND" button
     And types a password <password>
     Then the next button remains disabled
 
     Examples:
       | password |
       | abcde    |
+      | 12345    |
 
   @Smoke @Pin @Automated @E2E
   Scenario Outline: Register with PIN
