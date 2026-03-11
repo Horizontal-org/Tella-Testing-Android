@@ -1,6 +1,8 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.core.PageSteps;
+import com.crowdar.core.PropertyManager;
+import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.tella.constants.AudioConstants;
 import com.crowdar.tella.constants.FilesConstants;
@@ -166,6 +168,17 @@ public class ServersSteps extends PageSteps {
     @And("the user presses OK button")
     public void theUserPressesOKButton() {
         ServersService.okServerButton();
+    }
+
+    @And("^the user enters the credentials of (.*)$")
+    public void theUserEntersTheCredentials(String serverName) {
+        ServersService.inputServerCredencialCredentials(serverName);
+    }
+
+
+    @And("the user presses Log in button")
+    public void theUserPressesLogInButton() {
+        GenericService.clickByCoordinates(550, 1300);
     }
 }
 

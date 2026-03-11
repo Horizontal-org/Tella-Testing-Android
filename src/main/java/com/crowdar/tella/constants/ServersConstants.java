@@ -1,7 +1,7 @@
 package com.crowdar.tella.constants;
 
 public class ServersConstants {
-    public static final String PLUS_BUTTON = "ACCESSIBILITY_ID:Connect to servers to collect and send data to your organization";
+    public static final String PLUS_BUTTON = "id:org.hzontal.tella:id/add_server";
     public static final String WHAT_SERVER_TITLE = "id:standard_sheet_content";
     public static final String TEXT_SERVER_BUTTON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" + ".tella:id/sheet_textView\" and @text=\"%s\"]";
     public static final String GRAL_NEXT_BUTTON = "id:org.hzontal.tella:id/next_btn";
@@ -36,6 +36,10 @@ public class ServersConstants {
     public static final String DESCRIPTION_UPLOAD_TEXT = "id:form_description";
     public static final String UPLOAD_TEXT = "id:formSize";
 
+    public static final String SERVER_LOGIN_BUTTON = "id:org.hzontal.tella:id/sheet_textView";
+    public static final String LOGIN_SERVER_USERNAME = "id:org.hzontal.tella:id/username";
+    public static final String LOGIN_SERVER_PASSWORD = "id:org.hzontal.tella:id/password";
+
 
     //google drive
     public static final String CREATE_NEW_GOOGLE_DRIVE_FOLDER = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/sheet_textView\" and @text=\"CREATE NEW FOLDER\"]";
@@ -44,5 +48,6 @@ public class ServersConstants {
     public static final String GO_TO_GOOGLE_DRIVE_BUTTON = "id:sheet_textView";
 
     public static final  String GOOGLE_DRIVE_FORM = "xpath://androidx.recyclerview.widget.RecyclerView[@resource-id=\"org.hzontal.tella:id/serversRecyclerView\"]/android.view.ViewGroup";
+
 
 }

@@ -14,6 +14,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.interactions.PointerInput.Origin;
+
+import java.time.Duration;
+import java.util.Collections;
+
 import java.util.Arrays;
 
 import java.util.List;
@@ -236,6 +243,17 @@ public class GenericService {
         MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON).click();
     }
 
+    public static void clickByCoordinates(int x, int y) {
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+
+        Sequence tap = new Sequence(finger, 1);
+        tap.addAction(finger.createPointerMove(Duration.ZERO, Origin.viewport(), x, y));
+        tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        DriverManager.getDriverInstance().perform(Collections.singletonList(tap));
+    }
 }
 
 
