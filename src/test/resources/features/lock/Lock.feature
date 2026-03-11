@@ -65,9 +65,9 @@ Feature: Lock Options
     And tap the "PIN" button
     And tap the "I UNDERSTAND" button
     And types a pin <PIN_a>
-    And tap the "OK" button
+    And tap the button <button>
     And types a pin <PIN_b>
-    And tap the "OK" button
+    And tap the button <button>
     And tap the "CONTINUE" button
     And tap the "Next" button
     Then a successfully registered message <message> is displayed to the user 
@@ -77,9 +77,9 @@ Feature: Lock Options
 
 
     Examples:
-      | PIN_a    | PIN_b   |         message                                                                                      |
-      | 123456   | 123456  |  You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
-      | 000000   | 000000  |  You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
+      | PIN_a    | PIN_b   | button   |        message                                                                                      |
+      | 123456   | 123456  |  OK      | You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
+      | 000000   | 000000  |  Next    |  You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
       
   @Smoke @Pin @Automated
   Scenario Outline: Failed PIN confirmation - pin don't match
@@ -88,15 +88,15 @@ Feature: Lock Options
     And tap the "PIN" button
     And tap the "I UNDERSTAND" button
     And types a pin <PIN_a>
-    And tap the "OK" button
+    And tap the button <button>
     And types a pin <PIN_b>
-    And tap the "OK" button
+    And tap the button <button>
     Then a message <message> is displayed to the user
 
     Examples:
-      | PIN_a       | PIN_b      | message                                   | 
-      | 123456      | 654321     | Please try again. Your PINs do not match. |
-      |  0987654321 | 098765432  | Please try again. Your PINs do not match. |
+      | PIN_a       | PIN_b      |  button   |    message                                   | 
+      | 123456      | 654321     |   OK      | Please try again. Your PINs do not match. |
+      |  0987654321 | 098765432  |   Next    | Please try again. Your PINs do not match. |
       
   @Smoke @Pin @Automated
   Scenario Outline: Failed PIN confirmation - PIN length
@@ -105,13 +105,13 @@ Feature: Lock Options
     And tap the "PIN" button
     And tap the "I UNDERSTAND" button
     And types a pin <PIN>
-    Then the "OK" button remains disabled
+    Then the button <button> remains disabled
 
     Examples:
-      | PIN    |
-      | 1      |
-      | 123    |
-      | 12345  |   
+      | PIN    | button   |
+      | 1      | OK       |
+      | 12345  | Next     |
+      
 
   @Smoke @Pattern @ToBeAutomated @E2E
   Scenario Outline: Register with pattern
