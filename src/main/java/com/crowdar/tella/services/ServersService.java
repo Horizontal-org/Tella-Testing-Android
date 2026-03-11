@@ -58,7 +58,9 @@ public class ServersService {
 
 
         String getButton = buttons.get(button);
-        SettingsService.scrollDown();
+        if (MobileActionManager.getElements(getButton).isEmpty()) {
+            SettingsService.scrollDown();
+        }
         MobileActionManager.waitVisibility(getButton);
         MobileActionManager.click(getButton);
     }
