@@ -50,7 +50,7 @@ Feature: Connections - Connection to servers
       | Open Data Kit (ODK) |
       | Tella Web           |        
             
-  @Smoke @Automated @ODK @E2E @testBrian
+  @Smoke @Automated @ODK @E2E
   Scenario Outline: Servers - ODK Server
     When the user presses the + button
     And selects the server "Open Data Kit (ODK)"
@@ -75,7 +75,7 @@ Feature: Connections - Connection to servers
     And the user presses "OK" button
     Then the user views the Server in the connect list
 
-  @Smoke @Automated @TellaWeb @E2E @testBrian
+  @Smoke @Automated @TellaWeb @E2E
   Scenario: Server - Tella Web configuration with URL
     When the user presses the + button
     And selects the server "Tella Web"
@@ -90,7 +90,7 @@ Feature: Connections - Connection to servers
     And the user presses "GO TO REPORTS" button
     Then the user views the server in the connect list
 
-  @Smoke @Automated @Uwazi @E2E @testBrian
+  @Smoke @Automated @Uwazi @E2E
   Scenario Outline: Public Access with Uwazi in <language>
     When the user presses the + button
     And selects the server "Uwazi"
