@@ -57,5 +57,5 @@ public class FilesConstants {
 
     public static final String SELECT_FOLDER_ICON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/textTitle\" and @text=\"%s\"]";
     public static final String ICON_FILE_AUDIO = "xpath://android.widget.FrameLayout[@resource-id=\"org.hzontal.tella:id/attachmentImgContainer\"]";
-    public static final String NEXT_BTN = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/next_btn\"]";
+    public static final String NEXT_BTN = "id:org.hzontal.tella:id/next_btn";
 }
