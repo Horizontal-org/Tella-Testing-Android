@@ -84,8 +84,11 @@ Feature: Connections - Connection to servers
     And the user presses "Next" button
     And the user views the "Log in to access the project"
     And the user fills the fields "Username" and "Password"
-    And the user presses "OK" button
-    Then the user views the Server in the connect list
+    And the user enters the credentials of Tella Web
+    And the user presses "Log in" button
+    And the user presses "SAVE" button
+    And the user presses "GO TO REPORTS" button
+    Then the user views the server in the connect list
 
   @Smoke @Automated @Uwazi @E2E
   Scenario Outline: Public Access with Uwazi in <language>
@@ -100,7 +103,8 @@ Feature: Connections - Connection to servers
     And the user presses "Next" button
     And the user view the message "You have successfully connected to the server and will be able to share your data."
     And the user is now connected to Uwazi server in <language>
-    Then the user views the Server in the connect list
+    And the user presses "Next" button
+    Then the user views the Uwazi Tella Integration in the connect list
 
     Examples:
       | language |
@@ -118,12 +122,14 @@ Feature: Connections - Connection to servers
     And selects the "Log in" button
     And the user presses "Next" button
     And the user fills the fields "Username" and "Password"
-    And selects the "Log in" button
+    And the user enters the credentials of Uwazi
+    And the user presses Log in button
     And the user selects the language <language>
     And the user presses "Next" button
     And the user view the message "You have successfully connected to the server and will be able to share your data."
     And the user is now connected to Uwazi server in <language>
-    Then the user views the Server in the connect list
+    And the user presses "Next" button
+    Then the user views the Uwazi Tella Integration in the connect list
 
     Examples:
       | language |

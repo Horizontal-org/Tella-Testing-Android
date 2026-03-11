@@ -22,10 +22,7 @@ import org.openqa.selenium.interactions.Sequence;
 import org.testng.Assert;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class ServersService {
@@ -50,14 +47,18 @@ public class ServersService {
 
 
         Map<String, String> buttons = new HashMap<>();
-        //  buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
+          buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Cancel", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Next", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("SAVE", ServersConstants.SAVE_BUTTON);
         buttons.put("NEW REPORT", ServersConstants.NEW_REPORT_BUTTON);
         buttons.put("SUBMIT", ServersConstants.SUBMIT_BUTTON);
+        buttons.put("Log in", ServersConstants.SERVER_LOGIN_BUTTON);
+        buttons.put("GO TO REPORTS", ServersConstants.SERVER_LOGIN_BUTTON);
+
 
         String getButton = buttons.get(button);
+        SettingsService.scrollDown();
         MobileActionManager.waitVisibility(getButton);
         MobileActionManager.click(getButton);
     }
@@ -234,4 +235,34 @@ public class ServersService {
         return DriverManager.getDriverInstance().findElement(MobileBy.AndroidUIAutomator(locator));
     }
 
+    public static void inputServerUserName(String userName) {
+        MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_USERNAME, userName);
+    }
+
+    public static void inputServerPassword(String password) {
+
+    }
+
+    public static void inputServerCredencialCredentials(String serverName) {
+        String username = "";
+        String password = "";
+
+        switch (serverName) {
+
+            case "Tella Web":
+                username = PropertyManager.getProperty("tellauser");
+                password = PropertyManager.getProperty("tellapass");
+                break;
+
+            case "Uwazi":
+                username = PropertyManager.getProperty("uwaziuser");
+                password = PropertyManager.getProperty("uwazipass");
+                break;
+            default:
+                throw new RuntimeException("Server not supported: " + serverName);
+
+        }
+        MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_USERNAME, username);
+        MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_PASSWORD, password);
+    }
 }

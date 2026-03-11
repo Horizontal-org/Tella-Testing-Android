@@ -17,12 +17,7 @@ public class SettingsSteps {
         UnlockService.setPassword(PropertyManager.getProperty("password"));
         UnlockService.goTella();
         HomeService.isHomeLoaded();
-        SettingsService.clickSettingsIcon();
-        SettingsService.clickCategory("Security");
-        SettingsService.scrollDown();
-        SettingsService.switchButtonDisable("Screen security");
-        SettingsService.goToHomeFromSecurityPage();
-        HomeService.isHomeLoaded();
+
 
     }
 
