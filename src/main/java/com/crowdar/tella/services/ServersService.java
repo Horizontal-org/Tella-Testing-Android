@@ -220,9 +220,15 @@ public class ServersService {
 
 
     public static void clicNextBtn() {
-        WebElement botonOK = scrollAndroid("text", "OK", 0);
-        MobileActionManager.waitPresence(FilesConstants.NEXT_BTN).click();
-
+        scrollAndroid("text", "OK", 0);
+        MobileActionManager.waitVisibility(FilesConstants.NEXT_BTN);
+        MobileActionManager.click(FilesConstants.NEXT_BTN);
+        //El click suele fallar asi que se agrega una comprobacion
+        try {
+            MobileActionManager.waitVisibility(ServersConstants.URL_INPUT);
+        } catch (Exception e) {
+            MobileActionManager.click(FilesConstants.NEXT_BTN);
+        }
     }
 
     private static WebElement scrollAndroid(String locatorType, String locatorValue, int index) {

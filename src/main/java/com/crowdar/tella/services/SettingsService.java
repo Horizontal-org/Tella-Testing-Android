@@ -244,8 +244,8 @@ public class SettingsService {
     }
 
     public static void viewMessage(String message) {
-        if (message != "") {
-            MobileActionManager.waitVisibility(SettingsConstants.MESSAGE_LABEL);
+        if (!message.isEmpty()) {
+            MobileActionManager.waitPresence(SettingsConstants.MESSAGE_LABEL);
             Assert.assertTrue(MobileActionManager.getText(SettingsConstants.MESSAGE_LABEL).contains(message));
         }
     }
@@ -339,9 +339,14 @@ public class SettingsService {
         MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON).click();
     }
 
-    public static void viewCounterMessage(String message) {
-        Assert.assertTrue(MobileActionManager.waitVisibility(SettingsConstants.VIEW_COUNTER_MESSAGE, message).isDisplayed());
+    public static void viewCounterMessage(String expectedText) {
+        if (!expectedText.isEmpty()) {
+            MobileActionManager.waitPresence(SettingsConstants.VIEW_COUNTER_MESSAGE, expectedText);
+            String actualText = MobileActionManager.getText(SettingsConstants.VIEW_COUNTER_MESSAGE, expectedText);
+            Assert.assertTrue(actualText.contains(expectedText));
+        }
     }
+
 
     public static void theAppIsClosed() throws InterruptedException {
         //Esperamos por el cierre de la app y validamos que se haya cerrado
