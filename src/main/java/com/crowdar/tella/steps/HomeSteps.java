@@ -8,7 +8,7 @@ import io.cucumber.java.en.*;
 
 public class HomeSteps extends PageSteps {
 
-    @Then("Home page is displayed")
+    @Then("the home page is displayed")
     public void isHomePageVisible() {
         HomeService.isHomeLoaded();
     }

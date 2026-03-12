@@ -7,7 +7,7 @@ public class LockUnlockConstants {
     public static final String NEXT_BUTTON = "id:next_btn";
     public static final String PASSWORD_NEXT_BUTTON = "id:org.hzontal.tella:id/nextBtn";
     public static final String LOCK_UNDERSTAND_BUTTON = "id:org.hzontal.tella:id/understandBtn";
-    public static final String PASSWORD_CONTINUE_BUTTON = "id:org.hzontal.tella:id/standard_sheet_confirm_btn";
+    public static final String CONTINUE_BUTTON = "id:org.hzontal.tella:id/standard_sheet_confirm_btn";
     public static final String LOCK_PASSWORD_BUTTON = "id:lockPasswordBtn";
     public static final String PASSWORD_RIGHT_BUTTON = "id:password_right_button";
     public static final String PASSWORD_INPUT = "id:password_editText"; //xxpath://android.widget.EditText[@resource-id="org.hzontal.tella:id/password_editText"]
@@ -18,7 +18,7 @@ public class LockUnlockConstants {
     public static final String LOCK_PATTERN_ID = "id:pl_pattern";
     public static final String SCREEN_PATTERN_ID = "id:pl_message_text";
     public static final String NETX_BUTTON_PATTERN_ID = "id:pl_right_button";
-    public static final String LOCK_SET_UP = "id:sheet_subtitle";
+    public static final String LOCK_SET_UP = "id:org.hzontal.tella:id/onboard_title";
     public static final String EXIT_BUTTON = "id:right_img";
     public static final String TELLA_APP = "ACCESSIBILITY_ID:Tella";
     public static final String VIEW_NOT_DISPLAYED_MESSAGE = "Login page is not displayed.";
