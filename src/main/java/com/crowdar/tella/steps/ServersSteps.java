@@ -5,10 +5,7 @@ import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.tella.constants.AudioConstants;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.ServersConstants;
-import com.crowdar.tella.services.FilesService;
-import com.crowdar.tella.services.GenericService;
-import com.crowdar.tella.services.ServersService;
-import com.crowdar.tella.services.SettingsService;
+import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
 
@@ -154,13 +151,15 @@ public class ServersSteps extends PageSteps {
     @And("the user is connected to the Google drive server")
     public void theUserIsConnectedToTheServer() {
         SettingsService.clickSettingsIcon();
-        SettingsService.clickCategory("Servers");
+        SettingsService.clickCategory("Connections");
         ServersService.clickPlusButton();
         ServersService.selectButton("Google drive");
-        ServersService.pressButton("OK");
-        GenericService.confirmLeaveTellaButton();
-        GenericService.pickGoogle();
-        ServersService.googleDrive();
+        LockService.clickContinue();
+        //Verificar cuenta de google antes de continuar
+        //ServersService.clickNextBtn();
+        //GenericService.confirmLeaveTellaButton();
+        //GenericService.pickGoogle();
+        //ServersService.googleDrive();
     }
 
     @And("the user presses OK button")

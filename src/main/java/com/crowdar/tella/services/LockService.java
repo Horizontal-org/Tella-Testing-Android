@@ -56,7 +56,7 @@ public class LockService {
     }
 
     public static void clickContinue() {
-        MobileActionManager.click(LockUnlockConstants.PASSWORD_CONTINUE_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.CONTINUE_BUTTON);
     }
 
     public static void clickNextSuccessScreen() {

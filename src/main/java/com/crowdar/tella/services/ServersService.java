@@ -3,15 +3,12 @@ package com.crowdar.tella.services;
 import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
-import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.constants.ServersConstants;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
 import org.openqa.selenium.*;
@@ -50,7 +47,7 @@ public class ServersService {
 
 
         Map<String, String> buttons = new HashMap<>();
-        //  buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
+        buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Cancel", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Next", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("SAVE", ServersConstants.SAVE_BUTTON);
@@ -216,7 +213,7 @@ public class ServersService {
     }
 
 
-    public static void clicNextBtn() {
+    public static void clickNextBtn() {
         scrollAndroid("text", "OK", 0);
         MobileActionManager.waitVisibility(FilesConstants.NEXT_BTN);
         MobileActionManager.click(FilesConstants.NEXT_BTN);
