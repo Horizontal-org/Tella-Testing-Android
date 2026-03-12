@@ -85,13 +85,13 @@ Feature: General
       | Favorite forms              |
       | Favorite templates          |
       | Text Justification          |
-      | Increse text spacing     |
+      | Increase text spacing     |
 
   @Smoke @Candidate @E2E
   Scenario: Activate configuration Share data to improve Tella
     When the user taps the "General" button
     And the user switches configuration "Share data to improve Tella" to enable
-    Then and approval message is displayed
+    Then an approval message is displayed
 
  @Smoke @Candidate @E2E
   Scenario Outline: Activate configuration <configuration>
