@@ -31,7 +31,7 @@ public class FilesConstants {
 
     public static final String THREE_BUTTONS_OPTION = "xpath:(//android.widget.ImageView[@content-desc=\"open bottom sheet\"])[1]";
 
-    public static final String THREE_BUTTONS_OPTION_FILE = "xpath:(//android.widget.ImageView[@content-desc=\"open bottom sheet\"])";
+    public static final String THREE_BUTTONS_OPTION_FILE = "xpath://android.widget.ImageView[@content-desc=\"open bottom sheet\"]";
 
     public static final String CHECKBOX_BUTTON = "id:checkBoxList";
 
@@ -43,7 +43,7 @@ public class FilesConstants {
 
     public static final String MOVE_HERE_BUTTON = "id:moveHere";
 
-    public static final String EMPTY_VIEW_MSG_CONTAINER = "xpath://android.widget.LinearLayout[@resource-id=\"org.hzontal.tella:id/emptyViewMsgContainer\"]/android.widget.ImageView";
+    public static final String EMPTY_VIEW_MSG_CONTAINER = "xpath://android.widget.TextView[@text=\"You don’t have any files on your Tella yet. Click the “+” button below to import your first file, or go to the Camera or Microphone to create one. You can also create folders to keep your files organized.\"]";
 
     public static final String SORT_BUTTON = "id:filterNameTv";
 
@@ -57,5 +57,5 @@ public class FilesConstants {
 
     public static final String SELECT_FOLDER_ICON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/textTitle\" and @text=\"%s\"]";
     public static final String ICON_FILE_AUDIO = "xpath://android.widget.FrameLayout[@resource-id=\"org.hzontal.tella:id/attachmentImgContainer\"]";
-    public static final String NEXT_BTN = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/next_btn\"]";
+    public static final String NEXT_BTN = "id:org.hzontal.tella:id/next_btn";
 }

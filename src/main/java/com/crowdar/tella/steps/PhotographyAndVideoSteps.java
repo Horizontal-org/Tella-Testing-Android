@@ -79,7 +79,7 @@ public class PhotographyAndVideoSteps {
 
     @And("the user presses confirm Delete button")
     public void theUserPressesConfirmDeleteButton() throws InterruptedException {
-       // PhotographyAndVideoService.deleteButton();
+       PhotographyAndVideoService.deleteButton();
     }
 
     @Then("the file is deleted")
