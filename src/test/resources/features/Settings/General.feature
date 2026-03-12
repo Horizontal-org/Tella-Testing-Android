@@ -7,8 +7,8 @@ Feature: General
 
   @Smoke @Automated @Flow
   Scenario Outline: View Settings Categories
-    When clicks on the category <category>
-    Then the user access the category <visible>
+    When the user taps the category <category>
+    Then the user accesses the category <visible>
 
     Examples:
       | category     | visible      |
@@ -18,30 +18,36 @@ Feature: General
       | About & Help | About & Help |
       | Feedback     | Feedback     |
 
-  @ChangeLanguage @ToBeAutomated
-  Scenario: Change Language and Re-change by default language
-    When taps the general button
-    And taps the language option in the general category
-    And views the list with all available languages
-    And clicks on the language "Arabic"
-    And views the title <title> at the top of the page
+  @ChangeLanguage @Candidate
+  Scenario Outline: Change Language and Re-change by default language
+    When the user taps the "General" button
+    And the user taps the "Language" option
+    And the user views the list with all available languages
+    And the user taps on the language <language>
+    And the user views the title <title> at the top of the page
     And the option to select the default language is visible
-    And clicks on the language "Default"
+    And the user taps on <Default> 
     Then the user will see the same language applied as the device
-
-  @Smoke @ChangeLanguage @ToBeAutomated @E2E
+    
+    Examples:
+    | language        | title      |   Default           |
+    | French          | Langue     |  Valeur par défaut  |
+    | Spanish         |  Idioma    |  Predeterminado     |
+    
+  @Smoke @ChangeLanguage @Candidate @E2E
   Scenario Outline: Change Language
-    When taps the general button
-    And taps the language option in the general category
-    And views the list with all available languages
-    And clicks on the language <language>
-    And views the title <title> at the top of the page
+    When the user taps the "General" button
+    And the user taps the "Language" option 
+    And the user views the list with all available languages
+    And the user taps on the language <language>
+    And the user views the title <title> at the top of the page
     And the user is in Tella home page
     Then the user will see the language applied
 
     Examples:
       | language               | title                  |
-      | Arabic                 | اللغة                  |
+      | Arabic                 | اللغة                     |
+      | Azerbaijani            | Dil                  |
       | Belarusian             | Мова                   |
       | English                | Language               |
       | Spanish                | Idioma                 |
@@ -50,17 +56,19 @@ Feature: General
       | Indonesian             | Bahasa                 |
       | Kachin                 | Tsun Shaga Ga          |
       | Kannada                | ಭಾಷೆ                   |
-      | Kurdish                | زمان                   |
+      | Kurdish                | زمان                     |
+      | Mizo                   | Tawng                  |
       | Malayalam              | ഭാഷ                    |
       | Burmese                | ဘာသာစကား               |
-      | Shona(Zimbabwe)        | ChiShona(Zimbabwe)     |
+      | Shona(Zimbabwe)        | Ndhimu                 |
       | Portuguese             | Idioma                 |
       | Russian                | Язык                   |
       | Tamil                  | மொழி                  |
       | Vietnamese             | Ngôn ngữ               |
       | Bangla                 | বাংলা                  |
-      | Portuguese(Mozambique) | Portuguese(Mozambique) |
-      | Tsonga                 | Tsonga                 |
+      | Portuguese(Mozambique) | Língua                |
+      | Tsonga                 | Lirimi                |
+      | Chinese (China)        | 语言                   |
 
   @Smoke @Automated @Flow
   Scenario Outline: Activate configuration <configuration>
