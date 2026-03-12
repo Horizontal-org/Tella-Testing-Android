@@ -9,22 +9,22 @@ import io.cucumber.java.en.When;
 
 public class LockSteps {
 
-    @When("tap the next button until reaching the lock options")
+    @When("the user taps the Next button until reaching the lock options")
     public void tapNextButton() {
         UnlockService.clickNextButtons(4);
     }
 
-    @And("tap the password button")
+    @And("the user taps the Password button")
     public void tapThePasswordButton() {
         LockService.clickPasswordButton();
     }
 
-    @And("types a password (.*)")
+    @And("the user types a password (.*)")
     public void typesAPassword(String password) {
         LockService.setOnePassword(password);
     }
 
-    @And("tap the next button")
+    @And("the user taps the Next button")
     public void tapTheNextButton() {
         LockService.clickNextPasswordButton();
     }
@@ -39,17 +39,17 @@ public class LockSteps {
         LockService.verifyNextButtonEnabled(LockUnlockConstants.PASSWORD_RIGHT_BUTTON);
     }
 
-    @And("tap the pin button")
+    @And("the user taps the PIN button")
     public void tapThePinButton() {
         LockService.clickPinButton();
     }
 
-    @And("tap the next pin button")
+    @And("the user taps the OK button")
     public void tapTheNextPinButton() {
         LockService.TapNextPinButton();
     }
 
-    @And("types a pin (.*)")
+    @And("the user types a pin (.*)")
     public void typesAPin(String pin) {
         UnlockService.setPin(pin);
     }
@@ -59,10 +59,29 @@ public class LockSteps {
         LockService.verifyNextPinButtonEnabled(LockUnlockConstants.PIN_RIGHT_BUTTON);
     }
 
-    @Then("a successfully registered message (.*) is displayed to the user and a link to landing page")
+    @Then("a successfully registered message (.*) is displayed to the user")
     public void aSuccessfullyRegisteredMessageIsDisplayed(String message) {
         LockService.messageDisplayed(message);
     }
 
 
+    @And("the user taps the I UNDERSTAND button")
+    public void theUserTapsTheIUNDERSTANDButton() {
+        LockService.clickUnderstandBtn();
+    }
+
+    @And("the user taps the CONTINUE button")
+    public void theUserTapsTheCONTINUEButton() {
+        LockService.clickContinue();
+    }
+
+    @And("the user taps the Success screen Next button")
+    public void theUserTapsTheSuccessScreenNextButton() {
+        LockService.clickNextSuccessScreen();
+    }
+
+    @And("the user taps the GO TO TELLA button")
+    public void theUserTapsTheGOTOTELLAButton() {
+        LockService.clickGoToTella();
+    }
 }

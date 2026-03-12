@@ -115,7 +115,7 @@ Feature: Security
     And The user enter the password <password>
     And select "CHANGE NAME AND ICON" option
     And select icon <icon> option
-    And tap the next button
+    And the user taps the Next button
     And taps "Exit Tella" button
     Then the message "<message>" is displayed
     And view the Tella icon changed for <icon>
@@ -304,7 +304,7 @@ Feature: Security
     And The user enter the password <password>
     And select "CHANGE NAME AND ICON" option
     And select icon <icon> option
-    And tap the next button
+    And the user taps the Next button
     And taps "Exit Tella" button
     Then the message "<message>" is displayed
     And view the Tella icon changed for <icon>

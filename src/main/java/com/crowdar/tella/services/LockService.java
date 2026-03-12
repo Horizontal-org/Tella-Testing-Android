@@ -47,10 +47,24 @@ public class LockService {
 
     public static void messageDisplayed(String message){
         MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_SET_UP);
-        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.LOCK_SET_UP));
         String messagePage = MobileActionManager.getText(LockUnlockConstants.LOCK_SET_UP);
         Assert.assertEquals(message, messagePage);
-        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.NEXT_BUTTON));
     }
 
+    public static void clickUnderstandBtn() {
+        MobileActionManager.click(LockUnlockConstants.LOCK_UNDERSTAND_BUTTON);
+    }
+
+    public static void clickContinue() {
+        MobileActionManager.click(LockUnlockConstants.PASSWORD_CONTINUE_BUTTON);
+    }
+
+    public static void clickNextSuccessScreen() {
+        MobileActionManager.click(LockUnlockConstants.PASSWORD_NEXT_BUTTON);
+    }
+
+    public static void clickGoToTella() {
+        MobileActionManager.waitVisibility(LockUnlockConstants.START_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.START_BUTTON);
+    }
 }
