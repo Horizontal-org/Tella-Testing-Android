@@ -72,35 +72,35 @@ Feature: General
 
   @Smoke @Automated @Flow
   Scenario Outline: Activate configuration <configuration>
-    When taps the general button
-    And switch configuration <configuration> to enable
+    When the user taps the "General" button
+    And the user switches configuration <configuration> to enable
     Then the user sees that the color has changed to green, indicating it is activated <configuration>
 
     Examples:
       | configuration               |
-      | Share data to improve tella |
+      | Share data to improve Tella |
       | Share crash reports         |
       | Verification mode           |
       | Recent files                |
       | Favorite forms              |
       | Favorite templates          |
       | Text Justification          |
-      | Incresease text spacing     |
+      | Increse text spacing     |
 
-  @Smoke @ToBeAutomated @E2E
-  Scenario: Activate configuration Share data to improve tella
-    And taps the general button
-    When switch configuration "Share data to improve tella" to enable
+  @Smoke @Candidate @E2E
+  Scenario: Activate configuration Share data to improve Tella
+    When the user taps the "General" button
+    And the user switches configuration "Share data to improve Tella" to enable
     Then and approval message is displayed
 
- @Smoke @ToBeAutomated @E2E
+ @Smoke @Candidate @E2E
   Scenario Outline: Activate configuration <configuration>
-    And the user has files in tella
-    And the user has server conecctions in tella
-    And the user has templates in tella
-    And taps the general button
-    And switch configuration <configuration> to enable
-    When the user is back into Tella home page
+    And the user has files in Tella
+    And the user has server connections in Tella
+    And the user has templates in Tella
+    When the user taps the "General" button
+    And the user switches configuration <configuration> to enable
+    And the user is back in Tella home page
     Then the user will be able to view the configuration <configuration> in the home page
     Examples:
       | configuration      |
@@ -108,15 +108,15 @@ Feature: General
       | Favorite forms     |
       | Favorite templates |
 
-  @SmokeManual @E2E #oki posible automatizacion
+  @SmokeManual @E2E @Candidate
   Scenario Outline: Activate configuration <configuration>
-    And taps the general button
-    And switch configuration <configuration> to enable
-    When a sign is displayed that tella will be refreshed to apply changes
-    And taps the general button
+    When the user taps the "General" button
+    And the user switches configuration <configuration> to enable
+    And a sign is displayed that Tella will be refreshed to apply changes
+    And the user taps the "General" button
     Then the user will be able to view the changes applied by the configuration <configuration>
 
     Examples:
       | configuration           |
       | Text Justification      |
-      | Incresease text spacing |
+      | Increase text spacing |
