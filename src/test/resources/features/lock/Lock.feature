@@ -4,10 +4,9 @@ Feature: Lock Options
   Background:
     Given The user opens the app for the first time
 
-  @Smoke @Password @Candidate @E2E
+  @Smoke @Password @Automated @E2E
   Scenario Outline: Register with password
-    When the user taps the "GET STARTED" button
-    And the user taps the "Next" button until reaching the lock options
+    When the user taps the "Next" button until reaching the lock options
     And the user taps the "Password" button
     And the user taps the "I UNDERSTAND" button
     And the user types a password <password_a>
@@ -26,10 +25,9 @@ Feature: Lock Options
       |   123456     |    123456     | You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
       |   @+1234     |    @+1234     | You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
 
-  @Smoke @Password @Candidate
+  @Smoke @Password @Automated
   Scenario Outline: Failed register - password confirmation
-    When the user taps the "GET STARTED" button
-    And the user taps the "Next" button until reaching the lock options
+    When the user taps the "Next" button until reaching the lock options
     And the user taps the "Password" button
     And the user taps the "I UNDERSTAND" button
     And the user types a password <password_a>
@@ -44,10 +42,9 @@ Feature: Lock Options
       | 123456     | 567890     | Please try again. Your passwords do not match. |
       | #$%123     | 123#$%     | Please try again. Your passwords do not match. |
       
-  @Smoke @Password @Candidate
+  @Smoke @Password @Automated
   Scenario Outline: Failed register - password length
-    When the user taps the "GET STARTED" button
-    And the user taps the "Next" button until reaching the lock options
+    When the user taps the "Next" button until reaching the lock options
     And the user taps the "Password" button
     And the user taps the "I UNDERSTAND" button
     And the user types a password <password>
@@ -58,10 +55,9 @@ Feature: Lock Options
       | abcde    |
       | 12345    |
 
-  @Smoke @Pin @Candidate @E2E
+  @Smoke @Pin @Automated @E2E
   Scenario Outline: Register with PIN
-    When the user taps the "GET STARTED" button
-    And the user taps the "Next" button until reaching the lock options
+    When the user taps the "Next" button until reaching the lock options
     And the user taps the "PIN" button
     And the user taps the "I UNDERSTAND" button
     And the user types a pin <PIN_a>
@@ -81,10 +77,9 @@ Feature: Lock Options
       | 123456   | 123456  |  OK      | You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
       | 000000   | 000000  |  Next    |  You're all done! You can go to Tella now, or continue customizing Tella to set up advanced settings.|
       
-  @Smoke @Pin @Candidate
+  @Smoke @Pin @Automated
   Scenario Outline: Failed PIN confirmation - pin don't match
-    When the user taps the "GET STARTED" button
-    And the user taps the "Next" button until reaching the lock options
+    When the user taps the "Next" button until reaching the lock options
     And the user taps the "PIN" button
     And the user taps the "I UNDERSTAND" button
     And the user types a pin <PIN_a>
@@ -98,10 +93,9 @@ Feature: Lock Options
       | 123456      | 654321     |   OK      | Please try again. Your PINs do not match. |
       |  0987654321 | 098765432  |   Next    | Please try again. Your PINs do not match. |
       
-  @Smoke @Pin @Candidate
+  @Smoke @Pin @Automated
   Scenario Outline: Failed PIN confirmation - PIN length
-    When the user taps the "GET STARTED" button
-    And the user taps the "Next" button until reaching the lock options
+    When the user taps the "Next" button until reaching the lock options
     And the user taps the "PIN" button
     And the user taps the "I UNDERSTAND" button
     And the user types a pin <PIN>
@@ -115,8 +109,7 @@ Feature: Lock Options
 
   @Smoke @Pattern @Candidate @E2E
   Scenario Outline: Register with pattern
-    When the user taps the "GET STARTED" button
-    And the user taps the "Next" button until reaching the lock options
+    When the user taps the "Next" button until reaching the lock options
     And the user taps the "Pattern" button
     And the user taps the "I UNDERSTAND" button
     And the user draws a pattern connecting at least <dots> dots
@@ -136,8 +129,7 @@ Feature: Lock Options
 
   @Smoke @Pattern @Candidate
   Scenario Outline: Failed Pattern confirmation - Patterns don't match
-    When the user taps the "GET STARTED" button
-    And the user taps the "Next" button until reaching the lock options
+    When the user taps the "Next" button until reaching the lock options
     And the user taps the "Pattern" button
     And the user taps the "I UNDERSTAND" button
     And the user draws a pattern connecting at least <dots_a> dots
@@ -153,8 +145,7 @@ Feature: Lock Options
     
     @Smoke @Pattern @Candidate
   Scenario Outline: Failed Pattern confirmation - Pattern length
-    When the user taps the "GET STARTED" button
-    And the user taps the "Next" button until reaching the lock options
+    When the user taps the "Next" button until reaching the lock options
     And the user taps the "Pattern" button
     And the user taps the "I UNDERSTAND" button
     And the user draws a pattern connecting at least <dots> dots
