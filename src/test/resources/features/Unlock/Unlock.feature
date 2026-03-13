@@ -63,7 +63,7 @@ Background:
   Scenario Outline: Unlock fails with wrong pattern
     And The user uses the unlock method pattern
     When The user draws a different pattern connecting at least 6 dots
-    Then a message "<message>" is displayed to the user
+    Then a message <message> is displayed to the user
     And Home page is not displayed
 
     Examples:
