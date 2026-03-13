@@ -39,6 +39,8 @@ public class ServersConstants {
     public static final String SERVER_LOGIN_BUTTON = "id:org.hzontal.tella:id/sheet_textView";
     public static final String LOGIN_SERVER_USERNAME = "id:org.hzontal.tella:id/username";
     public static final String LOGIN_SERVER_PASSWORD = "id:org.hzontal.tella:id/password";
+    public static final String VERIFY_SERVER_YES_BUTTON = "id:org.hzontal.tella:id/ok";
+    public static final String SERVER_GO_TO_NEXTCLOUD_BUTTON = "id:org.hzontal.tella:id/sheet_textView";
 
 
     //google drive

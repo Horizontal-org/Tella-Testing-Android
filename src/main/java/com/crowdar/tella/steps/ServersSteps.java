@@ -179,5 +179,11 @@ public class ServersSteps extends PageSteps {
     public void theUserPressesLogInButton() {
         GenericService.clickByCoordinates(550, 1300);
     }
+
+
+    @And("^the user enters \"(.*)\" as the folder name$")
+    public void theUserEntersAsTheFolderName(String nameFolder) {
+        ServersService.inputNameFolder(nameFolder);
+    }
 }
 
