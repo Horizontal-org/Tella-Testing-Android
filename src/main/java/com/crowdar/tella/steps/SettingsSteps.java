@@ -306,7 +306,7 @@ public class SettingsSteps {
         SettingsService.clickCategory("Servers");
         ServersService.clickPlusButton();
         ServersService.selectButton("Tella Web");
-        ServersService.clickNextBtn();
+        ServersService.clicNextBtn();
         ServersService.inputServerUrl("https://tella.world/p/server-project-crowdar");
         ServersService.pressButton("Next");
         ServersService.connectToTellaServer();
