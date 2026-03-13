@@ -46,7 +46,7 @@ Background:
     And The user uses the unlock method pin
     When The user enter the pin <wrong_pin>
     And The user taps the button "OK"
-    Then a message "<message>" is displayed to the user
+    Then a message <message> is displayed to the user
     And Home page is not displayed
 
     Examples:
