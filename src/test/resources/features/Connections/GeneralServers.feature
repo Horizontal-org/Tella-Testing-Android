@@ -4,7 +4,7 @@ Feature: Connections - Connection to servers
   Background:
     Given the user is in Tella home page
     And the user taps the settings icon
-    And clicks on the option Servers
+    And clicks on the option Connections
 
   @Smoke @ToBeAutomated @ViewServers @Flow
   Scenario Outline: <Servers>  - View Server Options
@@ -50,7 +50,7 @@ Feature: Connections - Connection to servers
       | Open Data Kit (ODK) |
       | Tella Web           |        
             
-  @Smoke @Automated @ODK @E2E @testBrian
+  @Smoke @Automated @ODK @E2E
   Scenario Outline: Servers - ODK Server
     When the user presses the + button
     And selects the server "Open Data Kit (ODK)"
@@ -161,8 +161,25 @@ Feature: Connections - Connection to servers
     And the user view the message "You have successfully connected to the server and will be able to share your data."
     And the user presses the button Go to google Drive
     Then the user views the Server in the connect list
-
-
+  
+  @Smoke @Candidate @NextCloud @E2E
+  Scenario: Server - Nextcloud - Connecting to the server in a new folder
+    When the user presses the + button
+    And selects the server "Nextcloud"
+    And the user presses "OK" button
+    And enter the server url "https://mia.nl.tab.digital/"
+    And the user presses "Next" button
+    And the user presses "YES" button
+    And the user presses "Next" button
+    And the user views the "Log in to access the project"
+    And the user fills the fields "Username" and "Password"
+    And the user enters the credentials of Nextcloud
+    And the user presses "Log in" button
+    And the user enters "NameFolder" as the folder name
+    And the user presses "Next" button
+    And the user presses "Go to Nextcloud" button
+    Then the user views the NextCloud in the connect list
+  
 
     #oki hacer casos especificos para dropbox y next cloud
 

@@ -47,7 +47,7 @@ public class ServersService {
 
 
         Map<String, String> buttons = new HashMap<>();
-          buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
+        buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Cancel", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Next", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("SAVE", ServersConstants.SAVE_BUTTON);
@@ -55,6 +55,8 @@ public class ServersService {
         buttons.put("SUBMIT", ServersConstants.SUBMIT_BUTTON);
         buttons.put("Log in", ServersConstants.SERVER_LOGIN_BUTTON);
         buttons.put("GO TO REPORTS", ServersConstants.SERVER_LOGIN_BUTTON);
+        buttons.put("Go to Nextcloud", ServersConstants.SERVER_GO_TO_NEXTCLOUD_BUTTON);
+        buttons.put("YES", ServersConstants.VERIFY_SERVER_YES_BUTTON);
 
 
         String getButton = buttons.get(button);
@@ -266,11 +268,21 @@ public class ServersService {
                 username = PropertyManager.getProperty("uwaziuser");
                 password = PropertyManager.getProperty("uwazipass");
                 break;
+
+            case "Nextcloud":
+                username = PropertyManager.getProperty("nextCloudUser");
+                password = PropertyManager.getProperty("nextCloudpass");
+                break;
             default:
                 throw new RuntimeException("Server not supported: " + serverName);
 
         }
         MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_USERNAME, username);
         MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_PASSWORD, password);
+    }
+
+    public static void inputNameFolder(String nameFolder) {
+        MobileActionManager.waitVisibility(ServersConstants.INPUT_FOLDER_NAME);
+        MobileActionManager.setInput(ServersConstants.INPUT_FOLDER_NAME, nameFolder);
     }
 }
