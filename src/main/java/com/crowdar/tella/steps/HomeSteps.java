@@ -23,5 +23,4 @@ public class HomeSteps extends PageSteps {
         System.out.println("");
     }
 
-
 }

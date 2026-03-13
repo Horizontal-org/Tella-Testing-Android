@@ -1,15 +1,8 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.core.PageSteps;
-import com.crowdar.core.PropertyManager;
-import com.crowdar.core.actions.MobileActionManager;
-import com.crowdar.core.actions.WebActionManager;
-import com.crowdar.tella.constants.AudioConstants;
-import com.crowdar.tella.constants.FilesConstants;
-import com.crowdar.tella.constants.ServersConstants;
 import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -178,6 +171,46 @@ public class ServersSteps extends PageSteps {
     @And("the user presses Log in button")
     public void theUserPressesLogInButton() {
         GenericService.clickByCoordinates(550, 1300);
+    }
+
+    @And("the user uses a Gmail account")
+    public void theUserUsesAGoogleAccount() {
+        ServersService.googleDriveUserInput();
+    }
+
+    @And("the user enters a valid Gmail password")
+    public void theUserEntersAValidGmailPassword() {
+        ServersService.googleDrivePasswordInput();
+    }
+
+    @And("the user can see the Welcome message and agrees with the terms and conditions")
+    public void theUserCanSeeTheWelcomeMessageAndAgreesTheTermsAndConditions() {
+        ServersService.googleDriveAgreeTerms();
+    }
+
+    @And("the user accepts the permissions")
+    public void theUserAcceptsThePermissions() {
+        ServersService.googleDriveAcceptPermissions();
+    }
+
+    @And("the user creates a new Google Drive folder called (.*)")
+    public void theUserCreatesANewGoogleDriveFolder(String folder) {
+        ServersService.googleDriveNewFolder(folder);
+    }
+
+    @And("the user accepts the additional permissions")
+    public void theUserAcceptsTheAdditionalPermissions() {
+        ServersService.googleDriveAdditionalPermissions();
+    }
+
+    @And("the user can see the Connected to server message and clicks GO TO GOOGLE DRIVE")
+    public void theUserCanSeeTheConnectedToServerMessage() {
+        ServersService.connectedToServerMsg();
+    }
+
+    @Then("the user can see the (.*) connection in the home page")
+    public void theUserCanSeeTheGoogleDriveConnectionInTheHomePage(String serverName) {
+        HomeService.isAConnectionVisible(serverName);
     }
 }
 

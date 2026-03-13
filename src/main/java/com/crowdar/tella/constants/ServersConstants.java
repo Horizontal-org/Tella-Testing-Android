@@ -39,13 +39,20 @@ public class ServersConstants {
     public static final String SERVER_LOGIN_BUTTON = "id:org.hzontal.tella:id/sheet_textView";
     public static final String LOGIN_SERVER_USERNAME = "id:org.hzontal.tella:id/username";
     public static final String LOGIN_SERVER_PASSWORD = "id:org.hzontal.tella:id/password";
+    public static final String CONNECTED_TO_SERVER_MSG = "id:org.hzontal.tella:id/sheet_title";
 
 
     //google drive
     public static final String CREATE_NEW_GOOGLE_DRIVE_FOLDER = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/sheet_textView\" and @text=\"CREATE NEW FOLDER\"]";
-    public static final String INPUT_FOLDER_NAME = "id:create_folder_edit";
+    public static final String INPUT_FOLDER_NAME = "id:org.hzontal.tella:id/create_folder_edit";
     public static final String ASSERT_SERVER_CONNECTION = "id:sheet_title";
     public static final String GO_TO_GOOGLE_DRIVE_BUTTON = "id:sheet_textView";
+    public static final String GOOGLE_LOGIN_TEXTBOX = "id:com.google.android.gms:id/identifierId";
+    public static final String GOOGLE_BUTTONS = "xpath://android.widget.Button[@text=\"%s\"]";
+    public static final String GOOGLE_PASSWORD_TEXTBOX = "id:android.widget.EditText";
+    public static final String GOOGLE_LOGIN_WELCOME_MSG = "id:com.google.android.gms:id/headingText";
+    public static final String GOOGLE_PERMISSIONS_MSG = "xpath://android.widget.TextView[@resource-id=\"com.google.android.gms:id/sud_items_title\" and @text=\"Use basic device backup\"]";
+    public static final String GOOGLE_ADDITIONAL_PERMISSIONS_MSG = "id:android.webkit.WebView";
 
     public static final  String GOOGLE_DRIVE_FORM = "xpath://androidx.recyclerview.widget.RecyclerView[@resource-id=\"org.hzontal.tella:id/serversRecyclerView\"]/android.view.ViewGroup";
 

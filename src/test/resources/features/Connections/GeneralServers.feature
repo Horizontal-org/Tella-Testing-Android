@@ -4,7 +4,7 @@ Feature: Connections - Connection to servers
   Background:
     Given the user is in Tella home page
     And the user taps the settings icon
-    And clicks on the option Servers
+    And clicks on the option Connections
 
   @Smoke @ToBeAutomated @ViewServers @Flow
   Scenario Outline: <Servers>  - View Server Options
@@ -137,10 +137,33 @@ Feature: Connections - Connection to servers
       | Spanish  |
       | French   |
 
+  @SmokeManual @GoogleDrive @E2E @testAbel
+  Scenario Outline: Server - Google Drive - New Connection
+    When the user presses the + button
+    And selects the server "Google drive"
+    And the user presses "OK" button
+    And the user presses the Continue button
+    And the user uses a Gmail account
+    #No encuentra el elemento del TEXTBOX
+    And the user enters a valid Gmail password
+    And the user can see the Welcome message and agrees with the terms and conditions
+    And the user accepts the permissions
+    And the user creates a new Google Drive folder called <folder>
+    And the user accepts the additional permissions
+    And the user can see the Connected to server message and clicks GO TO GOOGLE DRIVE
+    And the user enters the password password
+    Then the user can see the Google Drive connection in the home page
+
+    Examples:
+      | folder     |
+      | Tella test |
+
+
   @SmokeManual @GoogleDrive @E2E
   Scenario: Server - Google Drive - Use shared drive option
     When the user presses the + button
     And selects the server "Google drive"
+    And the user presses "OK" button
     And the user chooses the Google account
     And chooses the "use shared drive" option
     And the user presses "Next" button

@@ -18,7 +18,7 @@ public class UnlockSteps extends PageSteps {
     }
 
 
-    @When("The user enter the password (.*)")
+    @When("the user enters the password (.*)")
     public void theUserEnterAPassword(String password) throws InterruptedException {
         UnlockService.enterPassword(password);
     }
