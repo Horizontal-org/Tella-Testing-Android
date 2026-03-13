@@ -3,22 +3,23 @@ package com.crowdar.tella.services;
 import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
-import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.constants.ServersConstants;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
+import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
@@ -269,8 +270,60 @@ public class ServersService {
             default:
                 throw new RuntimeException("Server not supported: " + serverName);
 
+            case "Google Drive":
+                username = PropertyManager.getProperty("googledriveuser");
+                password = PropertyManager.getProperty("googledrivepass");
+                break;
+
         }
         MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_USERNAME, username);
         MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_PASSWORD, password);
     }
+
+    public static void googleDriveUserInput() {
+        MobileActionManager.waitPresence(ServersConstants.GOOGLE_LOGIN_TEXTBOX);
+        MobileActionManager.setInput(
+                ServersConstants.GOOGLE_LOGIN_TEXTBOX,
+                PropertyManager.getProperty("googledriveuser")
+        );
+        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "NEXT");
+    }
+
+    public static void googleDrivePasswordInput() {
+        MobileActionManager.waitPresence(ServersConstants.GOOGLE_PASSWORD_TEXTBOX);
+        MobileActionManager.setInput(ServersConstants.GOOGLE_PASSWORD_TEXTBOX, PropertyManager.getProperty("googledrivepass"));
+        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS,"NEXT");
+    }
+
+    public static void googleDriveAgreeTerms() {
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_LOGIN_WELCOME_MSG);
+        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "I agree");
+    }
+
+    public static void googleDriveAcceptPermissions() {
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_PERMISSIONS_MSG);
+        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "MORE");
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_BUTTONS, "ACCEPT");
+        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "ACCEPT");
+
+    }
+
+    public static void googleDriveNewFolder(String folder) {
+        MobileActionManager.waitVisibility(ServersConstants.INPUT_FOLDER_NAME);
+        MobileActionManager.setInput(ServersConstants.INPUT_FOLDER_NAME, folder);
+        MobileActionManager.click(ServersConstants.GRAL_NEXT_BUTTON);
+    }
+
+    public static void googleDriveAdditionalPermissions() {
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_ADDITIONAL_PERMISSIONS_MSG);
+        scrollAndroid("text","Continue", 0);
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_BUTTONS, "Continue");
+        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "Continue");
+    }
+
+    public static void connectedToServerMsg() {
+        MobileActionManager.waitVisibility(ServersConstants.CONNECTED_TO_SERVER_MSG);
+        MobileActionManager.click(ServersConstants.SERVER_LOGIN_BUTTON);
+    }
+
 }

@@ -4,6 +4,7 @@ import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.HomeConstantsIOS;
+import com.crowdar.tella.constants.LockUnlockConstants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
@@ -100,4 +101,7 @@ public class HomeService {
         MobileActionManager.waitClickable(HomeConstants.BTN_CLOSES_APP).click();
     }
 
+    public static void isAConnectionVisible(String serverName) {
+        MobileActionManager.waitVisibility(HomeConstants.LBL_CONNECTIOS, serverName);
+    }
 }

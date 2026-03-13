@@ -13,7 +13,7 @@ public class SettingsConstants {
 
     public static final String CATEGORY_SETTINGS_TITLE = "id:startTitleTv";
     public static final String SECURITY_BUTTON = "id:security_settings_button";
-    public static final String SERVERS_BUTTON = "id:servers_settings_button";
+    public static final String SERVERS_BUTTON = "id:org.hzontal.tella:id/servers_settings_button";
     public static final String ABOUT_HELP_BUTTON = "id:about_n_help_settings_button";
     public static final String FEEDBACK_BUTTON = "id:feedback_button";
     public static final String LANGUAGE_SECTION = "id:options_layout";
