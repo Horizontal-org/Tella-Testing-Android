@@ -121,6 +121,10 @@ public class SettingsService {
 
     public static void switchButtonEnable(String configuration) {
         String button = viewButton(configuration);
+        if (MobileActionManager.getElements(button).isEmpty()) {
+            SettingsService.scrollDown();
+        }
+
         MobileActionManager.waitVisibility(button);
         String check = MobileActionManager.getAttribute(button, "checked");
         if (Boolean.parseBoolean(check) != true) {
