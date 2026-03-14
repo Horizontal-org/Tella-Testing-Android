@@ -105,13 +105,14 @@ public class SettingsService {
 
     public static String viewButton(String configuration) {
         Map<String, String> buttons = new HashMap<>();
-        buttons.put("Share crash reports", SettingsConstants.SWITCH_LIST_BUTTON + "[1]");
-        buttons.put("Verification mode", SettingsConstants.SWITCH_LIST_BUTTON + "[2]");
-        buttons.put("Recent files", SettingsConstants.SWITCH_LIST_BUTTON + "[3]");
-        buttons.put("Favorite forms", SettingsConstants.SWITCH_LIST_BUTTON + "[4]");
-        buttons.put("Favorite templates", SettingsConstants.SWITCH_LIST_BUTTON + "[5]");
-        buttons.put("Test justification", SettingsConstants.SWITCH_LIST_BUTTON + "[6]");
-        buttons.put("Increase text spacing", SettingsConstants.SWITCH_LIST_BUTTON + "[7]");
+        buttons.put("Share data to improve Tella", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Share crash reports", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Verification mode", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Recent files", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Favorite forms", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Favorite templates", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Text justification", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Increase text spacing", SettingsConstants.SWITCH_LIST_BUTTON);
         buttons.put("Quick delete", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[1]");
         buttons.put("Preserve metadata when importing", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[2]");
         buttons.put("Camera silent mode", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[3]");
@@ -121,14 +122,15 @@ public class SettingsService {
 
     public static void switchButtonEnable(String configuration) {
         String button = viewButton(configuration);
-        if (MobileActionManager.getElements(button).isEmpty()) {
+        String buttonFormat = String.format(button, configuration);
+        if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
             SettingsService.scrollDown();
         }
 
-        MobileActionManager.waitVisibility(button);
-        String check = MobileActionManager.getAttribute(button, "checked");
+        MobileActionManager.waitVisibility(buttonFormat);
+        String check = MobileActionManager.getAttribute(buttonFormat, "checked");
         if (Boolean.parseBoolean(check) != true) {
-            MobileActionManager.click(button);
+            MobileActionManager.click(buttonFormat);
         }
     }
 
@@ -142,9 +144,18 @@ public class SettingsService {
     }
 
     public static void viewButtonEnable(String configuration) {
+        MobileActionManager.waitVisibility(SettingsConstants.CATEGORY_SETTINGS_TITLE);
+        if (!MobileActionManager.getText(SettingsConstants.CATEGORY_SETTINGS_TITLE).equalsIgnoreCase("General")){
+            SettingsService.generalButton();
+        }
+
         String button = viewButton(configuration);
-        MobileActionManager.waitVisibility(button);
-        Assert.assertTrue(MobileActionManager.getAttribute(button, "checked").contains("true"));
+        String buttonFormat = String.format(button, configuration);
+        if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
+            SettingsService.scrollDown();
+        }
+        MobileActionManager.waitVisibility(buttonFormat);
+        Assert.assertTrue(MobileActionManager.getAttribute(buttonFormat, "checked").contains("true"));
     }
 
     public static void viewTellaIcon() {
