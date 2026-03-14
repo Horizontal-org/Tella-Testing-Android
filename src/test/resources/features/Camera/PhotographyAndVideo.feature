@@ -91,7 +91,7 @@ Feature: PhotographyAndVideo
     Then the file is deleted
 
   @Smoke @Video @Automated
-  Scenario Outline: Select video resolution
+  Scenario Outline: Select video resolution in <Resolution>
     And the user presses the camera button
     And the user presses the video button
     When the user presses the configurations button
@@ -318,14 +318,14 @@ Feature: PhotographyAndVideo
 
   @Smoke @File @Automated
   Scenario: Rename a file with an existing name
-    And the user have a photo taken named "Tella"
+    And the user have a photo taken named Tella
     And the user presses the camera button
     And the user takes a photography
     When the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
     And the user presses Rename button
     And the user writes a new name "Tella"
-    Then the sistem notified there is a existing file with the same name
+    And the user taps the CONTINUE button
     Then the message "File name taken. Please use a different one." is displayed
 
 

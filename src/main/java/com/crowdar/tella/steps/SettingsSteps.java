@@ -150,7 +150,7 @@ public class SettingsSteps {
 
     @Then("^the message \"(.*)\" is displayed$")
     public void theMessageIsDisplayed(String message) {
-        SettingsService.showMessage(message);
+        SettingsService.viewMessage(message);
     }
 
     @Then("^the (.*) option is changed to status (.*)$")

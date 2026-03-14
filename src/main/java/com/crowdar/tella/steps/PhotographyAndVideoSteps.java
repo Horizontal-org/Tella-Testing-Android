@@ -5,10 +5,7 @@ import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.PhotographyAndVideoConstants;
-import com.crowdar.tella.services.AudioService;
-import com.crowdar.tella.services.FilesService;
-import com.crowdar.tella.services.GenericService;
-import com.crowdar.tella.services.PhotographyAndVideoService;
+import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
 
 public class PhotographyAndVideoSteps {
@@ -148,6 +145,21 @@ public class PhotographyAndVideoSteps {
     @Then("^the user check the resolution (.*) its selected in choose resolution$")
     public void theUserCheckTheResolutionItsSelectedInChooseResolution(String resolution) {
         PhotographyAndVideoService.videoResolutionAssert(resolution);
+    }
+
+    @And("the user have a photo taken named Tella")
+    public void theUserHaveAPhotoTakenNamedTella() {
+        GenericService.commonClick(HomeConstants.CAMERA_BUTTON);
+        FilesService.acceptPermissions();
+        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        GenericService.commonClick(PhotographyAndVideoConstants.PREVIEW_FILE);
+        GenericService.commonClick(PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON);
+        GenericService.commonClick(PhotographyAndVideoConstants.RENAME_BUTTON);
+        PhotographyAndVideoService.deleteTextAndSendKeys();
+        LockService.clickContinue();
+        GenericService.commonClick(PhotographyAndVideoConstants.GO_BACK_BUTTON);
+        GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
+
     }
 }
 

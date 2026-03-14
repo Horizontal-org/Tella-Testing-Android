@@ -27,9 +27,10 @@ Feature: Lock Options
   Scenario Outline: Failed register - password confirmation
     When the user taps the Next button until reaching the lock options
     And the user taps the Password button
-    And types a password <password_a>
+    And the user taps the I UNDERSTAND button
+    And the user types a password <password_a>
     And the user taps the Next button
-    And types a password <password_b>
+    And the user types a password <password_b>
     And the user taps the Next button
     Then a message <message> is displayed to the user
 
@@ -41,7 +42,8 @@ Feature: Lock Options
   Scenario Outline: Failed register - password lenght
     When the user taps the Next button until reaching the lock options
     And the user taps the Password button
-    And types a password <password>
+    And the user taps the I UNDERSTAND button
+    And the user types a password <password>
     Then the next button remains disabled
 
     Examples:
@@ -72,9 +74,10 @@ Feature: Lock Options
   Scenario Outline: Failed PIN confirmation - pin don't match
     When the user taps the Next button until reaching the lock options
     And the user taps the PIN button
-    And types a pin <PIN_a>
+    And the user taps the I UNDERSTAND button
+    And the user types a pin <PIN_a>
     And the user taps the OK button
-    And types a pin <PIN_b>
+    And the user types a pin <PIN_b>
     And the user taps the OK button
     Then a message <message> is displayed to the user
 
@@ -86,7 +89,8 @@ Feature: Lock Options
   Scenario Outline: Failed PIN confirmation - PIN lenght
     When the user taps the Next button until reaching the lock options
     And the user taps the PIN button
-    And types a pin <PIN>
+    And the user taps the I UNDERSTAND button
+    And the user types a pin <PIN>
     Then the next pin button remains disabled
 
     Examples:
