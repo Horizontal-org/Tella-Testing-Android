@@ -40,9 +40,9 @@ public class PhotographyAndVideoSteps {
         GenericService.commonClick(PhotographyAndVideoConstants.VIDEO_CONFIG);
     }
 
-    @And("the user presses the option highest possible")
-    public void theUserPressesTheOptionHighestPossible() {
-        PhotographyAndVideoService.videoResolution();
+    @And("^the user presses the option (.*)$")
+    public void theUserPressesTheOptionHighestPossible(String resolution) {
+        PhotographyAndVideoService.videoResolution(resolution);
     }
 
     @And("the user presses the next button")
@@ -143,6 +143,11 @@ public class PhotographyAndVideoSteps {
     @Then("the sistem notified there is a existing file with the same name")
     public void theSistemNotifiedThereIsAExistingFileWithTheSameName() {
         PhotographyAndVideoService.changeNameAssert();
+    }
+
+    @Then("^the user check the resolution (.*) its selected in choose resolution$")
+    public void theUserCheckTheResolutionItsSelectedInChooseResolution(String resolution) {
+        PhotographyAndVideoService.videoResolutionAssert(resolution);
     }
 }
 

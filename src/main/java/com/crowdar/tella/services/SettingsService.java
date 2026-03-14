@@ -74,7 +74,7 @@ public class SettingsService {
         Map<String, String> links = new HashMap<>();
         links.put("General", SettingsConstants.GENERAL_BUTTON);
         links.put("Security", SettingsConstants.SECURITY_BUTTON);
-        links.put("Connections", SettingsConstants.SERVERS_BUTTON);
+        links.put("Servers", SettingsConstants.SERVERS_BUTTON);
         links.put("About & Help", SettingsConstants.ABOUT_HELP_BUTTON);
         links.put("Feedback", SettingsConstants.FEEDBACK_BUTTON);
         try {

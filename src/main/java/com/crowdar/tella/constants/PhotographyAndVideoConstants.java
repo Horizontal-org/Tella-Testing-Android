@@ -8,9 +8,7 @@ public class PhotographyAndVideoConstants {
 
     public static final String VIDEO_CONFIG = "id:resolutionButton";
 
-    public static final String VIDEO_HIGHEST_POSIBLE_OPTION = "xpath://android.widget.RadioButton[@text=\"Highest possible\"]";
-
-    public static final String VIDEO_LOW_RESOLUTION_OPTION = "xpath://android.widget.RadioButton[@text=\"Low (480p)\"]";
+    public static final String VIDEO_RESOLUTION_OPTION = "xpath://android.widget.RadioGroup/android.widget.RadioButton[%s]";
 
     public static final String NEXT_BUTTON_VIDEO_CONFIG = "xpath://android.widget.Button[@resource-id=\"android:id/button1\"]";
 
