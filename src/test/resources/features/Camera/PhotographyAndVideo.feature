@@ -97,16 +97,14 @@ Feature: PhotographyAndVideo
     When the user presses the configurations button
     And the user presses the option <Resolution>
     And the user presses the next button
-    Then the video resolution is selected
     And the user presses the configurations button
-   # And the user check the resolution <Resolution> its selected in
+    Then the user check the resolution <Resolution> its selected in choose resolution
     Examples:
       | Resolution       |
-      | highest possible |
-      | High             |
+      | Highest possible |
       | Medium           |
       | Low              |
-
+  
   @Smoke @Video @SmokeManual
   Scenario: Check file size from the last file
     Given that the last file is a video with the highest resolution

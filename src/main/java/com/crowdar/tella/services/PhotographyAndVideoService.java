@@ -11,6 +11,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.Map;
+
 import static com.crowdar.tella.constants.PhotographyAndVideoConstants.*;
 
 public class PhotographyAndVideoService {
@@ -22,28 +25,44 @@ public class PhotographyAndVideoService {
         Assert.assertEquals("El elemento no está activado", true, isElementEnabled);
     }
 
-    public static void videoResolution() {
-        MobileActionManager.click(VIDEO_LOW_RESOLUTION_OPTION);
-        MobileActionManager.click(VIDEO_HIGHEST_POSIBLE_OPTION);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public static void videoResolution(String resolution) {
+
+        String index = RESOLUTION_MAP.get(resolution.toLowerCase());
+
+        if (index == null) {
+            throw new RuntimeException("Invalid resolution: " + resolution);
         }
-        videoResolutionAssert();
+
+        MobileActionManager.waitVisibility(PhotographyAndVideoConstants.VIDEO_RESOLUTION_OPTION, index);
+        MobileActionManager.click(PhotographyAndVideoConstants.VIDEO_RESOLUTION_OPTION, index);
     }
 
-    public static void videoResolutionAssert() {
-        AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
-        By byLocator = GenericService.stringToBy(VIDEO_HIGHEST_POSIBLE_OPTION);
-        if (byLocator != null) {
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(byLocator));
-            boolean isElementChecked = Boolean.parseBoolean(element.getAttribute("checked"));
-            Assert.assertTrue("El elemento no está seleccionado", isElementChecked);
-        } else {
-            System.err.println("Tipo de localizador no soportado: " + VIDEO_HIGHEST_POSIBLE_OPTION);
+    private static final Map<String, String> RESOLUTION_MAP = Map.of(
+            "highest possible", "1",
+            "medium", "2",
+            "low", "3"
+    );
+
+    public static void videoResolutionAssert(String resolution) {
+
+        String index = RESOLUTION_MAP.get(resolution.toLowerCase());
+
+        if (index == null) {
+            throw new RuntimeException("Invalid resolution: " + resolution);
         }
+
+        AppiumDriver<MobileElement> driver =
+                (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
+
+        String locator = String.format(PhotographyAndVideoConstants.VIDEO_RESOLUTION_OPTION, index);
+        By byLocator = GenericService.stringToBy(locator);
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(byLocator));
+
+        boolean isChecked = Boolean.parseBoolean(element.getAttribute("checked"));
+
+        Assert.assertTrue("The video resolution option is not selected", isChecked);
     }
 
     public static void previewFileAssert(String locator) {
