@@ -79,7 +79,7 @@ public class SettingsSteps {
 
     @Then("the user sees that the color has changed to green, indicating it is activated (.*)")
     public void theUserSeesThatTheColorHasChangedToGreenIndicatingItIsActivated(String configuration) {
-        SettingsService.viewButtonEnable(configuration);
+        SettingsService.viewButtonEnableGeneral(configuration);
     }
 
     @Then("view the Tella icon")
@@ -174,13 +174,13 @@ public class SettingsSteps {
     }
 
     @Then("the help info message (.*) is displayed")
-    public void theHelpInfoMessageIsDisplayed(String helpInfo) {
+    public void theHelpInfoMessageIsDisplayed(String helpInfo) throws InterruptedException {
         SettingsService.showHelpInfoMessage(helpInfo);
     }
 
     @Then("^the \"(.*)\" option is activated$")
     public void theOptionIsActivated(String option) {
-        SettingsService.viewButtonEnable(option);
+        SettingsService.viewButtonEnableSecurity(option);
     }
 
     @And("The option show remaining unlock attempts will be displayed enabled")
