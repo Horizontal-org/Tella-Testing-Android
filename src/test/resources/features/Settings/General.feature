@@ -62,7 +62,7 @@ Feature: General
       | Portuguese(Mozambique) | Portuguese(Mozambique) |
       | Tsonga                 | Tsonga                 |
 
-  @Smoke @Automated @Flow @testBrian
+  @Smoke @Automated @Flow
   Scenario Outline: Activate configuration <configuration>
     When taps the general button
     And switch configuration <configuration> to enable
