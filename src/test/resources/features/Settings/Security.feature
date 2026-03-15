@@ -200,7 +200,7 @@ Feature: Security
       | Delete Connections | Delete your Connections and all forms associated with them. |
       | Delete Tella       | Delete the app and all the data it contains.                |
   
-  @Smoke @Automated @testBrian
+  @Smoke @Automated
   Scenario Outline: Security - <option> ON
     When toggle the switch on the "<option>" option
     Then the "<option>" option is activated

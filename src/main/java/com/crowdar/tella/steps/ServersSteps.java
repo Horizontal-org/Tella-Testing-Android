@@ -144,8 +144,8 @@ public class ServersSteps extends PageSteps {
         ServersService.viewFileUpload(title, description);
     }
 
-    @And("^the successful message \"(.*)\" appears$")
-    public void theSuccessfulMessageAppears(String message){
+    @And("^the sucessfull message \"(.*)\" appears$")
+    public void theSucessfullMessageAppears(String message){
         ServersService.viewMessage(message);
     }
 
