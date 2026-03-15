@@ -14,7 +14,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.Assertion;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import static com.crowdar.core.actions.ActionManager.*;
@@ -26,21 +28,32 @@ public class FilesService {
 
 
     public static void enterFolder(String nameFolder) {
-        try {
-            AndroidDriver<MobileElement> driver = (AndroidDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            System.out.println("Waiting for folder: " + nameFolder);
-            MobileElement folderElement = (MobileElement) wait.until(ExpectedConditions.presenceOfElementLocated(
-                    MobileBy.AndroidUIAutomator(
-                            "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
-                                    ".scrollIntoView(new UiSelector().textMatches(\"" + nameFolder + "\").instance(0))"
-                    )));
+        Map<String, String> buttons = new HashMap<>();
+        buttons.put("All files", HomeConstants.HOME_FOLDER_ALL_FILES_BUTTON);
+        buttons.put("Images", HomeConstants.HOME_FOLDER_IMAGES_BUTTON);
+        buttons.put("Videos", HomeConstants.HOME_FOLDER_VIDEOS_BUTTON);
+        buttons.put("Audio", HomeConstants.HOME_FOLDER_AUDIO_BUTTON);
+        buttons.put("Documents", HomeConstants.HOME_FOLDER_DOCUMENTS_BUTTON);
+        buttons.put("Others", HomeConstants.HOME_FOLDER_OTHERS_BUTTON);
 
-            System.out.println("Folder found: " + nameFolder);
-            folderElement.click();
-        } catch (TimeoutException e) {
-            System.out.println("Timeout waiting for folder: " + nameFolder);
-        }
+        String button = buttons.get(nameFolder);
+        MobileActionManager.waitVisibility(button);
+        MobileActionManager.click(button);
+//        try {
+//            AndroidDriver<MobileElement> driver = (AndroidDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
+//            WebDriverWait wait = new WebDriverWait(driver, 10);
+//            System.out.println("Waiting for folder: " + nameFolder);
+//            MobileElement folderElement = (MobileElement) wait.until(ExpectedConditions.presenceOfElementLocated(
+//                    MobileBy.AndroidUIAutomator(
+//                            "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+//                                    ".scrollIntoView(new UiSelector().textMatches(\"" + nameFolder + "\").instance(0))"
+//                    )));
+//
+//            System.out.println("Folder found: " + nameFolder);
+//            folderElement.click();
+//        } catch (TimeoutException e) {
+//            System.out.println("Timeout waiting for folder: " + nameFolder);
+//        }
     }
 
     public static void tapPlusIcon() {
@@ -163,9 +176,9 @@ public class FilesService {
         AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
         GenericService.commonClick(FilesConstants.VIDEO_OPTION);
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        Thread.sleep(100);
+        Thread.sleep(5000);
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        Thread.sleep(100);
+        Thread.sleep(5000);
         MobileActionManager.waitClickable(FilesConstants.CLOSE_BUTTON);
         GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
 

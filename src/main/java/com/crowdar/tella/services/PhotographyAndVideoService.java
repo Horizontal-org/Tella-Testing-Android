@@ -2,6 +2,7 @@ package com.crowdar.tella.services;
 
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
+import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.PhotographyAndVideoConstants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -106,10 +107,10 @@ public class PhotographyAndVideoService {
 
 
     public static void sendKeysFolder() {
-        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
-        MobileElement textField = (MobileElement) driver.findElement(By.id("renameEditText"));
-        textField.clear();
-        textField.sendKeys("TellaFolder");
+        MobileActionManager.waitVisibility(FilesConstants.INPUT_FIELD_FOLDER);
+        MobileActionManager.getElement(FilesConstants.INPUT_FIELD_FOLDER).clear();
+        MobileActionManager.getElement(FilesConstants.INPUT_FIELD_FOLDER).sendKeys("TellaFolder");
+
     }
 
 
@@ -134,10 +135,11 @@ public class PhotographyAndVideoService {
         GenericService.commonClick(PhotographyAndVideoConstants.CAMERA_GRID_SHOW);
     }
 
-    public static void deleteButton() throws InterruptedException {
+    public static void deleteButton(){
         if (MobileActionManager.isPresent(PhotographyAndVideoConstants.DELETE_FILE_BUTTON)) {
             GenericService.commonClick(PhotographyAndVideoConstants.DELETE_FILE_BUTTON);
         } else {
+            MobileActionManager.waitVisibility(PhotographyAndVideoConstants.CONFIRM_DELETE_FILE_BUTTON);
             GenericService.commonClick(PhotographyAndVideoConstants.CONFIRM_DELETE_FILE_BUTTON);
 
         }

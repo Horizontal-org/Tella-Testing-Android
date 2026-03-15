@@ -110,12 +110,10 @@ public class ServersService {
         MobileActionManager.setInput(ServersConstants.URL_INPUT, serverUrl);
     }
 
-    public static void viewMessage(String message) throws InterruptedException {
-        if (MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_MSG)) {
-            String actualMessage = MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG);
-            System.out.println("Actual message: " + actualMessage);
-            Assert.assertTrue(actualMessage.contains(message));  // Compara si contiene el mensaje esperado
-        }
+    public static void viewMessage(String message) {
+        MobileActionManager.waitVisibility(ServersConstants.TEXT_SERVER_MSG);
+        String actualMessage = MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG);
+        Assert.assertTrue(actualMessage.contains(message));
     }
 
 
