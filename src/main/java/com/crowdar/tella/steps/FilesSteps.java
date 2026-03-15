@@ -12,7 +12,7 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class FilesSteps {
 
-    @When("the user enters the folder (.*)")
+    @When("^the user enters the folder (.*)$")
     public void theUserEnterTheFolder(String nameFolder) {
         FilesService.enterFolder(nameFolder);
     }
@@ -74,7 +74,7 @@ public class FilesSteps {
 
     }
 
-    @And("taps the options button ⋮ for the (.*) file")
+    @And("^taps the options button ⋮ for the (.*) file$")
     public void tapsTheOptionsButtonForTheTypeFile(String type) {
         MobileActionManager.click(FilesConstants.THREE_BUTTONS_OPTION_FILE, type);
     }
