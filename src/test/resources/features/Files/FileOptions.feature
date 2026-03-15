@@ -31,7 +31,7 @@ Feature: File Options - Options for files in their individual folders
     And taps the options button "⋮" of the "E2E_RENAMED" folder
     And the user presses Delete button
     And the user presses confirm Delete button
-    Then the successful message "The files were deleted." appears
+    Then the sucessfull message "The files were deleted." appears
 
   @Smoke @E2E @ToBeAutomated
   Scenario: Move a file to an existing folder and move it back (cleanup)
@@ -40,13 +40,13 @@ Feature: File Options - Options for files in their individual folders
     And taps the option Move to another folder
     And chooses the destination folder "Images"
     And taps the option Move here
-    Then the successful message "File successfully moved" appears
+    Then the sucessfull message "File successfully moved" appears
     When the user enters the folder "Images"
     And taps the options button ⋮ of a file
     And taps the option Move to another folder
     And chooses the destination folder "All Files"
     And taps the option Move here
-    Then the successful message "File successfully moved" appears
+    Then the sucessfull message "File successfully moved" appears
 
 
   @Smoke @ToBeAutomated @E2E
@@ -210,7 +210,7 @@ Feature: File Options - Options for files in their individual folders
     And taps the options button ⋮ for the <type> file
     And the user presses Delete button
     And the user presses confirm Delete button
-    Then the successful message "The file was deleted." appears
+    Then the sucessfull message "The file was deleted." appears
 
     Examples:
       | type  | folder |
@@ -226,7 +226,7 @@ Feature: File Options - Options for files in their individual folders
     And taps the options button ⋮
     And the user presses Delete button
     And the user presses confirm Delete button
-    Then the successful message "The file was deleted." appears
+    Then the sucessfull message "The file was deleted." appears
 
     Examples:
       | type  | folder |
@@ -242,7 +242,7 @@ Feature: File Options - Options for files in their individual folders
     And taps the option Move to another folder
     And chooses the destination folder
     And taps the option Move here
-    Then the successful message "File successfully moved" appears
+    Then the sucessfull message "File successfully moved" appears
     #oki añadir aqui una validacion final
 
   @Smoke @Automated
@@ -255,7 +255,7 @@ Feature: File Options - Options for files in their individual folders
     And presses Ok button
     And chooses the new folder a destination
     And taps the option Move here
-    Then the successful message "File successfully moved" appears
+    Then the sucessfull message "File successfully moved" appears
     #oki añadir aqui una validacion final
 
   @Smoke @Automated
@@ -272,7 +272,7 @@ Feature: File Options - Options for files in their individual folders
     And taps the options button ⋮ of the created folder
     And the user presses Delete button
     And the user presses confirm Delete button
-    Then the successful message "The files were deleted." appears
+    Then the sucessfull message "The files were deleted." appears
 
   @Smoke @Automated
   Scenario: Rename a folder
