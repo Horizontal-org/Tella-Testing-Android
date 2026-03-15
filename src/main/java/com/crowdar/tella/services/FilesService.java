@@ -39,21 +39,6 @@ public class FilesService {
         String button = buttons.get(nameFolder);
         MobileActionManager.waitVisibility(button);
         MobileActionManager.click(button);
-//        try {
-//            AndroidDriver<MobileElement> driver = (AndroidDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
-//            WebDriverWait wait = new WebDriverWait(driver, 10);
-//            System.out.println("Waiting for folder: " + nameFolder);
-//            MobileElement folderElement = (MobileElement) wait.until(ExpectedConditions.presenceOfElementLocated(
-//                    MobileBy.AndroidUIAutomator(
-//                            "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
-//                                    ".scrollIntoView(new UiSelector().textMatches(\"" + nameFolder + "\").instance(0))"
-//                    )));
-//
-//            System.out.println("Folder found: " + nameFolder);
-//            folderElement.click();
-//        } catch (TimeoutException e) {
-//            System.out.println("Timeout waiting for folder: " + nameFolder);
-//        }
     }
 
     public static void tapPlusIcon() {
