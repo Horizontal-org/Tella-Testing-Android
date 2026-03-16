@@ -144,6 +144,7 @@ Feature: Connections - Connection to servers
     And selects the server "Google drive"
     And the user presses "OK" button
     And the user presses the Continue button
+    And the user presses the Add another account button if needed
     And the user uses a Gmail account
     And the user enters a valid Gmail password
     And the user can see the Welcome message and agrees with the terms and conditions

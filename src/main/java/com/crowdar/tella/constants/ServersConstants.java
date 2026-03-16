@@ -58,6 +58,7 @@ public class ServersConstants {
     public static final String GOOGLE_CHOOSE_ACCOUNT_MSG = "xpath://android.widget.TextView[@resource-id=\"com.google.android.gms:id/title\"]";
     public static final String GOOGLE_FIRST_LISTED_ACCOUNT = "xpath:(//android.widget.LinearLayout[@resource-id=\"com.google.android.gms:id/container\"])[1]";
     public static final String GOOGLE_ADDITIONAL_PERMISSIONS_MSG = "xpath://android.view.View[@resource-id=\"headingText\"]";
+    public static final String GOOGLE_ADD_ACCOUNT = "xpath://android.widget.TextView[@resource-id='com.google.android.gms:id/add_account_chip_title']/ancestor::android.widget.LinearLayout";
 
     public static final  String GOOGLE_DRIVE_FORM = "xpath://androidx.recyclerview.widget.RecyclerView[@resource-id=\"org.hzontal.tella:id/serversRecyclerView\"]/android.view.ViewGroup";
 
