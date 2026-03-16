@@ -12,7 +12,7 @@ Feature: Dropbox
     And completes the Title "Crowdar" and the Description "Evidence photo"
     And the user taps + button for the attach files
     And selects files option "<Select files>"
-    And The user selects the file and taps the 'Verification' icon
+    And the user selects the file and taps the 'Verification' icon
     And the user presses "SUBMIT" button
     Then the form will be visible in the submitted section
 
@@ -32,7 +32,7 @@ Feature: Dropbox
     And completes the Title "Crowdar" and the Description "Evidence"
     And the user taps + button for the attach files
     And selects the option Select from Tella files
-    And The user selects the file and taps the 'Verification' icon
+    And the user selects the file and taps the 'Verification' icon
     And the user presses "SUBMIT" button
     And the user sees the file being uploaded and presses "PAUSE"
     And the user taps "REPORT"
@@ -53,7 +53,7 @@ Feature: Dropbox
     And completes the Title "Crowdar" and the Description "Evidence"
     And the user taps + button for the attach files
     And selects the option Select from Tella files
-    And The user selects the file and taps the 'Verification' icon
+    And the user selects the file and taps the 'Verification' icon
     And the user presses <option> icon
     Then the approval message <message> appears
     
@@ -88,10 +88,10 @@ Feature: Dropbox
   Scenario: Delete form from Draft
     And the user has an form in Draft
     When the user taps the "Dropbox" connection
-    And The user taps the ´"Drafts" category
+    And the user taps the ´"Drafts" category
     And the user taps the "⁝" button
     And the user taps "Edit draft"
-    Then The file is displayed for edit and submit actions 
+    Then the file is displayed for edit and submit actions 
 
     
     @Smoke
