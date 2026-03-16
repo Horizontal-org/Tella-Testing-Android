@@ -422,4 +422,13 @@ public class SettingsService {
 
         return driver.findElement(MobileBy.AndroidUIAutomator(uiAutomatorCommand));
     }
+
+    public static void clickBackButton() throws InterruptedException {
+
+        MobileActionManager.click(SettingsConstants.BUTTON_BACK_LANG);
+
+        Thread.sleep(1000);
+
+        MobileActionManager.click(SettingsConstants.BUTTON_BACK_LANG);
+    }
 }

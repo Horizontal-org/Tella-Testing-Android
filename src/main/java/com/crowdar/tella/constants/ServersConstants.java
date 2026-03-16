@@ -47,12 +47,17 @@ public class ServersConstants {
     public static final String INPUT_FOLDER_NAME = "id:org.hzontal.tella:id/create_folder_edit";
     public static final String ASSERT_SERVER_CONNECTION = "id:sheet_title";
     public static final String GO_TO_GOOGLE_DRIVE_BUTTON = "id:sheet_textView";
-    public static final String GOOGLE_LOGIN_TEXTBOX = "id:com.google.android.gms:id/identifierId";
-    public static final String GOOGLE_BUTTONS = "xpath://android.widget.Button[@text=\"%s\"]";
-    public static final String GOOGLE_PASSWORD_TEXTBOX = "id:android.widget.EditText";
-    public static final String GOOGLE_LOGIN_WELCOME_MSG = "id:com.google.android.gms:id/headingText";
+    public static final String GOOGLE_LOGIN_TEXTBOX = "xpath://android.widget.EditText[@resource-id=\"identifierId\"]";
+    public static final String GOOGLE_BUTTONS = "xpath://*[translate(@text,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')='%s']";
+    public static final String GOOGLE_TERMS_AGREE_BUTTON = "xpath://android.widget.Button[@text=\"I agree\"]";
+    public static final String GOOGLE_SHARE_AGREE_BUTTON = "xpath://android.widget.Button[@resource-id=\"com.google.android.gms:id/agree_and_share_button\"]";
+    public static final String GOOGLE_ADDITIONAL_PERMISSIONS_BUTTON = "xpath://android.widget.Button[@text=\"Continue\"]";
+    public static final String GOOGLE_PASSWORD_TEXTBOX = "xpath://android.widget.EditText";
+    public static final String GOOGLE_LOGIN_WELCOME_MSG = "xpath://android.widget.TextView[@resource-id=\"headingText\"]";
     public static final String GOOGLE_PERMISSIONS_MSG = "xpath://android.widget.TextView[@resource-id=\"com.google.android.gms:id/sud_items_title\" and @text=\"Use basic device backup\"]";
-    public static final String GOOGLE_ADDITIONAL_PERMISSIONS_MSG = "id:android.webkit.WebView";
+    public static final String GOOGLE_CHOOSE_ACCOUNT_MSG = "xpath://android.widget.TextView[@resource-id=\"com.google.android.gms:id/title\"]";
+    public static final String GOOGLE_FIRST_LISTED_ACCOUNT = "xpath:(//android.widget.LinearLayout[@resource-id=\"com.google.android.gms:id/container\"])[1]";
+    public static final String GOOGLE_ADDITIONAL_PERMISSIONS_MSG = "xpath://android.view.View[@resource-id=\"headingText\"]";
 
     public static final  String GOOGLE_DRIVE_FORM = "xpath://androidx.recyclerview.widget.RecyclerView[@resource-id=\"org.hzontal.tella:id/serversRecyclerView\"]/android.view.ViewGroup";
 
