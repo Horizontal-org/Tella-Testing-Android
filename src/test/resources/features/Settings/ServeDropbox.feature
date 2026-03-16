@@ -35,9 +35,9 @@ Feature: Dropbox
     And selects files and presses the "verification" icon
     And the user presses "SUBMIT" button
     And sees the file being uploaded and presses "Pause"
-    And goes back
+    And the user selects goes back
     And the user taps presses Outbox
     And presses the "Menu" icon of a Outbox report
-    And selects Delete
-    And confirms the Delete option
+    And the user selects Delete
+    And the user confirms the Delete option
     Then the approval message "filename has been deleted" appears
