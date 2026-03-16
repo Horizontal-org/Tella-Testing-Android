@@ -174,7 +174,7 @@ public class SettingsSteps {
     }
 
     @Then("the help info message (.*) is displayed")
-    public void theHelpInfoMessageIsDisplayed(String helpInfo) throws InterruptedException {
+    public void theHelpInfoMessageIsDisplayed(String helpInfo){
         SettingsService.showHelpInfoMessage(helpInfo);
     }
 

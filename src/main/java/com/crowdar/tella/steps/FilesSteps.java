@@ -158,7 +158,8 @@ public class FilesSteps {
 
     @And("taps the options button ⋮ of the created folder")
     public void tapsTheOptionsButtonOfTheCreatedFolder() {
-        GenericService.commonClick(FilesConstants.THREE_BUTTONS_OPTION);
+        //GenericService.commonClick(FilesConstants.THREE_BUTTONS_OPTION);
+        FilesService.tapsThreeButtonCreatedFolder();
     }
 
     @And("select the option Create a new folder")

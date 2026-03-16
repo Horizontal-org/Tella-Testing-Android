@@ -257,5 +257,10 @@ public class FilesService {
         Assert.assertTrue(MobileActionManager.waitVisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER).isDisplayed());
     }
 
+    public static void tapsThreeButtonCreatedFolder() {
+        String ThreeButton = String.format(FilesConstants.FOLDER_OPTIONS_BY_NAME, "TellaFolder");
+        MobileActionManager.waitVisibility(ThreeButton);
+        MobileActionManager.click(ThreeButton);
+    }
 }
 
