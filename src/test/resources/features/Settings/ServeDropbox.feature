@@ -5,7 +5,7 @@ Feature: Dropbox
     Given the user is in Tella home page
     And the user is connected to the "Dropbox" server
     
-     @Smoke @SmokeManual
+     @Smoke @SmokeManual @Candidate
   Scenario Outline: Submit report with <Select files>
     When the user taps the "Dropbox" connection
     And the user presses "NEW REPORT" button
@@ -25,7 +25,7 @@ Feature: Dropbox
       | Select from your device |
       
       
-       @Smoke @SmokeManual
+       @Smoke @SmokeManual @Candidate
   Scenario Outline: Delete report during sending
     When the user taps the "Dropbox" connection
     And the user presses "NEW REPORT" button
@@ -46,7 +46,7 @@ Feature: Dropbox
        | form_name                |
        | Crowdar has been deleted |
    
- @Smoke @SmokeManual
+ @Smoke @SmokeManual @Candidate
   Scenario Outline: Save report to <option>
     When the user taps the "Dropboxd" connection
     And the user presses "NEW REPORT" button
@@ -62,7 +62,7 @@ Feature: Dropbox
       | Save   | The report was saved as a draft                                       |
       | Clock  | The report was saved to your Outbox. You can submit it when you ready |
       
-  @Smoke @SmokeManual
+  @Smoke @SmokeManual @Candidate
   Scenario: Send a report from Outbox
     And the user has a report in the Outbox folder
     When the user taps the "Dropbox" connection
@@ -72,7 +72,7 @@ Feature: Dropbox
     And the user taps "RESUME"
     Then the form should be displayed in the "Submitted" section
     
-   @Smoke @SmokeManual
+   @Smoke @SmokeManual @Candidate
   Scenario: Send a report while the internet is desconnecting
     When the user taps the "Deopbox" connection
     And the user presses "NEW REPORT" button
@@ -84,7 +84,7 @@ Feature: Dropbox
     And the user disconnect internet from your cell phone
     Then the report will not be uploaded but will be available in OutBox
   
-    @Smoke
+    @Smoke 
   Scenario: Delete form from Draft
     And the user has an form in Draft
     When the user taps the "Dropbox" connection
@@ -94,7 +94,7 @@ Feature: Dropbox
     Then the file is displayed for edit and submit actions 
 
     
-    @Smoke
+    @Smoke @Candidate
   Scenario Outline: Delete form from Draft
     And the user has an form in the "Draft"
     When the user taps the "Dropbox" connection
@@ -109,7 +109,7 @@ Feature: Dropbox
    | Crowdar has been deleted |
    
 
-  @Smoke
+  @Smoke @Candidate
   Scenario: View file form from Submitted
     And the user has an form in the "Submitted"
     When the user taps the "Dropbox" connection
