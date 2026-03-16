@@ -23,3 +23,21 @@ Feature: Dropbox
       | Record audio            |
       | Select from Tella files |
       | Select from your device |
+      
+      
+       @Smoke @SmokeManual
+  Scenario: Delete report during sending
+    When the user taps the "Dropbox" connection
+    And the user presses "NEW REPORT" button
+    And completes the Title "Crowdar" and the Description "Evidence"
+    And the user taps + button for the attach files
+    And selects the option Select from Tella files
+    And selects files and presses the "verification" icon
+    And the user presses "SUBMIT" button
+    And sees the file being uploaded and presses "Pause"
+    And goes back
+    And the user taps presses Outbox
+    And presses the "Menu" icon of a Outbox report
+    And selects Delete
+    And confirms the Delete option
+    Then the approval message "filename has been deleted" appears
