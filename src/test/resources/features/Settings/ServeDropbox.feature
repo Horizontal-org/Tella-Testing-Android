@@ -68,5 +68,17 @@ Feature: Dropbox
     And the user taps "RESUME"
     Then the form will be visible in the submitted section
     
+   @Smoke @SmokeManual
+  Scenario: Send a report while the internet is desconnecting
+    When the user taps the "Deopbox" connection
+    And the user presses "NEW REPORT" button
+    And completes the Title "Crowdar" and the Description "Evidence photo"
+    And the user taps + button for the attach files
+    And selects files option "Take photo with camera"
+    And the user presses the button for take a photo
+    And the user presses "SUBMIT" button
+    And the user disconnect internet from your cell phone
+    Then the report will not be uploaded but will be available in OutBox
+    
 
     
