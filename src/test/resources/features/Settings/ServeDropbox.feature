@@ -26,7 +26,7 @@ Feature: Dropbox
       
       
        @Smoke @SmokeManual
-  Scenario: Delete report during sending
+  Scenario Outline: Delete report during sending
     When the user taps the "Dropbox" connection
     And the user presses "NEW REPORT" button
     And completes the Title "Crowdar" and the Description "Evidence"
@@ -39,9 +39,13 @@ Feature: Dropbox
     And the user taps Outbox
     And the user presses the "Menu" icon of a Outbox report
     And the user selects "Delete"
-    And the user confirms the Delete option
-    Then the approval message "filename has been deleted" appears
+    And the user confirms the "Delete"
+    Then the success message <form_name> appears
     
+   Examples:
+       | form_name                |
+       | Crowdar has been deleted |
+   
  @Smoke @SmokeManual
   Scenario Outline: Save report to <option>
     When the user taps the "Dropboxd" connection
@@ -79,6 +83,30 @@ Feature: Dropbox
     And the user presses "SUBMIT" button
     And the user disconnect internet from your cell phone
     Then the report will not be uploaded but will be available in OutBox
+  
+    @Smoke
+  Scenario: Delete form from Draft
+    And the user has an form in Draft
+    When the user taps the "Dropbox" connection
+    And The user taps the ´"Drafts" category
+    And the user taps the "⁝" button
+    And the user taps "Edit draft"
+    Then The file is displayed for edit and submit actions 
+
+    
+    @Smoke
+  Scenario Outline: Delete form from Draft
+    And the user has an form in Draft
+    When the user taps the "Dropbox" connection
+    And The user taps the ´"Drafts" category
+    And the user taps the "⁝" button
+    And the user taps "Delete"
+    And the user confirms the "Delete"
+    Then the success message <form_name> appears
+    
+  Examples:
+   | form_name                |
+   | Crowdar has been deleted |
     
 
     
