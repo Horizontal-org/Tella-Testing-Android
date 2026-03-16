@@ -188,7 +188,7 @@ Feature: Security
     And waits finish counter
     Then uninstall message appears
   
-  @Smoke @QuickDelete @HelpInfo @Automated @testBrian
+  @Smoke @QuickDelete @HelpInfo @Automated
   Scenario Outline: Security - Quick delete - Help info
     When toggle the switch on the "Quick delete" option
     And click on the help icon in <deleteOption>

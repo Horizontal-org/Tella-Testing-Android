@@ -262,5 +262,16 @@ public class FilesService {
         MobileActionManager.waitVisibility(ThreeButton);
         MobileActionManager.click(ThreeButton);
     }
+
+    public static void SelectsMultipleTypeFiles() {
+        MobileActionManager.waitVisibility(FilesConstants.CHECKBOX_BUTTON);
+        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
+        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
+    }
+
+    public static void SelectTypeFile(String type) {
+        MobileActionManager.waitVisibility(FilesConstants.THREE_BUTTONS_OPTION_FILE, type);
+        MobileActionManager.click(FilesConstants.THREE_BUTTONS_OPTION_FILE, type);
+    }
 }
 

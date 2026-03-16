@@ -76,7 +76,7 @@ public class FilesSteps {
 
     @And("^taps the options button ⋮ for the (.*) file$")
     public void tapsTheOptionsButtonForTheTypeFile(String type) {
-        MobileActionManager.click(FilesConstants.THREE_BUTTONS_OPTION_FILE, type);
+        FilesService.SelectTypeFile(type);
     }
 
     @Then("the file (.*) is deleted")
@@ -90,8 +90,7 @@ public class FilesSteps {
 
     @And("taps the Checkbox button and selects multiple (.*) files")
     public void tapsTheCheckboxButtonAndSelectsMultipleTypeFiles(String type) {
-        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
-        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
+        FilesService.SelectsMultipleTypeFiles();
     }
 
     @And("taps the options button ⋮ of a file")
