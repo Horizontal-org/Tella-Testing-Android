@@ -74,7 +74,7 @@ public class SettingsService {
         Map<String, String> links = new HashMap<>();
         links.put("General", SettingsConstants.GENERAL_BUTTON);
         links.put("Security", SettingsConstants.SECURITY_BUTTON);
-        links.put("Connections", SettingsConstants.SERVERS_BUTTON);
+        links.put("Servers", SettingsConstants.SERVERS_BUTTON);
         links.put("About & Help", SettingsConstants.ABOUT_HELP_BUTTON);
         links.put("Feedback", SettingsConstants.FEEDBACK_BUTTON);
         try {
@@ -105,26 +105,32 @@ public class SettingsService {
 
     public static String viewButton(String configuration) {
         Map<String, String> buttons = new HashMap<>();
-        buttons.put("Share crash reports", SettingsConstants.SWITCH_LIST_BUTTON + "[1]");
-        buttons.put("Verification mode", SettingsConstants.SWITCH_LIST_BUTTON + "[2]");
-        buttons.put("Recent files", SettingsConstants.SWITCH_LIST_BUTTON + "[3]");
-        buttons.put("Favorite forms", SettingsConstants.SWITCH_LIST_BUTTON + "[4]");
-        buttons.put("Favorite templates", SettingsConstants.SWITCH_LIST_BUTTON + "[5]");
-        buttons.put("Test justification", SettingsConstants.SWITCH_LIST_BUTTON + "[6]");
-        buttons.put("Increase text spacing", SettingsConstants.SWITCH_LIST_BUTTON + "[7]");
-        buttons.put("Quick delete", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[1]");
-        buttons.put("Preserve metadata when importing", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[2]");
-        buttons.put("Camera silent mode", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[3]");
+        buttons.put("Share data to improve Tella", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Share crash reports", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Verification mode", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Recent files", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Favorite forms", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Favorite templates", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Text justification", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Increase text spacing", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Quick delete", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON);
+        buttons.put("Preserve metadata when importing", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON);
+        buttons.put("Camera silent mode", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON);
         buttons.put("Screen security", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[4]");
         return buttons.get(configuration);
     }
 
     public static void switchButtonEnable(String configuration) {
         String button = viewButton(configuration);
-        MobileActionManager.waitVisibility(button);
-        String check = MobileActionManager.getAttribute(button, "checked");
+        String buttonFormat = String.format(button, configuration);
+        if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
+            SettingsService.scrollDown();
+        }
+
+        MobileActionManager.waitVisibility(buttonFormat);
+        String check = MobileActionManager.getAttribute(buttonFormat, "checked");
         if (Boolean.parseBoolean(check) != true) {
-            MobileActionManager.click(button);
+            MobileActionManager.click(buttonFormat);
         }
     }
 
@@ -137,10 +143,29 @@ public class SettingsService {
         }
     }
 
-    public static void viewButtonEnable(String configuration) {
+    public static void viewButtonEnableGeneral(String configuration) {
+        MobileActionManager.waitVisibility(SettingsConstants.CATEGORY_SETTINGS_TITLE);
+        if (!MobileActionManager.getText(SettingsConstants.CATEGORY_SETTINGS_TITLE).equalsIgnoreCase("General")){
+            SettingsService.generalButton();
+        }
+
         String button = viewButton(configuration);
-        MobileActionManager.waitVisibility(button);
-        Assert.assertTrue(MobileActionManager.getAttribute(button, "checked").contains("true"));
+        String buttonFormat = String.format(button, configuration);
+        if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
+            SettingsService.scrollDown();
+        }
+        MobileActionManager.waitVisibility(buttonFormat);
+        Assert.assertTrue(MobileActionManager.getAttribute(buttonFormat, "checked").contains("true"));
+    }
+
+    public static void viewButtonEnableSecurity(String option) {
+        String button = viewButton(option);
+        String buttonFormat = String.format(button, option);
+        if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
+            SettingsService.scrollDown();
+        }
+        MobileActionManager.waitVisibility(buttonFormat);
+        Assert.assertTrue(MobileActionManager.getAttribute(buttonFormat, "checked").contains("true"));
     }
 
     public static void viewTellaIcon() {
@@ -266,8 +291,9 @@ public class SettingsService {
     public static void clickHelpInfo(String option) {
         Map<String, String> options = new HashMap<>();
         options.put("Delete files", SettingsConstants.DELETE_INFO_ICON);
-        options.put("Delete draft and submitted forms", SettingsConstants.DELETE_FORM_ICON);
-        options.put("Delete server settings", SettingsConstants.DELETE_SERVER_ICON);
+        options.put("Delete Connections", SettingsConstants.DELETE_SERVER_ICON);
+        options.put("Delete Tella", SettingsConstants.DELETE_FORM_ICON);
+
         MobileActionManager.waitVisibility(options.get(option));
         MobileActionManager.click(options.get(option));
     }
@@ -396,6 +422,4 @@ public class SettingsService {
 
         return driver.findElement(MobileBy.AndroidUIAutomator(uiAutomatorCommand));
     }
-
-
 }

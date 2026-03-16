@@ -20,4 +20,11 @@ public class HomeConstants {
     public static final String SLIDE_DELETE = "id:org.hzontal.tella:id/panic_seek";
     public static final String LBL_CONNECTIOS = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/server_name_textView\" and @text=\"%s\"]";
     public static final String BTN_CLOSES_APP = "xpath://android.widget.ImageButton[@content-desc=\"quick exit\"]";
+
+    public static final String HOME_FOLDER_IMAGES_BUTTON = "id:imagesBtn";
+    public static final String HOME_FOLDER_ALL_FILES_BUTTON = "id:allFilesBtn";
+    public static final String HOME_FOLDER_VIDEOS_BUTTON = "id:videosBtn";
+    public static final String HOME_FOLDER_AUDIO_BUTTON = "id:audioBtn";
+    public static final String HOME_FOLDER_DOCUMENTS_BUTTON = "id:documentsBtn";
+    public static final String HOME_FOLDER_OTHERS_BUTTON = "id:othersBtn";
 }
