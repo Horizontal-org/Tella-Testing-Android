@@ -179,17 +179,17 @@ public class ServersSteps extends PageSteps {
     }
 
     @And("the user enters a valid Gmail password")
-    public void theUserEntersAValidGmailPassword() {
+    public void theUserEntersAValidGmailPassword() throws InterruptedException {
         ServersService.googleDrivePasswordInput();
     }
 
     @And("the user can see the Welcome message and agrees with the terms and conditions")
-    public void theUserCanSeeTheWelcomeMessageAndAgreesTheTermsAndConditions() {
+    public void theUserCanSeeTheWelcomeMessageAndAgreesTheTermsAndConditions() throws InterruptedException {
         ServersService.googleDriveAgreeTerms();
     }
 
     @And("the user accepts the permissions")
-    public void theUserAcceptsThePermissions() {
+    public void theUserAcceptsThePermissions() throws InterruptedException {
         ServersService.googleDriveAcceptPermissions();
     }
 
@@ -198,7 +198,7 @@ public class ServersSteps extends PageSteps {
         ServersService.googleDriveNewFolder(folder);
     }
 
-    @And("the user accepts the additional permissions")
+    @And("the user accepts the additional permissions if needed")
     public void theUserAcceptsTheAdditionalPermissions() {
         ServersService.googleDriveAdditionalPermissions();
     }
@@ -209,8 +209,19 @@ public class ServersSteps extends PageSteps {
     }
 
     @Then("the user can see the (.*) connection in the home page")
-    public void theUserCanSeeTheGoogleDriveConnectionInTheHomePage(String serverName) {
+    public void theUserCanSeeTheGoogleDriveConnectionInTheHomePage(String serverName) throws InterruptedException {
+        SettingsService.clickBackButton();
         HomeService.isAConnectionVisible(serverName);
+    }
+
+    @And("the user chooses an existing Google account")
+    public void theUserChoosesAnExistingGoogleAccount()  {
+        ServersService.clickExistingGoogleAccount();
+    }
+
+    @And("the user presses the Agree and share button if needed")
+    public void theUserPressesTheAgreeAndShareButton() {
+        ServersService.clickAgreeAndShare();
     }
 }
 

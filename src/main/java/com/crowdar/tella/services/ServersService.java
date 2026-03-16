@@ -273,31 +273,36 @@ public class ServersService {
     }
 
     public static void googleDriveUserInput() {
-        MobileActionManager.waitPresence(ServersConstants.GOOGLE_LOGIN_TEXTBOX);
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_LOGIN_TEXTBOX);
         MobileActionManager.setInput(
                 ServersConstants.GOOGLE_LOGIN_TEXTBOX,
-                PropertyManager.getProperty("googledriveuser")
-        );
-        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "NEXT");
-    }
-
-    public static void googleDrivePasswordInput() {
-        MobileActionManager.waitPresence(ServersConstants.GOOGLE_PASSWORD_TEXTBOX);
-        MobileActionManager.setInput(ServersConstants.GOOGLE_PASSWORD_TEXTBOX, PropertyManager.getProperty("googledrivepass"));
+                PropertyManager.getProperty("googledriveuser"));
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_BUTTONS,"NEXT");
         MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS,"NEXT");
     }
 
-    public static void googleDriveAgreeTerms() {
-        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_LOGIN_WELCOME_MSG);
-        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "I agree");
+    public static void googleDrivePasswordInput() throws InterruptedException{
+        Thread.sleep(2000);
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_PASSWORD_TEXTBOX);
+        MobileActionManager.setInput(
+                ServersConstants.GOOGLE_PASSWORD_TEXTBOX,
+                PropertyManager.getProperty("googledrivepass"));
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_BUTTONS,"NEXT");
+        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS,"NEXT");
     }
 
-    public static void googleDriveAcceptPermissions() {
+    public static void googleDriveAgreeTerms() throws InterruptedException {
+        Thread.sleep(2000);
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_LOGIN_WELCOME_MSG);
+        MobileActionManager.click(ServersConstants.GOOGLE_TERMS_AGREE_BUTTON, "I agree");
+    }
+
+    public static void googleDriveAcceptPermissions() throws InterruptedException {
+        Thread.sleep(2000);
         MobileActionManager.waitVisibility(ServersConstants.GOOGLE_PERMISSIONS_MSG);
         MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "MORE");
         MobileActionManager.waitVisibility(ServersConstants.GOOGLE_BUTTONS, "ACCEPT");
         MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "ACCEPT");
-
     }
 
     public static void googleDriveNewFolder(String folder) {
@@ -307,10 +312,14 @@ public class ServersService {
     }
 
     public static void googleDriveAdditionalPermissions() {
-        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_ADDITIONAL_PERMISSIONS_MSG);
-        scrollAndroid("text","Continue", 0);
-        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_BUTTONS, "Continue");
-        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "Continue");
+        try {
+            MobileActionManager.waitVisibility(ServersConstants.GOOGLE_ADDITIONAL_PERMISSIONS_MSG);
+            scrollAndroid("text","Continue", 0);
+            MobileActionManager.waitVisibility(ServersConstants.GOOGLE_ADDITIONAL_PERMISSIONS_BUTTON);
+            MobileActionManager.click(ServersConstants.GOOGLE_ADDITIONAL_PERMISSIONS_BUTTON);
+        } catch (Exception e) {
+            System.out.println("Google additional permissions did not appear. Continuing test.");
+        }
     }
 
     public static void connectedToServerMsg() {
@@ -318,4 +327,18 @@ public class ServersService {
         MobileActionManager.click(ServersConstants.SERVER_LOGIN_BUTTON);
     }
 
+    public static void clickExistingGoogleAccount() {
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_CHOOSE_ACCOUNT_MSG);
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_FIRST_LISTED_ACCOUNT);
+        MobileActionManager.click(ServersConstants.GOOGLE_FIRST_LISTED_ACCOUNT);
+    }
+
+    public static void clickAgreeAndShare() {
+        try {
+            MobileActionManager.waitVisibility(ServersConstants.GOOGLE_SHARE_AGREE_BUTTON);
+            MobileActionManager.click(ServersConstants.GOOGLE_SHARE_AGREE_BUTTON);
+        } catch (Exception e) {
+            System.out.println("Google share agreement did not appear. Continuing test.");
+        }
+    }
 }
