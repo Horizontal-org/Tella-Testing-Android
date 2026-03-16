@@ -81,7 +81,7 @@ Feature: Dropbox
     And selects files option "Take photo with camera"
     And the user presses the button for take a photo
     And the user presses "SUBMIT" button
-    And tthe user disconnects the internet
+    And the user disconnects the internet
     Then the report will not be uploaded but will be available in OutBox
   
     @Smoke 
