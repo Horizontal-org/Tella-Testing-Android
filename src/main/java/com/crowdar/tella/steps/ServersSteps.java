@@ -223,5 +223,10 @@ public class ServersSteps extends PageSteps {
     public void theUserPressesTheAgreeAndShareButton() {
         ServersService.clickAgreeAndShare();
     }
+
+    @And("the user presses the Add another account button if needed")
+    public void theUserPressesTheAddAnotherAccountButtonIfNeeded() {
+        ServersService.clickAddAnotherGoogleAccount();
+    }
 }
 

@@ -317,7 +317,7 @@ public class ServersService {
             scrollAndroid("text","Continue", 0);
             MobileActionManager.waitVisibility(ServersConstants.GOOGLE_ADDITIONAL_PERMISSIONS_BUTTON);
             MobileActionManager.click(ServersConstants.GOOGLE_ADDITIONAL_PERMISSIONS_BUTTON);
-        } catch (Exception e) {
+        } catch (TimeoutException e) {
             System.out.println("Google additional permissions did not appear. Continuing test.");
         }
     }
@@ -337,8 +337,17 @@ public class ServersService {
         try {
             MobileActionManager.waitVisibility(ServersConstants.GOOGLE_SHARE_AGREE_BUTTON);
             MobileActionManager.click(ServersConstants.GOOGLE_SHARE_AGREE_BUTTON);
-        } catch (Exception e) {
+        } catch (TimeoutException e) {
             System.out.println("Google share agreement did not appear. Continuing test.");
+        }
+    }
+
+    public static void clickAddAnotherGoogleAccount() {
+        try {
+            MobileActionManager.waitVisibility(ServersConstants.GOOGLE_ADD_ACCOUNT);
+            MobileActionManager.click(ServersConstants.GOOGLE_ADD_ACCOUNT);
+        } catch (TimeoutException e) {
+            System.out.println("No existing accounts were found. Continuing test.");
         }
     }
 }
