@@ -12,7 +12,7 @@ Feature: Dropbox
     And completes the Title "Crowdar" and the Description "Evidence photo"
     And the user taps + button for the attach files
     And selects files option "<Select files>"
-    And the user selects the file and taps the 'Verification' icon
+    And the user selects the file and taps the verification icon
     And the user presses "SUBMIT" button
     Then the form will be visible in the submitted section
 
@@ -53,7 +53,7 @@ Feature: Dropbox
     And completes the Title "Crowdar" and the Description "Evidence"
     And the user taps + button for the attach files
     And selects the option Select from Tella files
-    And the user selects the file and taps the 'Verification' icon
+    And the user selects the file and taps the Verification icon
     And the user presses <option> icon
     Then the approval message <message> appears
     
@@ -70,7 +70,7 @@ Feature: Dropbox
     And the user taps the "⁝" button
     And the user taps "View"
     And the user taps "RESUME"
-    Then the form will be visible in the submitted section
+    Then the form should be displayed in the "Submitted" section
     
    @Smoke @SmokeManual
   Scenario: Send a report while the internet is desconnecting
@@ -96,7 +96,7 @@ Feature: Dropbox
     
     @Smoke
   Scenario Outline: Delete form from Draft
-    And the user has an form in Draft
+    And the user has an form in the "Draft"
     When the user taps the "Dropbox" connection
     And The user taps the ´"Drafts" category
     And the user taps the "⁝" button
@@ -107,6 +107,16 @@ Feature: Dropbox
   Examples:
    | form_name                |
    | Crowdar has been deleted |
+   
+
+  @Smoke
+  Scenario: View file form from Submitted
+    And the user has an form in the "Submitted"
+    When the user taps the "Dropbox" connection
+    And the user is in the "Submitted" category 
+    And the user taps the "⁝" button
+    And the user taps "View"
+    Then the submitted form details should be displayed
     
 
     
