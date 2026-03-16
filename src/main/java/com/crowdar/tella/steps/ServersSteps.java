@@ -48,7 +48,7 @@ public class ServersSteps extends PageSteps {
     }
 
     @Then("^the user views the message (.*)$")
-    public void theUserViewsTheMessage(String message) throws InterruptedException {
+    public void theUserViewsTheMessage(String message){
         ServersService.viewMessage(message);
     }
 
@@ -137,8 +137,8 @@ public class ServersSteps extends PageSteps {
         ServersService.viewFileUpload(title, description);
     }
 
-    @And("the sucessfull message \"(.*)\" appears")
-    public void theSucessfullMessageAppears(String message) throws InterruptedException {
+    @And("^the sucessfull message \"(.*)\" appears$")
+    public void theSucessfullMessageAppears(String message){
         ServersService.viewMessage(message);
     }
 

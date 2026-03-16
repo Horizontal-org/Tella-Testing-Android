@@ -21,7 +21,7 @@ public class SettingsConstants {
     public static final String FILES_SECTION = "id:favorites";
     public static final String SECTION_TEXT = "xpath://android.widget.ScrollView/android.view.ViewGroup/android" +
             ".widget.LinearLayout[4]";
-    public static final String SWITCH_LIST_BUTTON = "xpath:(//android.widget.Switch[@resource-id=\"org.hzontal.tella:id/mSwitch\"])";
+    public static final String SWITCH_LIST_BUTTON = "xpath://android.widget.TextView[@text='%s']/../..//android.widget.Switch";
     public static final String TELLA_ICON = "accessibility_id:Version";
     public static final String VERSION_TEXT = "id:version";
     public static final String ABOUT_HELP_OPTIONS = "id:options";
@@ -39,7 +39,7 @@ public class SettingsConstants {
     public static final String ICON_CAMOUFLAGE_TEXT = "id:name";
     public static final String MESSAGE_CONTENT = "id:standard_sheet_content";
     public static final String MESSAGE_LABEL = "id:org.hzontal.tella:id/txv_msg";
-    public static final String SECURITY_SWITCH_LIST_BUTTON = "xpath:(//android.widget.Switch[@resource-id=\"org.hzontal.tella:id/mSwitch\"])";
+    public static final String SECURITY_SWITCH_LIST_BUTTON = "xpath://android.widget.TextView[contains(@text, '%s')]/ancestor::*[contains(@class, 'LinearLayout') or contains(@class, 'ViewGroup')]//android.widget.Switch";
     public static final String DELETE_INFO_ICON = "id:delete_vault_tooltip";
     public static final String DELETE_FORM_ICON = "id:delete_forms_tooltip";
     public static final String DELETE_SERVER_ICON = "id:delete_server_tooltip";

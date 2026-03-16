@@ -70,14 +70,14 @@ Feature: General
 
     Examples:
       | configuration               |
-      | Share data to improve tella |
+      | Share data to improve Tella |
       | Share crash reports         |
       | Verification mode           |
       | Recent files                |
       | Favorite forms              |
       | Favorite templates          |
-      | Text Justification          |
-      | Incresease text spacing     |
+      | Text justification          |
+      | Increase text spacing       |
 
   @Smoke @ToBeAutomated @E2E
   Scenario: Activate configuration Share data to improve tella
