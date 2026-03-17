@@ -126,7 +126,7 @@ Feature: Dropbox
   Scenario Outline: Delete form from Draft
     And the user has an form in the "Draft"
     When the user taps the "Dropbox" connection
-    And The user taps the ´"Drafts" category
+    And the user taps the ´"Drafts" category
     And the user taps the "⁝" button
     And the user taps "Delete"
     And the user confirms the "Delete"
