@@ -89,7 +89,7 @@ Feature: Lock Options
       | 123456     | 654321    | OK     | Please try again. Your PINs do not match. |
       | 0987654321 | 098765432 | Next   | Please try again. Your PINs do not match. |
 
-  @Smoke @Pin @Automated @testAbel
+  @Smoke @Pin @Automated
   Scenario Outline: Failed PIN confirmation - PIN length
     When the user taps the Next button until reaching the lock options
     And the user taps the PIN button
@@ -102,14 +102,14 @@ Feature: Lock Options
       | 1     | OK     |
       | 12345 | Next   |
 
-  @Smoke @Pattern @Candidate @E2E
+  @Smoke @Pattern @Automated @E2E
   Scenario Outline: Register with pattern
     When the user taps the Next button until reaching the lock options
     And the user taps the Pattern button
     And the user taps the I UNDERSTAND button
     And the user draws a pattern connecting at least <dots> dots
-    And the user taps the Next button
-    And the user draws the same previous pattern connecting the <dots> dots
+    And the user taps the Next Pattern button
+    And the user draws a pattern connecting at least <dots> dots
     And the user taps the CONTINUE button
     And the user taps the Success screen Next button
     Then a successfully registered message <message> is displayed to the user
@@ -122,23 +122,23 @@ Feature: Lock Options
       | 7    | You’re all done! |
       | 8    | You’re all done! |
 
-  @Smoke @Pattern @Candidate
+  @Smoke @Pattern @Automated
   Scenario Outline: Failed Pattern confirmation - Patterns don't match
     When the user taps the Next button until reaching the lock options
     And the user taps the Pattern button
     And the user taps the I UNDERSTAND button
     And the user draws a pattern connecting at least <dots_a> dots
-    And the user taps the Next button
-    And the user draws a different pattern connecting at least <dots_b> dots
+    And the user taps the Next Pattern button
+    And the user draws a pattern connecting at least <dots_b> dots
     Then a message <message> is displayed to the user
 
     Examples:
       | dots_a | dots_b | message                                       |
-      | 6      | 6      | Please try again. Your patterns do not match. |
+      | 6      | 1      | Please try again. Your patterns do not match. |
       | 7      | 5      | Please try again. Your patterns do not match. |
-      | 8      | 3      | Please try again. Your patterns do not match. |
+      | 8      | 2      | Please try again. Your patterns do not match. |
 
-  @Smoke @Pattern @Candidate
+  @Smoke @Pattern @Automated
   Scenario Outline: Failed Pattern confirmation - Pattern length
     When the user taps the Next button until reaching the lock options
     And the user taps the Pattern button

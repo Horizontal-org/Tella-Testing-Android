@@ -85,4 +85,8 @@ public class LockService {
 
         Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.PIN_SCREEN_TITLE));
     }
+
+    public static void clickPatterButton() {
+        MobileActionManager.click(LockUnlockConstants.LOCK_PATTERN_BUTTON);
+    }
 }
