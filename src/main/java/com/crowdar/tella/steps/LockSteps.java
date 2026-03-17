@@ -94,4 +94,9 @@ public class LockSteps {
     public void theButtonRemainsDisabled(String button) {
         LockService.verifyOkNextPinButtonDoesNotAdvance(button);
     }
+
+    @And("the user taps the Pattern button")
+    public void theUserTapsThePatternButton() {
+        LockService.clickPatterButton();
+    }
 }
