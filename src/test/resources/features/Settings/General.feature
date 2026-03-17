@@ -108,7 +108,7 @@ Feature: General
       | Favorite forms     |
       | Favorite templates |
 
-  @SmokeManual @E2E @Candidate
+  @Smoke @E2E @Candidate
   Scenario Outline: Activate configuration <configuration>
     When the user taps the "General" button
     And the user switches configuration <configuration> to enable
