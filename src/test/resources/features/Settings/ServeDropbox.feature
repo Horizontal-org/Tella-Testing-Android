@@ -48,7 +48,7 @@ Feature: Dropbox
    
  @Smoke @Candidate
   Scenario Outline: Save report to <option>
-    When the user taps the "Dropboxd" connection
+    When the user taps the "Dropbox" connection
     And the user presses "NEW REPORT" button
     And completes the Title "Crowdar" and the Description "Evidence"
     And the user taps + button for the attach files
