@@ -59,4 +59,4 @@ public class FilesConstants {
     public static final String ICON_FILE_AUDIO = "xpath://android.widget.FrameLayout[@resource-id=\"org.hzontal.tella:id/attachmentImgContainer\"]";
     public static final String NEXT_BTN = "id:org.hzontal.tella:id/next_btn";
     public static final String INPUT_FIELD_FOLDER = "id:renameEditText";
-}
+    public static final String FOLDER_OPTIONS_BY_NAME = "xpath://android.widget.TextView[@text='%s']/ancestor::android.view.ViewGroup[1]//android.widget.ImageView[@content-desc='open bottom sheet']";}

@@ -257,5 +257,21 @@ public class FilesService {
         Assert.assertTrue(MobileActionManager.waitVisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER).isDisplayed());
     }
 
+    public static void tapsThreeButtonCreatedFolder() {
+        String ThreeButton = String.format(FilesConstants.FOLDER_OPTIONS_BY_NAME, "TellaFolder");
+        MobileActionManager.waitVisibility(ThreeButton);
+        MobileActionManager.click(ThreeButton);
+    }
+
+    public static void SelectsMultipleTypeFiles() {
+        MobileActionManager.waitVisibility(FilesConstants.CHECKBOX_BUTTON);
+        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
+        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
+    }
+
+    public static void SelectTypeFile(String type) {
+        MobileActionManager.waitVisibility(FilesConstants.THREE_BUTTONS_OPTION_FILE, type);
+        MobileActionManager.click(FilesConstants.THREE_BUTTONS_OPTION_FILE, type);
+    }
 }
 

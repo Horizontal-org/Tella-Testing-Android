@@ -34,7 +34,7 @@ Feature: Tella Web
     And the user presses the button for take a photo
     And the user presses "SUBMIT" button
     Then the file whith title "Crowdar" and description "Evidence photo" being uploaded
-    And the sucessfull message "Your report is available in the Outbox" appears
+    And the sucessfull message "Your report has successfully been submitted." appears
 
 
   @Smoke @ToBeAutomated
