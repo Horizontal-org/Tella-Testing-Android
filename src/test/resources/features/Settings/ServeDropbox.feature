@@ -95,6 +95,18 @@ Feature: Dropbox
     And the user presses "SUBMIT" button
     And the user exits the app
     Then the report is not automatically uploaded and remains in the Outbox
+    
+  @Failed
+  Scenario: Submit a report and close the app while uploading
+    When the user taps the "Dropbox" connection
+    And the user presses "NEW REPORT" button
+    And completes the Title "Crowdar" and the Description "Evidence photo"
+    And the user taps + button for the attach files
+    And selects files option "Take photo with camera"
+    And the user presses the button for take a photo
+    And the user presses "SUBMIT" button
+    And the user closes the app completely
+    Then the report is not automatically uploaded and remains paused in the Outbox
   
     @Candidate
   Scenario: Delete form from Draft
