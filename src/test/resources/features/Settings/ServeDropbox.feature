@@ -114,7 +114,7 @@ Feature: Dropbox
   
     @Candidate
   Scenario: Delete form from Draft
-    And the user has an form in Draft
+    And the user has a form in Draft
     When the user taps the "Dropbox" connection
     And the user taps the ´"Drafts" category
     And the user taps the "⁝" button
