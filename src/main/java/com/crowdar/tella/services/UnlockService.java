@@ -53,6 +53,7 @@ public class UnlockService {
         MobileActionManager.click(LockUnlockConstants.PASSWORD_RIGHT_BUTTON);
         MobileActionManager.click(LockUnlockConstants.CONTINUE_BUTTON);
         MobileActionManager.click(LockUnlockConstants.PASSWORD_NEXT_BUTTON);
+        MobileActionManager.waitVisibility(LockUnlockConstants.START_BUTTON);
         Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.START_BUTTON), LockUnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
     }
 
