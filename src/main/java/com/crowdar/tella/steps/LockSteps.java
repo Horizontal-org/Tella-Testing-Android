@@ -84,4 +84,9 @@ public class LockSteps {
     public void theUserTapsTheGOTOTELLAButton() {
         LockService.clickGoToTella();
     }
+
+    @And("the user taps the button (.*)")
+    public void theUserTapsTheButton(String button) {
+        LockService.clickOkNextPinButton(button);
+    }
 }
