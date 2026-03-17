@@ -67,4 +67,12 @@ public class LockService {
         MobileActionManager.waitVisibility(LockUnlockConstants.START_BUTTON);
         MobileActionManager.click(LockUnlockConstants.START_BUTTON);
     }
+
+    public static void clickOkNextPinButton(String button) {
+        if ("OK".equals(button)) {
+            MobileActionManager.click(LockUnlockConstants.PIN_OK_BUTTON);
+        } else {
+            MobileActionManager.click(LockUnlockConstants.PIN_RIGHT_BUTTON);
+        }
+    }
 }
