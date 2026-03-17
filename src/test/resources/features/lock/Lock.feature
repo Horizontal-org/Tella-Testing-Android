@@ -53,7 +53,7 @@ Feature: Lock Options
       | abcde    |
       | 12345    |
 
-  @Smoke @Pin @Automated @E2E @testAbel
+  @Smoke @Pin @Automated @E2E
   Scenario Outline: Register with PIN
     When the user taps the Next button until reaching the lock options
     And the user taps the PIN button
@@ -89,13 +89,13 @@ Feature: Lock Options
       | 123456     | 654321    | OK     | Please try again. Your PINs do not match. |
       | 0987654321 | 098765432 | Next   | Please try again. Your PINs do not match. |
 
-  @Smoke @Pin @Automated
+  @Smoke @Pin @Automated @testAbel
   Scenario Outline: Failed PIN confirmation - PIN length
     When the user taps the Next button until reaching the lock options
     And the user taps the PIN button
     And the user taps the I UNDERSTAND button
     And the user types a pin <PIN>
-    Then the button <button> remains disabled
+    Then Then the button <button> does not proceed to the next step
 
     Examples:
       | PIN   | button |

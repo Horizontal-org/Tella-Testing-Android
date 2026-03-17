@@ -89,4 +89,9 @@ public class LockSteps {
     public void theUserTapsTheButton(String button) {
         LockService.clickOkNextPinButton(button);
     }
+
+    @Then("Then the button (.*) does not proceed to the next step")
+    public void theButtonRemainsDisabled(String button) {
+        LockService.verifyOkNextPinButtonDoesNotAdvance(button);
+    }
 }

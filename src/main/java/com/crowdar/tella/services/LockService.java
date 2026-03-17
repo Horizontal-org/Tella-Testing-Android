@@ -75,4 +75,14 @@ public class LockService {
             MobileActionManager.click(LockUnlockConstants.PIN_RIGHT_BUTTON);
         }
     }
+
+    public static void verifyOkNextPinButtonDoesNotAdvance(String button) {
+        if ("OK".equals(button)) {
+            MobileActionManager.click(LockUnlockConstants.PIN_OK_BUTTON);
+        } else {
+            MobileActionManager.click(LockUnlockConstants.PIN_RIGHT_BUTTON);
+        }
+
+        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.PIN_SCREEN_TITLE));
+    }
 }
