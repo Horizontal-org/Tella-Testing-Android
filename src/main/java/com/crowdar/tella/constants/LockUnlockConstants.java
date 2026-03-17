@@ -14,6 +14,7 @@ public class LockUnlockConstants {
     public static final String LOCK_PIN_BUTTON = "xpath:(//android.view.ViewGroup[@resource-id=\"org.hzontal.tella:id/root\"])[2]";
     public static final String PIN_OK_BUTTON = "id:okBtn";
     public static final String PIN_RIGHT_BUTTON = "id:pin_right_button";
+    public static final String PIN_SCREEN_TITLE = "id:org.hzontal.tella:id/pin_enterTV";
     public static final String LOCK_PATTERN_BUTTON = "id:lockPatternBtn";
     public static final String LOCK_PATTERN_ID = "id:pl_pattern";
     public static final String SCREEN_PATTERN_ID = "id:pl_message_text";
