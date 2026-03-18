@@ -283,19 +283,26 @@ Feature: PhotographyAndVideo
     Then the file is not deleted
 
   @File @SmokeManual
-  Scenario: Save a file to the device with its verification information
+  Scenario Outline: Save a file to the device with its verification information
     And the Verification mode is on
     When the user presses the camera button
     And the user takes a photography
     And the user presses the image located at the bottom right to the screen
     And the user presses the three points button located at the top right screen
-    And the user presses Save to device button
+    And the user presses "Save to device" button
     And the user presses "Save"
+    And the user presser <button> button
+    And the user presses "OK" button
     And the user selects a folder to save in
-    And the user presses "Use this folder"
+    And the user presses "USE THIS FOLDER"
     And the user presses "Allow"
     Then the file is saved in the device
     And its verification information is available
+    
+    Examples:
+    | button  |
+    | Share files + verification information |
+    | Share files only |
 
   @File @SmokeManual
   Scenario: Cancel saving a file to the device.
