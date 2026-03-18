@@ -2,9 +2,6 @@ package com.crowdar.tella.services;
 
 import com.crowdar.driver.DriverManager;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Dimension;
 import java.time.Duration;
 import com.crowdar.core.actions.MobileActionManager;
@@ -13,8 +10,6 @@ import com.crowdar.tella.constants.SettingsConstants;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
@@ -27,7 +22,6 @@ import java.util.Map;
 
 import static com.crowdar.driver.DriverManager.*;
 import static org.bouncycastle.oer.its.ieee1609dot2.basetypes.Duration.seconds;
-import static org.mozilla.javascript.Context.exit;
 
 public class SettingsService {
 
@@ -310,32 +304,44 @@ public class SettingsService {
     }
 
     public static void pressHomeAndroid(String waitTime) throws InterruptedException {
-        int timeSelect = selectMinutetime(waitTime);
+        int timeSelect = selectMinuteSecondTime(waitTime);
         GenericService.waitOnHomeScreenReturnApp(timeSelect);
     }
 
     public static void pressBlockInAndroid(String waitTime) throws InterruptedException {
-        int timeSelect = selectMinutetime(waitTime);
+        int timeSelect = selectMinuteSecondTime(waitTime);
         GenericService.lockScreenWaitAndUnlock(timeSelect);
     }
 
-    public static void checkscreenlock() {
-        //Validamos que sea visible el campo input password
+    public static void checkscreenlockdisplayed() {
         Assert.assertTrue(MobileActionManager.waitVisibility(LockUnlockConstants.PASSWORD_INPUT).isDisplayed());
     }
+    public static void checkscreenlocknotdisplayed() {
+        Assert.assertFalse(GenericService.isElementPresent(LockUnlockConstants.PASSWORD_INPUT));
+    }
 
-    private static int selectMinutetime(String waitTime) {
+    private static int selectMinuteSecondTime(String waitTime) {
         switch (waitTime) {
             case "Immediately":
-                return 0;
+                return 10;
             case "1 minute":
-                return 1;
+                return 65;
             case "5 minutes":
-                return 5;
+                return 305;
             case "30 minutes":
-                return 30;
+                return 1805;
+            case "1 hour":
+                return 3605;
+            case "20 seconds":
+                return 20;
+            case "40 seconds":
+                return 40;
+            case "80 seconds":
+                return 80;
+            case "120 seconds":
+                return 120;
             default:
-                return 0;
+                throw new IllegalArgumentException("Unsupported wait time: " + waitTime);
         }
     }
 
