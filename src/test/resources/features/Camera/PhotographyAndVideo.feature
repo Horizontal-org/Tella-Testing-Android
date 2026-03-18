@@ -17,14 +17,14 @@ Feature: PhotographyAndVideo
     And the user presses confirm Delete button
     Then the file is deleted
 
-  @Smoke @Photography @SmokeManual
+   @Photography @SmokeManual
   Scenario:Take a photo with the back camera on Tella and check it is not saved in the device's album
     When the user presses the camera button
     And the user presses the take a photo button
     Then there is a new picture in the "Images" folder on Tella
     And the picture taken is not in the device's album
 
-  @Smoke @Photography @SmokeManual
+   @Photography @SmokeManual
   Scenario:Take a photo with the frontal camera on Tella and check it is not saved in the device's album
     When the user presses the camera button
     And the user presses the change camera button
@@ -32,7 +32,7 @@ Feature: PhotographyAndVideo
     Then there is a new picture in the "Images" folder on Tella
     And the picture taken is not in the device's album
 
-  @Smoke @Photography @SmokeManual
+   @Photography @SmokeManual
   Scenario:General - Take a photo from camera with General configuration -> Verification Mode "ON"
     And the Verification Mode is on
     When the user presses the camera button
@@ -41,7 +41,7 @@ Feature: PhotographyAndVideo
     And the verification information is collected correctly
     And the gps information is avaible
 
-  @Smoke @Photography @SmokeManual
+   @Photography @SmokeManual
   Scenario:General - Take a photo from camera with Verification Mode on and GPS (of device) off
     Given the Verification Mode is on
     And the GPS of device is off
@@ -51,7 +51,7 @@ Feature: PhotographyAndVideo
     And the verification information is collected correctly
     And the gps information is not avaible
 
-  @Photography @ToBeAutomated
+  @Smoke @Photography @Candidate
   Scenario:Turn on camera flash automatic mode
     When the user presses the camera button
     And the user presses flash button
@@ -72,7 +72,7 @@ Feature: PhotographyAndVideo
 
         #--------------------------------------Video
 
-  @Smoke @E2E @Video @ToBeAutomated
+  @Smoke @E2E @Video @Candidate
   Scenario: Record a video at highest resolution, verify info and delete - E2E
     When the user presses the camera button
     And the user presses the video button
@@ -107,7 +107,7 @@ Feature: PhotographyAndVideo
       | Medium           |
       | Low              |
 
-  @Smoke @Video @SmokeManual
+  @Video @SmokeManual
   Scenario: Check file size from the last file
     Given that the last file is a video with the highest resolution
     When the user presses the image located at the bottom right to the screen
@@ -115,7 +115,7 @@ Feature: PhotographyAndVideo
     And the user presses "File information"
     Then the video size is congruent with the video resolution
 
-  @Smoke @Video @SmokeManual
+  @Video @SmokeManual
   Scenario: Record a video from camera on Tella and check it is not saved in the device's album
     When the user presses the camera button
     And the user presses the video button
@@ -124,7 +124,7 @@ Feature: PhotographyAndVideo
     Then there is a new video in the "Videos" folder
     And the video taken is not in the device's album
 
-  @Smoke @Video @SmokeManual
+  @Video @SmokeManual
   Scenario: Record a video from the frontal camera on Tella and check it is not saved in the device's album
     When the user presses the camera button
     And the user presses the video button
@@ -134,7 +134,7 @@ Feature: PhotographyAndVideo
     Then there is a new video in the "Videos" folder
     And the video taken is not in the device's album
 
-  @Smoke @Video @SmokeManual
+  @Video @SmokeManual
   Scenario: General - Record a video from Camera with General configuration -> Verification Mode "ON"
     And the Verification Mode is on
     When the user presses the camera button
@@ -145,7 +145,7 @@ Feature: PhotographyAndVideo
     And the video taken is not in the device's album
     And the verification information is collected correctly
 
-  @Smoke @Video @SmokeManual
+  @Video @SmokeManual
   Scenario: General - Record a video from camera with Verification Mode on and GPS (of device) off
     And the Verification Mode is on
     And the GPS of device is off
@@ -178,7 +178,7 @@ Feature: PhotographyAndVideo
 
 
  # ---------------------------------------- FileOptions from thumbnail image
-  @Smoke @ShareFile @SmokeManual
+  @ShareFile @SmokeManual
   Scenario: share file from Tella by Gmail
     And the user has an email account registered on the cell phone
     When the user presses the camera button
@@ -191,7 +191,7 @@ Feature: PhotographyAndVideo
     And the user push the send it button "→"
     Then the file is shared
 
-  @Smoke @ShareFile @SmokeManual
+ @ShareFile @SmokeManual
   Scenario: share file from Tella to Instagram Stories
     And the user has an instagram account
     When the user presses the camera button
@@ -204,7 +204,7 @@ Feature: PhotographyAndVideo
     And the user presses "Done"
     Then the file is shared
 
-  @Smoke @ShareFile @SmokeManual
+ @ShareFile @SmokeManual
   Scenario: share file from Tella to Instagram Reels
     And the user has an instagram account
     When the user presses the camera button
@@ -216,7 +216,7 @@ Feature: PhotographyAndVideo
     And the user presses "Share"
     Then The file is shared
 
-  @Smoke @ShareFile @SmokeManual
+  @ShareFile @SmokeManual
   Scenario: share file from Tella to Instagram Feed
     And the user has an instagram account
     When the user presses the camera button
@@ -229,7 +229,7 @@ Feature: PhotographyAndVideo
     And the user presses "Share"
     Then the file is shared
 
-  @Smoke @ShareFile @SmokeManual
+ @ShareFile @SmokeManual
   Scenario: share file from tella to Instagram Chats
     And the user has an instagram account
     When the user presses the camera button
@@ -241,7 +241,7 @@ Feature: PhotographyAndVideo
     And the user presses "Done"
     Then the file is shared
 
-  @Smoke @ShareFile @SmokeManual
+@ShareFile @SmokeManual
   Scenario: share file from tella to WhatsApp
     And the user has WhatsApp
     When the user presses the camera button
@@ -282,7 +282,7 @@ Feature: PhotographyAndVideo
     And the user presses "Cancel"
     Then the file is not deleted
 
-  @Smoke @File @SmokeManual
+  @File @SmokeManual
   Scenario: Save a file to the device with its verification information
     And the Verification mode is on
     When the user presses the camera button
@@ -297,7 +297,7 @@ Feature: PhotographyAndVideo
     Then the file is saved in the device
     And its verification information is available
 
-  @Smoke @File @SmokeManual
+  @File @SmokeManual
   Scenario: Cancel saving a file to the device.
     When the user presses the camera button
     And the user takes a photography
@@ -339,7 +339,7 @@ Feature: PhotographyAndVideo
     Then the user exits from the last file
     And the photo camera appeared
 
-  @Smoke @Photography @SmokeManual
+  @Photography @SmokeManual
   Scenario Outline: Edit an image by <Modification> from the last camera file
     When the user presses the camera button
     And the user presses the take a photo button
