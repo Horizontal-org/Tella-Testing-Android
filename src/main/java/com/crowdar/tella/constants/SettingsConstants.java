@@ -41,8 +41,8 @@ public class SettingsConstants {
     public static final String MESSAGE_LABEL = "id:org.hzontal.tella:id/txv_msg";
     public static final String SECURITY_SWITCH_LIST_BUTTON = "xpath://android.widget.TextView[contains(@text, '%s')]/ancestor::*[contains(@class, 'LinearLayout') or contains(@class, 'ViewGroup')]//android.widget.Switch";
     public static final String DELETE_INFO_ICON = "id:delete_vault_tooltip";
-    public static final String DELETE_FORM_ICON = "id:delete_forms_tooltip";
     public static final String DELETE_SERVER_ICON = "id:delete_server_tooltip";
+    public static final String DELETE_FORM_ICON = "id:delete_app_tooltip";
     public static final String HELP_INFO_TEXTVIEW = "xpath://android.widget.TextView[@text=\"%s\"]";
     public static final String REMAINING_UNLOCK_ATTEMPTS = "(//android.widget.Switch[@resource-id=\"org.hzontal.tella:id/mSwitch\"])[1]";
     public static final String CHECKBOX_DELETE_FILE = "xpath://android.widget.CheckBox[@resource-id=\"org.hzontal.tella:id/delete_vault\"]";

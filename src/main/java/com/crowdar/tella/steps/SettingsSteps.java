@@ -1,6 +1,7 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.core.PropertyManager;
+import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
 
@@ -37,33 +38,33 @@ public class SettingsSteps {
         SettingsService.clickGeneralIcon();
     }
 
-    @And("taps the language option in the general category")
-    public void tapsTheLanguageOption() {
+    @And("the user taps the Language option")
+    public void theUserTapsTheLanguageOption() {
         SettingsService.clickLanguageOptions();
     }
 
-    @And("views the list with all available languages")
-    public void viewsTheListWithAllAvailableLanguages() {
+    @And("the user views the list with all available languages")
+    public void TheUserViewsTheListWithAllAvailableLanguages() {
         SettingsService.verifyListOfLanguages();
     }
 
-    @And("clicks on the language (.*)")
-    public void clicksOnTheLanguage(String language) {
+    @And("^the user taps on the language (.*)$")
+    public void theUserTapsOnTheLanguage(String language) {
         SettingsService.clickChoosenLanguage(language);
     }
 
-    @Then("views the title (.*) at the top of the page")
-    public void viewsTheTitleAlTheTopOfThePage(String title) {
+    @Then("^the user views the title (.*) at the top of the page$")
+    public void theUserViewsTheTitleAlTheTopOfThePage(String title) {
         SettingsService.verifyLanguageTitle(title);
     }
 
-    @When("^clicks on the category (.*)$")
-    public void clicksOnTheCategory(String category) {
+    @When("^the user taps the category (.*)$")
+    public void theUserTapsTheCategory(String category) {
         SettingsService.clickCategory(category);
     }
 
-    @Then("the user access the category (.*)")
-    public void theUserAccessTheCategory(String category) {
+    @Then("^the user accesses the category (.*)$")
+    public void theUserAccessesTheCategory(String category) {
         SettingsService.accessCategory(category);
     }
 
@@ -72,8 +73,8 @@ public class SettingsSteps {
         SettingsService.viewListGeneralConfifuration();
     }
 
-    @And("switch configuration (.*) to enable")
-    public void switchConfigurationToEnable(String configuration) {
+    @And("^the user switches configuration (.*) to enable$")
+    public void theUserSwitchesConfigurationToEnable(String configuration) {
         SettingsService.switchButtonEnable(configuration);
     }
 
@@ -339,5 +340,10 @@ public class SettingsSteps {
         UnlockService.setPassword(PropertyManager.getProperty("password"));
         UnlockService.goTella();
         HomeService.isHomeLoaded();
+    }
+
+    @And("^the option to select the (.*) language is visible$")
+    public void theOptionToSelectTheDefaultLanguageIsVisible(String languageDefault) {
+        SettingsService.DefaultVisibleLanguage(languageDefault);
     }
 }
