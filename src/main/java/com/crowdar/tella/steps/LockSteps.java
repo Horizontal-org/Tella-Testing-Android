@@ -84,4 +84,19 @@ public class LockSteps {
     public void theUserTapsTheGOTOTELLAButton() {
         LockService.clickGoToTella();
     }
+
+    @And("the user taps the button (.*)")
+    public void theUserTapsTheButton(String button) {
+        LockService.clickOkNextPinButton(button);
+    }
+
+    @Then("Then the button (.*) does not proceed to the next step")
+    public void theButtonRemainsDisabled(String button) {
+        LockService.verifyOkNextPinButtonDoesNotAdvance(button);
+    }
+
+    @And("the user taps the Pattern button")
+    public void theUserTapsThePatternButton() {
+        LockService.clickPatterButton();
+    }
 }
