@@ -34,7 +34,7 @@ Feature: PhotographyAndVideo
 
   @Smoke @Photography @SmokeManual
   Scenario:General - Take a photo from camera with General configuration -> Verification Mode "ON"
-    Given the Verification Mode is on
+    And the Verification Mode is on
     When the user presses the camera button
     And the user presses the take a photo button
     Then there is a new picture in the "Images" folder on Tella
