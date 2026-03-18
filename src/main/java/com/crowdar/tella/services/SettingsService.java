@@ -431,4 +431,12 @@ public class SettingsService {
 
         MobileActionManager.click(SettingsConstants.BUTTON_BACK_LANG);
     }
+
+    public static void DefaultVisibleLanguage(String languageDefault) {
+        WebElement pedidoEle = getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                        ".scrollIntoView(new UiSelector()" +
+                        ".textMatches(\"" + languageDefault + "\").instance(0))"));
+        Assert.assertTrue(pedidoEle.isDisplayed(), "El idioma " + languageDefault + "no es visible");
+    }
 }

@@ -7,7 +7,7 @@ Feature: About and Help
 
    @SmokeManual @E2E @candidate
   Scenario Outline: About & Help - Go to <option> page
-    When clicks on the category <category>
+    When the user taps the category <category>
     And taps the <option> option
     Then the user is redirected to the <site>
 

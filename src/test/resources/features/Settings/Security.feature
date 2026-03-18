@@ -4,7 +4,7 @@ Feature: Security
   Background:
     Given the user is in Tella home page
     And the user taps the settings icon
-    And clicks on the category Security
+    And the user taps the category Security
   
   @Smoke @ToBeAutomated @Lock
   Scenario Outline: Security - Lock - <LockOption> option
@@ -188,12 +188,23 @@ Feature: Security
     And waits finish counter
     Then uninstall message appears
   
-  @Smoke @QuickDelete @HelpInfo @Automated
-  Scenario Outline: Security - Quick delete - Help info
+  @Smoke @QuickDelete @HelpInfo @Automated @testBrian
+  Scenario Outline: Security - Quick delete - Help info of <deleteOption>
+    When toggle the switch on the "Quick delete" option
+    Then click on the help icon in <deleteOption>
+    
+    Examples:
+      | deleteOption       |
+      | Delete files       |
+      | Delete Connections |
+      | Delete Tella       |
+  
+  @Smoke @QuickDelete @HelpInfo @SmokeManual
+  Scenario Outline: Security - Quick delete - Help info of <deleteOption>
     When toggle the switch on the "Quick delete" option
     And click on the help icon in <deleteOption>
     Then the help info message <message> is displayed
-    
+    #No se puede hacer assert al mensaje por error con toolpip
     Examples:
       | deleteOption       | message                                                     |
       | Delete files       | Delete all the files stored in Tella.                       |
