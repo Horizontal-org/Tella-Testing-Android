@@ -149,58 +149,60 @@ public class GenericService {
     }
 
     /**
-     * Wait on home screen and return to app (only Android)
+     * Sends the app to background, waits for a given number of seconds, and brings it back.
      *
-     * @param timeMinute number Minute to wait
+     * @param waitSeconds time to wait in seconds
      * @throws RuntimeException if the waiting thread is interrupted
      */
-    public static void waitOnHomeScreenReturnApp(int timeMinute) {
+    public static void waitOnHomeScreenReturnApp(int waitSeconds) {
         if (MobileActionManager.isAndroid()) {
             AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
-            // Ir a la pantalla de inicio una sola vez
             driver.pressKey(new KeyEvent(AndroidKey.HOME));
-            int auxTimeSecond = (timeMinute * 60) / 10;
-            //en el caso de que sea inmediato, esperamos solo 10segundo en la home.
-            if (auxTimeSecond == 0) auxTimeSecond = 1;
-            for (int i = 0; i < auxTimeSecond; i++) {
-                try {
-                    Thread.sleep(10500);
-                    driver.getCurrentPackage(); // “pulso” ligero a Appium para mantener la session
-                } catch (InterruptedException ie) {
-                    Thread.currentThread().interrupt();
-                    throw new RuntimeException("Interrumpido mientras esperaba inactividad", ie);
-                }
-            }
-            //Retorno app tella
-            driver.activateApp("org.hzontal.tella");
-        }
-    }
 
-    /**
-     * Lock the device screen, wait and unlock (only Android)
-     *
-     * @param timeMinute number of minutes to wait
-     * @throws RuntimeException if the waiting thread is interrupted
-     */
-    public static void lockScreenWaitAndUnlock(int timeMinute) {
-        if (MobileActionManager.isAndroid()) {
-            AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
-            // Bloquear pantalla (presionar POWER nuevamente)
-            driver.lockDevice();
-            int auxTimeSecond = (timeMinute * 60) / 10;
-            if (auxTimeSecond == 0) auxTimeSecond = 1;
+            int remainingTime = Math.max(10, waitSeconds);
 
-            for (int i = 0; i < auxTimeSecond; i++) {
+            while (remainingTime > 0) {
+                int sleepTime = Math.min(remainingTime, 10);
                 try {
-                    Thread.sleep(10500);
-                    driver.getCurrentPackage(); // “pulso” ligero a Appium para mantener la session
+                    Thread.sleep(sleepTime * 1000L);
+                    driver.getCurrentPackage();
+                    remainingTime -= sleepTime;
                 } catch (InterruptedException ie) {
                     Thread.currentThread().interrupt();
                     throw new RuntimeException("Interrupted while waiting for inactivity", ie);
                 }
             }
 
-            // Desbloquear pantalla (presionar POWER nuevamente)
+            driver.activateApp("org.hzontal.tella");
+        }
+    }
+
+    /**
+     * Locks the device screen, waits for a given number of seconds, and unlocks it (Android only).
+     *
+     * @param waitSeconds time to wait in seconds
+     * @throws RuntimeException if the waiting thread is interrupted
+     */
+    public static void lockScreenWaitAndUnlock(int waitSeconds) {
+        if (MobileActionManager.isAndroid()) {
+            AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+
+            driver.lockDevice();
+
+            int remainingTime = Math.max(10, waitSeconds);
+
+            while (remainingTime > 0) {
+                int sleepTime = Math.min(remainingTime, 10);
+                try {
+                    Thread.sleep(sleepTime * 1000L);
+                    driver.getCurrentPackage();
+                    remainingTime -= sleepTime;
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("Interrupted while waiting for inactivity", ie);
+                }
+            }
+
             driver.unlockDevice();
         }
     }
@@ -253,6 +255,22 @@ public class GenericService {
         tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         DriverManager.getDriverInstance().perform(Collections.singletonList(tap));
+    }
+    public static By getByFromLocator(String locator) {
+        if (locator.startsWith("id:")) {
+            return By.id(locator.replace("id:", ""));
+        } else if (locator.startsWith("xpath:")) {
+            return By.xpath(locator.replace("xpath:", ""));
+        } else if (locator.startsWith("accessibilityId:")) {
+            return MobileBy.AccessibilityId(locator.replace("accessibilityId:", ""));
+        } else {
+            throw new IllegalArgumentException("Unsupported locator: " + locator);
+        }
+    }
+    public static boolean isElementPresent(String locator) {
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        By by = getByFromLocator(locator);
+        return !driver.findElements(by).isEmpty();
     }
 }
 
