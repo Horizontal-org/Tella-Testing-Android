@@ -108,7 +108,7 @@ public class SettingsSteps {
         SettingsService.redirectedSite(site);
     }
 
-    @When("^the user clicks the \"(.*)\" option$")
+    @When("^the user taps the (.*) option$")
     public void theUserClicksTheOption(String option) {
         SettingsService.clicksOptions(option);
     }
@@ -199,12 +199,6 @@ public class SettingsSteps {
         SettingsService.pressHomeAndroid(waitTime);
     }
 
-
-    @Then("view screen lock")
-    public void viewScreenLock() {
-        SettingsService.checkscreenlock();
-    }
-
     @Given("the user sets the app lock timeout to (.*)")
     public void theUserHasSelectedTheLockTimeInTimeout(String timeout) {
         SettingsService.clicksOptions("Lock Timeout");
@@ -213,17 +207,22 @@ public class SettingsSteps {
         SettingsService.selectedTimeout(timeout);
     }
 
-    @When("the user leaves the app, waits for the configured time (.*) , and returns")
+    @When("the user leaves the app, waits for (.*) and returns")
     public void theUserLeavesTheAppWaitsForTheConfiguredTimeTimeoutAndReturns(String timeout) throws InterruptedException {
         SettingsService.pressHomeAndroid(timeout);
     }
 
-    @Then("The screen lock must be displayed in the application")
+    @Then("the screen lock must be displayed in the application")
     public void theScreenLockShouldBeDisplayedInTheApp() {
-        SettingsService.checkscreenlock();
+        SettingsService.checkscreenlockdisplayed();
     }
 
-    @When("the user locks the device screen, waits for the configured time (.*), and unlocks it")
+    @Then("the screen lock must not be displayed in the application")
+    public void theScreenLockShouldntBeDisplayedInTheApp() {
+        SettingsService.checkscreenlocknotdisplayed();
+    }
+
+    @When("the user locks the device screen, waits for (.*) and unlocks it")
     public void theUserLocksTheDeviceScreenWaitsForTheConfiguredTimeTimeoutAndUnlocksIt(String timeout) throws InterruptedException {
         SettingsService.pressBlockInAndroid(timeout);
     }
@@ -259,12 +258,12 @@ public class SettingsSteps {
         SettingsService.theAppIsClosed();
     }
 
-    @And("open Tella application again")
+    @And("the user opens the Tella application")
     public void openTellaApplicationAgain() {
         GenericService.openAppTella();
     }
 
-    @And("set security code valid")
+    @And("the user enters a valid password")
     public void setSecurityCodeValid() throws InterruptedException {
         UnlockService.enterPassword(PropertyManager.getProperty("password"));
     }

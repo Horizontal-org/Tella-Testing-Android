@@ -18,8 +18,8 @@ public class LockUnlockConstants {
     public static final String LOCK_PATTERN_BUTTON = "xpath:(//android.view.ViewGroup[@resource-id=\"org.hzontal.tella:id/root\"])[3]";
     public static final String LOCK_PATTERN_ID = "id:pl_pattern";
     public static final String SCREEN_PATTERN_ID = "id:pl_message_text";
-    public static final String NEXT_BUTTON_PATTERN_ID = "id:pl_right_button";
-    public static final String LOCK_SET_UP = "id:org.hzontal.tella:id/onboard_title";
+    public static final String PATTERN_RIGHT_BUTTON = "id:pl_right_button";
+    public static final String LOCK_SET_UP = "id:sheet_subtitle";
     public static final String EXIT_BUTTON = "id:right_img";
     public static final String TELLA_APP = "ACCESSIBILITY_ID:Tella";
     public static final String VIEW_NOT_DISPLAYED_MESSAGE = "Login page is not displayed.";

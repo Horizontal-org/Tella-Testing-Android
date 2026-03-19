@@ -4,7 +4,7 @@ Feature: Audio
   Background:
     Given the user is in Tella home page
 
-  @Smoke @E2E @ToBeAutomated @Ignore
+  @Smoke @E2E @Candidate @Ignore
   Scenario: Record, save, play and cleanup an audio - E2E
     And the user is in the Rec option
     When the user records an audio file
