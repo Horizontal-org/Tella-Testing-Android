@@ -1,5 +1,6 @@
 package com.crowdar.tella.steps;
 
+import com.crowdar.core.PropertyManager;
 import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.services.LockService;
 import com.crowdar.tella.services.UnlockService;
@@ -26,7 +27,7 @@ public class LockSteps {
 
     @And("the user taps the Next button")
     public void tapTheNextButton() {
-        LockService.clickNextPasswordButton();
+        LockService.clickNextLockButton();
     }
 
     @Then("a message (.*) is displayed to the user")
@@ -98,5 +99,25 @@ public class LockSteps {
     @And("the user taps the Pattern button")
     public void theUserTapsThePatternButton() {
         LockService.clickPatterButton();
+    }
+
+    @And("the user taps the (.*) lock method")
+    public void theUserClicksTheLockMethod(String method) {
+        LockService.clickLockMethod(method);
+    }
+
+    @And("the user sets (.*) as the new (.*)")
+    public void theUserSetsAsTheNew(String passPin, String method) {
+        LockService.setPassPin(passPin, method);
+    }
+
+    @Then("the (.*) message is shown")
+    public void theMessageIsShown(String message) {
+        LockService.messageDisplayed(message);
+    }
+
+    @And("the user enters a valid password and taps Enter")
+    public void theUserEntersAValidPasswordAndTapsEnter() {
+        UnlockService.enterPasswordAndtapsEnter(PropertyManager.getProperty("password"));
     }
 }

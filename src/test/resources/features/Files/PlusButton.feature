@@ -5,7 +5,7 @@ Feature: Plus button
     Given the user is in Tella home page
     And Recent files are enabled to be displayed
 
-  @Smoke @Photo @Video @CaptureFile @ToBeAutomated
+  @Smoke @Photo @Video @CaptureFile @Candidate
   Scenario Outline: Capture a file of type <type> from folder <folder>
     When the user enters the folder <folder>
     And taps the "+" button
@@ -23,7 +23,7 @@ Feature: Plus button
       | image | Images     | Photo  | Images    |
       | video | Videos     | Video  | Videos    |
 
-  @Regression @CaptureFile @ToBeAutomated
+  @Regression @CaptureFile @Candidate
   Scenario Outline: Capture a file of type <type> with verification information and GPS off from folder <folder>
     Given the Verification Mode is on
     And GPS is off
@@ -44,7 +44,7 @@ Feature: Plus button
       | video | Videos     | Video  | All files |
 
 
-  @Smoke @CaptureFile @ToBeAutomated
+  @Smoke @CaptureFile @Candidate
   Scenario Outline: Capture a <type> with Verification Mode ON
     Given the Verification Mode is on
     When the user enters the folder <folder>
@@ -61,7 +61,7 @@ Feature: Plus button
       | image | Images     | All files  |
       | video | Videos     | All files  |
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario Outline: Record an audio file from the folder <folder>
     When the user enters the folder <folder>
     And taps the "+" button
@@ -101,7 +101,7 @@ Feature: Plus button
       | Audio     |
       | Others    |
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario Outline: Record an audio file with verification information from the folder <folder>
     Given the Verification Mode is on
     When the user enters the folder <folder>
@@ -194,7 +194,7 @@ Feature: Plus button
     And opens the PDF file from the "Documents" folder
     Then views the PDF file correctly
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Successfully add a folder
     When the user enters the "All Files" folder
     And taps the "+" button

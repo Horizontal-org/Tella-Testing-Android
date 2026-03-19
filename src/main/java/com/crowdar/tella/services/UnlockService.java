@@ -7,6 +7,8 @@ import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.constants.LockUnlockConstantsIOS;
 import io.appium.java_client.*;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Keys;
@@ -244,12 +246,19 @@ public class UnlockService {
     }
 
     public static void clickNextPatternButton() {
-        MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON_PATTERN_ID);
+        MobileActionManager.click(LockUnlockConstants.PATTERN_RIGHT_BUTTON);
     }
 
     public static void validateNextButtonIsDisabled() {
-        String enabled = MobileActionManager.getAttribute(LockUnlockConstants.NEXT_BUTTON_PATTERN_ID, "enabled");
+        String enabled = MobileActionManager.getAttribute(LockUnlockConstants.PATTERN_RIGHT_BUTTON, "enabled");
         Assert.assertEquals(enabled, "false");
+    }
+
+    public static void enterPasswordAndtapsEnter(String password) {
+        MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
+
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        driver.pressKey(new KeyEvent(AndroidKey.ENTER));
     }
 }
 

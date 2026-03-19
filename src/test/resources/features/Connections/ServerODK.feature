@@ -6,13 +6,13 @@ Feature: ODK
     And the user is in Tella home page
     And the user is connected to the ODK server
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Download Forms
     When the user taps on the "ODK" connection
     And presses the Download button in the download Blank
     Then the approval message "download completed" appears
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Save forms to Outbox
     When the user taps on the "Forms" connection
     And taps the new form to fill out
@@ -23,7 +23,7 @@ Feature: ODK
     And presses "Clock" icon
     Then the form is saved on the Outbox
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Save forms to Draft
     When the user taps on the "Forms" connection
     And taps the new form to fill out
@@ -31,7 +31,7 @@ Feature: ODK
     And presses "Save" icon
     Then the form is saved on the Draft
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Delete form from Draft
     Given the user has an form in Draft
     When the user taps on the Forms connection

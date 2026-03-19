@@ -5,7 +5,7 @@ Feature: PhotographyAndVideo
     Given the user is in Tella home page
 
 
-  @Smoke @E2E @Photography @ToBeAutomated
+  @Smoke @E2E @Photography @Candidate
   Scenario: Take a photo with the back camera on Tella, verify info and delete - E2E
     When the user presses the camera button
     And the user presses the take a photo button
@@ -51,7 +51,7 @@ Feature: PhotographyAndVideo
     And the verification information is collected correctly
     And the gps information is not avaible
 
-  @Photography @ToBeAutomated
+  @Photography @Candidate
   Scenario:Turn on camera flash automatic mode
     When the user presses the camera button
     And the user presses flash button
@@ -72,7 +72,7 @@ Feature: PhotographyAndVideo
 
         #--------------------------------------Video
 
-  @Smoke @E2E @Video @ToBeAutomated
+  @Smoke @E2E @Video @Candidate
   Scenario: Record a video at highest resolution, verify info and delete - E2E
     When the user presses the camera button
     And the user presses the video button
