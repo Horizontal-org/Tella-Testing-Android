@@ -4,7 +4,7 @@ Feature: Organize files in a folder
   Background:
     Given the user is in Tella home page
 
-  @Smoke @ToBeAutomated @E2E
+  @Smoke @Candidate @E2E
   Scenario Outline: Sort files by <sortBy> in the folder All files - E2E
     And the user has files loaded
     When the user enters the folder <folder>
@@ -50,7 +50,7 @@ Feature: Organize files in a folder
       | Name A>Z              | Audio     |
       | Name Z>A              | Audio     |
 
-  @Smoke @ToBeAutomated @E2E
+  @Smoke @Candidate @E2E
   Scenario Outline: Sort files by <view> in the folder All files - E2E
     And the user has files loaded
     When the user enters the folder <folder>
@@ -82,7 +82,7 @@ Feature: Organize files in a folder
       | grid | Videos    |
       | list | Videos    |
 
-  @Smoke @E2E @ToBeAutomated
+  @Smoke @E2E @Candidate
   Scenario: Folder-level sorting is independent between folders (Images vs Videos)
     And the user has files loaded
     And the user enters the folder "Images"

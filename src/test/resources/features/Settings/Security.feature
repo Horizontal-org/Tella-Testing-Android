@@ -140,11 +140,11 @@ Feature: Security
     And The option show remaining unlock attempts will be displayed enabled
 
     Examples:
-      | attempts                 | status | message                                                        |
-      | Off (do not delete data) | Off    |                                                                |
-      | 5 attempts               | On     | Your Tella data will be deleted after 5 failed unlock attempts |
-      #| 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
-      #| 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
+      | attempts                 | message                                                        |
+      | Off (do not delete data) |                                                                |
+      | 5 attempts               | Your Tella data will be deleted after 5 failed unlock attempts |
+      #| 10 attempts              |  Your Tella data will be deleted after 10 failed unlock attempts |
+      #| 20 attempts              |  Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon
@@ -214,7 +214,7 @@ Feature: Security
     Then verify slide "DELETE" button is present
 
 
-  @Smoke @QuickDelete @SmokeManual @Deprecated #Volver a verificar
+  @Smoke @QuickDelete @SmokeManual @Deprecated
   Scenario: Security - Quick delete - Delete Tella
     When toggle the switch on the "Quick delete" option
     And select check box “Delete Tella”
@@ -256,7 +256,7 @@ Feature: Security
     And take photo
     Then the camera did not make the sound
 
-  @Smoke @ScreenSecurity @Candidate
+  @Smoke @ScreenSecurity @Candidate @testAbel
   Scenario: Security - Screen secuCamera silent mode
     When toggle the switch on the "Screen security" option
     And go to Tella home page
