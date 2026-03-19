@@ -272,6 +272,16 @@ public class GenericService {
         By by = getByFromLocator(locator);
         return !driver.findElements(by).isEmpty();
     }
+
+    public static void clickFirstPresent(String... locators) {
+        for (String locator : locators) {
+            if (GenericService.isElementPresent(locator)) {
+                MobileActionManager.click(locator);
+                return;
+            }
+        }
+        throw new IllegalStateException("None of the provided locators was found.");
+    }
 }
 
 
