@@ -188,7 +188,7 @@ Feature: Security
     And waits finish counter
     Then uninstall message appears
   
-  @Smoke @QuickDelete @HelpInfo @Automated @testBrian
+  @Smoke @QuickDelete @HelpInfo @Automated
   Scenario Outline: Security - Quick delete - Help info of <deleteOption>
     When toggle the switch on the "Quick delete" option
     Then click on the help icon in <deleteOption>
@@ -204,7 +204,7 @@ Feature: Security
     When toggle the switch on the "Quick delete" option
     And click on the help icon in <deleteOption>
     Then the help info message <message> is displayed
-    #No se puede hacer assert al mensaje por error con toolpip
+    #No se puede hacer assert al mensaje por error con tooltip
     Examples:
       | deleteOption       | message                                                     |
       | Delete files       | Delete all the files stored in Tella.                       |
