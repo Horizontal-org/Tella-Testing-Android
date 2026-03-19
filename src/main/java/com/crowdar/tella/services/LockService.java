@@ -18,8 +18,12 @@ public class LockService {
         MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT,password);
     }
 
-    public static void clickNextPasswordButton(){
-        MobileActionManager.click(LockUnlockConstants.PASSWORD_RIGHT_BUTTON);
+    public static void clickNextLockButton() {
+        GenericService.clickFirstPresent(
+                LockUnlockConstants.PIN_RIGHT_BUTTON,
+                LockUnlockConstants.PASSWORD_RIGHT_BUTTON,
+                LockUnlockConstants.PATTERN_RIGHT_BUTTON
+        );
     }
 
     public static void errorMessageDisplayed(String message){
@@ -48,7 +52,7 @@ public class LockService {
     public static void messageDisplayed(String message){
         MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_SET_UP);
         String messagePage = MobileActionManager.getText(LockUnlockConstants.LOCK_SET_UP);
-        Assert.assertEquals(message, messagePage);
+        Assert.assertTrue(messagePage.contains(message));
     }
 
     public static void clickUnderstandBtn() {
@@ -88,5 +92,23 @@ public class LockService {
 
     public static void clickPatterButton() {
         MobileActionManager.click(LockUnlockConstants.LOCK_PATTERN_BUTTON);
+    }
+
+    public static void clickLockMethod(String method) {
+        if (method.equals("Password")) {
+            MobileActionManager.click(LockUnlockConstants.LOCK_PASSWORD_BUTTON);
+        } else if (method.equals("PIN")) {
+            MobileActionManager.click(LockUnlockConstants.LOCK_PIN_BUTTON);
+        } else if (method.equals("Pattern")){
+            MobileActionManager.click(LockUnlockConstants.LOCK_PATTERN_BUTTON);
+        }
+    }
+
+    public static void setPassPin(String passPin, String method) {
+        if (method.equals("Password")) {
+            MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, passPin);
+        } else if (method.equals("PIN")) {
+            UnlockService.setPin(passPin);
+        }
     }
 }

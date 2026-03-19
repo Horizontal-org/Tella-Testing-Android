@@ -107,7 +107,7 @@ public class SettingsSteps {
         SettingsService.redirectedSite(site);
     }
 
-    @When("^the user clicks the \"(.*)\" option$")
+    @When("^the user taps the (.*) option$")
     public void theUserClicksTheOption(String option) {
         SettingsService.clicksOptions(option);
     }
@@ -262,7 +262,7 @@ public class SettingsSteps {
         GenericService.openAppTella();
     }
 
-    @And("set security code valid")
+    @And("the user enters a valid password")
     public void setSecurityCodeValid() throws InterruptedException {
         UnlockService.enterPassword(PropertyManager.getProperty("password"));
     }

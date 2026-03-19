@@ -6,34 +6,43 @@ Feature: Security
     And the user taps the settings icon
     And clicks on the category Security
 
-  @Smoke @Candidate @Lock
-  Scenario Outline: Security - Lock - <LockOption> option
-    When the user clicks the "Lock" option
-    And set security code valid
-    And tap "<LockOption>" option
-    And set <passPin>
-    And taps "next" button
-    And set confirm <passPin>
-    And taps "next" button
-    Then "Your lock has been changed" message is shown
+  @Smoke @Automated @Lock
+  Scenario Outline: Security - Lock - Change to <LockOption> lock option
+    When the user taps the Lock option
+    And the user enters a valid password and taps Enter
+    And the user taps the <LockOption> lock method
+    And the user taps the I UNDERSTAND button
+    And the user sets <passPin> as the new <LockOption>
+    And the user taps the Next button
+    And the user sets <passPin> as the new <LockOption>
+    And the user taps the Next button
+    And the user taps the CONTINUE button
+    Then the <message> message is shown
 
     Examples:
-      | passPin | LockOption |
-      | 1234560 | Password   |
-      | 1234560 | PIN        |
+      | passPin |  | LockOption | message              |
+      | 1234560 |  | Password   | Your lock is set up! |
+      | 1234560 |  | PIN        | Your lock is set up! |
 
-  @Android @Lock
-  Scenario: Security - Lock - Pattern option
-    When the user clicks the "Lock" option
-    And set security code valid
-    And taps "Pattern" option
-    And set pattern
-    And taps "next" button
-    And set confirm pattern
-    And taps "next" button
-    Then "Your lock has been changed" message is shown
+  @Android @Lock @Automated
+  Scenario Outline: Security - Lock - Change to Pattern lock option
+    When the user taps the Lock option
+    And the user enters a valid password and taps Enter
+    And the user taps the Pattern lock method
+    And the user taps the I UNDERSTAND button
+    And the user draws a pattern connecting at least <dots> dots
+    And the user taps the Next button
+    And the user draws a pattern connecting at least <dots> dots
+    And the user taps the CONTINUE button
+    Then the <message> message is shown
 
-  @Smoke @SmokeManual @LockTimeout @Automated @E2E @testAbel
+    Examples:
+      | dots | message              |
+      | 6    | Your lock is set up! |
+      | 7    | Your lock is set up! |
+      | 8    | Your lock is set up! |
+
+  @Smoke @SmokeManual @LockTimeout @Automated @E2E
   Scenario Outline: Security - Lock Timeout - E2E
     And the user sets the app lock timeout to <timeout>
     When the user leaves the app, waits for <timeout> and returns
@@ -47,7 +56,7 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
-  @Smoke @SmokeManual @LockTimeout @Automated @E2E @testAbel
+  @Smoke @SmokeManual @LockTimeout @Automated @E2E
   Scenario Outline: Security - Lock Timeout - App activity verification - E2E
     And the user sets the app lock timeout to <timeout_a>
     When the user leaves the app, waits for <timeout_b> and returns
@@ -62,7 +71,7 @@ Feature: Security
 
   @Smoke @LockTimeout @Automated @LockFlow
   Scenario Outline: Security - Change Lock Timeout
-    When the user clicks the "Lock Timeout" option
+    When the user taps the Lock Timeout option
     And select timeout <timeout> option
     And taps "OK" button
     Then the option timeout <timeout> is selected
@@ -75,7 +84,7 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
-  @Smoke @LockOnDeviceScreenOff @Automated @E2E @testAbel
+  @Smoke @LockOnDeviceScreenOff @Automated @E2E
   Scenario Outline: Security - Change Lock Timeout - E2E
     Given the user sets the app lock timeout to <timeout>
     When the user locks the device screen, waits for <timeout> and unlocks it
@@ -90,7 +99,7 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
-  @Smoke @LockOnDeviceScreenOff @Automated @E2E @testAbel
+  @Smoke @LockOnDeviceScreenOff @Automated @E2E
   Scenario Outline: Security - Change Lock Timeout - App activity verification - E2E
     Given the user sets the app lock timeout to <timeout_a>
     When the user locks the device screen, waits for <timeout_b> and unlocks it
@@ -99,7 +108,7 @@ Feature: Security
 
     Examples:
       | timeout_a | timeout_b  |
-      | 1 minute | 20 seconds |
+      | 1 minute  | 20 seconds |
       #| 5 minutes   |  40 seconds |
       #| 30 minutes  |  80 seconds |
       #| 1 hour      |  120 seconds |
@@ -107,7 +116,7 @@ Feature: Security
   @Smoke @DeleteAfterFailedUnlock @SmokeManual @Automated @E2E
   Scenario Outline: Security - Delete after failed unlock - E2E
     Given the user records an audio file
-    When the user clicks the "Delete after failed unlock" option
+    When the user taps the Delete after failed unlock option
     And select attempts <attempts> option
     And taps "OK" button
     And the successful message <message> is displayed
@@ -124,7 +133,7 @@ Feature: Security
 
   @Smoke @DeleteAfterFailedUnlock @Automated @LockFlow
   Scenario Outline: Security - Delete after failed unlock
-    When the user clicks the "Delete after failed unlock" option
+    When the user taps the Delete after failed unlock option
     And select attempts <attempts> option
     And taps "OK" button
     Then the successful message <message> is displayed
@@ -139,7 +148,7 @@ Feature: Security
 
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon
-    When the user clicks the "Camouflage" option
+    When the user taps the Camouflage option
     And The user enter the password <password>
     And select "CHANGE NAME AND ICON" option
     And select icon <icon> option
@@ -156,7 +165,7 @@ Feature: Security
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - hide behind a calculator
     When the PIN is selected in lock option
-    And the user clicks the "Camouflage" option
+    And the user taps the Camouflage option
     And enter the valid PIN
     And select "HIDE BEHIND A CALCULATOR APP" option
     And select <calculator> option
@@ -181,7 +190,7 @@ Feature: Security
     And view counter message Quick Delete mode activation
     And the app is closed
     And the user opens the Tella application
-    And set security code valid
+    And the user enters a valid password
     Then that files were deleted
 
 
@@ -195,7 +204,7 @@ Feature: Security
     And view counter message Quick Delete mode activation
     And the app is closed
     And the user opens the Tella application
-    And set security code valid
+    And the user enters a valid password
     Then The user is no longer connected to the Tella web server.
 
   @Smoke @QuickDelete @SmokeManual @Automated
@@ -255,8 +264,8 @@ Feature: Security
     Then view warning permissions
 
   Scenario Outline: Security - Lock - <LockOption> option
-    When the user clicks the "Lock" option
-    And set security code valid
+    When the user taps the Lock option
+    And the user enters a valid password
     And tap "<LockOption>" option
     And set <passPin>
     And taps "next" button
@@ -270,8 +279,8 @@ Feature: Security
       | 1234560 | PIN        |
 
   Scenario: Security - lock - pattern option
-    When the user clicks the "Lock" option
-    And set security code valid
+    When the user taps the Lock option
+    And the user enters a valid password
     And taps "pattern" option
     And set pattern
     And taps "next" button
@@ -281,7 +290,7 @@ Feature: Security
 
   @Smoke @LockTimeout @SmokeManual @Security
   Scenario Outline: Security - Lock Timeout
-    When the user clicks the "Lock Timeout" option
+    When the user taps the Lock Timeout option
     And select timeout <timeout> option
     And taps "OK" button
     And wait <timeout> of time
@@ -298,7 +307,7 @@ Feature: Security
 
   @Smoke @DeleteAfterFailedUnlock @SmokeManual
   Scenario Outline: Security - Delete after failed unlock
-    When the user clicks the "Delete after failed unlock" option
+    When the user taps the Delete after failed unlock option
     And select attempts <attempts> option
     And taps "OK" button
     And the user close the app
@@ -313,7 +322,7 @@ Feature: Security
 
   @Smoke @Candidate
   Scenario Outline: Security - Delete after failed unlock
-    When the user clicks the "Delete after failed unlock" option
+    When the user taps the Delete after failed unlock option
     And select attempts <attempts> option
     And taps "OK" button
     Then the sucessfull message <message> is displayed
@@ -328,7 +337,7 @@ Feature: Security
 
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camouflage method - change name and icon
-    When the user clicks the "Camouflage" option
+    When the user taps the Camouflage option
     And The user enter the password <password>
     And select "CHANGE NAME AND ICON" option
     And select icon <icon> option
@@ -345,7 +354,7 @@ Feature: Security
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage -  change camouflage method - hide behind a calculator
     When the PIN is selected in lock option
-    And the user clicks the "Camouflage" option
+    And the user taps the Camouflage option
     And enter the valid PIN
     And select "HIDE BEHIND A CALCULATOR APP" option
     And select <calculator> option

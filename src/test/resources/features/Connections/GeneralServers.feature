@@ -24,8 +24,8 @@ Feature: Connections - Connection to servers
     And the user is connected to the server <Servers>
     And the user is on the Connections screen
     When the user presses elipisis button
-    And the user clicks the "Delete" option
-    And the user clicks the "Delete" option
+     And the user taps the Delete option
+     And the user taps the Delete option
     Then the server will no longer be available in the connections view
     And the server will no longer be available in the connections view of tella's home
     Examples:
@@ -42,7 +42,7 @@ Feature: Connections - Connection to servers
     And the user is connected to the server <Servers>
     And the user is on the Connections screen
     When the user presses elipisis button
-    And the user clicks the "Edit" option
+    And the user taps the Edit option
     #fill no me acuerdo cuales eran los que tenian el edit disponible okis
     Then the changes are applied to the server
     Examples:

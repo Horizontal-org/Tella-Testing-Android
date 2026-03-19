@@ -205,8 +205,9 @@ public class SettingsService {
     }
 
     public static void clicksOptions(String option) {
-        MobileActionManager.waitVisibility(SettingsConstants.OPTIONS_TITLE, option);
-        MobileActionManager.click(SettingsConstants.OPTIONS_TITLE, option);
+        int index = mapOptionToIndex(option);
+        MobileActionManager.waitVisibility(SettingsConstants.OPTIONS_TITLE, String.valueOf(index));
+        MobileActionManager.click(SettingsConstants.OPTIONS_TITLE, String.valueOf(index));
     }
 
     public static void SelectGeneralOption(String timeout) {
@@ -436,5 +437,20 @@ public class SettingsService {
         Thread.sleep(1000);
 
         MobileActionManager.click(SettingsConstants.BUTTON_BACK_LANG);
+    }
+
+    private static int mapOptionToIndex(String option) {
+        switch (option) {
+            case "Lock":
+                return 1;
+            case "Lock Timeout":
+                return 2;
+            case "Delete after failed unlock":
+                return 3;
+            case "Camouflage":
+                return 4;
+            default:
+                throw new IllegalArgumentException("Unsupported option: " + option);
+        }
     }
 }
