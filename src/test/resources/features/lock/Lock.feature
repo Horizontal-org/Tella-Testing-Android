@@ -74,7 +74,7 @@ Feature: Lock Options
       | 000000 | Next   | You’re all done! |
 
   @Smoke @Pin @Automated
-  Scenario Outline: Failed PIN confirmation - pin don't match
+  Scenario Outline: Failed PIN confirmation - pin doesn't match
     When the user taps the Next button until reaching the lock options
     And the user taps the PIN button
     And the user taps the I UNDERSTAND button
@@ -123,7 +123,7 @@ Feature: Lock Options
       | 8    | You’re all done! |
 
   @Smoke @Pattern @Automated
-  Scenario Outline: Failed Pattern confirmation - Patterns don't match
+  Scenario Outline: Failed Pattern confirmation - Patterns doesn't match
     When the user taps the Next button until reaching the lock options
     And the user taps the Pattern button
     And the user taps the I UNDERSTAND button

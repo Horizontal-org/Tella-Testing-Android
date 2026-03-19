@@ -62,7 +62,7 @@ public class LockSteps {
 
     @Then("a successfully registered message (.*) is displayed to the user")
     public void aSuccessfullyRegisteredMessageIsDisplayed(String message) {
-        LockService.messageDisplayed(message);
+        LockService.messageRegisterDisplayed(message);
     }
 
 
@@ -113,7 +113,7 @@ public class LockSteps {
 
     @Then("the (.*) message is shown")
     public void theMessageIsShown(String message) {
-        LockService.messageDisplayed(message);
+        LockService.messageLockDisplayed(message);
     }
 
     @And("the user enters a valid password and taps Enter")

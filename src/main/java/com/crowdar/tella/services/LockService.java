@@ -49,7 +49,7 @@ public class LockService {
         Assert.assertEquals(verifyPinAttributeEnabled , "true");
     }
 
-    public static void messageDisplayed(String message){
+    public static void messageLockDisplayed(String message){
         MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_SET_UP);
         String messagePage = MobileActionManager.getText(LockUnlockConstants.LOCK_SET_UP);
         Assert.assertTrue(messagePage.contains(message));
@@ -110,5 +110,11 @@ public class LockService {
         } else if (method.equals("PIN")) {
             UnlockService.setPin(passPin);
         }
+    }
+
+    public static void messageRegisterDisplayed(String message) {
+        MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_FIRST_SET_UP);
+        String messagePage = MobileActionManager.getText(LockUnlockConstants.LOCK_FIRST_SET_UP);
+        Assert.assertTrue(messagePage.contains(message));
     }
 }
