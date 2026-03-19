@@ -75,7 +75,7 @@ Feature: Connections - Connection to servers
     And the user presses "OK" button
     Then the user views the Server in the connect list
 
-  @Smoke @Automated @TellaWeb @E2E
+  @Smoke @Automated @TellaWeb @E2E @testBrian
   Scenario: Server - Tella Web configuration with URL
     When the user presses the + button
     And selects the server "Tella Web"
