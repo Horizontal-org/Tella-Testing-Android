@@ -6,7 +6,7 @@ Feature: Uwazi
     And the user is connected to the "Uwazi" server
     #With public access
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Download templates
     When the user taps on the "Uwazi" connection
     And taps the "+" button
@@ -14,7 +14,7 @@ Feature: Uwazi
     Then a green checkmark appears next to the download template
     And the template is now on the Uwazi templates list, ready for the user to fill out
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Submit entity without attachments
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
@@ -23,7 +23,7 @@ Feature: Uwazi
     And presses "Submit"
     Then the entity is saved on the Submitted tab with the corresponding information
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario Outline: Delete entity from <Category>
     Given the user has an entity in <Category>
     When the user taps on the "Uwazi" connection
@@ -39,7 +39,7 @@ Feature: Uwazi
       | Submitted |
       | Draft     |
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario Outline: Submit entity with only primary document
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
@@ -140,7 +140,7 @@ Feature: Uwazi
       | Select from Tella files |
       | Select from your device |
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Save entity to Outbox
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
@@ -149,7 +149,7 @@ Feature: Uwazi
     And presses "Submit later"
     Then the entity is saved on the Outbox tab with the corresponding information
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Save entity as Draft
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out

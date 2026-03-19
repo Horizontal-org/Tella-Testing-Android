@@ -6,7 +6,7 @@ Feature: File Options - Options for files in their individual folders
     And there are files and folders within Tella app
 #rename share save to device file information delete
 
-  @Smoke @ToBeAutomated @Flow
+  @Smoke @Candidate @Flow
   Scenario Outline: Open a multimedia file <type> from the folder <folder>
     When the user enters the folder <folder>
     And capture the file extension <type>
@@ -18,7 +18,7 @@ Feature: File Options - Options for files in their individual folders
       | Videos    | video |
       | Audio     | audio |
 
-  @Smoke @E2E @ToBeAutomated
+  @Smoke @E2E @Candidate
   Scenario: Rename a folder and delete it
     When the user enter the folder All Files
     And taps the option +
@@ -33,7 +33,7 @@ Feature: File Options - Options for files in their individual folders
     And the user presses confirm Delete button
     Then the sucessfull message "The files were deleted." appears
 
-  @Smoke @E2E @ToBeAutomated
+  @Smoke @E2E @Candidate
   Scenario: Move a file to an existing folder and move it back (cleanup)
     When the user enter the folder All Files
     And taps the options button ⋮ of a file
@@ -49,7 +49,7 @@ Feature: File Options - Options for files in their individual folders
     Then the sucessfull message "File successfully moved" appears
 
 
-  @Smoke @ToBeAutomated @E2E
+  @Smoke @Candidate @E2E
   Scenario Outline: Rename a file of <type> from the folder <folder>
     When the user enters the folder <folder>
     And taps the options button "⋮" of the <type> file
@@ -65,7 +65,7 @@ Feature: File Options - Options for files in their individual folders
       | Audios    | audio    |
       | Videos    | video    |
 
-  @ToBeAutomated
+  @Candidate
   Scenario Outline: Rename a file <type> with a name identical to an existing file
     When the user enters the folder <folder>
     And taps the options button "⋮" of a <type> file
@@ -86,7 +86,7 @@ Feature: File Options - Options for files in their individual folders
       | Audio     | audio    |
       | Videos    | video    |
 
-  @ToBeAutomated
+  @Candidate
   Scenario: Cancel the renaming of the <type> file from the <folder> folder
     When the user enters the folder <folder>
     And taps the options button "⋮" of the <type> file
@@ -287,21 +287,21 @@ Feature: File Options - Options for files in their individual folders
     And presses Ok button
     Then the folder name is updated
 
-  @ToBeAutomated
+  @Candidate
   Scenario: Select all files in a folder
     When the user enters the folder "All files"
     And taps the "Checkbox" button
     And taps the "Checkbox" button
     Then all files are selected
 
-  @ToBeAutomated
+  @Candidate
   Scenario: Exit with "x" button from Select Files option
     When the user enters the folder "All files"
     And taps the "Checkbox" button
     And presses the "x" button
     Then the Select Files option disappears
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Rename a folder from All Files
     Given the user has a folder named "folder1" in the "All Files" folder
     When the user enters the folder "All Files"

@@ -6,7 +6,7 @@ Feature: Connections - Connection to servers
     And the user taps the settings icon
     And clicks on the option Servers
 
-  @Smoke @ToBeAutomated @ViewServers @Flow
+  @Smoke @Candidate @ViewServers @Flow
   Scenario Outline: <Servers>  - View Server Options
     When the user presses the + button
     Then the user sees all possible <Servers> options available for connection
@@ -65,7 +65,7 @@ Feature: Connections - Connection to servers
       | serverName     | serverUrl                                      | message        |
       | Server Crowdar | https://kc.kobotoolbox.org/tella_internal_test | Server created |
 
-  @ODK @ToBeAutomated @E2E
+  @ODK @Candidate @E2E
   Scenario: Servers - Advanced Configuration in Open Data Kit Server
     And the user presses the + button
     And selects the server "Open Data Kit (ODK)"
