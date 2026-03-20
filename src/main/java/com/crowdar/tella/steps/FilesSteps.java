@@ -12,7 +12,7 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class FilesSteps {
 
-    @When("the user enters the folder (.*)")
+    @When("^the user enters the folder (.*)$")
     public void theUserEnterTheFolder(String nameFolder) {
         FilesService.enterFolder(nameFolder);
     }
@@ -74,9 +74,9 @@ public class FilesSteps {
 
     }
 
-    @And("taps the options button ⋮ for the (.*) file")
+    @And("^taps the options button ⋮ for the (.*) file$")
     public void tapsTheOptionsButtonForTheTypeFile(String type) {
-        MobileActionManager.click(FilesConstants.THREE_BUTTONS_OPTION_FILE, type);
+        FilesService.SelectTypeFile(type);
     }
 
     @Then("the file (.*) is deleted")
@@ -90,8 +90,7 @@ public class FilesSteps {
 
     @And("taps the Checkbox button and selects multiple (.*) files")
     public void tapsTheCheckboxButtonAndSelectsMultipleTypeFiles(String type) {
-        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
-        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
+        FilesService.SelectsMultipleTypeFiles();
     }
 
     @And("taps the options button ⋮ of a file")
@@ -158,7 +157,8 @@ public class FilesSteps {
 
     @And("taps the options button ⋮ of the created folder")
     public void tapsTheOptionsButtonOfTheCreatedFolder() {
-        GenericService.commonClick(FilesConstants.THREE_BUTTONS_OPTION);
+        //GenericService.commonClick(FilesConstants.THREE_BUTTONS_OPTION);
+        FilesService.tapsThreeButtonCreatedFolder();
     }
 
     @And("select the option Create a new folder")

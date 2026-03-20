@@ -1,16 +1,8 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.core.PageSteps;
-import com.crowdar.core.actions.WebActionManager;
-import com.crowdar.tella.constants.AudioConstants;
-import com.crowdar.tella.constants.FilesConstants;
-import com.crowdar.tella.constants.ServersConstants;
-import com.crowdar.tella.services.FilesService;
-import com.crowdar.tella.services.GenericService;
-import com.crowdar.tella.services.ServersService;
-import com.crowdar.tella.services.SettingsService;
+import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -56,7 +48,7 @@ public class ServersSteps extends PageSteps {
     }
 
     @Then("^the user views the message (.*)$")
-    public void theUserViewsTheMessage(String message) throws InterruptedException {
+    public void theUserViewsTheMessage(String message){
         ServersService.viewMessage(message);
     }
 
@@ -145,8 +137,8 @@ public class ServersSteps extends PageSteps {
         ServersService.viewFileUpload(title, description);
     }
 
-    @And("the sucessfull message \"(.*)\" appears")
-    public void theSucessfullMessageAppears(String message) throws InterruptedException {
+    @And("^the sucessfull message \"(.*)\" appears$")
+    public void theSucessfullMessageAppears(String message){
         ServersService.viewMessage(message);
     }
 
@@ -154,18 +146,87 @@ public class ServersSteps extends PageSteps {
     @And("the user is connected to the Google drive server")
     public void theUserIsConnectedToTheServer() {
         SettingsService.clickSettingsIcon();
-        SettingsService.clickCategory("Servers");
+        SettingsService.clickCategory("Connections");
         ServersService.clickPlusButton();
         ServersService.selectButton("Google drive");
-        ServersService.pressButton("OK");
-        GenericService.confirmLeaveTellaButton();
-        GenericService.pickGoogle();
-        ServersService.googleDrive();
+        LockService.clickContinue();
+        //Verificar cuenta de google antes de continuar
+        //ServersService.clickNextBtn();
+        //GenericService.confirmLeaveTellaButton();
+        //GenericService.pickGoogle();
+        //ServersService.googleDrive();
     }
 
     @And("the user presses OK button")
     public void theUserPressesOKButton() {
         ServersService.okServerButton();
+    }
+
+    @And("^the user enters the credentials of (.*)$")
+    public void theUserEntersTheCredentials(String serverName) {
+        ServersService.inputServerCredencialCredentials(serverName);
+    }
+
+
+    @And("the user presses Log in button")
+    public void theUserPressesLogInButton() {
+        GenericService.clickByCoordinates(550, 1300);
+    }
+
+    @And("the user uses a Gmail account")
+    public void theUserUsesAGoogleAccount() {
+        ServersService.googleDriveUserInput();
+    }
+
+    @And("the user enters a valid Gmail password")
+    public void theUserEntersAValidGmailPassword() throws InterruptedException {
+        ServersService.googleDrivePasswordInput();
+    }
+
+    @And("the user can see the Welcome message and agrees with the terms and conditions")
+    public void theUserCanSeeTheWelcomeMessageAndAgreesTheTermsAndConditions() throws InterruptedException {
+        ServersService.googleDriveAgreeTerms();
+    }
+
+    @And("the user accepts the permissions")
+    public void theUserAcceptsThePermissions() throws InterruptedException {
+        ServersService.googleDriveAcceptPermissions();
+    }
+
+    @And("the user creates a new Google Drive folder called (.*)")
+    public void theUserCreatesANewGoogleDriveFolder(String folder) {
+        ServersService.googleDriveNewFolder(folder);
+    }
+
+    @And("the user accepts the additional permissions if needed")
+    public void theUserAcceptsTheAdditionalPermissions() {
+        ServersService.googleDriveAdditionalPermissions();
+    }
+
+    @And("the user can see the Connected to server message and clicks GO TO GOOGLE DRIVE")
+    public void theUserCanSeeTheConnectedToServerMessage() {
+        ServersService.connectedToServerMsg();
+    }
+
+    @Then("the user can see the (.*) connection in the home page")
+    public void theUserCanSeeTheGoogleDriveConnectionInTheHomePage(String serverName) throws InterruptedException {
+        SettingsService.clickBackButton();
+        HomeService.isAConnectionVisible(serverName);
+    }
+
+    @And("the user chooses an existing Google account")
+    public void theUserChoosesAnExistingGoogleAccount()  {
+        ServersService.clickExistingGoogleAccount();
+    }
+
+    @And("the user presses the Agree and share button if needed")
+    public void theUserPressesTheAgreeAndShareButton() {
+        ServersService.clickAgreeAndShare();
+    }
+
+    @And("the user presses the Add another account button if needed")
+    public void theUserPressesTheAddAnotherAccountButtonIfNeeded() {
+        ServersService.clickAddAnotherGoogleAccount();
     }
 }
 

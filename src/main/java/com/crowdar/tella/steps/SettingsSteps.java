@@ -2,13 +2,8 @@ package com.crowdar.tella.steps;
 
 import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.MobileActionManager;
-import com.crowdar.driver.DriverManager;
-import com.crowdar.tella.constants.SettingsConstants;
 import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 public class SettingsSteps {
     @Given("the user is in Tella home page")
@@ -16,12 +11,6 @@ public class SettingsSteps {
         UnlockService.isViewLoaded();
         UnlockService.setPassword(PropertyManager.getProperty("password"));
         UnlockService.goTella();
-        HomeService.isHomeLoaded();
-        SettingsService.clickSettingsIcon();
-        SettingsService.clickCategory("Security");
-        SettingsService.scrollDown();
-        SettingsService.switchButtonDisable("Screen security");
-        SettingsService.goToHomeFromSecurityPage();
         HomeService.isHomeLoaded();
 
     }
@@ -49,33 +38,33 @@ public class SettingsSteps {
         SettingsService.clickGeneralIcon();
     }
 
-    @And("taps the language option in the general category")
-    public void tapsTheLanguageOption() {
+    @And("the user taps the Language option")
+    public void theUserTapsTheLanguageOption() {
         SettingsService.clickLanguageOptions();
     }
 
-    @And("views the list with all available languages")
-    public void viewsTheListWithAllAvailableLanguages() {
+    @And("the user views the list with all available languages")
+    public void TheUserViewsTheListWithAllAvailableLanguages() {
         SettingsService.verifyListOfLanguages();
     }
 
-    @And("clicks on the language (.*)")
-    public void clicksOnTheLanguage(String language) {
+    @And("^the user taps on the language (.*)$")
+    public void theUserTapsOnTheLanguage(String language) {
         SettingsService.clickChoosenLanguage(language);
     }
 
-    @Then("views the title (.*) at the top of the page")
-    public void viewsTheTitleAlTheTopOfThePage(String title) {
+    @Then("^the user views the title (.*) at the top of the page$")
+    public void theUserViewsTheTitleAlTheTopOfThePage(String title) {
         SettingsService.verifyLanguageTitle(title);
     }
 
-    @When("^clicks on the category (.*)$")
-    public void clicksOnTheCategory(String category) {
+    @When("^the user taps the category (.*)$")
+    public void theUserTapsTheCategory(String category) {
         SettingsService.clickCategory(category);
     }
 
-    @Then("the user access the category (.*)")
-    public void theUserAccessTheCategory(String category) {
+    @Then("^the user accesses the category (.*)$")
+    public void theUserAccessesTheCategory(String category) {
         SettingsService.accessCategory(category);
     }
 
@@ -84,14 +73,14 @@ public class SettingsSteps {
         SettingsService.viewListGeneralConfifuration();
     }
 
-    @And("switch configuration (.*) to enable")
-    public void switchConfigurationToEnable(String configuration) {
+    @And("^the user switches configuration (.*) to enable$")
+    public void theUserSwitchesConfigurationToEnable(String configuration) {
         SettingsService.switchButtonEnable(configuration);
     }
 
     @Then("the user sees that the color has changed to green, indicating it is activated (.*)")
     public void theUserSeesThatTheColorHasChangedToGreenIndicatingItIsActivated(String configuration) {
-        SettingsService.viewButtonEnable(configuration);
+        SettingsService.viewButtonEnableGeneral(configuration);
     }
 
     @Then("view the Tella icon")
@@ -119,7 +108,7 @@ public class SettingsSteps {
         SettingsService.redirectedSite(site);
     }
 
-    @When("^the user clicks the \"(.*)\" option$")
+    @When("^the user taps the (.*) option$")
     public void theUserClicksTheOption(String option) {
         SettingsService.clicksOptions(option);
     }
@@ -162,7 +151,7 @@ public class SettingsSteps {
 
     @Then("^the message \"(.*)\" is displayed$")
     public void theMessageIsDisplayed(String message) {
-        SettingsService.showMessage(message);
+        SettingsService.viewMessage(message);
     }
 
     @Then("^the (.*) option is changed to status (.*)$")
@@ -170,8 +159,8 @@ public class SettingsSteps {
         SettingsService.changeStatus(option, status);
     }
 
-    @Then("^the sucessfull message (.*) is displayed$")
-    public void theSucessfullMessageIsDisplayed(String message) {
+    @Then("^the successful message (.*) is displayed$")
+    public void theSuccessfulMessageIsDisplayed(String message) {
         SettingsService.viewMessage(message);
     }
 
@@ -186,13 +175,13 @@ public class SettingsSteps {
     }
 
     @Then("the help info message (.*) is displayed")
-    public void theHelpInfoMessageIsDisplayed(String helpInfo) {
+    public void theHelpInfoMessageIsDisplayed(String helpInfo){
         SettingsService.showHelpInfoMessage(helpInfo);
     }
 
     @Then("^the \"(.*)\" option is activated$")
     public void theOptionIsActivated(String option) {
-        SettingsService.viewButtonEnable(option);
+        SettingsService.viewButtonEnableSecurity(option);
     }
 
     @And("The option show remaining unlock attempts will be displayed enabled")
@@ -210,12 +199,6 @@ public class SettingsSteps {
         SettingsService.pressHomeAndroid(waitTime);
     }
 
-
-    @Then("view screen lock")
-    public void viewScreenLock() {
-        SettingsService.checkscreenlock();
-    }
-
     @Given("the user sets the app lock timeout to (.*)")
     public void theUserHasSelectedTheLockTimeInTimeout(String timeout) {
         SettingsService.clicksOptions("Lock Timeout");
@@ -224,17 +207,22 @@ public class SettingsSteps {
         SettingsService.selectedTimeout(timeout);
     }
 
-    @When("the user leaves the app, waits for the configured time (.*) , and returns")
+    @When("the user leaves the app, waits for (.*) and returns")
     public void theUserLeavesTheAppWaitsForTheConfiguredTimeTimeoutAndReturns(String timeout) throws InterruptedException {
         SettingsService.pressHomeAndroid(timeout);
     }
 
-    @Then("The screen lock must be displayed in the application")
+    @Then("the screen lock must be displayed in the application")
     public void theScreenLockShouldBeDisplayedInTheApp() {
-        SettingsService.checkscreenlock();
+        SettingsService.checkscreenlockdisplayed();
     }
 
-    @When("the user locks the device screen, waits for the configured time (.*), and unlocks it")
+    @Then("the screen lock must not be displayed in the application")
+    public void theScreenLockShouldntBeDisplayedInTheApp() {
+        SettingsService.checkscreenlocknotdisplayed();
+    }
+
+    @When("the user locks the device screen, waits for (.*) and unlocks it")
     public void theUserLocksTheDeviceScreenWaitsForTheConfiguredTimeTimeoutAndUnlocksIt(String timeout) throws InterruptedException {
         SettingsService.pressBlockInAndroid(timeout);
     }
@@ -268,15 +256,14 @@ public class SettingsSteps {
     @And("the app is closed")
     public void theAppIsClosed() throws InterruptedException {
         SettingsService.theAppIsClosed();
-
     }
 
-    @And("open Tella application again")
+    @And("the user opens the Tella application")
     public void openTellaApplicationAgain() {
         GenericService.openAppTella();
     }
 
-    @And("set security code valid")
+    @And("the user enters a valid password")
     public void setSecurityCodeValid() throws InterruptedException {
         UnlockService.enterPassword(PropertyManager.getProperty("password"));
     }
@@ -352,5 +339,10 @@ public class SettingsSteps {
         UnlockService.setPassword(PropertyManager.getProperty("password"));
         UnlockService.goTella();
         HomeService.isHomeLoaded();
+    }
+
+    @And("^the option to select the (.*) language is visible$")
+    public void theOptionToSelectTheDefaultLanguageIsVisible(String languageDefault) {
+        SettingsService.DefaultVisibleLanguage(languageDefault);
     }
 }

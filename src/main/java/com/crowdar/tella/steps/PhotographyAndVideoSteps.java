@@ -5,10 +5,7 @@ import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.PhotographyAndVideoConstants;
-import com.crowdar.tella.services.AudioService;
-import com.crowdar.tella.services.FilesService;
-import com.crowdar.tella.services.GenericService;
-import com.crowdar.tella.services.PhotographyAndVideoService;
+import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
 
 public class PhotographyAndVideoSteps {
@@ -40,9 +37,9 @@ public class PhotographyAndVideoSteps {
         GenericService.commonClick(PhotographyAndVideoConstants.VIDEO_CONFIG);
     }
 
-    @And("the user presses the option highest possible")
-    public void theUserPressesTheOptionHighestPossible() {
-        PhotographyAndVideoService.videoResolution();
+    @And("^the user presses the option (.*)$")
+    public void theUserPressesTheOptionHighestPossible(String resolution) {
+        PhotographyAndVideoService.videoResolution(resolution);
     }
 
     @And("the user presses the next button")
@@ -79,7 +76,7 @@ public class PhotographyAndVideoSteps {
 
     @And("the user presses confirm Delete button")
     public void theUserPressesConfirmDeleteButton() throws InterruptedException {
-       // PhotographyAndVideoService.deleteButton();
+       PhotographyAndVideoService.deleteButton();
     }
 
     @Then("the file is deleted")
@@ -143,6 +140,26 @@ public class PhotographyAndVideoSteps {
     @Then("the sistem notified there is a existing file with the same name")
     public void theSistemNotifiedThereIsAExistingFileWithTheSameName() {
         PhotographyAndVideoService.changeNameAssert();
+    }
+
+    @Then("^the user check the resolution (.*) its selected in choose resolution$")
+    public void theUserCheckTheResolutionItsSelectedInChooseResolution(String resolution) {
+        PhotographyAndVideoService.videoResolutionAssert(resolution);
+    }
+
+    @And("the user have a photo taken named Tella")
+    public void theUserHaveAPhotoTakenNamedTella() {
+        GenericService.commonClick(HomeConstants.CAMERA_BUTTON);
+        FilesService.acceptPermissions();
+        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        GenericService.commonClick(PhotographyAndVideoConstants.PREVIEW_FILE);
+        GenericService.commonClick(PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON);
+        GenericService.commonClick(PhotographyAndVideoConstants.RENAME_BUTTON);
+        PhotographyAndVideoService.deleteTextAndSendKeys();
+        LockService.clickContinue();
+        GenericService.commonClick(PhotographyAndVideoConstants.GO_BACK_BUTTON);
+        GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
+
     }
 }
 

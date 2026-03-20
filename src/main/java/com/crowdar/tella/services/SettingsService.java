@@ -2,9 +2,6 @@ package com.crowdar.tella.services;
 
 import com.crowdar.driver.DriverManager;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Dimension;
 import java.time.Duration;
 import com.crowdar.core.actions.MobileActionManager;
@@ -13,8 +10,6 @@ import com.crowdar.tella.constants.SettingsConstants;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
@@ -27,7 +22,6 @@ import java.util.Map;
 
 import static com.crowdar.driver.DriverManager.*;
 import static org.bouncycastle.oer.its.ieee1609dot2.basetypes.Duration.seconds;
-import static org.mozilla.javascript.Context.exit;
 
 public class SettingsService {
 
@@ -105,26 +99,32 @@ public class SettingsService {
 
     public static String viewButton(String configuration) {
         Map<String, String> buttons = new HashMap<>();
-        buttons.put("Share crash reports", SettingsConstants.SWITCH_LIST_BUTTON + "[1]");
-        buttons.put("Verification mode", SettingsConstants.SWITCH_LIST_BUTTON + "[2]");
-        buttons.put("Recent files", SettingsConstants.SWITCH_LIST_BUTTON + "[3]");
-        buttons.put("Favorite forms", SettingsConstants.SWITCH_LIST_BUTTON + "[4]");
-        buttons.put("Favorite templates", SettingsConstants.SWITCH_LIST_BUTTON + "[5]");
-        buttons.put("Test justification", SettingsConstants.SWITCH_LIST_BUTTON + "[6]");
-        buttons.put("Increase text spacing", SettingsConstants.SWITCH_LIST_BUTTON + "[7]");
-        buttons.put("Quick delete", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[1]");
-        buttons.put("Preserve metadata when importing", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[2]");
-        buttons.put("Camera silent mode", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[3]");
+        buttons.put("Share data to improve Tella", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Share crash reports", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Verification mode", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Recent files", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Favorite forms", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Favorite templates", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Text justification", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Increase text spacing", SettingsConstants.SWITCH_LIST_BUTTON);
+        buttons.put("Quick delete", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON);
+        buttons.put("Preserve metadata when importing", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON);
+        buttons.put("Camera silent mode", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON);
         buttons.put("Screen security", SettingsConstants.SECURITY_SWITCH_LIST_BUTTON + "[4]");
         return buttons.get(configuration);
     }
 
     public static void switchButtonEnable(String configuration) {
         String button = viewButton(configuration);
-        MobileActionManager.waitVisibility(button);
-        String check = MobileActionManager.getAttribute(button, "checked");
+        String buttonFormat = String.format(button, configuration);
+        if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
+            SettingsService.scrollDown();
+        }
+
+        MobileActionManager.waitVisibility(buttonFormat);
+        String check = MobileActionManager.getAttribute(buttonFormat, "checked");
         if (Boolean.parseBoolean(check) != true) {
-            MobileActionManager.click(button);
+            MobileActionManager.click(buttonFormat);
         }
     }
 
@@ -137,10 +137,29 @@ public class SettingsService {
         }
     }
 
-    public static void viewButtonEnable(String configuration) {
+    public static void viewButtonEnableGeneral(String configuration) {
+        MobileActionManager.waitVisibility(SettingsConstants.CATEGORY_SETTINGS_TITLE);
+        if (!MobileActionManager.getText(SettingsConstants.CATEGORY_SETTINGS_TITLE).equalsIgnoreCase("General")){
+            SettingsService.generalButton();
+        }
+
         String button = viewButton(configuration);
-        MobileActionManager.waitVisibility(button);
-        Assert.assertTrue(MobileActionManager.getAttribute(button, "checked").contains("true"));
+        String buttonFormat = String.format(button, configuration);
+        if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
+            SettingsService.scrollDown();
+        }
+        MobileActionManager.waitVisibility(buttonFormat);
+        Assert.assertTrue(MobileActionManager.getAttribute(buttonFormat, "checked").contains("true"));
+    }
+
+    public static void viewButtonEnableSecurity(String option) {
+        String button = viewButton(option);
+        String buttonFormat = String.format(button, option);
+        if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
+            SettingsService.scrollDown();
+        }
+        MobileActionManager.waitVisibility(buttonFormat);
+        Assert.assertTrue(MobileActionManager.getAttribute(buttonFormat, "checked").contains("true"));
     }
 
     public static void viewTellaIcon() {
@@ -186,8 +205,9 @@ public class SettingsService {
     }
 
     public static void clicksOptions(String option) {
-        MobileActionManager.waitVisibility(SettingsConstants.OPTIONS_TITLE, option);
-        MobileActionManager.click(SettingsConstants.OPTIONS_TITLE, option);
+        int index = mapOptionToIndex(option);
+        MobileActionManager.waitVisibility(SettingsConstants.OPTIONS_TITLE, String.valueOf(index));
+        MobileActionManager.click(SettingsConstants.OPTIONS_TITLE, String.valueOf(index));
     }
 
     public static void SelectGeneralOption(String timeout) {
@@ -244,8 +264,8 @@ public class SettingsService {
     }
 
     public static void viewMessage(String message) {
-        if (message != "") {
-            MobileActionManager.waitVisibility(SettingsConstants.MESSAGE_LABEL);
+        if (!message.isEmpty()) {
+            MobileActionManager.waitPresence(SettingsConstants.MESSAGE_LABEL);
             Assert.assertTrue(MobileActionManager.getText(SettingsConstants.MESSAGE_LABEL).contains(message));
         }
     }
@@ -266,8 +286,9 @@ public class SettingsService {
     public static void clickHelpInfo(String option) {
         Map<String, String> options = new HashMap<>();
         options.put("Delete files", SettingsConstants.DELETE_INFO_ICON);
-        options.put("Delete draft and submitted forms", SettingsConstants.DELETE_FORM_ICON);
-        options.put("Delete server settings", SettingsConstants.DELETE_SERVER_ICON);
+        options.put("Delete Connections", SettingsConstants.DELETE_SERVER_ICON);
+        options.put("Delete Tella", SettingsConstants.DELETE_FORM_ICON);
+
         MobileActionManager.waitVisibility(options.get(option));
         MobileActionManager.click(options.get(option));
     }
@@ -284,32 +305,44 @@ public class SettingsService {
     }
 
     public static void pressHomeAndroid(String waitTime) throws InterruptedException {
-        int timeSelect = selectMinutetime(waitTime);
+        int timeSelect = selectMinuteSecondTime(waitTime);
         GenericService.waitOnHomeScreenReturnApp(timeSelect);
     }
 
     public static void pressBlockInAndroid(String waitTime) throws InterruptedException {
-        int timeSelect = selectMinutetime(waitTime);
+        int timeSelect = selectMinuteSecondTime(waitTime);
         GenericService.lockScreenWaitAndUnlock(timeSelect);
     }
 
-    public static void checkscreenlock() {
-        //Validamos que sea visible el campo input password
+    public static void checkscreenlockdisplayed() {
         Assert.assertTrue(MobileActionManager.waitVisibility(LockUnlockConstants.PASSWORD_INPUT).isDisplayed());
     }
+    public static void checkscreenlocknotdisplayed() {
+        Assert.assertFalse(GenericService.isElementPresent(LockUnlockConstants.PASSWORD_INPUT));
+    }
 
-    private static int selectMinutetime(String waitTime) {
+    private static int selectMinuteSecondTime(String waitTime) {
         switch (waitTime) {
             case "Immediately":
-                return 0;
+                return 10;
             case "1 minute":
-                return 1;
+                return 65;
             case "5 minutes":
-                return 5;
+                return 305;
             case "30 minutes":
-                return 30;
+                return 1805;
+            case "1 hour":
+                return 3605;
+            case "20 seconds":
+                return 20;
+            case "40 seconds":
+                return 40;
+            case "80 seconds":
+                return 80;
+            case "120 seconds":
+                return 120;
             default:
-                return 0;
+                throw new IllegalArgumentException("Unsupported wait time: " + waitTime);
         }
     }
 
@@ -339,9 +372,14 @@ public class SettingsService {
         MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON).click();
     }
 
-    public static void viewCounterMessage(String message) {
-        Assert.assertTrue(MobileActionManager.waitVisibility(SettingsConstants.VIEW_COUNTER_MESSAGE, message).isDisplayed());
+    public static void viewCounterMessage(String expectedText) {
+        if (!expectedText.isEmpty()) {
+            MobileActionManager.waitPresence(SettingsConstants.VIEW_COUNTER_MESSAGE, expectedText);
+            String actualText = MobileActionManager.getText(SettingsConstants.VIEW_COUNTER_MESSAGE, expectedText);
+            Assert.assertTrue(actualText.contains(expectedText));
+        }
     }
+
 
     public static void theAppIsClosed() throws InterruptedException {
         //Esperamos por el cierre de la app y validamos que se haya cerrado
@@ -392,5 +430,35 @@ public class SettingsService {
         return driver.findElement(MobileBy.AndroidUIAutomator(uiAutomatorCommand));
     }
 
+    public static void clickBackButton() throws InterruptedException {
 
+        MobileActionManager.click(SettingsConstants.BUTTON_BACK_LANG);
+
+        Thread.sleep(1000);
+
+        MobileActionManager.click(SettingsConstants.BUTTON_BACK_LANG);
+    }
+
+    public static void DefaultVisibleLanguage(String languageDefault) {
+        WebElement pedidoEle = getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                        ".scrollIntoView(new UiSelector()" +
+                        ".textMatches(\"" + languageDefault + "\").instance(0))"));
+        Assert.assertTrue(pedidoEle.isDisplayed(), "El idioma " + languageDefault + "no es visible");
+    }
+
+    private static int mapOptionToIndex(String option) {
+        switch (option) {
+            case "Lock":
+                return 1;
+            case "Lock Timeout":
+                return 2;
+            case "Delete after failed unlock":
+                return 3;
+            case "Camouflage":
+                return 4;
+            default:
+                throw new IllegalArgumentException("Unsupported option: " + option);
+        }
+    }
 }
