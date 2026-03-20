@@ -172,7 +172,7 @@ Feature: Security
     And taps "Exit Tella" button
     Then the message "<message>" is displayed
     And view the Tella icon changed for <calculator>
-
+ 
     Examples:
       | calculator   | message                                                                     |
       | Calculator_1 | Please wait. You will return to your device's home screen in a few seconds. |
