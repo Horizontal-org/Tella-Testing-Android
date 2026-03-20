@@ -100,6 +100,7 @@ Feature: General
     And the user switches configuration <configuration> to enable
     When the user is back in Tella home page
     Then the user will be able to view the configuration <configuration> in the home page
+    
     Examples:
       | configuration      |
       | Recent files       |
