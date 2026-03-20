@@ -4,7 +4,7 @@ Feature: Security
   Background:
     Given the user is in Tella home page
     And the user taps the settings icon
-    And clicks on the category Security
+    And the user taps the category Security
 
   @Smoke @Automated @Lock
   Scenario Outline: Security - Lock - Change to <LockOption> lock option
