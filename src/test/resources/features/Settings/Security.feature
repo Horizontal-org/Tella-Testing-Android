@@ -6,38 +6,47 @@ Feature: Security
     And the user taps the settings icon
     And clicks on the category Security
 
-  @Smoke @ToBeAutomated @Lock
-  Scenario Outline: Security - Lock - <LockOption> option
-    When the user clicks the "Lock" option
-    And set security code valid
-    And tap "<LockOption>" option
-    And set <passPin>
-    And taps "next" button
-    And set confirm <passPin>
-    And taps "next" button
-    Then "Your lock has been changed" message is shown
+  @Smoke @Automated @Lock
+  Scenario Outline: Security - Lock - Change to <LockOption> lock option
+    When the user taps the Lock option
+    And the user enters a valid password and taps Enter
+    And the user taps the <LockOption> lock method
+    And the user taps the I UNDERSTAND button
+    And the user sets <passPin> as the new <LockOption>
+    And the user taps the Next button
+    And the user sets <passPin> as the new <LockOption>
+    And the user taps the Next button
+    And the user taps the CONTINUE button
+    Then the <message> message is shown
 
     Examples:
-      | passPin | LockOption |
-      | 1234560 | Password   |
-      | 1234560 | PIN        |
+      | passPin |  | LockOption | message              |
+      | 1234560 |  | Password   | Your lock is set up! |
+      | 1234560 |  | PIN        | Your lock is set up! |
 
-  @Android @Lock
-  Scenario: Security - Lock - Pattern option
-    When the user clicks the "Lock" option
-    And set security code valid
-    And taps "Pattern" option
-    And set pattern
-    And taps "next" button
-    And set confirm pattern
-    And taps "next" button
-    Then "Your lock has been changed" message is shown
+  @Android @Lock @Automated
+  Scenario Outline: Security - Lock - Change to Pattern lock option
+    When the user taps the Lock option
+    And the user enters a valid password and taps Enter
+    And the user taps the Pattern lock method
+    And the user taps the I UNDERSTAND button
+    And the user draws a pattern connecting at least <dots> dots
+    And the user taps the Next button
+    And the user draws a pattern connecting at least <dots> dots
+    And the user taps the CONTINUE button
+    Then the <message> message is shown
+
+    Examples:
+      | dots | message              |
+      | 6    | Your lock is set up! |
+      | 7    | Your lock is set up! |
+      | 8    | Your lock is set up! |
 
   @Smoke @SmokeManual @LockTimeout @Automated @E2E
-  Scenario Outline: Security - Lock Timeout - E2E 
-    Given the user sets the app lock timeout to <timeout>
-    When the user leaves the app, waits for the configured time <timeout> , and returns
-    Then view screen lock
+  Scenario Outline: Security - Lock Timeout - E2E
+    And the user sets the app lock timeout to <timeout>
+    When the user leaves the app, waits for <timeout> and returns
+    Then the screen lock must be displayed in the application
 
     Examples:
       | timeout     |
@@ -47,9 +56,22 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
+  @Smoke @SmokeManual @LockTimeout @Automated @E2E
+  Scenario Outline: Security - Lock Timeout - App activity verification - E2E
+    And the user sets the app lock timeout to <timeout_a>
+    When the user leaves the app, waits for <timeout_b> and returns
+    Then the screen lock must not be displayed in the application
+
+    Examples:
+      | timeout_a | timeout_b  |
+      | 1 minute  | 20 seconds |
+      #| 5 minutes   |  40 seconds |
+      #| 30 minutes  |  80 seconds |
+      #| 1 hour      |  120 seconds |
+
   @Smoke @LockTimeout @Automated @LockFlow
   Scenario Outline: Security - Change Lock Timeout
-    When the user clicks the "Lock Timeout" option
+    When the user taps the Lock Timeout option
     And select timeout <timeout> option
     And taps "OK" button
     Then the option timeout <timeout> is selected
@@ -65,8 +87,9 @@ Feature: Security
   @Smoke @LockOnDeviceScreenOff @Automated @E2E
   Scenario Outline: Security - Change Lock Timeout - E2E
     Given the user sets the app lock timeout to <timeout>
-    When the user locks the device screen, waits for the configured time <timeout>, and unlocks it
-    Then The screen lock must be displayed in the application
+    When the user locks the device screen, waits for <timeout> and unlocks it
+    And the user opens the Tella application
+    Then the screen lock must be displayed in the application
 
     Examples:
       | timeout     |
@@ -76,13 +99,27 @@ Feature: Security
       #| 30 minutes  |
       #| 1 hour      |
 
+  @Smoke @LockOnDeviceScreenOff @Automated @E2E
+  Scenario Outline: Security - Change Lock Timeout - App activity verification - E2E
+    Given the user sets the app lock timeout to <timeout_a>
+    When the user locks the device screen, waits for <timeout_b> and unlocks it
+    And the user opens the Tella application
+    Then the screen lock must not be displayed in the application
+
+    Examples:
+      | timeout_a | timeout_b  |
+      | 1 minute  | 20 seconds |
+      #| 5 minutes   |  40 seconds |
+      #| 30 minutes  |  80 seconds |
+      #| 1 hour      |  120 seconds |
+
   @Smoke @DeleteAfterFailedUnlock @SmokeManual @Automated @E2E
   Scenario Outline: Security - Delete after failed unlock - E2E
     Given the user records an audio file
-    When the user clicks the "Delete after failed unlock" option
+    When the user taps the Delete after failed unlock option
     And select attempts <attempts> option
     And taps "OK" button
-    And the sucessfull message <message> is displayed
+    And the successful message <message> is displayed
     And the user closes and reopens the Tella app
     And the user set incorrect <PIN> in <attempts>
     Then the app displays the "Get started" screen to the user
@@ -96,26 +133,26 @@ Feature: Security
 
   @Smoke @DeleteAfterFailedUnlock @Automated @LockFlow
   Scenario Outline: Security - Delete after failed unlock
-    When the user clicks the "Delete after failed unlock" option
+    When the user taps the Delete after failed unlock option
     And select attempts <attempts> option
     And taps "OK" button
-    Then the sucessfull message <message> is displayed
+    Then the successful message <message> is displayed
     And The option show remaining unlock attempts will be displayed enabled
 
     Examples:
-      | attempts                 | status | message                                                         |
-      | Off (do not delete data) | Off    |                                                                 |
-      | 5 attempts               | On     | Your Tella data will be deleted after 5 failed unlock attempts  |
-      #| 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
-      #| 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
+      | attempts                 | message                                                        |
+      | Off (do not delete data) |                                                                |
+      | 5 attempts               | Your Tella data will be deleted after 5 failed unlock attempts |
+      #| 10 attempts              |  Your Tella data will be deleted after 10 failed unlock attempts |
+      #| 20 attempts              |  Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - change name and icon
-    When the user clicks the "Camouflage" option
+    When the user taps the Camouflage option
     And The user enter the password <password>
     And select "CHANGE NAME AND ICON" option
     And select icon <icon> option
-    And tap the next button
+    And the user taps the Next button
     And taps "Exit Tella" button
     Then the message "<message>" is displayed
     And view the Tella icon changed for <icon>
@@ -128,7 +165,7 @@ Feature: Security
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camuflaje method - hide behind a calculator
     When the PIN is selected in lock option
-    And the user clicks the "Camouflage" option
+    And the user taps the Camouflage option
     And enter the valid PIN
     And select "HIDE BEHIND A CALCULATOR APP" option
     And select <calculator> option
@@ -147,14 +184,13 @@ Feature: Security
   Scenario: Security - Quick delete - Delete files - E2E
     Given the user records an audio file
     When toggle the switch on the "Quick delete" option
-    And select check box Delete files
     And Go to the Tella homepage from Security Page
     And verify slide "DELETE" button is present
     And taps slide "DELETE" button
     And view counter message Quick Delete mode activation
     And the app is closed
-    And open Tella application again
-    And set security code valid
+    And the user opens the Tella application
+    And the user enters a valid password
     Then that files were deleted
 
 
@@ -167,18 +203,18 @@ Feature: Security
     And taps slide "DELETE" button
     And view counter message Quick Delete mode activation
     And the app is closed
-    And open Tella application again
-    And set security code valid
+    And the user opens the Tella application
+    And the user enters a valid password
     Then The user is no longer connected to the Tella web server.
 
-  @Smoke @QuickDelete @SmokeManual @Automated 
+  @Smoke @QuickDelete @SmokeManual @Automated
   Scenario: Security - Quick delete - Verify slide Delete
     When toggle the switch on the "Quick delete" option
     And Go to the Tella homepage from Security Page
     Then verify slide "DELETE" button is present
 
 
-  @Smoke @QuickDelete @SmokeManual @Deprecated #En la APP no esta el check para eliminar la APP
+  @Smoke @QuickDelete @SmokeManual @Deprecated
   Scenario: Security - Quick delete - Delete Tella
     When toggle the switch on the "Quick delete" option
     And select check box “Delete Tella”
@@ -190,16 +226,28 @@ Feature: Security
     Then uninstall message appears
 
   @Smoke @QuickDelete @HelpInfo @Automated
-  Scenario Outline: Security - Quick delete - Help info
+  Scenario Outline: Security - Quick delete - Help info of <deleteOption>
+    When toggle the switch on the "Quick delete" option
+    Then click on the help icon in <deleteOption>
+    
+    Examples:
+      | deleteOption       |
+      | Delete files       |
+      | Delete Connections |
+      | Delete Tella       |
+  
+  @Smoke @QuickDelete @HelpInfo @SmokeManual
+  Scenario Outline: Security - Quick delete - Help info of <deleteOption>
     When toggle the switch on the "Quick delete" option
     And click on the help icon in <deleteOption>
     Then the help info message <message> is displayed
 
+    #No se puede hacer assert al mensaje por error con tooltip
     Examples:
-      | deleteOption                     | message                                                                |
-      | Delete files                     | Delete all the files stored in Tella.                                  |
-      | Delete draft and submitted forms | Delete all draft and submitted forms.                                  |
-      | Delete server settings           | Delete your connections to servers and all forms associated with them. |
+      | deleteOption       | message                                                     |
+      | Delete files       | Delete all the files stored in Tella.                       |
+      | Delete Connections | Delete your Connections and all forms associated with them. |
+      | Delete Tella       | Delete the app and all the data it contains.                |
 
   @Smoke @Automated
   Scenario Outline: Security - <option> ON
@@ -220,7 +268,7 @@ Feature: Security
     And take photo
     Then the camera did not make the sound
 
-  @Smoke @ScreenSecurity @ToBeAutomated
+  @Smoke @ScreenSecurity @Candidate @testAbel
   Scenario: Security - Screen secuCamera silent mode
     When toggle the switch on the "Screen security" option
     And go to Tella home page
@@ -228,8 +276,8 @@ Feature: Security
     Then view warning permissions
 
   Scenario Outline: Security - Lock - <LockOption> option
-    When the user clicks the "Lock" option
-    And set security code valid
+    When the user taps the Lock option
+    And the user enters a valid password
     And tap "<LockOption>" option
     And set <passPin>
     And taps "next" button
@@ -243,8 +291,8 @@ Feature: Security
       | 1234560 | PIN        |
 
   Scenario: Security - lock - pattern option
-    When the user clicks the "Lock" option
-    And set security code valid
+    When the user taps the Lock option
+    And the user enters a valid password
     And taps "pattern" option
     And set pattern
     And taps "next" button
@@ -254,7 +302,7 @@ Feature: Security
 
   @Smoke @LockTimeout @SmokeManual @Security
   Scenario Outline: Security - Lock Timeout
-    When the user clicks the "Lock Timeout" option
+    When the user taps the Lock Timeout option
     And select timeout <timeout> option
     And taps "OK" button
     And wait <timeout> of time
@@ -271,7 +319,7 @@ Feature: Security
 
   @Smoke @DeleteAfterFailedUnlock @SmokeManual
   Scenario Outline: Security - Delete after failed unlock
-    When the user clicks the "Delete after failed unlock" option
+    When the user taps the Delete after failed unlock option
     And select attempts <attempts> option
     And taps "OK" button
     And the user close the app
@@ -284,28 +332,28 @@ Feature: Security
       | 10 attempts | 123451 |
       | 20 attempts | 123450 |
 
-  @Smoke #@Automated
+  @Smoke @Candidate
   Scenario Outline: Security - Delete after failed unlock
-    When the user clicks the "Delete after failed unlock" option
+    When the user taps the Delete after failed unlock option
     And select attempts <attempts> option
     And taps "OK" button
     Then the sucessfull message <message> is displayed
     And the "Delete after failed unlock" option is changed to status <status>
 
     Examples:
-      | attempts                 | status | message                                                         |
-      | Off (do not delete data) | Off    |                                                                 |
+      | attempts                 | status | message |
+      | Off (do not delete data) | Off    |         |
       #| 5 attempts               | On     | Your Tella data will be deleted after 5 failed unlock attempts  |
       #| 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
       #| 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camouflage method - change name and icon
-    When the user clicks the "Camouflage" option
+    When the user taps the Camouflage option
     And The user enter the password <password>
     And select "CHANGE NAME AND ICON" option
     And select icon <icon> option
-    And tap the next button
+    And the user taps the Next button
     And taps "Exit Tella" button
     Then the message "<message>" is displayed
     And view the Tella icon changed for <icon>
@@ -318,7 +366,7 @@ Feature: Security
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage -  change camouflage method - hide behind a calculator
     When the PIN is selected in lock option
-    And the user clicks the "Camouflage" option
+    And the user taps the Camouflage option
     And enter the valid PIN
     And select "HIDE BEHIND A CALCULATOR APP" option
     And select <calculator> option
@@ -333,52 +381,7 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @QuickDelete @SmokeManual #RepetidoEscenarioDeletefiles
-  Scenario Outline: Security - Quick delete - <quickDeleteCheck>
-    When taps switch in "Quick delete" option
-    And select check box "<quickDeleteCheck>"
-    And go to Tella home page
-    And verify slide "DELETE" button is present
-    And taps slide "DELETE" button
-    And view counter message "Quick Delete mode activation"
-    And waits finish counter
-    And view closed the Tella application
-    And open Tella application again
-    And set security code valid
-    Then view that files were deleted
-
-    Examples:
-      | quickDeleteCheck                 |
-      | Delete files                     |
-      | Delete draft and submitted forms |
-      | Delete server settings           |
-
-#RepetidoEscenarioDeleteTella
-  Scenario: Security - Quick delete - Delete Tella
-    When taps switch in "Quick delete" option
-    And select check box “Delete Tella”
-    And go to Tella home page
-    And verify slide “DELETE” button is present
-    And taps slide “DELETE” button
-    And view counter message “Quick Delete mode activation”
-    And waits finish counter
-    And view closed the Tella application
-    Then view uninstall message
-
-    #EscenaioRepetidoCon@HelpInfo
-  @Smoke @QuickDelete @ToBeAutomated @Bug
-  Scenario Outline: Security - Quick delete - help info
-    When taps switch in "Quick delete" option
-    And taps icon help in <deleteOption>
-    Then the message "<message>" is displayed
-
-    Examples:
-      | deleteOption                     | message                                                               |
-      | Delete files                     | Delete all the files stored in Tella                                  |
-      | Delete draft and submitted forms | Delete all draft and submitted forms                                  |
-      | Delete server settings           | Delete your connections to servers and all forms associated with them |
-
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Security - Preserve metadata when importing
     When view "Preserve metadata when importing"
     And taps switch in ON to option "Preserve metadata when importing"

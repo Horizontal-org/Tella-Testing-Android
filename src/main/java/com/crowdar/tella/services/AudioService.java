@@ -25,19 +25,9 @@ public class AudioService {
         MobileActionManager.click(AudioConstants.REC_OPTION);
     }
 
-    public static void clickMicrophoneIcon() throws InterruptedException {
-        if (MobileActionManager.isPresent(AudioConstants.MICROPHONE_ICON)) {
-            GenericService.commonClick(AudioConstants.MICROPHONE_ICON);
-            //En el caso de que los permisos ya fueron aceptados
-            if (flagAcceptPermissions == false) {
-                try {
-                    acceptPermissions();
-                    MobileActionManager.click(AudioConstants.MICROPHONE_ICON);
-                } catch (Exception e) {
-                    System.out.println("Permits not present, continuing.");
-                }
-            }
-        }
+    public static void clickMicrophoneIcon(){
+        MobileActionManager.waitVisibility(AudioConstants.MICROPHONE_ICON);
+        GenericService.commonClick(AudioConstants.MICROPHONE_ICON);
     }
 
 /*

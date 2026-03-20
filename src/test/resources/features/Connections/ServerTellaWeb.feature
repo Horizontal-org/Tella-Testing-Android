@@ -34,10 +34,10 @@ Feature: Tella Web
     And the user presses the button for take a photo
     And the user presses "SUBMIT" button
     Then the file whith title "Crowdar" and description "Evidence photo" being uploaded
-    And the sucessfull message "Your report is available in the Outbox" appears
+    And the sucessfull message "Your report has successfully been submitted." appears
 
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario Outline: Submit new report with <recording>
     When the user taps the "Reports" connection
     And the user presses "NEW REPORT" button
@@ -55,7 +55,7 @@ Feature: Tella Web
       | audio     | Record audio           |
 
 
-  @Smoke  @ToBeAutomated
+  @Smoke  @Candidate
   Scenario: Delete report during sending
     When the user taps the "Reports" connection
     And the user presses "NEW REPORT" button
@@ -72,7 +72,7 @@ Feature: Tella Web
     And confirms the Delete option
     Then the approval message "File has been deleted" appears
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Delete draf report
     And the user has a report in the Draft folder
     When the user taps the "Reports" connection
@@ -81,7 +81,7 @@ Feature: Tella Web
     And confirms the Delete option
     Then the approval message "File has been deleted" appears
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario Outline: Save report to <option>
     When the user taps the "Reports" connection
     And the user presses "NEW REPORT" button
@@ -98,7 +98,7 @@ Feature: Tella Web
       | Clock  | The report was saved to your Outbox. You can submit it when you ready |
 
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Send a report from Draft
     Given the user has a report in the Draft folder
     When the user taps the "⁝" button
@@ -106,7 +106,7 @@ Feature: Tella Web
     And taps Send
     Then the approval message "your report is available Outbox" appears
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Send a report from Outbox
     Given the user has a report in the Outbox folder
     When the user taps the "Reports" connection
@@ -116,7 +116,7 @@ Feature: Tella Web
     And taps Resume
     Then the approval message "your report is available Outbox" appears
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Activate Auto-report
     When the user taps the settings icon
     And selects the "Servers" option
@@ -127,7 +127,7 @@ Feature: Tella Web
     And presses the "Save" icon
     Then the approval message "Served updated" appears
 
-  @Smoke  @ToBeAutomated
+  @Smoke  @Candidate
   Scenario: Take photo or video with Auto-report activated
     Given the Auto-report option is activated
     When the user presses the camera button
@@ -136,7 +136,7 @@ Feature: Tella Web
     
     #Agregar el paso de outbox Mismo ciclo de vida de los reportes 
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Activate Auto-delete
     Given the Auto-report option is activated
     When the user taps the settings icon
@@ -148,14 +148,14 @@ Feature: Tella Web
     And presses the "Save" icon
     Then the approval message "Served updated" appears
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Take photo or video with Auto-delete activated
     Given the Auto-report and Auto-deleted option is activated
     When the user presses the camera button
     And presses the take a photo button
     Then the approval message "The photo/video you took has been uploaded as a report and automatically deleted" appears
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Activate Background upload
     When the user taps the settings icon
     And selects the "Servers" option
@@ -166,7 +166,7 @@ Feature: Tella Web
     And presses the "Save" icon
     Then the approval message "Served updated" appears
 
-  @Smoke @ToBeAutomated
+  @Smoke @Candidate
   Scenario: Send report with Background upload activated
     Given the Background upload option is activated
     And The user taps the "Reports" connection

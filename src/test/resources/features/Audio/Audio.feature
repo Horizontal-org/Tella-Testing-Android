@@ -4,7 +4,7 @@ Feature: Audio
   Background:
     Given the user is in Tella home page
 
-  @Smoke @E2E @ToBeAutomated @Ignore
+  @Smoke @E2E @Candidate @Ignore
   Scenario: Record, save, play and cleanup an audio - E2E
     And the user is in the Rec option
     When the user records an audio file
@@ -17,7 +17,7 @@ Feature: Audio
     And the user deletes the recording
     Then the recording is not listed anymore
 
-  @Smoke @Automated @testGabo @Academy
+  @Smoke @Automated @Academy
   Scenario Outline: Record an audio file - message verification
     When the user press the Rec option
     And the user press the microphone

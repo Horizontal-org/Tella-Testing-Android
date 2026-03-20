@@ -6,116 +6,152 @@ Feature: Lock Options
 
   @Smoke @Password @Automated @E2E
   Scenario Outline: Register with password
-    When tap the next button until reaching the lock options
-    And tap the password button
-    And types a password <password>
-    And tap the next button
-    And types a password <password>
-    And tap the next button
-    Then a successfully registered message <message> is displayed to the user and a link to landing page
-    And the user presses the go to tella button
-    And the user is in Tella home page
+    When the user taps the Next button until reaching the lock options
+    And the user taps the Password button
+    And the user taps the I UNDERSTAND button
+    And the user types a password <password>
+    And the user taps the Next button
+    And the user types a password <password>
+    And the user taps the Next button
+    And the user taps the CONTINUE button
+    And the user taps the Success screen Next button
+    Then a successfully registered message <message> is displayed to the user
+    And the user taps the GO TO TELLA button
+    And the home page is displayed
 
     Examples:
-      | password | message                                                     |
-      | abcdef   | Your lock is set up! You can change it anytime in Settings. |
+      | password | message          |
+      | abcdef   | You’re all done! |
 
   @Smoke @Password @Automated
   Scenario Outline: Failed register - password confirmation
-    When tap the next button until reaching the lock options
-    And tap the password button
-    And types a password <password_a>
-    And tap the next button
-    And types a password <password_b>
-    And tap the next button
+    When the user taps the Next button until reaching the lock options
+    And the user taps the Password button
+    And the user taps the I UNDERSTAND button
+    And the user types a password <password_a>
+    And the user taps the Next button
+    And the user types a password <password_b>
+    And the user taps the Next button
     Then a message <message> is displayed to the user
 
     Examples:
       | password_a | password_b | message                                        |
       | abcdef     | abcabc     | Please try again. Your passwords do not match. |
+      | 123456     | 567890     | Please try again. Your passwords do not match. |
+      | #$%123     | 123#$%     | Please try again. Your passwords do not match. |
 
   @Smoke @Password @Automated
-  Scenario Outline: Failed register - password lenght
-    When tap the next button until reaching the lock options
-    And tap the password button
-    And types a password <password>
+  Scenario Outline: Failed register - password length
+    When the user taps the Next button until reaching the lock options
+    And the user taps the Password button
+    And the user taps the I UNDERSTAND button
+    And the user types a password <password>
     Then the next button remains disabled
 
     Examples:
       | password |
       | abcde    |
+      | 12345    |
 
   @Smoke @Pin @Automated @E2E
   Scenario Outline: Register with PIN
-    When tap the next button until reaching the lock options
-    And tap the pin button
-    And types a pin <PIN>
-    And tap the next pin button
-    And types a pin <PIN>
-    And tap the next pin button
-    Then a successfully registered message <message> is displayed to the user and a link to landing page
-    And the user presses the go to tella button
-    And the user is in Tella home page
-
+    When the user taps the Next button until reaching the lock options
+    And the user taps the PIN button
+    And the user taps the I UNDERSTAND button
+    And the user types a pin <PIN>
+    And the user taps the button <button>
+    And the user types a pin <PIN>
+    And the user taps the button <button>
+    And the user taps the CONTINUE button
+    And the user taps the Success screen Next button
+    Then a successfully registered message <message> is displayed to the user
+    And the user taps the GO TO TELLA button
+    And the home page is displayed
 
     Examples:
-      | PIN    | message                                                     |
-      | 123456 | Your lock is set up! You can change it anytime in Settings. |
+      | PIN    | button | message          |
+      | 123456 | OK     | You’re all done! |
+      | 000000 | Next   | You’re all done! |
 
   @Smoke @Pin @Automated
-  Scenario Outline: Failed PIN confirmation - pin don't match
-    When tap the next button until reaching the lock options
-    And tap the pin button
-    And types a pin <PIN_a>
-    And tap the next pin button
-    And types a pin <PIN_b>
-    And tap the next pin button
+  Scenario Outline: Failed PIN confirmation - pin doesn't match
+    When the user taps the Next button until reaching the lock options
+    And the user taps the PIN button
+    And the user taps the I UNDERSTAND button
+    And the user types a pin <PIN_a>
+    And the user taps the button <button>
+    And the user types a pin <PIN_b>
+    And the user taps the button <button>
     Then a message <message> is displayed to the user
 
     Examples:
-      | PIN_a  | PIN_b  | message                                   |
-      | 123456 | 654321 | Please try again. Your PINs do not match. |
+      | PIN_a      | PIN_b     | button | message                                   |
+      | 123456     | 654321    | OK     | Please try again. Your PINs do not match. |
+      | 0987654321 | 098765432 | Next   | Please try again. Your PINs do not match. |
 
   @Smoke @Pin @Automated
-  Scenario Outline: Failed PIN confirmation - PIN lenght
-    When tap the next button until reaching the lock options
-    And tap the pin button
-    And types a pin <PIN>
-    Then the next pin button remains disabled
+  Scenario Outline: Failed PIN confirmation - PIN length
+    When the user taps the Next button until reaching the lock options
+    And the user taps the PIN button
+    And the user taps the I UNDERSTAND button
+    And the user types a pin <PIN>
+    Then Then the button <button> does not proceed to the next step
 
     Examples:
-      | PIN   |
-      | 12345 |
+      | PIN   | button |
+      | 1     | OK     |
+      | 12345 | Next   |
 
-  @Smoke @Pattern @ToBeAutomated @E2E
+  @Smoke @Pattern @Automated @E2E
   Scenario Outline: Register with pattern
-    When tap the next button until reaching the lock options
-    And tap the pattern button
-    And the user draws a pattern
-    And tap the next button
-    And the user draws a pattern
-    And tap the next button
-    Then a successfully registered message <message> is displayed to the user and a link to landing page
-    And the user presses the go to tella button
-    And the user is in Tella home page
+    When the user taps the Next button until reaching the lock options
+    And the user taps the Pattern button
+    And the user taps the I UNDERSTAND button
+    And the user draws a pattern connecting at least <dots> dots
+    And the user taps the Next Pattern button
+    And the user draws a pattern connecting at least <dots> dots
+    And the user taps the CONTINUE button
+    And the user taps the Success screen Next button
+    Then a successfully registered message <message> is displayed to the user
+    And the user taps the GO TO TELLA button
+    And the home page is displayed
 
     Examples:
-      | message                                                     |
-      | Your lock is set up! You can change it anytime in Settings. |
+      | dots | message          |
+      | 6    | You’re all done! |
+      | 7    | You’re all done! |
+      | 8    | You’re all done! |
 
-  @Smoke @Pattern @ToBeAutomated
-  Scenario Outline: Failed Pattern confirmation - Patterns don't match
-    When tap the next button until reaching the lock options
-    And tap the pattern button
-    And the user draws a pattern
-    And tap the next button
-    And the user draws a different pattern with no less than six points
-    And tap the next button
+  @Smoke @Pattern @Automated
+  Scenario Outline: Failed Pattern confirmation - Patterns doesn't match
+    When the user taps the Next button until reaching the lock options
+    And the user taps the Pattern button
+    And the user taps the I UNDERSTAND button
+    And the user draws a pattern connecting at least <dots_a> dots
+    And the user taps the Next Pattern button
+    And the user draws a pattern connecting at least <dots_b> dots
     Then a message <message> is displayed to the user
 
     Examples:
-      | message                                   |
-      | Please try again. Your PINs do not match. |
+      | dots_a | dots_b | message                                       |
+      | 6      | 1      | Please try again. Your patterns do not match. |
+      | 7      | 5      | Please try again. Your patterns do not match. |
+      | 8      | 2      | Please try again. Your patterns do not match. |
+
+  @Smoke @Pattern @Automated
+  Scenario Outline: Failed Pattern confirmation - Pattern length
+    When the user taps the Next button until reaching the lock options
+    And the user taps the Pattern button
+    And the user taps the I UNDERSTAND button
+    And the user draws a pattern connecting at least <dots> dots
+    Then the Next button remains disabled
+
+    Examples:
+      | dots |
+      | 2    |
+      | 3    |
+      | 4    |
+      
 
 
 

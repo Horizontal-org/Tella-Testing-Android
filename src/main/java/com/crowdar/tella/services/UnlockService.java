@@ -6,13 +6,24 @@ import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.constants.LockUnlockConstantsIOS;
 import io.appium.java_client.*;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.interactions.Pause;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 
 public class UnlockService {
@@ -46,11 +57,14 @@ public class UnlockService {
     public static void setPassword(String password) {
         clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
         MobileActionManager.click(LockUnlockConstants.LOCK_PASSWORD_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.LOCK_UNDERSTAND_BUTTON);
         MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
         MobileActionManager.click(LockUnlockConstants.PASSWORD_RIGHT_BUTTON);
         MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
         MobileActionManager.click(LockUnlockConstants.PASSWORD_RIGHT_BUTTON);
-        MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.CONTINUE_BUTTON);
+        MobileActionManager.click(LockUnlockConstants.PASSWORD_NEXT_BUTTON);
+        MobileActionManager.waitVisibility(LockUnlockConstants.START_BUTTON);
         Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.START_BUTTON), LockUnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
     }
 
@@ -140,42 +154,70 @@ public class UnlockService {
         }
     }
 
-    public static void setPattern() {
-        clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
-        MobileActionManager.click(LockUnlockConstants.LOCK_PATTERN_BUTTON);
-        MobileActionManager.click(LockUnlockConstants.LOCK_PATTERN_ID);
-
-        MobileActionManager.waitVisibility(LockUnlockConstants.SCREEN_PATTERN_ID);
-        definePattern();
-        MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON);
-        Assert.assertTrue(MobileActionManager.isVisible(LockUnlockConstants.START_BUTTON), LockUnlockConstants.VIEW_NOT_DISPLAYED_MESSAGE);
-    }
-
     public static void clickNextButtons(int count) {
         for (int i = 0; i < count; i++) {
             MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON);
         }
     }
 
-    private static void definePattern() {
-        /*Código para definir el patrón por coordenadas usando touchAction*/
-        TouchAction touchAction = new TouchAction((PerformsTouchActions) DriverManager.getDriverInstance().getWrappedDriver());
-        touchAction.press(PointOption.point(270, 2250))
-                .moveTo(PointOption.point(270, 1350))
-                .moveTo(PointOption.point(1160, 1353))
-                .moveTo(PointOption.point(1160, 2243))
-                .release()
-                .perform();
+    private static final Map<Integer, Point> PATTERN_POINTS = Map.of(
+            1, new Point(180, 900),
+            2, new Point(540, 900),
+            3, new Point(900, 900),
+            4, new Point(180, 1260),
+            5, new Point(540, 1260),
+            6, new Point(900, 1260),
+            7, new Point(180, 1620),
+            8, new Point(540, 1620),
+            9, new Point(900, 1620)
+    );
 
-        MobileActionManager.click(LockUnlockConstants.NETX_BUTTON_PATTERN_ID);
+    private static final List<Integer> PATTERN_ORDER = Arrays.asList(1, 2, 3, 6, 5, 4, 7, 8, 9);
 
-        /*Se vuelve a repetir el patrón*/
-        touchAction.press(PointOption.point(270, 2250))
-                .moveTo(PointOption.point(270, 1350))
-                .moveTo(PointOption.point(1160, 1353))
-                .moveTo(PointOption.point(1160, 2243))
-                .release()
-                .perform();
+    public static void setPattern(int dots) {
+        MobileActionManager.waitVisibility(LockUnlockConstants.SCREEN_PATTERN_ID);
+        definePattern(dots);
+    }
+
+    private static void definePattern(int dots) {
+        if (dots < 1 || dots > 9) {
+            throw new IllegalArgumentException("Pattern dots must be between 1 and 9.");
+        }
+
+        AndroidDriver driver = (AndroidDriver) DriverManager.getDriverInstance().getWrappedDriver();
+
+        List<Integer> selectedDots = PATTERN_ORDER.subList(0, dots);
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence sequence = new Sequence(finger, 1);
+
+        Point firstPoint = PATTERN_POINTS.get(selectedDots.get(0));
+
+        sequence.addAction(finger.createPointerMove(
+                Duration.ZERO,
+                PointerInput.Origin.viewport(),
+                firstPoint.x,
+                firstPoint.y
+        ));
+
+        sequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+
+        sequence.addAction(new Pause(finger, Duration.ofMillis(200)));
+
+        for (int i = 1; i < selectedDots.size(); i++) {
+            Point point = PATTERN_POINTS.get(selectedDots.get(i));
+
+            sequence.addAction(finger.createPointerMove(
+                    Duration.ofMillis(250),
+                    PointerInput.Origin.viewport(),
+                    point.x,
+                    point.y
+            ));
+        }
+
+        sequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        driver.perform(Collections.singletonList(sequence));
     }
 
     public static void clickExit() {
@@ -201,6 +243,22 @@ public class UnlockService {
         } else {
             driver.activateApp("org.wearehorizontal.tella"); // Usa el package name de tu app para traerla de vuelta al frente
         }
+    }
+
+    public static void clickNextPatternButton() {
+        MobileActionManager.click(LockUnlockConstants.PATTERN_RIGHT_BUTTON);
+    }
+
+    public static void validateNextButtonIsDisabled() {
+        String enabled = MobileActionManager.getAttribute(LockUnlockConstants.PATTERN_RIGHT_BUTTON, "enabled");
+        Assert.assertEquals(enabled, "false");
+    }
+
+    public static void enterPasswordAndtapsEnter(String password) {
+        MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
+
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        driver.pressKey(new KeyEvent(AndroidKey.ENTER));
     }
 }
 

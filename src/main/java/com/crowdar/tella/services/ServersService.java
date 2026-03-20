@@ -3,29 +3,21 @@ package com.crowdar.tella.services;
 import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
-import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.HomeConstants;
 import com.crowdar.tella.constants.LockUnlockConstants;
 import com.crowdar.tella.constants.ServersConstants;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
-
 import org.testng.Assert;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class ServersService {
@@ -50,14 +42,20 @@ public class ServersService {
 
 
         Map<String, String> buttons = new HashMap<>();
-        //  buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
+          buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Cancel", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Next", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("SAVE", ServersConstants.SAVE_BUTTON);
         buttons.put("NEW REPORT", ServersConstants.NEW_REPORT_BUTTON);
         buttons.put("SUBMIT", ServersConstants.SUBMIT_BUTTON);
+        buttons.put("Log in", ServersConstants.SERVER_LOGIN_BUTTON);
+        buttons.put("GO TO REPORTS", ServersConstants.SERVER_LOGIN_BUTTON);
+
 
         String getButton = buttons.get(button);
+        if (MobileActionManager.getElements(getButton).isEmpty()) {
+            SettingsService.scrollDown();
+        }
         MobileActionManager.waitVisibility(getButton);
         MobileActionManager.click(getButton);
     }
@@ -105,12 +103,10 @@ public class ServersService {
         MobileActionManager.setInput(ServersConstants.URL_INPUT, serverUrl);
     }
 
-    public static void viewMessage(String message) throws InterruptedException {
-        if (MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_MSG)) {
-            String actualMessage = MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG);
-            System.out.println("Actual message: " + actualMessage);
-            Assert.assertTrue(actualMessage.contains(message));  // Compara si contiene el mensaje esperado
-        }
+    public static void viewMessage(String message) {
+        MobileActionManager.waitVisibility(ServersConstants.TEXT_SERVER_MSG);
+        String actualMessage = MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG);
+        Assert.assertTrue(actualMessage.contains(message));
     }
 
 
@@ -217,9 +213,15 @@ public class ServersService {
 
 
     public static void clicNextBtn() {
-        WebElement botonOK = scrollAndroid("text", "OK", 0);
-        MobileActionManager.waitPresence(FilesConstants.NEXT_BTN).click();
-
+        scrollAndroid("text", "OK", 0);
+        MobileActionManager.waitVisibility(FilesConstants.NEXT_BTN);
+        MobileActionManager.click(FilesConstants.NEXT_BTN);
+        //El click suele fallar asi que se agrega una comprobacion
+        try {
+            MobileActionManager.waitVisibility(ServersConstants.URL_INPUT);
+        } catch (Exception e) {
+            MobileActionManager.click(FilesConstants.NEXT_BTN);
+        }
     }
 
     private static WebElement scrollAndroid(String locatorType, String locatorValue, int index) {
@@ -234,4 +236,118 @@ public class ServersService {
         return DriverManager.getDriverInstance().findElement(MobileBy.AndroidUIAutomator(locator));
     }
 
+    public static void inputServerUserName(String userName) {
+        MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_USERNAME, userName);
+    }
+
+    public static void inputServerPassword(String password) {
+
+    }
+
+    public static void inputServerCredencialCredentials(String serverName) {
+        String username = "";
+        String password = "";
+
+        switch (serverName) {
+
+            case "Tella Web":
+                username = PropertyManager.getProperty("tellauser");
+                password = PropertyManager.getProperty("tellapass");
+                break;
+
+            case "Uwazi":
+                username = PropertyManager.getProperty("uwaziuser");
+                password = PropertyManager.getProperty("uwazipass");
+                break;
+            default:
+                throw new RuntimeException("Server not supported: " + serverName);
+
+            case "Google Drive":
+                username = PropertyManager.getProperty("googledriveuser");
+                password = PropertyManager.getProperty("googledrivepass");
+                break;
+
+        }
+        MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_USERNAME, username);
+        MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_PASSWORD, password);
+    }
+
+    public static void googleDriveUserInput() {
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_LOGIN_TEXTBOX);
+        MobileActionManager.setInput(
+                ServersConstants.GOOGLE_LOGIN_TEXTBOX,
+                PropertyManager.getProperty("googledriveuser"));
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_BUTTONS,"NEXT");
+        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS,"NEXT");
+    }
+
+    public static void googleDrivePasswordInput() throws InterruptedException{
+        Thread.sleep(2000);
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_PASSWORD_TEXTBOX);
+        MobileActionManager.setInput(
+                ServersConstants.GOOGLE_PASSWORD_TEXTBOX,
+                PropertyManager.getProperty("googledrivepass"));
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_BUTTONS,"NEXT");
+        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS,"NEXT");
+    }
+
+    public static void googleDriveAgreeTerms() throws InterruptedException {
+        Thread.sleep(2000);
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_LOGIN_WELCOME_MSG);
+        MobileActionManager.click(ServersConstants.GOOGLE_TERMS_AGREE_BUTTON, "I agree");
+    }
+
+    public static void googleDriveAcceptPermissions() throws InterruptedException {
+        Thread.sleep(2000);
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_PERMISSIONS_MSG);
+        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "MORE");
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_BUTTONS, "ACCEPT");
+        MobileActionManager.click(ServersConstants.GOOGLE_BUTTONS, "ACCEPT");
+    }
+
+    public static void googleDriveNewFolder(String folder) {
+        MobileActionManager.waitVisibility(ServersConstants.INPUT_FOLDER_NAME);
+        MobileActionManager.setInput(ServersConstants.INPUT_FOLDER_NAME, folder);
+        MobileActionManager.click(ServersConstants.GRAL_NEXT_BUTTON);
+    }
+
+    public static void googleDriveAdditionalPermissions() {
+        try {
+            MobileActionManager.waitVisibility(ServersConstants.GOOGLE_ADDITIONAL_PERMISSIONS_MSG);
+            scrollAndroid("text","Continue", 0);
+            MobileActionManager.waitVisibility(ServersConstants.GOOGLE_ADDITIONAL_PERMISSIONS_BUTTON);
+            MobileActionManager.click(ServersConstants.GOOGLE_ADDITIONAL_PERMISSIONS_BUTTON);
+        } catch (TimeoutException e) {
+            System.out.println("Google additional permissions did not appear. Continuing test.");
+        }
+    }
+
+    public static void connectedToServerMsg() {
+        MobileActionManager.waitVisibility(ServersConstants.CONNECTED_TO_SERVER_MSG);
+        MobileActionManager.click(ServersConstants.SERVER_LOGIN_BUTTON);
+    }
+
+    public static void clickExistingGoogleAccount() {
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_CHOOSE_ACCOUNT_MSG);
+        MobileActionManager.waitVisibility(ServersConstants.GOOGLE_FIRST_LISTED_ACCOUNT);
+        MobileActionManager.click(ServersConstants.GOOGLE_FIRST_LISTED_ACCOUNT);
+    }
+
+    public static void clickAgreeAndShare() {
+        try {
+            MobileActionManager.waitVisibility(ServersConstants.GOOGLE_SHARE_AGREE_BUTTON);
+            MobileActionManager.click(ServersConstants.GOOGLE_SHARE_AGREE_BUTTON);
+        } catch (TimeoutException e) {
+            System.out.println("Google share agreement did not appear. Continuing test.");
+        }
+    }
+
+    public static void clickAddAnotherGoogleAccount() {
+        try {
+            MobileActionManager.waitVisibility(ServersConstants.GOOGLE_ADD_ACCOUNT);
+            MobileActionManager.click(ServersConstants.GOOGLE_ADD_ACCOUNT);
+        } catch (TimeoutException e) {
+            System.out.println("No existing accounts were found. Continuing test.");
+        }
+    }
 }
