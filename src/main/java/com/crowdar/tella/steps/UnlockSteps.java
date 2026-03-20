@@ -18,7 +18,7 @@ public class UnlockSteps extends PageSteps {
     }
 
 
-    @When("The user enter the password (.*)")
+    @When("the user enters the password \"(.*)\"")
     public void theUserEnterAPassword(String password) throws InterruptedException {
         UnlockService.enterPassword(password);
     }
@@ -32,10 +32,19 @@ public class UnlockSteps extends PageSteps {
         UnlockService.enterPin(pin);
     }
 
-    @When("The user set a pattern")
-    public void theUserSetAPattern() {
-        UnlockService.setPattern();
+    @When("the user draws a pattern connecting at least {int} dots")
+    public void theUserSetAPattern(int dots) {
+        UnlockService.setPattern(dots);
     }
 
+    @And("the user taps the Next Pattern button")
+    public void theUserTapsTheNextPatternButton() {
+        UnlockService.clickNextPatternButton();
+    }
+
+    @Then("the Next button remains disabled")
+    public void theNextButtonRemainsDisabled() {
+        UnlockService.validateNextButtonIsDisabled();
+    }
 }
 

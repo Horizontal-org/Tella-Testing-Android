@@ -6,7 +6,7 @@ Feature: Connections - Connection to servers
     And the user taps the settings icon
     And clicks on the option Servers
 
-  @Smoke @ToBeAutomated @ViewServers @Flow
+  @Smoke @Candidate @ViewServers @Flow
   Scenario Outline: <Servers>  - View Server Options
     When the user presses the + button
     Then the user sees all possible <Servers> options available for connection
@@ -24,8 +24,8 @@ Feature: Connections - Connection to servers
     And the user is connected to the server <Servers>
     And the user is on the Connections screen
     When the user presses elipisis button
-    And the user clicks the "Delete" option
-    And the user clicks the "Delete" option
+     And the user taps the Delete option
+     And the user taps the Delete option
     Then the server will no longer be available in the connections view
     And the server will no longer be available in the connections view of tella's home
     Examples:
@@ -42,7 +42,7 @@ Feature: Connections - Connection to servers
     And the user is connected to the server <Servers>
     And the user is on the Connections screen
     When the user presses elipisis button
-    And the user clicks the "Edit" option
+    And the user taps the Edit option
     #fill no me acuerdo cuales eran los que tenian el edit disponible okis
     Then the changes are applied to the server
     Examples:
@@ -65,7 +65,7 @@ Feature: Connections - Connection to servers
       | serverName     | serverUrl                                      | message        |
       | Server Crowdar | https://kc.kobotoolbox.org/tella_internal_test | Server created |
 
-  @ODK @ToBeAutomated @E2E
+  @ODK @Candidate @E2E
   Scenario: Servers - Advanced Configuration in Open Data Kit Server
     And the user presses the + button
     And selects the server "Open Data Kit (ODK)"
@@ -75,7 +75,7 @@ Feature: Connections - Connection to servers
     And the user presses "OK" button
     Then the user views the Server in the connect list
 
-  @Smoke @Automated @TellaWeb @E2E
+  @Smoke @Automated @TellaWeb @E2E @testBrian
   Scenario: Server - Tella Web configuration with URL
     When the user presses the + button
     And selects the server "Tella Web"
@@ -84,8 +84,11 @@ Feature: Connections - Connection to servers
     And the user presses "Next" button
     And the user views the "Log in to access the project"
     And the user fills the fields "Username" and "Password"
-    And the user presses "OK" button
-    Then the user views the Server in the connect list
+    And the user enters the credentials of Tella Web
+    And the user presses "Log in" button
+    And the user presses "SAVE" button
+    And the user presses "GO TO REPORTS" button
+    Then the user views the server in the connect list
 
   @Smoke @Automated @Uwazi @E2E
   Scenario Outline: Public Access with Uwazi in <language>
@@ -100,7 +103,8 @@ Feature: Connections - Connection to servers
     And the user presses "Next" button
     And the user view the message "You have successfully connected to the server and will be able to share your data."
     And the user is now connected to Uwazi server in <language>
-    Then the user views the Server in the connect list
+    And the user presses "Next" button
+    Then the user views the Uwazi Tella Integration in the connect list
 
     Examples:
       | language |
@@ -118,12 +122,14 @@ Feature: Connections - Connection to servers
     And selects the "Log in" button
     And the user presses "Next" button
     And the user fills the fields "Username" and "Password"
-    And selects the "Log in" button
+    And the user enters the credentials of Uwazi
+    And the user presses Log in button
     And the user selects the language <language>
     And the user presses "Next" button
     And the user view the message "You have successfully connected to the server and will be able to share your data."
     And the user is now connected to Uwazi server in <language>
-    Then the user views the Server in the connect list
+    And the user presses "Next" button
+    Then the user views the Uwazi Tella Integration in the connect list
 
     Examples:
       | language |
@@ -131,10 +137,51 @@ Feature: Connections - Connection to servers
       | Spanish  |
       | French   |
 
-  @SmokeManual @GoogleDrive @E2E ##
+  @Regression @GoogleDrive @E2E
+    #Cannot be automated, the Google Play Services authentication flow breaks it
+  Scenario Outline: Server - Google Drive - New Connection - New Account
+    When the user presses the + button
+    And selects the server "Google drive"
+    And the user presses "OK" button
+    And the user presses the Continue button
+    And the user presses the Add another account button if needed
+    And the user uses a Gmail account
+    And the user enters a valid Gmail password
+    And the user can see the Welcome message and agrees with the terms and conditions
+    And the user accepts the permissions
+    And the user presses the Agree and share button if needed
+    And the user creates a new Google Drive folder called <folder>
+    And the user accepts the additional permissions if needed
+    And the user can see the Connected to server message and clicks GO TO GOOGLE DRIVE
+    And the user enters the password "password"
+    Then the user can see the Google Drive connection in the home page
+
+    Examples:
+      | folder     |
+      | Tella test |
+
+  @Regression @GoogleDrive @E2E @RequiresGoogleAccount
+  Scenario Outline: Server - Google Drive - New Connection - Android Linked Account
+    When the user presses the + button
+    And selects the server "Google drive"
+    And the user presses "OK" button
+    And the user presses the Continue button
+    And the user chooses an existing Google account
+    And the user presses the Agree and share button if needed
+    And the user creates a new Google Drive folder called <folder>
+    And the user accepts the additional permissions if needed
+    And the user can see the Connected to server message and clicks GO TO GOOGLE DRIVE
+    Then the user can see the Google Drive connection in the home page
+
+    Examples:
+      | folder     |
+      | Tella test |
+
+  @SmokeManual @GoogleDrive @E2E
   Scenario: Server - Google Drive - Use shared drive option
     When the user presses the + button
     And selects the server "Google drive"
+    And the user presses "OK" button
     And the user chooses the Google account
     And chooses the "use shared drive" option
     And the user presses "Next" button
@@ -155,8 +202,25 @@ Feature: Connections - Connection to servers
     And the user view the message "You have successfully connected to the server and will be able to share your data."
     And the user presses the button Go to google Drive
     Then the user views the Server in the connect list
-
-
+  
+  @Smoke @Candidate @NextCloud @E2E
+  Scenario: Server - Nextcloud - Connecting to the server in a new folder
+    When the user presses the + button
+    And selects the server "Nextcloud"
+    And the user presses "OK" button
+    And enter the server url "https://mia.nl.tab.digital/"
+    And the user presses "Next" button
+    And the user presses "YES" button
+    And the user presses "Next" button
+    And the user views the "Log in to access the project"
+    And the user fills the fields "Username" and "Password"
+    And the user enters the credentials of Nextcloud
+    And the user presses "Log in" button
+    And the user enters "NameFolder" as the folder name
+    And the user presses "Next" button
+    And the user presses "Go to Nextcloud" button
+    Then the user views the NextCloud in the connect list
+  
 
     #oki hacer casos especificos para dropbox y next cloud
 
