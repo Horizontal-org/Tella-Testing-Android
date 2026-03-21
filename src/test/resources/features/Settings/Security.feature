@@ -179,7 +179,7 @@ Feature: Security
       | Calculator_2 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
-
+ 
   @Smoke @QuickDelete @SmokeManual @Automated @E2E
   Scenario: Security - Quick delete - Delete files - E2E
     Given the user records an audio file
