@@ -266,6 +266,7 @@ public class FilesService {
     public static void SelectsMultipleTypeFiles() {
         MobileActionManager.waitVisibility(FilesConstants.CHECKBOX_BUTTON);
         GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
+        MobileActionManager.waitVisibility(FilesConstants.CHECKBOX_BUTTON);
         GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
     }
 

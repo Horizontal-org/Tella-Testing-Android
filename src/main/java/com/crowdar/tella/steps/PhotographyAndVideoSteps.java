@@ -70,13 +70,13 @@ public class PhotographyAndVideoSteps {
 
 
     @And("the user presses Delete button")
-    public void theUserPressesDeleteButton() throws InterruptedException {
+    public void theUserPressesDeleteButton(){
       PhotographyAndVideoService.deleteButton();
     }
 
     @And("the user presses confirm Delete button")
-    public void theUserPressesConfirmDeleteButton() throws InterruptedException {
-       PhotographyAndVideoService.deleteButton();
+    public void theUserPressesConfirmDeleteButton(){
+        PhotographyAndVideoService.confirmDeleteButton();
     }
 
     @Then("the file is deleted")
@@ -149,15 +149,22 @@ public class PhotographyAndVideoSteps {
 
     @And("the user have a photo taken named Tella")
     public void theUserHaveAPhotoTakenNamedTella() {
+        MobileActionManager.waitVisibility(HomeConstants.CAMERA_BUTTON);
         GenericService.commonClick(HomeConstants.CAMERA_BUTTON);
         FilesService.acceptPermissions();
+        MobileActionManager.waitVisibility(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        MobileActionManager.waitVisibility(PhotographyAndVideoConstants.PREVIEW_FILE);
         GenericService.commonClick(PhotographyAndVideoConstants.PREVIEW_FILE);
+        MobileActionManager.waitVisibility(PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON);
         GenericService.commonClick(PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON);
+        MobileActionManager.waitVisibility(PhotographyAndVideoConstants.RENAME_BUTTON);
         GenericService.commonClick(PhotographyAndVideoConstants.RENAME_BUTTON);
         PhotographyAndVideoService.deleteTextAndSendKeys();
         LockService.clickContinue();
+        MobileActionManager.waitVisibility(PhotographyAndVideoConstants.GO_BACK_BUTTON);
         GenericService.commonClick(PhotographyAndVideoConstants.GO_BACK_BUTTON);
+        MobileActionManager.waitVisibility(FilesConstants.CLOSE_BUTTON);
         GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
 
     }

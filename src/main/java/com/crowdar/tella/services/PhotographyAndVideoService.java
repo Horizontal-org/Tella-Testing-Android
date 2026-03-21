@@ -136,13 +136,13 @@ public class PhotographyAndVideoService {
     }
 
     public static void deleteButton(){
-        if (MobileActionManager.isPresent(PhotographyAndVideoConstants.DELETE_FILE_BUTTON)) {
-            GenericService.commonClick(PhotographyAndVideoConstants.DELETE_FILE_BUTTON);
-        } else {
-            MobileActionManager.waitVisibility(PhotographyAndVideoConstants.CONFIRM_DELETE_FILE_BUTTON);
-            GenericService.commonClick(PhotographyAndVideoConstants.CONFIRM_DELETE_FILE_BUTTON);
+        MobileActionManager.waitVisibility(PhotographyAndVideoConstants.DELETE_FILE_BUTTON);
+        GenericService.commonClick(PhotographyAndVideoConstants.DELETE_FILE_BUTTON);
+    }
 
-        }
+    public static void confirmDeleteButton() {
+        MobileActionManager.waitVisibility(PhotographyAndVideoConstants.CONFIRM_DELETE_FILE_BUTTON);
+        GenericService.commonClick(PhotographyAndVideoConstants.CONFIRM_DELETE_FILE_BUTTON);
     }
 }
 
