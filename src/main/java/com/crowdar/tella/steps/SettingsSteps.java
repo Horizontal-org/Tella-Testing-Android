@@ -312,7 +312,7 @@ public class SettingsSteps {
         ServersService.connectToTellaServer();
 
         //Verificamos el forms de conexion
-        HomeService.isConnection();
+        HomeService.isConnection("Reports");
         //Volvemos a Settings
         SettingsService.clickSettingsIcon();
         SettingsService.clickCategory("Security");
