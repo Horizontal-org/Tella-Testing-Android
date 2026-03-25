@@ -256,9 +256,7 @@ public class UnlockService {
 
     public static void enterPasswordAndtapsEnter(String password) {
         MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
-
-        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
-        driver.pressKey(new KeyEvent(AndroidKey.ENTER));
+        GenericService.pressEnter();
     }
 }
 
