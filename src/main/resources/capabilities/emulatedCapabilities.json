@@ -4,7 +4,7 @@
   "appium:deviceName": "{{deviceName}}",
   "appium:avd": "{{avd}}",
   "appium:app": "{{app}}",
-  "appium:appPackage": "org.hzontal.tella",
+  "appium:appPackage": "org.hzontal.tellaFOSS",
   "appium:appWaitActivity": "*",
   "appium:noReset": false,
   "appium:autoGrantPermissions": true

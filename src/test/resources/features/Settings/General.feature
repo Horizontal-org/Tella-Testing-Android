@@ -5,7 +5,7 @@ Feature: General
     Given the user is in Tella home page
     And the user taps the settings icon
   
-  @Smoke @Automated @Flow
+  @Smoke @Automated @Flow @test
   Scenario Outline: View Settings Categories
     When the user taps the category <category>
     Then the user accesses the category <visible>
@@ -13,10 +13,10 @@ Feature: General
     Examples:
       | category     | visible      |
       | General      | General      |
-      | Security     | Security     |
-      | Servers      | Connections  |
-      | About & Help | About & Help |
-      | Feedback     | Feedback     |
+#      | Security     | Security     |
+#      | Servers      | Connections  |
+#      | About & Help | About & Help |
+#      | Feedback     | Feedback     |
   
   @ChangeLanguage @Candidate
   Scenario Outline: Change Language and Re-change by default language

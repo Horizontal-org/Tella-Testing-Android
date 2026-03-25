@@ -239,7 +239,7 @@ public class UnlockService {
         driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
         driver.runAppInBackground(Duration.ofSeconds(5)); // Envía la app al fondo por 5 segundos
         if (MobileActionManager.isAndroid()) {
-            driver.activateApp("org.hzontal.tella");
+            driver.activateApp("org.hzontal.tellaFOSS");
         } else {
             driver.activateApp("org.wearehorizontal.tella"); // Usa el package name de tu app para traerla de vuelta al frente
         }

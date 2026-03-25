@@ -3,7 +3,7 @@ package com.crowdar.tella.constants;
 public class SettingsConstants {
     public static final String SETTINGS_ICON = "id:left_img";
 
-    public static final String GENERAL_BUTTON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/general_settings_button\"]";
+    public static final String GENERAL_BUTTON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tellaFOSS:id/general_settings_button\"]";
 
     public static final String LANGUAGE_BUTTON = "id:language_settings_button";
     public static final String LANGUAGE_LIST = "id:language_list";
@@ -13,7 +13,7 @@ public class SettingsConstants {
 
     public static final String CATEGORY_SETTINGS_TITLE = "id:startTitleTv";
     public static final String SECURITY_BUTTON = "id:security_settings_button";
-    public static final String SERVERS_BUTTON = "id:org.hzontal.tella:id/servers_settings_button";
+    public static final String SERVERS_BUTTON = "id:org.hzontal.tellaFOSS:id/servers_settings_button";
     public static final String ABOUT_HELP_BUTTON = "id:about_n_help_settings_button";
     public static final String FEEDBACK_BUTTON = "id:feedback_button";
     public static final String LANGUAGE_SECTION = "id:options_layout";
@@ -26,27 +26,27 @@ public class SettingsConstants {
     public static final String VERSION_TEXT = "id:version";
     public static final String ABOUT_HELP_OPTIONS = "id:options";
     public static final String URL_BAR = "xpath://android.widget.EditText[@resource-id=\"com.android.chrome:id/url_bar\"]";
-    public static final String OPTIONS_TITLE = "xpath:(//android.widget.LinearLayout[@resource-id=\"org.hzontal.tella:id/centered_linear_layout\"])[%s]";
+    public static final String OPTIONS_TITLE = "xpath:(//android.widget.LinearLayout[@resource-id=\"org.hzontal.tellaFOSS:id/centered_linear_layout\"])[%s]";
     public static final String TIMEOUT_SHEET_TITLE = "id:standard_sheet_title";
     public static final String GENERAL_RADIO_BUTTON = "xpath://android.widget.RadioButton[@text=\"%s\"]";
     public static final String OK_BUTTON = "id:standard_sheet_confirm_btn";
     public static final String CANCEL_BUTTON = "id:standard_sheet_cancel_btn";
-    public static final String GENERAL_TEXTVIEW_LABEL = "xpath:(//android.widget.Switch[@resource-id='org.hzontal.tella:id/mSwitch'])[1]";
+    public static final String GENERAL_TEXTVIEW_LABEL = "xpath:(//android.widget.Switch[@resource-id='org.hzontal.tellaFOSS:id/mSwitch'])[1]";
 
     public static final String ICON_CAMOUFLAGE_BUTTON = "id:sheet_one_btn";
     public static final String APP_CAMOUFLAGE_BUTTON = "id:sheet_two_btn";
     public static final String ICON_CAMOUFLAGE_TEXT = "id:name";
     public static final String MESSAGE_CONTENT = "id:standard_sheet_content";
-    public static final String MESSAGE_LABEL = "id:org.hzontal.tella:id/txv_msg";
+    public static final String MESSAGE_LABEL = "id:org.hzontal.tellaFOSS:id/txv_msg";
     public static final String SECURITY_SWITCH_LIST_BUTTON = "xpath://android.widget.TextView[contains(@text, '%s')]/ancestor::*[contains(@class, 'LinearLayout') or contains(@class, 'ViewGroup')]//android.widget.Switch";
     public static final String DELETE_INFO_ICON = "id:delete_vault_tooltip";
     public static final String DELETE_SERVER_ICON = "id:delete_server_tooltip";
     public static final String DELETE_FORM_ICON = "id:delete_app_tooltip";
     public static final String HELP_INFO_TEXTVIEW = "xpath://android.widget.TextView[@text=\"%s\"]";
-    public static final String REMAINING_UNLOCK_ATTEMPTS = "(//android.widget.Switch[@resource-id=\"org.hzontal.tella:id/mSwitch\"])[1]";
-    public static final String CHECKBOX_DELETE_FILE = "xpath://android.widget.CheckBox[@resource-id=\"org.hzontal.tella:id/delete_vault\"]";
-    public static final String CHECKBOX_DELETE_DRAFT_SUBMITTE_DFORMS = "xpath://android.widget.CheckBox[@resource-id=\"org.hzontal.tella:id/delete_vault\"]";
-    public static final String CHECKBOX_DELETE_SERVER_SETTING = "xpath://android.widget.CheckBox[@resource-id=\"org.hzontal.tella:id/delete_server_settings\"]";
+    public static final String REMAINING_UNLOCK_ATTEMPTS = "(//android.widget.Switch[@resource-id=\"org.hzontal.tellaFOSS:id/mSwitch\"])[1]";
+    public static final String CHECKBOX_DELETE_FILE = "xpath://android.widget.CheckBox[@resource-id=\"org.hzontal.tellaFOSS:id/delete_vault\"]";
+    public static final String CHECKBOX_DELETE_DRAFT_SUBMITTE_DFORMS = "xpath://android.widget.CheckBox[@resource-id=\"org.hzontal.tellaFOSS:id/delete_vault\"]";
+    public static final String CHECKBOX_DELETE_SERVER_SETTING = "xpath://android.widget.CheckBox[@resource-id=\"org.hzontal.tellaFOSS:id/delete_server_settings\"]";
     public static final String GO_BACK_BUTTON = "xpath://android.widget.ImageButton[@content-desc=\"go back\"]";
     public static final String VIEW_COUNTER_MESSAGE = "xpath://android.widget.TextView[@text=\"%s\"]";
 

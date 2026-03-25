@@ -4,6 +4,6 @@
   "platformName": "Android",
   "resetKeyboard": "true",
   "unicodeKeyboard": "true",
-  "appPackage": "org.hzontal.tella",
+  "appPackage": "org.hzontal.tellaFOSS",
   "appActivity": "org.horizontal.tella.mobile.views.activity.SplashActivity"
 }

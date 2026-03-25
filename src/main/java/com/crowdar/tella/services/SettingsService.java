@@ -272,7 +272,7 @@ public class SettingsService {
 
     public static void changeStatus(String option, String status) {
         AndroidDriver driver = (AndroidDriver) getDriverInstance().getWrappedDriver();
-        WebElement switchElement = driver.findElement(By.xpath("(//android.widget.Switch[@resource-id='org.hzontal.tella:id/mSwitch'])[1]"));
+        WebElement switchElement = driver.findElement(By.xpath("(//android.widget.Switch[@resource-id='org.hzontal.tellaFOSS:id/mSwitch'])[1]"));
         String checked = switchElement.getAttribute("checked");
 
         if ("true".equals(checked)) {

@@ -96,7 +96,7 @@ public class FilesService {
             folderSaveElement.click();
 
             WebElement currentFolderElement = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-                    "new UiSelector().resourceId(\"org.hzontal.tella:id/startTitleTv\")")));
+                    "new UiSelector().resourceId(\"org.hzontal.tellaFOSSFOSS:id/startTitleTv\")")));
             String currentFolder = currentFolderElement.getText();
             System.out.println("Carpeta actual: " + currentFolder);
 
@@ -210,7 +210,7 @@ public class FilesService {
 
     public static void validateFolderName() {
         AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
-        MobileElement folderNameElement = driver.findElement(By.xpath("//android.widget.TextView[@resource-id='org.hzontal.tella:id/fileNameTextView' and @text='Tella']"));
+        MobileElement folderNameElement = driver.findElement(By.xpath("//android.widget.TextView[@resource-id='org.hzontal.tellaFOSS:id/fileNameTextView' and @text='Tella']"));
         boolean isDisplayed = folderNameElement.isDisplayed();
         Assert.assertTrue(isDisplayed, "The folder named 'Tella' is not displayed on the screen");
     }

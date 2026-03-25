@@ -60,27 +60,27 @@ public class GenericService {
         switch (fileType.toLowerCase()) {
             case "image":
                 xpaths = Arrays.asList(
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.jpg')]",
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.jpeg')]",
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.png')]",
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.gif')]",
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.bmp')]"
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.jpg')]",
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.jpeg')]",
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.png')]",
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.gif')]",
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.bmp')]"
                 );
                 break;
             case "video":
                 xpaths = Arrays.asList(
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.mp4')]",
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.avi')]",
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.mkv')]",
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.mov')]"
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.mp4')]",
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.avi')]",
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.mkv')]",
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.mov')]"
                 );
                 break;
             case "audio":
                 xpaths = Arrays.asList(
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.mp3')]",
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.wav')]",
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.aac')]",
-                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tella:id/fileNameTextView') and contains(@text, '.flac')]"
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.mp3')]",
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.wav')]",
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.aac')]",
+                        "//android.widget.TextView[contains(@resource-id, 'org.hzontal.tellaFOSS:id/fileNameTextView') and contains(@text, '.flac')]"
                 );
                 break;
             default:
@@ -116,7 +116,7 @@ public class GenericService {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         try {
             // Intentamos grabar video
-            MobileElement videoRecButton = driver.findElement(By.id("org.hzontal.tella:id/captureButton"));
+            MobileElement videoRecButton = driver.findElement(By.id("org.hzontal.tellaFOSS:id/captureButton"));
             if (videoRecButton.isDisplayed()) {
                 System.out.println("Botón de grabación de video encontrado.");
                 videoRecButton.click(); // Iniciar grabación de video
@@ -129,7 +129,7 @@ public class GenericService {
 
             try {
                 // Si no encuentra el botón de video, intentamos grabar audio
-                MobileElement audioRecButton = driver.findElement(By.id("org.hzontal.tella:id/record_audio"));
+                MobileElement audioRecButton = driver.findElement(By.id("org.hzontal.tellaFOSS:id/record_audio"));
                 if (audioRecButton.isDisplayed()) {
                     System.out.println("Botón de grabación de audio encontrado.");
                     audioRecButton.click(); // Iniciar grabación de audio
@@ -173,7 +173,7 @@ public class GenericService {
                 }
             }
 
-            driver.activateApp("org.hzontal.tella");
+            driver.activateApp("org.hzontal.tellaFOSS");
         }
     }
 
@@ -211,7 +211,7 @@ public class GenericService {
      * Verifies whether the Tella app is currently active in the foreground.
      * <p>
      * This method retrieves the current package name of the app in the foreground
-     * and checks if it matches the Tella package: {@code org.hzontal.tella}.
+     * and checks if it matches the Tella package: {@code org.hzontal.tellaFOSS}.
      * </p>
      *
      * @return {@code true} if the Tella app is currently active in the foreground;
@@ -221,7 +221,7 @@ public class GenericService {
         AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
         String currentPackage = driver.getCurrentPackage();
 
-        if (!"org.hzontal.tella".equals(currentPackage)) {
+        if (!"org.hzontal.tellaFOSS".equals(currentPackage)) {
             System.out.println("The app is closed or in the background.");
             return true;
         } else {
@@ -237,7 +237,7 @@ public class GenericService {
     public static void openAppTella() {
         if (MobileActionManager.isAndroid()) {
             AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
-            driver.activateApp("org.hzontal.tella");
+            driver.activateApp("org.hzontal.tellaFOSS");
         }
     }
 

@@ -1,7 +1,7 @@
 package com.crowdar.tella.constants;
 
 public class FilesConstants {
-    public static final String ALL_FILES = "xpath:(//android.view.ViewGroup[@resource-id=\"org.hzontal.tella:id/root\"])[1]";
+    public static final String ALL_FILES = "xpath:(//android.view.ViewGroup[@resource-id=\"org.hzontal.tellaFOSS:id/root\"])[1]";
 
     public static final String PLUS_ICON = "id:fab_button";
 
@@ -19,7 +19,7 @@ public class FilesConstants {
 
     public static final String CREATED_FILE_NAME = "id:fileNameTextView";
 
-    public static final String CURRENT_FOLDER = "//android.widget.TextView[@resource-id=\"org.hzontal.tella:id/startTitleTv\"]";
+    public static final String CURRENT_FOLDER = "//android.widget.TextView[@resource-id=\"org.hzontal.tellaFOSS:id/startTitleTv\"]";
 
     public static final String BACK_BUTTON = "id:btn_back";
 
@@ -49,14 +49,14 @@ public class FilesConstants {
 
     public static final String SORT_OLDEST_TO_NEWEST_BUTTON = "id:radioBtnDESC";
 
-    public static final String PICK_FOLDER = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/fileNameTextView\" and @text=\"Tella\"]";
+    public static final String PICK_FOLDER = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tellaFOSS:id/fileNameTextView\" and @text=\"Tella\"]";
 
     public static final String ADD_FOLDER = "id:fab_move_button";
 
-    public static final String NEW_FOLDER = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/fileNameTextView\" and @text=\"TellaFolder\"]";
+    public static final String NEW_FOLDER = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tellaFOSS:id/fileNameTextView\" and @text=\"TellaFolder\"]";
 
-    public static final String SELECT_FOLDER_ICON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/textTitle\" and @text=\"%s\"]";
-    public static final String ICON_FILE_AUDIO = "xpath://android.widget.FrameLayout[@resource-id=\"org.hzontal.tella:id/attachmentImgContainer\"]";
-    public static final String NEXT_BTN = "id:org.hzontal.tella:id/next_btn";
+    public static final String SELECT_FOLDER_ICON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tellaFOSS:id/textTitle\" and @text=\"%s\"]";
+    public static final String ICON_FILE_AUDIO = "xpath://android.widget.FrameLayout[@resource-id=\"org.hzontal.tellaFOSS:id/attachmentImgContainer\"]";
+    public static final String NEXT_BTN = "id:org.hzontal.tellaFOSS:id/next_btn";
     public static final String INPUT_FIELD_FOLDER = "id:renameEditText";
     public static final String FOLDER_OPTIONS_BY_NAME = "xpath://android.widget.TextView[@text='%s']/ancestor::android.view.ViewGroup[1]//android.widget.ImageView[@content-desc='open bottom sheet']";}

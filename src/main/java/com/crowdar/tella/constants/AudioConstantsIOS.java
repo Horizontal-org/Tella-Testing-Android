@@ -20,7 +20,7 @@ public class AudioConstantsIOS {
 
     public static final String STOP_BUTTON = "xpath://android.widget.ImageButton[@content-desc=\"Stop\"]";
 
-    public static final String MESSAGE_TITLE = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/txv_msg\"]";
+    public static final String MESSAGE_TITLE = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tellaFOSS:id/txv_msg\"]";
 
     public static final String RECORD_AUDIO = "id:record_audio";
 

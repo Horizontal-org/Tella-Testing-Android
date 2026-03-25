@@ -12,7 +12,7 @@ public class HomeConstantsIOS {
 
     public static final String MIC_BUTTON = "xpath:\t/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTabBar/XCUIElementTypeButton[3]";
 
-    public static final String LEAVE_TELLA = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/standard_sheet_confirm_btn\"]";
+    public static final String LEAVE_TELLA = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tellaFOSS:id/standard_sheet_confirm_btn\"]";
 
 
     public static final String PICK_GOOGLE_ACCOUNT = "xpath:(//android.widget.LinearLayout[@resource-id=\"com.google.android.gms:id/container\"])[1]";

@@ -2,7 +2,7 @@ package com.crowdar.tella.constants;
 
 public class PhotographyAndVideoConstants {
 
-    public static final String CAMERA_GRID_SHOWID = "id:org.hzontal.tella:id/gridButton";
+    public static final String CAMERA_GRID_SHOWID = "id:org.hzontal.tellaFOSS:id/gridButton";
 
     public static final String CAMERA_GRID_SHOW = "xpath://android.widget.ImageButton[@content-desc=\"show grid view\"]";
 
