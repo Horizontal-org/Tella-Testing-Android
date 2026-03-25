@@ -1,6 +1,7 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.core.PageSteps;
+import com.crowdar.core.PropertyManager;
 import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
 
@@ -17,7 +18,7 @@ public class ServersSteps extends PageSteps {
         ServersService.viewConectionsServerOptions(listServer);
     }
 
-    @And("^clicks on the option (.*)$")
+    @And("^the user clicks on the option (.*)$")
     public void clicksOnTheOptionsServers(String option) {
         SettingsService.clickCategory(option);
     }
@@ -227,6 +228,34 @@ public class ServersSteps extends PageSteps {
     @And("the user presses the Add another account button if needed")
     public void theUserPressesTheAddAnotherAccountButtonIfNeeded() {
         ServersService.clickAddAnotherGoogleAccount();
+    }
+
+    @And("the user creates an Open Data Kit connection")
+    public void theUserCreatesAnODKConnection() {
+        ServersService.clickPlusButton();
+        ServersService.selectButton("Open Data Kit (ODK)");
+        ServersService.pressButton("OK");
+        ServersService.inputServerName("Tella");
+        ServersService.inputServerUrl(PropertyManager.getProperty("odkserver"));
+        ServersService.clickAdvancedODK();
+        ServersService.inputServerCredencialCredentials("Open Data Kit (ODK)");
+        ServersService.pressButton("SAVE");
+        SettingsService.goToHomeFromASettingPage();
+    }
+
+    @And("the user taps the refresh button in the Blank tab")
+    public void theUserTapsTheRefreshButtonInTheBlankTab() {
+        ServersService.clickRefreshODK();
+    }
+
+    @And("the user waits a taps the download button on the first form")
+    public void theUserWaitsATapsTheDownloadButtonOnTheFirstForm() {
+        ServersService.clickDownloadFirstODK();
+    }
+
+    @Then("the approval message \"(.*)\" appears")
+    public void theApprovalMessageAppears(String message) {
+        ServersService.viewMessage(message);
     }
 }
 

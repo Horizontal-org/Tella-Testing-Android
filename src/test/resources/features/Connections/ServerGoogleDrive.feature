@@ -77,7 +77,7 @@ Feature: Google Drive
     And selects the option Select from Tella files
     And selects files and presses the "verification" icon
     And presses <option> icon
-    Then the approval message <message> appears
+    Then the approval message "<message>" appears
 
     Examples:
       | option | message                                                               |
@@ -114,4 +114,4 @@ Feature: Google Drive
     And the user taps the "⁝" button
     And selects Delete
     And confirms the Delete option
-    Then the approval message "The form was deleted" appears
+    Then the approval message ""The form was deleted"" appears

@@ -104,4 +104,22 @@ public class HomeService {
     public static void isAConnectionVisible(String serverName) {
         MobileActionManager.waitVisibility(HomeConstants.LBL_CONNECTIOS, serverName);
     }
+
+    public static void clickConnection(String connection) {
+        String server = "";
+
+        switch (connection){
+            case "ODK":
+            case "Forms":
+                server = "Forms";
+                break;
+            case "Uwazi":
+                server = "Uwazi";
+                break;
+            case "Google Drive":
+                server = "Google Drive";
+                break;
+        }
+        MobileActionManager.click(HomeConstants.LBL_CONNECTIOS, server);
+    }
 }
