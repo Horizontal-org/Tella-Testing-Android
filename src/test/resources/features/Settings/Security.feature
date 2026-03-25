@@ -194,7 +194,7 @@ Feature: Security
     Then that files were deleted
 
 
-  @Smoke @QuickDelete @SmokeManual @Automated @E2E
+  @Smoke @QuickDelete @SmokeManual @Automated @E2E @testBrian
   Scenario: Security - Quick delete - Delete connection to the server - E2E
     Given The user has already connected to the Tella web server
     When toggle the switch on the "Quick delete" option
@@ -268,7 +268,7 @@ Feature: Security
     And take photo
     Then the camera did not make the sound
 
-  @Smoke @ScreenSecurity @Candidate @testAbel
+  @Smoke @ScreenSecurity @Candidate
   Scenario: Security - Screen secuCamera silent mode
     When toggle the switch on the "Screen security" option
     And go to Tella home page

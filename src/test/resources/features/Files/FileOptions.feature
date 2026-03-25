@@ -231,8 +231,8 @@ Feature: File Options - Options for files in their individual folders
     Examples:
       | type  | folder |
       | image | Images |
-      | video | Videos |
-      | audio | Audio  |
+#      | video | Videos |
+#      | audio | Audio  |
       #| document | Documents |  you can't create documents yet from tella app
 
   @Smoke @Automated

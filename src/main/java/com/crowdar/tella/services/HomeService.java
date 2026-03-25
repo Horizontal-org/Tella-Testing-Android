@@ -76,9 +76,9 @@ public class HomeService {
     }
 
 
-    public static void isConnection() {
+    public static void isConnection(String serverName) {
         isHomeLoaded();
-        Assert.assertTrue(MobileActionManager.waitVisibility(HomeConstants.LBL_CONNECTIOS).isDisplayed());
+        Assert.assertTrue(MobileActionManager.waitVisibility(HomeConstants.LBL_CONNECTIOS, serverName).isDisplayed());
     }
 
     public static void isNotConnection() {
