@@ -23,4 +23,8 @@ public class HomeSteps extends PageSteps {
         System.out.println("");
     }
 
+    @When("the user taps on the \"(.*)\" connection")
+    public void theUserTapsOnTheODKConnection(String connection) {
+        HomeService.clickConnection(connection);
+    }
 }

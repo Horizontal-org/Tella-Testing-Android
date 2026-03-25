@@ -4,7 +4,7 @@ Feature: Connections - Connection to servers
   Background:
     Given the user is in Tella home page
     And the user taps the settings icon
-    And clicks on the option Servers
+    And the user clicks on the option Connections
 
   @Smoke @Candidate @ViewServers @Flow
   Scenario Outline: <Servers>  - View Server Options

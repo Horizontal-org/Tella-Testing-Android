@@ -62,5 +62,7 @@ public class ServersConstants {
 
     public static final  String GOOGLE_DRIVE_FORM = "xpath://androidx.recyclerview.widget.RecyclerView[@resource-id=\"org.hzontal.tella:id/serversRecyclerView\"]/android.view.ViewGroup";
 
-
+    public static final String ODK_CONNECT_ADVANCED_BUTTON = "id:org.hzontal.tella:id/toggle_button";
+    public static final String ODK_REFRESH_BUTTON = "id:org.hzontal.tella:id/fab";
+    public static final String ODK_DOWNLOAD_BUTTON = "id:org.hzontal.tella:id/dl_open_button";
 }

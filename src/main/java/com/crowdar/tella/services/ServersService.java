@@ -259,12 +259,15 @@ public class ServersService {
                 username = PropertyManager.getProperty("uwaziuser");
                 password = PropertyManager.getProperty("uwazipass");
                 break;
-            default:
-                throw new RuntimeException("Server not supported: " + serverName);
 
             case "Google Drive":
                 username = PropertyManager.getProperty("googledriveuser");
                 password = PropertyManager.getProperty("googledrivepass");
+                break;
+
+            case "Open Data Kit (ODK)":
+                username = PropertyManager.getProperty("odkuser");
+                password = PropertyManager.getProperty("odkpass");
                 break;
 
         }
@@ -349,5 +352,18 @@ public class ServersService {
         } catch (TimeoutException e) {
             System.out.println("No existing accounts were found. Continuing test.");
         }
+    }
+
+    public static void clickAdvancedODK() {
+        MobileActionManager.click(ServersConstants.ODK_CONNECT_ADVANCED_BUTTON);
+    }
+
+    public static void clickRefreshODK() {
+        MobileActionManager.click(ServersConstants.ODK_REFRESH_BUTTON);
+    }
+
+    public static void clickDownloadFirstODK() {
+        MobileActionManager.waitVisibility(ServersConstants.ODK_DOWNLOAD_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_DOWNLOAD_BUTTON);
     }
 }
