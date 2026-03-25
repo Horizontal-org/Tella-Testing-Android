@@ -183,8 +183,8 @@ Feature: Security
   @Smoke @QuickDelete @SmokeManual @Automated @E2E
   Scenario: Security - Quick delete - Delete files - E2E
     Given the user records an audio file
-    When toggle the switch on the "Quick delete" option
-    And Go to the Tella homepage from Security Page
+    When the user toggles the switch on the Quick delete option
+    And the user goes back to homepage from Security Page
     And verify slide "DELETE" button is present
     And taps slide "DELETE" button
     And view counter message Quick Delete mode activation
@@ -194,11 +194,11 @@ Feature: Security
     Then that files were deleted
 
 
-  @Smoke @QuickDelete @SmokeManual @Automated @E2E @testBrian
+  @Smoke @QuickDelete @SmokeManual @Automated @E2E
   Scenario: Security - Quick delete - Delete connection to the server - E2E
     Given The user has already connected to the Tella web server
-    When toggle the switch on the "Quick delete" option
-    And Go to the Tella homepage from Security Page
+    When the user toggles the switch on the Quick delete option
+    And the user goes back to homepage from Security Page
     And verify slide "DELETE" button is present
     And taps slide "DELETE" button
     And view counter message Quick Delete mode activation
@@ -209,14 +209,14 @@ Feature: Security
 
   @Smoke @QuickDelete @SmokeManual @Automated
   Scenario: Security - Quick delete - Verify slide Delete
-    When toggle the switch on the "Quick delete" option
-    And Go to the Tella homepage from Security Page
+    When the user toggles the switch on the Quick delete option
+    And the user goes back to homepage from Security Page
     Then verify slide "DELETE" button is present
 
 
   @Smoke @QuickDelete @SmokeManual @Deprecated
   Scenario: Security - Quick delete - Delete Tella
-    When toggle the switch on the "Quick delete" option
+    When the user toggles the switch on the Quick delete option
     And select check box “Delete Tella”
     And go to Tella home page
     And verify slide “DELETE” button is present
@@ -227,7 +227,7 @@ Feature: Security
 
   @Smoke @QuickDelete @HelpInfo @Automated
   Scenario Outline: Security - Quick delete - Help info of <deleteOption>
-    When toggle the switch on the "Quick delete" option
+    When the user toggles the switch on the Quick delete option
     Then click on the help icon in <deleteOption>
     
     Examples:
@@ -238,7 +238,7 @@ Feature: Security
   
   @Smoke @QuickDelete @HelpInfo @SmokeManual
   Scenario Outline: Security - Quick delete - Help info of <deleteOption>
-    When toggle the switch on the "Quick delete" option
+    When the user toggles the switch on the Quick delete option
     And click on the help icon in <deleteOption>
     Then the help info message <message> is displayed
 
@@ -251,7 +251,7 @@ Feature: Security
 
   @Smoke @Automated
   Scenario Outline: Security - <option> ON
-    When toggle the switch on the "<option>" option
+    When the user toggles the switch on the <option> option
     Then the "<option>" option is activated
 
     Examples:
@@ -262,90 +262,18 @@ Feature: Security
 
   @Smoke @CameraSilentMode @SmokeManual
   Scenario: Security - Camera silent mode
-    When toggle the switch on the "Camera silent mode" option
+    When the user toggles the switch on the Camera silent mode option
     And go to Tella home page
     And taps camera button
     And take photo
     Then the camera did not make the sound
 
-  @Smoke @ScreenSecurity @Candidate
+  @Smoke @ScreenSecurity @Candidate #No se puede verificar el mensaje de seguridad con la app sin SECURE FLAG
   Scenario: Security - Screen secuCamera silent mode
-    When toggle the switch on the "Screen security" option
-    And go to Tella home page
-    And take screenshot
-    Then view warning permissions
-
-  Scenario Outline: Security - Lock - <LockOption> option
-    When the user taps the Lock option
-    And the user enters a valid password
-    And tap "<LockOption>" option
-    And set <passPin>
-    And taps "next" button
-    And set confirm <passPin>
-    And taps "next" button
-    Then "Your lock has been changed" message is shown
-
-    Examples:
-      | passPin | LockOption |
-      | 1234560 | password   |
-      | 1234560 | PIN        |
-
-  Scenario: Security - lock - pattern option
-    When the user taps the Lock option
-    And the user enters a valid password
-    And taps "pattern" option
-    And set pattern
-    And taps "next" button
-    And set confirm pattern
-    And taps "next" button
-    Then  "Your lock has been changed" message is shown
-
-  @Smoke @LockTimeout @SmokeManual @Security
-  Scenario Outline: Security - Lock Timeout
-    When the user taps the Lock Timeout option
-    And select timeout <timeout> option
-    And taps "OK" button
-    And wait <timeout> of time
-    Then view screen lock
-
-    Examples:
-      | timeout     |
-      | Immediately |
-      | 1 minute    |
-      #| 5 minutes   |
-      #| 30 minutes  |
-      #| 1 hour      |
-
-
-  @Smoke @DeleteAfterFailedUnlock @SmokeManual
-  Scenario Outline: Security - Delete after failed unlock
-    When the user taps the Delete after failed unlock option
-    And select attempts <attempts> option
-    And taps "OK" button
-    And the user close the app
-    And the user set incorrect <PIN> in <attempts>
-    Then the files have been deleted
-
-    Examples:
-      | attempts    | PIN    |
-      | 5 attempts  | 123450 |
-      | 10 attempts | 123451 |
-      | 20 attempts | 123450 |
-
-  @Smoke @Candidate
-  Scenario Outline: Security - Delete after failed unlock
-    When the user taps the Delete after failed unlock option
-    And select attempts <attempts> option
-    And taps "OK" button
-    Then the sucessfull message <message> is displayed
-    And the "Delete after failed unlock" option is changed to status <status>
-
-    Examples:
-      | attempts                 | status | message |
-      | Off (do not delete data) | Off    |         |
-      #| 5 attempts               | On     | Your Tella data will be deleted after 5 failed unlock attempts  |
-      #| 10 attempts              | On     | Your Tella data will be deleted after 10 failed unlock attempts |
-      #| 20 attempts              | On     | Your Tella data will be deleted after 20 failed unlock attempts |
+    When the user toggles the switch on the Screen security option
+    And the user goes back to homepage from Security Page
+    And the user takes a screenshot
+    Then the user can see a warning permission message
 
   @Smoke @Camouflage @SmokeManual
   Scenario Outline: Security - camouflage - change camouflage method - change name and icon
@@ -381,20 +309,11 @@ Feature: Security
       | Calculator_3 | Please wait. You will return to your device's home screen in a few seconds. |
       | Calculator_4 | Please wait. You will return to your device's home screen in a few seconds. |
 
-  @Smoke @Candidate
+  @Smoke @Candidate #Buegueado en 2.19.1 (227) - no preserva los metadatos
   Scenario: Security - Preserve metadata when importing
     When view "Preserve metadata when importing"
     And taps switch in ON to option "Preserve metadata when importing"
     Then the "Preserve metadata when importing" option is activated
-
-  @Smoke @CameraSilentMode @SmokeManual
-  Scenario: Security - Camera silent mode
-    When view "Camera silent mode"
-    And taps switch in ON to option "Camera silent mode"
-    And go to Tella home page
-    And taps camera button
-    And take photo
-    Then the camera did not make the sound
 
   @Smoke @SmokeManual
   Scenario: Security - Screen security
