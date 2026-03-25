@@ -164,7 +164,7 @@ public class SettingsSteps {
         SettingsService.viewMessage(message);
     }
 
-    @And("^toggle the switch on the \"(.*)\" option$")
+    @And("^the user toggles the switch on the (.*) option$")
     public void toggleTheSwitchOnTheOption(String option) {
         SettingsService.switchButtonEnable(option);
     }
@@ -232,7 +232,7 @@ public class SettingsSteps {
         SettingsService.selectedDeleteCheck(quickDeleteCheck);
     }
 
-    @And("Go to the Tella homepage from Security Page")
+    @And("the user goes back to homepage from Security Page")
     public void goToTheTellaHomepageFromSecurityPage() {
         SettingsService.goToHomeFromSecurityPage();
         HomeService.isHomeLoaded();
@@ -344,5 +344,10 @@ public class SettingsSteps {
     @And("^the option to select the (.*) language is visible$")
     public void theOptionToSelectTheDefaultLanguageIsVisible(String languageDefault) {
         SettingsService.DefaultVisibleLanguage(languageDefault);
+    }
+
+    @And("the user takes a screenshot")
+    public void theUserTakesAScreenshot() {
+        GenericService.takeScreenshotInMemory();
     }
 }
