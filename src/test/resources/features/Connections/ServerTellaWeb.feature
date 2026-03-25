@@ -53,6 +53,20 @@ Feature: Tella Web
       | recording | Select files           |
       | video     | Take photo with camera |
       | audio     | Record audio           |
+      
+  @smoke @fail
+  Scenario: Submit a new report with Auto-report disabled
+   And The user has the "Auto-report" option disabled
+   When the user taps the "Reports" connection
+   And the user presses "NEW REPORT" button
+   And completes the Title "Crowdar" and the Description "Evidence photo"
+   And the user taps + button for the attach files
+   And selects files option "Select from Tella files"
+   And selects files and presses the "verification" icon
+   And the user presses "SUBMIT" button
+   Then report upload progress remains stuck at 0%
+   
+   
 
 
   @Smoke  @Candidate
@@ -201,3 +215,4 @@ Feature: Tella Web
     And completes the Title and the Description with 1000 characters
     And presses "Submit"
     Then the approval message "your report is available Outbox" appears
+    
