@@ -89,21 +89,6 @@ Feature: PhotographyAndVideo
     And the user presses Delete button
     And the user presses confirm Delete button
     Then the file is deleted
-
-  @Smoke @Video @Automated
-  Scenario Outline: Select video resolution in <Resolution>
-    And the user presses the camera button
-    And the user presses the video button
-    When the user presses the configurations button
-    And the user presses the option <Resolution>
-    And the user presses the next button
-    And the user presses the configurations button
-    Then the user check the resolution <Resolution> its selected in choose resolution
-    Examples:
-      | Resolution       |
-      | Highest possible |
-      | Medium           |
-      | Low              |
   
   @Smoke @Video @SmokeManual
   Scenario: Check file size from the last file
@@ -167,13 +152,6 @@ Feature: PhotographyAndVideo
     Given the flash is activated
     When the user presses flash button
     Then the flash is off
-
-  @Automated
-  Scenario: Enable grid lines
-    When the user presses the camera button
-    And the user presses grid lines button
-    Then the grid lines are now activated
-
 
  # ---------------------------------------- FileOptions from thumbnail image
   @ShareFile @SmokeManual

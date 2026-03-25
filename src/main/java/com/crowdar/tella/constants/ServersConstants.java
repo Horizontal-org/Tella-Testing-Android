@@ -3,7 +3,7 @@ package com.crowdar.tella.constants;
 public class ServersConstants {
     public static final String PLUS_BUTTON = "id:org.hzontal.tellaFOSS:id/add_server";
     public static final String WHAT_SERVER_TITLE = "id:standard_sheet_content";
-    public static final String TEXT_SERVER_BUTTON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" + ".tella:id/sheet_textView\" and @text=\"%s\"]";
+    public static final String TEXT_SERVER_BUTTON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" + ".tellaFOSS:id/sheet_textView\" and @text=\"%s\"]";
     public static final String GRAL_NEXT_BUTTON = "id:org.hzontal.tellaFOSS:id/next_btn";
     public static final String URL_INPUT = "id:url";
     public static final String SAVE_BUTTON = "id:next";

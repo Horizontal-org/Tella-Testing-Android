@@ -5,7 +5,7 @@ Feature: General
     Given the user is in Tella home page
     And the user taps the settings icon
   
-  @Smoke @Automated @Flow @test
+  @Smoke @Automated @Flow
   Scenario Outline: View Settings Categories
     When the user taps the category <category>
     Then the user accesses the category <visible>
