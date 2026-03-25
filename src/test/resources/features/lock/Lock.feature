@@ -1,5 +1,5 @@
 @Regression @Lock
-Feature: Lock Options 
+Feature: Lock Options
 
   Background:
     Given The user opens the app for the first time
