@@ -30,4 +30,6 @@ public class AudioConstants {
 
     public static final String MICROPHONE_ICON2 = "id:mic";
 
+    public static final String AUDIO_EXIT_BUTTON = "xpath://android.view.ViewGroup[@resource-id=\"org.hzontal.tella:id/toolbar\"]/android.widget.ImageButton";
+
 }

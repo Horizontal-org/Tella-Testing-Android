@@ -4,10 +4,7 @@ import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
-import com.crowdar.tella.constants.FilesConstants;
-import com.crowdar.tella.constants.HomeConstants;
-import com.crowdar.tella.constants.LockUnlockConstants;
-import com.crowdar.tella.constants.ServersConstants;
+import com.crowdar.tella.constants.*;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.*;
@@ -359,11 +356,109 @@ public class ServersService {
     }
 
     public static void clickRefreshODK() {
-        MobileActionManager.click(ServersConstants.ODK_REFRESH_BUTTON);
+        clickWithRetry(ServersConstants.ODK_REFRESH_BUTTON);
+        MobileActionManager.waitVisibility(ServersConstants.ODK_FIRST_FORM);
     }
 
     public static void clickDownloadFirstODK() {
-        MobileActionManager.waitVisibility(ServersConstants.ODK_DOWNLOAD_BUTTON);
-        MobileActionManager.click(ServersConstants.ODK_DOWNLOAD_BUTTON);
+        clickWithRetry(ServersConstants.ODK_DOWNLOAD_BUTTON);
+    }
+
+    public static void clickFirstFormODK() {
+        clickWithRetry(ServersConstants.ODK_FIRST_FORM);
+    }
+
+    public static void clickNextButtonODKForm() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+    }
+
+    public static void clickSaveForLaterODK() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_SAVE_FOR_LATER);
+    }
+
+    public static void isFormSavedOutbox() {
+        Assert.assertTrue(
+                Boolean.parseBoolean(
+                        MobileActionManager.getAttribute(
+                                ServersConstants.ODK_TABS, "selected", "Outbox"
+                        )
+                ),
+                "Outbox tab not selected"
+        );
+
+        Assert.assertTrue(
+                MobileActionManager.isVisible(ServersConstants.ODK_FORM_NAME),
+                "Form not visible in Outbox"
+        );
+    }
+
+    public static void completeFormAriTestODK() throws InterruptedException {
+        MobileActionManager.setInput(ServersConstants.ODK_FORM_EDIT_TEXT, "Si?");
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+
+        attachPhotoInODKForm();
+        recordAudioInODKForm();
+        recordVideoInODKForm();
+
+        MobileActionManager.click(ServersConstants.ODK_FORM_CHECKBOX, "OK. Please continue.");
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+
+        selectODKOptions();
+
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+        MobileActionManager.setInput(ServersConstants.ODK_FORM_EDIT_TEXT, "70 señor");
+    }
+
+    private static void attachPhotoInODKForm() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_ATTACH_FILE, "Attach photo");
+        MobileActionManager.click(ServersConstants.PHOTO_FILES_SELECT);
+        MobileActionManager.click(ServersConstants.TAKE_PHOTO_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+    }
+
+    private static void recordAudioInODKForm() throws InterruptedException {
+        MobileActionManager.click(ServersConstants.ODK_FORM_ATTACH_FILE, "Attach audio recording");
+        MobileActionManager.click(ServersConstants.AUDIO_FILES_SELECT);
+        MobileActionManager.click(AudioConstants.RECORD_AUDIO);
+        Thread.sleep(5000);
+        MobileActionManager.click(AudioConstants.RECORD_AUDIO);
+        MobileActionManager.click(AudioConstants.AUDIO_EXIT_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+    }
+
+    private static void recordVideoInODKForm() throws InterruptedException {
+        MobileActionManager.click(ServersConstants.ODK_FORM_ATTACH_FILE, "Attach video");
+        MobileActionManager.click(ServersConstants.PHOTO_FILES_SELECT);
+        MobileActionManager.click(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        Thread.sleep(5000);
+        MobileActionManager.click(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+    }
+
+    private static void selectODKOptions() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_TEXTVIEW, "1");
+        MobileActionManager.click(ServersConstants.ODK_FORM_CHECKED_TEXTVIEW, "2");
+        MobileActionManager.click(ServersConstants.ODK_FORM_TEXTVIEW, "2");
+        MobileActionManager.click(ServersConstants.ODK_FORM_CHECKED_TEXTVIEW, "3");
+        MobileActionManager.click(ServersConstants.ODK_FORM_TEXTVIEW, "3");
+        MobileActionManager.click(ServersConstants.ODK_FORM_CHECKED_TEXTVIEW, "4");
+    }
+
+    public static void clickWithRetry(String locator, String... params) {
+        int maxAttempts = 3;
+
+        for (int i = 0; i < maxAttempts; i++) {
+            try {
+                MobileActionManager.waitVisibility(locator, params);
+                MobileActionManager.click(locator, params);
+                return;
+            } catch (StaleElementReferenceException e) {
+                if (i == maxAttempts - 1) {
+                    throw e;
+                }
+            }
+        }
     }
 }
