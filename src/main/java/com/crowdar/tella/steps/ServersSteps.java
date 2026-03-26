@@ -257,5 +257,30 @@ public class ServersSteps extends PageSteps {
     public void theApprovalMessageAppears(String message) {
         ServersService.viewMessage(message);
     }
+
+    @And("the user taps the first form to fill out")
+    public void theUserTapsTheFirstFormToFillOut() {
+        ServersService.clickFirstFormODK();
+    }
+
+    @And("the user completes all required fields in Ari's test")
+    public void theUserCompletesAllTheRequiredFields() throws InterruptedException {
+        ServersService.completeFormAriTestODK();
+    }
+
+    @And("the user taps the next form button")
+    public void theUserTapsTheNextFormButton() {
+        ServersService.clickNextButtonODKForm();
+    }
+
+    @And("the user taps the clock icon")
+    public void theUserTapsTheClockIcon() {
+        ServersService.clickSaveForLaterODK();
+    }
+
+    @Then("the form is saved on the Outbox")
+    public void theFormIsSavedOnTheOutbox() {
+        ServersService.isFormSavedOutbox();
+    }
 }
 
