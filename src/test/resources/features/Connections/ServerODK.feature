@@ -2,42 +2,46 @@
 Feature: ODK
 
   Background:
-    Given the user is authenticated in the Tella application with valid credentials
-    And the user is in Tella home page
-    And the user is connected to the ODK server
+    Given the user is in Tella home page
+    And the user taps the settings icon
+    And the user clicks on the option Connections
+    And the user creates an Open Data Kit connection
 
-  @Smoke @Candidate
+  @Smoke @Automated
   Scenario: Download Forms
     When the user taps on the "ODK" connection
-    And presses the Download button in the download Blank
-    Then the approval message "download completed" appears
+    And the user taps the refresh button in the Blank tab
+    And the user waits a taps the download button on the first form
+    Then the approval message "Download completed" appears
 
-  @Smoke @Candidate
-  Scenario: Save forms to Outbox
+  @Smoke @Automated #Ari's test form based
+  Scenario: Save a form for later - Outbox
     When the user taps on the "Forms" connection
-    And taps the new form to fill out
-    And complete all the required fields on the first screen
-    And press "Next" on the other screens
-    And complete the required questions
-    And presses "Next"
-    And presses "Clock" icon
+    And the user taps the refresh button in the Blank tab
+    And the user waits a taps the download button on the first form
+    And the user taps the first form to fill out
+    And the user completes all required fields in Ari's test
+    And the user taps the next form button
+    And the user taps the clock icon
     Then the form is saved on the Outbox
 
-  @Smoke @Candidate
-  Scenario: Save forms to Draft
+  @Smoke @Candidate @testAbel
+  Scenario: Save a form for later - Draft
     When the user taps on the "Forms" connection
-    And taps the new form to fill out
-    And completes all the required fields
+    And the user taps the refresh button in the Blank tab
+    And the user waits a taps the download button on the first form
+    And the user taps the first form to fill out
+    And the user completes all required fields in Ari's test
     And presses "Save" icon
     Then the form is saved on the Draft
 
   @Smoke @Candidate
   Scenario: Delete form from Draft
     Given the user has an form in Draft
-    When the user taps on the Forms connection
+    When the user taps on the "Forms" connection
     And the user selects the category Draft
     And the user taps the "⁝" button
     And selects Delete
     And confirms the Delete option
-    Then the approval message "The form was deleted" appears
+    Then the approval message ""The form was deleted"" appears
 

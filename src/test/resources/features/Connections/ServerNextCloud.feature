@@ -41,7 +41,7 @@ Feature: NextCloud
     And presses the "Menu" icon of a Outbox report
     And selects Delete
     And confirms the Delete option
-    Then the approval message "filename has been deleted" appears
+    Then the approval message ""filename has been deleted"" appears
 
 
   @Smoke @SmokeManual
@@ -53,7 +53,7 @@ Feature: NextCloud
     And selects the option Select from Tella files
     And selects files and presses the "verification" icon
     And presses <option> icon
-    Then the approval message <message> appears
+    Then the approval message "<message>" appears
 
     Examples:
       | option | message                                                               |
@@ -92,7 +92,7 @@ Feature: NextCloud
     And the user taps the "⁝" button
     And selects Delete
     And confirms the Delete option
-    Then the approval message "The "name form" was deleted" appears
+    Then the approval message ""The "name form" was deleted"" appears
 
 
   @Smoke
@@ -102,7 +102,7 @@ Feature: NextCloud
     And the user taps the "⁝" button
     And selects Delete
     And confirms the Delete option
-    Then the approval message "The "name form" was deleted" appears
+    Then the approval message ""The "name form" was deleted"" appears
 
   @Smoke
   Scenario: View file form from Submitted
