@@ -67,7 +67,7 @@ Feature: Plus button
     And taps the "+" button
     And selects the option "Record audio"
     And captures the audio
-    Then the message "The audio recording was saved to your Tella files" appears
+    Then the message "The audio recording was saved to your Tella files" appears on the screen
     And the audio file is saved correctly in the "Audio" folder
     And the audio file appears in the list of files in the "Audio" folder
     And the audio file appears in the list of files in the "All files" folder
@@ -88,7 +88,7 @@ Feature: Plus button
     And taps the "+" button
     And selects the option "Record audio"
     And captures the audio
-    And the message "The audio recording was saved to your Tella files" appears
+    And the message "The audio recording was saved to your Tella files" appears on the screen
     And the audio file is saved correctly in the "Audio" folder
     And the audio file appears in the list of files in the "Audio" folder
     And the audio file appears in the list of files in the "All files" folder
@@ -108,7 +108,7 @@ Feature: Plus button
     And taps the "+" button
     And selects the option "Record audio"
     And captures the audio
-    Then the message "The audio recording was saved to your Tella files" appears
+    Then the message "The audio recording was saved to your Tella files" appears on the screen
     And the audio file is saved correctly in the "Audio" folder
     And the audio file appears in the list of files in the "Audio" folder
     And the audio file appears in the list of files in the "All files" folder

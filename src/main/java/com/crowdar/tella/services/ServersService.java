@@ -356,16 +356,17 @@ public class ServersService {
     }
 
     public static void clickRefreshODK() {
-        clickWithRetry(ServersConstants.ODK_REFRESH_BUTTON);
-        MobileActionManager.waitVisibility(ServersConstants.ODK_FIRST_FORM);
+        MobileActionManager.click(ServersConstants.ODK_REFRESH_BUTTON);
     }
 
-    public static void clickDownloadFirstODK() {
-        clickWithRetry(ServersConstants.ODK_DOWNLOAD_BUTTON);
+    public static void clickDownloadFirstODK() throws InterruptedException {
+        Thread.sleep(1000);
+        MobileActionManager.click(ServersConstants.ODK_DOWNLOAD_BUTTON);
     }
 
-    public static void clickFirstFormODK() {
-        clickWithRetry(ServersConstants.ODK_FIRST_FORM);
+    public static void clickFirstFormODK() throws InterruptedException {
+        Thread.sleep(1000);
+        MobileActionManager.click(ServersConstants.ODK_FIRST_FORM);
     }
 
     public static void clickNextButtonODKForm() {
@@ -373,22 +374,29 @@ public class ServersService {
     }
 
     public static void clickSaveForLaterODK() {
-        MobileActionManager.click(ServersConstants.ODK_FORM_SAVE_FOR_LATER);
+        MobileActionManager.click(ServersConstants.ODK_FORM_SAVE_OUTBOX_BUTTON);
     }
 
-    public static void isFormSavedOutbox() {
+    public static void isFormPresentInTab(String formName, String tab) {
         Assert.assertTrue(
                 Boolean.parseBoolean(
                         MobileActionManager.getAttribute(
-                                ServersConstants.ODK_TABS, "selected", "Outbox"
+                                ServersConstants.ODK_TABS, "selected", tab
                         )
                 ),
-                "Outbox tab not selected"
+                tab + " tab not selected"
         );
-
         Assert.assertTrue(
-                MobileActionManager.isVisible(ServersConstants.ODK_FORM_NAME),
-                "Form not visible in Outbox"
+                MobileActionManager.isVisible(ServersConstants.ODK_FORM_NAME, formName),
+                "Form '" + formName + "' not visible in " + tab
+        );
+        String actualFormName = MobileActionManager.getText(
+                ServersConstants.ODK_FORM_NAME, formName
+        );
+        Assert.assertEquals(
+                actualFormName,
+                formName,
+                "Form name mismatch in " + tab
         );
     }
 
@@ -446,19 +454,41 @@ public class ServersService {
         MobileActionManager.click(ServersConstants.ODK_FORM_CHECKED_TEXTVIEW, "4");
     }
 
-    public static void clickWithRetry(String locator, String... params) {
-        int maxAttempts = 3;
+    public static void clickSaveFormODK() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_SAVE_DRAFT_BUTTON);
+    }
 
-        for (int i = 0; i < maxAttempts; i++) {
-            try {
-                MobileActionManager.waitVisibility(locator, params);
-                MobileActionManager.click(locator, params);
-                return;
-            } catch (StaleElementReferenceException e) {
-                if (i == maxAttempts - 1) {
-                    throw e;
-                }
-            }
+    public static void clickCloseForm() {
+        MobileActionManager.click(ServersConstants.ODK_CLOSE_FORM_BUTTON);
+    }
+
+    public static void clickTabODK(String tab) {
+        MobileActionManager.click(ServersConstants.ODK_TABS, tab);
+    }
+
+    public static void sendFormToDraftOutbox(String tab) {
+        switch (tab.trim().toLowerCase()) {
+            case "draft":
+                clickSaveFormODK();
+                clickCloseForm();
+                clickTabODK("Draft");
+                break;
+
+            case "outbox":
+                MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+                MobileActionManager.click(ServersConstants.ODK_FORM_SAVE_OUTBOX_BUTTON);
+                break;
+
+            default:
+                throw new IllegalArgumentException("Unknown tab: " + tab);
         }
+    }
+
+    public static void clickOptionForm() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_OPTION_BUTTON);
+    }
+
+    public static void clickDeleteForm() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_OPTION_DELETE_BUTTON);
     }
 }

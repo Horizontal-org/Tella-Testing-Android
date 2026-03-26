@@ -248,18 +248,18 @@ public class ServersSteps extends PageSteps {
         ServersService.clickRefreshODK();
     }
 
-    @And("the user waits a taps the download button on the first form")
-    public void theUserWaitsATapsTheDownloadButtonOnTheFirstForm() {
+    @And("the user taps the download button on the first form")
+    public void theUserWaitsATapsTheDownloadButtonOnTheFirstForm() throws InterruptedException {
         ServersService.clickDownloadFirstODK();
     }
 
-    @Then("the approval message \"(.*)\" appears")
+    @Then("the message \"(.*)\" appears on the screen")
     public void theApprovalMessageAppears(String message) {
         ServersService.viewMessage(message);
     }
 
     @And("the user taps the first form to fill out")
-    public void theUserTapsTheFirstFormToFillOut() {
+    public void theUserTapsTheFirstFormToFillOut() throws InterruptedException {
         ServersService.clickFirstFormODK();
     }
 
@@ -278,9 +278,44 @@ public class ServersSteps extends PageSteps {
         ServersService.clickSaveForLaterODK();
     }
 
-    @Then("the form is saved on the Outbox")
-    public void theFormIsSavedOnTheOutbox() {
-        ServersService.isFormSavedOutbox();
+    @Then("the form \"(.*)\" should be in the \"(.*)\" tab")
+    public void theFormShouldBeInTheTab(String formName, String tab) {
+        ServersService.isFormPresentInTab(formName, tab);
+    }
+
+    @And("the user taps the Save icon")
+    public void theUserTapsTheSaveIcon() {
+        ServersService.clickSaveFormODK();
+    }
+
+    @And("the user closes the form")
+    public void theUserClosesTheForm() {
+        ServersService.clickCloseForm();
+    }
+
+    @And("the user taps the \"(.*)\" tab")
+    public void theUserTapsTheTab(String tab) {
+        ServersService.clickTabODK(tab);
+    }
+
+    @Given("the user has a saved form in the \"(.*)\" tab")
+    public void theUserHasASavedFormInTheTab(String tab) throws InterruptedException {
+        HomeService.clickConnection("Forms");
+        ServersService.clickRefreshODK();
+        ServersService.clickDownloadFirstODK();
+        ServersService.clickFirstFormODK();
+        ServersService.completeFormAriTestODK();
+        ServersService.sendFormToDraftOutbox(tab);
+    }
+
+    @When("the user taps the ⁝ button")
+    public void theUserTapsTheButton() {
+        ServersService.clickOptionForm();
+    }
+
+    @And("the user selects Delete")
+    public void theUserSelectsDelete() {
+        ServersService.clickDeleteForm();
     }
 }
 
