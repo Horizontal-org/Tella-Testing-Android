@@ -259,7 +259,7 @@ public class ServersSteps extends PageSteps {
     }
 
     @And("the user taps the first form to fill out")
-    public void theUserTapsTheFirstFormToFillOut() throws InterruptedException {
+    public void theUserTapsTheFirstFormToFillOut() {
         ServersService.clickFirstFormODK();
     }
 
@@ -305,7 +305,7 @@ public class ServersSteps extends PageSteps {
         ServersService.clickDownloadFirstODK();
         ServersService.clickFirstFormODK();
         ServersService.completeFormAriTestODK();
-        ServersService.sendFormToDraftOutbox(tab);
+        ServersService.saveSubmitFormODK(tab);
     }
 
     @When("the user taps the ⁝ button")
@@ -316,6 +316,11 @@ public class ServersSteps extends PageSteps {
     @And("the user selects Delete")
     public void theUserSelectsDelete() {
         ServersService.clickDeleteForm();
+    }
+
+    @And("the user sends the form to (.*) tab")
+    public void theUserSendsTheFormToTab(String tab) {
+        ServersService.saveSubmitFormODK(tab);
     }
 }
 
