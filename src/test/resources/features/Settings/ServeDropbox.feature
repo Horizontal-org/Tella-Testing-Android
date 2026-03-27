@@ -55,7 +55,7 @@ Feature: Dropbox
     And selects the option Select from Tella files
     And the user selects the file and taps the Verification icon
     And the user presses <option> icon
-   Then the approval message "<message>" appears
+   Then the message "<message>" appears on the screen
     
    Examples:
       | option | message                                                               |
