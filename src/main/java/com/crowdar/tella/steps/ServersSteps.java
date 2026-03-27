@@ -14,8 +14,8 @@ public class ServersSteps extends PageSteps {
     }
 
     @Then("the user sees all possible (.*) options available for connection")
-    public void theUserSeesAllPossibleServerOptionsAvailableForConnection(List<String> listServer) {
-        ServersService.viewConectionsServerOptions(listServer);
+    public void theUserSeesAllPossibleServerOptionsAvailableForConnection(String serverName) {
+        ServersService.viewConectionsServerOptions(serverName);
     }
 
     @And("^the user clicks on the option (.*)$")
@@ -316,6 +316,16 @@ public class ServersSteps extends PageSteps {
     @And("the user selects Delete")
     public void theUserSelectsDelete() {
         ServersService.clickDeleteForm();
+    }
+
+    @And("expands the Advanced section")
+    public void expandsTheAdvancedSection() {
+        ServersService.clickAdvancedODK();
+    }
+
+    @And("^the user enters (.*) as the folder name$")
+    public void theUserEntersAsTheFolderName(String nameFolder) {
+        ServersService.createNewFolder(nameFolder);
     }
 }
 

@@ -23,11 +23,12 @@ public class ServersService {
         ActionManager.click(ServersConstants.PLUS_BUTTON);
     }
 
-    public static void viewConectionsServerOptions(List<String> listServer) {
+    public static void viewConectionsServerOptions(String serverName) {
         MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
-        for (String serverName : listServer) {
-            Assert.assertTrue(MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_BUTTON, serverName));
+        if (!MobileActionManager.isVisible(ServersConstants.TEXT_SERVER_BUTTON, serverName)) {
+            SettingsService.scrollDown();
         }
+            Assert.assertTrue(MobileActionManager.isVisible(ServersConstants.TEXT_SERVER_BUTTON, serverName));
     }
 
     public static void selectButton(String server) {
@@ -47,6 +48,8 @@ public class ServersService {
         buttons.put("SUBMIT", ServersConstants.SUBMIT_BUTTON);
         buttons.put("Log in", ServersConstants.SERVER_LOGIN_BUTTON);
         buttons.put("GO TO REPORTS", ServersConstants.SERVER_LOGIN_BUTTON);
+        buttons.put("YES", ServersConstants.SERVER_YES_BUTTON);
+        buttons.put("Go to Nextcloud", ServersConstants.SERVER_LOGIN_BUTTON);
 
 
         String getButton = buttons.get(button);
@@ -113,12 +116,13 @@ public class ServersService {
     }
 
     public static void viewLoginToProject(String titleLogin) {
+
         MobileActionManager.waitVisibility(ServersConstants.LOGIN_TITLE);
         Assert.assertTrue(MobileActionManager.getText(ServersConstants.LOGIN_TITLE).contains(titleLogin));
     }
 
     public static void viewFieldsLogin(String username, String password) {
-        MobileActionManager.waitVisibility(ServersConstants.LOGIN_TITLE);
+        MobileActionManager.waitVisibility(ServersConstants.LOGIN_USERNAME_INPUT);
         Assert.assertTrue(MobileActionManager.getText(ServersConstants.LOGIN_USERNAME_INPUT).contains(username));
         Assert.assertTrue(MobileActionManager.getText(ServersConstants.LOGIN_PASSWORD_INPUT).contains(password));
     }
@@ -267,6 +271,11 @@ public class ServersService {
                 password = PropertyManager.getProperty("odkpass");
                 break;
 
+            case "Nextcloud":
+                username = PropertyManager.getProperty("nextCloudUser");
+                password = PropertyManager.getProperty("nextCloudpass");
+            break;
+
         }
         MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_USERNAME, username);
         MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_PASSWORD, password);
@@ -352,6 +361,7 @@ public class ServersService {
     }
 
     public static void clickAdvancedODK() {
+        MobileActionManager.waitVisibility(ServersConstants.ODK_CONNECT_ADVANCED_BUTTON);
         MobileActionManager.click(ServersConstants.ODK_CONNECT_ADVANCED_BUTTON);
     }
 
@@ -490,5 +500,11 @@ public class ServersService {
 
     public static void clickDeleteForm() {
         MobileActionManager.click(ServersConstants.ODK_FORM_OPTION_DELETE_BUTTON);
+    }
+
+    public static void createNewFolder(String nameFolder) {
+        String randomName = nameFolder + "_" + System.currentTimeMillis();
+        MobileActionManager.waitVisibility(ServersConstants.INPUT_FOLDER_NAME);
+        MobileActionManager.setInput(ServersConstants.INPUT_FOLDER_NAME, randomName);
     }
 }
