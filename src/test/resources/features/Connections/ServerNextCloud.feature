@@ -6,7 +6,7 @@ Feature: NextCloud
     And the user is connected to the "NextCloud" server
 
 
-  @Smoke @SmokeManual
+  @Smoke 
   Scenario Outline: Submit report with <Select files>
     When the user taps the "NextCloud" connection
     And the user presses "NEW REPORT" button
@@ -26,7 +26,7 @@ Feature: NextCloud
       | Select from your device |
 
 
-  @Smoke @SmokeManual
+  @Smoke 
   Scenario: Delete report during sending
     When the user taps the "NextCloud" connection
     And the user presses "NEW REPORT" button
@@ -44,7 +44,7 @@ Feature: NextCloud
     Then the approval message "filename has been deleted" appears
 
 
-  @Smoke @SmokeManual
+  @Smoke 
   Scenario Outline: Save report to <option>
     When the user taps the "NextCloud" connection
     And the user presses "NEW REPORT" button
@@ -61,7 +61,7 @@ Feature: NextCloud
       | Clock  | The report was saved to your Outbox. You can submit it when you ready |
 
 
-  @Smoke @SmokeManual
+  @Smoke 
   Scenario: Send a report from Outbox
     And the user has a report in the Outbox folder
     When the user taps the "NextCloud" connection
@@ -72,7 +72,7 @@ Feature: NextCloud
     Then the form will be visible in the submitted section
 
 
-  @Smoke @SmokeManual
+  @Smoke 
   Scenario: Send a report while the internet is desconnecting
     When the user taps the "NextCloud" connection
     And the user presses "NEW REPORT" button
