@@ -14,7 +14,7 @@ Feature: ODK
     And the user taps the download button on the first form
     Then the message "Download completed" appears on the screen
 
-  @Smoke @Automated @testAbel #Ary's test form based
+  @Smoke @Automated #Ary's test form based
   Scenario Outline: Submit - Save a form for later
     When the user taps on the "Forms" connection
     And the user taps the refresh button in the Blank tab
