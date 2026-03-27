@@ -10,7 +10,7 @@ public class ServersConstants {
     public static final String SERVER_NAME_INPUT = "id:name";
     public static final String TEXT_SERVER_MSG = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/txv_msg\"]";
     public static final String SERVER_TITLE_LIST = "id:server_title";
-    public static final String LOGIN_TITLE = "id:title_textView";
+    public static final String LOGIN_TITLE = "id:org.hzontal.tella:id/title_textView";
     public static final String LOGIN_USERNAME_INPUT = "id:username";
     public static final String LOGIN_PASSWORD_INPUT = "id:password";
     public static final String LANGUAGE_TITLE = "id:titleTv";
@@ -80,4 +80,5 @@ public class ServersConstants {
     public static final String ODK_CLOSE_FORM_BUTTON = "xpath://android.widget.ImageButton[@content-desc=\"Navigate up\"]";
     public static final String ODK_TABS = "xpath://android.widget.LinearLayout[@content-desc=\"%s\"]"; //BLANK, Draft, Outbox, Submitted//
     public static final String ODK_FORM_NAME = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/name\" and @text=\"%s\"]";
+    public static final String SERVER_YES_BUTTON = "id:org.hzontal.tella:id/ok";
 }
