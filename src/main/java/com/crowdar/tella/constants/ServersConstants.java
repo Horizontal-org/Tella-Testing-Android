@@ -72,7 +72,12 @@ public class ServersConstants {
     public static final String ODK_FORM_CHECKBOX = "xpath://android.widget.CheckBox[@text=\"%s\"]";
     public static final String ODK_FORM_TEXTVIEW = "xpath:(//android.widget.TextView[@resource-id=\"android:id/text1\"])[%s]";
     public static final String ODK_FORM_CHECKED_TEXTVIEW = "xpath:(//android.widget.CheckedTextView[@resource-id=\"android:id/text1\"])[%s]";
-    public static final String ODK_FORM_SAVE_FOR_LATER = "id:org.hzontal.tella:id/saveForLaterMenuItem";
+    public static final String ODK_FORM_SAVE_OUTBOX_BUTTON = "id:org.hzontal.tella:id/saveForLaterMenuItem";
+    public static final String ODK_FORM_SAVE_DRAFT_BUTTON = "id:org.hzontal.tella:id/saveFormMenuItem";
+    public static final String ODK_FORM_SUBMIT_BUTTON = "id:org.hzontal.tella:id/submit_button";
+    public static final String ODK_FORM_OPTION_BUTTON = "id:org.hzontal.tella:id/popupMenu";
+    public static final String ODK_FORM_OPTION_DELETE_BUTTON = "id:org.hzontal.tella:id/action_delete";
+    public static final String ODK_CLOSE_FORM_BUTTON = "xpath://android.widget.ImageButton[@content-desc=\"Navigate up\"]";
     public static final String ODK_TABS = "xpath://android.widget.LinearLayout[@content-desc=\"%s\"]"; //BLANK, Draft, Outbox, Submitted//
-    public static final String ODK_FORM_NAME = "id:org.hzontal.tella:id/name";
+    public static final String ODK_FORM_NAME = "xpath://android.widget.TextView[@resource-id=\"org.hzontal.tella:id/name\" and @text=\"%s\"]";
 }
