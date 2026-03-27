@@ -370,13 +370,25 @@ public class ServersService {
     }
 
     public static void clickDownloadFirstODK() throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         MobileActionManager.click(ServersConstants.ODK_DOWNLOAD_BUTTON);
     }
 
-    public static void clickFirstFormODK() throws InterruptedException {
-        Thread.sleep(1000);
-        MobileActionManager.click(ServersConstants.ODK_FIRST_FORM);
+    public static void clickFirstFormODK() {
+        for (int i = 0; i < 3; i++) {
+            try {
+                MobileActionManager.click(ServersConstants.ODK_FIRST_FORM);
+                MobileActionManager.waitVisibility(ServersConstants.ODK_FORM_EDIT_TEXT);
+                return;
+            } catch (Exception e) {
+                try {
+                    Thread.sleep(700);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+        throw new RuntimeException("Could not open first ODK form after retries");
     }
 
     public static void clickNextButtonODKForm() {
@@ -476,7 +488,7 @@ public class ServersService {
         MobileActionManager.click(ServersConstants.ODK_TABS, tab);
     }
 
-    public static void sendFormToDraftOutbox(String tab) {
+    public static void saveSubmitFormODK(String tab) {
         switch (tab.trim().toLowerCase()) {
             case "draft":
                 clickSaveFormODK();
@@ -487,6 +499,11 @@ public class ServersService {
             case "outbox":
                 MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
                 MobileActionManager.click(ServersConstants.ODK_FORM_SAVE_OUTBOX_BUTTON);
+                break;
+
+            case "submitted":
+                MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+                MobileActionManager.click(ServersConstants.ODK_FORM_SUBMIT_BUTTON);
                 break;
 
             default:
