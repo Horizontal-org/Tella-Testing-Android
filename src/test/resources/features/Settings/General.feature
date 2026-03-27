@@ -29,6 +29,7 @@ Feature: General
     And the user taps on the language <Default>
     Then the user will see the same language applied as the device
     
+    
     Examples:
       | language | title  | Default           |
       | French   | Langue | Valeur par défaut |
