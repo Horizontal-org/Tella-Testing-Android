@@ -44,10 +44,10 @@ Feature: Tella Web
     And completes the Title "Crowdar" and the Description "Evidence <recording>"
     And the user taps + button for the attach files
     And selects files option "<Select files>"
-    And presses the "rec" and "stop" icon
+    And the user records an audio
     And the user presses "SUBMIT" button
-    Then sees the file whith title "Crowdar" and description "Evidence <recording>" being uploaded
-    And the sucessfull message "Your report is available in the Outbox" appears
+    Then the file whith title "Crowdar" and description "Evidence <recording>" being uploaded
+    And the sucessfull message "Your report has successfully been submitted." appears
 
     Examples:
       | recording | Select files           |

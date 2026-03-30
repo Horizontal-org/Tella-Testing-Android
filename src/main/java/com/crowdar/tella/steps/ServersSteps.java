@@ -96,7 +96,7 @@ public class ServersSteps extends PageSteps {
     @And("the user is connected to the Tella Web server")
     public void theUserIsConnectedToTheTellaWebServer() {
         SettingsService.clickSettingsIcon();
-        SettingsService.clickCategory("Servers");
+        SettingsService.clickCategory("Connections");
         ServersService.clickPlusButton();
         ServersService.selectButton("Tella Web");
         ServersService.pressButton("OK");
@@ -331,6 +331,13 @@ public class ServersSteps extends PageSteps {
     @And("^the user enters (.*) as the folder name$")
     public void theUserEntersAsTheFolderName(String nameFolder) {
         ServersService.createNewFolder(nameFolder);
+    }
+
+    @And("the user records an audio")
+    public void theUserRecordsAnAudio() {
+        AudioService.clickStartOption();
+        AudioService.acceptPermissions();
+        AudioService.clickStartOption();
     }
 }
 
