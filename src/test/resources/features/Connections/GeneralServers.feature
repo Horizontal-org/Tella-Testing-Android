@@ -208,7 +208,7 @@ Feature: Connections - Connection to servers
     And the user presses the button Go to google Drive
     Then the user views the Server in the connect list
   
-  @Smoke @Automated @NextCloud @E2E @testBrian
+  @Smoke @Automated @NextCloud @E2E
   Scenario: Server - Nextcloud - Connecting to the server in a new folder
     When the user presses the + button
     And selects the server "Nextcloud"
@@ -217,7 +217,6 @@ Feature: Connections - Connection to servers
     And the user presses "Next" button
     And the user presses "YES" button
     And the user presses "Next" button
-    And the user views the "Log in to access the project"
     And the user fills the fields "Username" and "Password"
     And the user enters the credentials of Nextcloud
     And the user presses "Log in" button
@@ -225,7 +224,3 @@ Feature: Connections - Connection to servers
     And the user presses "Next" button
     And the user presses "Go to Nextcloud" button
     Then the user views the NextCloud in the connect list
-  
-
-    #oki hacer casos especificos para dropbox y next cloud
-
