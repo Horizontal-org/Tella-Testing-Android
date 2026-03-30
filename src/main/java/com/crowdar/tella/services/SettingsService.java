@@ -241,6 +241,7 @@ public class SettingsService {
         // Usamos el valor convertido en el bucle for
         for (int i = 0; i < attempt; i++) {
             UnlockService.enterPassword(pin);
+            Thread.sleep(500);
         }
     }
 

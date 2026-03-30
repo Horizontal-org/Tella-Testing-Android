@@ -154,10 +154,10 @@ public class ServersService {
         MobileActionManager.setInput(ServersConstants.TELLA_USER_INPUT, PropertyManager.getProperty("tellauser"));
         MobileActionManager.setInput(ServersConstants.TELLA_PASS_INPUT, PropertyManager.getProperty("tellapass"));
         MobileActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, "Log in");
-        MobileActionManager.click(ServersConstants.SAVE_BUTTON);
+        GenericService.commonClick(ServersConstants.SAVE_BUTTON);
         MobileActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, "GO TO REPORTS");
-        MobileActionManager.click(ServersConstants.BACK_BUTTON);
-        MobileActionManager.click(ServersConstants.BACK_BUTTON);
+        GenericService.commonClick(ServersConstants.BACK_BUTTON);
+        GenericService.commonClick(ServersConstants.BACK_BUTTON);
     }
 
     public static void tapsConnection(String connection) {

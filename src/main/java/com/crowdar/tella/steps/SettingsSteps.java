@@ -302,7 +302,7 @@ public class SettingsSteps {
 
         //Iniciamos la configuracion de conexion
         SettingsService.clickSettingsIcon();
-        SettingsService.clickCategory("Servers");
+        SettingsService.clickCategory("Connections");
         ServersService.clickPlusButton();
         ServersService.selectButton("Tella Web");
         ServersService.clicNextBtn();
