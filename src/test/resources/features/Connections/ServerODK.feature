@@ -7,17 +7,15 @@ Feature: ODK
     And the user clicks on the option Connections
     And the user creates an Open Data Kit connection
 
-  @Smoke @Automated
+  @Smoke @Automated @testODK
   Scenario: Download Forms
     When the user taps on the "ODK" connection
-    And the user taps the refresh button in the Blank tab
     And the user taps the download button on the first form
     Then the message "Download completed" appears on the screen
 
   @Smoke @Automated #Ary's test form based
   Scenario Outline: Submit - Save a form for later
     When the user taps on the "Forms" connection
-    And the user taps the refresh button in the Blank tab
     And the user taps the download button on the first form
     And the user taps the first form to fill out
     And the user completes all required fields in Ari's test

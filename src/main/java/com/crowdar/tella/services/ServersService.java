@@ -369,9 +369,36 @@ public class ServersService {
         MobileActionManager.click(ServersConstants.ODK_REFRESH_BUTTON);
     }
 
-    public static void clickDownloadFirstODK() throws InterruptedException {
-        Thread.sleep(2000);
-        MobileActionManager.click(ServersConstants.ODK_DOWNLOAD_BUTTON);
+    public static void clickDownloadFirstODK() {
+        int attempts = 0;
+
+        while (attempts < 3) {
+            try {
+                MobileActionManager.waitVisibility(ServersConstants.ODK_DOWNLOAD_BUTTON);
+                MobileActionManager.click(ServersConstants.ODK_DOWNLOAD_BUTTON);
+                return;
+            } catch (org.openqa.selenium.StaleElementReferenceException e) {
+                attempts++;
+                System.out.println("Stale element on download button. Retry: " + attempts);
+                try {
+                    Thread.sleep(700);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("Thread interrupted while retrying download click", ie);
+                }
+            } catch (Exception e) {
+                attempts++;
+                System.out.println("Error clicking download button. Retry: " + attempts + " - " + e.getMessage());
+                try {
+                    Thread.sleep(700);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("Thread interrupted while retrying download click", ie);
+                }
+            }
+        }
+
+        throw new RuntimeException("Could not click the ODK download button after 3 attempts.");
     }
 
     public static void clickFirstFormODK() {
