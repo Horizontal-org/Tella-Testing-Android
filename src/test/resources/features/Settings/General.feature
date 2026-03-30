@@ -14,7 +14,7 @@ Feature: General
       | category     | visible      |
       | General      | General      |
       | Security     | Security     |
-      | Servers      | Connections  |
+      | Connections  | Connections  |
       | About & Help | About & Help |
       | Feedback     | Feedback     |
   

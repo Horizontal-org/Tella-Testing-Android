@@ -116,9 +116,10 @@ public class ServersService {
     }
 
     public static void viewLoginToProject(String titleLogin) {
-
         MobileActionManager.waitVisibility(ServersConstants.LOGIN_TITLE);
-        Assert.assertTrue(MobileActionManager.getText(ServersConstants.LOGIN_TITLE).contains(titleLogin));
+        String actualTitle = MobileActionManager.getText(ServersConstants.LOGIN_TITLE);
+        Assert.assertEquals(titleLogin, actualTitle, "The title does not match the expected one.");
+
     }
 
     public static void viewFieldsLogin(String username, String password) {

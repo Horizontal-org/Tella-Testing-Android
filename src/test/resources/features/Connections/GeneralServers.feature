@@ -208,7 +208,7 @@ Feature: Connections - Connection to servers
     And the user presses the button Go to google Drive
     Then the user views the Server in the connect list
   
-  @Smoke @Automated @NextCloud @E2E
+  @Smoke @Automated @NextCloud @E2E @testBrian
   Scenario: Server - Nextcloud - Connecting to the server in a new folder
     When the user presses the + button
     And selects the server "Nextcloud"
