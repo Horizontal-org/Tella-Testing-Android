@@ -241,6 +241,7 @@ public class SettingsService {
         // Usamos el valor convertido en el bucle for
         for (int i = 0; i < attempt; i++) {
             UnlockService.enterPassword(pin);
+            Thread.sleep(500);
         }
     }
 
@@ -367,9 +368,8 @@ public class SettingsService {
     }
 
     public static void goToHomeFromASettingPage() {
-        //La pagina de seguridad esta a dos paginas de la home, por ello simulo dos tab
-        MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON).click();
-        MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON).click();
+        GenericService.commonClick(SettingsConstants.GO_BACK_BUTTON);
+        GenericService.commonClick(SettingsConstants.GO_BACK_BUTTON);
     }
 
     public static void viewCounterMessage(String expectedText) {
