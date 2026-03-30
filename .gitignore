@@ -68,5 +68,6 @@ target/
 /.project
 /.metadata
 /.settings
+.factorypath
 
 video-samsung_s7_9

@@ -7,15 +7,18 @@ import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.*;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
-import io.lippia.api.service.CommonService;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.*;
+
+import java.util.List;
 
 
 public class ServersService {
@@ -105,8 +108,11 @@ public class ServersService {
     }
 
     public static void viewMessage(String message) {
-        MobileActionManager.waitVisibility(ServersConstants.TEXT_SERVER_MSG);
-        String actualMessage = MobileActionManager.getText(ServersConstants.TEXT_SERVER_MSG);
+        By locator = GenericService.getByFromLocator(ServersConstants.TEXT_SERVER_MSG);
+        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        String actualMessage = driver.findElement(locator).getText();
         Assert.assertTrue(actualMessage.contains(message));
     }
 
@@ -371,35 +377,38 @@ public class ServersService {
     }
 
     public static void clickDownloadFirstODK() {
-        int attempts = 0;
+        int maxAttempts = 10;
+        int baseSleepMs = 200;
 
-        while (attempts < 3) {
+        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
             try {
-                MobileActionManager.waitVisibility(ServersConstants.ODK_DOWNLOAD_BUTTON);
-                GenericService.commonClick(ServersConstants.ODK_DOWNLOAD_BUTTON);
+                GenericService.clickElementByCoordinates(ServersConstants.ODK_DOWNLOAD_BUTTON);
                 return;
-            } catch (org.openqa.selenium.StaleElementReferenceException e) {
-                attempts++;
-                System.out.println("Stale element on download button. Retry: " + attempts);
-                try {
-                    Thread.sleep(700);
-                } catch (InterruptedException ie) {
-                    Thread.currentThread().interrupt();
-                    throw new RuntimeException("Thread interrupted while retrying download click", ie);
-                }
+            } catch (StaleElementReferenceException e) {
+                System.out.println("Stale element on download button. Attempt " + attempt + "/" + maxAttempts);
+                sleep(baseSleepMs);
+            } catch (ElementClickInterceptedException e) {
+                System.out.println("Element click intercepted. Attempt " + attempt + "/" + maxAttempts);
+                sleep(baseSleepMs);
+            } catch (org.openqa.selenium.NoSuchElementException e) {
+                System.out.println("Element not found. Attempt " + attempt + "/" + maxAttempts);
+                sleep(baseSleepMs);
             } catch (Exception e) {
-                attempts++;
-                System.out.println("Error clicking download button. Retry: " + attempts + " - " + e.getMessage());
-                try {
-                    Thread.sleep(700);
-                } catch (InterruptedException ie) {
-                    Thread.currentThread().interrupt();
-                    throw new RuntimeException("Thread interrupted while retrying download click", ie);
-                }
+                System.out.println("Error clicking download button. Attempt " + attempt + "/" + maxAttempts + " - " + e.getMessage());
+                sleep(baseSleepMs);
             }
         }
 
-        throw new RuntimeException("Could not click the ODK download button after 3 attempts.");
+        throw new RuntimeException("Could not click the ODK download button after " + maxAttempts + " attempts.");
+    }
+
+    private static void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Thread interrupted", ie);
+        }
     }
 
     public static void clickFirstFormODK() {

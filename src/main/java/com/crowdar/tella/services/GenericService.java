@@ -10,19 +10,16 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.interactions.PointerInput.Origin;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
-import org.openqa.selenium.interactions.PointerInput.Origin;
-
 import java.time.Duration;
-import java.util.Collections;
-
 import java.util.Arrays;
-
+import java.util.Collections;
 import java.util.List;
 
 
@@ -246,15 +243,24 @@ public class GenericService {
     }
 
     public static void clickByCoordinates(int x, int y) {
-
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-
         Sequence tap = new Sequence(finger, 1);
         tap.addAction(finger.createPointerMove(Duration.ZERO, Origin.viewport(), x, y));
         tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
         tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-
         DriverManager.getDriverInstance().perform(Collections.singletonList(tap));
+    }
+
+    public static void clickElementByCoordinates(String locator) {
+        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+        By by = getByFromLocator(locator);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(by));
+        WebElement element = driver.findElement(by);
+        Point location = element.getLocation();
+        int x = location.getX() + (element.getSize().getWidth() / 2);
+        int y = location.getY() + (element.getSize().getHeight() / 2);
+        clickByCoordinates(x, y);
     }
     public static By getByFromLocator(String locator) {
         if (locator.startsWith("id:")) {
