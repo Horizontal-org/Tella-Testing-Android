@@ -6,7 +6,7 @@ Feature: Uwazi
     And the user is connected to the "Uwazi" server
     #With public access
 
-  @Smoke @Candidate @testAbel
+  @Smoke @Candidate
   Scenario: Download templates
     When the user taps on the "Uwazi" connection
     And taps the "+" button

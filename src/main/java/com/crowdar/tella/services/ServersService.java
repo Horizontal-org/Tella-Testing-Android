@@ -7,6 +7,7 @@ import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.*;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.lippia.api.service.CommonService;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
@@ -154,10 +155,10 @@ public class ServersService {
         MobileActionManager.setInput(ServersConstants.TELLA_USER_INPUT, PropertyManager.getProperty("tellauser"));
         MobileActionManager.setInput(ServersConstants.TELLA_PASS_INPUT, PropertyManager.getProperty("tellapass"));
         MobileActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, "Log in");
-        MobileActionManager.click(ServersConstants.SAVE_BUTTON);
+        GenericService.commonClick(ServersConstants.SAVE_BUTTON);
         MobileActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, "GO TO REPORTS");
-        MobileActionManager.click(ServersConstants.BACK_BUTTON);
-        MobileActionManager.click(ServersConstants.BACK_BUTTON);
+        GenericService.commonClick(ServersConstants.BACK_BUTTON);
+        GenericService.commonClick(ServersConstants.BACK_BUTTON);
     }
 
     public static void tapsConnection(String connection) {
@@ -370,15 +371,42 @@ public class ServersService {
         MobileActionManager.click(ServersConstants.ODK_REFRESH_BUTTON);
     }
 
-    public static void clickDownloadFirstODK() throws InterruptedException {
-        Thread.sleep(2000);
-        MobileActionManager.click(ServersConstants.ODK_DOWNLOAD_BUTTON);
+    public static void clickDownloadFirstODK() {
+        int attempts = 0;
+
+        while (attempts < 3) {
+            try {
+                MobileActionManager.waitVisibility(ServersConstants.ODK_DOWNLOAD_BUTTON);
+                GenericService.commonClick(ServersConstants.ODK_DOWNLOAD_BUTTON);
+                return;
+            } catch (org.openqa.selenium.StaleElementReferenceException e) {
+                attempts++;
+                System.out.println("Stale element on download button. Retry: " + attempts);
+                try {
+                    Thread.sleep(700);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("Thread interrupted while retrying download click", ie);
+                }
+            } catch (Exception e) {
+                attempts++;
+                System.out.println("Error clicking download button. Retry: " + attempts + " - " + e.getMessage());
+                try {
+                    Thread.sleep(700);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("Thread interrupted while retrying download click", ie);
+                }
+            }
+        }
+
+        throw new RuntimeException("Could not click the ODK download button after 3 attempts.");
     }
 
     public static void clickFirstFormODK() {
         for (int i = 0; i < 3; i++) {
             try {
-                MobileActionManager.click(ServersConstants.ODK_FIRST_FORM);
+                GenericService.commonClick(ServersConstants.ODK_FIRST_FORM);
                 MobileActionManager.waitVisibility(ServersConstants.ODK_FORM_EDIT_TEXT);
                 return;
             } catch (Exception e) {
@@ -478,14 +506,16 @@ public class ServersService {
     }
 
     public static void clickSaveFormODK() {
-        MobileActionManager.click(ServersConstants.ODK_FORM_SAVE_DRAFT_BUTTON);
+        GenericService.commonClick(ServersConstants.ODK_FORM_SAVE_DRAFT_BUTTON);
     }
 
     public static void clickCloseForm() {
-        MobileActionManager.click(ServersConstants.ODK_CLOSE_FORM_BUTTON);
+        GenericService.commonClick(ServersConstants.ODK_CLOSE_FORM_BUTTON);
     }
 
     public static void clickTabODK(String tab) {
+        MobileActionManager.waitVisibility(ServersConstants.ODK_TABS, tab);
+        MobileActionManager.waitClickable(ServersConstants.ODK_TABS, tab);
         MobileActionManager.click(ServersConstants.ODK_TABS, tab);
     }
 

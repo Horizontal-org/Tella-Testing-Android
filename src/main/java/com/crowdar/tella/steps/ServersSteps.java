@@ -301,7 +301,6 @@ public class ServersSteps extends PageSteps {
     @Given("the user has a saved form in the \"(.*)\" tab")
     public void theUserHasASavedFormInTheTab(String tab) throws InterruptedException {
         HomeService.clickConnection("Forms");
-        ServersService.clickRefreshODK();
         ServersService.clickDownloadFirstODK();
         ServersService.clickFirstFormODK();
         ServersService.completeFormAriTestODK();
