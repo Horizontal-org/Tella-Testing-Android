@@ -7,6 +7,7 @@ import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.*;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.lippia.api.service.CommonService;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
@@ -375,7 +376,7 @@ public class ServersService {
         while (attempts < 3) {
             try {
                 MobileActionManager.waitVisibility(ServersConstants.ODK_DOWNLOAD_BUTTON);
-                MobileActionManager.click(ServersConstants.ODK_DOWNLOAD_BUTTON);
+                GenericService.commonClick(ServersConstants.ODK_DOWNLOAD_BUTTON);
                 return;
             } catch (org.openqa.selenium.StaleElementReferenceException e) {
                 attempts++;
@@ -404,7 +405,7 @@ public class ServersService {
     public static void clickFirstFormODK() {
         for (int i = 0; i < 3; i++) {
             try {
-                MobileActionManager.click(ServersConstants.ODK_FIRST_FORM);
+                GenericService.commonClick(ServersConstants.ODK_FIRST_FORM);
                 MobileActionManager.waitVisibility(ServersConstants.ODK_FORM_EDIT_TEXT);
                 return;
             } catch (Exception e) {
@@ -504,14 +505,16 @@ public class ServersService {
     }
 
     public static void clickSaveFormODK() {
-        MobileActionManager.click(ServersConstants.ODK_FORM_SAVE_DRAFT_BUTTON);
+        GenericService.commonClick(ServersConstants.ODK_FORM_SAVE_DRAFT_BUTTON);
     }
 
     public static void clickCloseForm() {
-        MobileActionManager.click(ServersConstants.ODK_CLOSE_FORM_BUTTON);
+        GenericService.commonClick(ServersConstants.ODK_CLOSE_FORM_BUTTON);
     }
 
     public static void clickTabODK(String tab) {
+        MobileActionManager.waitVisibility(ServersConstants.ODK_TABS, tab);
+        MobileActionManager.waitClickable(ServersConstants.ODK_TABS, tab);
         MobileActionManager.click(ServersConstants.ODK_TABS, tab);
     }
 
