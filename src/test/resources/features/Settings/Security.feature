@@ -113,7 +113,7 @@ Feature: Security
       #| 30 minutes  |  80 seconds |
       #| 1 hour      |  120 seconds |
 
-  @Smoke @DeleteAfterFailedUnlock @SmokeManual @Automated @E2E
+  @Smoke @DeleteAfterFailedUnlock @SmokeManual @Automated @E2E @testSecurity
   Scenario Outline: Security - Delete after failed unlock - E2E
     Given the user records an audio file
     When the user taps the Delete after failed unlock option
@@ -128,8 +128,8 @@ Feature: Security
     Examples:
       | attempts   | PIN    | message                                                        |
       | 5 attempts | 123450 | Your Tella data will be deleted after 5 failed unlock attempts |
-      #| 10 attempts | 123451 | Your Tella data will be deleted after 10 failed unlock attempts |
-      #| 20 attempts | 123450 | Your Tella data will be deleted after 20 failed unlock attempts |
+      | 10 attempts | 123451 | Your Tella data will be deleted after 10 failed unlock attempts |
+      | 20 attempts | 123450 | Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @DeleteAfterFailedUnlock @Automated @LockFlow
   Scenario Outline: Security - Delete after failed unlock
@@ -194,7 +194,7 @@ Feature: Security
     Then that files were deleted
 
 
-  @Smoke @QuickDelete @SmokeManual @Automated @E2E
+  @Smoke @QuickDelete @SmokeManual @Automated @E2E @testSecurity
   Scenario: Security - Quick delete - Delete connection to the server - E2E
     Given The user has already connected to the Tella web server
     When the user toggles the switch on the Quick delete option

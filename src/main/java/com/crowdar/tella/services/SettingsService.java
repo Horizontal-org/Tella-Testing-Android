@@ -68,7 +68,7 @@ public class SettingsService {
         Map<String, String> links = new HashMap<>();
         links.put("General", SettingsConstants.GENERAL_BUTTON);
         links.put("Security", SettingsConstants.SECURITY_BUTTON);
-        links.put("Servers", SettingsConstants.SERVERS_BUTTON);
+        links.put("Connections", SettingsConstants.SERVERS_BUTTON);
         links.put("About & Help", SettingsConstants.ABOUT_HELP_BUTTON);
         links.put("Feedback", SettingsConstants.FEEDBACK_BUTTON);
         try {
@@ -241,6 +241,7 @@ public class SettingsService {
         // Usamos el valor convertido en el bucle for
         for (int i = 0; i < attempt; i++) {
             UnlockService.enterPassword(pin);
+            Thread.sleep(500);
         }
     }
 
@@ -366,10 +367,9 @@ public class SettingsService {
 
     }
 
-    public static void goToHomeFromSecurityPage() {
-        //La pagina de seguridad esta a dos paginas de la home, por ello simulo dos tab
-        MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON).click();
-        MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON).click();
+    public static void goToHomeFromASettingPage() {
+        GenericService.commonClick(SettingsConstants.GO_BACK_BUTTON);
+        GenericService.commonClick(SettingsConstants.GO_BACK_BUTTON);
     }
 
     public static void viewCounterMessage(String expectedText) {

@@ -13,10 +13,10 @@ Feature: General
     Examples:
       | category     | visible      |
       | General      | General      |
-#      | Security     | Security     |
-#      | Servers      | Connections  |
-#      | About & Help | About & Help |
-#      | Feedback     | Feedback     |
+      | Security     | Security     |
+      | Connections  | Connections  |
+      | About & Help | About & Help |
+      | Feedback     | Feedback     |
   
   @ChangeLanguage @Candidate
   Scenario Outline: Change Language and Re-change by default language
@@ -100,7 +100,7 @@ Feature: General
     And the user switches configuration <configuration> to enable
     When the user is back in Tella home page
     Then the user will be able to view the configuration <configuration> in the home page
-     
+    
     Examples:
       | configuration      |
       | Recent files       |
