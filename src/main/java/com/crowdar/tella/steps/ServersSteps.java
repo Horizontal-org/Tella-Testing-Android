@@ -259,7 +259,7 @@ public class ServersSteps extends PageSteps {
     }
 
     @And("the user taps the first form to fill out")
-    public void theUserTapsTheFirstFormToFillOut() {
+    public void theUserTapsTheFirstFormToFillOut() throws InterruptedException {
         ServersService.clickFirstFormODK();
     }
 
@@ -298,7 +298,7 @@ public class ServersSteps extends PageSteps {
         ServersService.clickTabODK(tab);
     }
 
-    @Given("the user has a saved form in the \"(.*)\" tab")
+    @Given("^the user has a saved form in the \"(.*)\" tab$")
     public void theUserHasASavedFormInTheTab(String tab) throws InterruptedException {
         HomeService.clickConnection("Forms");
         ServersService.clickDownloadFirstODK();
