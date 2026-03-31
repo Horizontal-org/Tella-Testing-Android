@@ -14,7 +14,7 @@ Feature: General
       | category     | visible      |
       | General      | General      |
       | Security     | Security     |
-      | Servers      | Connections  |
+      | Connections  | Connections  |
       | About & Help | About & Help |
       | Feedback     | Feedback     |
   
@@ -80,11 +80,11 @@ Feature: General
       | Share data to improve Tella |
       | Share crash reports         |
       | Verification mode           |
-      | Recent files                |
-      | Favorite forms              |
-      | Favorite templates          |
-      | Text justification          |
-      | Increase text spacing       |
+      | Recent files               |
+      | Favorite forms             |
+      | Favorite templates         |
+      | Text justification         |
+      | Increase text spacing      |
   
   @Smoke @Candidate @E2E
   Scenario: Activate configuration Share data to improve tella

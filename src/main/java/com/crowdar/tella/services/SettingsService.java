@@ -11,6 +11,7 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -21,23 +22,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.crowdar.driver.DriverManager.*;
-import static org.bouncycastle.oer.its.ieee1609dot2.basetypes.Duration.seconds;
 
 public class SettingsService {
 
     public static void clickSettingsIcon() {
         MobileActionManager.waitVisibility(SettingsConstants.SETTINGS_ICON);
-        MobileActionManager.click(SettingsConstants.SETTINGS_ICON);
+        GenericService.clickElementByCoordinates(SettingsConstants.SETTINGS_ICON);
     }
 
     public static void clickGeneralIcon() {
         MobileActionManager.waitVisibility(SettingsConstants.GENERAL_BUTTON);
-        MobileActionManager.click(SettingsConstants.GENERAL_BUTTON);
+        GenericService.clickElementByCoordinates(SettingsConstants.GENERAL_BUTTON);
     }
 
     public static void clickLanguageOptions() {
         MobileActionManager.waitVisibility(SettingsConstants.LANGUAGE_BUTTON);
-        MobileActionManager.click(SettingsConstants.LANGUAGE_BUTTON);
+        GenericService.clickElementByCoordinates(SettingsConstants.LANGUAGE_BUTTON);
     }
 
     public static void verifyListOfLanguages() {
@@ -46,11 +46,18 @@ public class SettingsService {
     }
 
     public static void clickChoosenLanguage(String language) {
-        WebElement pedidoEle = getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
-                "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
-                        ".scrollIntoView(new UiSelector()" +
-                        ".textMatches(\"" + language + "\").instance(0))"));
-        pedidoEle.click();
+        for (int i = 0; i < 3; i++) {
+            try {
+                WebElement pedidoEle = getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
+                        "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                                ".scrollIntoView(new UiSelector()" +
+                                ".textMatches(\"" + language + "\").instance(0))"));
+                GenericService.clickElementByCoordinatesWithElement(pedidoEle);
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
+        }
     }
 
     public static void verifyLanguageTitle(String title) {
@@ -59,7 +66,7 @@ public class SettingsService {
         String LanguageTitle = MobileActionManager.getText(SettingsConstants.LANGUAGE_TITLE);
         Assert.assertEquals(LanguageTitle, title);
 
-        MobileActionManager.click(SettingsConstants.BUTTON_BACK_LANG);
+        clickBackButton();
         MobileActionManager.waitVisibility(SettingsConstants.TITLE_LANGUAGE_SETTING);
         Assert.assertTrue(MobileActionManager.isVisible(SettingsConstants.TITLE_LANGUAGE_SETTING));
     }
@@ -71,11 +78,16 @@ public class SettingsService {
         links.put("Connections", SettingsConstants.SERVERS_BUTTON);
         links.put("About & Help", SettingsConstants.ABOUT_HELP_BUTTON);
         links.put("Feedback", SettingsConstants.FEEDBACK_BUTTON);
-        try {
-            MobileActionManager.waitVisibility(links.get(category));
-            MobileActionManager.click(links.get(category));
-        } catch (Exception e) {
-            MobileActionManager.click(links.get(category));
+
+        String locator = links.get(category);
+        for (int i = 0; i < 3; i++) {
+            try {
+                MobileActionManager.waitVisibility(locator);
+                GenericService.clickElementByCoordinates(locator);
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
         }
     }
 
@@ -115,48 +127,84 @@ public class SettingsService {
     }
 
     public static void switchButtonEnable(String configuration) {
+        configuration = configuration.trim().replaceAll("^\"|\"$", "");
         String button = viewButton(configuration);
-        String buttonFormat = String.format(button, configuration);
-        if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
-            SettingsService.scrollDown();
+        if (button == null) {
+            throw new IllegalArgumentException("Configuration not found in viewButton map: " + configuration);
         }
+        String buttonFormat = String.format(button, configuration);
 
-        MobileActionManager.waitVisibility(buttonFormat);
-        String check = MobileActionManager.getAttribute(buttonFormat, "checked");
-        if (Boolean.parseBoolean(check) != true) {
-            MobileActionManager.click(buttonFormat);
+        for (int attempt = 0; attempt < 5; attempt++) {
+            try {
+                if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
+                    scrollDown();
+                    GenericService.sleep(300);
+                    continue;
+                }
+                MobileActionManager.waitVisibility(buttonFormat);
+                String check = MobileActionManager.getAttribute(buttonFormat, "checked");
+                if (Boolean.parseBoolean(check) != true) {
+                    GenericService.clickElementByCoordinates(buttonFormat);
+                }
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            } catch (Exception e) {
+                scrollDown();
+                GenericService.sleep(300);
+            }
         }
     }
 
     public static void switchButtonDisable(String configuration) {
         String buttonLocator = viewButton(configuration);
-        MobileActionManager.waitVisibility(buttonLocator);
-        String check = MobileActionManager.getAttribute(buttonLocator, "checked");
-        if (Boolean.parseBoolean(check) == true) {
-            MobileActionManager.click(buttonLocator);
+        for (int i = 0; i < 3; i++) {
+            try {
+                MobileActionManager.waitVisibility(buttonLocator);
+                String check = MobileActionManager.getAttribute(buttonLocator, "checked");
+                if (Boolean.parseBoolean(check) == true) {
+                    GenericService.clickElementByCoordinates(buttonLocator);
+                }
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
         }
     }
 
     public static void viewButtonEnableGeneral(String configuration) {
+        configuration = configuration.trim().replaceAll("^\"|\"$", "");
         MobileActionManager.waitVisibility(SettingsConstants.CATEGORY_SETTINGS_TITLE);
         if (!MobileActionManager.getText(SettingsConstants.CATEGORY_SETTINGS_TITLE).equalsIgnoreCase("General")){
-            SettingsService.generalButton();
+            generalButton();
         }
 
         String button = viewButton(configuration);
         String buttonFormat = String.format(button, configuration);
-        if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
-            SettingsService.scrollDown();
+
+        for (int attempt = 0; attempt < 5; attempt++) {
+            try {
+                if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
+                    scrollDown();
+                    GenericService.sleep(300);
+                    continue;
+                }
+                MobileActionManager.waitVisibility(buttonFormat);
+                Assert.assertTrue(MobileActionManager.getAttribute(buttonFormat, "checked").contains("true"));
+                return;
+            } catch (Exception e) {
+                scrollDown();
+                GenericService.sleep(300);
+            }
         }
-        MobileActionManager.waitVisibility(buttonFormat);
-        Assert.assertTrue(MobileActionManager.getAttribute(buttonFormat, "checked").contains("true"));
     }
 
     public static void viewButtonEnableSecurity(String option) {
+        option = option.trim().replaceAll("^\"|\"$", "");
         String button = viewButton(option);
         String buttonFormat = String.format(button, option);
         if (MobileActionManager.getElements(buttonFormat).isEmpty()) {
-            SettingsService.scrollDown();
+            scrollDown();
         }
         MobileActionManager.waitVisibility(buttonFormat);
         Assert.assertTrue(MobileActionManager.getAttribute(buttonFormat, "checked").contains("true"));
@@ -181,7 +229,7 @@ public class SettingsService {
 
     public static void generalButton() {
         MobileActionManager.waitVisibility(SettingsConstants.GENERAL_BUTTON);
-        MobileActionManager.click(SettingsConstants.GENERAL_BUTTON);
+        GenericService.clickElementByCoordinates(SettingsConstants.GENERAL_BUTTON);
     }
 
     public static void tapTheOption(String option) {
@@ -190,31 +238,34 @@ public class SettingsService {
         options.put("Contact us", "contact_us");
         options.put("Privacy policy", "privacy_policy");
         String opt = "id:" + options.get(option);
-        try {
-            MobileActionManager.waitVisibility(opt);
-            MobileActionManager.click(opt);
-        } catch (Exception e) {
-            MobileActionManager.click(opt);
+
+        for (int i = 0; i < 3; i++) {
+            try {
+                MobileActionManager.waitVisibility(opt);
+                GenericService.clickElementByCoordinates(opt);
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
         }
     }
 
     public static void redirectedSite(String site) {
         MobileActionManager.waitVisibility(SettingsConstants.URL_BAR);
         Assert.assertTrue(MobileActionManager.getText(SettingsConstants.URL_BAR).equals(site));
-
     }
 
     public static void clicksOptions(String option) {
         int index = mapOptionToIndex(option);
         MobileActionManager.waitVisibility(SettingsConstants.OPTIONS_TITLE, String.valueOf(index));
-        MobileActionManager.click(SettingsConstants.OPTIONS_TITLE, String.valueOf(index));
+        GenericService.clickElementByCoordinates(SettingsConstants.OPTIONS_TITLE, String.valueOf(index));
     }
 
     public static void SelectGeneralOption(String timeout) {
         MobileActionManager.waitVisibility(SettingsConstants.TIMEOUT_SHEET_TITLE);
         String check = MobileActionManager.getAttribute(SettingsConstants.GENERAL_RADIO_BUTTON, "checked", timeout);
         if (Boolean.parseBoolean(check) != true) {
-            MobileActionManager.click(SettingsConstants.GENERAL_RADIO_BUTTON, timeout);
+            GenericService.clickElementByCoordinates(SettingsConstants.GENERAL_RADIO_BUTTON, timeout);
         }
     }
 
@@ -223,25 +274,23 @@ public class SettingsService {
         buttons.put("OK", SettingsConstants.OK_BUTTON);
         buttons.put("CANCEL", SettingsConstants.CANCEL_BUTTON);
         buttons.put("Exit Tella", SettingsConstants.OK_BUTTON);
-        MobileActionManager.waitVisibility(buttons.get(button));
-        MobileActionManager.click(buttons.get(button));
+
+        String locator = buttons.get(button);
+        MobileActionManager.waitVisibility(locator);
+        GenericService.clickElementByCoordinates(locator);
     }
 
     public static void selectedTimeout(String timeout) {
         MobileActionManager.waitVisibility(SettingsConstants.GENERAL_TEXTVIEW_LABEL, timeout);
         Assert.assertTrue(MobileActionManager.isEnabled(SettingsConstants.GENERAL_TEXTVIEW_LABEL));
-        //Assert.assertTrue(MobileActionManager.getText(SettingsConstants.GENERAL_TEXTVIEW_LABEL,timeout).equals(timeout));
     }
 
     public static void setIncorrectPinWithAttempts(String pin, String attempts) throws InterruptedException {
-        // Usamos una expresión regular para extraer el número del String
         String number = attempts.replaceAll("\\D+", "");
-        // Convertimos el String con el número a un Integer
         Integer attempt = Integer.parseInt(number);
-        // Usamos el valor convertido en el bucle for
         for (int i = 0; i < attempt; i++) {
             UnlockService.enterPassword(pin);
-            Thread.sleep(500);
+            GenericService.sleep(500);
         }
     }
 
@@ -249,14 +298,16 @@ public class SettingsService {
         Map<String, String> options = new HashMap<>();
         options.put("CHANGE NAME AND ICON", SettingsConstants.ICON_CAMOUFLAGE_BUTTON);
         options.put("HIDE BEHIND A CALCULATOR APP", SettingsConstants.APP_CAMOUFLAGE_BUTTON);
-        MobileActionManager.waitVisibility(options.get(option));
-        MobileActionManager.click(options.get(option));
+
+        String locator = options.get(option);
+        MobileActionManager.waitVisibility(locator);
+        GenericService.clickElementByCoordinates(locator);
     }
 
     public static void selectIcon(String icon) {
         MobileActionManager.waitVisibility(SettingsConstants.ICON_CAMOUFLAGE_TEXT);
-        String iconSelected = MobileActionManager.getText(SettingsConstants.ICON_CAMOUFLAGE_TEXT, icon);
-        MobileActionManager.click(iconSelected);
+        String iconSelected = SettingsConstants.ICON_CAMOUFLAGE_TEXT + "[@text='" + icon + "']";
+        GenericService.clickElementByCoordinates(iconSelected);
     }
 
     public static void showMessage(String message) {
@@ -283,15 +334,15 @@ public class SettingsService {
         }
     }
 
-
     public static void clickHelpInfo(String option) {
         Map<String, String> options = new HashMap<>();
         options.put("Delete files", SettingsConstants.DELETE_INFO_ICON);
         options.put("Delete Connections", SettingsConstants.DELETE_SERVER_ICON);
         options.put("Delete Tella", SettingsConstants.DELETE_FORM_ICON);
 
-        MobileActionManager.waitVisibility(options.get(option));
-        MobileActionManager.click(options.get(option));
+        String locator = options.get(option);
+        MobileActionManager.waitVisibility(locator);
+        GenericService.clickElementByCoordinates(locator);
     }
 
     public static void showHelpInfoMessage(String helpInfo) {
@@ -300,6 +351,7 @@ public class SettingsService {
     }
 
     public static void checkedButton() {
+        MobileActionManager.waitVisibility(SettingsConstants.REMAINING_UNLOCK_ATTEMPTS);
         AndroidDriver driver = (AndroidDriver) GenericService.getDriver();
         MobileElement checked = (MobileElement) driver.findElement(MobileBy.xpath(SettingsConstants.REMAINING_UNLOCK_ATTEMPTS));
         Assert.assertTrue(checked.isEnabled());
@@ -362,14 +414,20 @@ public class SettingsService {
             default:
                 System.out.println("[WARNING] Opcion invalida");
         }
-        MobileActionManager.waitVisibility(selectDeleteCheck).click();
-
-
+        MobileActionManager.waitVisibility(selectDeleteCheck);
+        GenericService.clickElementByCoordinates(selectDeleteCheck);
     }
 
     public static void goToHomeFromASettingPage() {
-        GenericService.commonClick(SettingsConstants.GO_BACK_BUTTON);
-        GenericService.commonClick(SettingsConstants.GO_BACK_BUTTON);
+        for (int i = 0; i < 2; i++) {
+            try {
+                MobileActionManager.waitVisibility(SettingsConstants.GO_BACK_BUTTON);
+                GenericService.clickElementByCoordinates(SettingsConstants.GO_BACK_BUTTON);
+                GenericService.sleep(300);
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
+        }
     }
 
     public static void viewCounterMessage(String expectedText) {
@@ -380,10 +438,8 @@ public class SettingsService {
         }
     }
 
-
     public static void theAppIsClosed() throws InterruptedException {
-        //Esperamos por el cierre de la app y validamos que se haya cerrado
-        Thread.sleep(6000);
+        GenericService.sleep(3000);
         Assert.assertTrue(GenericService.verifyActiveAppTella());
     }
 
@@ -392,8 +448,8 @@ public class SettingsService {
         Dimension size = driver.manage().window().getSize();
 
         int startX = size.width / 2;
-        int startY = (int) (size.height * 0.7); // Empezar desde el 70% (abajo)
-        int endY = (int) (size.height * 0.3); // Terminar en el 30% (arriba)
+        int startY = (int) (size.height * 0.7);
+        int endY = (int) (size.height * 0.3);
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
         Sequence swipe = new Sequence(finger, 1);
         swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY));
@@ -416,35 +472,42 @@ public class SettingsService {
                         ".scrollIntoView(new UiSelector().resourceId(\"" + value + "\"))";
                 break;
             case "text":
-            case "TEXT": // Coincidencia EXACTA
+            case "TEXT":
                 uiAutomatorCommand = "new UiScrollable(new UiSelector().scrollable(true))" +
                         ".scrollIntoView(new UiSelector().text(\"" + value + "\"))";
-                //Ejemplo: SettingsService.scrollTo("text:" + "Texto de Ejemplo");
-                //Ejemplo: SettingsService.scrollTo("text:" + nombreVariable);
                 break;
             default:
                 throw new IllegalArgumentException("El método scrollTo solo soporta 'id:', 'text:' o 'description:'. XPath no es soportado por UiScrollable.");
         }
 
-
         return driver.findElement(MobileBy.AndroidUIAutomator(uiAutomatorCommand));
     }
 
-    public static void clickBackButton() throws InterruptedException {
-
-        MobileActionManager.click(SettingsConstants.BUTTON_BACK_LANG);
-
-        Thread.sleep(1000);
-
-        MobileActionManager.click(SettingsConstants.BUTTON_BACK_LANG);
+    public static void clickBackButton() {
+        for (int i = 0; i < 2; i++) {
+            try {
+                MobileActionManager.waitVisibility(SettingsConstants.BUTTON_BACK_LANG);
+                GenericService.clickElementByCoordinates(SettingsConstants.BUTTON_BACK_LANG);
+                GenericService.sleep(300);
+            } catch (Exception e) {
+                GenericService.sleep(200);
+            }
+        }
     }
 
     public static void DefaultVisibleLanguage(String languageDefault) {
-        WebElement pedidoEle = getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
-                "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
-                        ".scrollIntoView(new UiSelector()" +
-                        ".textMatches(\"" + languageDefault + "\").instance(0))"));
-        Assert.assertTrue(pedidoEle.isDisplayed(), "El idioma " + languageDefault + "no es visible");
+        for (int i = 0; i < 3; i++) {
+            try {
+                WebElement pedidoEle = getDriverInstance().getWrappedDriver().findElement(MobileBy.AndroidUIAutomator(
+                        "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                                ".scrollIntoView(new UiSelector()" +
+                                ".textMatches(\"" + languageDefault + "\").instance(0))"));
+                Assert.assertTrue(pedidoEle.isDisplayed(), "El idioma " + languageDefault + "no es visible");
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
+        }
     }
 
     private static int mapOptionToIndex(String option) {

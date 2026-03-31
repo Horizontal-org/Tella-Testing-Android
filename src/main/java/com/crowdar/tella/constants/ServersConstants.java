@@ -64,7 +64,8 @@ public class ServersConstants {
 
     public static final String ODK_CONNECT_ADVANCED_BUTTON = "id:org.hzontal.tella:id/toggle_button";
     public static final String ODK_REFRESH_BUTTON = "id:org.hzontal.tella:id/fab";
-    public static final String ODK_DOWNLOAD_BUTTON = "id:org.hzontal.tella:id/dl_open_button";
+    public static final String ODK_DOWNLOAD_BUTTON = "ACCESSIBILITY_ID:Download";
+    public static final String ODK_MORE_OPTIONS_BUTTON = "ACCESSIBILITY_ID:More options";
     public static final String ODK_FIRST_FORM = "xpath://android.widget.LinearLayout[@resource-id=\"org.hzontal.tella:id/row_layout\"]/android.widget.LinearLayout";
     public static final String ODK_FORM_EDIT_TEXT = "xpath://android.widget.EditText";
     public static final String ODK_FORM_NEXT_BUTTON = "id:org.hzontal.tella:id/nextSection";

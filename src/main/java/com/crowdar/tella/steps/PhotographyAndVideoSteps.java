@@ -13,12 +13,10 @@ public class PhotographyAndVideoSteps {
     @When("the user presses the camera button")
     public void theUserPressesTheCameraButton() {
         GenericService.commonClick(HomeConstants.CAMERA_BUTTON);
-        FilesService.acceptPermissions();
     }
 
     @And("the user presses grid lines button")
     public void theUserPressesGridLinesButton() {
-        AudioService.acceptPermissions();
         PhotographyAndVideoService.enableGrid();
     }
 
@@ -53,7 +51,6 @@ public class PhotographyAndVideoSteps {
 
     @And("the user takes a photography")
     public void theUserTakesAPhotography() {
-        FilesService.acceptPermissions();
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
     }
 
@@ -151,7 +148,6 @@ public class PhotographyAndVideoSteps {
     public void theUserHaveAPhotoTakenNamedTella() {
         MobileActionManager.waitVisibility(HomeConstants.CAMERA_BUTTON);
         GenericService.commonClick(HomeConstants.CAMERA_BUTTON);
-        FilesService.acceptPermissions();
         MobileActionManager.waitVisibility(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
         GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
         MobileActionManager.waitVisibility(PhotographyAndVideoConstants.PREVIEW_FILE);

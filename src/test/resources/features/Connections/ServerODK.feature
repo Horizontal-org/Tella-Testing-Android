@@ -1,4 +1,4 @@
-@Regression @ODK @Servers
+@Regression @ODK @Servers @testODK
 Feature: ODK
 
   Background:
@@ -7,7 +7,7 @@ Feature: ODK
     And the user clicks on the option Connections
     And the user creates an Open Data Kit connection
 
-  @Smoke @Automated @testAI
+  @Smoke @Automated
   Scenario: Download Forms
     When the user taps on the "ODK" connection
     And the user taps the download button on the first form

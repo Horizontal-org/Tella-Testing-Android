@@ -254,21 +254,96 @@ public class GenericService {
     public static void clickElementByCoordinates(String locator) {
         WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
         By by = getByFromLocator(locator);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.presenceOfElementLocated(by));
-        WebElement element = driver.findElement(by);
+        long startTime = System.currentTimeMillis();
+        long timeoutMs = 10000;
+
+        while (System.currentTimeMillis() - startTime < timeoutMs) {
+            try {
+                List<WebElement> elements = driver.findElements(by);
+                if (!elements.isEmpty()) {
+                    WebElement element = elements.get(0);
+                    if (element.isDisplayed()) {
+                        Point location = element.getLocation();
+                        int x = location.getX() + (element.getSize().getWidth() / 2);
+                        int y = location.getY() + (element.getSize().getHeight() / 2);
+                        clickByCoordinates(x, y);
+                        return;
+                    }
+                }
+            } catch (StaleElementReferenceException e) {
+                // retry immediately
+            } catch (Exception ignored) {
+            }
+            sleep(50);
+        }
+        throw new RuntimeException("Element not found or clickable: " + locator);
+    }
+
+    public static void clickElementByCoordinates(String locator, String param) {
+        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+        String fullLocator = String.format(locator, param);
+        By by = getByFromLocator(fullLocator);
+        long startTime = System.currentTimeMillis();
+        long timeoutMs = 10000;
+
+        while (System.currentTimeMillis() - startTime < timeoutMs) {
+            try {
+                List<WebElement> elements = driver.findElements(by);
+                if (!elements.isEmpty()) {
+                    WebElement element = elements.get(0);
+                    if (element.isDisplayed()) {
+                        Point location = element.getLocation();
+                        int x = location.getX() + (element.getSize().getWidth() / 2);
+                        int y = location.getY() + (element.getSize().getHeight() / 2);
+                        clickByCoordinates(x, y);
+                        return;
+                    }
+                }
+            } catch (StaleElementReferenceException e) {
+                // retry immediately
+            } catch (Exception ignored) {
+            }
+            sleep(50);
+        }
+        throw new RuntimeException("Element not found or clickable: " + fullLocator);
+    }
+
+    public static void clickElementByCoordinatesWithElement(WebElement element) {
         Point location = element.getLocation();
         int x = location.getX() + (element.getSize().getWidth() / 2);
         int y = location.getY() + (element.getSize().getHeight() / 2);
         clickByCoordinates(x, y);
     }
+
+    public static boolean isElementContentDesc(String locator, String contentDesc) {
+        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+        By by = getByFromLocator(locator);
+        try {
+            WebElement element = driver.findElement(by);
+            String actualContentDesc = element.getAttribute("content-desc");
+            return actualContentDesc != null && actualContentDesc.equals(contentDesc);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
     public static By getByFromLocator(String locator) {
         if (locator.startsWith("id:")) {
             return By.id(locator.replace("id:", ""));
         } else if (locator.startsWith("xpath:")) {
             return By.xpath(locator.replace("xpath:", ""));
-        } else if (locator.startsWith("accessibilityId:")) {
-            return MobileBy.AccessibilityId(locator.replace("accessibilityId:", ""));
+        } else if (locator.startsWith("ACCESSIBILITY_ID:") || locator.startsWith("accessibilityId:")) {
+            String prefix = locator.contains("ACCESSIBILITY_ID:") ? "ACCESSIBILITY_ID:" : "accessibilityId:";
+            String value = locator.substring(prefix.length());
+            return MobileBy.AccessibilityId(value);
         } else {
             throw new IllegalArgumentException("Unsupported locator: " + locator);
         }

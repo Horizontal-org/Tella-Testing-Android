@@ -123,8 +123,6 @@ public class ServersSteps extends PageSteps {
     @And("^selects files option \"(.*)\"$")
     public void selectsFilesOption(String filesOptions) {
         ServersService.selectFiles(filesOptions);
-        FilesService.acceptPermissions();
-        FilesService.acceptPermissions();
     }
 
     @And("the user presses the button for take a photo")
@@ -335,7 +333,6 @@ public class ServersSteps extends PageSteps {
     @And("the user records an audio")
     public void theUserRecordsAnAudio() {
         AudioService.clickStartOption();
-        AudioService.acceptPermissions();
         AudioService.clickStartOption();
     }
 }

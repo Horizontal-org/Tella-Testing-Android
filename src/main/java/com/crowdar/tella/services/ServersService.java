@@ -110,10 +110,32 @@ public class ServersService {
     public static void viewMessage(String message) {
         By locator = GenericService.getByFromLocator(ServersConstants.TEXT_SERVER_MSG);
         WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-        String actualMessage = driver.findElement(locator).getText();
-        Assert.assertTrue(actualMessage.contains(message));
+
+        long startTime = System.currentTimeMillis();
+        long timeoutMs = 10000;
+
+        while (System.currentTimeMillis() - startTime < timeoutMs) {
+            try {
+                List<WebElement> elements = driver.findElements(locator);
+                if (!elements.isEmpty()) {
+                    WebElement toast = elements.get(0);
+                    if (toast.isDisplayed()) {
+                        String actualMessage = toast.getText();
+                        Assert.assertTrue(actualMessage.contains(message), "Message mismatch: " + actualMessage);
+                        return;
+                    }
+                }
+            } catch (StaleElementReferenceException e) {
+                // retry immediately
+            } catch (Exception ignored) {
+            }
+
+            if (GenericService.isElementPresent(ServersConstants.ODK_FORM_OPTION_BUTTON)) {
+                Assert.fail("Download failed - form options button visible but message not shown");
+            }
+            GenericService.sleep(50);
+        }
+        Assert.fail("Message '" + message + "' not found within " + timeoutMs + "ms");
     }
 
 
@@ -377,55 +399,30 @@ public class ServersService {
     }
 
     public static void clickDownloadFirstODK() {
-        int maxAttempts = 10;
-        int baseSleepMs = 200;
-
-        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
-            try {
-                GenericService.clickElementByCoordinates(ServersConstants.ODK_DOWNLOAD_BUTTON);
-                return;
-            } catch (StaleElementReferenceException e) {
-                System.out.println("Stale element on download button. Attempt " + attempt + "/" + maxAttempts);
-                sleep(baseSleepMs);
-            } catch (ElementClickInterceptedException e) {
-                System.out.println("Element click intercepted. Attempt " + attempt + "/" + maxAttempts);
-                sleep(baseSleepMs);
-            } catch (org.openqa.selenium.NoSuchElementException e) {
-                System.out.println("Element not found. Attempt " + attempt + "/" + maxAttempts);
-                sleep(baseSleepMs);
-            } catch (Exception e) {
-                System.out.println("Error clicking download button. Attempt " + attempt + "/" + maxAttempts + " - " + e.getMessage());
-                sleep(baseSleepMs);
-            }
-        }
-
-        throw new RuntimeException("Could not click the ODK download button after " + maxAttempts + " attempts.");
-    }
-
-    private static void sleep(long ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException ie) {
-            Thread.currentThread().interrupt();
-            throw new RuntimeException("Thread interrupted", ie);
-        }
+        GenericService.clickElementByCoordinates(ServersConstants.ODK_DOWNLOAD_BUTTON);
     }
 
     public static void clickFirstFormODK() {
-        for (int i = 0; i < 3; i++) {
+        int maxAttempts = 10;
+
+        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
             try {
-                GenericService.commonClick(ServersConstants.ODK_FIRST_FORM);
+                GenericService.clickElementByCoordinates(ServersConstants.ODK_FIRST_FORM);
                 MobileActionManager.waitVisibility(ServersConstants.ODK_FORM_EDIT_TEXT);
                 return;
             } catch (Exception e) {
-                try {
-                    Thread.sleep(700);
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
+                System.out.println("Error opening ODK form. Attempt " + attempt + "/" + maxAttempts);
+                if (GenericService.isElementPresent(ServersConstants.ODK_MORE_OPTIONS_BUTTON)) {
+                    System.out.println("Download already done (More options visible), retrying form click...");
+                    GenericService.sleep(300);
+                } else {
+                    System.out.println("Download not done (Download visible), clicking download first...");
+                    GenericService.clickElementByCoordinates(ServersConstants.ODK_DOWNLOAD_BUTTON);
+                    GenericService.sleep(500);
                 }
             }
         }
-        throw new RuntimeException("Could not open first ODK form after retries");
+        throw new RuntimeException("Could not open first ODK form after " + maxAttempts + " attempts");
     }
 
     public static void clickNextButtonODKForm() {

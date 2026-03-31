@@ -120,6 +120,17 @@ public class HomeService {
                 server = "Google Drive";
                 break;
         }
-        MobileActionManager.click(HomeConstants.LBL_CONNECTIOS, server);
+
+        String locator = String.format(HomeConstants.LBL_CONNECTIOS, server);
+        for (int i = 0; i < 3; i++) {
+            try {
+                MobileActionManager.waitVisibility(locator);
+                GenericService.clickElementByCoordinates(locator);
+                return;
+            } catch (Exception e) {
+                GenericService.sleep(300);
+            }
+        }
+        MobileActionManager.click(locator);
     }
 }

@@ -24,7 +24,6 @@ public class FilesService {
     static String message = null;
     static String createdFile = null;
 
-
     public static void enterFolder(String nameFolder) {
         Map<String, String> buttons = new HashMap<>();
         buttons.put("All files", HomeConstants.HOME_FOLDER_ALL_FILES_BUTTON);
@@ -35,94 +34,108 @@ public class FilesService {
         buttons.put("Others", HomeConstants.HOME_FOLDER_OTHERS_BUTTON);
 
         String button = buttons.get(nameFolder);
-        MobileActionManager.waitVisibility(button);
-        MobileActionManager.click(button);
+        for (int i = 0; i < 3; i++) {
+            try {
+                MobileActionManager.waitVisibility(button);
+                GenericService.clickElementByCoordinates(button);
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
+        }
     }
 
     public static void tapPlusIcon() {
-        waitVisibility(FilesConstants.PLUS_ICON);
-        MobileActionManager.click(FilesConstants.PLUS_ICON);
+        MobileActionManager.waitVisibility(FilesConstants.PLUS_ICON);
+        GenericService.clickElementByCoordinates(FilesConstants.PLUS_ICON);
     }
 
     public static void goPhotoVideoOption() {
-        waitVisibility(FilesConstants.PHOTOVIDEO_OPTION);
-        MobileActionManager.click(FilesConstants.PHOTOVIDEO_OPTION);
+        MobileActionManager.waitVisibility(FilesConstants.PHOTOVIDEO_OPTION);
+        GenericService.clickElementByCoordinates(FilesConstants.PHOTOVIDEO_OPTION);
         acceptPermissions();
     }
 
     public static void selectOpcion(String option) {
-        waitVisibility(FilesConstants.PHOTO_OPTION);
+        MobileActionManager.waitVisibility(FilesConstants.PHOTO_OPTION);
         String optionLowerCase = option.toLowerCase();
         if (optionLowerCase.contains("photo")) {
-            MobileActionManager.click(FilesConstants.PHOTO_OPTION);
+            GenericService.clickElementByCoordinates(FilesConstants.PHOTO_OPTION);
         } else if (optionLowerCase.contains("video")) {
-            MobileActionManager.click(FilesConstants.VIDEO_OPTION);
+            GenericService.clickElementByCoordinates(FilesConstants.VIDEO_OPTION);
         }
     }
 
     public static void captureFile(String type) {
-
-        MobileActionManager.click(FilesConstants.CAPTURE_BUTTON);
+        GenericService.clickElementByCoordinates(FilesConstants.CAPTURE_BUTTON);
 
         if (type.contains("image")) {
         } else if (type.contains("video")) {
-            waitVisibility(FilesConstants.STOP_RECORDING_BUTTON);
-            MobileActionManager.click(FilesConstants.STOP_RECORDING_BUTTON);
+            MobileActionManager.waitVisibility(FilesConstants.STOP_RECORDING_BUTTON);
+            GenericService.clickElementByCoordinates(FilesConstants.STOP_RECORDING_BUTTON);
         }
 
-        MobileActionManager.click(FilesConstants.CLOSE_BUTTON);
-        MobileActionManager.click(FilesConstants.BACK_BUTTON);
+        GenericService.clickElementByCoordinates(FilesConstants.CLOSE_BUTTON);
+        GenericService.clickElementByCoordinates(FilesConstants.BACK_BUTTON);
     }
 
-    public static void validateMessage(String expectedMessage) throws InterruptedException {
-        //Assert.assertTrue(MobileActionManager.isEnabled(AudioConstants.MESSAGE_TITLE));
-        Thread.sleep(300);
-        String actualMessage = MobileActionManager.getText(AudioConstants.MESSAGE_TITLE);
-        Assert.assertEquals(actualMessage, expectedMessage, "The actual message does not match the expected message");
+    public static void validateMessage(String expectedMessage) {
+        for (int i = 0; i < 5; i++) {
+            try {
+                GenericService.sleep(300);
+                String actualMessage = MobileActionManager.getText(AudioConstants.MESSAGE_TITLE);
+                Assert.assertEquals(actualMessage, expectedMessage, "The actual message does not match the expected message");
+                return;
+            } catch (Exception e) {
+                if (i == 4) throw e;
+            }
+        }
     }
 
     public static void validateFileCreation(String type, String nameFolder) {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getDriverInstance().getWrappedDriver(), 20);
-        AndroidDriver<MobileElement> driver = (AndroidDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
+        WebDriver driver = DriverManager.getDriverInstance().getWrappedDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 20);
 
-        try {
-            // Intentar encontrar y hacer clic en la carpeta de destino
-            System.out.println("Buscando la carpeta: " + nameFolder);
-            WebElement folderSaveElement = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-                    "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"" + nameFolder + "\"))")));
-            System.out.println("Carpeta encontrada: " + nameFolder);
-            folderSaveElement.click();
+        for (int attempt = 0; attempt < 3; attempt++) {
+            try {
+                System.out.println("Buscando la carpeta: " + nameFolder);
+                WebElement folderSaveElement = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+                        "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"" + nameFolder + "\"))")));
+                System.out.println("Carpeta encontrada: " + nameFolder);
+                GenericService.clickElementByCoordinatesWithElement(folderSaveElement);
 
-            WebElement currentFolderElement = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-                    "new UiSelector().resourceId(\"org.hzontal.tella:id/startTitleTv\")")));
-            String currentFolder = currentFolderElement.getText();
-            System.out.println("Carpeta actual: " + currentFolder);
+                WebElement currentFolderElement = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+                        "new UiSelector().resourceId(\"org.hzontal.tella:id/startTitleTv\")")));
+                String currentFolder = currentFolderElement.getText();
+                System.out.println("Carpeta actual: " + currentFolder);
 
-            Assert.assertEquals(currentFolder, nameFolder);
+                Assert.assertEquals(currentFolder, nameFolder);
 
-            // Obtener el nombre del archivo creado usando AndroidUIAutomator
-            WebElement createdFileElement = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
-                    "new UiSelector().resourceId(\"" + FilesConstants.CREATED_FILE_NAME + "\")")));
-            String createdFile = createdFileElement.getText();
-            System.out.println("Archivo creado: " + createdFile);
-        } catch (NoSuchElementException e) {
-            System.err.println("No se encontró el elemento: " + e.getMessage());
-            throw e;
+                WebElement createdFileElement = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AndroidUIAutomator(
+                        "new UiSelector().resourceId(\"" + FilesConstants.CREATED_FILE_NAME + "\")")));
+                String createdFileText = createdFileElement.getText();
+                System.out.println("Archivo creado: " + createdFileText);
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            } catch (NoSuchElementException e) {
+                System.err.println("No se encontró el elemento: " + e.getMessage());
+                if (attempt == 2) throw e;
+            }
         }
     }
 
-
     public static void validateAppearsFolderSave(String folderSave) {
-        waitVisibility(FilesConstants.CREATED_FILE_NAME);
+        MobileActionManager.waitVisibility(FilesConstants.CREATED_FILE_NAME);
         String currentFolder = MobileActionManager.getText(FilesConstants.CURRENT_FOLDER);
         Assert.assertEquals(currentFolder, folderSave);
-        MobileActionManager.click(FilesConstants.BACK_BUTTON);
+        GenericService.clickElementByCoordinates(FilesConstants.BACK_BUTTON);
     }
 
     public static void validateFileInAllFiles() {
-        waitVisibility(FilesConstants.ALL_FILES_FOLDER);
-        MobileActionManager.click(FilesConstants.ALL_FILES_FOLDER);
-        waitVisibility(FilesConstants.CURRENT_FILE);
+        MobileActionManager.waitVisibility(FilesConstants.ALL_FILES_FOLDER);
+        GenericService.clickElementByCoordinates(FilesConstants.ALL_FILES_FOLDER);
+        MobileActionManager.waitVisibility(FilesConstants.CURRENT_FILE);
         String currentFile = MobileActionManager.getText(FilesConstants.CURRENT_FILE);
         Assert.assertEquals(createdFile, currentFile);
     }
@@ -134,75 +147,105 @@ public class FilesService {
             wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.id(AudioConstants.PERMISSIONS_MESSAGE)));
             List<MobileElement> elems = driver.findElements(MobileBy.id(AudioConstants.PERMISSIONS_MESSAGE));
             if (elems.size() > 0) {
-                driver.findElement(MobileBy.id(AudioConstants.PERMISSIONS_ACCEPT_BUTTON)).click();
+                GenericService.clickElementByCoordinates("id:" + AudioConstants.PERMISSIONS_ACCEPT_BUTTON);
             }
-        } catch (TimeoutException e) {
+        } catch (TimeoutException | NoSuchElementException e) {
         }
     }
 
-
     public static void createAudioFiles() {
-        GenericService.commonClick(AudioConstants.MICROPHONE_ICON2);
-        AudioService.clickStartOption();
-        AudioService.acceptPermissions();
-        AudioService.clickStartOption();
-        AudioService.clickStopOption2();
+        for (int i = 0; i < 3; i++) {
+            try {
+                GenericService.clickElementByCoordinates(AudioConstants.MICROPHONE_ICON2);
+                AudioService.clickStartOption();
+                AudioService.acceptPermissions();
+                AudioService.clickStartOption();
+                AudioService.clickStopOption2();
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
+        }
     }
 
     public static void createPhotoFiles() {
-        GenericService.commonClick(HomeConstants.CAMERA_BUTTON);
-        FilesService.acceptPermissions();
-        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        for (int i = 0; i < 3; i++) {
+            try {
+                GenericService.clickElementByCoordinates(HomeConstants.CAMERA_BUTTON);
+                FilesService.acceptPermissions();
+                GenericService.clickElementByCoordinates(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
+        }
     }
 
-    public static void createVideoFiles() throws InterruptedException {
-        AppiumDriver<MobileElement> driver = (AppiumDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
-        GenericService.commonClick(FilesConstants.VIDEO_OPTION);
-        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        Thread.sleep(5000);
-        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        Thread.sleep(5000);
-        MobileActionManager.waitClickable(FilesConstants.CLOSE_BUTTON);
-        GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
-
+    public static void createVideoFiles() {
+        for (int attempt = 0; attempt < 3; attempt++) {
+            try {
+                GenericService.clickElementByCoordinates(FilesConstants.VIDEO_OPTION);
+                GenericService.clickElementByCoordinates(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+                GenericService.sleep(5000);
+                GenericService.clickElementByCoordinates(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+                GenericService.sleep(5000);
+                MobileActionManager.waitClickable(FilesConstants.CLOSE_BUTTON);
+                GenericService.clickElementByCoordinates(FilesConstants.CLOSE_BUTTON);
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
+        }
     }
-
 
     public static void createFolder() {
-        GenericService.commonClick(FilesConstants.ALL_FILES);
-        GenericService.commonClick(FilesConstants.PLUS_ICON);
-        GenericService.commonClick(FilesConstants.CREATE_FOLDER_BUTTON);
-        PhotographyAndVideoService.deleteTextAndSendKeys();
-        GenericService.commonClick(SettingsConstants.OK_BUTTON);
-        GenericService.commonClick(FilesConstants.BACK_BUTTON);
+        for (int i = 0; i < 3; i++) {
+            try {
+                GenericService.clickElementByCoordinates(FilesConstants.ALL_FILES);
+                GenericService.clickElementByCoordinates(FilesConstants.PLUS_ICON);
+                GenericService.clickElementByCoordinates(FilesConstants.CREATE_FOLDER_BUTTON);
+                PhotographyAndVideoService.deleteTextAndSendKeys();
+                GenericService.clickElementByCoordinates(SettingsConstants.OK_BUTTON);
+                GenericService.clickElementByCoordinates(FilesConstants.BACK_BUTTON);
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
+        }
     }
 
     public static void validateFolderCreation() {
-        waitVisibility(FilesConstants.CREATED_FILE_NAME);
+        MobileActionManager.waitVisibility(FilesConstants.CREATED_FILE_NAME);
         Assert.assertTrue(MobileActionManager.isEnabled(FilesConstants.CREATED_FILE_NAME));
     }
 
-    public static void createFilesAndFolder() throws InterruptedException {
+    public static void createFilesAndFolder() {
         createFolder();
         createAudioFiles();
         createPhotoFiles();
         createVideoFiles();
     }
 
-
-    public static void createFiles() throws InterruptedException {
+    public static void createFiles() {
         createAudioFiles();
         createPhotoFiles();
         createVideoFiles();
     }
 
     public static void orderBy() {
-        GenericService.commonClick(FilesConstants.SORT_BUTTON);
-        GenericService.commonClick(FilesConstants.SORT_OLDEST_TO_NEWEST_BUTTON);
+        for (int i = 0; i < 3; i++) {
+            try {
+                GenericService.clickElementByCoordinates(FilesConstants.SORT_BUTTON);
+                GenericService.clickElementByCoordinates(FilesConstants.SORT_OLDEST_TO_NEWEST_BUTTON);
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
+        }
     }
 
     public static void validateFolderEmptyFolder() {
-        waitInvisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER);
+        MobileActionManager.waitInvisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER);
         Assert.assertFalse(MobileActionManager.isEnabled(FilesConstants.CREATED_FILE_NAME));
     }
 
@@ -215,42 +258,38 @@ public class FilesService {
 
     public static void clickFiles() {
         MobileActionManager.click(HomeConstants.HOME_BUTTON);
-        waitVisibility(FilesConstants.ALL_FILES);
-        MobileActionManager.click(FilesConstants.ALL_FILES);
+        MobileActionManager.waitVisibility(FilesConstants.ALL_FILES);
+        GenericService.clickElementByCoordinates(FilesConstants.ALL_FILES);
     }
 
     public static void chooseNewCreatedFolder() {
         MobileActionManager.getText(FilesConstants.NEW_FOLDER);
-        GenericService.commonClick(FilesConstants.NEW_FOLDER);
+        GenericService.clickElementByCoordinates(FilesConstants.NEW_FOLDER);
     }
 
     public static void chooseFolder() {
-        GenericService.commonClick(FilesConstants.PICK_FOLDER);
+        GenericService.clickElementByCoordinates(FilesConstants.PICK_FOLDER);
     }
 
-    /**
-     * Open Open a folder by passing the name
-     *
-     * @param nameFolder name of the folder to access
-     */
     public static void clickFolder(String nameFolder) {
-        MobileActionManager.waitVisibility(FilesConstants.SELECT_FOLDER_ICON, nameFolder);
-        MobileActionManager.waitClickable(FilesConstants.SELECT_FOLDER_ICON, nameFolder).click();
+        for (int i = 0; i < 3; i++) {
+            try {
+                String locator = FilesConstants.SELECT_FOLDER_ICON;
+                MobileActionManager.waitVisibility(locator, nameFolder);
+                MobileActionManager.waitClickable(locator, nameFolder);
+                GenericService.clickElementByCoordinates(locator, nameFolder);
+                return;
+            } catch (StaleElementReferenceException e) {
+                GenericService.sleep(200);
+            }
+        }
     }
 
-    /**
-     * Validate that the all files folder is not empty.
-     * This is confirmed by audio icon.
-     */
     public static void validateIsNotEmptyFolderAllFile() {
         clickFolder("All files");
         Assert.assertTrue(MobileActionManager.waitVisibility(FilesConstants.ICON_FILE_AUDIO).isDisplayed());
     }
 
-    /**
-     * Validate that the all files folder is empty.
-     * This is confirmed by the empty folder icon.
-     */
     public static void validateIsEmptyFolderAllFile() {
         clickFolder("All files");
         Assert.assertTrue(MobileActionManager.waitVisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER).isDisplayed());
@@ -259,19 +298,18 @@ public class FilesService {
     public static void tapsThreeButtonCreatedFolder() {
         String ThreeButton = String.format(FilesConstants.FOLDER_OPTIONS_BY_NAME, "TellaFolder");
         MobileActionManager.waitVisibility(ThreeButton);
-        MobileActionManager.click(ThreeButton);
+        GenericService.clickElementByCoordinates(ThreeButton);
     }
 
     public static void SelectsMultipleTypeFiles() {
         MobileActionManager.waitVisibility(FilesConstants.CHECKBOX_BUTTON);
-        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
+        GenericService.clickElementByCoordinates(FilesConstants.CHECKBOX_BUTTON);
         MobileActionManager.waitVisibility(FilesConstants.CHECKBOX_BUTTON);
-        GenericService.commonClick(FilesConstants.CHECKBOX_BUTTON);
+        GenericService.clickElementByCoordinates(FilesConstants.CHECKBOX_BUTTON);
     }
 
     public static void SelectTypeFile(String type) {
         MobileActionManager.waitVisibility(FilesConstants.THREE_BUTTONS_OPTION_FILE, type);
-        MobileActionManager.click(FilesConstants.THREE_BUTTONS_OPTION_FILE, type);
+        GenericService.clickElementByCoordinates(FilesConstants.THREE_BUTTONS_OPTION_FILE, type);
     }
 }
-
