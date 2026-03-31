@@ -28,7 +28,7 @@ Feature: ODK
       | Outbox    |
       | Submitted |
 
-  @Smoke @Automated #Ary's test form based
+  @Smoke @Automated @testBrian #Ary's test form based
   Scenario Outline: Delete a form from Draft - Outbox - Submitted
     Given the user has a saved form in the "<tab>" tab
     When the user taps the ⁝ button

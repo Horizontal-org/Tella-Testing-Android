@@ -371,53 +371,14 @@ public class ServersService {
         MobileActionManager.click(ServersConstants.ODK_REFRESH_BUTTON);
     }
 
-    public static void clickDownloadFirstODK() {
-        int attempts = 0;
-
-        while (attempts < 3) {
-            try {
-                MobileActionManager.waitVisibility(ServersConstants.ODK_DOWNLOAD_BUTTON);
-                GenericService.commonClick(ServersConstants.ODK_DOWNLOAD_BUTTON);
-                return;
-            } catch (org.openqa.selenium.StaleElementReferenceException e) {
-                attempts++;
-                System.out.println("Stale element on download button. Retry: " + attempts);
-                try {
-                    Thread.sleep(700);
-                } catch (InterruptedException ie) {
-                    Thread.currentThread().interrupt();
-                    throw new RuntimeException("Thread interrupted while retrying download click", ie);
-                }
-            } catch (Exception e) {
-                attempts++;
-                System.out.println("Error clicking download button. Retry: " + attempts + " - " + e.getMessage());
-                try {
-                    Thread.sleep(700);
-                } catch (InterruptedException ie) {
-                    Thread.currentThread().interrupt();
-                    throw new RuntimeException("Thread interrupted while retrying download click", ie);
-                }
-            }
-        }
-
-        throw new RuntimeException("Could not click the ODK download button after 3 attempts.");
+    public static void clickDownloadFirstODK() throws InterruptedException {
+        Thread.sleep(3000);
+        GenericService.clickByCoordinates(966,763);
     }
 
-    public static void clickFirstFormODK() {
-        for (int i = 0; i < 3; i++) {
-            try {
-                GenericService.commonClick(ServersConstants.ODK_FIRST_FORM);
-                MobileActionManager.waitVisibility(ServersConstants.ODK_FORM_EDIT_TEXT);
-                return;
-            } catch (Exception e) {
-                try {
-                    Thread.sleep(700);
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        }
-        throw new RuntimeException("Could not open first ODK form after retries");
+    public static void clickFirstFormODK() throws InterruptedException {
+        Thread.sleep(3000);
+        GenericService.clickByCoordinates(528,763);
     }
 
     public static void clickNextButtonODKForm() {
@@ -452,6 +413,7 @@ public class ServersService {
     }
 
     public static void completeFormAriTestODK() throws InterruptedException {
+        MobileActionManager.waitVisibility(ServersConstants.ODK_FORM_EDIT_TEXT);
         MobileActionManager.setInput(ServersConstants.ODK_FORM_EDIT_TEXT, "Si?");
         MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
         MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
@@ -465,7 +427,9 @@ public class ServersService {
 
         selectODKOptions();
 
+        MobileActionManager.waitVisibility(ServersConstants.ODK_FORM_NEXT_BUTTON);
         MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+        MobileActionManager.waitVisibility(ServersConstants.ODK_FORM_EDIT_TEXT);
         MobileActionManager.setInput(ServersConstants.ODK_FORM_EDIT_TEXT, "70 señor");
     }
 

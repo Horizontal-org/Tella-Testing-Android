@@ -128,8 +128,8 @@ Feature: Security
     Examples:
       | attempts   | PIN    | message                                                        |
       | 5 attempts | 123450 | Your Tella data will be deleted after 5 failed unlock attempts |
-      #| 10 attempts | 123451 | Your Tella data will be deleted after 10 failed unlock attempts |
-      #| 20 attempts | 123450 | Your Tella data will be deleted after 20 failed unlock attempts |
+      | 10 attempts | 123451 | Your Tella data will be deleted after 10 failed unlock attempts |
+      | 20 attempts | 123450 | Your Tella data will be deleted after 20 failed unlock attempts |
 
   @Smoke @DeleteAfterFailedUnlock @Automated @LockFlow
   Scenario Outline: Security - Delete after failed unlock
