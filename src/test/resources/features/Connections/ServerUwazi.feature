@@ -114,7 +114,7 @@ Feature: Uwazi
     And disconnects the internet
     And presses "Next"
     And presses "Submit"
-    Then the message "There was an error submitting the form. Please try again" appears
+    Then the message "There was an error submitting the form. Please try again" appears on the screen
     And the entity is saved on the Outbox tab with the corresponding information
 
     Examples:
@@ -156,7 +156,7 @@ Feature: Uwazi
     And completes the title
     And presses the "Save" icon
     Then the entity is saved on the Draft tab with the corresponding information
-    And the message "Entity is saved as draft" appears
+    And the message "Entity is saved as draft" appears on the screen
     
   #The edit can be add files, change the title or the type of incident
   Scenario Outline: Edit an entity from draft
@@ -180,10 +180,10 @@ Feature: Uwazi
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
     And presses "Next"
-    Then the message "There were validation errors in some answers" appears
+    Then the message "There were validation errors in some answers" appears on the screen
 
   Scenario: Fail to save entity as draft due to missing title
     When the user taps on the "Uwazi" connection
     And taps the new template to fill out
     And presses the "Save" icon
-    Then the message "You must fill in the title" appears
+    Then the message "You must fill in the title" appears on the screen

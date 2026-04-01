@@ -14,7 +14,7 @@ Feature: General
       | category     | visible      |
       | General      | General      |
       | Security     | Security     |
-      | Servers      | Connections  |
+      | Connections  | Connections  |
       | About & Help | About & Help |
       | Feedback     | Feedback     |
   
@@ -28,6 +28,7 @@ Feature: General
     And the option to select the <Default> language is visible
     And the user taps on the language <Default>
     Then the user will see the same language applied as the device
+    
     
     Examples:
       | language | title  | Default           |
