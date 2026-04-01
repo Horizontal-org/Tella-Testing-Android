@@ -103,7 +103,7 @@ Feature: File Options - Options for files in their individual folders
     And performs the <Modification>
     And taps the checkmark button
     Then the modification is saved as a new image
-    And the message "Your changes have been saved" appears
+    And the message "Your changes have been saved" appears on the screen
 
     Examples:
       | Modification |
@@ -196,7 +196,7 @@ Feature: File Options - Options for files in their individual folders
     And presses "Use this folder"
     And presses "Allow"
     Then the <type> file is successfully saved to the device
-    And the message "1 file saved to the device" appears
+    And the message "1 file saved to the device" appears on the screen
 
     Examples:
       | type  | folder |

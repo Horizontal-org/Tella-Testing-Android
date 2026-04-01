@@ -44,10 +44,10 @@ Feature: Tella Web
     And completes the Title "Crowdar" and the Description "Evidence <recording>"
     And the user taps + button for the attach files
     And selects files option "<Select files>"
-    And presses the "rec" and "stop" icon
+    And the user records an audio
     And the user presses "SUBMIT" button
-    Then sees the file whith title "Crowdar" and description "Evidence <recording>" being uploaded
-    And the sucessfull message "Your report is available in the Outbox" appears
+    Then the file whith title "Crowdar" and description "Evidence <recording>" being uploaded
+    And the sucessfull message "Your report has successfully been submitted." appears
 
     Examples:
       | recording | Select files           |
@@ -84,7 +84,7 @@ Feature: Tella Web
     And presses the "Menu" icon of a Outbox report
     And selects Delete
     And confirms the Delete option
-    Then the approval message "File has been deleted" appears
+    Then the message ""File has been deleted"" appears on the screen
 
   @Smoke @Candidate
   Scenario: Delete draf report
@@ -93,7 +93,7 @@ Feature: Tella Web
     And the user taps the "⁝" button
     And selects Delete
     And confirms the Delete option
-    Then the approval message "File has been deleted" appears
+    Then the message ""File has been deleted"" appears on the screen
 
   @Smoke @Candidate
   Scenario Outline: Save report to <option>
@@ -104,7 +104,7 @@ Feature: Tella Web
     And selects the option Select from Tella files
     And selects files and presses the "verification" icon
     And presses <option> icon
-    Then the approval message <message> appears
+    Then the message "<message>" appears on the screen
 
     Examples:
       | option | message                                                               |
@@ -118,7 +118,7 @@ Feature: Tella Web
     When the user taps the "⁝" button
     And selects Edit draft
     And taps Send
-    Then the approval message "your report is available Outbox" appears
+    Then the message ""your report is available Outbox"" appears on the screen
 
   @Smoke @Candidate
   Scenario: Send a report from Outbox
@@ -128,7 +128,7 @@ Feature: Tella Web
     And the user taps the "⁝" button
     And selects View
     And taps Resume
-    Then the approval message "your report is available Outbox" appears
+    Then the message ""your report is available Outbox"" appears on the screen
 
   @Smoke @Candidate
   Scenario: Activate Auto-report
@@ -139,14 +139,14 @@ Feature: Tella Web
     And selects Auto-report
     And sees that the color has changed to green, indicating it is activated
     And presses the "Save" icon
-    Then the approval message "Served updated" appears
+    Then the message ""Served updated"" appears on the screen
 
   @Smoke  @Candidate
   Scenario: Take photo or video with Auto-report activated
     Given the Auto-report option is activated
     When the user presses the camera button
     And presses the take a photo button
-    Then the approval message "The photo(s)/video you took has been automatically uploaded as a report" appears
+    Then the message ""The photo(s)/video you took has been automatically uploaded as a report"" appears on the screen
     
     #Agregar el paso de outbox Mismo ciclo de vida de los reportes 
 
@@ -160,14 +160,14 @@ Feature: Tella Web
     And selects Auto-delete
     And sees that the color has changed to green, indicating it is activated
     And presses the "Save" icon
-    Then the approval message "Served updated" appears
+    Then the message ""Served updated"" appears on the screen
 
   @Smoke @Candidate
   Scenario: Take photo or video with Auto-delete activated
     Given the Auto-report and Auto-deleted option is activated
     When the user presses the camera button
     And presses the take a photo button
-    Then the approval message "The photo/video you took has been uploaded as a report and automatically deleted" appears
+    Then the message ""The photo/video you took has been uploaded as a report and automatically deleted"" appears on the screen
 
   @Smoke @Candidate
   Scenario: Activate Background upload
@@ -178,7 +178,7 @@ Feature: Tella Web
     And selects Background upload
     And sees that the color has changed to green, indicating it is activated
     And presses the "Save" icon
-    Then the approval message "Served updated" appears
+    Then the message ""Served updated"" appears on the screen
 
   @Smoke @Candidate
   Scenario: Send report with Background upload activated

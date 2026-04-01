@@ -2,42 +2,42 @@
 Feature: ODK
 
   Background:
-    Given the user is authenticated in the Tella application with valid credentials
-    And the user is in Tella home page
-    And the user is connected to the ODK server
+    Given the user is in Tella home page
+    And the user taps the settings icon
+    And the user clicks on the option Connections
+    And the user creates an Open Data Kit connection
 
-  @Smoke @Candidate
+  @Smoke @Automated
   Scenario: Download Forms
     When the user taps on the "ODK" connection
-    And presses the Download button in the download Blank
-    Then the approval message "download completed" appears
+    And the user taps the download button on the first form
+    Then the message "Download completed" appears on the screen
 
-  @Smoke @Candidate
-  Scenario: Save forms to Outbox
+  @Smoke @Automated #Ary's test form based
+  Scenario Outline: Submit - Save a form for later
     When the user taps on the "Forms" connection
-    And taps the new form to fill out
-    And complete all the required fields on the first screen
-    And press "Next" on the other screens
-    And complete the required questions
-    And presses "Next"
-    And presses "Clock" icon
-    Then the form is saved on the Outbox
+    And the user taps the download button on the first form
+    And the user taps the first form to fill out
+    And the user completes all required fields in Ari's test
+    And the user sends the form to <tab> tab
+    Then the form "test_ary" should be in the "<tab>" tab
 
-  @Smoke @Candidate
-  Scenario: Save forms to Draft
-    When the user taps on the "Forms" connection
-    And taps the new form to fill out
-    And completes all the required fields
-    And presses "Save" icon
-    Then the form is saved on the Draft
+    Examples:
+      | tab       |
+      | Draft     |
+      | Outbox    |
+      | Submitted |
 
-  @Smoke @Candidate
-  Scenario: Delete form from Draft
-    Given the user has an form in Draft
-    When the user taps on the Forms connection
-    And the user selects the category Draft
-    And the user taps the "⁝" button
-    And selects Delete
-    And confirms the Delete option
-    Then the approval message "The form was deleted" appears
+  @Smoke @Automated @testBrian #Ary's test form based
+  Scenario Outline: Delete a form from Draft - Outbox - Submitted
+    Given the user has a saved form in the "<tab>" tab
+    When the user taps the ⁝ button
+    And the user selects Delete
+    And the user presses confirm Delete button
+    Then the message "The form was deleted" appears on the screen
 
+    Examples:
+      | tab       |
+      | Draft     |
+      | Outbox    |
+      | Submitted |

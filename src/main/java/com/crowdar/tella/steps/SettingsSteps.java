@@ -1,7 +1,6 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.core.PropertyManager;
-import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
 
@@ -164,7 +163,7 @@ public class SettingsSteps {
         SettingsService.viewMessage(message);
     }
 
-    @And("^toggle the switch on the \"(.*)\" option$")
+    @And("^the user toggles the switch on the (.*) option$")
     public void toggleTheSwitchOnTheOption(String option) {
         SettingsService.switchButtonEnable(option);
     }
@@ -232,9 +231,9 @@ public class SettingsSteps {
         SettingsService.selectedDeleteCheck(quickDeleteCheck);
     }
 
-    @And("Go to the Tella homepage from Security Page")
+    @And("the user goes back to homepage from Security Page")
     public void goToTheTellaHomepageFromSecurityPage() {
-        SettingsService.goToHomeFromSecurityPage();
+        SettingsService.goToHomeFromASettingPage();
         HomeService.isHomeLoaded();
     }
 
@@ -271,7 +270,7 @@ public class SettingsSteps {
     @Given("the user records an audio file")
     public void theUserRecordsAnAudioFile() throws InterruptedException {
         //Volvemos a la home para grabar un audio
-        SettingsService.goToHomeFromSecurityPage();
+        SettingsService.goToHomeFromASettingPage();
         HomeService.isHomeLoaded();
         //Inicia la grabacion
         AudioService.clickRecOption();
@@ -298,12 +297,12 @@ public class SettingsSteps {
     @Given("The user has already connected to the Tella web server")
     public void theUserHasAlreadyConnectedToTheTellaWebServer() {
         //Volvemos a la home para configuracion de conexion
-        SettingsService.goToHomeFromSecurityPage();
+        SettingsService.goToHomeFromASettingPage();
         HomeService.isHomeLoaded();
 
         //Iniciamos la configuracion de conexion
         SettingsService.clickSettingsIcon();
-        SettingsService.clickCategory("Servers");
+        SettingsService.clickCategory("Connections");
         ServersService.clickPlusButton();
         ServersService.selectButton("Tella Web");
         ServersService.clicNextBtn();
@@ -325,7 +324,7 @@ public class SettingsSteps {
 
     @And("the user closes and reopens the Tella app")
     public void theUserClosesTheTellaApplicationFromTheCloseButton() throws InterruptedException {
-        SettingsService.goToHomeFromSecurityPage();
+        SettingsService.goToHomeFromASettingPage();
         HomeService.isHomeLoaded();
         HomeService.clicClosesBtnInHome();
         Thread.sleep(2000);
@@ -344,5 +343,10 @@ public class SettingsSteps {
     @And("^the option to select the (.*) language is visible$")
     public void theOptionToSelectTheDefaultLanguageIsVisible(String languageDefault) {
         SettingsService.DefaultVisibleLanguage(languageDefault);
+    }
+
+    @And("the user takes a screenshot")
+    public void theUserTakesAScreenshot() {
+        GenericService.takeScreenshotInMemory();
     }
 }

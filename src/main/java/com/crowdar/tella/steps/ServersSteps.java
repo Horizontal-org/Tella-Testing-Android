@@ -1,6 +1,7 @@
 package com.crowdar.tella.steps;
 
 import com.crowdar.core.PageSteps;
+import com.crowdar.core.PropertyManager;
 import com.crowdar.tella.services.*;
 import io.cucumber.java.en.*;
 
@@ -13,11 +14,11 @@ public class ServersSteps extends PageSteps {
     }
 
     @Then("the user sees all possible (.*) options available for connection")
-    public void theUserSeesAllPossibleServerOptionsAvailableForConnection(List<String> listServer) {
-        ServersService.viewConectionsServerOptions(listServer);
+    public void theUserSeesAllPossibleServerOptionsAvailableForConnection(String serverName) {
+        ServersService.viewConectionsServerOptions(serverName);
     }
 
-    @And("^clicks on the option (.*)$")
+    @And("^the user clicks on the option (.*)$")
     public void clicksOnTheOptionsServers(String option) {
         SettingsService.clickCategory(option);
     }
@@ -95,7 +96,7 @@ public class ServersSteps extends PageSteps {
     @And("the user is connected to the Tella Web server")
     public void theUserIsConnectedToTheTellaWebServer() {
         SettingsService.clickSettingsIcon();
-        SettingsService.clickCategory("Servers");
+        SettingsService.clickCategory("Connections");
         ServersService.clickPlusButton();
         ServersService.selectButton("Tella Web");
         ServersService.pressButton("OK");
@@ -227,6 +228,115 @@ public class ServersSteps extends PageSteps {
     @And("the user presses the Add another account button if needed")
     public void theUserPressesTheAddAnotherAccountButtonIfNeeded() {
         ServersService.clickAddAnotherGoogleAccount();
+    }
+
+    @And("the user creates an Open Data Kit connection")
+    public void theUserCreatesAnODKConnection() {
+        ServersService.clickPlusButton();
+        ServersService.selectButton("Open Data Kit (ODK)");
+        ServersService.pressButton("OK");
+        ServersService.inputServerName("Tella");
+        ServersService.inputServerUrl(PropertyManager.getProperty("odkserver"));
+        ServersService.clickAdvancedODK();
+        ServersService.inputServerCredencialCredentials("Open Data Kit (ODK)");
+        ServersService.pressButton("SAVE");
+        SettingsService.goToHomeFromASettingPage();
+    }
+
+    @And("the user taps the refresh button in the Blank tab")
+    public void theUserTapsTheRefreshButtonInTheBlankTab() {
+        ServersService.clickRefreshODK();
+    }
+
+    @And("the user taps the download button on the first form")
+    public void theUserWaitsATapsTheDownloadButtonOnTheFirstForm() throws InterruptedException {
+        ServersService.clickDownloadFirstODK();
+    }
+
+    @Then("the message \"(.*)\" appears on the screen")
+    public void theApprovalMessageAppears(String message) {
+        ServersService.viewMessage(message);
+    }
+
+    @And("the user taps the first form to fill out")
+    public void theUserTapsTheFirstFormToFillOut() throws InterruptedException {
+        ServersService.clickFirstFormODK();
+    }
+
+    @And("the user completes all required fields in Ari's test")
+    public void theUserCompletesAllTheRequiredFields() throws InterruptedException {
+        ServersService.completeFormAriTestODK();
+    }
+
+    @And("the user taps the next form button")
+    public void theUserTapsTheNextFormButton() {
+        ServersService.clickNextButtonODKForm();
+    }
+
+    @And("the user taps the clock icon")
+    public void theUserTapsTheClockIcon() {
+        ServersService.clickSaveForLaterODK();
+    }
+
+    @Then("the form \"(.*)\" should be in the \"(.*)\" tab")
+    public void theFormShouldBeInTheTab(String formName, String tab) {
+        ServersService.isFormPresentInTab(formName, tab);
+    }
+
+    @And("the user taps the Save icon")
+    public void theUserTapsTheSaveIcon() {
+        ServersService.clickSaveFormODK();
+    }
+
+    @And("the user closes the form")
+    public void theUserClosesTheForm() {
+        ServersService.clickCloseForm();
+    }
+
+    @And("the user taps the \"(.*)\" tab")
+    public void theUserTapsTheTab(String tab) {
+        ServersService.clickTabODK(tab);
+    }
+
+    @Given("^the user has a saved form in the \"(.*)\" tab$")
+    public void theUserHasASavedFormInTheTab(String tab) throws InterruptedException {
+        HomeService.clickConnection("Forms");
+        ServersService.clickDownloadFirstODK();
+        ServersService.clickFirstFormODK();
+        ServersService.completeFormAriTestODK();
+        ServersService.saveSubmitFormODK(tab);
+    }
+
+    @When("the user taps the ⁝ button")
+    public void theUserTapsTheButton() {
+        ServersService.clickOptionForm();
+    }
+
+    @And("the user selects Delete")
+    public void theUserSelectsDelete() {
+        ServersService.clickDeleteForm();
+    }
+
+    @And("the user sends the form to (.*) tab")
+    public void theUserSendsTheFormToTab(String tab) {
+        ServersService.saveSubmitFormODK(tab);
+    }
+
+    @And("expands the Advanced section")
+    public void expandsTheAdvancedSection() {
+        ServersService.clickAdvancedODK();
+    }
+
+    @And("^the user enters (.*) as the folder name$")
+    public void theUserEntersAsTheFolderName(String nameFolder) {
+        ServersService.createNewFolder(nameFolder);
+    }
+
+    @And("the user records an audio")
+    public void theUserRecordsAnAudio() {
+        AudioService.clickStartOption();
+        AudioService.acceptPermissions();
+        AudioService.clickStartOption();
     }
 }
 
