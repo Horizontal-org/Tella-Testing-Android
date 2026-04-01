@@ -1,7 +1,6 @@
 package com.crowdar.tella.services;
 
 import com.crowdar.core.actions.MobileActionManager;
-import com.crowdar.core.actions.WebActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.*;
 import io.appium.java_client.AppiumDriver;
@@ -12,7 +11,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.asserts.Assertion;
 
 import java.util.HashMap;
 import java.util.List;
@@ -235,7 +233,8 @@ public class FilesService {
      *
      * @param nameFolder name of the folder to access
      */
-    public static void clicFolder(String nameFolder) {
+    public static void clickFolder(String nameFolder) {
+        MobileActionManager.waitVisibility(FilesConstants.SELECT_FOLDER_ICON, nameFolder);
         MobileActionManager.waitClickable(FilesConstants.SELECT_FOLDER_ICON, nameFolder).click();
     }
 
@@ -244,7 +243,7 @@ public class FilesService {
      * This is confirmed by audio icon.
      */
     public static void validateIsNotEmptyFolderAllFile() {
-        clicFolder("All files");
+        clickFolder("All files");
         Assert.assertTrue(MobileActionManager.waitVisibility(FilesConstants.ICON_FILE_AUDIO).isDisplayed());
     }
 
@@ -253,7 +252,7 @@ public class FilesService {
      * This is confirmed by the empty folder icon.
      */
     public static void validateIsEmptyFolderAllFile() {
-        clicFolder("All files");
+        clickFolder("All files");
         Assert.assertTrue(MobileActionManager.waitVisibility(FilesConstants.EMPTY_VIEW_MSG_CONTAINER).isDisplayed());
     }
 

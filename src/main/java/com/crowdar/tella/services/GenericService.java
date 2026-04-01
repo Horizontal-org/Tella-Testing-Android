@@ -282,6 +282,22 @@ public class GenericService {
         }
         throw new IllegalStateException("None of the provided locators was found.");
     }
+    public static void pressEnter() {
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        driver.pressKey(new KeyEvent(AndroidKey.ENTER));
+    }
+    public static void pressHome() {
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        driver.pressKey(new KeyEvent(AndroidKey.HOME));
+    }
+    public static void pressBack() {
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+    }
+    public static void takeScreenshotInMemory() {
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
 }
 
 

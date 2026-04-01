@@ -4,12 +4,10 @@ import com.crowdar.core.PropertyManager;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
-import com.crowdar.tella.constants.FilesConstants;
-import com.crowdar.tella.constants.HomeConstants;
-import com.crowdar.tella.constants.LockUnlockConstants;
-import com.crowdar.tella.constants.ServersConstants;
+import com.crowdar.tella.constants.*;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.lippia.api.service.CommonService;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
@@ -26,11 +24,12 @@ public class ServersService {
         ActionManager.click(ServersConstants.PLUS_BUTTON);
     }
 
-    public static void viewConectionsServerOptions(List<String> listServer) {
+    public static void viewConectionsServerOptions(String serverName) {
         MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
-        for (String serverName : listServer) {
-            Assert.assertTrue(MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_BUTTON, serverName));
+        if (!MobileActionManager.isVisible(ServersConstants.TEXT_SERVER_BUTTON, serverName)) {
+            SettingsService.scrollDown();
         }
+            Assert.assertTrue(MobileActionManager.isVisible(ServersConstants.TEXT_SERVER_BUTTON, serverName));
     }
 
     public static void selectButton(String server) {
@@ -50,6 +49,8 @@ public class ServersService {
         buttons.put("SUBMIT", ServersConstants.SUBMIT_BUTTON);
         buttons.put("Log in", ServersConstants.SERVER_LOGIN_BUTTON);
         buttons.put("GO TO REPORTS", ServersConstants.SERVER_LOGIN_BUTTON);
+        buttons.put("YES", ServersConstants.SERVER_YES_BUTTON);
+        buttons.put("Go to Nextcloud", ServersConstants.SERVER_LOGIN_BUTTON);
 
 
         String getButton = buttons.get(button);
@@ -117,11 +118,13 @@ public class ServersService {
 
     public static void viewLoginToProject(String titleLogin) {
         MobileActionManager.waitVisibility(ServersConstants.LOGIN_TITLE);
-        Assert.assertTrue(MobileActionManager.getText(ServersConstants.LOGIN_TITLE).contains(titleLogin));
+        String actualTitle = MobileActionManager.getText(ServersConstants.LOGIN_TITLE);
+        Assert.assertEquals(titleLogin, actualTitle, "The title does not match the expected one.");
+
     }
 
     public static void viewFieldsLogin(String username, String password) {
-        MobileActionManager.waitVisibility(ServersConstants.LOGIN_TITLE);
+        MobileActionManager.waitVisibility(ServersConstants.LOGIN_USERNAME_INPUT);
         Assert.assertTrue(MobileActionManager.getText(ServersConstants.LOGIN_USERNAME_INPUT).contains(username));
         Assert.assertTrue(MobileActionManager.getText(ServersConstants.LOGIN_PASSWORD_INPUT).contains(password));
     }
@@ -152,10 +155,10 @@ public class ServersService {
         MobileActionManager.setInput(ServersConstants.TELLA_USER_INPUT, PropertyManager.getProperty("tellauser"));
         MobileActionManager.setInput(ServersConstants.TELLA_PASS_INPUT, PropertyManager.getProperty("tellapass"));
         MobileActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, "Log in");
-        MobileActionManager.click(ServersConstants.SAVE_BUTTON);
+        GenericService.commonClick(ServersConstants.SAVE_BUTTON);
         MobileActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, "GO TO REPORTS");
-        MobileActionManager.click(ServersConstants.BACK_BUTTON);
-        MobileActionManager.click(ServersConstants.BACK_BUTTON);
+        GenericService.commonClick(ServersConstants.BACK_BUTTON);
+        GenericService.commonClick(ServersConstants.BACK_BUTTON);
     }
 
     public static void tapsConnection(String connection) {
@@ -259,13 +262,21 @@ public class ServersService {
                 username = PropertyManager.getProperty("uwaziuser");
                 password = PropertyManager.getProperty("uwazipass");
                 break;
-            default:
-                throw new RuntimeException("Server not supported: " + serverName);
 
             case "Google Drive":
                 username = PropertyManager.getProperty("googledriveuser");
                 password = PropertyManager.getProperty("googledrivepass");
                 break;
+
+            case "Open Data Kit (ODK)":
+                username = PropertyManager.getProperty("odkuser");
+                password = PropertyManager.getProperty("odkpass");
+                break;
+
+            case "Nextcloud":
+                username = PropertyManager.getProperty("nextCloudUser");
+                password = PropertyManager.getProperty("nextCloudpass");
+            break;
 
         }
         MobileActionManager.setInput(ServersConstants.LOGIN_SERVER_USERNAME, username);
@@ -349,5 +360,163 @@ public class ServersService {
         } catch (TimeoutException e) {
             System.out.println("No existing accounts were found. Continuing test.");
         }
+    }
+
+    public static void clickAdvancedODK() {
+        MobileActionManager.waitVisibility(ServersConstants.ODK_CONNECT_ADVANCED_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_CONNECT_ADVANCED_BUTTON);
+    }
+
+    public static void clickRefreshODK() {
+        MobileActionManager.click(ServersConstants.ODK_REFRESH_BUTTON);
+    }
+
+    public static void clickDownloadFirstODK() throws InterruptedException {
+        Thread.sleep(3000);
+        GenericService.clickByCoordinates(966,763);
+    }
+
+    public static void clickFirstFormODK() throws InterruptedException {
+        Thread.sleep(3000);
+        GenericService.clickByCoordinates(528,763);
+    }
+
+    public static void clickNextButtonODKForm() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+    }
+
+    public static void clickSaveForLaterODK() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_SAVE_OUTBOX_BUTTON);
+    }
+
+    public static void isFormPresentInTab(String formName, String tab) {
+        Assert.assertTrue(
+                Boolean.parseBoolean(
+                        MobileActionManager.getAttribute(
+                                ServersConstants.ODK_TABS, "selected", tab
+                        )
+                ),
+                tab + " tab not selected"
+        );
+        Assert.assertTrue(
+                MobileActionManager.isVisible(ServersConstants.ODK_FORM_NAME, formName),
+                "Form '" + formName + "' not visible in " + tab
+        );
+        String actualFormName = MobileActionManager.getText(
+                ServersConstants.ODK_FORM_NAME, formName
+        );
+        Assert.assertEquals(
+                actualFormName,
+                formName,
+                "Form name mismatch in " + tab
+        );
+    }
+
+    public static void completeFormAriTestODK() throws InterruptedException {
+        MobileActionManager.waitVisibility(ServersConstants.ODK_FORM_EDIT_TEXT);
+        MobileActionManager.setInput(ServersConstants.ODK_FORM_EDIT_TEXT, "Si?");
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+
+        attachPhotoInODKForm();
+        recordAudioInODKForm();
+        recordVideoInODKForm();
+
+        MobileActionManager.click(ServersConstants.ODK_FORM_CHECKBOX, "OK. Please continue.");
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+
+        selectODKOptions();
+
+        MobileActionManager.waitVisibility(ServersConstants.ODK_FORM_NEXT_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+        MobileActionManager.waitVisibility(ServersConstants.ODK_FORM_EDIT_TEXT);
+        MobileActionManager.setInput(ServersConstants.ODK_FORM_EDIT_TEXT, "70 señor");
+    }
+
+    private static void attachPhotoInODKForm() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_ATTACH_FILE, "Attach photo");
+        MobileActionManager.click(ServersConstants.PHOTO_FILES_SELECT);
+        MobileActionManager.click(ServersConstants.TAKE_PHOTO_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+    }
+
+    private static void recordAudioInODKForm() throws InterruptedException {
+        MobileActionManager.click(ServersConstants.ODK_FORM_ATTACH_FILE, "Attach audio recording");
+        MobileActionManager.click(ServersConstants.AUDIO_FILES_SELECT);
+        MobileActionManager.click(AudioConstants.RECORD_AUDIO);
+        Thread.sleep(5000);
+        MobileActionManager.click(AudioConstants.RECORD_AUDIO);
+        MobileActionManager.click(AudioConstants.AUDIO_EXIT_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+    }
+
+    private static void recordVideoInODKForm() throws InterruptedException {
+        MobileActionManager.click(ServersConstants.ODK_FORM_ATTACH_FILE, "Attach video");
+        MobileActionManager.click(ServersConstants.PHOTO_FILES_SELECT);
+        MobileActionManager.click(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        Thread.sleep(5000);
+        MobileActionManager.click(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+        MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+    }
+
+    private static void selectODKOptions() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_TEXTVIEW, "1");
+        MobileActionManager.click(ServersConstants.ODK_FORM_CHECKED_TEXTVIEW, "2");
+        MobileActionManager.click(ServersConstants.ODK_FORM_TEXTVIEW, "2");
+        MobileActionManager.click(ServersConstants.ODK_FORM_CHECKED_TEXTVIEW, "3");
+        MobileActionManager.click(ServersConstants.ODK_FORM_TEXTVIEW, "3");
+        MobileActionManager.click(ServersConstants.ODK_FORM_CHECKED_TEXTVIEW, "4");
+    }
+
+    public static void clickSaveFormODK() {
+        GenericService.commonClick(ServersConstants.ODK_FORM_SAVE_DRAFT_BUTTON);
+    }
+
+    public static void clickCloseForm() {
+        GenericService.commonClick(ServersConstants.ODK_CLOSE_FORM_BUTTON);
+    }
+
+    public static void clickTabODK(String tab) {
+        MobileActionManager.waitVisibility(ServersConstants.ODK_TABS, tab);
+        MobileActionManager.waitClickable(ServersConstants.ODK_TABS, tab);
+        MobileActionManager.click(ServersConstants.ODK_TABS, tab);
+    }
+
+    public static void saveSubmitFormODK(String tab) {
+        switch (tab.trim().toLowerCase()) {
+            case "draft":
+                clickSaveFormODK();
+                clickCloseForm();
+                clickTabODK("Draft");
+                break;
+
+            case "outbox":
+                MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+                MobileActionManager.click(ServersConstants.ODK_FORM_SAVE_OUTBOX_BUTTON);
+                break;
+
+            case "submitted":
+                MobileActionManager.click(ServersConstants.ODK_FORM_NEXT_BUTTON);
+                MobileActionManager.click(ServersConstants.ODK_FORM_SUBMIT_BUTTON);
+                break;
+
+            default:
+                throw new IllegalArgumentException("Unknown tab: " + tab);
+        }
+    }
+
+    public static void clickOptionForm() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_OPTION_BUTTON);
+    }
+
+    public static void clickDeleteForm() {
+        MobileActionManager.click(ServersConstants.ODK_FORM_OPTION_DELETE_BUTTON);
+    }
+
+    public static void createNewFolder(String nameFolder) {
+        String randomName = nameFolder + "_" + System.currentTimeMillis();
+        MobileActionManager.waitVisibility(ServersConstants.INPUT_FOLDER_NAME);
+        MobileActionManager.setInput(ServersConstants.INPUT_FOLDER_NAME, randomName);
     }
 }
