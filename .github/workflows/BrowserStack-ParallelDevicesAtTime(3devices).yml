@@ -102,6 +102,7 @@ jobs:
             bs://*) : ;;
             *) echo "ERROR: BSAPP must start with bs:// (got: '$BSAPP')"; exit 1 ;;
           esac
+          echo "Last 6 chars of BSAPP actually in use: '${BSAPP: -6}' (should be 'e8e887')"
           echo "Checking that $BSAPP exists on the BrowserStack account for user '$BSUSER'..."
           apps_json="$(curl -sS -u "$BSUSER:$AUTHTOKEN" https://api-cloud.browserstack.com/app-automate/recent_apps || true)"
           if echo "$apps_json" | grep -q "$BSAPP"; then
