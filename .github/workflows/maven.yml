@@ -173,16 +173,34 @@ jobs:
           name: apk-id
           path: apk_id.txt
 
+      - name: Verify BSAPP secret
+        run: |
+          if [ -z "$BSAPP" ]; then
+            echo "ERROR: BSAPP is empty."
+            echo "Update the BSAPP secret under Settings -> Environments -> Automation (not only repository secrets)."
+            exit 1
+          fi
+          case "$BSAPP" in
+            bs://*) echo "BSAPP format looks valid (${#BSAPP} characters)" ;;
+            *)
+              echo "ERROR: BSAPP must be a BrowserStack App Automate URL starting with bs://"
+              exit 1
+              ;;
+          esac
+
       - name: Running Maven clean test
         run: |
           echo "Running tests with filter: '$COMBINED_FILTER' on device: '$BSDEVICE' with OS version: '$BSOS'"
           mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
                          -Denv.BSDEVICE="${{ github.event.inputs.device }}" \
                          -Denv.BSOS="$BSOS" \
+                         -Denv.BSAPP="$BSAPP" \
+                         -Dcrowdar.bs.app="$BSAPP" \
+                         -Dcrowdar.appLocation="$BSAPP" \
                          -DTEST_MANAGER_RUN_NAME="AUTO-${{ github.event.inputs.device }}-${{ github.event.inputs.filter }}" \
                          -DLTM_GENERAL="${{ secrets.LTM_GENERAL }}" \
                          -DLTM_GENERAL_PASS="${{ secrets.LTM_GENERAL_PASS }}" \
-                         -PBrowserStack -PAndroid -U
+                         -PBrowserStack,!Local -PAndroid -U
         shell: bash
 
       - name: Uploading test reports
