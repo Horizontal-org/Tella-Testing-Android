@@ -95,20 +95,35 @@ jobs:
           echo "LTM_GENERAL: $LTM_GENERAL"
           echo "LTM_GENERAL_PASS: $LTM_GENERAL_PASS"
 
-      - name: Verify BSAPP secret
+      - name: Verify BSAPP against BrowserStack
         run: |
+          set -e
           if [ -z "$BSAPP" ]; then
-            echo "ERROR: BSAPP is empty."
-            echo "Update the BSAPP secret under Settings -> Environments -> Automation (not only repository secrets)."
+            echo "ERROR: BSAPP is empty. Set it under Settings -> Environments -> Automation."
             exit 1
           fi
+          CLEAN_BSAPP="$(printf '%s' "$BSAPP" | tr -d '\r\n' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^"//' -e 's/"$//')"
+          if [ "$CLEAN_BSAPP" != "$BSAPP" ]; then
+            echo "WARNING: BSAPP contained quotes/whitespace. Using cleaned value."
+            echo "BSAPP=$CLEAN_BSAPP" >> "$GITHUB_ENV"
+            BSAPP="$CLEAN_BSAPP"
+          fi
           case "$BSAPP" in
-            bs://*) echo "BSAPP format looks valid (${#BSAPP} characters)" ;;
-            *)
-              echo "ERROR: BSAPP must be a BrowserStack App Automate URL starting with bs://"
-              exit 1
-              ;;
+            bs://*) : ;;
+            *) echo "ERROR: BSAPP must start with bs:// (got: '$BSAPP')"; exit 1 ;;
           esac
+          echo "Checking that $BSAPP exists on the BrowserStack account for user '$BSUSER'..."
+          apps_json="$(curl -sS -u "$BSUSER:$AUTHTOKEN" https://api-cloud.browserstack.com/app-automate/recent_apps || true)"
+          if echo "$apps_json" | grep -q "$BSAPP"; then
+            echo "OK: BSAPP is present in this account's uploaded apps."
+          else
+            echo "ERROR: BSAPP ($BSAPP) was NOT found in the uploaded apps for the CI BrowserStack account."
+            echo "This means the app URL belongs to a different account than BSUSER/AUTHTOKEN,"
+            echo "or the app was deleted. Re-upload the APK using these exact credentials and update BSAPP."
+            echo "Apps currently available to this account (app_url / custom_id):"
+            echo "$apps_json" | tr ',' '\n' | grep -E 'app_url|custom_id' || echo "$apps_json"
+            exit 1
+          fi
 
       - name: Running Maven clean test
         run: |
