@@ -187,14 +187,15 @@ jobs:
             bs://*) : ;;
             *) echo "ERROR: BSAPP must start with bs:// (got: '$BSAPP')"; exit 1 ;;
           esac
-          echo "Last 6 chars of BSAPP actually in use: '${BSAPP: -6}' (should be 'e8e887')"
+          LAST6="$(printf '%s' "$BSAPP" | tail -c 6)"
+          echo "Last 6 chars of BSAPP actually in use: '${LAST6}' (should be 'e8e887')"
           echo "Checking that $BSAPP exists on the BrowserStack account for user '$BSUSER'..."
           apps_json="$(curl -sS -u "$BSUSER:$AUTHTOKEN" https://api-cloud.browserstack.com/app-automate/recent_apps || true)"
           if echo "$apps_json" | grep -q "$BSAPP"; then
             echo "OK: BSAPP is present in this account's uploaded apps."
           else
             echo "ERROR: BSAPP was NOT found in the uploaded apps for the CI BrowserStack account."
-            echo "Last 6 chars of BSAPP in use: '${BSAPP: -6}' (expected: 'e8e887' if using the current mtls APK)"
+            echo "Last 6 chars of BSAPP in use: '${LAST6}' (expected: 'e8e887' if using the current mtls APK)"
             echo ""
             echo "FIX: GitHub repo -> Settings -> Environments -> Automation -> Environment secrets -> BSAPP"
             echo "     (NOT Settings -> Secrets and variables -> Actions — that scope is ignored by this workflow)"
