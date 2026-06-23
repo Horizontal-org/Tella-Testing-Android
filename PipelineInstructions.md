@@ -1,7 +1,7 @@
 # DISPOSITIVOS DISPONIBLES PARA EJECUTAR EN EL PIPELINE
 
-- Samsung Galaxy A11 - Android 10
-- Samsung Galaxy A51 - Android 10
+- Google Pixel 7 Pro - Android 13
+- Samsung Galaxy A52 - Android 11
 - Motorola Moto G71 5G - Android 11
 - Google Pixel 7 Pro - Android 13
 - Xiaomi Redmi Note 11 - Android 11

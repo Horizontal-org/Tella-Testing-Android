@@ -118,24 +118,46 @@ jobs:
           if echo "$apps_json" | grep -q "$BSAPP"; then
             echo "OK: BSAPP is present in this account's uploaded apps."
           else
-            echo "ERROR: BSAPP ($BSAPP) was NOT found in the uploaded apps for the CI BrowserStack account."
-            echo "This means the app URL belongs to a different account than BSUSER/AUTHTOKEN,"
-            echo "or the app was deleted. Re-upload the APK using these exact credentials and update BSAPP."
+            echo "ERROR: BSAPP was NOT found in the uploaded apps for the CI BrowserStack account."
+            echo "Last 6 chars of BSAPP in use: '${BSAPP: -6}' (expected: 'e8e887' if using the current mtls APK)"
+            echo ""
+            echo "FIX: GitHub repo -> Settings -> Environments -> Automation -> Environment secrets -> BSAPP"
+            echo "     (NOT Settings -> Secrets and variables -> Actions — that scope is ignored by this workflow)"
+            echo "     Set BSAPP to one of the app_url values listed below, with no quotes or trailing newline."
+            echo ""
             echo "Apps currently available to this account (app_url / custom_id):"
             echo "$apps_json" | tr ',' '\n' | grep -E 'app_url|custom_id' || echo "$apps_json"
             exit 1
           fi
 
+      - name: Verify device selection
+        run: |
+          set -e
+          if [ -z "$BSDEVICE" ] || [ -z "$BSOS" ]; then
+            echo "ERROR: BSDEVICE or BSOS is empty (device='$BSDEVICE', os='$BSOS')."
+            exit 1
+          fi
+          case "$BSDEVICE" in
+            "Samsung Galaxy A11"|"Samsung Galaxy A51")
+              echo "ERROR: '$BSDEVICE' is deprecated/removed on BrowserStack."
+              exit 1
+              ;;
+          esac
+          echo "Device OK: $BSDEVICE (Android $BSOS)"
+
       - name: Running Maven clean test
         run: |
           echo "Running tests with filter: '$COMBINED_FILTER' on device: '$BSDEVICE' with OS version: '$BSOS'"
           mvn clean test -Dcrowdar.cucumber.filter="'$COMBINED_FILTER'" \
-                         -Denv.BSDEVICE="${{ matrix.device }}" \
+                         -Denv.BSDEVICE="$BSDEVICE" \
                          -Denv.BSOS="$BSOS" \
                          -Denv.BSAPP="$BSAPP" \
+                         -Dcrowdar.bs.device="$BSDEVICE" \
+                         -Dcrowdar.deviceName="$BSDEVICE" \
+                         -Dcrowdar.os.version="$BSOS" \
                          -Dcrowdar.bs.app="$BSAPP" \
                          -Dcrowdar.appLocation="$BSAPP" \
-                         -DTEST_MANAGER_RUN_NAME="AUTO-${{ matrix.device }}-${{ github.event.inputs.filter }}" \
+                         -DTEST_MANAGER_RUN_NAME="AUTO-$BSDEVICE-${{ github.event.inputs.filter }}" \
                          -DLTM_GENERAL="${{ secrets.LTM_GENERAL }}" \
                          -DLTM_GENERAL_PASS="${{ secrets.LTM_GENERAL_PASS }}" \
                          -PBrowserStack,!Local -PAndroid -U
