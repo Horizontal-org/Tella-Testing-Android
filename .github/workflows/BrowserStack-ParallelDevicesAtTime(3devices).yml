@@ -40,13 +40,25 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set Android version based on selected device
+      - name: Resolve BrowserStack device and OS
+        shell: bash
+        env:
+          MATRIX_DEVICE: ${{ matrix.device }}
         run: |
-          case "${{ matrix.device }}" in
-            "Google Pixel 7 Pro") echo "BSOS=13" >> $GITHUB_ENV ;;
-            "Samsung Galaxy A52") echo "BSOS=11" >> $GITHUB_ENV ;;
-            "Motorola Moto G71 5G") echo "BSOS=11" >> $GITHUB_ENV ;;
+          set -e
+          CLEAN="$(printf '%s' "$MATRIX_DEVICE" | tr -d '\r\n' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^"//' -e 's/"$//')"
+          case "$CLEAN" in
+            "Google Pixel 7 Pro") OS="13" ;;
+            "Samsung Galaxy A52") OS="11" ;;
+            "Motorola Moto G71 5G") OS="11" ;;
+            *)
+              echo "ERROR: Unknown device '$CLEAN'."
+              exit 1
+              ;;
           esac
+          echo "BSDEVICE=$CLEAN" >> "$GITHUB_ENV"
+          echo "BSOS=$OS" >> "$GITHUB_ENV"
+          echo "Resolved device: $CLEAN (Android $OS)"
 
       - name: Configure Maven settings
         run: |
@@ -122,19 +134,21 @@ jobs:
           fi
 
       - name: Verify device selection
+        shell: bash
+        env:
+          MATRIX_DEVICE: ${{ matrix.device }}
         run: |
           set -e
-          if [ -z "$BSDEVICE" ] || [ -z "$BSOS" ]; then
-            echo "ERROR: BSDEVICE or BSOS is empty (device='$BSDEVICE', os='$BSOS')."
-            exit 1
-          fi
-          case "$BSDEVICE" in
-            "Samsung Galaxy A11"|"Samsung Galaxy A51")
-              echo "ERROR: '$BSDEVICE' is deprecated/removed on BrowserStack."
-              exit 1
-              ;;
+          CLEAN="$(printf '%s' "$MATRIX_DEVICE" | tr -d '\r\n' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+          case "$CLEAN" in
+            "Google Pixel 7 Pro") OS="13" ;;
+            "Samsung Galaxy A52") OS="11" ;;
+            "Motorola Moto G71 5G") OS="11" ;;
+            *) echo "ERROR: Unknown device '$CLEAN'."; exit 1 ;;
           esac
-          echo "Device OK: $BSDEVICE (Android $BSOS)"
+          echo "BSDEVICE=$CLEAN" >> "$GITHUB_ENV"
+          echo "BSOS=$OS" >> "$GITHUB_ENV"
+          echo "Device OK: $CLEAN (Android $OS)"
 
       - name: Running Maven clean test
         run: |

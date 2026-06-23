@@ -35,7 +35,6 @@ jobs:
     env:
       BSUSER: ${{ secrets.BSUSER }}
       AUTHTOKEN: ${{ secrets.AUTHTOKEN }}
-      BSDEVICE: ${{ github.event.inputs.device }}
       BSAPP: ${{ secrets.BSAPP }}
       LTM_GENERAL: ${{ secrets.LTM_GENERAL }}
       LTM_GENERAL_PASS: ${{ secrets.LTM_GENERAL_PASS }}
@@ -50,21 +49,41 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set Android version based on selected device
+      - name: Resolve BrowserStack device and OS
+        shell: bash
+        env:
+          INPUT_DEVICE: ${{ github.event.inputs.device }}
+          VAR_DEVICE: ${{ vars.BSDEVICE }}
+          SECRET_DEVICE: ${{ secrets.BSDEVICE }}
+          VAR_BSOS: ${{ vars.BSOS }}
+          SECRET_BSOS: ${{ secrets.BSOS }}
         run: |
-          if [[ "${{ github.event.inputs.device }}" == "Samsung Galaxy A52" ]]; then
-            echo "BSOS=11" >> $GITHUB_ENV
-          elif [[ "${{ github.event.inputs.device }}" == "Motorola Moto G71 5G" ]]; then
-            echo "BSOS=11" >> $GITHUB_ENV
-          elif [[ "${{ github.event.inputs.device }}" == "Google Pixel 7 Pro" ]]; then
-            echo "BSOS=13" >> $GITHUB_ENV
-          elif [[ "${{ github.event.inputs.device }}" == "Xiaomi Redmi Note 11" ]]; then
-            echo "BSOS=11" >> $GITHUB_ENV
-          elif [[ "${{ github.event.inputs.device }}" == "Huawei P30" ]]; then
-            echo "BSOS=9" >> $GITHUB_ENV
-          elif [[ "${{ github.event.inputs.device }}" == "Oppo Reno 6" ]]; then
-            echo "BSOS=11" >> $GITHUB_ENV
+          set -e
+          RAW="${INPUT_DEVICE:-${VAR_DEVICE:-${SECRET_DEVICE:-}}}"
+          CLEAN="$(printf '%s' "$RAW" | tr -d '\r\n' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^"//' -e 's/"$//')"
+          if [ -z "$CLEAN" ]; then
+            echo "ERROR: BSDEVICE is empty. Pick a device in the workflow form or set Automation variable/secret BSDEVICE."
+            exit 1
           fi
+          case "$CLEAN" in
+            "Samsung Galaxy A52") OS="11" ;;
+            "Motorola Moto G71 5G") OS="11" ;;
+            "Google Pixel 7 Pro") OS="13" ;;
+            "Xiaomi Redmi Note 11") OS="11" ;;
+            "Huawei P30") OS="9" ;;
+            "Oppo Reno 6") OS="11" ;;
+            *)
+              echo "ERROR: Unknown device '$CLEAN'. Use exact BrowserStack name (e.g. Google Pixel 7 Pro)."
+              exit 1
+              ;;
+          esac
+          RAW_OS="${VAR_BSOS:-${SECRET_BSOS:-}}"
+          if [ -n "$RAW_OS" ]; then
+            OS="$(printf '%s' "$RAW_OS" | tr -d '\r\n' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+          fi
+          echo "BSDEVICE=$CLEAN" >> "$GITHUB_ENV"
+          echo "BSOS=$OS" >> "$GITHUB_ENV"
+          echo "Resolved device: $CLEAN (Android $OS)"
 
       - name: Configure Maven settings
         run: |
@@ -144,23 +163,48 @@ jobs:
           fi
 
       - name: Verify device selection
+        shell: bash
+        env:
+          INPUT_DEVICE: ${{ github.event.inputs.device }}
+          VAR_DEVICE: ${{ vars.BSDEVICE }}
+          SECRET_DEVICE: ${{ secrets.BSDEVICE }}
+          VAR_BSOS: ${{ vars.BSOS }}
+          SECRET_BSOS: ${{ secrets.BSOS }}
         run: |
           set -e
-          if [ -z "$BSDEVICE" ]; then
+          # Resolve device: workflow input > Automation variable > secret > already in env
+          RAW="${INPUT_DEVICE:-${VAR_DEVICE:-${SECRET_DEVICE:-${BSDEVICE:-}}}}"
+          CLEAN="$(printf '%s' "$RAW" | tr -d '\r\n' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^"//' -e 's/"$//')"
+          if [ -z "$CLEAN" ]; then
             echo "ERROR: BSDEVICE is empty."
             exit 1
           fi
-          if [ -z "$BSOS" ]; then
-            echo "ERROR: BSOS is empty for device '$BSDEVICE'. Check device-to-OS mapping in workflow."
-            exit 1
+          # Resolve OS from settings or map from device name
+          RAW_OS="${VAR_BSOS:-${SECRET_BSOS:-${BSOS:-}}}"
+          OS="$(printf '%s' "$RAW_OS" | tr -d '\r\n' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/\.0$//')"
+          if [ -z "$OS" ]; then
+            case "$CLEAN" in
+              "Samsung Galaxy A52") OS="11" ;;
+              "Motorola Moto G71 5G") OS="11" ;;
+              "Google Pixel 7 Pro") OS="13" ;;
+              "Xiaomi Redmi Note 11") OS="11" ;;
+              "Huawei P30") OS="9" ;;
+              "Oppo Reno 6") OS="11" ;;
+              *)
+                echo "ERROR: BSOS is empty and device '$CLEAN' is unknown. Set BSOS in GitHub settings (e.g. 13 for Pixel 7 Pro)."
+                exit 1
+                ;;
+            esac
           fi
-          case "$BSDEVICE" in
+          case "$CLEAN" in
             "Samsung Galaxy A11"|"Samsung Galaxy A51")
-              echo "ERROR: '$BSDEVICE' is deprecated/removed on BrowserStack. Select Google Pixel 7 Pro or Samsung Galaxy A52."
+              echo "ERROR: '$CLEAN' is deprecated on BrowserStack."
               exit 1
               ;;
           esac
-          echo "Device OK: $BSDEVICE (Android $BSOS)"
+          echo "BSDEVICE=$CLEAN" >> "$GITHUB_ENV"
+          echo "BSOS=$OS" >> "$GITHUB_ENV"
+          echo "Device OK: $CLEAN (Android $OS)"
 
       - name: Running Maven clean test
         run: |
