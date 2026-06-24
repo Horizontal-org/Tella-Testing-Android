@@ -99,10 +99,13 @@ public class LockService {
 
     public static void clickLockMethod(String method) {
         if (method.equals("Password")) {
+            MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_PASSWORD_BUTTON);
             MobileActionManager.click(LockUnlockConstants.LOCK_PASSWORD_BUTTON);
         } else if (method.equals("PIN")) {
+            MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_PIN_BUTTON);
             MobileActionManager.click(LockUnlockConstants.LOCK_PIN_BUTTON);
         } else if (method.equals("Pattern")){
+            MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_PATTERN_BUTTON);
             MobileActionManager.click(LockUnlockConstants.LOCK_PATTERN_BUTTON);
         }
     }

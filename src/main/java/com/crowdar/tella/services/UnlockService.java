@@ -12,6 +12,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
@@ -31,13 +32,22 @@ public class UnlockService {
     public static final int NEXT_BUTTON_CLICK_COUNT = 6;
 
     public static void clickNextUntilLockOptions() {
-        for (int i = 0; i < 10; i++) {
-            if (MobileActionManager.isVisible(LockUnlockConstants.LOCK_PASSWORD_BUTTON)) {
+        for (int i = 0; i < 8; i++) {
+            if (isLockOptionsScreenVisible()) {
                 return;
             }
-            MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON);
+            try {
+                GenericService.clickDisplayedOnboardingNext();
+            } catch (NoSuchElementException e) {
+                break;
+            }
         }
-        throw new RuntimeException("Lock options screen not reached after onboarding Next taps.");
+        MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_PASSWORD_BUTTON);
+    }
+
+    private static boolean isLockOptionsScreenVisible() {
+        return GenericService.isElementDisplayed(LockUnlockConstants.LOCK_PASSWORD_BUTTON)
+                || GenericService.isElementDisplayed(LockUnlockConstants.LOCK_SETUP_TITLE);
     }
 
     public static void isViewLoaded() {
@@ -167,7 +177,7 @@ public class UnlockService {
 
     public static void clickNextButtons(int count) {
         for (int i = 0; i < count; i++) {
-            MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON);
+            GenericService.clickDisplayedOnboardingNext();
         }
     }
 

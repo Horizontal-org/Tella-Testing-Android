@@ -273,6 +273,31 @@ public class GenericService {
         return !driver.findElements(by).isEmpty();
     }
 
+    public static boolean isElementDisplayed(String locator) {
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        By by = getByFromLocator(locator);
+        for (WebElement element : driver.findElements(by)) {
+            if (element.isDisplayed()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void clickDisplayedOnboardingNext() {
+        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        List<WebElement> nextButtons = driver.findElements(
+                By.xpath("//android.widget.TextView[@resource-id=\"org.hzontal.tella:id/next_btn\"]")
+        );
+        for (WebElement button : nextButtons) {
+            if (button.isDisplayed()) {
+                button.click();
+                return;
+            }
+        }
+        throw new NoSuchElementException("No visible onboarding Next button found.");
+    }
+
     public static void clickFirstPresent(String... locators) {
         for (String locator : locators) {
             if (GenericService.isElementPresent(locator)) {
