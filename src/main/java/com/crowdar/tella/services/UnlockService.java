@@ -27,7 +27,18 @@ import java.util.Map;
 
 
 public class UnlockService {
-    public static final int NEXT_BUTTON_CLICK_COUNT = 4;
+    /** Onboarding pages before lock in Tella 3.2+: Intro, Camera, Recorder, Files, Collect Data, Nearby Sharing, Lock */
+    public static final int NEXT_BUTTON_CLICK_COUNT = 6;
+
+    public static void clickNextUntilLockOptions() {
+        for (int i = 0; i < 10; i++) {
+            if (MobileActionManager.isVisible(LockUnlockConstants.LOCK_PASSWORD_BUTTON)) {
+                return;
+            }
+            MobileActionManager.click(LockUnlockConstants.NEXT_BUTTON);
+        }
+        throw new RuntimeException("Lock options screen not reached after onboarding Next taps.");
+    }
 
     public static void isViewLoaded() {
         if (MobileActionManager.isAndroid()) {
@@ -55,7 +66,7 @@ public class UnlockService {
     }
 
     public static void setPassword(String password) {
-        clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
+        clickNextUntilLockOptions();
         MobileActionManager.click(LockUnlockConstants.LOCK_PASSWORD_BUTTON);
         MobileActionManager.click(LockUnlockConstants.LOCK_UNDERSTAND_BUTTON);
         MobileActionManager.setInput(LockUnlockConstants.PASSWORD_INPUT, password);
@@ -94,7 +105,7 @@ public class UnlockService {
 
     public static void setNumbers(String pin) {
         if (MobileActionManager.isAndroid()) {
-            clickNextButtons(NEXT_BUTTON_CLICK_COUNT);
+            clickNextUntilLockOptions();
             MobileActionManager.click(LockUnlockConstants.LOCK_PIN_BUTTON);
             setPin(pin);
             MobileActionManager.click(LockUnlockConstants.PIN_OK_BUTTON);

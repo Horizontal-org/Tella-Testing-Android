@@ -12,7 +12,7 @@ public class LockSteps {
 
     @When("the user taps the Next button until reaching the lock options")
     public void tapNextButton() {
-        UnlockService.clickNextButtons(4);
+        UnlockService.clickNextUntilLockOptions();
     }
 
     @And("the user taps the Password button")

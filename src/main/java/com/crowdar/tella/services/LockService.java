@@ -11,6 +11,7 @@ public class LockService {
     public static String verifyPinAttributeEnabled;
 
     public static void clickPasswordButton(){
+        MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_PASSWORD_BUTTON);
         MobileActionManager.click(LockUnlockConstants.LOCK_PASSWORD_BUTTON);
     }
 
@@ -38,6 +39,7 @@ public class LockService {
         Assert.assertEquals(verifyPasswordAttributeEnabled , "true");
     }
     public static void clickPinButton(){
+        MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_PIN_BUTTON);
         MobileActionManager.click(LockUnlockConstants.LOCK_PIN_BUTTON);
     }
     public static void TapNextPinButton(){
@@ -91,6 +93,7 @@ public class LockService {
     }
 
     public static void clickPatterButton() {
+        MobileActionManager.waitVisibility(LockUnlockConstants.LOCK_PATTERN_BUTTON);
         MobileActionManager.click(LockUnlockConstants.LOCK_PATTERN_BUTTON);
     }
 
