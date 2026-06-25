@@ -26,15 +26,18 @@ public class ServersService {
 
     public static void viewConectionsServerOptions(String serverName) {
         MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
-        if (!MobileActionManager.isVisible(ServersConstants.TEXT_SERVER_BUTTON, serverName)) {
+        if (!MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, serverName)) {
             SettingsService.scrollDown();
         }
-            Assert.assertTrue(MobileActionManager.isVisible(ServersConstants.TEXT_SERVER_BUTTON, serverName));
+            Assert.assertTrue(MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, serverName));
     }
 
     public static void selectButton(String server) {
         MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
-        ActionManager.click(ServersConstants.TEXT_SERVER_BUTTON, server);
+        if (!MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, server)) {
+            SettingsService.scrollDown();
+        }
+        ActionManager.click(ServersConstants.SERVER_SELECTION_BUTTON, server);
     }
 
     public static void pressButton(String button) {
