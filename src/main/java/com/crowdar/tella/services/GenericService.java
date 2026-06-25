@@ -274,9 +274,9 @@ public class GenericService {
     }
 
     public static boolean isElementDisplayed(String locator) {
-        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
+        AndroidDriver<MobileElement> driver = (AndroidDriver<MobileElement>) GenericService.getDriver();
         By by = getByFromLocator(locator);
-        for (WebElement element : driver.findElements(by)) {
+        for (MobileElement element : driver.findElements(by)) {
             if (element.isDisplayed()) {
                 return true;
             }
@@ -285,11 +285,11 @@ public class GenericService {
     }
 
     public static void clickDisplayedOnboardingNext() {
-        AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
-        List<WebElement> nextButtons = driver.findElements(
+        AndroidDriver<MobileElement> driver = (AndroidDriver<MobileElement>) GenericService.getDriver();
+        List<MobileElement> nextButtons = driver.findElements(
                 By.xpath("//android.widget.TextView[@resource-id=\"org.hzontal.tella:id/next_btn\"]")
         );
-        for (WebElement button : nextButtons) {
+        for (MobileElement button : nextButtons) {
             if (button.isDisplayed()) {
                 button.click();
                 return;
