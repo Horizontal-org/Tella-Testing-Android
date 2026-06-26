@@ -15,8 +15,11 @@ public class PhotographyAndVideoConstants {
     public static final String CAPTURE_PHOTO_OR_VIDEO_BUTTON = "id:captureButton";
 
     public static final String PREVIEW_FILE = "id:preview_image";
+    public static final String PREVIEW_FILE_FALLBACK = "xpath://*[contains(@resource-id,\"preview_image\")]";
+    public static final String PREVIEW_FILE_ACCESSIBILITY = "accessibilityId:open gallery";
 
-    public static final String THREE_POINTS_FILE_BUTTON = "xpath://android.widget.Button[@content-desc=\"Save to device\"]";
+    public static final String THREE_POINTS_FILE_BUTTON = "xpath://*[contains(@content-desc,\"Save to device\")]";
+    public static final String THREE_POINTS_FILE_BUTTON_FALLBACK = "xpath://*[@content-desc=\"More options\"]";
 
     public static final String DELETE_FILE_BUTTON = "id:deleteActionTV";
 

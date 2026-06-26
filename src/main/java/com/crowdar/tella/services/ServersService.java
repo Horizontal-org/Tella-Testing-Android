@@ -6,12 +6,14 @@ import com.crowdar.core.actions.MobileActionManager;
 import com.crowdar.driver.DriverManager;
 import com.crowdar.tella.constants.*;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.lippia.api.service.CommonService;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
@@ -20,28 +22,37 @@ import java.util.Locale;
 
 
 public class ServersService {
+    private static AndroidDriver<MobileElement> androidDriver() {
+        return (AndroidDriver<MobileElement>) GenericService.getDriver();
+    }
+
     public static void clickPlusButton() {
         MobileActionManager.waitVisibility(ServersConstants.PLUS_BUTTON);
         ActionManager.click(ServersConstants.PLUS_BUTTON);
-        MobileActionManager.waitVisibility(ServersConstants.SERVER_SELECTION_SHEET);
+        waitForServerSelectionSheet();
     }
 
     public static void viewConectionsServerOptions(String serverName) {
-        String locator = resolveServerOptionLocator(serverName);
-        MobileActionManager.waitVisibility(ServersConstants.SERVER_SELECTION_SHEET);
-        if (!MobileActionManager.isVisible(locator)) {
+        waitForServerSelectionSheet();
+        if (!isServerOptionVisible(serverName)) {
             scrollToServerOption(serverName);
         }
-        Assert.assertTrue(MobileActionManager.isVisible(locator));
+        Assert.assertTrue(isServerOptionVisible(serverName));
     }
 
     public static void selectButton(String server) {
-        String locator = resolveServerOptionLocator(server);
-        MobileActionManager.waitVisibility(ServersConstants.SERVER_SELECTION_SHEET);
-        if (!MobileActionManager.isVisible(locator)) {
+        waitForServerSelectionSheet();
+        if (!isServerOptionVisible(server)) {
             scrollToServerOption(server);
         }
-        ActionManager.click(locator);
+        clickServerOptionLabel(server);
+    }
+
+    private static void waitForServerSelectionSheet() {
+        WebDriverWait wait = new WebDriverWait(androidDriver(), 20);
+        wait.until(driver -> !driver.findElements(
+                MobileBy.AndroidUIAutomator("new UiSelector().resourceIdMatches(\".*sheet_one_btn\")")
+        ).isEmpty());
     }
 
     private static String resolveServerOptionLocator(String server) {
@@ -63,10 +74,36 @@ public class ServersService {
         }
     }
 
+    private static boolean isServerOptionVisible(String server) {
+        String label = toServerSelectionLabel(server);
+        return !androidDriver().findElements(
+                MobileBy.AndroidUIAutomator("new UiSelector().text(\"" + label + "\")")
+        ).isEmpty();
+    }
+
+    private static void clickServerOptionLabel(String server) {
+        String locator = resolveServerOptionLocator(server);
+        try {
+            if (!MobileActionManager.isVisible(locator)) {
+                scrollToServerOption(server);
+            }
+            ActionManager.click(locator);
+        } catch (Exception e) {
+            String label = toServerSelectionLabel(server);
+            androidDriver().findElement(MobileBy.AndroidUIAutomator(
+                    "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                            ".scrollIntoView(new UiSelector().text(\"" + label + "\"))"
+            )).click();
+        }
+    }
+
     private static void scrollToServerOption(String server) {
         String label = toServerSelectionLabel(server);
         try {
-            scrollAndroid("text", label, 0);
+            androidDriver().findElement(MobileBy.AndroidUIAutomator(
+                    "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                            ".scrollIntoView(new UiSelector().text(\"" + label + "\"))"
+            ));
         } catch (Exception e) {
             SettingsService.scrollDown();
         }
@@ -78,17 +115,37 @@ public class ServersService {
 
     private static void clickServerSheetOk() {
         try {
-            scrollAndroid("text", "OK", 0).click();
-            return;
+            androidDriver().findElement(MobileBy.AndroidUIAutomator(
+                    "new UiSelector().resourceIdMatches(\".*next_btn\").text(\"OK\")"
+            )).click();
         } catch (Exception ignored) {
-            // fall through to xpath / id click
+            // try scroll-into-view for OK label
         }
-        if (!MobileActionManager.getElements(ServersConstants.SERVER_SHEET_OK_BUTTON).isEmpty()) {
-            MobileActionManager.click(ServersConstants.SERVER_SHEET_OK_BUTTON);
-            return;
+        try {
+            if (!isServerConfigurationVisible()) {
+                androidDriver().findElement(MobileBy.AndroidUIAutomator(
+                        "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                                ".scrollIntoView(new UiSelector().text(\"OK\"))"
+                )).click();
+            }
+        } catch (Exception ignored) {
+            // fall through
         }
-        SettingsService.scrollDown();
-        MobileActionManager.click(ServersConstants.GRAL_NEXT_BUTTON);
+        if (!isServerConfigurationVisible()) {
+            SettingsService.scrollDown();
+            MobileActionManager.click(ServersConstants.GRAL_NEXT_BUTTON);
+        }
+        waitForServerConfigurationScreen();
+    }
+
+    private static boolean isServerConfigurationVisible() {
+        return ActionManager.isPresent(ServersConstants.URL_INPUT)
+                || ActionManager.isPresent(ServersConstants.SERVER_NAME_INPUT);
+    }
+
+    private static void waitForServerConfigurationScreen() {
+        WebDriverWait wait = new WebDriverWait(androidDriver(), 20);
+        wait.until(driver -> isServerConfigurationVisible());
     }
 
     public static void pressButton(String button) {
@@ -186,13 +243,12 @@ public class ServersService {
     }
 
     public static void viewListAccessButton(List<String> listAccessButton) {
-        MobileActionManager.waitVisibility(ServersConstants.SERVER_SELECTION_SHEET);
+        waitForServerSelectionSheet();
         for (String accessName : listAccessButton) {
-            String locator = resolveServerOptionLocator(accessName);
-            if (!MobileActionManager.isVisible(locator)) {
+            if (!isServerOptionVisible(accessName)) {
                 scrollToServerOption(accessName);
             }
-            Assert.assertTrue(MobileActionManager.isVisible(locator));
+            Assert.assertTrue(isServerOptionVisible(accessName));
         }
     }
 

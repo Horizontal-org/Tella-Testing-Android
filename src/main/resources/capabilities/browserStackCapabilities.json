@@ -9,5 +9,6 @@
   "resetKeyboard": "true",
   "unicodeKeyboard": "true",
   "autoGrantPermissions": "true",
-  "autoAcceptAlerts": "true"
+  "autoAcceptAlerts": "true",
+  "browserstack.cameraImageInjection": "true"
 }

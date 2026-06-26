@@ -6,18 +6,92 @@ import com.crowdar.tella.constants.FilesConstants;
 import com.crowdar.tella.constants.PhotographyAndVideoConstants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import junit.framework.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import static com.crowdar.tella.constants.PhotographyAndVideoConstants.*;
 
 public class PhotographyAndVideoService {
+
+    private static AndroidDriver<MobileElement> androidDriver() {
+        return (AndroidDriver<MobileElement>) DriverManager.getDriverInstance().getWrappedDriver();
+    }
+
+    public static void takePhoto() {
+        FilesService.acceptPermissions();
+        MobileActionManager.waitClickable(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        MobileActionManager.click(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        waitForPhotoPreview();
+    }
+
+    public static void openPhotoPreview() {
+        waitForPhotoPreview();
+        clickPhotoPreview();
+    }
+
+    private static void waitForPhotoPreview() {
+        WebDriverWait wait = new WebDriverWait(androidDriver(), 45);
+        try {
+            wait.until(driver -> isPhotoPreviewVisible());
+        } catch (TimeoutException e) {
+            MobileActionManager.click(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+            new WebDriverWait(androidDriver(), 30).until(d -> isPhotoPreviewVisible());
+        }
+    }
+
+    private static boolean isPhotoPreviewVisible() {
+        for (String locator : Arrays.asList(
+                PhotographyAndVideoConstants.PREVIEW_FILE,
+                PhotographyAndVideoConstants.PREVIEW_FILE_FALLBACK,
+                PhotographyAndVideoConstants.PREVIEW_FILE_ACCESSIBILITY
+        )) {
+            if (GenericService.isElementDisplayed(locator)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void clickPhotoPreview() {
+        for (String locator : Arrays.asList(
+                PhotographyAndVideoConstants.PREVIEW_FILE,
+                PhotographyAndVideoConstants.PREVIEW_FILE_FALLBACK,
+                PhotographyAndVideoConstants.PREVIEW_FILE_ACCESSIBILITY
+        )) {
+            try {
+                if (GenericService.isElementDisplayed(locator)) {
+                    GenericService.commonClick(locator);
+                    return;
+                }
+            } catch (Exception ignored) {
+                // try next locator
+            }
+        }
+        GenericService.commonClick(PhotographyAndVideoConstants.PREVIEW_FILE);
+    }
+
+    public static void openFileActionsMenu() {
+        WebDriverWait wait = new WebDriverWait(androidDriver(), 20);
+        for (String locator : Arrays.asList(
+                PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON,
+                PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON_FALLBACK
+        )) {
+            try {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(GenericService.stringToBy(locator)));
+                GenericService.commonClick(locator);
+                return;
+            } catch (Exception ignored) {
+                // try next locator
+            }
+        }
+        GenericService.commonClick(PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON);
+    }
 
 
     public static void tapGridButtonAssert() {

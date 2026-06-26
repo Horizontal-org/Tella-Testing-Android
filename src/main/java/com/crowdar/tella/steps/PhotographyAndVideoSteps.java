@@ -53,19 +53,18 @@ public class PhotographyAndVideoSteps {
 
     @And("the user takes a photography")
     public void theUserTakesAPhotography() {
-        FilesService.acceptPermissions();
-        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
+        PhotographyAndVideoService.takePhoto();
     }
 
     @When("the user presses the image located at the bottom right to the screen")
     public void theUserPressesTheImageLocatedAtTheBottomRightToTheScreen() {
-        GenericService.commonClick(PhotographyAndVideoConstants.PREVIEW_FILE);
+        PhotographyAndVideoService.openPhotoPreview();
     }
 
     @And("the user presses the three points button located at the top right screen")
     public void theUserPressesTheThreePointsButtonLocatedAtTheTopRightScreen() throws InterruptedException {
-        Thread.sleep(5000);
-        GenericService.commonClick(PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON);
+        Thread.sleep(2000);
+        PhotographyAndVideoService.openFileActionsMenu();
     }
 
 
@@ -151,13 +150,9 @@ public class PhotographyAndVideoSteps {
     public void theUserHaveAPhotoTakenNamedTella() {
         MobileActionManager.waitVisibility(HomeConstants.CAMERA_BUTTON);
         GenericService.commonClick(HomeConstants.CAMERA_BUTTON);
-        FilesService.acceptPermissions();
-        MobileActionManager.waitVisibility(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        GenericService.commonClick(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
-        MobileActionManager.waitVisibility(PhotographyAndVideoConstants.PREVIEW_FILE);
-        GenericService.commonClick(PhotographyAndVideoConstants.PREVIEW_FILE);
-        MobileActionManager.waitVisibility(PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON);
-        GenericService.commonClick(PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON);
+        PhotographyAndVideoService.takePhoto();
+        PhotographyAndVideoService.openPhotoPreview();
+        PhotographyAndVideoService.openFileActionsMenu();
         MobileActionManager.waitVisibility(PhotographyAndVideoConstants.RENAME_BUTTON);
         GenericService.commonClick(PhotographyAndVideoConstants.RENAME_BUTTON);
         PhotographyAndVideoService.deleteTextAndSendKeys();
@@ -166,7 +161,6 @@ public class PhotographyAndVideoSteps {
         GenericService.commonClick(PhotographyAndVideoConstants.GO_BACK_BUTTON);
         MobileActionManager.waitVisibility(FilesConstants.CLOSE_BUTTON);
         GenericService.commonClick(FilesConstants.CLOSE_BUTTON);
-
     }
 }
 
