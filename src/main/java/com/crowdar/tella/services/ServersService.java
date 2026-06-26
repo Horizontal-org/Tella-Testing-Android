@@ -23,35 +23,90 @@ public class ServersService {
     public static void clickPlusButton() {
         MobileActionManager.waitVisibility(ServersConstants.PLUS_BUTTON);
         ActionManager.click(ServersConstants.PLUS_BUTTON);
+        MobileActionManager.waitVisibility(ServersConstants.SERVER_SELECTION_SHEET);
     }
 
     public static void viewConectionsServerOptions(String serverName) {
-        String label = toServerSelectionLabel(serverName);
-        MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
-        if (!MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, label)) {
-            SettingsService.scrollDown();
+        String locator = resolveServerOptionLocator(serverName);
+        MobileActionManager.waitVisibility(ServersConstants.SERVER_SELECTION_SHEET);
+        if (!MobileActionManager.isVisible(locator)) {
+            scrollToServerOption(serverName);
         }
-            Assert.assertTrue(MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, label));
+        Assert.assertTrue(MobileActionManager.isVisible(locator));
     }
 
     public static void selectButton(String server) {
+        String locator = resolveServerOptionLocator(server);
+        MobileActionManager.waitVisibility(ServersConstants.SERVER_SELECTION_SHEET);
+        if (!MobileActionManager.isVisible(locator)) {
+            scrollToServerOption(server);
+        }
+        ActionManager.click(locator);
+    }
+
+    private static String resolveServerOptionLocator(String server) {
+        switch (server.trim().toLowerCase(Locale.ROOT)) {
+            case "open data kit (odk)":
+                return ServersConstants.SERVER_OPTION_ODK;
+            case "tella web":
+                return ServersConstants.SERVER_OPTION_TELLA_WEB;
+            case "uwazi":
+                return ServersConstants.SERVER_OPTION_UWAZI;
+            case "google drive":
+                return ServersConstants.SERVER_OPTION_GOOGLE_DRIVE;
+            case "dropbox":
+                return ServersConstants.SERVER_OPTION_DROPBOX;
+            case "nextcloud":
+                return ServersConstants.SERVER_OPTION_NEXTCLOUD;
+            default:
+                return String.format(ServersConstants.SERVER_SELECTION_BUTTON, toServerSelectionLabel(server));
+        }
+    }
+
+    private static void scrollToServerOption(String server) {
+        String locator = resolveServerOptionLocator(server);
+        if (locator.startsWith("id:")) {
+            try {
+                SettingsService.scrollTo(locator);
+            } catch (Exception e) {
+                SettingsService.scrollDown();
+            }
+            return;
+        }
         String label = toServerSelectionLabel(server);
-        MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
-        if (!MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, label)) {
+        try {
+            scrollAndroid("text", label, 0);
+        } catch (Exception e) {
             SettingsService.scrollDown();
         }
-        ActionManager.click(ServersConstants.SERVER_SELECTION_BUTTON, label);
     }
 
     private static String toServerSelectionLabel(String server) {
         return server.toUpperCase(Locale.ROOT);
     }
 
-    public static void pressButton(String button) {
+    private static void clickServerSheetOk() {
+        try {
+            scrollAndroid("text", "OK", 0).click();
+            return;
+        } catch (Exception ignored) {
+            // fall through to xpath / id click
+        }
+        if (!MobileActionManager.getElements(ServersConstants.SERVER_SHEET_OK_BUTTON).isEmpty()) {
+            MobileActionManager.click(ServersConstants.SERVER_SHEET_OK_BUTTON);
+            return;
+        }
+        SettingsService.scrollDown();
+        MobileActionManager.click(ServersConstants.GRAL_NEXT_BUTTON);
+    }
 
+    public static void pressButton(String button) {
+        if ("OK".equals(button)) {
+            clickServerSheetOk();
+            return;
+        }
 
         Map<String, String> buttons = new HashMap<>();
-          buttons.put("OK", ServersConstants.SERVER_SHEET_OK_BUTTON);
         buttons.put("Cancel", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Next", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("SAVE", ServersConstants.SAVE_BUTTON);

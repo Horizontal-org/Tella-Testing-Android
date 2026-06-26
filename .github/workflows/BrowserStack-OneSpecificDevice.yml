@@ -225,12 +225,14 @@ jobs:
         shell: bash
 
       - name: Uploading test reports
+        if: always()
         uses: actions/upload-artifact@v4.3.4
         with:
           name: test-results
           path: target/reports/
 
       - name: Uploading HTML test report
+        if: always()
         uses: actions/upload-artifact@v4.3.4
         with:
           name: html-report
@@ -238,6 +240,7 @@ jobs:
 
 
       - name: Uploading surefire test reports
+        if: always()
         uses: actions/upload-artifact@v4.3.4
         with:
           name: test-results-surefire

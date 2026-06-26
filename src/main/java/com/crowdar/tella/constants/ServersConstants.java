@@ -3,8 +3,15 @@ package com.crowdar.tella.constants;
 public class ServersConstants {
     public static final String PLUS_BUTTON = "id:org.hzontal.tella:id/add_server";
     public static final String WHAT_SERVER_TITLE = "id:standard_sheet_content";
+    public static final String SERVER_SELECTION_SHEET = "id:sheet_one_btn";
+    public static final String SERVER_OPTION_ODK = "id:sheet_one_btn";
+    public static final String SERVER_OPTION_TELLA_WEB = "id:sheet_two_btn";
+    public static final String SERVER_OPTION_UWAZI = "id:sheet_three_btn";
+    public static final String SERVER_OPTION_GOOGLE_DRIVE = "id:sheet_four_activated_btn";
+    public static final String SERVER_OPTION_DROPBOX = "id:sheet_five_activated_btn";
+    public static final String SERVER_OPTION_NEXTCLOUD = "id:sheet_six_activated_btn";
     public static final String TEXT_SERVER_BUTTON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" + ".tella:id/sheet_textView\" and @text=\"%s\"]";
-    /** Tella 3.2+ RoundButton labels are rendered in ALL CAPS. Match by id suffix + uppercased text. */
+    /** Fallback when matching by visible label on RoundButton inner TextView. */
     public static final String SERVER_SELECTION_BUTTON = "xpath://android.widget.TextView[contains(@resource-id,\"sheet_textView\") and @text=\"%s\"]";
     public static final String SERVER_SHEET_OK_BUTTON = "xpath://android.widget.TextView[contains(@resource-id,\"next_btn\") and @text=\"OK\"]";
     public static final String GRAL_NEXT_BUTTON = "id:org.hzontal.tella:id/next_btn";
