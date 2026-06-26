@@ -64,15 +64,6 @@ public class ServersService {
     }
 
     private static void scrollToServerOption(String server) {
-        String locator = resolveServerOptionLocator(server);
-        if (locator.startsWith("id:")) {
-            try {
-                SettingsService.scrollTo(locator);
-            } catch (Exception e) {
-                SettingsService.scrollDown();
-            }
-            return;
-        }
         String label = toServerSelectionLabel(server);
         try {
             scrollAndroid("text", label, 0);
@@ -195,9 +186,13 @@ public class ServersService {
     }
 
     public static void viewListAccessButton(List<String> listAccessButton) {
-        MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
+        MobileActionManager.waitVisibility(ServersConstants.SERVER_SELECTION_SHEET);
         for (String accessName : listAccessButton) {
-            Assert.assertTrue(MobileActionManager.isPresent(ServersConstants.TEXT_SERVER_BUTTON, accessName));
+            String locator = resolveServerOptionLocator(accessName);
+            if (!MobileActionManager.isVisible(locator)) {
+                scrollToServerOption(accessName);
+            }
+            Assert.assertTrue(MobileActionManager.isVisible(locator));
         }
     }
 
