@@ -16,6 +16,7 @@ import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.*;
+import java.util.Locale;
 
 
 public class ServersService {
@@ -25,26 +26,32 @@ public class ServersService {
     }
 
     public static void viewConectionsServerOptions(String serverName) {
+        String label = toServerSelectionLabel(serverName);
         MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
-        if (!MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, serverName)) {
+        if (!MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, label)) {
             SettingsService.scrollDown();
         }
-            Assert.assertTrue(MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, serverName));
+            Assert.assertTrue(MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, label));
     }
 
     public static void selectButton(String server) {
+        String label = toServerSelectionLabel(server);
         MobileActionManager.waitVisibility(ServersConstants.WHAT_SERVER_TITLE);
-        if (!MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, server)) {
+        if (!MobileActionManager.isVisible(ServersConstants.SERVER_SELECTION_BUTTON, label)) {
             SettingsService.scrollDown();
         }
-        ActionManager.click(ServersConstants.SERVER_SELECTION_BUTTON, server);
+        ActionManager.click(ServersConstants.SERVER_SELECTION_BUTTON, label);
+    }
+
+    private static String toServerSelectionLabel(String server) {
+        return server.toUpperCase(Locale.ROOT);
     }
 
     public static void pressButton(String button) {
 
 
         Map<String, String> buttons = new HashMap<>();
-          buttons.put("OK", ServersConstants.GRAL_NEXT_BUTTON);
+          buttons.put("OK", ServersConstants.SERVER_SHEET_OK_BUTTON);
         buttons.put("Cancel", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("Next", ServersConstants.GRAL_NEXT_BUTTON);
         buttons.put("SAVE", ServersConstants.SAVE_BUTTON);

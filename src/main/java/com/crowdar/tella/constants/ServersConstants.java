@@ -4,8 +4,9 @@ public class ServersConstants {
     public static final String PLUS_BUTTON = "id:org.hzontal.tella:id/add_server";
     public static final String WHAT_SERVER_TITLE = "id:standard_sheet_content";
     public static final String TEXT_SERVER_BUTTON = "xpath://android.widget.TextView[@resource-id=\"org.hzontal" + ".tella:id/sheet_textView\" and @text=\"%s\"]";
-    /** Tella 3.2+ server picker uses RoundButton labels rendered in all caps. */
-    public static final String SERVER_SELECTION_BUTTON = "xpath://android.widget.TextView[contains(@resource-id,\"sheet_textView\") and translate(@text,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')=translate(\"%s\",'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')]";
+    /** Tella 3.2+ RoundButton labels are rendered in ALL CAPS. Match by id suffix + uppercased text. */
+    public static final String SERVER_SELECTION_BUTTON = "xpath://android.widget.TextView[contains(@resource-id,\"sheet_textView\") and @text=\"%s\"]";
+    public static final String SERVER_SHEET_OK_BUTTON = "xpath://android.widget.TextView[contains(@resource-id,\"next_btn\") and @text=\"OK\"]";
     public static final String GRAL_NEXT_BUTTON = "id:org.hzontal.tella:id/next_btn";
     public static final String URL_INPUT = "id:url";
     public static final String SAVE_BUTTON = "id:next";
