@@ -326,10 +326,10 @@ public class GenericService {
 
     public static void injectBrowserStackCameraImage() {
         String mediaUrl = System.getenv("BSMEDIA");
-        if (mediaUrl == null || mediaUrl.isBlank()) {
+        if (mediaUrl == null || mediaUrl.trim().isEmpty()) {
             mediaUrl = System.getProperty("bsmedia");
         }
-        if (mediaUrl == null || mediaUrl.isBlank()) {
+        if (mediaUrl == null || mediaUrl.trim().isEmpty()) {
             return;
         }
         JavascriptExecutor executor = (JavascriptExecutor) getDriver();
