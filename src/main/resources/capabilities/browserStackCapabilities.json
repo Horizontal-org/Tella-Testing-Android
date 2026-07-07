@@ -10,5 +10,5 @@
   "unicodeKeyboard": "true",
   "autoGrantPermissions": "true",
   "autoAcceptAlerts": "true",
-  "browserstack.cameraImageInjection": "true"
+  "browserstack.enableCameraImageInjection": "true"
 }

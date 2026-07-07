@@ -12,6 +12,7 @@ public class PhotographyAndVideoSteps {
 
     @When("the user presses the camera button")
     public void theUserPressesTheCameraButton() {
+        GenericService.injectBrowserStackCameraImage();
         GenericService.commonClick(HomeConstants.CAMERA_BUTTON);
         FilesService.acceptPermissions();
     }

@@ -25,6 +25,7 @@ public class PhotographyAndVideoService {
 
     public static void takePhoto() {
         FilesService.acceptPermissions();
+        GenericService.injectBrowserStackCameraImage();
         MobileActionManager.waitClickable(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
         MobileActionManager.click(PhotographyAndVideoConstants.CAPTURE_PHOTO_OR_VIDEO_BUTTON);
         waitForPhotoPreview();
@@ -70,7 +71,6 @@ public class PhotographyAndVideoService {
                     return;
                 }
             } catch (Exception ignored) {
-                // try next locator
             }
         }
         GenericService.commonClick(PhotographyAndVideoConstants.PREVIEW_FILE);
@@ -87,7 +87,6 @@ public class PhotographyAndVideoService {
                 GenericService.commonClick(locator);
                 return;
             } catch (Exception ignored) {
-                // try next locator
             }
         }
         GenericService.commonClick(PhotographyAndVideoConstants.THREE_POINTS_FILE_BUTTON);

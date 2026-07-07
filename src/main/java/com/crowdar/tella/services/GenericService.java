@@ -323,6 +323,21 @@ public class GenericService {
         AndroidDriver<?> driver = (AndroidDriver<?>) GenericService.getDriver();
         ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
+
+    public static void injectBrowserStackCameraImage() {
+        String mediaUrl = System.getenv("BSMEDIA");
+        if (mediaUrl == null || mediaUrl.isBlank()) {
+            mediaUrl = System.getProperty("bsmedia");
+        }
+        if (mediaUrl == null || mediaUrl.isBlank()) {
+            return;
+        }
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+        executor.executeScript(
+                "browserstack_executor: {\"action\":\"cameraImageInjection\", \"arguments\": {\"imageUrl\": \""
+                        + mediaUrl + "\"}}"
+        );
+    }
 }
 
 

@@ -13,6 +13,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -95,6 +96,15 @@ public class ServersService {
                             ".scrollIntoView(new UiSelector().text(\"" + label + "\"))"
             )).click();
         }
+        pauseAfterServerSelection();
+    }
+
+    private static void pauseAfterServerSelection() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     private static void scrollToServerOption(String server) {
@@ -114,33 +124,46 @@ public class ServersService {
     }
 
     private static void clickServerSheetOk() {
-        try {
-            androidDriver().findElement(MobileBy.AndroidUIAutomator(
-                    "new UiSelector().resourceIdMatches(\".*next_btn\").text(\"OK\")"
-            )).click();
-        } catch (Exception ignored) {
-            // try scroll-into-view for OK label
-        }
-        try {
-            if (!isServerConfigurationVisible()) {
-                androidDriver().findElement(MobileBy.AndroidUIAutomator(
-                        "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
-                                ".scrollIntoView(new UiSelector().text(\"OK\"))"
-                )).click();
-            }
-        } catch (Exception ignored) {
-            // fall through
-        }
-        if (!isServerConfigurationVisible()) {
+        if (!tryClickServerSheetOk()) {
             SettingsService.scrollDown();
-            MobileActionManager.click(ServersConstants.GRAL_NEXT_BUTTON);
+            tryClickServerSheetOk();
         }
         waitForServerConfigurationScreen();
     }
 
+    private static boolean tryClickServerSheetOk() {
+        try {
+            androidDriver().findElement(MobileBy.AndroidUIAutomator(
+                    "new UiSelector().resourceIdMatches(\".*next_btn\").text(\"OK\")"
+            )).click();
+            return true;
+        } catch (Exception ignored) {
+        }
+        try {
+            androidDriver().findElement(MobileBy.AndroidUIAutomator(
+                    "new UiScrollable(new UiSelector().scrollable(true).instance(0))" +
+                            ".scrollIntoView(new UiSelector().text(\"OK\"))"
+            )).click();
+            return true;
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
+
     private static boolean isServerConfigurationVisible() {
-        return ActionManager.isPresent(ServersConstants.URL_INPUT)
-                || ActionManager.isPresent(ServersConstants.SERVER_NAME_INPUT);
+        return isFieldVisible(ServersConstants.URL_INPUT)
+                || isFieldVisible(ServersConstants.SERVER_NAME_INPUT);
+    }
+
+    private static boolean isFieldVisible(String locator) {
+        try {
+            By by = GenericService.getByFromLocator(locator);
+            WebDriverWait wait = new WebDriverWait(androidDriver(), 3);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private static void waitForServerConfigurationScreen() {
