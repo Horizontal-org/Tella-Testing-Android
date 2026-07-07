@@ -207,13 +207,14 @@ jobs:
           echo "Device OK: $CLEAN (Android $OS)"
 
       - name: Upload camera test image to BrowserStack
+        shell: bash
         run: |
           set -e
           upload_response=$(curl -sS -u "$BSUSER:$AUTHTOKEN" \
             -X POST "https://api-cloud.browserstack.com/app-automate/upload-media" \
             -F "file=@src/test/resources/testdata/sample_camera.jpg" \
             -F "custom_id=TellaCameraSample")
-          BSMEDIA=$(python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('media_url',''))" <<< "$upload_response")
+          BSMEDIA=$(echo "$upload_response" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('media_url',''))")
           if [ -z "$BSMEDIA" ]; then
             echo "ERROR: Failed to upload camera test image. Response: $upload_response"
             exit 1
