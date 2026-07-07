@@ -214,7 +214,7 @@ jobs:
             -X POST "https://api-cloud.browserstack.com/app-automate/upload-media" \
             -F "file=@src/test/resources/testdata/sample_camera.jpg" \
             -F "custom_id=TellaCameraSample")
-          BSMEDIA=$(echo "$upload_response" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('media_url',''))")
+          BSMEDIA=$(echo "$upload_response" | sed -n 's/.*"media_url":"\([^"]*\)".*/\1/p')
           if [ -z "$BSMEDIA" ]; then
             echo "ERROR: Failed to upload camera test image. Response: $upload_response"
             exit 1
