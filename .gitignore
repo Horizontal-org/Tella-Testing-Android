@@ -1,5 +1,9 @@
 *.class
 
+# Android APKs (never commit — use BrowserStack or local download)
+*.apk
+sample_apk/
+
 # Log file
 *.log
 
